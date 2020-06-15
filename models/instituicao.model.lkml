@@ -1,6 +1,6 @@
 connection: "graduado"
 
-include: "**/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/*/*.view.lkml"                # include all views in the views/ folder in this project
 # include: "/**/view.lkml"                   # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -18,9 +18,8 @@ include: "**/*.view.lkml"                # include all views in the views/ folde
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
-
-explore: beneficiados {
-  label: "Histórico de Beneficiados"
-  view_label: "Histórico de Beneficiados"
-  description: "Mostra os dados de todos os contratos cedidos pelo PRAVALER"
+explore: instituicao {
+  label: "Instituição"
+  view_label: ""
+  description: ""
 }
