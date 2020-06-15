@@ -157,8 +157,8 @@ view: beneficiados {
     type: string
     sql: ${TABLE}."CURSO" ;;
     group_label: "Dados do Curso"
-    group_item_label: "Valor da Mensalidade"
-    description: "Indica o valor da mensalidade do financiamento"
+    group_item_label: "Curso"
+    description: "Indica o nome do curso"
   }
 
   dimension: mensalidade {
@@ -287,8 +287,146 @@ view: beneficiados {
   }
 
 
-  measure: count {
+
+  measure: count_cont {
     type: count
-    drill_fields: []
+    value_format: "#,###"
+    group_label: "Quantidade de Contratos"
+    group_item_label: "Valor"
+    description: "Contagem de Contratos"
+  }
+
+  measure: perc_cont {
+    type: percent_of_total
+    sql: ${count_cont} ;;
+    value_format: "0.0%"
+    group_label: "Quantidade de Contratos"
+    group_item_label: "Porcentagem"
+    description:"Porcentagem do total de contratos"
+  }
+
+  measure: count_id_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de CPFs únicos"
+  }
+
+  measure: perc_cpf {
+    type: percent_of_total
+    sql: ${count_id_cpf} ;;
+    value_format: "0.0%"
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+    description: "Porcentagem do total de CPFs únicos"
+  }
+
+  measure: idade_aluno {
+    type: average
+    sql: ${idade_do_aluno} ;;
+    value_format: "#,###"
+    group_label: "Idade"
+    group_item_label: "Aluno"
+    description: "Média de idade do aluno"
+  }
+
+  measure: idade_garantidor {
+    type: average
+    sql: ${idade_do_garantidor} ;;
+    value_format: "#,###"
+    group_label: "Idade"
+    group_item_label: "Garantidor"
+    description: "Média de idade do garantidor"
+  }
+
+  measure: juros {
+    type: average
+    sql: ${juros_mensais} ;;
+    value_format: "0.00\%"
+    group_label: "Taxa de Juros"
+    group_item_label: "Média"
+    description: "Valor médio da taxa de juros do contrato"
+  }
+
+  measure: juros_min {
+    type: min
+    sql: ${juros_mensais} ;;
+    value_format: "0.00\%"
+    group_label: "Taxa de Juros"
+    group_item_label: "Mínimo"
+  }
+
+  measure: juros_max {
+    type: max
+    sql: ${juros_mensais} ;;
+    value_format: "0.00\%"
+    group_label: "Taxa de Juros"
+    group_item_label: "Máximo"
+    description: "Maior valor da taxa de juros do contrato"
+  }
+
+  measure: avg_mensalidade {
+    type: average
+    sql: ${mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Média"
+    description: "Valor médio de mensalidade"
+  }
+
+  measure: max_mensalidade {
+    type: max
+    sql: ${mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Máximo"
+    description: "Valor máximo de mensalidade"
+  }
+
+  measure: min_mensalidade {
+    type: min
+    sql: ${mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Mínimo"
+    description: "Valor mínimo de mensalidade"
+  }
+
+  measure: sum_qtd_mensalidade {
+    type: sum
+    sql: ${quantidade_de_mensalidades} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Mensalidades"
+    group_item_label: "Soma"
+    description: "Soma da quantidade de mensalidades que foram efetivamente financiadas pelo PRAVALER"
+  }
+
+  measure: avg_qtd_mensalidade {
+    type: average
+    sql: ${quantidade_de_mensalidades} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Mensalidades"
+    group_item_label: "Média"
+    description: "Média da quantidade de mensalidades que foram efetivamente financiadas pelo PRAVALER"
+  }
+
+  measure: sum_financiado {
+    type: sum
+    sql: ${valor_financiado} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Financiado"
+    group_item_label: "Soma"
+    description: "Soma dos valores efetivamente financiados pelo PRAVALER"
+  }
+
+  measure: avg_financiado {
+    type: average
+    sql: ${valor_financiado} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Financiado"
+    group_item_label: "Média"
+    description: "Média dos valores efetivamente financiados pelo PRAVALER"
   }
 }
