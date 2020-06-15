@@ -34,7 +34,7 @@ view: instituicao {
     type: string
     label: "Nome do Banco"
     group_label: "Dados Bancários da IE"
-    description: "Indica o Banco correspondente a IES"
+    description: "Indica o Banco correspondente a IE"
     sql: ${TABLE}."BANCO" ;;
   }
 
@@ -81,7 +81,7 @@ view: instituicao {
     type: string
     group_label: "Dados do Gerente Regional - IE"
     label: "Cargo"
-    description: "Nome do cargo do representante Comercial na IES"
+    description: "Nome do cargo do representante Comercial na IE"
     sql: ${TABLE}."CARGO" ;;
   }
 
@@ -120,7 +120,7 @@ view: instituicao {
     type: string
     group_label: "Dados IE"
     label: "Sede - Cidade"
-    description: "Indica a cidade que está localizada a Sede da IES"
+    description: "Indica a cidade que está localizada a Sede da IE"
     sql: ${TABLE}."CIDADE_SEDE_IE" ;;
   }
 
@@ -143,7 +143,7 @@ view: instituicao {
     type: string
     label: "Número da Conta"
     group_label: "Dados Bancários da IE"
-    description: "Indica o número da conta correspondente a IES"
+    description: "Indica o número da conta correspondente a IE"
     sql: ${TABLE}."CONTA" ;;
   }
 
@@ -151,7 +151,7 @@ view: instituicao {
     type: number
     label: "Número do Contrato"
     group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica o número do contrato da IES com Originador"
+    description: "Indica o número do contrato da IE com Originador"
     sql: ${TABLE}."CONTRATO_IE" ;;
   }
 
@@ -180,7 +180,7 @@ view: instituicao {
   dimension: descricao_originadores_ativos {
     type: string
     label: "Descrição - Originadores Ativos"
-    group_label: "Dados Contratuais da IES/Originador"
+    group_label: "Dados Contratuais da IE/Originador"
     sql: UNNEST ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
   }
 
@@ -209,7 +209,7 @@ view: instituicao {
     type: string
     group_label: "Dados de Campus - IE"
     label: "Nome do Campus"
-    description: "Indica o nome do Campus da IES"
+    description: "Indica o nome do Campus da IE"
     sql: ${TABLE}."DS_CAMPUS" ;;
   }
 
@@ -233,7 +233,7 @@ view: instituicao {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados IES"
+    group_label: "Dados IE"
     label: "Data de Cadastro"
     description: "Data de Cadastro da IE no Sistema"
     sql: ${TABLE}."DT_CADASTRO" ;;
