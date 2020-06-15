@@ -12,7 +12,7 @@ view: instituicao {
   dimension: agencia {
     type: string
     label: "Agência - IE"
-    group_label: "Dados Bancários da IES"
+    group_label: "Dados Bancários da IE"
     sql: ${TABLE}."AGENCIA" ;;
   }
 
@@ -126,7 +126,7 @@ view: instituicao {
 
   dimension: classificacao_curso {
     type: string
-    group_label: "Dados de Curso - IE"
+    group_label: "Dados do Curso - IE"
     label: "Nivel Acadêmico do Curso"
     description: "Informação relacionada ao curso. Indica a classificação dp curso. Ex: Graduação, Pós-Graduação, Técnico "
     sql: ${TABLE}."CLASSIFICACAO_CURSO" ;;
@@ -171,7 +171,7 @@ view: instituicao {
 
   dimension: curso_ativo {
     type: number
-    group_label: "Dados de Curso - IE"
+    group_label: "Dados do Curso - IE"
     label: "Flag -  Curso Ativo?"
 
     sql: ${TABLE}."CURSO_ATIVO" ;;
@@ -201,7 +201,7 @@ view: instituicao {
   dimension: ds_area_conhecimento {
     type: string
     label: "Área de Conhecimento do Curso"
-    group_label: "Dados de Curso - IE"
+    group_label: "Dados do Curso - IE"
     sql: ${TABLE}."DS_AREA_CONHECIMENTO" ;;
   }
 
@@ -241,7 +241,7 @@ view: instituicao {
 
   dimension: duracao_curso_meses {
     type: number
-    group_label: "Dados de Curso - IE"
+    group_label: "Dados do Curso - IE"
     label: "Duração do Curso - Meses"
     sql: ${TABLE}."DURACAO_CURSO_MESES" ;;
   }
