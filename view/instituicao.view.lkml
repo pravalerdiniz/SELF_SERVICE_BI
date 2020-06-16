@@ -6,28 +6,29 @@ view: instituicao {
   dimension: id {
     primary_key: yes
     type: string
-    sql: ${TABLE}."ID" ;;
+    sql: ${TABLE}."ID";;
   }
 
   dimension: agencia {
     type: string
-    label: "Agência - IE"
+    label: "Agência"
     group_label: "Dados Bancários da IE"
-    sql: ${TABLE}."AGENCIA" ;;
+    description: "Número da Agência vinculada a Instituição de Ensino"
+    sql: ${TABLE}."AGENCIA";;
   }
 
   dimension: ano_nota_enade {
     type: number
     group_label: "ENADE"
     label: "Ano de Referência - Nota ENADE"
-    sql: ${TABLE}."ANO_NOTA_ENADE" ;;
+    sql: ${TABLE}."ANO_NOTA_ENADE";;
   }
 
   dimension: bairro_sede_ie {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Sede - Bairro"
-    sql: ${TABLE}."BAIRRO_SEDE_IE" ;;
+    sql: ${TABLE}."BAIRRO_SEDE_IE";;
   }
 
   dimension: banco {
@@ -35,14 +36,14 @@ view: instituicao {
     label: "Nome do Banco"
     group_label: "Dados Bancários da IE"
     description: "Indica o Banco correspondente a IE"
-    sql: ${TABLE}."BANCO" ;;
+    sql: ${TABLE}."BANCO";;
   }
 
   dimension: campus_ativo {
     type: yesno
-    sql: ${TABLE}."CAMPUS_ATIVO" ;;
+    sql: ${TABLE}."CAMPUS_ATIVO";;
     group_label: "Dados de Campus - IE"
-    label: "Flag - Campus Ativo?"
+    label: "Campus Ativo?"
     description: "Indica se o campo está ativo."
   }
 
@@ -50,31 +51,32 @@ view: instituicao {
     type: number
     group_label: "Dados de Campus - IE"
     label: "Qtd de Alunos - Capacidade Campus"
-    sql: ${TABLE}."CAMPUS_CAPACIDADE_ALUNOS" ;;
+    description:"Indica a capacidade total de alunos que o campus da instituição suporta."
+    sql: ${TABLE}."CAMPUS_CAPACIDADE_ALUNOS";;
   }
 
   dimension: campus_possui_ead {
     type: yesno
     group_label: "Dados de Campus - IE"
-    label: "Flag - Possui EAD?"
-    description: "Indica se o Campus tem cursos de Ensino à Distância"
-    sql: ${TABLE}."CAMPUS_POSSUI_EAD" ;;
+    label: "Possui EAD?"
+    description: "Indica se o Campus a modadelidade de Ensino à Distância para determinado curso"
+    sql: ${TABLE}."CAMPUS_POSSUI_EAD";;
   }
 
   dimension: campus_tem_estacionamento {
     type: yesno
     group_label: "Dados de Campus - IE"
-    label: "Flag - Possui Estacionamento?"
+    label: "Possui Estacionamento?"
     description: "Indica se o Campus tem estacionamento em suas depêndencias"
-    sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO" ;;
+    sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO";;
   }
 
   dimension: campus_tem_estacionamento_gratuito {
     type: yesno
     group_label: "Dados de Campus - IE"
-    label: "Flag - Possui Estacionamento GRATUITO?"
+    label: "Possui Estacionamento GRATUITO?"
     description: "Indica se o Campus tem estacionamento GRATUITO em suas depêndencias"
-    sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO_GRATUITO" ;;
+    sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO_GRATUITO";;
   }
 
   dimension: cargo {
@@ -82,46 +84,47 @@ view: instituicao {
     group_label: "Dados do Gerente Regional - IE"
     label: "Cargo"
     description: "Nome do cargo do representante Comercial na IE"
-    sql: ${TABLE}."CARGO" ;;
+    sql: ${TABLE}."CARGO";;
   }
 
   dimension: carteira_regional {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Carteira Regional"
-    sql: ${TABLE}."CARTEIRA_REGIONAL" ;;
+    description: "Ex: Varejo, DN e Outros"
+    sql: ${TABLE}."CARTEIRA_REGIONAL";;
   }
 
   dimension: cep_campus {
     type: string
     group_label: "Dados de Campus - IE"
-    label: "Endereço - CEP"
+    label: "CEP"
     description: "Informação relacionado ao endereço. Indica o número do CEP do Campus"
-    sql: ${TABLE}."CEP_CAMPUS" ;;
+    sql: ${TABLE}."CEP_CAMPUS";;
   }
 
   dimension: cep_sede_ie {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Sede - CEP"
     description: "Informação relacionada ao endereço. Indica o número do CEP da Sede"
-    sql: ${TABLE}."CEP_SEDE_IE" ;;
+    sql: ${TABLE}."CEP_SEDE_IE";;
   }
 
   dimension: cidade_campus {
     type: string
     group_label: "Dados de Campus - IE"
-    label: "Endereço - CEP"
-    description: "Informação relacionado ao endereço. Indica o número do CEP do Campus"
-    sql: ${TABLE}."CIDADE_CAMPUS" ;;
+    label: "Cidade"
+    description: "Indica a cidade que está o campus da instituição"
+    sql: ${TABLE}."CIDADE_CAMPUS";;
   }
 
   dimension: cidade_sede_ie {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Sede - Cidade"
     description: "Indica a cidade que está localizada a Sede da IE"
-    sql: ${TABLE}."CIDADE_SEDE_IE" ;;
+    sql: ${TABLE}."CIDADE_SEDE_IE";;
   }
 
   dimension: classificacao_curso {
@@ -129,14 +132,15 @@ view: instituicao {
     group_label: "Dados do Curso - IE"
     label: "Nivel Acadêmico do Curso"
     description: "Informação relacionada ao curso. Indica a classificação dp curso. Ex: Graduação, Pós-Graduação, Técnico "
-    sql: ${TABLE}."CLASSIFICACAO_CURSO" ;;
+    sql: ${TABLE}."CLASSIFICACAO_CURSO";;
   }
 
   dimension: cnpj_ie {
     type: number
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "CNPJ"
-    sql: ${TABLE}."CNPJ_IE" ;;
+    description: "Indica o número do CNPJ da Instituição"
+    sql: ${TABLE}."CNPJ_IE";;
   }
 
   dimension: conta {
@@ -144,7 +148,7 @@ view: instituicao {
     label: "Número da Conta"
     group_label: "Dados Bancários da IE"
     description: "Indica o número da conta correspondente a IE"
-    sql: ${TABLE}."CONTA" ;;
+    sql: ${TABLE}."CONTA";;
   }
 
   dimension: contrato_ie {
@@ -152,42 +156,45 @@ view: instituicao {
     label: "Número do Contrato"
     group_label: "Dados Contratuais da IE/Originador"
     description: "Indica o número do contrato da IE com Originador"
-    sql: ${TABLE}."CONTRATO_IE" ;;
+    sql: ${TABLE}."CONTRATO_IE";;
   }
 
   dimension: conversao_regional {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Nome - Responsável pela Conversão Regional"
-    sql: ${TABLE}."CONVERSAO_REGIONAL" ;;
+    sql: ${TABLE}."CONVERSAO_REGIONAL";;
   }
 
   dimension: cp {
     type: string
     group_label: "Dados da Regional - IE"
-    label: "CP"
-    sql: ${TABLE}."CP" ;;
+    label: "Código de Promotor (CP)"
+    description:"Indica o código de promotor."
+    sql: ${TABLE}."CP";;
   }
 
   dimension: curso_ativo {
     type: number
     group_label: "Dados do Curso - IE"
-    label: "Flag -  Curso Ativo?"
-
-    sql: ${TABLE}."CURSO_ATIVO" ;;
+    label: "Curso Ativo?"
+    description:"Indica se o curso está ativo no sistema."
+    sql: ${TABLE}."CURSO_ATIVO";;
   }
 
   dimension: descricao_originadores_ativos {
     type: string
-    label: "Descrição - Originadores Ativos"
+    label: "Originadores Ativos"
     group_label: "Dados Contratuais da IE/Originador"
+    description: "Indica todos os originadores ativos para determinado curso da instituição."
     sql: UNNEST ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
   }
 
   dimension: descricao_originadores_inativos {
     type: string
-    label: "Descrição - Originadores Inativos"
+    label: "Originadores Inativos"
     group_label: "Dados Contratuais da IE/Originador"
+    description: "Indica todos os originadores inativos para determinado curso da instituição."
     sql: UNNEST ${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
   }
 
@@ -195,14 +202,14 @@ view: instituicao {
     type: number
     label: "Dia de Vencimento"
     group_label: "Dados Contratuais da IE/Originador"
-    sql: ${TABLE}."DIA_VENCIMENTO" ;;
+    sql: ${TABLE}."DIA_VENCIMENTO";;
   }
 
   dimension: ds_area_conhecimento {
     type: string
     label: "Área de Conhecimento do Curso"
     group_label: "Dados do Curso - IE"
-    sql: ${TABLE}."DS_AREA_CONHECIMENTO" ;;
+    sql: ${TABLE}."DS_AREA_CONHECIMENTO";;
   }
 
   dimension: ds_campus {
@@ -210,15 +217,15 @@ view: instituicao {
     group_label: "Dados de Campus - IE"
     label: "Nome do Campus"
     description: "Indica o nome do Campus da IE"
-    sql: ${TABLE}."DS_CAMPUS" ;;
+    sql: ${TABLE}."DS_CAMPUS";;
   }
 
   dimension: ds_mantenedor {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Nome da Mantenedora"
     description: "Indica o nome da Mantenedora da IE"
-    sql: ${TABLE}."DS_MANTENEDOR" ;;
+    sql: ${TABLE}."DS_MANTENEDOR";;
   }
 
   dimension_group: dt_cadastro {
@@ -233,17 +240,17 @@ view: instituicao {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Data de Cadastro"
     description: "Data de Cadastro da IE no Sistema"
-    sql: ${TABLE}."DT_CADASTRO" ;;
+    sql: ${TABLE}."DT_CADASTRO";;
   }
 
   dimension: duracao_curso_meses {
     type: number
     group_label: "Dados do Curso - IE"
     label: "Duração do Curso - Meses"
-    sql: ${TABLE}."DURACAO_CURSO_MESES" ;;
+    sql: ${TABLE}."DURACAO_CURSO_MESES";;
   }
 
   dimension: endereco_campus {
@@ -251,230 +258,326 @@ view: instituicao {
     group_label: "Dados de Campus - IE"
     label: "Endereço - Campus"
     description: "Indica o Endereço do Campus"
-    sql: ${TABLE}."ENDERECO_CAMPUS" ;;
+    sql: ${TABLE}."ENDERECO_CAMPUS";;
   }
 
   dimension: endereco_sede_ie {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Sede - Endereço"
     description: "Indica o Endereço da Sede da IE"
-    sql: ${TABLE}."ENDERECO_SEDE_IE" ;;
+    sql: ${TABLE}."ENDERECO_SEDE_IE";;
   }
 
   dimension: enfase {
     type: string
     group_label: "Dados do Curso - IE"
     label: "Enfâse do Curso"
-    sql: ${TABLE}."ENFASE" ;;
+    sql: ${TABLE}."ENFASE";;
   }
 
   dimension: estado_sede_ie {
     type: string
-    group_label: "Dados IE"
+    group_label: "Dados da Instituição"
     label: "Sede - Estado"
-    sql: ${TABLE}."ESTADO_SEDE_IE" ;;
+    sql: ${TABLE}."ESTADO_SEDE_IE";;
   }
 
   dimension: flg_bolsa {
     type: yesno
     group_label: "Dados do Curso - IE"
-    label: "Flag - Bolsa?"
+    label: "Bolsa?"
     description: "Indica se o IE possui Bolsa para o curso"
-    sql: ${TABLE}."FLG_BOLSA" ;;
+    sql: ${TABLE}."FLG_BOLSA";;
   }
 
   dimension: flg_descadastrada {
     type: yesno
     group_label: "Dados do Curso - IE"
-    label: "Flag - Descadastrada?"
+    label: "Descadastrada?"
     description: "Indica se o curso está descadastrada no PRAVALER"
-    sql: ${TABLE}."FLG_DESCADASTRADA" ;;
+    sql: ${TABLE}."FLG_DESCADASTRADA";;
   }
 
   dimension: flg_financia_matricula {
     type: yesno
     group_label: "Dados do Curso - IE"
-    label: "Flag - Financia Matricula?"
+    label: "Financia Matricula?"
     description: "Indica se o curso também financia a matricula"
-    sql: ${TABLE}."FLG_FINANCIA_MATRICULA" ;;
+    sql: ${TABLE}."FLG_FINANCIA_MATRICULA";;
   }
 
   dimension: flg_matriucla_expressa {
     type: yesno
-    label: "Flag - Matricula Expressa?"
+    label: "Matricula Expressa?"
     description: "Indica se o curso possui Matricula Expressa"
-    sql: ${TABLE}."FLG_MATRIUCLA_EXPRESSA" ;;
+    sql: ${TABLE}."FLG_MATRIUCLA_EXPRESSA";;
   }
 
   dimension: flg_matriz {
     type: yesno
-    sql: ${TABLE}."FLG_MATRIZ" ;;
+    group_label: "Dados de Campus - IE"
+    label: "Matriz?"
+    description: "Indica se o campus é a matriz da instituição"
+    sql: ${TABLE}."FLG_MATRIZ";;
   }
 
   dimension: flg_possi_pdv {
     type: yesno
-    sql: ${TABLE}."FLG_POSSI_PDV" ;;
+    group_label: "Dados da Instituição"
+    label: "Possui PDV?"
+    description: "Indica se a instituição possui PDV."
+    sql: ${TABLE}."FLG_POSSI_PDV";;
   }
 
   dimension: flg_recebe_contrato {
     type: yesno
-    sql: ${TABLE}."FLG_RECEBE_CONTRATO" ;;
+    group_label: "Dados da Instituição"
+    label: "Recebe Contrato?"
+    sql: ${TABLE}."FLG_RECEBE_CONTRATO";;
   }
 
   dimension: flg_wo {
     type: yesno
-    sql: ${TABLE}."FLG_WO" ;;
+    group_label: "Dados Contratuais da IE/Originador"
+    label: "W.O?"
+    sql: ${TABLE}."FLG_WO";;
   }
 
   dimension: gerente_regional {
     type: string
-    sql: ${TABLE}."GERENTE_REGIONAL" ;;
+    group_label: "Dados da Regional - IE"
+    label: "Gerente Regional"
+    description: "Indica o nome do responsável pela Regional"
+    sql: ${TABLE}."GERENTE_REGIONAL";;
   }
 
   dimension: grupo {
     type: string
-    sql: ${TABLE}."GRUPO" ;;
+    group_label: "Dados da Instituição"
+    label: "Grupo da Instituição"
+    description: "Indica o nome do Grupo responsável pela instituição."
+    sql: ${TABLE}."GRUPO";;
   }
 
   dimension: id_campus {
     type: number
-    sql: ${TABLE}."ID_CAMPUS" ;;
+    group_label: "Dados de Campus - IE"
+    label:"ID do Campus"
+    description:"Indica o  ID do Campus"
+    sql: ${TABLE}."ID_CAMPUS";;
   }
 
   dimension: id_curso {
     type: number
-    sql: ${TABLE}."ID_CURSO" ;;
+    group_label:"Dados do Curso - IE"
+    label:"ID do Curso"
+    description:"Indica o ID do Curso"
+    sql: ${TABLE}."ID_CURSO";;
   }
 
   dimension: id_instituicao {
     type: number
-    sql: ${TABLE}."ID_INSTITUICAO" ;;
+    group_label: "Dados da Instituição"
+    label: "ID da Instituição"
+    description:"Indica o ID da Instituição de Ensino"
+    sql: ${TABLE}."ID_INSTITUICAO";;
   }
 
   dimension: id_originadores_ativos {
     type: string
-    sql: ${TABLE}."ID_ORIGINADORES_ATIVOS" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label: "ID dos Originadores(Ativos)"
+    sql: ${TABLE}."ID_ORIGINADORES_ATIVOS";;
   }
 
   dimension: id_originadores_inativos {
     type: string
-    sql: ${TABLE}."ID_ORIGINADORES_INATIVOS" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label: "ID dos Originadores(Inativos)"
+    sql: ${TABLE}."ID_ORIGINADORES_INATIVOS";;
   }
 
   dimension: ie_ativa {
     type: number
-    sql: ${TABLE}."IE_ATIVA" ;;
+    group_label: "Dados da Instituição"
+    label: "Instituição Ativa?"
+    description:"Indica se a Instituição está ativa."
+    sql: ${TABLE}."IE_ATIVA";;
   }
 
   dimension: ie_super_pravaler {
     type: number
-    sql: ${TABLE}."IE_SUPER_PRAVALER" ;;
+    group_label: "Dados da Instituição"
+    label: "Superpravaler?"
+    description:"Indica se a Instituição possui o produto SUPERPRAVALER."
+    sql: ${TABLE}."IE_SUPER_PRAVALER";;
   }
 
   dimension: modelo_contrato {
     type: string
-    sql: ${TABLE}."MODELO_CONTRATO" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label: "Modelo de Contrato"
+    description: "Indica o modelo de contrato da Instituição de Ensino com o Originador. Ex: ANTIGO, NOVO."
+    sql: ${TABLE}."MODELO_CONTRATO";;
   }
 
   dimension: nm_produto {
     type: string
-    sql: ${TABLE}."NM_PRODUTO" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Nome de Produto"
+    description:"Indica o produto PRAVALER contratado por curso"
+    sql: ${TABLE}."NM_PRODUTO";;
   }
 
   dimension: nome_curso {
     type: string
-    sql: ${TABLE}."NOME_CURSO" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Nome de Produto"
+    description:"Indica o produto PRAVALER contratado por curso"
+    sql: ${TABLE}."NOME_CURSO";;
   }
 
   dimension: nome_fantasia {
     type: string
-    sql: ${TABLE}."NOME_FANTASIA" ;;
+    group_label: "Dados da Instituição"
+    label: "Nome da Instituição de Ensino"
+    description:"Indica o nome FANTASIA da Instituição de Ensino."
+    sql: ${TABLE}."NOME_FANTASIA";;
   }
 
   dimension: nota_enade {
     type: number
-    sql: ${TABLE}."NOTA_ENADE" ;;
+    group_label: "ENADE"
+    label: "Nota do ENADE"
+    description:"Indica a Nota da IE no ENAD (Exame Nacional de Desempenho dos Estudantes)"
+    sql: ${TABLE}."NOTA_ENADE";;
   }
 
   dimension: perc_comissao {
     type: number
-    sql: ${TABLE}."PERC_COMISSAO" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label: "Porcentagem de Comissão da Instituição"
+    description: "Indica a porcentagem de comissão paga à instituição por curso"
+    sql: ${TABLE}."PERC_COMISSAO";;
   }
 
   dimension: perc_desagio {
     type: number
-    sql: ${TABLE}."PERC_DESAGIO" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label:"Porcentagem de Deságio"
+    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
+    sql: ${TABLE}."PERC_DESAGIO";;
   }
 
   dimension: periodo {
     type: string
-    sql: ${TABLE}."PERIODO" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Periodo"
+    description: "Indica o periodo do curso. Ex: Manhã, Noite, EAD."
+    sql: ${TABLE}."PERIODO";;
   }
 
   dimension: porc_matricula_expressa {
     type: number
-    sql: ${TABLE}."PORC_MATRICULA_EXPRESSA" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label:"Porcentagem de Deságio"
+    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
+    sql: ${TABLE}."PORC_MATRICULA_EXPRESSA";;
   }
 
   dimension: qtd_alunos_ie {
     type: number
-    sql: ${TABLE}."QTD_ALUNOS_IE" ;;
+    group_label: "Dados da Instituição"
+    label: "Quantidades de Alunos da Instituição"
+    description:"Indica a Quantidade total de alunos na Instituição de Ensino."
+    sql: ${TABLE}."QTD_ALUNOS_IE";;
   }
 
   dimension: qtd_mensalidades {
     type: number
-    sql: ${TABLE}."QTD_MENSALIDADES" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Quantidade de Mensalidade"
+    description: "Indica a quantidade de mensalidades por curso."
+    sql: ${TABLE}."QTD_MENSALIDADES";;
   }
 
   dimension: qtd_semestre {
     type: number
-    sql: ${TABLE}."QTD_SEMESTRE" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Quantidade de Mensalidades"
+    description: "Indica a quantidade de semestre por curso."
+    sql: ${TABLE}."QTD_SEMESTRE";;
   }
 
   dimension: razao_social {
     type: string
-    sql: ${TABLE}."RAZAO_SOCIAL" ;;
+    group_label: "Dados da Instituição"
+    label: "Razão Social"
+    description: "Indica o nome da razão social da instituição"
+    sql: ${TABLE}."RAZAO_SOCIAL";;
   }
 
   dimension: regional_regiao {
     type: string
-    sql: ${TABLE}."REGIONAL_REGIAO" ;;
+    group_label: "Dados da Regional - IE"
+    label: "Região"
+    description: "Indica o nome da região que representa a regional"
+    sql: ${TABLE}."REGIONAL_REGIAO";;
   }
 
   dimension: representante_regional {
     type: string
-    sql: ${TABLE}."REPRESENTANTE_REGIONAL" ;;
+    group_label: "Dados da Regional - IE"
+    label: "Nome do Representante Regional"
+    sql: ${TABLE}."REPRESENTANTE_REGIONAL";;
   }
 
   dimension: reprova_por_score {
     type: string
-    sql: ${TABLE}."REPROVA_POR_SCORE" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label:"Reprovação por Score"
+    description:"Indica a descrição de reprovação por score."
+    sql: ${TABLE}."REPROVA_POR_SCORE";;
   }
 
   dimension: tipo_dia_vencimento {
     type: string
-    sql: ${TABLE}."TIPO_DIA_VENCIMENTO" ;;
+    group_label:"Dados Contratuais da IE/Originador"
+    label:"Tipo de Dia de Vencimento"
+    description:"Indica se o vencimento ocorre no começo do mês ou no final."
+    sql: ${TABLE}."TIPO_DIA_VENCIMENTO";;
   }
 
   dimension: tipo_regional {
     type: string
-    sql: ${TABLE}."TIPO_REGIONAL" ;;
+    group_label: "Dados da Regional - IE"
+    label: "Tipo de Regional"
+    description: "Indica o tipo de regional. Ex: Fixo ou Volante"
+    sql: ${TABLE}."TIPO_REGIONAL";;
   }
 
   dimension: uf_campus {
     type: string
-    sql: ${TABLE}."UF_CAMPUS" ;;
+    group_label: "Dados de Campus - IE"
+    label: "UF"
+    description: "Indica a UF do Campus da instituição"
+    sql: ${TABLE}."UF_CAMPUS";;
   }
 
   dimension: valor_mensalidade {
     type: number
-    sql: ${TABLE}."VALOR_MENSALIDADE" ;;
+    group_label:"Dados do Curso - IE"
+    label:"Valor da Mensalidade"
+    description: "Indica o valor da mensalidade do curso."
+    sql: ${TABLE}."VALOR_MENSALIDADE";;
   }
 
   dimension: vl_dias_wo {
     type: number
-    sql: ${TABLE}."VL_DIAS_WO" ;;
+    group_label: "Dados Contratuais da IE/Originador"
+    label:"Quantidade de dias no W.O"
+    sql: ${TABLE}."VL_DIAS_WO";;
   }
 
   measure: count {
