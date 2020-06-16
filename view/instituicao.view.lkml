@@ -296,9 +296,9 @@ view: instituicao {
 
   dimension: flg_descadastrada {
     type: yesno
-    group_label: "Dados do Curso - IE"
+    group_label: "Dados da Instituição"
     label: "Descadastrado?"
-    description: "Indica se o curso está descadastrado no PRAVALER"
+    description: "Indica se a instituição está descadastrado no PRAVALER"
     sql: ${TABLE}."FLG_DESCADASTRADA";;
   }
 
