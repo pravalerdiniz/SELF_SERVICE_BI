@@ -16,7 +16,7 @@ view: inep {
 
   dimension: carga_horaria_curso {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Carga Horária do Curso"
     hidden: yes
     sql: ${TABLE}."CARGA_HORARIA_CURSO" ;;
@@ -24,7 +24,7 @@ view: inep {
 
   dimension: ds_categoria_administrativa {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Categoria Administrativa"
     description: "Tipo da Categoria Administrativa da IES. Ex:  Pública Federal,
     Pública Estadual,
@@ -36,14 +36,14 @@ view: inep {
 
   dimension: ds_curso {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Nome do Curso"
     sql: ${TABLE}."DS_CURSO" ;;
   }
 
   dimension: ds_data_autorizacao_curso {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Data de Autorização"
     hidden: yes
     sql: ${TABLE}."DS_DATA_AUTORIZACAO_CURSO" ;;
@@ -51,28 +51,30 @@ view: inep {
 
   dimension: ds_data_ingresso_curso {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Data de Ingresso do Curso"
+    description: "Data de ingresso do aluno no curso correspondente ao 1º semestre (01/01/20XX) e ao 2º semestre (01/07/20XX)"
     sql: ${TABLE}."DS_DATA_INGRESSO_CURSO" ;;
   }
 
   dimension: ds_data_inicio_func {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Data de Inicio do Funcionamento"
+    description: "Data de início de funcionamento do curso"
     sql: ${TABLE}."DS_DATA_INICIO_FUNC" ;;
   }
 
   dimension: ds_data_nascimento {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Data de Nascimento"
     sql: ${TABLE}."DS_DATA_NASCIMENTO" ;;
   }
 
   dimension: ds_escola_ens_medio {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Escola - Ensino Médio"
     description: "Tipo de escola que o aluno concluiu ensino médio"
     sql: ${TABLE}."DS_ESCOLA_ENS_MEDIO" ;;
@@ -80,7 +82,7 @@ view: inep {
 
   dimension: ds_grau_academico {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Grau Acadêmico"
     description: "Tipo do grau acadêmico conferido ao diplomado pelo curso. Ex: Bacharelado, Licenciatura, Tecnologico."
     sql: ${TABLE}."DS_GRAU_ACADEMICO" ;;
@@ -88,14 +90,14 @@ view: inep {
 
   dimension: ds_ies {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Nome da IES"
     sql: ${TABLE}."DS_IES" ;;
   }
 
   dimension: ds_ies_destino {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "IES de destino"
     description: "Instituição nacional receptora do aluno em mobilidade acadêmica, na qual seu vinculo é temporário"
     sql: ${TABLE}."DS_IES_DESTINO" ;;
@@ -103,14 +105,14 @@ view: inep {
 
   dimension: ds_mantenedora {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Mantenedora"
     sql: ${TABLE}."DS_MANTENEDORA" ;;
   }
 
   dimension: ds_mob_acad {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Intercâmbio Acadêmico"
     description: "Tipo de mobilidade acadêmica ao qual o aluno participa.Ex: Nacional, Internacional"
     sql: ${TABLE}."DS_MOB_ACAD" ;;
@@ -118,7 +120,7 @@ view: inep {
 
   dimension: ds_mob_acad_intern {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     description: "Tipo de mobilidade acadêmica internacional ao qual o aluno participa. Ex: Intercâmbio,Ciências sem fronteiras"
     label: "Intercâmbio Acadêmico - Internacional"
 
@@ -127,7 +129,7 @@ view: inep {
 
   dimension: ds_modalidade_ensino {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Modalidade de Ensino"
     description: "Tipo da modalidade de ensino do curso. Ex: Presencial, Curso a Distância"
     sql: ${TABLE}."DS_MODALIDADE_ENSINO" ;;
@@ -135,14 +137,14 @@ view: inep {
 
   dimension: ds_nacionalidade {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Nacionalidade"
     sql: ${TABLE}."DS_NACIONALIDADE" ;;
   }
 
   dimension: ds_nivel_academico {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Nivel Acadêmico"
     description: "Tipo do nível acadêmico do curso. Ex: Graduação, Seqüencial de Formação Específica"
     sql: ${TABLE}."DS_NIVEL_ACADEMICO" ;;
@@ -150,7 +152,7 @@ view: inep {
 
   dimension: ds_organizacao_academica {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Organização Acadêmica"
     description: "Tipo da Organização Acadêmica da IES. Ex Universidade, Centro Universitário, Faculdade, Instituto Federal de Educação, Ciência e Tecnologia"
     sql: ${TABLE}."DS_ORGANIZACAO_ACADEMICA" ;;
@@ -158,21 +160,21 @@ view: inep {
 
   dimension: ds_pais {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "País de Nascimento do Aluno"
     sql: ${TABLE}."DS_PAIS" ;;
   }
 
   dimension: ds_pais_destino {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "País de Destino do Aluno"
     sql: ${TABLE}."DS_PAIS_DESTINO" ;;
   }
 
   dimension: ds_referente_ies {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     description: "Ex: Mantenedora, Instituição"
     label: "Tipo - Entidade Financeira"
     sql: ${TABLE}."DS_REFERENTE_IES" ;;
@@ -180,28 +182,28 @@ view: inep {
 
   dimension: ds_semestre_conclusao {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Semestre de Conclusão do Aluno"
     sql: ${TABLE}."DS_SEMESTRE_CONCLUSAO" ;;
   }
 
   dimension: ds_semestre_referencia {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Semestre de Referência"
     sql: ${TABLE}."DS_SEMESTRE_REFERENCIA" ;;
   }
 
   dimension: ds_sexo {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Sexo"
     sql: ${TABLE}."DS_SEXO" ;;
   }
 
   dimension: ds_situacao_curso {
     type: string
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Situação do Curso"
     description: "Tipo da situação de funcionamento do curso"
     sql: ${TABLE}."DS_SITUACAO_CURSO" ;;
@@ -209,8 +211,9 @@ view: inep {
 
   dimension: ds_turno {
     type: string
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Turno do Aluno"
+    description: "Tipo do turno do curso ao qual o aluno está vinculado"
     sql: ${TABLE}."DS_TURNO" ;;
   }
 
@@ -218,7 +221,8 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Alimentação"
+    label: "Alimentação?"
+    description: "Informa se o aluno recebe apoio alimentação"
     sql: ${TABLE}."FLG_APOIO_ALIMENTACAO" ;;
   }
 
@@ -226,7 +230,8 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Bolsa de Permanência"
+    label: "Bolsa de Permanência?"
+    description: "Informa se o aluno recebe auxílio financeiro destinado a alunos em situação de vulnerabilidade socioeconômica ou pertencente a grupos étnicos específicos"
     sql: ${TABLE}."FLG_APOIO_BOLSA_PERMANENCIA" ;;
   }
 
@@ -234,7 +239,8 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Bolsa de Trabalho"
+    label: "Bolsa de Trabalho?"
+    description: "Informa se o aluno recebe remuneração referente a trabalhos prestados nas dependências da IES ou unidades vinculadas"
     sql: ${TABLE}."FLG_APOIO_BOLSA_TRABALHO" ;;
   }
 
@@ -242,7 +248,7 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Material Didático"
+    label: "Material Didático?"
     sql: ${TABLE}."FLG_APOIO_MATERIAL_DIDATICO" ;;
   }
 
@@ -250,7 +256,8 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Moradia"
+    label: "Moradia?"
+    description: "Informa se o aluno recebe apoio moradia. "
     sql: ${TABLE}."FLG_APOIO_MORADIA" ;;
   }
 
@@ -258,7 +265,8 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Apoio Social"
+    label: "Apoio Social?"
+    description: "Informa se o aluno recebe apoio para transporte até a IES"
     sql: ${TABLE}."FLG_APOIO_SOCIAL" ;;
   }
 
@@ -266,14 +274,16 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Apoio"
-    label: "Transportte"
+    label: "Transporte?"
+    description: "Informa se o aluno recebe apoio para transporte até a IES"
     sql: ${TABLE}."FLG_APOIO_TRANSPORTE" ;;
   }
 
   dimension: flg_atividade_extracurricular {
     type: yesno
-    group_label: "Aluno"
-    label: "Atividade Extracurricular"
+    group_label:"Bolsa"
+    label: "Atividade Extracurricular?"
+    description: "Informa se o aluno participa de algum tipo de atividade extracurricular (estágio não obrigatório, extensão, monitoria e pesquisa)"
     sql: ${TABLE}."FLG_ATIVIDADE_EXTRACURRICULAR" ;;
   }
 
@@ -281,14 +291,15 @@ view: inep {
     type: yesno
     hidden: yes
     group_label: "Bolsa"
-    label: "Estágio"
+    label: "Estágio?"
+    description:"Informa se o aluno recebe bolsa/remuneração por fazer atividade extracurricular de estágio não obrigatório."
     sql: ${TABLE}."FLG_BOLSA_ESTAGIO" ;;
   }
 
   dimension: flg_bolsa_extensao {
     type: yesno
     group_label: "Bolsa"
-    label: "Extensão"
+    label: "Extensão?"
     description: "Informa se o aluno participa de atividade extracurricular de extensão"
     sql: ${TABLE}."FLG_BOLSA_EXTENSAO" ;;
   }
@@ -296,7 +307,7 @@ view: inep {
   dimension: flg_bolsa_monitoria {
     type: yesno
     group_label: "Bolsa"
-    label: "Monitoria"
+    label: "Monitoria?"
     description: "Informa se o aluno participa de atividade extracurricular de monitoria"
     sql: ${TABLE}."FLG_BOLSA_MONITORIA" ;;
   }
@@ -304,14 +315,14 @@ view: inep {
   dimension: flg_bolsa_pesquisa {
     type: yesno
     group_label: "Bolsa"
-    label: "Pesquisa"
+    label: "Pesquisa?"
     description: "Informa se o aluno participa de atividade extracurricular de pesquisa"
     sql: ${TABLE}."FLG_BOLSA_PESQUISA" ;;
   }
 
   dimension: flg_capital_ies {
     type: yesno
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Capital?"
     description: "Informa se a IES (reitoria / sede administrativa) está localizada na capital de um Estado"
     sql: ${TABLE}."FLG_CAPITAL_IES" ;;
@@ -320,8 +331,9 @@ view: inep {
   dimension: flg_complementar_estagio {
     type: yesno
     hidden: yes
-    group_label: "Complementar"
-    label: "Estágio"
+    group_label: "Bolsa"
+    label: "Estágio?"
+    description: "Informa se o aluno faz atividade extracurricular de estágio não obrigatório visando ao seu aperfeiçoamento profissional"
     sql: ${TABLE}."FLG_COMPLEMENTAR_ESTAGIO" ;;
   }
 
@@ -351,7 +363,7 @@ view: inep {
 
   dimension: flg_concluinte {
     type: yesno
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Concluinte?"
 
     sql: ${TABLE}."FLG_CONCLUINTE" ;;
@@ -359,7 +371,7 @@ view: inep {
 
   dimension: flg_deficiencia {
     type: yesno
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Deficiência?"
     sql: ${TABLE}."FLG_DEFICIENCIA" ;;
   }
@@ -465,7 +477,8 @@ view: inep {
   dimension: flg_ingresso_avaliacao_seriada {
     type: yesno
     group_label: "Ingresso"
-    label: "Avaliação Seriada"
+    label: "Avaliação Seriada?"
+    hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_AVALIACAO_SERIADA" ;;
   }
 
@@ -473,48 +486,55 @@ view: inep {
     type: yesno
     group_label: "Ingresso"
     label: "Convênio PECG"
+    hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_CONVENIO_PECG" ;;
   }
 
   dimension: flg_ingresso_decisao_judicial {
     type: yesno
     group_label: "Ingresso"
-    label: "Decisão Judicial"
+    label: "Decisão Judicial?"
+    description: "Informa se o aluno ingressou no curso por meio de decisão judicial"
     sql: ${TABLE}."FLG_INGRESSO_DECISAO_JUDICIAL" ;;
   }
 
   dimension: flg_ingresso_egresso {
     type: yesno
     group_label: "Ingresso"
-    label: "Egresso"
+    label: "Egresso?"
+    description: "Forma de ingresso que indica que o aluno se formou em um curso de Bacharelado Interdisciplinar ou Licenciatura Interdisciplinar e que ingressou em um curso de terminalidade."
     sql: ${TABLE}."FLG_INGRESSO_EGRESSO" ;;
   }
 
   dimension: flg_ingresso_enem {
     type: yesno
     group_label: "Ingresso"
-    label: "Enem"
+    label: "Enem?"
+    description: "Informa se o aluno ingressou no curso pelo Enem. "
     sql: ${TABLE}."FLG_INGRESSO_ENEM" ;;
   }
 
   dimension: flg_ingresso_outra_forma {
     type: yesno
     group_label: "Ingresso"
-    label: "Outra Forma"
+    label: "Outra Forma?"
+    description: "Informa se o aluno ingressou no curso por outras formas de ingresso"
     sql: ${TABLE}."FLG_INGRESSO_OUTRA_FORMA" ;;
   }
 
   dimension: flg_ingresso_outro_tipo_selecao {
     type: yesno
     group_label: "Ingresso"
-    label: "Outro tipo de seleção"
+    label: "Outro tipo de seleção?"
+    description: "Informa se o aluno ingressou no curso por outros tipos de seleção."
     sql: ${TABLE}."FLG_INGRESSO_OUTRO_TIPO_SELECAO" ;;
   }
 
   dimension: flg_ingresso_processo_seletivo {
     type: yesno
     group_label: "Ingresso"
-    label: "Processo Seletivo"
+    label: "Processo Seletivo?"
+    description:"Informa se o aluno ingressou no curso por meio de processo seletivo principal"
     sql: ${TABLE}."FLG_INGRESSO_PROCESSO_SELETIVO" ;;
   }
 
@@ -522,6 +542,7 @@ view: inep {
     type: yesno
     group_label: "Ingresso"
     label: "Seleção Simplificada"
+    hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_SELECAO_SIMPLIFICA" ;;
   }
 
@@ -541,7 +562,8 @@ view: inep {
   dimension: flg_ingresso_vaga_nova {
     type: yesno
     group_label: "Ingresso"
-    label: "Vaga Nova"
+    label: "Vaga Nova?"
+    description:"Informa se o aluno é ingressante no curso por meio de processo seletivo de vaga nova"
     sql: ${TABLE}."FLG_INGRESSO_VAGA_NOVA" ;;
   }
 
@@ -554,14 +576,16 @@ view: inep {
   dimension: flg_ingresso_vaga_remanesc {
     type: yesno
     group_label: "Ingresso"
-    label: "Vagas Remanescentes"
+    label: "Vagas Remanescentes?"
+    description: "Informa se o aluno ingressou no curso por  meio de vagas remanescentes"
     sql: ${TABLE}."FLG_INGRESSO_VAGA_REMANESC" ;;
   }
 
   dimension: flg_ingresso_vestibular {
     type: yesno
     group_label: "Ingresso"
-    label: "Vestibular"
+    label: "Vestibular?"
+    description: "Informa se o aluno ingressou no curso por vestibular."
     sql: ${TABLE}."FLG_INGRESSO_VESTIBULAR" ;;
   }
 
@@ -574,15 +598,16 @@ view: inep {
 
   dimension: flg_matricula {
     type: yesno
-    group_label: "Aluno"
-    label: "Matricula?"
+    group_label:"Dados do Aluno"
+    label: "Matriculado?"
     sql: ${TABLE}."FLG_MATRICULA" ;;
   }
 
   dimension: flg_mobilidade_academica {
     type: yesno
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Mobilidade Acadêmica?"
+    description: "Informa se o aluno está regularmente matriculado em curso de graduação, que se vincula temporariamente a outra instituição, sendo ela nacional ou internacional."
     sql: ${TABLE}."FLG_MOBILIDADE_ACADEMICA" ;;
   }
 
@@ -595,7 +620,7 @@ view: inep {
 
   dimension: flg_participa_rede_social {
     type: yesno
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Rede Social?"
     sql: ${TABLE}."FLG_PARTICIPA_REDE_SOCIAL" ;;
   }
@@ -603,35 +628,35 @@ view: inep {
   dimension: flg_reserva_deficiencia {
     type: yesno
     group_label: "Reserva de Vagas"
-    label: "Deficiência"
+    label: "Deficiência?"
     sql: ${TABLE}."FLG_RESERVA_DEFICIENCIA" ;;
   }
 
   dimension: flg_reserva_ensino_publico {
     type: yesno
     group_label: "Reserva de Vagas"
-    label: "Ensino Público"
+    label: "Ensino Público?"
     sql: ${TABLE}."FLG_RESERVA_ENSINO_PUBLICO" ;;
   }
 
   dimension: flg_reserva_etnico {
     type: yesno
     group_label: "Reserva de Vagas"
-    label: "Cota Racial - Reserva Étnica"
+    label: "Cota Racial - Reserva Étnica?"
     sql: ${TABLE}."FLG_RESERVA_ETNICO" ;;
   }
 
   dimension: flg_reserva_outra {
     type: yesno
     group_label: "Reserva de Vagas"
-    label: "Outras"
+    label: "Outras?"
     sql: ${TABLE}."FLG_RESERVA_OUTRA" ;;
   }
 
   dimension: flg_reserva_renda_familiar {
     type: yesno
     group_label: "Reserva de Vagas"
-    label: "Cota Social - Renda Familiar"
+    label: "Cota Social - Renda Familiar?"
     sql: ${TABLE}."FLG_RESERVA_RENDA_FAMILIAR" ;;
   }
 
@@ -639,13 +664,15 @@ view: inep {
     type: yesno
     group_label: "Reserva de Vagas"
     label: "Vagas Reservadas?"
+    description:"Informa se o aluno participa de programa de reserva de vagas"
     sql: ${TABLE}."FLG_RESERVA_VAGAS" ;;
   }
 
   dimension: flg_servico_internet {
     type: yesno
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Serviço de Internet?"
+    description: "Informa se as bibliotecas da IES oferecem serviços pela internet"
     sql: ${TABLE}."FLG_SERVICO_INTERNET" ;;
   }
 
@@ -670,14 +697,14 @@ view: inep {
 
   dimension: id_curso {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Código de Identificação do Curso"
     sql: ${TABLE}."ID_CURSO" ;;
   }
 
   dimension: id_ies {
     type: number
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Código da IES"
     #hidden: yes
     sql: ${TABLE}."ID_IES" ;;
@@ -685,7 +712,7 @@ view: inep {
 
   dimension: qtd_carga_horaria_integ {
     type: number
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Carga Horária"
     hidden: yes
     sql: ${TABLE}."QTD_CARGA_HORARIA_INTEG" ;;
@@ -693,21 +720,21 @@ view: inep {
 
   dimension: qtd_carga_horaria_total {
     type: number
-    group_label: "Aluno"
+    group_label:"Dados do Aluno"
     label: "Carga Horária TOTAL"
     sql: ${TABLE}."QTD_CARGA_HORARIA_TOTAL" ;;
   }
 
   dimension: qtd_func_total {
     type: number
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Qtd de Funcionários IES"
     sql: ${TABLE}."QTD_FUNC_TOTAL" ;;
   }
 
   dimension: qtd_vaga_total {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Qtd de Vagas TOTAL"
     hidden: yes
     sql: ${TABLE}."QTD_VAGA_TOTAL" ;;
@@ -715,7 +742,7 @@ view: inep {
 
   dimension: qtd_vagas_anual_ead {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL EAD"
     hidden: yes
     sql: ${TABLE}."QTD_VAGAS_ANUAL_EAD" ;;
@@ -723,7 +750,7 @@ view: inep {
 
   dimension: qtd_vagas_anual_integral {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL INTEGRAL"
     hidden: yes
     sql: ${TABLE}."QTD_VAGAS_ANUAL_INTEGRAL" ;;
@@ -737,7 +764,7 @@ view: inep {
 
   dimension: qtd_vagas_anual_noturno {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL NOTURNO"
     hidden: yes
     sql: ${TABLE}."QTD_VAGAS_ANUAL_NOTURNO" ;;
@@ -745,7 +772,7 @@ view: inep {
 
   dimension: qtd_vagas_anual_vespertino {
     type: number
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL VESPERTINO"
     hidden: yes
     sql: ${TABLE}."QTD_VAGAS_ANUAL_VESPERTINO" ;;
@@ -753,7 +780,7 @@ view: inep {
 
   dimension: sgl_ies {
     type: string
-    group_label: "IES"
+    group_label:"Dados da IES"
     label: "Sigla"
     sql: ${TABLE}."SGL_IES" ;;
   }
@@ -774,9 +801,9 @@ view: inep {
   }
 
 
- measure: curso_qtd_vaga_total {
+  measure: curso_qtd_vaga_total {
     type: sum
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Vagas por Curso TOTAL"
     sql: ${curso_qtd_vagas_inep.med_vaga_total} ;;
 
@@ -784,7 +811,7 @@ view: inep {
 
   measure: curso_qtd_vaga_anual_ead {
     type: sum
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - EAD"
     sql: ${curso_qtd_vagas_inep.med_vaga_anual_ead} ;;
 
@@ -792,7 +819,7 @@ view: inep {
 
   measure: curso_qtd_vaga_anual_integral {
     type: sum
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - INTEGRAL"
     sql: ${curso_qtd_vagas_inep.med_vaga_anual_integral} ;;
 
@@ -800,7 +827,7 @@ view: inep {
 
   measure: curso_qtd_vaga_anual_noturno {
     type: sum
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - NOTURNO"
     sql: ${curso_qtd_vagas_inep.med_vaga_anual_noturno} ;;
 
@@ -809,7 +836,7 @@ view: inep {
 
   measure: curso_qtd_vaga_anual_vespertino {
     type: sum
-    group_label: "Curso"
+    group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - VESPERTINO"
     sql: ${curso_qtd_vagas_inep.med_vaga_anual_vespertino} ;;
 
@@ -1043,7 +1070,7 @@ view: inep {
     measure: count_ies {
       type: count_distinct
       sql: ${id_ies} ;;
-      group_label: "IES"
+      group_label:"Dados da IES"
       label: "Quantidade de IES"
 
 
