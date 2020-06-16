@@ -437,8 +437,8 @@ view: instituicao {
   dimension: nome_curso {
     type: string
     group_label:"Dados do Curso - IE"
-    label:"Nome de Produto"
-    description:"Indica o produto PRAVALER contratado por curso"
+    label:"Nome do Curso"
+    description:"Indica o nome do Curso"
     sql: ${TABLE}."NOME_CURSO";;
   }
 
