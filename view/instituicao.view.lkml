@@ -6,6 +6,7 @@ view: instituicao {
   dimension: id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}."ID";;
   }
 
@@ -81,7 +82,7 @@ view: instituicao {
 
   dimension: cargo {
     type: string
-    group_label: "Dados do Gerente Regional - IE"
+    group_label: "Dados da Regional - IE"
     label: "Cargo"
     description: "Nome do cargo do representante Comercial na IE"
     sql: ${TABLE}."CARGO";;
@@ -209,6 +210,7 @@ view: instituicao {
     type: string
     label: "Área de Conhecimento do Curso"
     group_label: "Dados do Curso - IE"
+    description: "Indica a área de conhecimento do curso. Ex: Ciências Exatas e da Terra, Ciências Biológicas, Engenharia / Tecnologia, Ciências da Saúde, entre outras"
     sql: ${TABLE}."DS_AREA_CONHECIMENTO";;
   }
 
@@ -240,7 +242,7 @@ view: instituicao {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados da Instituição"
+    group_label: "Cadastro"
     label: "Data de Cadastro"
     description: "Data de Cadastro da IE no Sistema"
     sql: ${TABLE}."DT_CADASTRO";;
@@ -273,6 +275,7 @@ view: instituicao {
     type: string
     group_label: "Dados do Curso - IE"
     label: "Enfâse do Curso"
+    description: "Indica qual é a Enfâse de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
     sql: ${TABLE}."ENFASE";;
   }
 
@@ -294,8 +297,8 @@ view: instituicao {
   dimension: flg_descadastrada {
     type: yesno
     group_label: "Dados do Curso - IE"
-    label: "Descadastrada?"
-    description: "Indica se o curso está descadastrada no PRAVALER"
+    label: "Descadastrado?"
+    description: "Indica se o curso está descadastrado no PRAVALER"
     sql: ${TABLE}."FLG_DESCADASTRADA";;
   }
 
@@ -307,11 +310,12 @@ view: instituicao {
     sql: ${TABLE}."FLG_FINANCIA_MATRICULA";;
   }
 
-  dimension: flg_matriucla_expressa {
+  dimension: flg_matricula_expressa {
     type: yesno
     label: "Matricula Expressa?"
+    group_label: "Dados do Curso - IE"
     description: "Indica se o curso possui Matricula Expressa"
-    sql: ${TABLE}."FLG_MATRIUCLA_EXPRESSA";;
+    sql: ${TABLE}."FLG_MATRICULA_EXPRESSA";;
   }
 
   dimension: flg_matriz {
@@ -481,8 +485,8 @@ view: instituicao {
   dimension: porc_matricula_expressa {
     type: number
     group_label:"Dados Contratuais da IE/Originador"
-    label:"Porcentagem de Deságio"
-    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
+    label:"Porcentagem de Matrícula Expressa"
+    description:"Indica o valor da porcentagem do produto matricula expressa que é paga a instituição de ensino."
     sql: ${TABLE}."PORC_MATRICULA_EXPRESSA";;
   }
 
@@ -568,6 +572,7 @@ view: instituicao {
   dimension: valor_mensalidade {
     type: number
     group_label:"Dados do Curso - IE"
+    value_format: "$ #,##0.00"
     label:"Valor da Mensalidade"
     description: "Indica o valor da mensalidade do curso."
     sql: ${TABLE}."VALOR_MENSALIDADE";;
@@ -580,8 +585,120 @@ view: instituicao {
     sql: ${TABLE}."VL_DIAS_WO";;
   }
 
+  dimension:bolsa {
+    type: string
+    hidden: yes
+    case: {
+      when: {
+        sql: ${flg_bolsa}='TRUE';;
+
+        label: "1"
+      }
+      else:"0"
+    }
+  }
+
+
+
+  dimension:descadastrada {
+    type: string
+    hidden: yes
+    case: {
+      when: {
+        sql: ${flg_descadastrada}='TRUE';;
+
+        label: "1"
+      }
+      else:"0"
+    }
+  }
+
+
+
+
   measure: count {
     type: count
     drill_fields: [id]
   }
+
+  measure: avg_mensalidade {
+    type: average
+    sql: ${valor_mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Média"
+    description: "Valor médio de mensalidade"
+  }
+
+  measure: max_mensalidade {
+    type: max
+    sql: ${valor_mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Máximo"
+    description: "Valor máximo de mensalidade"
+  }
+
+  measure: min_mensalidade {
+    type: min
+    sql: ${valor_mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Mínimo"
+    description: "Valor mínimo de mensalidade"
+  }
+
+  measure: sum_qtd_mensalidade {
+    type: sum
+    sql: ${qtd_mensalidades} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Mensalidades"
+    group_item_label: "Soma"
+    description: "Soma da quantidade de mensalidades  por curso"
+  }
+
+  measure: avg_qtd_mensalidade {
+    type: average
+    sql: ${qtd_mensalidades} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Mensalidades"
+    group_item_label: "Média"
+    description: "Média da quantidade de mensalidades por curso"
+  }
+
+  measure: avg_qtd_semestres {
+    type: average
+    sql: ${qtd_semestre} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Semestres"
+    group_item_label: "Média"
+    description: "Média da quantidade de semestres por curso"
+  }
+
+  measure: sum_qtd_semestres {
+    type: sum
+    sql: ${qtd_semestre} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Semestres"
+    group_item_label: "Soma"
+    description: "Soma da quantidade de semestres por curso"
+  }
+
+  measure: sum_qtd_curso_ativos {
+    type: sum
+    sql: ${curso_ativo} ;;
+    value_format: "#,###"
+    group_label: "Quantidade de Cursos"
+    group_item_label: "Soma"
+    description: "Soma da quantidade de cursos ativos por instituição"
+  }
+
+
+
+
+
+
+
+
+
 }
