@@ -202,6 +202,7 @@ view: instituicao {
   dimension: dia_vencimento {
     type: number
     label: "Dia de Vencimento"
+    description: "Indica o dia de vencimento do contrato"
     group_label: "Dados Contratuais da IE/Originador"
     sql: ${TABLE}."DIA_VENCIMENTO";;
   }
@@ -288,33 +289,33 @@ view: instituicao {
 
   dimension: flg_bolsa {
     type: yesno
-    group_label: "Dados do Curso - IE"
+    group_label: "Dados da Instituição"
     label: "Bolsa?"
-    description: "Indica se o IE possui Bolsa para o curso"
+    description: "Indica se o IE possui o produto Bolsa"
     sql: ${TABLE}."FLG_BOLSA";;
   }
 
   dimension: flg_descadastrada {
     type: yesno
     group_label: "Dados da Instituição"
-    label: "Descadastrado?"
-    description: "Indica se a instituição está descadastrado no PRAVALER"
+    label: "Descadastrada?"
+    description: "Indica se a instituição está descadastrada no PRAVALER"
     sql: ${TABLE}."FLG_DESCADASTRADA";;
   }
 
   dimension: flg_financia_matricula {
     type: yesno
-    group_label: "Dados do Curso - IE"
+    group_label: "Dados da Instituição"
     label: "Financia Matricula?"
-    description: "Indica se o curso também financia a matricula"
+    description: "Indica se a instituição permite financiar matricula"
     sql: ${TABLE}."FLG_FINANCIA_MATRICULA";;
   }
 
   dimension: flg_matricula_expressa {
     type: yesno
     label: "Matricula Expressa?"
-    group_label: "Dados do Curso - IE"
-    description: "Indica se o curso possui Matricula Expressa"
+    group_label: "Dados da Instituição"
+    description: "Indica se a instituição está optando pelo boleto de matricula expressa"
     sql: ${TABLE}."FLG_MATRICULA_EXPRESSA";;
   }
 
@@ -330,7 +331,7 @@ view: instituicao {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Possui PDV?"
-    description: "Indica se a instituição possui PDV."
+    description: "Indica se a instituição possui PDV (Ponto de Venda)."
     sql: ${TABLE}."FLG_POSSI_PDV";;
   }
 
@@ -338,6 +339,7 @@ view: instituicao {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Recebe Contrato?"
+    description: "Indica se a instituição recebe contrato fisico ou se o aluno deve entregar somente ao PRAVALER"
     sql: ${TABLE}."FLG_RECEBE_CONTRATO";;
   }
 
@@ -462,7 +464,7 @@ view: instituicao {
     type: number
     group_label:"Dados Contratuais da IE/Originador"
     label: "Porcentagem de Comissão da Instituição"
-    description: "Indica a porcentagem de comissão paga à instituição por curso"
+    description: "Indica a porcentagem de comissão paga à instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO";;
   }
 
@@ -486,7 +488,7 @@ view: instituicao {
     type: number
     group_label:"Dados Contratuais da IE/Originador"
     label:"Porcentagem de Matrícula Expressa"
-    description:"Indica o valor da porcentagem do produto matricula expressa que é paga a instituição de ensino."
+    description:"Indica o valor da porcentagem aplicada sobre a mensalidade do curso para determinar o valor do boleto de matricula expressa."
     sql: ${TABLE}."PORC_MATRICULA_EXPRESSA";;
   }
 
@@ -509,7 +511,7 @@ view: instituicao {
   dimension: qtd_semestre {
     type: number
     group_label:"Dados do Curso - IE"
-    label:"Quantidade de Mensalidades"
+    label:"Quantidade de Semestres"
     description: "Indica a quantidade de semestre por curso."
     sql: ${TABLE}."QTD_SEMESTRE";;
   }
@@ -584,35 +586,6 @@ view: instituicao {
     label:"Quantidade de dias no W.O"
     sql: ${TABLE}."VL_DIAS_WO";;
   }
-
-  dimension:bolsa {
-    type: string
-    hidden: yes
-    case: {
-      when: {
-        sql: ${flg_bolsa}='TRUE';;
-
-        label: "1"
-      }
-      else:"0"
-    }
-  }
-
-
-
-  dimension:descadastrada {
-    type: string
-    hidden: yes
-    case: {
-      when: {
-        sql: ${flg_descadastrada}='TRUE';;
-
-        label: "1"
-      }
-      else:"0"
-    }
-  }
-
 
 
 
@@ -695,8 +668,113 @@ view: instituicao {
 
 
 
+  measure: qtd_ies_ativas {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Instituição - Quantidade"
+    description: "Quantidade de Instituições ativas no PRAVALER"
+    sql_distinct_key: ${id_instituicao};;
+    sql: ${id_instituicao} ;;
+    filters: [ie_ativa: "1"]
 
 
+  }
+
+measure: qtd_ies_descadastrada {
+  type: count_distinct
+  group_label: "Instituição"
+  group_item_label: "Descadastrada - Quantidade"
+  description: "Quantidade de Instituições descadastradas"
+  sql_distinct_key: ${id_instituicao};;
+  sql: ${id_instituicao} ;;
+  filters: [flg_descadastrada: "yes"]
+
+
+}
+
+
+  measure: qtd_ies_possui_pdv {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Possui PDV - Quantidade"
+    sql_distinct_key: ${id_instituicao};;
+    sql:  ${id_instituicao};;
+    description: "Quantidade de Instituições que possuem PDV (Ponto de Venda)"
+    filters: [flg_possi_pdv: "yes"]
+  }
+
+  measure: qtd_ies_financia_matricula {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Financia Matricula - Quantidade"
+    sql_distinct_key: ${id_instituicao};;
+    sql:  ${id_instituicao};;
+    description: "Quantidade de Instituições que financiam matrícula do aluno após 1ª renovação"
+    filters: [flg_financia_matricula: "yes"]
+  }
+
+  measure: qtd_ies_bolsa {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Bolsa - Quantidade"
+    sql_distinct_key: ${id_instituicao};;
+    sql:  ${id_instituicao};;
+    description: "Quantidade de Instituições que possuem o produto de Bolsa"
+    filters: [flg_bolsa:"yes"]
+  }
+
+
+  measure: qtd_ies_matricula_expressa {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Matricula Expressa - Quantidade"
+    sql_distinct_key: ${id_instituicao};;
+    sql:  ${id_instituicao};;
+    description: "Quantidade de Instituições que optam pelo boleto de Matricula Expressa"
+    filters: [flg_matricula_expressa:"yes"]
+  }
+
+
+  measure: qtd_campus{
+    type: count_distinct
+    group_label: "Campus"
+    group_item_label: "Campus - Quantidade"
+    sql_distinct_key: ${id_campus};;
+    sql:  ${id_campus};;
+    description: "Quantidade de Campus ativos"
+    filters: [campus_ativo: "yes"]
+  }
+
+
+
+measure: qtd_ies_contrato  {
+  type: count_distinct
+  group_label: "Contrato"
+  group_item_label: "Contrato - Quantidade"
+  sql_distinct_key: ${id_instituicao};;
+  sql:  ${contrato_ie};;
+  description: "Quantidade de Contratos por instituição"
+  filters: [ie_ativa: "1"]
+}
+
+
+  measure: porc_ies_comissao  {
+    type: average_distinct
+    group_label: "Contrato"
+    sql_distinct_key: ${contrato_ie} ;;
+    group_item_label: "Contrato - Comissao"
+    sql:${perc_comissao};;
+    description: "Porcentagem de Comissão por contrato"
+  }
+
+  measure: porc_ies_desagio {
+    type: average_distinct
+    group_label: "Contrato"
+    sql_distinct_key: ${contrato_ie} ;;
+    group_item_label: "Contrato - Desagio"
+    sql:${perc_desagio};;
+    description: "Porcentagem de desagio por contrato"
+  }
 
 
 
