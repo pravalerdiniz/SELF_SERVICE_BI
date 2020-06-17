@@ -25,21 +25,18 @@ explore: beneficiados {
 
 explore: instituicao {
   label: "Instituição"
-  view_label: "Instituição"
   description: "Apresenta os dados das Instituições de Ensino com contrado com PRAVALER"
 }
 
 
 explore: status {
-  label: ""
-  view_label: ""
+  label: "Status"
   description: ""
 }
 
 
 explore: jornada {
   label: "Jornada"
-  view_label: ""
   description: ""
 }
 

@@ -5,15 +5,15 @@ view: jornada {
   dimension: ds_ult_status_detalhado {
     type: string
     sql: ${TABLE}."DS_ULT_STATUS_DETALHADO" ;;
-    label: "Descrição do Último Status Detalhado"
-    description: "Descrição detalhada do último status"
+    label: "Último Status Detalhado - Descrição"
+    description: "Descrição do último status detalhado"
   }
 
   dimension: ds_ult_status_geral {
     type: string
     sql: ${TABLE}."DS_ULT_STATUS_GERAL" ;;
-  label: "Descrição do Último Status Geral"
-    description: "Descrição geral do último status"
+  label: "Último Status Geral - Descrição"
+    description: "Descrição do último status geral"
   }
 
   dimension_group: dt_status {
@@ -29,7 +29,7 @@ view: jornada {
     ]
     sql: ${TABLE}."DT_STATUS" ;;
     label: "Status"
-    description: ""
+    description: "Indica a data do status"
   }
 
   dimension_group: dt_ultimo_status {
@@ -45,7 +45,7 @@ view: jornada {
     ]
     sql: ${TABLE}."DT_ULTIMO_STATUS" ;;
     label: "Último Status"
-    description: ""
+    description: "Indica a data do último status"
   }
 
   dimension: etapa {
@@ -59,63 +59,63 @@ view: jornada {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     label: "ID CPF"
-    description: ""
+    description: "Indica o ID do CPF"
   }
 
   dimension: id_elegivel {
     type: number
     sql: ${TABLE}."ID_ELEGIVEL" ;;
     label: "ID Elegível"
-    description: ""
+    description: "Indica o código de elegibilidade"
   }
 
   dimension: id_proposta {
     type: number
     sql: ${TABLE}."ID_PROPOSTA" ;;
     label: "ID Proposta"
-    description: ""
+    description: "Número de identificação da proposta"
   }
 
   dimension: proposta_ativa {
     type: string
     sql: ${TABLE}."PROPOSTA_ATIVA" ;;
     label: "Proposta Ativa?"
-    description: ""
+    description: "Indica se a proposta está ativa (Sim - Não)"
   }
 
   dimension: semestre_financiamento {
     type: string
     sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
     label: "Semestre Financiado"
-    description: ""
+    description: "Indica o semestre financiado"
   }
 
   dimension: status_etapa {
     type: number
     sql: ${TABLE}."STATUS_ETAPA" ;;
     label: "Status Etapa"
-    description: ""
+    description: "Indica se o status está ativo(1) ou não (0)"
   }
 
   dimension: tipo_proposta {
     type: string
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
     label: "Tipo de Proposta"
-    description: ""
+    description: "Indica o tipo da proposta (ex. Novo, Renovação)"
   }
 
   dimension: ult_status_detalhado {
     type: string
     sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
     label: "Último Status Detalhado"
-    description: ""
+    description: "Indica o último status detalhado"
   }
 
   dimension: ult_status_geral {
     type: number
     sql: ${TABLE}."ULT_STATUS_GERAL" ;;
     label: "Último Status Geral"
-    description: ""
+    description: "Indica o último status geral"
   }
 
   measure: count {
