@@ -186,7 +186,7 @@ view: financeiro {
   dimension: flg_writeoff {
     type: yesno
     group_label: "Dados do Título"
-    label: "Está no WriteOff?"
+    label: "Entrou em WriteOff?"
     description: "Indica se o título entrou no W.O"
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
@@ -399,8 +399,293 @@ view: financeiro {
     sql: ${TABLE}."VL_TAXA" ;;
   }
 
+
+
+
   measure: count {
     type: count
     drill_fields: []
   }
+
+
+  measure: avg_aquisicao {
+    type: average
+    sql: ${vl_aquisicao} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Aquisição"
+    group_item_label: "Média"
+    description: "Valor médio de aquisição do titulo"
+  }
+
+  measure: sum_aquisicao {
+    type: sum
+    sql: ${vl_aquisicao} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Aquisição"
+    group_item_label: "Soma"
+    description: "Soma do valor de aquisição do titulo"
+  }
+
+
+  measure: min_aquisicao {
+    type: min
+    sql: ${vl_aquisicao} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Aquisição"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de aquisição do titulo"
+  }
+
+
+  measure: max_aquisicao {
+    type: max
+    sql: ${vl_aquisicao} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Aquisição"
+    group_item_label: "Máximo"
+    description: "Valor máximo de aquisição do titulo"
+  }
+
+
+  measure: avg_boleto {
+    type: average
+    sql: ${vl_boleto} ;;
+    value_format: "$ #,###"
+    group_label: "Valor do Boleto"
+    group_item_label: "Média"
+    description: "Valor médio do boleto."
+  }
+
+  measure: sum_boleto {
+    type: sum
+    sql: ${vl_boleto} ;;
+    value_format: "$ #,###"
+    group_label: "Valor do Boleto"
+    group_item_label: "Soma"
+    description: "Soma do valor do boleto."
+  }
+
+
+  measure: min_boleto {
+    type: min
+    sql: ${vl_boleto} ;;
+    value_format: "$ #,###"
+    group_label: "Valor do Boleto"
+    group_item_label: "Mínimo"
+    description: "Valor minimo do boleto"
+  }
+
+
+  measure: max_boleto {
+    type: max
+    sql: ${vl_boleto} ;;
+    value_format: "$ #,###"
+    group_label: "Valor do Boleto"
+    group_item_label: "Máximo"
+    description: "Valor máximo de aquisição do titulo"
+  }
+
+
+  measure: avg_despesa {
+    type: average
+    sql: ${vl_despesa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Despesa"
+    group_item_label: "Média"
+    description: "Valor médio de cobrança da despesa"
+  }
+
+  measure: sum_despesa {
+    type: sum
+    sql: ${vl_despesa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Despesa"
+    group_item_label: "Soma"
+    description: "Soma do valor de cobrança da despesa."
+  }
+
+
+  measure: min_despesa {
+    type: min
+    sql: ${vl_despesa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Despesa"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de cobrança da despesa"
+  }
+
+
+  measure: max_despesa {
+    type: max
+    sql: ${vl_despesa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Despesa"
+    group_item_label: "Máximo"
+    description: "Valor máximo de cobrança da despesa"
+  }
+
+  measure: avg_juros {
+    type: average
+    sql: ${vl_juros} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Juros"
+    group_item_label: "Média"
+    description: "Valor médio de juros aplicado"
+  }
+
+  measure: sum_juros {
+    type: sum
+    sql: ${vl_juros} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Juros"
+    group_item_label: "Soma"
+    description: "Soma do valor de juros aplicado"
+  }
+
+
+  measure: min_juros {
+    type: min
+    sql: ${vl_juros} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Juros"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de juros aplicado"
+  }
+
+
+  measure: max_juros {
+    type: max
+    sql: ${vl_juros} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Juros"
+    group_item_label: "Máximo"
+    description: "Valor máximo de juros aplicado"
+  }
+
+
+  measure: avg_multa {
+    type: average
+    sql: ${vl_multa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Multa"
+    group_item_label: "Média"
+    description: "Valor médio de multa aplicada"
+  }
+
+  measure: sum_multa {
+    type: sum
+    sql: ${vl_multa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Multa"
+    group_item_label: "Soma"
+    description: "Soma do valor da multa aplicada"
+  }
+
+
+  measure: min_multa {
+    type: min
+    sql: ${vl_multa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Multa"
+    group_item_label: "Mínimo"
+    description: "Valor minimo da multa aplicada"
+  }
+
+
+  measure: max_multa {
+    type: max
+    sql: ${vl_multa} ;;
+    value_format: "$ #,###"
+    group_label: "Valor de Multa"
+    group_item_label: "Máximo"
+    description: "Valor máximo de multa aplicada"
+  }
+
+
+
+  measure: avg_pago {
+    type: average
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago"
+    group_item_label: "Média"
+    description: "Valor médio dos boletos pagos"
+  }
+
+  measure: sum_pago {
+    type: sum
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago"
+    group_item_label: "Soma"
+    description: "Soma do valor de boletos pagos"
+  }
+
+
+  measure: min_pago {
+    type: min
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de boletos pagos"
+  }
+
+
+  measure: max_pago {
+    type: max
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago"
+    group_item_label: "Máximo"
+    description: "Valor máximo de boletos pagos"
+  }
+
+  measure: avg_pago_credito {
+    type: average
+    sql: ${vl_pago_credito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Crédito"
+    group_item_label: "Média"
+    description: "Valor médio de pagamentos por crédito "
+  }
+
+  measure: sum_pago_credito {
+    type: sum
+    sql: ${vl_pago_credito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago -  Crédito"
+    group_item_label: "Soma"
+    description: "Soma do valor de pagamentos por crédito"
+  }
+
+
+  measure: min_pago_credito {
+    type: min
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Crédito"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de pagamento por crédito"
+  }
+
+
+  measure: max_pago_credito {
+    type: max
+    sql: ${vl_pago} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Crédito"
+    group_item_label: "Máximo"
+    description: "Valor máximo de pagamento por crédito"
+  }
+
+
+
+
+
+
+
+
+
+
 }

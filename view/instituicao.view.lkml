@@ -408,7 +408,7 @@ view: instituicao {
     type: number
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
-    description:"Indica se a Instituição está ativa."
+    description:"Indica se a Instituição está ativa. Ex: 1 = 'Sim' | 2 = 'Não'"
     sql: ${TABLE}."IE_ATIVA";;
   }
 
@@ -603,6 +603,16 @@ view: instituicao {
     description: "Valor médio de mensalidade"
   }
 
+
+  measure: sum_mensalidade {
+    type: sum
+    sql: ${valor_mensalidade} ;;
+    value_format: "$ #,###"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Soma"
+    description: "Soma do valor da mensalidade"
+  }
+
   measure: max_mensalidade {
     type: max
     sql: ${valor_mensalidade} ;;
@@ -671,7 +681,7 @@ view: instituicao {
   measure: qtd_ies_ativas {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Instituição - Quantidade"
+    group_item_label: "Quantidade de Instituição"
     description: "Quantidade de Instituições ativas no PRAVALER"
     sql_distinct_key: ${id_instituicao};;
     sql: ${id_instituicao} ;;
@@ -683,7 +693,7 @@ view: instituicao {
 measure: qtd_ies_descadastrada {
   type: count_distinct
   group_label: "Instituição"
-  group_item_label: "Descadastrada - Quantidade"
+  group_item_label: "Quantidade de Descadastradas"
   description: "Quantidade de Instituições descadastradas"
   sql_distinct_key: ${id_instituicao};;
   sql: ${id_instituicao} ;;
@@ -696,7 +706,7 @@ measure: qtd_ies_descadastrada {
   measure: qtd_ies_possui_pdv {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Possui PDV - Quantidade"
+    group_item_label: "Quantidade de Possuem PDV(Ponto de Venda)"
     sql_distinct_key: ${id_instituicao};;
     sql:  ${id_instituicao};;
     description: "Quantidade de Instituições que possuem PDV (Ponto de Venda)"
@@ -716,7 +726,7 @@ measure: qtd_ies_descadastrada {
   measure: qtd_ies_bolsa {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Bolsa - Quantidade"
+    group_item_label: "Quantidade de Bolsa"
     sql_distinct_key: ${id_instituicao};;
     sql:  ${id_instituicao};;
     description: "Quantidade de Instituições que possuem o produto de Bolsa"
@@ -727,7 +737,7 @@ measure: qtd_ies_descadastrada {
   measure: qtd_ies_matricula_expressa {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Matricula Expressa - Quantidade"
+    group_item_label: "Quantidade de Matricula Expressa"
     sql_distinct_key: ${id_instituicao};;
     sql:  ${id_instituicao};;
     description: "Quantidade de Instituições que optam pelo boleto de Matricula Expressa"
@@ -738,7 +748,7 @@ measure: qtd_ies_descadastrada {
   measure: qtd_campus{
     type: count_distinct
     group_label: "Campus"
-    group_item_label: "Campus - Quantidade"
+    group_item_label: "Quantidade de Campus"
     sql_distinct_key: ${id_campus};;
     sql:  ${id_campus};;
     description: "Quantidade de Campus ativos"
@@ -750,7 +760,7 @@ measure: qtd_ies_descadastrada {
 measure: qtd_ies_contrato  {
   type: count_distinct
   group_label: "Contrato"
-  group_item_label: "Contrato - Quantidade"
+  group_item_label: "Quantidade de Contratos"
   sql_distinct_key: ${id_instituicao};;
   sql:  ${contrato_ie};;
   description: "Quantidade de Contratos por instituição"
@@ -762,7 +772,7 @@ measure: qtd_ies_contrato  {
     type: average_distinct
     group_label: "Contrato"
     sql_distinct_key: ${contrato_ie} ;;
-    group_item_label: "Contrato - Comissao"
+    group_item_label: "Porcentagem de Comissão"
     sql:${perc_comissao};;
     description: "Porcentagem de Comissão por contrato"
   }
@@ -771,7 +781,7 @@ measure: qtd_ies_contrato  {
     type: average_distinct
     group_label: "Contrato"
     sql_distinct_key: ${contrato_ie} ;;
-    group_item_label: "Contrato - Desagio"
+    group_item_label: "Porcentagem de Deságio"
     sql:${perc_desagio};;
     description: "Porcentagem de desagio por contrato"
   }
