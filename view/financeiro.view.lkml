@@ -235,7 +235,7 @@ view: financeiro {
     type: string
     group_label: "Dados do Aluno"
     label: "Extrato titulo"
-    description: "Indica os IDs correspondentes extratos de titulos de alunos do produto GESTÃO"
+    description: "Indica os IDs correspondentes de extratos de titulos de alunos do produto GESTÃO"
     sql: ${TABLE}."ID_EXTRATO_TITULO_INFO" ;;
   }
 
