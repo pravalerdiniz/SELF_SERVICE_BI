@@ -41,6 +41,13 @@ explore: jornada {
 }
 
 
+explore: financeiro {
+  label: "Financeiro"
+  description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
+}
+
+
+
 explore: inep {
   label: "Inep"
   view_label: "Inep"
