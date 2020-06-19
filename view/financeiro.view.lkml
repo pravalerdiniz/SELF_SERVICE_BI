@@ -314,6 +314,7 @@ view: financeiro {
   dimension: vl_aquisicao {
     type: number
     group_label: "Dados do Título"
+    value_format: "$ #,###"
     label: "Valor de Aquisição"
     description: "Indica o valor de aquisiçao do título"
     sql: ${TABLE}."VL_AQUISICAO" ;;
@@ -322,6 +323,7 @@ view: financeiro {
   dimension: vl_boleto {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor de Boleto"
     description: "Indica o valor do boleto"
     sql: ${TABLE}."VL_BOLETO" ;;
@@ -330,6 +332,7 @@ view: financeiro {
   dimension: vl_despesa {
     type: number
     group_label: "Dados do Título"
+    value_format: "$ #,###"
     label: "Valor de Despesa"
     description: "Indica o valor de cobrança de despesa do título."
     sql: ${TABLE}."VL_DESPESA" ;;
@@ -338,6 +341,7 @@ view: financeiro {
   dimension: vl_ipca {
     type: number
     group_label: "Dados do Título"
+    value_format: "$ #,###"
     label: "Valor do IPCA"
     description: "Indica o valor do IPCA sobre o título."
     sql: ${TABLE}."VL_IPCA" ;;
@@ -354,6 +358,7 @@ view: financeiro {
   dimension: vl_multa {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor da Multa"
     description: "Indica o valor da multa aplicada sobre o boleto"
     sql: ${TABLE}."VL_MULTA" ;;
@@ -362,6 +367,7 @@ view: financeiro {
   dimension: vl_pago {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor do Pagamento"
     description: "Indica o valor de pagamento do boleto gerado"
     sql: ${TABLE}."VL_PAGO" ;;
@@ -370,6 +376,7 @@ view: financeiro {
   dimension: vl_pago_credito {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor do Pagamento - Crédito"
     description: "Indica o valor de pagamento por crédito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_CREDITO" ;;
@@ -378,6 +385,7 @@ view: financeiro {
   dimension: vl_pago_debito {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor do Pagamento - Débito"
     description: "Indica o valor de pagamento por débito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_DEBITO" ;;
@@ -386,6 +394,7 @@ view: financeiro {
   dimension: vl_seguro {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor do Seguro"
     description: "Indica o valor do seguro do boleto gerado"
     sql: ${TABLE}."VL_SEGURO" ;;
@@ -394,6 +403,7 @@ view: financeiro {
   dimension: vl_taxa {
     type: number
     group_label: "Dados do Boleto"
+    value_format: "$ #,###"
     label: "Valor da Taxa Bancária"
     description: "Indica o valor da taxa bancária"
     sql: ${TABLE}."VL_TAXA" ;;

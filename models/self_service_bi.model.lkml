@@ -46,6 +46,13 @@ explore: financeiro {
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
 }
 
+explore: proposta {
+  label: "Proposta"
+  description: "Apresenta os dados de todas as propostas do PRAVALER"
+
+
+
+}
 
 
 explore: inep {
