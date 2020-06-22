@@ -6,6 +6,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Calouro/Veterano?"
+    hidden: yes
     description: "Indica se o aluno é calouro ou veterano"
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
@@ -252,8 +253,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Contrato"
-    label: "Data de Concessão"
+    label: "Concessão"
     description: "Indica a data de concessão do contrato"
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
@@ -269,9 +269,8 @@ view: proposta {
       quarter,
       year
     ]
-    group_label: "Dados do Contrato"
-    label: "Data de Concessão"
-    description: "Indica a data de concessão do contrato"
+    label: "Fechamento da Proposta"
+    description: "Indica a data de fechamento da proposta"
     sql: ${TABLE}."DATA_FECHAMENTO_PROPOSTA" ;;
   }
 
@@ -286,8 +285,7 @@ view: proposta {
       quarter,
       year
     ]
-    group_label: "Dados da Proposta"
-    label: "Data de Preenchimeno"
+    label: "Preenchimeno da Proposta"
     description: "Indica a data de preenchimento da proposta"
     sql: ${TABLE}."DATA_PREENCHIMENTO" ;;
   }
@@ -304,8 +302,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Contrato"
-    label: "Data do Primeiro Vencimento"
+    label: "Vencimento - Primeiro"
     description: "Indica a data do vencimento do primeiro boleto do contrato"
     sql: ${TABLE}."DATA_PRI_VECTO" ;;
   }
@@ -322,8 +319,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Contrato"
-    label: "Data do Último Vencimento"
+    label: "Vencimento - Último"
     description: "Indica a data do vencimento do último boleto do contrato"
     sql: ${TABLE}."DATA_ULT_VECTO" ;;
   }
@@ -340,8 +336,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Contrato"
-    label: "Data de Validade"
+    label: "Validade"
     description: "Indica a data máxima que o contrato pode ser aproveitado pela cessão"
     sql: ${TABLE}."DATA_VALIDADE" ;;
   }
@@ -414,7 +409,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Vínculo Empregatício"
-    description: "Indica o nome do curso escolhido pelo aluno na proposta"
+    description: "Indica qual o vinculo empregáticio do fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_FIA_TRABALHA" ;;
   }
 
@@ -582,8 +577,8 @@ view: proposta {
   dimension: flg_boleto_atrasado {
     type: yesno
     group_label: "Dados do Contrato"
-    label: "Assinou Contrato?"
-    description: "Indica se o aluno assinou contrato com PRAVALER"
+    label: "Boleto Atrasado?"
+    description: "Indica se o aluno têm algum boleto atrasado"
     sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
   }
 
@@ -757,146 +752,235 @@ view: proposta {
 
   dimension: id_consultor_finalizou {
     type: string
+    group_label: "Dados da Proposta"
+    label: "Código do Promotor"
+    description: "Indica o código do consultor que finalizou a proposta."
     sql: ${TABLE}."ID_CONSULTOR_FINALIZOU" ;;
   }
 
   dimension: id_contrato_conjunto {
     type: number
+    group_label: "Dados do Contrato"
+    label: "ID Contrato Conjunto"
+    description: "Indica o ID do Contrato Conjunto do Aluno. Segunda Etapa do contrato do aluno novo."
     sql: ${TABLE}."ID_CONTRATO_CONJUNTO" ;;
   }
 
   dimension: id_cpf {
     type: number
+    group_label: "Dados do Aluno"
+    label: "ID CPF"
+    description: "Indica o código de referência do CPF do aluno."
     sql: ${TABLE}."ID_CPF" ;;
   }
 
   dimension: id_curso {
     type: number
+    group_label: "Dados do Curso"
+    label: "ID Curso"
+    description: "Indica o ID do Curso do aluno."
     sql: ${TABLE}."ID_CURSO" ;;
   }
 
   dimension: id_elegivel {
     type: number
+    group_label: "Dados da Proposta"
+    label: "ID Elegível"
+    description: "Indica código de elegibilidade na proposta de renovação."
     sql: ${TABLE}."ID_ELEGIVEL" ;;
   }
 
   dimension: id_fia_cpf {
     type: number
+    group_label: "Dados do Fiador"
+    label: "ID Fiador"
+    description: "Indica o ID de referência do CPF do fiador do aluno."
     sql: ${TABLE}."ID_FIA_CPF" ;;
   }
 
   dimension: id_fundo_investimento {
     type: number
+    group_label: "Dados do Fundo de Investimento"
+    label: "ID Fundo de Investimento"
+    description: "Indica o ID do Fundo de Investimento."
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: id_ies_contrato {
     type: number
+    group_label: "Dados da Instituição"
+    label: "Contrato Instituição"
+    description: "Indica o número do contrato da instituição com o PRAVALER."
     sql: ${TABLE}."ID_IES_CONTRATO" ;;
   }
 
   dimension: id_instituicao {
     type: number
+    group_label: "Dados da Instituição"
+    label: "ID Instituição"
+    description: "Indica o ID da instituição."
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
   dimension: id_originadores_ativos_ies {
     type: string
+    group_label: "Dados da Instituição"
+    label: "ID Originadores"
+    description: "Indica o ID dos Originadores Ativos para determinada instituição."
     sql: ${TABLE}."ID_ORIGINADORES_ATIVOS_IES" ;;
   }
 
   dimension: id_produto {
     type: number
+    group_label: "Dados do Produto"
+    label: "ID Produto"
+    description: "Indica o ID Produto PRAVALER."
     sql: ${TABLE}."ID_PRODUTO" ;;
   }
 
   dimension: id_produtos_aprovados {
     type: string
+    group_label: "Dados do Produto"
+    label: "ID Produtos Aprovados"
+    description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
   }
 
   dimension: id_proposta {
     type: number
+    group_label: "Dados da Proposta"
+    label: "ID Proposta"
+    description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
   dimension: id_status_detalhado {
     type: string
+    group_label: "Jornada"
+    label: "Status Detalhado"
+    description: "Indica lista dos códigos de Status Detalhado da proposta."
     sql: ${TABLE}."ID_STATUS_DETALHADO" ;;
   }
 
   dimension: id_status_geral {
     type: string
+    group_label: "Jornada"
+    label: "Status Geral"
+    description: "Indica lista dos códigos dos Status da proposta."
     sql: ${TABLE}."ID_STATUS_GERAL" ;;
   }
 
   dimension: id_usuario_finalizou {
     type: string
+    group_label: "Dados da Proposta"
+    label: "ID Usuario"
+    description: "Indica o ID do Usuario do Sistema PRAVALER que finalizou a proposta."
     sql: ${TABLE}."ID_USUARIO_FINALIZOU" ;;
   }
 
   dimension: link_assinatura_aluno {
     type: string
+    group_label: "Dados do Contrato"
+    label: "URL - Assinatura Aluno"
+    description: "Indica o link da assinatura do contrato pelo aluno."
     sql: ${TABLE}."LINK_ASSINATURA_ALUNO" ;;
   }
 
   dimension: link_assinatura_garantidor {
     type: string
+    group_label: "Dados do Contrato"
+    label: "URL - Assinatura Fiador"
+    description: "Indica o link da assinatura do contrato pelo fiador."
     sql: ${TABLE}."LINK_ASSINATURA_GARANTIDOR" ;;
   }
 
   dimension: max_boleto_atrasado {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Dias de atraso - Boleto"
+    description: "Indica o número de dias de atraso de pagamento de determinado boleto."
     sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
   }
 
   dimension: midia_acesso {
     type: string
+    group_label: "Dados de Marketing"
+    label: "Midia Acesso"
+    description: "Indica qual midia de acesso do aluno ao PRAVALER."
     sql: ${TABLE}."MIDIA_ACESSO" ;;
   }
 
   dimension: nivel_curso {
     type: string
+    group_label: "Dados do Curso"
+    label: "Nível"
+    description: "Indica o nível do curso.Ex: Graduação, Pós-Graduação, Técnico, Intercâmbio"
     sql: ${TABLE}."NIVEL_CURSO" ;;
   }
 
   dimension: nm_modalidade_produto {
     type: string
+    group_label: "Dados do Produto"
+    label: "Modalidade"
+    description: "Indica a modalidade do produto. Ex: Compartilhado, Gestão e FIDC."
+    suggestable: yes
     sql: ${TABLE}."NM_MODALIDADE_PRODUTO" ;;
   }
 
   dimension: nm_originador {
     type: string
+    group_label: "Dados do Originador"
+    label: "Originador"
+    description: "Indica o nome do banco originador do empréstimo/financiamento."
     sql: ${TABLE}."NM_ORIGINADOR" ;;
   }
 
   dimension: nm_produto {
     type: string
+    group_label: "Dados do Produto"
+    label: "Produto"
+    description: "Indica o nome do produto."
+    suggestable: yes
     sql: ${TABLE}."NM_PRODUTO" ;;
   }
 
   dimension: num_da_renovacao {
     type: number
+    group_label: "Dados de Renovação"
+    label: "Número de Renovação"
+    description: "Indica a quantidade de renovações realizadas do contrato."
     sql: ${TABLE}."NUM_DA_RENOVACAO" ;;
   }
 
   dimension: perc_comissao {
     type: number
+    group_label: "Dados da Instituição"
+     label: "Porcentagem de Comissão da Instituição"
+    description: "Indica a porcentagem de comissão paga à instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
   }
 
   dimension: perc_desagio {
     type: number
+    group_label: "Dados da Instituição"
+    label:"Porcentagem de Deságio"
+    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
     sql: ${TABLE}."PERC_DESAGIO" ;;
   }
 
   dimension: perc_tx_subsidiado_ies {
     type: number
+    group_label: "Dados da Instituição"
+    label:"Porcentagem da Taxa Subsidiada"
+    description:"Indica a porcentagem da taxa subsidiada pela instituição por contrato."
     sql: ${TABLE}."PERC_TX_SUBSIDIADO_IES" ;;
   }
 
   dimension: periodo_curso {
     type: string
+    group_label: "Dados do Curso"
+    label:"Periodo"
+    description:"Indica o periodo do Curso. Ex: Manhã, EAD, Noite."
     sql: ${TABLE}."PERIODO_CURSO" ;;
   }
 
@@ -912,197 +996,315 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
+    label: "Previsão de Formatura"
     sql: ${TABLE}."PREVISAO_FORMATURA" ;;
   }
 
   dimension: qtd_contratos_anteriores {
     type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Contratos Anteriores"
+    description:"Indica a quantidade de contrato anteriores do aluno."
     sql: ${TABLE}."QTD_CONTRATOS_ANTERIORES" ;;
   }
 
   dimension: qtd_docs_pendentes {
     type: number
+    group_label: "Dados da Formalização"
+    label:"Quantidade de Documentos pendentes"
+    description: "Indica a quantidade de documentos pendentes por proposta durante a formalização"
     sql: ${TABLE}."QTD_DOCS_PENDENTES" ;;
   }
 
   dimension: qtd_men_corrente {
     type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Mensalidades - Semestre Atual"
+    description:"Indica a quantidade de mensalidades por contrato do semestre atual."
     sql: ${TABLE}."QTD_MEN_CORRENTE" ;;
   }
 
   dimension: qtd_mensalidades {
     type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Mensalidades"
+    description:"Indica a quantidade de mensalidades por contrato."
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
   }
 
   dimension: qtd_prestacoes {
     type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Prestações"
+    description:"Indica a quantidade de prestações por contrato."
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
   dimension: qtd_semestre_curso {
     type: number
+    group_label: "Dados do Curso"
+    label:"Quantidade de Semestres"
+    description:"Indica a quantidade de semestres por curso."
     sql: ${TABLE}."QTD_SEMESTRE_CURSO" ;;
   }
 
   dimension: receita_corban {
     type: number
+    group_label: "Dados do Originador"
+    label:"Valor de Receita do Correspondente Bancário"
+    description:"Indica valor da taxa paga por originador para cada boleto gerado."
     sql: ${TABLE}."RECEITA_CORBAN" ;;
   }
 
   dimension: regional_atual {
     type: string
+    group_label: "Dados da Regional"
+    label: "Regional - Atual"
+    description: "Indica a regional atribuida ao campus atualmente"
     sql: ${TABLE}."REGIONAL_ATUAL" ;;
   }
 
   dimension: regional_original {
     type: string
+    group_label: "Dados da Regional"
+    label: "Regional - Atual"
+    description: "Indica a regional atribuida ao campus na data de inicio da proposta"
     sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
   }
 
   dimension: release_contrato {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Release do Contrato"
+    description: "Indica o número de release do contrato do aluno"
     sql: ${TABLE}."RELEASE_CONTRATO" ;;
   }
 
   dimension: renda_familiar {
     type: number
+    group_label: "Dados do Aluno"
+    label: "Renda Familia"
+    description: "Indica o valor da renda familia do aluno"
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
   }
 
   dimension: representante_atual {
     type: string
+    group_label: "Dados da Regional"
+    label: "Representante - Atual"
+    description: "Indica o representante comercial atribuido ao campus atualmente"
     sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
   }
 
   dimension: representante_original {
     type: string
+    group_label: "Dados da Regional"
+    label: "Representante - Original"
+    description: "Indica o representante comercial atribuido na data de inicio da proposta"
     sql: ${TABLE}."REPRESENTANTE_ORIGINAL" ;;
   }
 
   dimension: semestre_cursando {
     type: number
+    group_label: "Dados do Aluno"
+    label: "Semestre - Atual"
+    description: "Indica o semestre atual do aluno"
     sql: ${TABLE}."SEMESTRE_CURSANDO" ;;
   }
 
   dimension: semestre_financiado {
     type: string
+    group_label: "Dados do Contrato"
+    label: "Semestre Financiado"
+    description: "Indica o semestre financiado pelo aluno por contrato"
     sql: ${TABLE}."SEMESTRE_FINANCIADO" ;;
   }
 
   dimension: ticket_medio {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Ticket Médio"
+    description: "Indica o valor da última mensalidade divido pela quantidade de parcelas financiadas"
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
 
   dimension: tipo_atual {
     type: string
+    group_label: "Dados da Regional"
+    label: "Tipo - Atual"
+    description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
     sql: ${TABLE}."TIPO_ATUAL" ;;
   }
 
   dimension: tipo_original {
     type: string
+    group_label: "Dados da Regional"
+    label: "Tipo - Original"
+    description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
     sql: ${TABLE}."TIPO_ORIGINAL" ;;
   }
 
   dimension: tipo_produto {
     type: string
+    group_label: "Dados do Produto"
+    label: "Tipo de Produto"
+    description: "Indica se o produto do aluno é Core Business ou produto de Squad"
+    suggestable: yes
     sql: ${TABLE}."TIPO_PRODUTO" ;;
   }
 
   dimension: tipo_proposta {
     type: string
+    group_label: "Dados da Proposta"
+    label: "Tipo de Proposta"
+    description: "Indica se a proposta do aluno é Renovação, Renegociação, Segundo Repasse ou Reempactado"
+    suggestable: yes
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
   dimension: tipo_renovacao {
     type: string
+    group_label: "Dados de Renovação "
+    label: "Tipo de Renovação"
+    description: "Indica se a renovação é Ímpar ou Par"
+    suggestable: yes
     sql: ${TABLE}."TIPO_RENOVACAO" ;;
   }
 
   dimension: tx_anual_total {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Taxa Anual"
+    description: "Indica o valor da taxa de juros anual do contrato"
     sql: ${TABLE}."TX_ANUAL_TOTAL" ;;
   }
 
   dimension: tx_mensal_aluno {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Taxa Mensal - Aluno"
+    description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição. "
     sql: ${TABLE}."TX_MENSAL_ALUNO" ;;
   }
 
   dimension: tx_mensal_total {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Taxa Mensal"
+    description: "Indica o valor da taxa de juros mensal do contrato"
     sql: ${TABLE}."TX_MENSAL_TOTAL" ;;
   }
 
   dimension: uf_campus {
     type: string
+    group_label: "Dados do Campus"
+    label: "UF - Campus"
+    description: "Indica a UF correspondente ao campus"
     sql: ${TABLE}."UF_CAMPUS" ;;
   }
 
   dimension: uf_instituicao {
     type: string
+    group_label: "Dados da Instituição"
+    label: "UF - Instituição"
+    description: "Indica a UF correspondente à instituição"
     sql: ${TABLE}."UF_INSTITUICAO" ;;
   }
 
   dimension: vl_comissao_ideal {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor - Comissão PRAVALER"
+    description: "Indica o valor da comissão do pravaler por contrato."
     value_format_name: id
     sql: ${TABLE}."VL_COMISSAO_IDEAL" ;;
   }
 
   dimension: vl_dias_wo_ies {
     type: number
+    group_label: "Dados da Instituição"
+    label: "Dias no W.O"
+    description: "Indica a quantidade de dias que a instituição entrou no WriteOff."
     sql: ${TABLE}."VL_DIAS_WO_IES" ;;
   }
 
   dimension: vl_financiado {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor Financiado"
+    description: "Indica o valor financiado pelo aluno."
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
 
   dimension: vl_financiamento {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor do Financiamento"
+    description: "Indica o valor total do financiamento do contrato"
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
 
   dimension: vl_financiamento_aluno {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor do Financiamento - Aluno "
+    description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno "
     sql: ${TABLE}."VL_FINANCIAMENTO_ALUNO" ;;
   }
 
   dimension: vl_iof {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor IOF "
+    description: "Indica o valor de IOF aplicado ao contrato "
     sql: ${TABLE}."VL_IOF" ;;
   }
 
   dimension: vl_men_corrente {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Mensalidade Atual "
+    description: "Indica o valor da mensalidade atual do aluno"
     sql: ${TABLE}."VL_MEN_CORRENTE" ;;
   }
 
   dimension: vl_mensalidade {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Mensalidade"
+    description: "Indica o valor da mensalidade descrita no contrato"
     sql: ${TABLE}."VL_MENSALIDADE" ;;
   }
 
   dimension: vl_parcela {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor da Parcela"
+    description: "Indica o valor da parcela do contrato."
     sql: ${TABLE}."VL_PARCELA" ;;
   }
 
   dimension: vl_prestacoes {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Prestação"
+    description: "Indica o valor da prestação do contrato"
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
 
   dimension: vl_principal {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor Principal"
+    description: "Indica o valor principal do contrato."
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
 
   dimension: vl_rematricula {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor da Rematricula"
+    description: "Indica o valor da rematricula do aluno"
     sql: ${TABLE}."VL_REMATRICULA" ;;
   }
 
