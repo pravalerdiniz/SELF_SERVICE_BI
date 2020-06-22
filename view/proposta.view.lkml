@@ -850,7 +850,7 @@ view: proposta {
     type: number
     group_label: "Dados da Proposta"
     label: "ID Proposta"
-    description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
+    description: "Indica o ID da proposta do aluno."
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
