@@ -44,13 +44,25 @@ explore: jornada {
 explore: financeiro {
   label: "Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
+
+  join: financeiro_extrato_titulo {
+    view_label: "Extrato Título"
+    sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 }
 
 explore: proposta {
   label: "Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
 
-
+join: proposta_docs_pendentes {
+  view_label: "Documentos Pendentes"
+  sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
+  relationship: one_to_many
+  type: left_outer
+}
 
 }
 
