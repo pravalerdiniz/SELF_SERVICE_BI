@@ -43,11 +43,19 @@ explore: jornada {
 
 explore: financeiro {
   label: "Financeiro"
+  view_label: "1. Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
 
   join: financeiro_extrato_titulo {
-    view_label: "Extrato Título"
+    view_label: "2. Extrato Título"
     sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: financeiro_log_titulo {
+    view_label: "2. Log Título"
+    sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
   }
