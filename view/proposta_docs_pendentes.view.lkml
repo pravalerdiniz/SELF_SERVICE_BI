@@ -8,20 +8,25 @@ view: proposta_docs_pendentes {
        ;;
   }
 
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
+    hidden: yes
     label: "Quantidade"
   }
 
   dimension: id_proposta {
     type: number
+    hidden: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
   dimension: docs_pendentes {
     type: string
     sql: ${TABLE}."DOCS_PENDENTES" ;;
+    description: "Indica todos os documentos pendentes por proposta"
     label: "Documentos Pendentes"
   }
 
