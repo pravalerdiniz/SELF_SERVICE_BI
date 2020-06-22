@@ -285,7 +285,7 @@ view: proposta {
       quarter,
       year
     ]
-    label: "Preenchimeno da Proposta"
+    label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
     sql: ${TABLE}."DATA_PREENCHIMENTO" ;;
   }
@@ -302,7 +302,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    label: "Vencimento - Primeiro"
+    label: "Primeiro Vencimento"
     description: "Indica a data do vencimento do primeiro boleto do contrato"
     sql: ${TABLE}."DATA_PRI_VECTO" ;;
   }
@@ -319,7 +319,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    label: "Vencimento - Último"
+    label: "Último Vencimento"
     description: "Indica a data do vencimento do último boleto do contrato"
     sql: ${TABLE}."DATA_ULT_VECTO" ;;
   }
