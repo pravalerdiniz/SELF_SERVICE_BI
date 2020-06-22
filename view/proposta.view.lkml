@@ -285,7 +285,7 @@ view: proposta {
       quarter,
       year
     ]
-    label: "Preenchimeno da Proposta"
+    label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
     sql: ${TABLE}."DATA_PREENCHIMENTO" ;;
   }
@@ -302,7 +302,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    label: "Vencimento - Primeiro"
+    label: "Primeiro Vencimento"
     description: "Indica a data do vencimento do primeiro boleto do contrato"
     sql: ${TABLE}."DATA_PRI_VECTO" ;;
   }
@@ -319,7 +319,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    label: "Vencimento - Último"
+    label: "Último Vencimento"
     description: "Indica a data do vencimento do último boleto do contrato"
     sql: ${TABLE}."DATA_ULT_VECTO" ;;
   }
@@ -1303,43 +1303,64 @@ view: proposta {
   dimension: vl_rematricula {
     type: number
     group_label: "Dados do Contrato"
-    label: "Valor da Rematricula"
-    description: "Indica o valor da rematricula do aluno"
+    label: "Valor Rematricula"
+    description: "Indica o valor da rematricula do aluno por contrato"
     sql: ${TABLE}."VL_REMATRICULA" ;;
   }
 
   dimension: vl_repasse_ies {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor Repasse - Instituição"
+    description: "Indica o valor de repasse a instituição de ensino por contrato"
     sql: ${TABLE}."VL_REPASSE_IES" ;;
   }
 
   dimension: vl_score {
     type: number
+    group_label: "Dados do Aluno"
+    label: "Score"
+    description: "Indica o valor de Score do aluno"
     sql: ${TABLE}."VL_SCORE" ;;
   }
 
   dimension: vl_subsidiado {
     type: number
+    group_label: "Dados da Cessão"
+    label: "Valor Subsidiado"
+    description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
 
   dimension: vl_tarifa_cadastro {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Tarifa de Cadastro"
+    description: "Indica o valor da tarifa de cadastro do contrato"
     sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
   }
 
   dimension: vl_tarifa_parcela {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Tarifa de Cadastro - Parcela"
+    description: "Indica o valor da parcela da tarifa de cadastro"
     sql: ${TABLE}."VL_TARIFA_PARCELA" ;;
   }
 
   dimension: vl_total_financiado_bv {
     type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Financiado - BV "
+    description: "Indica o valor total financiado + valor de IOF da BV. "
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
 
   dimension: vl_ult_status {
     type: string
+    group_label: "Jornada"
+    label: "ID Último Status"
+    description: "Indica o ID do Último Status da Proposta ."
     sql: ${TABLE}."VL_ULT_STATUS" ;;
   }
 
