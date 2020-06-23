@@ -11,22 +11,18 @@ view: financeiro_extrato_titulo {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-    label: "Quantidade"
-  }
-
   dimension: id_titulo {
     type: number
     sql: ${TABLE}."ID_TITULO" ;;
     label: "ID Título"
+    value_format: "#"
   }
 
   dimension: id_extrato_titulo {
     type: string
     sql: ${TABLE}."ID_EXTRATO_TITULO" ;;
     label: "ID Extrato Título"
+    value_format: "#"
   }
 
   dimension: ds_extrato_transacao {
@@ -45,6 +41,18 @@ view: financeiro_extrato_titulo {
     type: number
     sql: ${TABLE}."VL_EXTRATO" ;;
     label: "Valor do Extrato"
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+    label: "Quantidade"
+  }
+
+  measure: sum_vl_extrato {
+    type: sum
+    sql: ${vl_extrato} ;;
+    label: "Valor do Extrato - Soma"
   }
 
   set: detail {

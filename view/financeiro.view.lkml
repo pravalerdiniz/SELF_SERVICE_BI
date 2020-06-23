@@ -197,6 +197,7 @@ view: financeiro {
     label: "ID Baixa"
     description: "Indica o código de identificação da baixa do boleto."
     sql: ${TABLE}."ID_BAIXA" ;;
+    value_format: "#"
   }
 
   dimension: id_banco {
@@ -205,6 +206,7 @@ view: financeiro {
     label: "ID do Banco"
     description: "Indica o ID do Banco responsável pela geração do boleto"
     sql: ${TABLE}."ID_BANCO" ;;
+    value_format: "#"
   }
 
   dimension: id_boleto {
@@ -213,6 +215,7 @@ view: financeiro {
     label: "ID do Boleto"
     description: "Indica o código de identificação do boleto. O número do Cedente (cednum)."
     sql: ${TABLE}."ID_BOLETO" ;;
+    value_format: "#"
   }
 
   dimension: id_contrato {
@@ -221,6 +224,7 @@ view: financeiro {
     label: "ID do Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
     sql: ${TABLE}."ID_CONTRATO" ;;
+    value_format: "#"
   }
 
   dimension: id_cpf {
@@ -229,6 +233,7 @@ view: financeiro {
     label: "ID CPF"
     description: "Indica o código de referência do CPF do Aluno"
     sql: ${TABLE}."ID_CPF" ;;
+    value_format: "#"
   }
 
   dimension: id_extrato_titulo_info {
@@ -245,6 +250,7 @@ view: financeiro {
     label: "ID do Fundo de Investimento"
     description: "Indica a identificação do fundo de investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
+    value_format: "#"
   }
 
   dimension: id_log_titulo_info {
@@ -261,6 +267,7 @@ view: financeiro {
     label: "Nossonum"
     description: "Indica o código de controle que permite o PRAVALER e ao Aluno identificar os dados da cobrança que deu origem ao Boleto de Pagamento"
     sql: ${TABLE}."ID_NOSSONUM" ;;
+    value_format: "#"
   }
 
   dimension: id_seunum {
@@ -269,6 +276,7 @@ view: financeiro {
     label: "Seunum"
     description: "Indica o código único do boleto."
     sql: ${TABLE}."ID_SEUNUM" ;;
+    value_format: "#"
   }
 
   dimension: id_titulo {
@@ -277,6 +285,7 @@ view: financeiro {
     label: "ID Titulo"
     description: "Indica o ID único da tabela"
     sql: ${TABLE}."ID_TITULO" ;;
+    value_format: "#"
   }
 
   dimension: id_titulo_classificacao {
@@ -285,6 +294,7 @@ view: financeiro {
     label: "ID Classificação do Título "
     description: "Indica o ID correspondente a classificação do título gerado."
     sql: ${TABLE}."ID_TITULO_CLASSIFICACAO" ;;
+    value_format: "#"
   }
 
   dimension: id_titulo_status {
@@ -293,6 +303,7 @@ view: financeiro {
     label: "ID do Status"
     description: "Indica o ID correspondente ao status do título gerado."
     sql: ${TABLE}."ID_TITULO_STATUS" ;;
+    value_format: "#"
   }
 
   dimension: num_parcela {
