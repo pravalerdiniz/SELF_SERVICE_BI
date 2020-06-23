@@ -784,7 +784,7 @@ view: proposta {
 
   dimension: id_elegivel {
     type: number
-    group_label: "Dados da Proposta"
+    group_label: "Dados de Renovação"
     label: "ID Elegível"
     description: "Indica código de elegibilidade na proposta de renovação."
     sql: ${TABLE}."ID_ELEGIVEL" ;;
@@ -1084,6 +1084,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Renda Familia"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da renda familia do aluno"
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
   }
@@ -1124,7 +1125,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Ticket Médio"
-    description: "Indica o valor da última mensalidade divido pela quantidade de parcelas financiadas"
+    value_format: "$ #,##0.00"
+    description: "Indica o valor da última mensalidade dividido pela quantidade de parcelas financiadas"
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
 
@@ -1164,10 +1166,9 @@ view: proposta {
 
   dimension: tipo_renovacao {
     type: string
-    group_label: "Dados de Renovação "
+    group_label: "Dados de Renovação"
     label: "Tipo de Renovação"
     description: "Indica se a renovação é Ímpar ou Par"
-    suggestable: yes
     sql: ${TABLE}."TIPO_RENOVACAO" ;;
   }
 
@@ -1232,6 +1233,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Financiado"
+    value_format: "$ #,##0.00"
     description: "Indica o valor financiado pelo aluno."
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
@@ -1240,6 +1242,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento"
+    value_format: "$ #,##0.00"
     description: "Indica o valor total do financiamento do contrato"
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
@@ -1248,6 +1251,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento - Aluno "
+    value_format: "$ #,##0.00"
     description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno "
     sql: ${TABLE}."VL_FINANCIAMENTO_ALUNO" ;;
   }
@@ -1256,6 +1260,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor IOF "
+    value_format: "$ #,##0.00"
     description: "Indica o valor de IOF aplicado ao contrato "
     sql: ${TABLE}."VL_IOF" ;;
   }
@@ -1264,6 +1269,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade Atual "
+    value_format: "$ #,##0.00"
     description: "Indica o valor da mensalidade atual do aluno"
     sql: ${TABLE}."VL_MEN_CORRENTE" ;;
   }
@@ -1272,6 +1278,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da mensalidade descrita no contrato"
     sql: ${TABLE}."VL_MENSALIDADE" ;;
   }
@@ -1280,6 +1287,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor da Parcela"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da parcela do contrato."
     sql: ${TABLE}."VL_PARCELA" ;;
   }
@@ -1288,6 +1296,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Prestação"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da prestação do contrato"
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
@@ -1296,6 +1305,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Principal"
+    value_format: "$ #,##0.00"
     description: "Indica o valor principal do contrato."
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
@@ -1304,6 +1314,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Rematricula"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da rematricula do aluno por contrato"
     sql: ${TABLE}."VL_REMATRICULA" ;;
   }
@@ -1312,6 +1323,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Repasse - Instituição"
+    value_format: "$ #,##0.00"
     description: "Indica o valor de repasse a instituição de ensino por contrato"
     sql: ${TABLE}."VL_REPASSE_IES" ;;
   }
@@ -1320,6 +1332,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Score"
+    value_format: "$ #,##0.00"
     description: "Indica o valor de Score do aluno"
     sql: ${TABLE}."VL_SCORE" ;;
   }
@@ -1328,6 +1341,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Subsidiado"
+    value_format: "$ #,##0.00"
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
@@ -1336,6 +1350,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Tarifa de Cadastro"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da tarifa de cadastro do contrato"
     sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
   }
@@ -1344,6 +1359,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Tarifa de Cadastro - Parcela"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da parcela da tarifa de cadastro"
     sql: ${TABLE}."VL_TARIFA_PARCELA" ;;
   }
@@ -1352,6 +1368,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Financiado - BV "
+    value_format: "$ #,##0.00"
     description: "Indica o valor total financiado + valor de IOF da BV. "
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
@@ -1368,4 +1385,322 @@ view: proposta {
     type: count
     drill_fields: []
   }
+
+  measure: sum_vl_cet_aa  {
+    type: sum
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma A.A"
+    sql:${cet_aa};;
+    description: "Soma do valor do custo efetivo Total ao ano do contrato"
+  }
+
+  measure: avg_vl_cet_aa  {
+    type: average
+    group_label: "Custo Efetivo Total"
+    group_item_label: "Média A.A"
+    value_format: "$ #,##0.00"
+    sql:${cet_aa};;
+    description: "Média do valor dp custo efetivo Total ao ano do contrato"
+  }
+
+  measure: min_vl_cet_aa  {
+    type: min
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo A.A"
+    sql:${cet_aa};;
+    description: "Mínimo do valor do  custo efetivo Total ao ano do contrato"
+  }
+
+
+  measure: max_vl_cet_aa  {
+    type: max
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo A.A"
+    sql:${cet_aa};;
+    description: "Máximo do valor do custo efetivo Total ao ano do contrato"
+  }
+
+
+  measure: sum_vl_cet_am  {
+    type: sum
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma A.M"
+    sql:${cet_am};;
+    description: "Soma do valor do custo efetivo Total ao mês do contrato"
+  }
+
+  measure: avg_vl_cet_am  {
+    type: average
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Média A.M"
+    sql:${cet_am};;
+    description: "Média do valor do custo efetivo Total ao mês do contrato"
+  }
+
+  measure: min_vl_cet_am  {
+    type: min
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo A.M"
+    sql:${cet_am};;
+    description: "Mínimo do valor do custo efetivo Total ao mês do contrato"
+  }
+
+
+  measure: max_vl_cet_am  {
+    type: max
+    group_label: "Custo Efetivo Total"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo A.M"
+    sql:${cet_am};;
+    description: "Máximo do valor do custo efetivo Total ao mês do contrato"
+  }
+
+
+  measure: sum_vl_financiamento {
+    type: sum
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma"
+    sql:${vl_financiamento};;
+    description: "Soma do valor total do financiamento do contrato"
+  }
+
+  measure: avg_vl_financiamento  {
+    type: average
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Média"
+    sql:${vl_financiamento};;
+    description: "Média do valor total do financiamento do contrato"
+  }
+
+  measure: min_vl_financiamento {
+    type: min
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo"
+    sql:${vl_financiamento};;
+    description: "Mínimo do valor total do financiamento do contrato"
+  }
+
+
+  measure: max_vl_financiamento  {
+    type: max
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo"
+    sql:${vl_financiamento};;
+    description: "Máximo do valor total do financiamento do contrato"
+  }
+
+
+
+
+  measure: sum_vl_financiamento_aluno {
+    type: sum
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Aluno - Soma"
+    sql:${vl_financiamento_aluno};;
+    description: "Soma do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+  }
+
+  measure: avg_vl_financiamento_aluno  {
+    type: average
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Aluno - Média"
+    sql:${vl_financiamento_aluno};;
+    description: "Média do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+  }
+
+  measure: min_vl_financiamento_aluno {
+    type: min
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Aluno - Mínimo"
+    sql:${vl_financiamento_aluno};;
+    description: "Mínimo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+  }
+
+
+  measure: max_vl_financiamento_aluno  {
+    type: max
+    group_label: "Financiamento"
+    value_format: "$ #,##0.00"
+    group_item_label: "Aluno - Máximo"
+    sql:${vl_financiamento_aluno};;
+    description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+  }
+
+
+  measure: sum_iof {
+    type: sum
+    group_label: "IOF"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma"
+    sql:${vl_iof};;
+    description: "Soma do valor IOF aplicado ao contrato"
+  }
+
+  measure: avg_iof  {
+    type: average
+    group_label: "IOF"
+    value_format: "$ #,##0.00"
+    group_item_label: "Média"
+    sql:${vl_iof};;
+    description: "Média do valor IOF aplicado ao contrato"
+  }
+
+  measure: min_iof {
+    type: min
+    group_label: "IOF"
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo"
+    sql:${vl_iof};;
+    description: "Mínimo do valor IOF aplicado ao contrato"
+  }
+
+
+  measure: max_iof  {
+    type: max
+    group_label: "IOF"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo"
+    sql:${vl_iof};;
+    description: "Máximo do valor IOF aplicado ao contrato"
+  }
+
+
+  measure: sum_mensalidade_atual {
+    type: sum
+    group_label: "Mensalidade - Atual"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma"
+    sql:${vl_men_corrente};;
+    description: "Soma do valor da mensalidade atual do aluno"
+  }
+
+
+
+
+
+
+
+  measure: avg_mensalidade_atual  {
+    type: average
+    group_label: "Mensalidade - Atual"
+    value_format: "$ #,##0.00"
+    group_item_label: "Média"
+    sql:${vl_men_corrente};;
+    description: "Média do valor da mensalidade atual do aluno"
+  }
+
+  measure: min_mensalidade_atual {
+    type: min
+    group_label: "Mensalidade - Atual "
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo"
+    sql:${vl_men_corrente};;
+    description: "Mínimo do valor da mensalidade atual do aluno"
+  }
+
+
+  measure: max_mensalidade_atual  {
+    type: max
+    group_label: "Mensalidade - Atual"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo"
+    sql:${vl_men_corrente};;
+    description: "Máximo do valor da mensalidade atual do aluno"
+  }
+
+  measure: sum_qtd_mensalidade_atual {
+    type: sum
+    group_label: "Mensalidade - Atual"
+    group_item_label: "Quantidade de Mensalidades"
+    sql:${qtd_men_corrente};;
+    description: "Soma da quantidade de mensalidades por contrato do semestre atual"
+  }
+
+  measure: avg_qtd_mensalidade_atual {
+    type: average
+    group_label: "Mensalidade - Atual"
+    group_item_label: "Quantidade de Mensalidades - Média"
+    sql:${qtd_men_corrente};;
+    description: "Média da quantidade de mensalidades por contrato do semestre atual"
+  }
+
+  measure: min_qtd_mensalidade_atual {
+    type: min
+    group_label: "Mensalidade - Atual"
+    group_item_label: "Quantidade de Mensalidades - Mínimo"
+    sql:${qtd_men_corrente};;
+    description: "Mínimo da quantidade de mensalidades por contrato do semestre atual"
+  }
+
+  measure: max_qtd_mensalidade_atual {
+    type: max
+    group_label: "Mensalidade - Atual"
+    group_item_label: "Quantidade de Mensalidades - Máximo"
+    sql:${qtd_men_corrente};;
+    description: "Máximo da quantidade de mensalidades por contrato do semestre atual"
+  }
+
+
+  measure: sum_mensalidade_contrato {
+    type: sum
+    group_label: "Mensalidade"
+    value_format: "$ #,##0.00"
+    group_item_label: "Soma"
+    sql:${vl_mensalidade};;
+    description: "Soma do valor da mensalidade descrita no contrato"
+  }
+
+  measure: avg_mensalidade_contrato  {
+    type: average
+    group_label: "Mensalidade"
+    value_format: "$ #,##0.00"
+    group_item_label: "Média"
+    sql:${vl_mensalidade};;
+    description: "Média do valor da mensalidade descrita no contrato"
+  }
+
+  measure: min_mensalidade_contrato {
+    type: min
+    group_label: "Mensalidade"
+    value_format: "$ #,##0.00"
+    group_item_label: "Mínimo"
+    sql:${vl_mensalidade};;
+    description: "Mínimo do valor da mensalidade descrita no contrato"
+  }
+
+
+  measure: max_mensalidade_contrato  {
+    type: max
+    group_label: "Mensalidade"
+    value_format: "$ #,##0.00"
+    group_item_label: "Máximo"
+    sql:${vl_mensalidade};;
+    description: "Máximo do valor da mensalidade descrita no contrato"
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

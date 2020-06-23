@@ -64,6 +64,9 @@ join: proposta_docs_pendentes {
   type: left_outer
 }
 
+
+
+
 }
 
 
