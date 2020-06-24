@@ -664,7 +664,7 @@ view: proposta {
 
   dimension: flg_instituicao_ativa {
     type: yesno
-    group_label: "Dados do Instituição"
+    group_label: "Dados da Instituição"
     label: "Ativa?"
     description: "Indica se a instituição está ativa no PRAVALER."
     sql: ${TABLE}."FLG_INSTITUICAO_ATIVA" ;;
@@ -672,7 +672,7 @@ view: proposta {
 
   dimension: flg_ipca_ies {
     type: yesno
-    group_label: "Dados do Instituição"
+    group_label: "Dados da Instituição"
     label: "IPCA?"
     description: "Indica se a instituição possui IPCA no contrato com o PRAVALER."
     sql: ${TABLE}."FLG_IPCA_IES" ;;
@@ -704,7 +704,7 @@ view: proposta {
 
   dimension: flg_wo_ies {
     type: yesno
-    group_label: "Dados do Instituição"
+    group_label: "Dados da Instituição"
     label: "Entrou WriteOff?"
     description: "Indica se a instituição entrou no W.O."
     sql: ${TABLE}."FLG_WO_IES" ;;
@@ -1332,7 +1332,6 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Score"
-    value_format: "$ #,##0.00"
     description: "Indica o valor de Score do aluno"
     sql: ${TABLE}."VL_SCORE" ;;
   }
@@ -1383,8 +1382,28 @@ view: proposta {
 
   measure: count {
     type: count
+    group_label: "Proposta"
+    group_item_label: "Quantidade de Propostas"
+    description: "Contagem de Propostas"
     drill_fields: []
   }
+
+  measure: cont_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de CPFs únicos"
+  }
+
+  measure: perc_cpf {
+    type: percent_of_total
+    sql: ${cont_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+  }
+
+
 
   measure: sum_vl_cet_aa  {
     type: sum
@@ -1604,7 +1623,7 @@ view: proposta {
 
   measure: min_mensalidade_atual {
     type: min
-    group_label: "Mensalidade - Atual "
+    group_label: "Mensalidade - Atual"
     value_format: "$ #,##0.00"
     group_item_label: "Mínimo"
     sql:${vl_men_corrente};;
@@ -1691,13 +1710,300 @@ view: proposta {
     description: "Máximo do valor da mensalidade descrita no contrato"
   }
 
+  measure: sum_qtd_mensalidade_contrato {
+    type: sum
+    group_label: "Mensalidade"
+    group_item_label: "Quantidade de Mensalidades"
+    sql:${qtd_mensalidades};;
+    description: "Soma da quantidade de mensalidades por contrato"
+  }
+
+  measure: avg_qtd_mensalidade_contrato  {
+    type: average
+    group_label: "Mensalidade"
+    group_item_label: "Quantidade de Mensalidades - Média"
+    sql:${qtd_mensalidades};;
+    description: "Média da quantidade de mensalidades por contrato"
+  }
+
+  measure: min_qtd_mensalidade_contrato {
+    type: min
+    group_label: "Mensalidade"
+    group_item_label: "Quantidade de Mensalidades - Mínimo"
+    sql:${qtd_mensalidades};;
+    description: "Mínimo da quantidade de mensalidades por contrato"
+  }
+
+
+  measure: max_qtd_mensalidade_contrato  {
+    type: max
+    group_label: "Mensalidade"
+    group_item_label: "Quantidade de Mensalidades - Máximo"
+    sql:${qtd_mensalidades};;
+    description: "Máximo da quantidade de mensalidades por contrato"
+  }
+
+
+  measure: sum_vl_prestacoes {
+    type: sum
+    group_label: "Prestações"
+    group_item_label: "Soma"
+    value_format: "$ #,##0.00"
+    sql:${vl_prestacoes};;
+    description: "Soma do valor das prestações do contrato"
+  }
+
+  measure: avg_vl_prestacoes  {
+    type: average
+    group_label: "Prestações"
+    group_item_label: "Média"
+    value_format: "$ #,##0.00"
+    sql:${vl_prestacoes};;
+    description: "Média do valor das prestações do contrato"
+  }
+
+  measure: min_vl_prestacoes {
+    type: min
+    group_label: "Prestações"
+    group_item_label: "Mínimo"
+    value_format: "$ #,##0.00"
+    sql:${vl_prestacoes};;
+    description: "Mínimo do valor das prestações do contrato"
+  }
+
+
+  measure: max_vl_prestacoes  {
+    type: max
+    group_label: "Prestações"
+    group_item_label: "Máximo"
+    value_format: "$ #,##0.00"
+    sql:${vl_prestacoes};;
+    description: "Máximo o valor das prestações do contrato"
+  }
+
+  measure: sum_qtd_prestacoes {
+    type: sum
+    group_label: "Prestações"
+    group_item_label: "Quantidade de Prestações"
+    sql:${qtd_prestacoes};;
+    description: "Soma da quantidade de prestações do contrato"
+  }
+
+  measure: avg_qtd_prestacoes  {
+    type: average
+    group_label: "Prestações"
+    group_item_label: "Quantidade de Prestações - Média"
+    sql:${qtd_prestacoes};;
+    description: "Média da quantidade de prestações do contrato"
+  }
+
+  measure: min_qtd_prestacoes {
+    type: min
+    group_label: "Prestações"
+    group_item_label: "Quantidade de Prestações - Mínimo"
+    sql:${qtd_prestacoes};;
+    description: "Mínimo da quantidade de prestações do contrato"
+  }
+
+
+  measure: max_qtd_prestacoes  {
+    type: max
+    group_label: "Prestações"
+    group_item_label: "Quantidade de Prestações - Máximo"
+    sql:${qtd_prestacoes};;
+    description: "Máximo da quantidade de prestações do contrato"
+  }
+
+  measure: sum_vl_rematricula {
+    type: sum
+    group_label: "Rematricula"
+    group_item_label: "Soma"
+    value_format: "$ #,##0.00"
+    sql:${vl_rematricula};;
+    description: "Soma do valor da rematricula do aluno por contrato"
+  }
+
+  measure: avg_vl_rematricula  {
+    type: average
+    group_label: "Rematricula"
+    group_item_label: "Média"
+    value_format: "$ #,##0.00"
+    sql:${vl_rematricula};;
+    description: "Média do valor da rematricula do aluno por contrato"
+  }
+
+  measure: min_vl_rematricula {
+    type: min
+    group_label: "Rematricula"
+    group_item_label: "Mínimo"
+    value_format: "$ #,##0.00"
+    sql:${vl_rematricula};;
+    description: "Mínimo do valor da rematricula do aluno por contrato"
+  }
+
+
+  measure: max_vl_rematricula  {
+    type: max
+    group_label: "Rematricula"
+    group_item_label: "Máximo"
+    value_format: "$ #,##0.00"
+    sql:${vl_rematricula};;
+    description: "Máximo do valor da rematricula do aluno por contrato"
+  }
+
+
+  measure: sum_qtd_doc_pendentes {
+    type: sum
+    group_label: "Formalização"
+    group_item_label: "Quantidade de Documentos Pendentes"
+    sql:${qtd_docs_pendentes};;
+    description: "Soma da quantidade de documentos pendentes por proposta durante a formalização"
+  }
+
+
+  measure: sum_taxa_mensal {
+    type: sum
+    group_label: "Taxa"
+    group_item_label: "Taxa Mensal"
+    sql:${tx_mensal_total};;
+    description: "Soma do valor da taxa mensal do contrato"
+  }
+
+  measure: sum_taxa_mensal_aluno {
+    type: sum
+    group_label: "Taxa"
+    group_item_label: "Taxa Mensal - Aluno"
+    sql:${tx_mensal_aluno};;
+    description: "Soma do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
+  }
 
 
 
 
+  measure: sum_taxa_anual {
+    type: sum
+    group_label: "Taxa"
+    group_item_label: "Taxa Anual"
+    sql:${tx_anual_total};;
+    description: "Soma do valor da taxa anual do contrato"
+  }
+
+
+  measure: sum_ticket_medio {
+    type: sum
+    group_label: "Ticket Médio"
+    group_item_label: "Soma"
+    value_format: "$ #,##0.00"
+    sql:${ticket_medio};;
+    description: "Soma do ticket médio do contrato"
+  }
+
+
+  measure: avg_ticket_medio  {
+    type: average
+    group_label: "Ticket Médio"
+    group_item_label: "Média"
+    value_format: "$ #,##0.00"
+    sql:${ticket_medio};;
+    description: "Média do valor do ticket médio do contrato"
+  }
+
+  measure: min_ticket_medio {
+    type: min
+    group_label: "Ticket Médio"
+    group_item_label: "Mínimo"
+    value_format: "$ #,##0.00"
+    sql:${ticket_medio};;
+    description: "Mínimo do valor do ticket médio do contrato"
+  }
+
+
+  measure: max_ticket_medio  {
+    type: max
+    group_label: "Ticket Médio"
+    group_item_label: "Máximo"
+    value_format: "$ #,##0.00"
+    sql:${ticket_medio};;
+    description: "Máximo do valor do ticket médio do contrato"
+  }
+
+
+  measure: sum_qtd_contratos_anteriores {
+    type: sum
+    group_label: "Proposta"
+    group_item_label: "Quantidade de Contratos Anteriores"
+    sql:${qtd_contratos_anteriores};;
+    description: "Soma da quantidade contratos anteriores por proposta"
+  }
 
 
 
+  measure: count_tipo_proposta_novo {
+    type: count
+    group_label: "Proposta"
+    group_item_label: "Novo"
+    filters: [tipo_proposta: "Novo"]
+    description: "Contagem de propostas de aluno novo"
+  }
+
+
+  measure: count_tipo_proposta_renovacao {
+    type: count
+    group_label: "Proposta"
+    group_item_label: "Renovação"
+    filters: [tipo_proposta: "Renovação"]
+    description: "Contagem de propostas de renovação"
+  }
+
+  measure: count_tipo_proposta_seg_repasse {
+    type: count
+    group_label: "Proposta"
+    group_item_label: "Segundo Repasse"
+    filters: [tipo_proposta: "Segundo Repasse"]
+    description: "Contagem de propostas de segundo repasse"
+  }
+
+  measure: count_tipo_proposta_renegociacao {
+    type: count
+    group_label: "Proposta"
+    group_item_label: "Renegociação"
+    filters: [tipo_proposta: "Renegociação"]
+    description: "Contagem de propostas de renegociação"
+  }
+
+  measure: count_tipo_proposta_reempacotado {
+    type: count
+    group_label: "Proposta"
+    group_item_label: "Reempactado"
+    filters: [tipo_proposta: "Reempacotado"]
+    description: "Contagem de propostas do tipo reempactado"
+  }
+
+
+  measure: sum_contrato_gerado {
+    type: sum
+    group_label: "Contrato"
+    group_item_label: "Quantidade de Contratos Gerados"
+    sql:${flg_contrato_gerado};;
+    description: "Soma da quantidade de contratos gerados"
+  }
+
+  measure: sum_financiou_matricula{
+    type: sum
+    group_label: "Contrato"
+    group_item_label: "Quantidade de Contratos - Financiou Matricula"
+    sql:${flg_financia_matricula_rnv};;
+    description: "Soma da quantidade de contratos de alunos que financiaram a matricula"
+  }
+
+
+  measure: sum_boleto_atrasado{
+    type: sum
+    group_label: "Contrato"
+    group_item_label: "Quantidade de Contratos - Boletos Atrasados"
+    sql:${flg_boleto_atrasado};;
+    description: "Soma da quantidade de contratos de alunos com boleto atrasado"
+  }
 
 
 

@@ -716,7 +716,7 @@ measure: qtd_ies_descadastrada {
   measure: qtd_ies_financia_matricula {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Financia Matricula - Quantidade"
+    group_item_label: "Quantidade de Instituições que Financiam Matricula"
     sql_distinct_key: ${id_instituicao};;
     sql:  ${id_instituicao};;
     description: "Quantidade de Instituições que financiam matrícula do aluno após 1ª renovação"
