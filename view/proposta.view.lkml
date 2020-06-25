@@ -248,6 +248,7 @@ view: proposta {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -1484,6 +1485,7 @@ view: proposta {
   measure: perc_cpf {
     type: percent_of_total
     sql: ${cont_cpf} ;;
+    direction: "column"
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     value_format:  "0.00\%"
