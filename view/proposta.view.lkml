@@ -237,7 +237,7 @@ view: proposta {
     group_label: "Dados da Cessão"
     label: "Valor - Custo da Original"
     value_format: "$ #,##0.00"
-    description: "Indica o valor de originação quando o fundo de investimento é BV (Banco Votorantim)."
+    description: "Indica o valor de originação quando o fundo de investimento não é BV (Banco Votorantim)."
     sql: ${TABLE}."CUSTO_ORIGINACAO" ;;
   }
 
@@ -956,7 +956,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
      label: "Porcentagem de Comissão da Instituição"
-    description: "Indica a porcentagem de comissão paga à instituição por produto contratado"
+    description: "Indica a porcentagem de comissão recebida da Instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
   }
 
@@ -1401,6 +1401,8 @@ view: proposta {
     sql: ${cont_cpf} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
+    value_format:  "0.00\%"
+
   }
 
 
@@ -1605,11 +1607,6 @@ view: proposta {
     sql:${vl_men_corrente};;
     description: "Soma do valor da mensalidade atual do aluno"
   }
-
-
-
-
-
 
 
   measure: avg_mensalidade_atual  {
@@ -2003,6 +2000,135 @@ view: proposta {
     group_item_label: "Quantidade de Contratos - Boletos Atrasados"
     sql:${flg_boleto_atrasado};;
     description: "Soma da quantidade de contratos de alunos com boleto atrasado"
+  }
+
+  measure: sum_repasse {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Repasse - Soma"
+    sql:${vl_repasse_ies};;
+    description: "Soma do valor repassado para as IES"
+  value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: avg_repasse {
+    type: average
+    group_label: "Valores Cessão"
+    group_item_label: "Repasse - Média"
+    sql:${vl_repasse_ies};;
+    description: "Valor médio repassado para as IES"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: sum_comissao {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Comissão - Soma"
+    sql:${vl_comissao_ideal};;
+    description:  "Indica o valor de comissão paga ao Pravaler por produto contratado"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: avg_comissao {
+    type: average
+    group_label: "Valores Cessão"
+    group_item_label: "Comissão - Média"
+    sql:${vl_comissao_ideal};;
+    description:  "Indica o valor médio de comissão paga ao Pravaler por produto contratado"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: avg_perc_comissao {
+    type: average
+    group_label: "Valores Cessão"
+    group_item_label: "Comissão - % Média"
+    sql:${perc_comissao};;
+    description: "Indica a porcentagem média de comissão paga ao Pravaler por produto contratado"
+    value_format:  "0.00\%"
+  }
+
+
+  measure: avg_desagio {
+    type: average
+    group_label: "Valores Cessão"
+    group_item_label: "Desagio - % Médio"
+    sql:${perc_desagio};;
+    description: "Valor percentual médio do Desagio (Comissão + Juros)"
+    value_format:  "0.00\%"
+  }
+
+  measure: sum_tarifa_cadastro {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Tarifa Cadastro - Soma"
+    sql:${vl_tarifa_cadastro};;
+    description:  "Indica a soma do valor da tarifa de cadastro do contrato"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+
+
+  measure: somarprodutocomissao {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: ""
+    sql: ${vl_financiamento} * ${perc_comissao} ;;
+    description: "Valor Financiamento * Comissão Percentual"
+    hidden: yes
+  }
+
+  measure: comissao_media_ponderada{
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Comissão - Média % Ponderada"
+    description: "Valor percentual da comissão média ponderada da Cessão"
+    sql: (${somarprodutocomissao} / ${sum_vl_financiamento}) * 100;;
+    value_format: "0.00\%"
+  }
+
+  measure: somarprodutotaxa {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: ""
+    sql: ${vl_financiamento} * ${tx_mensal_total} ;;
+    description: "Valor Financiamento * Comissão Percentual"
+    hidden: yes
+  }
+
+  measure: taxa_media_ponderada{
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Taxa - Média % Ponderada"
+    description: "Valor percentual da taxa média ponderada da Cessão"
+    sql: (${somarprodutotaxa} / ${sum_vl_financiamento}) * 100;;
+    value_format: "0.00\%"
+  }
+
+  measure: sum_custo_originacao {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Custo de Originação - Soma"
+    sql: ${custo_originacao} ;;
+    description: "Indica o valor de originação do  contrato"
+    value_format: "$ #,##0.00"
+  }
+
+  dimension: sum_receita_corban {
+    type: number
+    group_label: "Valores Cessão"
+    label:"Soma da Receita do Correspondente Bancário"
+    description:"Indica valor da taxa paga por originador para cada boleto gerado."
+    sql: ${TABLE}."RECEITA_CORBAN" ;;
+    value_format: "$ #,##0.00"
+  }
+
+  measure: sum_custo_total_cessao{
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Custo Total Cessão - Soma"
+    sql: ${sum_comissao} + ${sum_repasse} + ${sum_iof} + ${sum_tarifa_cadastro} + ${sum_custo_originacao} ;;
+    description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacao"
+    value_format: "$ #,##0.00"
   }
 
 
