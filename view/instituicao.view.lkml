@@ -188,7 +188,14 @@ view: instituicao {
     label: "Originadores Ativos"
     group_label: "Dados Contratuais da IE/Originador"
     description: "Indica todos os originadores ativos para determinado curso da instituição."
-    sql: UNNEST ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
+    sql: ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
+    html:
+    {% assign words = {{value}} | split: ',' %}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
+
   }
 
   dimension: descricao_originadores_inativos {
@@ -196,7 +203,7 @@ view: instituicao {
     label: "Originadores Inativos"
     group_label: "Dados Contratuais da IE/Originador"
     description: "Indica todos os originadores inativos para determinado curso da instituição."
-    sql: UNNEST ${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
+    sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
   }
 
   dimension: dia_vencimento {
@@ -681,7 +688,7 @@ view: instituicao {
   measure: qtd_ies_ativas {
     type: count_distinct
     group_label: "Instituição"
-    group_item_label: "Quantidade de Instituição"
+    group_item_label: "Quantidade de Instituição - Ativa"
     description: "Quantidade de Instituições ativas no PRAVALER"
     sql_distinct_key: ${id_instituicao};;
     sql: ${id_instituicao} ;;
@@ -689,6 +696,18 @@ view: instituicao {
 
 
   }
+
+  measure: qtd_ies {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Quantidade de Instituição"
+    description: "Quantidade de Instituições total no PRAVALER"
+    sql_distinct_key: ${id_instituicao};;
+    sql: ${id_instituicao} ;;
+
+
+  }
+
 
 measure: qtd_ies_descadastrada {
   type: count_distinct
@@ -745,6 +764,17 @@ measure: qtd_ies_descadastrada {
   }
 
 
+  measure: qtd_campus_ativos{
+    type: count_distinct
+    group_label: "Campus"
+    group_item_label: "Quantidade de Campus - Ativos"
+    sql_distinct_key: ${id_campus};;
+    sql:  ${id_campus};;
+    description: "Quantidade de Campus ativos"
+    filters: [campus_ativo: "yes"]
+  }
+
+
   measure: qtd_campus{
     type: count_distinct
     group_label: "Campus"
@@ -752,8 +782,8 @@ measure: qtd_ies_descadastrada {
     sql_distinct_key: ${id_campus};;
     sql:  ${id_campus};;
     description: "Quantidade de Campus ativos"
-    filters: [campus_ativo: "yes"]
   }
+
 
 
 

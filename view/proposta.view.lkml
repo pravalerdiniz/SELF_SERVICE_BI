@@ -355,6 +355,12 @@ view: proposta {
     label: "Documentos Entregues"
     description: "Indica todos os documentos entregues para formalização"
     sql: ${TABLE}."DOCS_ENTREGUES" ;;
+    html:
+    {% assign words = {{value}} | split: ','%}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
   }
 
   dimension: docs_pendentes {
@@ -363,6 +369,12 @@ view: proposta {
     label: "Documentos Pendentes"
     description: "Indica todos os documentos pendentes para formalização"
     sql: ${TABLE}."DOCS_PENDENTES" ;;
+    html:
+    {% assign words = {{value}} | split: ',' %}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
   }
 
   dimension: ds_aluno_trabalha {
@@ -444,6 +456,73 @@ view: proposta {
     description: "Indica a última alteração de status que a proposta teve."
     sql: ${TABLE}."DS_ULT_STATUS" ;;
   }
+
+
+  dimension: etapa_ult_status {
+    type: string
+    case: {
+      when: {
+        sql: ${vl_ult_status}  in (0,1) ;;
+        label: "Preenchendo Proposta"
+      }
+      when: {
+        sql:  ${vl_ult_status}  = 2 ;;
+        label: "Análise de Risco"
+      }
+      when: {
+        sql:  ${vl_ult_status} (8,9,10,19) ;;
+        label: "Não Aprovado por Risco"
+      }
+      when: {
+        sql:  ${vl_ult_status}  in (11) ;;
+        label: "Tela da Instituição"
+      }
+      when: {
+        sql:  ${vl_ult_status}  in (13,14,39,36) ;;
+        label: "Não Aprovado pela Instituição"
+      }
+      when: {
+        sql:  ${vl_ult_status}   in (25) ;;
+        label: "Preenchendo Dados Adicionais"
+      }
+      when: {
+        sql:  ${vl_ult_status}   in (31) ;;
+        label: "Aprovado para Geração de Contrato"
+      }
+      when: {
+        sql:  ${vl_ult_status}   in (40,42) ;;
+        label: "Formalização"
+      }
+      when: {
+        sql:  ${vl_ult_status}   in (41) ;;
+        label: "Formalizado"
+      }
+      when: {
+        sql:  ${vl_ult_status}  in (46,47,49) ;;
+        label: "Não Aprovado pela Formalização"
+      }
+      when: {
+        sql:  ${vl_ult_status}  in (50) ;;
+        label: "Cedido"
+      }
+      when: {
+        sql:  ${vl_ult_status}   in (51) ;;
+        label: "Segundo Repasse"
+      }
+      else: "Outros"
+    }
+    group_label: "Jornada"
+    group_item_label: "Etapa Atual"
+    description: "Etapa do último status do aluno"
+
+
+
+
+
+
+
+  }
+
 
   dimension: ds_url {
     type: string
@@ -844,6 +923,12 @@ view: proposta {
     label: "ID Produtos Aprovados"
     description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
+    html:
+    {% assign words = {{value}} | split: ',' %}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
   }
 
   dimension: id_proposta {
@@ -1977,28 +2062,34 @@ view: proposta {
   }
 
 
-  measure: sum_contrato_gerado {
-    type: sum
+  measure: count_contrato_gerado {
+    type: count_distinct
     group_label: "Contrato"
+    sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos Gerados"
-    sql:${flg_contrato_gerado};;
+    sql:${id_proposta};;
+    filters: [flg_contrato_gerado: "yes"]
     description: "Soma da quantidade de contratos gerados"
   }
 
-  measure: sum_financiou_matricula{
-    type: sum
+  measure: count_financiou_matricula{
+    type: count_distinct
     group_label: "Contrato"
+    sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos - Financiou Matricula"
-    sql:${flg_financia_matricula_rnv};;
+    sql:${id_proposta};;
+    filters: [flg_financia_matricula_rnv: "yes"]
     description: "Soma da quantidade de contratos de alunos que financiaram a matricula"
   }
 
 
-  measure: sum_boleto_atrasado{
-    type: sum
+  measure: count_boleto_atrasado{
+    type: count_distinct
     group_label: "Contrato"
+    sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos - Boletos Atrasados"
-    sql:${flg_boleto_atrasado};;
+    sql:${id_proposta};;
+    filters: [flg_boleto_atrasado: "yes"]
     description: "Soma da quantidade de contratos de alunos com boleto atrasado"
   }
 
@@ -2132,7 +2223,69 @@ view: proposta {
   }
 
 
+  measure: count_contratos_cedidos{
+    type: count_distinct
+    group_label: "Contrato"
+    sql_distinct_key: ${id_proposta} ;;
+    group_item_label: "Quantidade de Contratos - Cedidos"
+    sql:${id_proposta};;
+    filters: [flg_boleto_atrasado: "yes"]
+    description: "Soma da quantidade de contratos cedidos"
+  }
 
 
+  measure: sum_renda_fam {
+    type: sum
+    sql: ${renda_familiar} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Familiar"
+    group_item_label: "Soma"
+    description: "Soma da renda familiar"
+  }
+
+  measure: avg_renda_fam {
+    type: average
+    sql: ${renda_familiar} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Familiar"
+    group_item_label: "Média"
+    description: "Média da renda familiar"
+  }
+
+  measure: sum_renda_fiador {
+    type: sum
+    sql: ${fia_renda} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Fiador"
+    group_item_label: "Soma"
+    description: "Soma da renda do fiador"
+  }
+
+  measure: avg_renda_fiador {
+    type: average
+    sql: ${fia_renda} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Fiador"
+    group_item_label: "Média"
+    description: "Média da renda do fiador"
+  }
+
+  measure: sum_renda_aluno {
+    type: sum
+    sql: ${aluno_renda} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Aluno"
+    group_item_label: "Soma"
+    description: "Soma da renda do aluno"
+  }
+
+  measure: avg_renda_aluno {
+    type: average
+    sql: ${fia_renda} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Fiador"
+    group_item_label: "Média"
+    description: "Média da renda do aluno"
+  }
 
 }
