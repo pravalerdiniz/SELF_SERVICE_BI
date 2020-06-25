@@ -129,13 +129,11 @@ view: jornada {
   }
 
 
-#MEASURE  - - -
   measure: count {
     type: count
     drill_fields: []
   }
 
-# ETAPAS ALUNO - NOVO
   measure: sum_status {
     type: sum
     sql: ${status_etapa} ;;
@@ -155,6 +153,7 @@ view: jornada {
     description: "Porcentagem do total da soma de status"
   }
 
+# ETAPAS ALUNO - NOVO - coloca no filter tipo_proposta = x
   measure: lead {
     type: sum
     sql: ${status_etapa} ;;
