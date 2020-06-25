@@ -16,6 +16,10 @@ view: financeiro {
     sql: ${TABLE}."DATA_BAIXA" ;;
   }
 
+
+
+
+
   dimension_group: data_compra {
     type: time
     timeframes: [
@@ -699,6 +703,8 @@ view: financeiro {
     group_item_label: "Máximo"
     description: "Valor máximo de pagamento por crédito"
   }
+
+
 
 
 

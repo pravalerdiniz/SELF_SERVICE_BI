@@ -1,66 +1,102 @@
 view: alunos {
   sql_table_name: "SELF_SERVICE_BI"."ALUNOS"
     ;;
+
   drill_fields: [aluno_idade]
 
   dimension: aluno_idade {
-    primary_key: yes
     type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "Idade"
+    description: "Indica a idade atual do aluno"
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
 
   dimension: aluno_genero {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Genêro"
+    description: "Indica o sexo do aluno"
     sql: ${TABLE}."ALUNO_GENERO" ;;
   }
 
   dimension: aluno_nome {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome"
+    description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
   }
 
   dimension: ano_termino_ensino_medio {
     type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "Ano de Término do Ensino Médio"
+    description: "Indica o ano que o aluno terminou o ensino médio"
     sql: ${TABLE}."ANO_TERMINO_ENSINO_MEDIO" ;;
   }
 
   dimension: area_conhecimento_curso {
     type: string
+    group_label: "Dados do Curso"
+    group_item_label: "Área de Conhecimento"
+    description: "Indica a área de conhecimento do curso. Ex: Ciências Exatas e da Terra, Ciências Biológicas, Engenharia / Tecnologia, Ciências da Saúde, entre outras"
     sql: ${TABLE}."AREA_CONHECIMENTO_CURSO" ;;
   }
 
   dimension: bairro {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Bairro"
+    description: "Indica o bairro que o aluno reside"
     sql: ${TABLE}."BAIRRO" ;;
   }
 
   dimension: cargo_atual {
     type: string
+    group_label: "Dados da Regional"
+    group_item_label: "Cargo - Atual"
+    description: "Indica o cargo atual do responsável comercial na instituição de ensino"
     sql: ${TABLE}."CARGO_ATUAL" ;;
   }
 
   dimension: carteira_atual {
     type: string
+    group_label: "Dados da Regional"
+    group_item_label: "Carteira - Atual"
+    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
     sql: ${TABLE}."CARTEIRA_ATUAL" ;;
   }
 
   dimension: celular {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Celular"
+    description: "Indica o número do celular do aluno"
     sql: ${TABLE}."CELULAR" ;;
   }
 
   dimension: cep {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "CEP"
+    description: "Indica o número do CEP correspondente ao endereço do aluno"
     sql: ${TABLE}."CEP" ;;
   }
 
   dimension: cidade {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Cidade"
+    description: "Indica a cidade que o aluno reside"
     sql: ${TABLE}."CIDADE" ;;
   }
 
   dimension: cidade_campus {
     type: string
+    group_label: "Dados do Campus"
+    group_item_label: "Cidade - Campus"
+    description: "Indica a cidade do campus da instituição de ensino"
     sql: ${TABLE}."CIDADE_CAMPUS" ;;
   }
 
