@@ -2100,7 +2100,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Taxa - Média % Ponderada"
     description: "Valor percentual da taxa média ponderada da Cessão"
-    sql: (${somarprodutotaxa} / ${sum_vl_financiamento}) * 100;;
+    sql: ${somarprodutotaxa} / ${sum_vl_financiamento};;
     value_format: "0.00\%"
   }
 
@@ -2113,10 +2113,10 @@ view: proposta {
     value_format: "$ #,##0.00"
   }
 
-  dimension: sum_receita_corban {
-    type: number
+  measure: sum_receita_corban {
+    type: sum
     group_label: "Valores Cessão"
-    label:"Soma da Receita do Correspondente Bancário"
+    label:"Receita do Correspondente Bancário"
     description:"Indica valor da taxa paga por originador para cada boleto gerado."
     sql: ${TABLE}."RECEITA_CORBAN" ;;
     value_format: "$ #,##0.00"
