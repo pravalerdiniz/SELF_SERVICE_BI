@@ -77,6 +77,13 @@ join: proposta_docs_pendentes {
 
 }
 
+explore: alunos {
+  label: "Alunos"
+  description: "Apresenta os dados de todos os alunos do PRAVALER"
+
+
+
+}
 
 explore: inep {
   label: "Inep"

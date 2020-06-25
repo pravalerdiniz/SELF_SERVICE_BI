@@ -16,6 +16,16 @@ view: financeiro {
     sql: ${TABLE}."DATA_BAIXA" ;;
   }
 
+  dimension: dias_para_pagamento {
+    type: number
+    group_label: "Dados do Boleto"
+    label: "Dias para pagamento"
+    description: "Diferença de dias entre o dowload do boleto até o pagamento"
+    sql: DATEDIFF(day,${financeiro_log_titulo.data_log_titulo_date},${data_pagamento_date})   ;;
+  }
+
+
+
   dimension_group: data_compra {
     type: time
     timeframes: [
@@ -699,6 +709,8 @@ view: financeiro {
     group_item_label: "Máximo"
     description: "Valor máximo de pagamento por crédito"
   }
+
+
 
 
 

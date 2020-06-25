@@ -1478,6 +1478,7 @@ view: proposta {
     sql: ${id_cpf} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
+    drill_fields: [id_cpf]
     description: "Contagem de CPFs únicos"
   }
 
