@@ -50,6 +50,15 @@ view: financeiro_log_titulo {
     label: "Origem do Arquivo"
   }
 
+  dimension: dias_para_pagamento {
+    type: number
+    label: "Numero de dias para pagamento"
+    description: "Diferença de dias entre o dowload do boleto até o pagamento"
+    sql: DATEDIFF(day,${data_log_titulo_date},${financeiro.data_pagamento_date})   ;;
+  }
+
+
+
   dimension: flg_ultimo_acesso {
     type: yesno
     sql: ${TABLE}."FLG_ULTIMO_ACESSO" ;;
