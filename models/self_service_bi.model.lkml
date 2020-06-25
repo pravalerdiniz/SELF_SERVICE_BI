@@ -41,6 +41,43 @@ explore: jornada {
 }
 
 
+explore: financeiro {
+  label: "Financeiro"
+  view_label: "1. Financeiro"
+  description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
+
+  join: financeiro_extrato_titulo {
+    view_label: "2. Extrato Título"
+    sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: financeiro_log_titulo {
+    view_label: "2. Log Título"
+    sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+}
+
+explore: proposta {
+  label: "Proposta"
+  description: "Apresenta os dados de todas as propostas do PRAVALER"
+
+join: proposta_docs_pendentes {
+  view_label: "Documentos Pendentes"
+  sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
+  relationship: one_to_many
+  type: left_outer
+}
+
+
+
+
+}
+
+
 explore: inep {
   label: "Inep"
   view_label: "Inep"
