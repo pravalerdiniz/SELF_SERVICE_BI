@@ -248,6 +248,7 @@ view: proposta {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -937,6 +938,7 @@ view: proposta {
     label: "ID Proposta"
     description: "Indica o ID da proposta do aluno."
     sql: ${TABLE}."ID_PROPOSTA" ;;
+    value_format: "0"
   }
 
   dimension: id_status_detalhado {
@@ -1480,11 +1482,27 @@ view: proposta {
     group_item_label: "Valor"
     drill_fields: [id_cpf]
     description: "Contagem de CPFs únicos"
+    drill_fields: [id_proposta,
+      ds_fundo_investimento,
+      grupo_instituicao,
+      ds_instituicao,
+      area_conhecimento_curso,
+      nm_modalidade_produto,
+      nm_produto,
+      tx_mensal_total,
+      tx_anual_total,
+      perc_tx_subsidiado_ies,
+      vl_subsidiado,
+      sum_juros_pago_ies,
+      sum_juros_total,
+      tipo_proposta
+      ]
   }
 
   measure: perc_cpf {
     type: percent_of_total
     sql: ${cont_cpf} ;;
+    direction: "column"
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     value_format:  "0.00\%"
@@ -2130,10 +2148,28 @@ view: proposta {
     value_format:  "\"R$ \"#,##0.00"
   }
 
+  measure: sum_desagio {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Desagio - Soma"
+    sql:${vl_financiamento} - ${vl_repasse_ies};;
+    description: "Soma de valor do Desagio (Comissão + Juros)"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: sum_perc_desagio {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Desagio % - Soma"
+    sql: ${vl_repasse_ies} / ${vl_financiamento};;
+    description: "Soma de valor do Desagio % "
+    value_format:  "0.00\%"
+  }
+
   measure: avg_perc_comissao {
     type: average
     group_label: "Valores Cessão"
-    group_item_label: "Comissão - % Média"
+    group_item_label: "Comissão % - Média"
     sql:${perc_comissao};;
     description: "Indica a porcentagem média de comissão paga ao Pravaler por produto contratado"
     value_format:  "0.00\%"
@@ -2143,7 +2179,7 @@ view: proposta {
   measure: avg_desagio {
     type: average
     group_label: "Valores Cessão"
-    group_item_label: "Desagio - % Médio"
+    group_item_label: "Desagio % - Média"
     sql:${perc_desagio};;
     description: "Valor percentual médio do Desagio (Comissão + Juros)"
     value_format:  "0.00\%"
@@ -2157,6 +2193,25 @@ view: proposta {
     description:  "Indica a soma do valor da tarifa de cadastro do contrato"
     value_format:  "\"R$ \"#,##0.00"
   }
+
+  measure: sum_juros_pago_ies {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Ies - Soma"
+    sql: ((${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal}) * ${perc_tx_subsidiado_ies} ;;
+    description:  "Indica a soma dos juros pagos pela Instituição"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: sum_juros_total {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Total - Soma"
+    sql: (${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal} ;;
+    description:  "Indica a soma dos juros do contrato"
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
 
 
 
@@ -2192,7 +2247,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Taxa - Média % Ponderada"
     description: "Valor percentual da taxa média ponderada da Cessão"
-    sql: (${somarprodutotaxa} / ${sum_vl_financiamento}) * 100;;
+    sql: ${somarprodutotaxa} / ${sum_vl_financiamento};;
     value_format: "0.00\%"
   }
 
@@ -2205,10 +2260,10 @@ view: proposta {
     value_format: "$ #,##0.00"
   }
 
-  dimension: sum_receita_corban {
-    type: number
+  measure: sum_receita_corban {
+    type: sum
     group_label: "Valores Cessão"
-    label:"Soma da Receita do Correspondente Bancário"
+    label:"Receita do Correspondente Bancário"
     description:"Indica valor da taxa paga por originador para cada boleto gerado."
     sql: ${TABLE}."RECEITA_CORBAN" ;;
     value_format: "$ #,##0.00"
@@ -2288,5 +2343,6 @@ view: proposta {
     group_item_label: "Média"
     description: "Média da renda do aluno"
   }
+
 
 }
