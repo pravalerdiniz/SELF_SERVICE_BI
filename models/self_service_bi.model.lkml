@@ -47,14 +47,14 @@ explore: financeiro {
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
 
   join: financeiro_extrato_titulo {
-    view_label: "2. Extrato Título"
+    view_label: "1.1 Extrato Título"
     sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: financeiro_log_titulo {
-    view_label: "2. Log Título"
+    view_label: "1.2 Log Título "
     sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
@@ -63,7 +63,7 @@ explore: financeiro {
   }
 
   join: proposta {
-    view_label: "3. Proposta"
+    view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta}=${financeiro.id_contrato} ;;
     relationship: many_to_one
     type: left_outer
@@ -72,22 +72,16 @@ explore: financeiro {
 
   }
 
-  join: alunos {
-    view_label: "4. Alunos"
-    sql_on: ${financeiro.id_cpf}=${alunos.id_cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
 
 }
 
 explore: proposta {
-  label: "1. Proposta"
+  label: "Proposta"
+  view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
 
 join: proposta_docs_pendentes {
-  view_label: "1. Documentos Pendentes"
+  view_label: "1.1 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer

@@ -22,6 +22,7 @@ view: financeiro_log_titulo {
     type: number
     sql: ${TABLE}."ID_TITULO" ;;
     label: "ID Título"
+    description: "Indica o ID Único do Titulo. Referência a tabela 'Financeiro'."
     value_format: "#"
   }
 
@@ -29,6 +30,7 @@ view: financeiro_log_titulo {
     type: string
     sql: ${TABLE}."ID_LOG_TITULO" ;;
     label: "ID Log Título"
+    description: "Indica o ID do LOG de dowload do boleto."
     value_format: "#"
   }
 
@@ -36,17 +38,20 @@ view: financeiro_log_titulo {
     type: time
     sql: ${TABLE}."DATA_LOG_TITULO" ;;
     label: "Data Log Título"
+    description: "Indica a data de download do boleto."
   }
 
   dimension: tipo_usuario {
     type: string
     sql: ${TABLE}."TIPO_USUARIO" ;;
+    description: "Indica o tipo de usuário que realizou o download do boleto"
     label: "Tipo de Usuário"
   }
 
   dimension: origem_arquivo {
     type: string
     sql: ${TABLE}."ORIGEM_ARQUIVO" ;;
+    description: "Indica a url de origem do download do boleto"
     label: "Origem do Arquivo"
   }
 
@@ -68,6 +73,7 @@ view: financeiro_log_titulo {
   dimension: flg_ultimo_acesso {
     type: yesno
     sql: ${TABLE}."FLG_ULTIMO_ACESSO" ;;
+    description: "Indica se foi o último acesso realizado do aluno."
     label: "Último Acesso?"
   }
 

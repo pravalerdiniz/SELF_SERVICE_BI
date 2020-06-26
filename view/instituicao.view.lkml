@@ -204,6 +204,13 @@ view: instituicao {
     group_label: "Dados Contratuais da IE/Originador"
     description: "Indica todos os originadores inativos para determinado curso da instituição."
     sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
+    html:
+    {% assign words = {{value}} | split: ',' %}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
+
   }
 
   dimension: dia_vencimento {
