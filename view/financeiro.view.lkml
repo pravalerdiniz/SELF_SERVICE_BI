@@ -287,7 +287,7 @@ view: financeiro {
     type: number
     group_label: "Dados do Título"
     label: "ID Titulo"
-    description: "Indica o ID único da tabela"
+    description: "Indica o ID único do título."
     sql: ${TABLE}."ID_TITULO" ;;
     value_format: "#"
   }
@@ -427,11 +427,76 @@ view: financeiro {
 
 
 
-  measure: count {
+  measure: count_titulo {
     type: count
     group_item_label: "Quantidade de titulos"
     drill_fields: []
   }
+
+
+  measure: count_alunos {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID_CPFs únicos"
+    drill_fields: [id_cpf, id_contrato,id_boleto,vl_boleto,data_pagamento_date
+
+                            ]
+
+
+  }
+
+  measure: perc_alunos {
+    type: percent_of_total
+    sql: ${count_alunos} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+    description: "Porcentagem da quantidade de alunos."
+
+
+  }
+
+  measure: count_atraso {
+    type: count
+    group_label: "Atraso"
+    group_item_label: "Quantidade de Boletos em Atraso"
+    description: "Indica a quantidade total de boletos em atraso"
+    filters: [flg_boleto_atrasado: "Yes"]
+  }
+
+
+
+  measure: avg_dias_atraso {
+    type: average
+    sql: ${dias_atraso} ;;
+    group_label: "Atraso"
+    group_item_label: "Dias - Média"
+    description: "Média de dias de atraso de pagamento do boleto"
+  }
+
+  measure: sum_dias_atraso {
+    type: sum
+    sql: ${dias_atraso} ;;
+    group_label: "Atraso"
+    group_item_label: "Dias - Soma"
+    description: "Soma de dias de atraso de pagamento do boleto"
+  }
+
+
+
+
+  measure: max_dias_atraso {
+    type: max
+    sql: ${dias_atraso} ;;
+    group_label: "Atraso"
+    group_item_label: "Dias - Máximo"
+    description: "Valor máximo de dias de atraso do pagamento do boleto"
+  }
+
+
+
+
 
 
   measure: avg_aquisicao {
@@ -737,12 +802,96 @@ view: financeiro {
 
   measure: max_pago_debito {
     type: max
-    sql: ${vl_pago_debito} ;;
+    sql:  ${vl_pago_debito} ;;
     value_format: "$ #,###"
-    group_label: "Valor Pago - Crédito"
+    group_label: "Valor Pago - Débito"
     group_item_label: "Máximo"
     description: "Valor máximo de pagamento por débito"
   }
+
+  measure: avg_vl_seguro {
+    type: average
+    sql: ${vl_seguro} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Seguro"
+    group_item_label: "Médio"
+    description: "Valor médio do pagamento do seguro"
+  }
+
+  measure: sum_vl_seguro {
+    type: sum
+    sql: ${vl_seguro} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Seguro"
+    group_item_label: "Soma"
+    description: "Valor da soma de pagamento do seguro"
+  }
+
+
+  measure: min_vl_seguro {
+    type: min
+    sql: ${vl_seguro} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Seguro"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de pagamento do seguro"
+  }
+
+
+  measure: max_vl_seguro {
+    type: max
+    sql: ${vl_seguro} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Seguro"
+    group_item_label: "Máximo"
+    description: "Valor máximo de pagamento do seguro"
+  }
+
+
+  measure: avg_tx_bancaria {
+    type: average
+    sql: ${vl_taxa} ;;
+    value_format: "$ #,###"
+    group_label: "Taxa Bancária"
+    group_item_label: "Médio"
+    description: "Valor médio da taxa bancária"
+  }
+
+  measure: sum_tx_bancaria {
+    type: sum
+    sql: ${vl_taxa} ;;
+    value_format: "$ #,###"
+    group_label: "Taxa Bancária"
+    group_item_label: "Soma"
+    description: "Valor da soma de taxa bancária"
+  }
+
+
+  measure: min_tx_bancaria {
+    type: min
+    sql: ${vl_taxa}  ;;
+    value_format: "$ #,###"
+    group_label: "Taxa Bancária"
+    group_item_label: "Mínimo"
+    description: "Valor minimo da taxa bancária"
+  }
+
+
+  measure: max_tx_bancaria {
+    type: max
+    sql: ${vl_taxa}  ;;
+    value_format: "$ #,###"
+    group_label: "Taxa Bancária"
+    group_item_label: "Máximo"
+    description: "Valor máximo da taxa bancária"
+  }
+
+
+
+
+
+
+
 
 
 
