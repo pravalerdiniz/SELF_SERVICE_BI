@@ -2,7 +2,6 @@
 view: beneficiados {
   sql_table_name: "SELF_SERVICE_BI"."BENEFICIADOS"
     ;;
-  drill_fields: [id_proposta]
 
   dimension: id_cpf {
     type: number
