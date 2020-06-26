@@ -58,20 +58,80 @@ explore: financeiro {
     sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
+
+
   }
+
+  join: proposta {
+    view_label: "3. Proposta"
+    sql_on: ${proposta.id_proposta}=${financeiro.id_contrato} ;;
+    relationship: many_to_one
+    type: left_outer
+
+
+
+  }
+
+  join: alunos {
+    view_label: "4. Alunos"
+    sql_on: ${financeiro.id_cpf}=${alunos.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
 }
 
 explore: proposta {
-  label: "Proposta"
+  label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
 
 join: proposta_docs_pendentes {
-  view_label: "Documentos Pendentes"
+  view_label: "1. Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer
 }
 
+join: alunos {
+  view_label: "2. Alunos"
+  sql_on: ${alunos.id_cpf} = ${proposta.id_cpf} ;;
+  relationship: many_to_one
+  type: left_outer
+
+}
+
+join: instituicao {
+  view_label: "3. Instituição"
+  sql_on: ${instituicao.id_curso} = ${proposta.id_curso} ;;
+  relationship: many_to_one
+  type: left_outer
+
+}
+
+  join: financeiro {
+    view_label: "4. Financeiro"
+    sql_on: ${financeiro.id_contrato} = ${proposta.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+
+  join: jornada {
+    view_label: "5. Jornada"
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+
+  join: status {
+    view_label: "6. Status"
+    sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
 
 

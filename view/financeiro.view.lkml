@@ -429,6 +429,7 @@ view: financeiro {
 
   measure: count {
     type: count
+    group_item_label: "Quantidade de titulos"
     drill_fields: []
   }
 
@@ -687,7 +688,7 @@ view: financeiro {
 
   measure: min_pago_credito {
     type: min
-    sql: ${vl_pago} ;;
+    sql: ${vl_pago_credito} ;;
     value_format: "$ #,###"
     group_label: "Valor Pago - Crédito"
     group_item_label: "Mínimo"
@@ -697,12 +698,52 @@ view: financeiro {
 
   measure: max_pago_credito {
     type: max
-    sql: ${vl_pago} ;;
+    sql: ${vl_pago_credito} ;;
     value_format: "$ #,###"
     group_label: "Valor Pago - Crédito"
     group_item_label: "Máximo"
     description: "Valor máximo de pagamento por crédito"
   }
+
+
+  measure: avg_pago_debito {
+    type: average
+    sql: ${vl_pago_debito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Débito"
+    group_item_label: "Média"
+    description: "Valor médio de pagamentos por débito "
+  }
+
+  measure: sum_pago_debito {
+    type: sum
+    sql: ${vl_pago_debito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago -  Débito"
+    group_item_label: "Soma"
+    description: "Soma do valor de pagamentos por débito"
+  }
+
+
+  measure: min_pago_debito {
+    type: min
+    sql: ${vl_pago_debito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Débito"
+    group_item_label: "Mínimo"
+    description: "Valor minimo de pagamento por débito"
+  }
+
+
+  measure: max_pago_debito {
+    type: max
+    sql: ${vl_pago_debito} ;;
+    value_format: "$ #,###"
+    group_label: "Valor Pago - Crédito"
+    group_item_label: "Máximo"
+    description: "Valor máximo de pagamento por débito"
+  }
+
 
 
 
