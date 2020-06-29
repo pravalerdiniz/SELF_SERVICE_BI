@@ -56,6 +56,16 @@ explore: status {
 explore: jornada {
   label: "Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
+
+
+  join: proposta {
+    view_label: "2. Proposta"
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+
+
+  }
 }
 
 
@@ -106,24 +116,9 @@ join: proposta_docs_pendentes {
   type: left_outer
 }
 
-join: alunos {
-  view_label: "2. Alunos"
-  sql_on: ${alunos.id_cpf} = ${proposta.id_cpf} ;;
-  relationship: many_to_one
-  type: left_outer
-
-}
-
-join: instituicao {
-  view_label: "3. Instituição"
-  sql_on: ${instituicao.id_curso} = ${proposta.id_curso} ;;
-  relationship: many_to_one
-  type: left_outer
-
-}
 
   join: financeiro {
-    view_label: "4. Financeiro"
+    view_label: "2. Financeiro"
     sql_on: ${financeiro.id_contrato} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
@@ -131,16 +126,9 @@ join: instituicao {
   }
 
 
-  join: jornada {
-    view_label: "5. Jornada"
-    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
 
   join: status {
-    view_label: "6. Status"
+    view_label: "4. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
