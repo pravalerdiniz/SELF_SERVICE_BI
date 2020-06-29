@@ -62,7 +62,13 @@ view: financeiro_log_titulo {
     sql: DATEDIFF(day,${data_log_titulo_date},${financeiro.data_pagamento_date})   ;;
   }
 
-
+  dimension: faixa_dias_para_pagamento {
+    type: tier
+    tiers: [0,1,2,3,4]
+    style: integer
+    sql: ${dias_para_pagamento} ;;
+    label: "Faixa de dias para pagamento"
+  }
 
   dimension: flg_ultimo_acesso {
     type: yesno

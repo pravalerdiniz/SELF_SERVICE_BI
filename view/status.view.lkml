@@ -88,7 +88,7 @@ view: status {
       type: string
       sql: ${TABLE}."STATUS_DESTINO_DETALHADO_DESCRICAO" ;;
       group_label: "Dados do Status"
-      group_item_label: "Status Destino Detalhado - Descrição"
+      group_item_label: "Descrição do Status Destino Detalhado"
       description: "Descreve o status destino detalhado"
     }
 
@@ -104,7 +104,7 @@ view: status {
       type: string
       sql: ${TABLE}."STATUS_DESTINO_GERAL_DESCRICAO" ;;
       group_label: "Dados do Status"
-      group_item_label: "Status Destino Geral - Descrição"
+      group_item_label: "Descrição do Status Destino Geral"
       description: "Descreve o status destino geral"
       }
 
@@ -120,7 +120,7 @@ view: status {
       type: string
       sql: ${TABLE}."STATUS_ORIGEM_DETALHADO_DESCRICAO" ;;
       group_label: "Dados do Status"
-      group_item_label: "Status Origem Detalhado - Descrição "
+      group_item_label: "Descrição do Status Origem Detalhado "
       description:  "Descreve o status origem detalhado"
     }
 
@@ -136,7 +136,7 @@ view: status {
       type: string
       sql: ${TABLE}."STATUS_ORIGEM_GERAL_DESCRICAO" ;;
       group_label: "Dados do Status"
-      group_item_label: "Status Origem Geral - Descrição"
+      group_item_label: "Descrição do Status Origem Geral"
       description:  "Descreve o status origem geral"
     }
 
@@ -212,4 +212,37 @@ view: status {
     type: count
     drill_fields: [id]
   }
+
+  measure: cont_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    value_format: "#,###"
+    label: "Quantidade de CPFs"
+    description: "Contagem de CPFs únicos"
+  }
+
+  measure: cont_proposta {
+    type: count_distinct
+    sql: ${id_proposta} ;;
+    value_format: "#,###"
+    label: "Quantidade de Propostas"
+    description: "Contagem de propostas únicas"
+  }
+
+  measure: sum_vl_vezes_proposta_no_status {
+    type: sum
+    sql: ${vl_vezes_proposta_no_status} ;;
+    value_format: "#,###"
+    label: "Soma de Vezes Proposta no Status"
+    description: " Soma de vezes que a proposta passou pelo status"
+  }
+
+  measure: avg_vl_vezes_proposta_no_status {
+    type: average
+    sql: ${vl_vezes_proposta_no_status} ;;
+    value_format: "$ #,###"
+    label: "Média de Vezes Proposta no Status"
+    description: " Média de vezes que a proposta passou pelo status"
+  }
+
 }
