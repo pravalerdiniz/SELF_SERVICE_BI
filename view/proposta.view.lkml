@@ -93,21 +93,39 @@ view: proposta {
     sql: ${TABLE}."AREA_CONHECIMENTO_CURSO" ;;
   }
 
-  dimension: campanha_acesso {
+  dimension: campanha_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Campanha"
-    description: "Indica qual a campanha de acesso do aluno para preenchimento da proposta. EX: Orgânico, Paid Social, Core Business."
-    sql: ${TABLE}."CAMPANHA_ACESSO" ;;
+    label: "Acesso - Campanha de Conversão"
+    description: "Indica qual a campanha de acesso para conversão do aluno. EX: Orgânico, Paid Social, Core Business."
+    sql: ${TABLE}."CAMPANHA_ACESSO_CONVERSAO" ;;
   }
 
-  dimension: canal_acesso {
+  dimension: campanha_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Canal"
-    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
-    sql: ${TABLE}."CANAL_ACESSO" ;;
+    label: "Acesso - Campanha de Descoberta"
+    description: "Indica qual a campanha de acesso do aluno para preenchimento da proposta. EX: Orgânico, Paid Social, Core Business."
+    sql: ${TABLE}."CAMPANHA_ACESSO_DESCOBERTA" ;;
   }
+
+  dimension: canal_acesso_conversao {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "Acesso - Canal de Conversão"
+    description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
+    sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
+  }
+
+  dimension: canal_acesso_descoberta {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "Acesso - Canal de Descoberta"
+    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
+    sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA" ;;
+  }
+
+
 
   dimension: carencia {
     type: number
@@ -357,7 +375,7 @@ view: proposta {
     description: "Indica todos os documentos entregues para formalização"
     sql: ${TABLE}."DOCS_ENTREGUES" ;;
     html:
-    {% assign words = {{value}} | split: ','%}
+    {% assign words = value| split: ','%}
     <ul>
     {% for word in words %}
     <li>{{ word }}</li>
@@ -371,7 +389,7 @@ view: proposta {
     description: "Indica todos os documentos pendentes para formalização"
     sql: ${TABLE}."DOCS_PENDENTES" ;;
     html:
-    {% assign words = {{value}} | split: ',' %}
+    {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
     <li>{{ word }}</li>
@@ -525,19 +543,30 @@ view: proposta {
   }
 
 
-  dimension: ds_url {
+  dimension: ds_url_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "URL"
-    description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
-    sql: ${TABLE}."DS_URL" ;;
+    label: "URL Conversão"
+    description: "Indica o canal de URL associada conversão do aluno no site do PRAVALER."
+    sql: ${TABLE}."DS_URL_CONVERSAO" ;;
   }
+
+  dimension: ds_url_descoberta {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "URL Descoberta"
+    description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
+    sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
+  }
+
+
+
 
   dimension: enfase_curso {
     type: string
     group_label: "Dados do Curso"
     label: "Ênfase do Curso"
-    description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
+     description: "Indica qual é a Enfâse de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
     sql: ${TABLE}."ENFASE_CURSO" ;;
   }
 
@@ -925,7 +954,7 @@ view: proposta {
     description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
     html:
-    {% assign words = {{value}} | split: ',' %}
+    {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
     <li>{{ word }}</li>
@@ -937,6 +966,7 @@ view: proposta {
     group_label: "Dados da Proposta"
     label: "ID Proposta"
     description: "Indica o ID da proposta do aluno."
+    primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
     value_format: "0"
   }
@@ -989,12 +1019,20 @@ view: proposta {
     sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
   }
 
-  dimension: midia_acesso {
+  dimension: midia_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Midia Acesso"
-    description: "Indica qual midia de acesso do aluno ao PRAVALER."
-    sql: ${TABLE}."MIDIA_ACESSO" ;;
+    label: "Midia Acesso de Conversão"
+    description: "Indica qual midia de acesso para conversão do aluno no PRAVALER."
+    sql: ${TABLE}."MIDIA_ACESSO_CONVERSAO" ;;
+  }
+
+  dimension: midia_acesso_descoberta {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "Midia Acesso de Descoberta"
+    description: "Indica qual midia de acesso do aluno no PRAVALER."
+    sql: ${TABLE}."MIDIA_ACESSO_DESCOBERTA" ;;
   }
 
   dimension: nivel_curso {

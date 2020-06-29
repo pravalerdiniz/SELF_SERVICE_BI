@@ -190,7 +190,7 @@ view: instituicao {
     description: "Indica todos os originadores ativos para determinado curso da instituição."
     sql: ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
     html:
-    {% assign words = {{value}} | split: ',' %}
+    {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
     <li>{{ word }}</li>
@@ -205,7 +205,7 @@ view: instituicao {
     description: "Indica todos os originadores inativos para determinado curso da instituição."
     sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
     html:
-    {% assign words = {{value}} | split: ',' %}
+    {% assign words = value| split: ',' %}
     <ul>
     {% for word in words %}
     <li>{{ word }}</li>
@@ -423,8 +423,20 @@ view: instituicao {
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
     description:"Indica se a Instituição está ativa. Ex: 1 = 'Sim' | 2 = 'Não'"
+    hidden: yes
     sql: ${TABLE}."IE_ATIVA";;
   }
+
+  dimension: ies_ativa {
+    type: string
+    group_label: "Dados da Instituição"
+    label: "Instituição Ativa?"
+    description:"Indica se a Instituição está ativa."
+    sql: case when ${ie_ativa} = 1 THEN 'Yes' ELSE 'No' END;;
+  }
+
+
+
 
   dimension: ie_super_pravaler {
     type: number
@@ -822,6 +834,52 @@ measure: qtd_ies_contrato  {
     sql:${perc_desagio};;
     description: "Porcentagem de desagio por contrato"
   }
+
+
+
+  measure: avg_duracao_curso {
+    type: average
+    sql: ${duracao_curso_meses} ;;
+    group_label: "Duração do Curso"
+    group_item_label: "Média"
+    description: "Média de duração do curso em meses"
+  }
+
+
+
+  measure: min_duracao_curso {
+    type: min
+    sql: ${duracao_curso_meses} ;;
+    group_label: "Duração do Curso"
+    group_item_label: "Mínimo"
+    description: "Mínimo de duração do curso"
+  }
+
+
+  measure: max_duracao_curso {
+    type: max
+    sql: ${duracao_curso_meses} ;;
+    group_label: "Duração do Curso"
+    group_item_label: "Máximo"
+    description: "Máximo de duração do curso"
+  }
+
+
+measure: count_produto {
+  type: count_distinct
+  sql: ${nm_produto} ;;
+  sql_distinct_key: ${id_instituicao} ;;
+  group_label: "Produto"
+  group_item_label: "Quantidade de Produto por instituição"
+  drill_fields: [nm_produto]
+
+
+
+
+
+}
+
+
 
 
 

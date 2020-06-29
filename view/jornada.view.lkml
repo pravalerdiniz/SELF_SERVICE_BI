@@ -59,7 +59,7 @@ view: jornada {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     label: "ID CPF"
-    description: "Indica o ID do CPF"
+    description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 
   dimension: id_elegivel {

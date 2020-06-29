@@ -26,18 +26,36 @@ explore: beneficiados {
 explore: instituicao {
   label: "Instituição"
   description: "Apresenta os dados das Instituições de Ensino com contrado com PRAVALER"
-}
 
+  join: alunos {
+    view_label: "2. Alunos"
+    sql_on: ${alunos.id_curso} = ${instituicao.id_curso} ;;
+    relationship: many_to_one
+    type: left_outer
+
+
+  }
+
+  join: proposta {
+    view_label: "3. Proposta"
+    sql_on: ${proposta.id_curso} = ${instituicao.id_curso} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+
+}
 
 explore: status {
   label: "Status"
-  description: ""
+  description: "Apresenta os dados de todos status que a proposta do aluno esteve."
 }
 
 
 explore: jornada {
   label: "Jornada"
-  description: ""
+  description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
 }
 
 
@@ -79,6 +97,7 @@ explore: proposta {
   label: "Proposta"
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
+
 
 join: proposta_docs_pendentes {
   view_label: "1.1 Documentos Pendentes"
@@ -134,6 +153,14 @@ join: instituicao {
 explore: alunos {
   label: "Alunos"
   description: "Apresenta os dados de todos os alunos do PRAVALER"
+
+join: alunos_produtos_aprovados {
+  view_label: "1.1 Produtos Aprovados"
+  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+
+}
 
 
 
