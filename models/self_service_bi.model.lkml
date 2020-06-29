@@ -54,7 +54,7 @@ explore: status {
 
 
 explore: jornada {
-  label: "Jornada"
+  view_label: "1. Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
 
 
