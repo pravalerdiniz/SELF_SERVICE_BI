@@ -56,14 +56,31 @@ explore: status {
 explore: jornada {
   view_label: "1. Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
+fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
+  - proposta.id_status_geral,
+  - proposta.ds_ult_status,
+  - proposta.id_status_detalhado,
+  - proposta.vl_ult_status,
+  - proposta.tipo_proposta,
+  - proposta.id_proposta,
+  - proposta.flg_proposta_ativa,
+  - proposta.id_elegivel,
+  - proposta.etapa_ult_status,
+  - proposta.count_tipo_proposta_novo,
+  - proposta.count_tipo_proposta_reempacotado,
+  - proposta.count_tipo_proposta_renegociacao,
+  - proposta.count_tipo_proposta_renovacao,
+  - proposta.count_tipo_proposta_seg_repasse
 
+
+
+  ]
 
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
-
 
   }
 }
