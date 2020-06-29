@@ -15,6 +15,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Celular"
+    hidden: yes
     description: "Indica o número de celular do aluno"
     sql: ${TABLE}."ALUNO_CELULAR" ;;
   }
@@ -31,6 +32,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "E-mail"
+    hidden: yes
     description: "Indica o e-mail do aluno"
     sql: ${TABLE}."ALUNO_EMAIL" ;;
   }
@@ -64,6 +66,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Nome"
+    hidden: yes
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
   }
@@ -228,16 +231,16 @@ view: proposta {
   dimension: cp_atual {
     type: string
     group_label: "Dados da Regional"
-    label: "Código do Promotor - Atual"
-    description: "Indica o código do promotor atual na instituição de ensino."
+    label: "Código do Representante - Atual"
+    description: "Indica o código do representante comercial atual na instituição de ensino."
     sql: ${TABLE}."CP_ATUAL" ;;
   }
 
   dimension: cp_original {
     type: string
     group_label: "Dados da Regional"
-    label: "Código do Promotor - Original"
-    description: "Indica o código do promotor original na instituição de ensino."
+    label: "Código do Representante - Original"
+    description: "Indica o código do representante comercial original na instituição de ensino."
     sql: ${TABLE}."CP_ORIGINAL" ;;
   }
 
@@ -247,6 +250,7 @@ view: proposta {
     label: "Valor - Custo da Cessão"
     value_format: "$ #,##0.00"
     description: "Indica o valor de aquisição do contrato na cessão."
+    hidden: yes
     sql: ${TABLE}."CUSTO_CESSAO" ;;
   }
 
@@ -255,6 +259,7 @@ view: proposta {
     group_label: "Dados da Cessão"
     label: "Valor - Custo da Original"
     value_format: "$ #,##0.00"
+    hidden: yes
     description: "Indica o valor de originação quando o fundo de investimento não é BV (Banco Votorantim)."
     sql: ${TABLE}."CUSTO_ORIGINACAO" ;;
   }
@@ -273,7 +278,7 @@ view: proposta {
     convert_tz: no
     datatype: date
     label: "Concessão"
-    description: "Indica a data de concessão do contrato"
+    description: "Indica a data de repasse dos contratos cedidos."
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
@@ -546,7 +551,7 @@ view: proposta {
   dimension: ds_url_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "URL Conversão"
+    label: "Acesso - URL de Conversão"
     description: "Indica o canal de URL associada conversão do aluno no site do PRAVALER."
     sql: ${TABLE}."DS_URL_CONVERSAO" ;;
   }
@@ -554,7 +559,7 @@ view: proposta {
   dimension: ds_url_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "URL Descoberta"
+    label: "Acesso - URL de Descoberta"
     description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
     sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
   }
@@ -726,7 +731,7 @@ view: proposta {
   dimension: flg_contrato_ies_ativo {
     type: yesno
     group_label: "Dados da Instituição"
-    label: "Ativo?"
+    label: "Contrato Ativo?"
     description: "Indica se o contrato do instituição com o PRAVALER está ativo"
     sql: ${TABLE}."FLG_CONTRATO_IES_ATIVO" ;;
   }
@@ -774,7 +779,7 @@ view: proposta {
   dimension: flg_instituicao_ativa {
     type: yesno
     group_label: "Dados da Instituição"
-    label: "Ativa?"
+    label: "Instituição Ativa?"
     description: "Indica se a instituição está ativa no PRAVALER."
     sql: ${TABLE}."FLG_INSTITUICAO_ATIVA" ;;
   }
@@ -814,7 +819,7 @@ view: proposta {
   dimension: flg_wo_ies {
     type: yesno
     group_label: "Dados da Instituição"
-    label: "Entrou WriteOff?"
+    label: "Tem WriteOff?"
     description: "Indica se a instituição entrou no W.O."
     sql: ${TABLE}."FLG_WO_IES" ;;
   }
@@ -862,8 +867,8 @@ view: proposta {
   dimension: id_consultor_finalizou {
     type: string
     group_label: "Dados da Proposta"
-    label: "Código do Promotor"
-    description: "Indica o código do consultor que finalizou a proposta."
+    label: "Código do Representante"
+    description: "Indica o código do representante comercial que finalizou a proposta."
     sql: ${TABLE}."ID_CONSULTOR_FINALIZOU" ;;
   }
 
@@ -1022,7 +1027,7 @@ view: proposta {
   dimension: midia_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Midia Acesso de Conversão"
+    label: "Acesso - Midia de Conversão"
     description: "Indica qual midia de acesso para conversão do aluno no PRAVALER."
     sql: ${TABLE}."MIDIA_ACESSO_CONVERSAO" ;;
   }
@@ -1030,7 +1035,7 @@ view: proposta {
   dimension: midia_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Midia Acesso de Descoberta"
+    label: "Acesso - Midia de Descoberta"
     description: "Indica qual midia de acesso do aluno no PRAVALER."
     sql: ${TABLE}."MIDIA_ACESSO_DESCOBERTA" ;;
   }
@@ -1343,6 +1348,7 @@ view: proposta {
     label: "Valor - Comissão PRAVALER"
     description: "Indica o valor da comissão do pravaler por contrato."
     value_format_name: id
+    hidden: yes
     sql: ${TABLE}."VL_COMISSAO_IDEAL" ;;
   }
 
@@ -1360,6 +1366,7 @@ view: proposta {
     label: "Valor Financiado"
     value_format: "$ #,##0.00"
     description: "Indica o valor financiado pelo aluno."
+    hidden: yes
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
 
@@ -1414,6 +1421,7 @@ view: proposta {
     label: "Valor da Parcela"
     value_format: "$ #,##0.00"
     description: "Indica o valor da parcela do contrato."
+    hidden: yes
     sql: ${TABLE}."VL_PARCELA" ;;
   }
 
@@ -1432,6 +1440,8 @@ view: proposta {
     label: "Valor Principal"
     value_format: "$ #,##0.00"
     description: "Indica o valor principal do contrato."
+    hidden: yes
+
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
 
@@ -1450,6 +1460,7 @@ view: proposta {
     label: "Valor Repasse - Instituição"
     value_format: "$ #,##0.00"
     description: "Indica o valor de repasse a instituição de ensino por contrato"
+    hidden: yes
     sql: ${TABLE}."VL_REPASSE_IES" ;;
   }
 
@@ -1467,6 +1478,7 @@ view: proposta {
     label: "Valor Subsidiado"
     value_format: "$ #,##0.00"
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
+    hidden: yes
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
 

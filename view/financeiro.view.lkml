@@ -322,6 +322,7 @@ view: financeiro {
     type: number
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
+    value_format: "0.00\%"
     description: "Indica o valor em percentual da taxa de IPCA do boleto"
     sql: ${TABLE}."PERC_IPCA" ;;
   }

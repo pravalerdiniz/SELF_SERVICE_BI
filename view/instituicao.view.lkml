@@ -170,8 +170,8 @@ view: instituicao {
   dimension: cp {
     type: string
     group_label: "Dados da Regional - IE"
-    label: "Código de Promotor (CP)"
-    description:"Indica o código de promotor."
+    label: "Código do Representante (CP)"
+    description:"Indica o código do representante comercial no campus da instituição de ensino."
     sql: ${TABLE}."CP";;
   }
 
@@ -193,7 +193,7 @@ view: instituicao {
     {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
-    <li>{{ word }}</li>
+    <li>word</li>
     {% endfor %} ;;
 
   }
@@ -208,7 +208,7 @@ view: instituicao {
     {% assign words = value| split: ',' %}
     <ul>
     {% for word in words %}
-    <li>{{ word }}</li>
+    <li>word</li>
     {% endfor %} ;;
 
   }
@@ -584,8 +584,8 @@ view: instituicao {
   dimension: tipo_regional {
     type: string
     group_label: "Dados da Regional - IE"
-    label: "Tipo de Regional"
-    description: "Indica o tipo de regional. Ex: Fixo ou Volante"
+    label: "Tipo de Representante"
+    description: "Indica o tipo de representante comercial no campus da instituição de ensino. Ex: Fixo ou Volante"
     sql: ${TABLE}."TIPO_REGIONAL";;
   }
 

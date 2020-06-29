@@ -25,19 +25,51 @@ explore: beneficiados {
 
 explore: instituicao {
   label: "Instituição"
+  view_label: "1. Instituição"
   description: "Apresenta os dados das Instituições de Ensino com contrado com PRAVALER"
+  fields: [ALL_FIELDS *,
+    - proposta.flg_instituicao_ativa,
+    - proposta.cidade_instituicao,
+    - proposta.uf_instituicao,
+    - proposta.id_instituicao,
+    - proposta.ds_instituicao,
+    - proposta.id_originadores_ativos_ies,
+    - proposta.grupo_instituicao,
+    - proposta.flg_contrato_ies_ativo,
+    - proposta.flg_wo_ies,
+    - proposta.id_ies_contrato,
+    - proposta.flg_ipca_ies,
+    - proposta.cidade_campus,
+    - proposta.ds_campus,
+    - proposta.flg_campus_ativo,
+    - proposta.id_campus,
+    - proposta.uf_campus,
+    - proposta.regional_atual,
+    - proposta.representante_original,
+    - proposta.cargo_original,
+    - proposta.cp_original,
+    - proposta.carteira_original,
+    - proposta.id_curso,
+    - proposta.area_conhecimento_curso,
+    - proposta.ds_curso,
+    - proposta.flg_curso_ativo,
+    - proposta.qtd_semestre_curso,
+    - proposta.enfase_curso,
+    - proposta.perc_comissao,
+    - proposta.perc_desagio,
+    - proposta.gerente_original,
+    - proposta.tipo_original,
+    - proposta.conversao_original,
+    - proposta.vl_dias_wo_ies,
+    - proposta.perc_tx_subsidiado_ies
 
-  join: alunos {
-    view_label: "2. Alunos"
-    sql_on: ${alunos.id_curso} = ${instituicao.id_curso} ;;
-    relationship: many_to_one
-    type: left_outer
 
 
-  }
+    ]
+
 
   join: proposta {
-    view_label: "3. Proposta"
+    view_label: "2. Proposta"
     sql_on: ${proposta.id_curso} = ${instituicao.id_curso} ;;
     relationship: one_to_many
     type: left_outer
@@ -113,8 +145,6 @@ explore: financeiro {
     relationship: many_to_one
     type: left_outer
 
-
-
   }
 
 
@@ -124,7 +154,12 @@ explore: proposta {
   label: "Proposta"
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
-
+fields: [ALL_FIELDS *,
+        - status.flg_proposta_ativa,
+        - status.id_cpf,
+        - status.id_elegivel,
+        - status.id_proposta,
+        - status.tipo_proposta, ]
 
 join: proposta_docs_pendentes {
   view_label: "1.1 Documentos Pendentes"
@@ -134,18 +169,9 @@ join: proposta_docs_pendentes {
 }
 
 
-  join: financeiro {
-    view_label: "2. Financeiro"
-    sql_on: ${financeiro.id_contrato} = ${proposta.id_proposta} ;;
-    relationship: one_to_many
-    type: left_outer
-
-  }
-
-
 
   join: status {
-    view_label: "4. Status"
+    view_label: "2. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
@@ -156,9 +182,11 @@ join: proposta_docs_pendentes {
 }
 
 explore: alunos {
-  label: "Alunos"
+  view_label: "1. Alunos"
   description: "Apresenta os dados de todos os alunos do PRAVALER"
-
+  fields: [
+    - financeiro.id_cpf,
+    - financeiro.id_contrato]
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
@@ -167,6 +195,17 @@ join: alunos_produtos_aprovados {
 
 }
 
+
+
+join: financeiro {
+  view_label: "2. Financeiro"
+  sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+
+
+
+}
 
 
 }
