@@ -184,7 +184,7 @@ join: proposta_docs_pendentes {
 explore: alunos {
   view_label: "1. Alunos"
   description: "Apresenta os dados de todos os alunos do PRAVALER"
-  fields: [
+  fields: [ALL_FIELDS*,
     - financeiro.id_cpf,
     - financeiro.id_contrato]
 join: alunos_produtos_aprovados {
