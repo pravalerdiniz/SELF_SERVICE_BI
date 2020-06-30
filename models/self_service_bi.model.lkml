@@ -157,8 +157,6 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_renovacao,
   - proposta.count_tipo_proposta_seg_repasse
 
-
-
   ]
 
   join: proposta {
@@ -166,10 +164,16 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
-
   }
+
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
 }
 
+}
 
 explore: financeiro {
   label: "Financeiro"
