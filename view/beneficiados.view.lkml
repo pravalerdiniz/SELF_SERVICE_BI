@@ -18,6 +18,7 @@ view: beneficiados {
     group_label: "Dados do Aluno"
     group_item_label: "Renda"
     description: "Indica a renda do aluno"
+    required_access_grants: [grupo_renda]
   }
 
   dimension: sexo_do_aluno {
@@ -85,6 +86,7 @@ view: beneficiados {
       group_label: "Dados da Família e Garantidor"
       group_item_label: "Renda do Garantidor"
       description: "Indica a renda do garantidor"
+      required_access_grants: [grupo_renda]
     }
 
     dimension: renda_familiar {
@@ -94,6 +96,7 @@ view: beneficiados {
       group_label: "Dados da Família e Garantidor"
       group_item_label: "Renda Familiar"
       description: "Indica a renda da família do aluno"
+      required_access_grants: [grupo_renda]
     }
 
     dimension: sexo_do_garantidor {
@@ -472,6 +475,7 @@ view: beneficiados {
       group_label: "Valor da Renda"
       group_item_label: "Renda Média do Aluno"
       description: "Valor médio da renda do aluno"
+      required_access_grants: [grupo_renda]
     }
 
     measure: avg_renda_garantidor {
@@ -481,6 +485,7 @@ view: beneficiados {
       group_label: "Valor da Renda"
       group_item_label: "Renda Média do Garantidor"
       description: "Valor médio da renda do garantidor"
+      required_access_grants: [grupo_renda]
     }
 
     measure: avg_renda_familiar   {
@@ -490,5 +495,6 @@ view: beneficiados {
       group_label: "Valor da Renda"
       group_item_label: "Renda Média da Família"
       description: "Valor médio da renda da família do aluno"
+      required_access_grants: [grupo_renda]
     }
   }

@@ -100,6 +100,7 @@ view: alunos {
     group_label: "Dados do Aluno"
     group_item_label: "E-mail"
     description: "Indica o e-mail do aluno"
+    required_access_grants: [grupo_email]
     suggestable: no
   }
 
@@ -117,6 +118,7 @@ view: alunos {
     group_label: "Dados do Aluno"
     group_item_label: "Renda Mensal"
     description: "Indica a renda mensal do aluno"
+    required_access_grants: [grupo_renda]
   }
 
   dimension: tipo_residencia {
@@ -249,6 +251,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "E-mail do Fiador"
     description: "Indica o e-mail do fiador"
+    required_access_grants: [grupo_email]
   }
 
   dimension: fia_endereco {
@@ -298,6 +301,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Nome do Fiador"
     description: "Indica o nome do fiador"
+    required_access_grants: [grupo_nome]
   }
 
   dimension: fia_numero_dependentes {
@@ -322,6 +326,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Renda Mensal do Fiador"
     description: "Indica a renda mensal do fiador"
+    required_access_grants: [grupo_renda]
   }
 
   dimension: fia_tempo_empresa {
@@ -389,6 +394,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Renda Mensal da Família"
     description: "Indica a renda mensal da família"
+    required_access_grants: [grupo_renda]
   }
 
   dimension: qtd_semestre_curso {
@@ -962,6 +968,7 @@ view: alunos {
     group_label: "Renda do Aluno"
     group_item_label: "Soma"
     description: "Soma da renda do aluno"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_alu {
@@ -971,6 +978,7 @@ view: alunos {
     group_label: "Renda do Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
+    required_access_grants: [grupo_renda]
   }
 
   measure: sum_renda_fia {
@@ -980,6 +988,7 @@ view: alunos {
     group_label: "Renda do Garantidor"
     group_item_label: "Soma"
     description: "Soma da renda do garantidor"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_fia {
@@ -989,6 +998,7 @@ view: alunos {
     group_label: "Renda do Garantidor"
     group_item_label: "Média"
     description: "Média da renda do garantidor"
+    required_access_grants: [grupo_renda]
   }
 
   measure: sum_renda_fam {
@@ -998,6 +1008,7 @@ view: alunos {
     group_label: "Renda Familiar"
     group_item_label: "Soma"
     description: "Soma da renda familiar"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_fam {
@@ -1007,6 +1018,7 @@ view: alunos {
     group_label: "Renda Familiar"
     group_item_label: "Média"
     description: "Média da renda familiar"
+    required_access_grants: [grupo_renda]
   }
 
 
