@@ -36,6 +36,15 @@ view: beneficiados {
     description: "Indica a UF do aluno"
   }
 
+  dimension: mapa_uf_aluno {
+    sql: ${TABLE}."UF_DO_ALUNO" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados do Aluno"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do aluno, pode ser usado em gráficos de mapa"
+  }
+
+
   dimension: cidade_do_aluno {
     type: string
     sql: ${TABLE}."CIDADE_DO_ALUNO" ;;
@@ -103,6 +112,16 @@ view: beneficiados {
       description: "Indica a UF do garantidor"
     }
 
+  dimension: mapa_uf_garantidor {
+    sql: ${TABLE}."UF_DO_GARANTIDOR" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados da Família e Garantidor"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do garantidor, pode ser usado em gráficos de mapa"
+  }
+
+
+
     dimension: cidade_do_garantidor {
       type: string
       sql: ${TABLE}."CIDADE_DO_GARANTIDOR" ;;
@@ -143,6 +162,19 @@ view: beneficiados {
       group_item_label: "UF"
       description: "Indica a UF da Instituição de Ensino"
     }
+
+  dimension: mapa_uf_ie {
+    sql: ${TABLE}."UF_DA_IE" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados da Instituição"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF da Instituição de Ensino, pode ser usado em gráficos de mapa"
+  }
+
+
+
+
+
 
     dimension: cidade_da_ie {
       type: string

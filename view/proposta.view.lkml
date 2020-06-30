@@ -88,6 +88,15 @@ view: proposta {
     sql: ${TABLE}."ALUNO_UF" ;;
   }
 
+
+  dimension: mapa_uf_aluno {
+    sql: ${TABLE}."ALUNO_UF" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados do Aluno"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do aluno, pode ser usado em gráficos de mapa"
+  }
+
   dimension: area_conhecimento_curso {
     type: string
     group_label: "Dados do Curso"
@@ -662,7 +671,19 @@ view: proposta {
     group_label: "Dados do Fiador"
     label: "UF"
     sql: ${TABLE}."FIA_UF" ;;
+
   }
+
+  dimension: mapa_uf_fiador {
+    sql: ${TABLE}."FIA_UF" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados do Fiador"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do fiador, pode ser usado em gráficos de mapa"
+  }
+
+
+
 
   dimension: flg_aceita_termo {
     type: yesno
@@ -2388,7 +2409,7 @@ view: proposta {
     type: average
     sql: ${fia_renda} ;;
     value_format: "$ #,###.00"
-    group_label: "Renda Fiador"
+    group_label: "Renda Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
   }

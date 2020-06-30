@@ -20,6 +20,44 @@ explore: beneficiados {
   label: "Histórico de Beneficiados"
   view_label: "Histórico de Beneficiados"
   description: "Mostra os dados de todos os contratos cedidos pelo PRAVALER"
+
+
+  join: proposta {
+    view_label: "Proposta"
+    sql_on: ${beneficiados.id_proposta} = ${proposta.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: [proposta.carteira_atual,
+             proposta.carteira_original,
+             proposta.regional_atual,
+             proposta.regional_original,
+             proposta.cp_atual,
+             proposta.cp_original,
+             proposta.gerente_atual,
+             proposta.gerente_original,
+             proposta.conversao_atual,
+             proposta.conversao_original,
+             proposta.representante_atual,
+             proposta.representante_original,
+             proposta.regional_atual,
+             proposta.regional_original,
+             proposta.tipo_atual,
+             proposta.tipo_original,
+             proposta.id_fundo_investimento,
+             proposta.ds_fundo_investimento,
+             proposta.nm_originador,
+             proposta.midia_acesso_conversao,
+             proposta.midia_acesso_descoberta,
+             proposta.canal_acesso_conversao,
+             proposta.canal_acesso_descoberta,
+             proposta.ds_url_conversao,
+             proposta.ds_url_descoberta,
+             proposta.campanha_acesso_conversao,
+             proposta.campanha_acesso_descoberta
+
+             ]
+
+  }
 }
 
 
@@ -82,6 +120,8 @@ explore: instituicao {
 explore: status {
   label: "Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
+
+
 }
 
 
@@ -122,7 +162,14 @@ explore: financeiro {
   label: "Financeiro"
   view_label: "1. Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
+  fields: [ALL_FIELDS * ,
+          proposta.id_cpf,
+          proposta.id_proposta,
 
+
+
+
+          ]
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
     sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
@@ -186,7 +233,9 @@ explore: alunos {
   description: "Apresenta os dados de todos os alunos do PRAVALER"
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
-    - financeiro.id_contrato]
+    - financeiro.id_contrato,
+    - jornada.id_cpf,
+    - jornada.id_proposta]
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
@@ -213,6 +262,17 @@ join: financeiro {
 
 
 }
+
+
+  join: jornada {
+    view_label: "3. Jornada"
+    sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+
+
+  }
 
 
 }
