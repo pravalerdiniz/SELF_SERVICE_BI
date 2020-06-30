@@ -244,6 +244,7 @@ view: financeiro {
     type: string
     group_label: "Dados do Aluno"
     label: "Extrato titulo"
+    hidden: yes
     description: "Indica os IDs correspondentes de extratos de titulos de alunos do produto GESTÃO"
     sql: ${TABLE}."ID_EXTRATO_TITULO_INFO" ;;
   }
@@ -260,6 +261,7 @@ view: financeiro {
   dimension: id_log_titulo_info {
     type: string
     group_label: "Dados do Título"
+    hidden: yes
     label: "ID Titulo Info - Log"
     description: "Indica o ID correspondente a URL da geração do título"
     sql: ${TABLE}."ID_LOG_TITULO_INFO" ;;
@@ -289,6 +291,7 @@ view: financeiro {
     label: "ID Titulo"
     description: "Indica o ID único do título."
     sql: ${TABLE}."ID_TITULO" ;;
+    primary_key: yes
     value_format: "#"
   }
 
@@ -464,6 +467,7 @@ view: financeiro {
     group_item_label: "Quantidade de Boletos em Atraso"
     description: "Indica a quantidade total de boletos em atraso"
     filters: [flg_boleto_atrasado: "Yes"]
+    drill_fields: [id_cpf, id_contrato, data_vencimento_date,data_pagamento_date]
   }
 
 
@@ -474,6 +478,7 @@ view: financeiro {
     group_label: "Atraso"
     group_item_label: "Dias - Média"
     description: "Média de dias de atraso de pagamento do boleto"
+    drill_fields: [id_cpf, id_contrato, data_vencimento_date,data_pagamento_date]
   }
 
   measure: sum_dias_atraso {
@@ -482,6 +487,7 @@ view: financeiro {
     group_label: "Atraso"
     group_item_label: "Dias - Soma"
     description: "Soma de dias de atraso de pagamento do boleto"
+    drill_fields: [id_cpf, id_contrato, data_vencimento_date,data_pagamento_date]
   }
 
 
@@ -493,6 +499,7 @@ view: financeiro {
     group_label: "Atraso"
     group_item_label: "Dias - Máximo"
     description: "Valor máximo de dias de atraso do pagamento do boleto"
+    drill_fields: [id_cpf, id_contrato, data_vencimento_date,data_pagamento_date]
   }
 
 

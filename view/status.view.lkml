@@ -49,6 +49,7 @@ view: status {
       sql: ${TABLE}."ID" ;;
       group_label: "Dados do Status"
       group_item_label: "ID"
+
       description: "Número de identificação do status"
     }
 

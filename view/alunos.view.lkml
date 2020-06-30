@@ -19,7 +19,7 @@ view: alunos {
     description: "Número de identificação dos produtos contratados"
     hidden: yes
   }
-  #----------------------------------
+
 
   dimension: aluno_idade {
     type: number
@@ -43,6 +43,7 @@ view: alunos {
     group_item_label: "Nome"
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
+    required_access_grants: [grupo_nome]
   }
 
   dimension: ano_termino_ensino_medio {
@@ -155,6 +156,7 @@ view: alunos {
     sql: ${TABLE}."ID_CPF" ;;
     group_label: "Dados do Aluno"
     group_item_label: "ID do CPF"
+    primary_key: yes
     description: "Indica o ID do CPF do Aluno"
   }
 
@@ -198,6 +200,15 @@ view: alunos {
     group_item_label: "UF"
     description: "Indica a UF do aluno"
   }
+
+  dimension: mapa_uf_aluno {
+    sql: ${TABLE}."UF" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados do Aluno"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do aluno, pode ser usado em gráficos de mapa"
+  }
+
 
 
   dimension: fia_bairro {
@@ -336,6 +347,16 @@ view: alunos {
     group_item_label: "UF do Fiador"
     description: "Indica a UF do fiador"
   }
+
+  dimension: mapa_uf_fiador {
+    sql: ${TABLE}."FIA_UF" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados da Família e Garantidor"
+    group_item_label: "UF - Mapa"
+    description: "Indica a UF do fiador, pode ser usado em gráficos de mapa"
+  }
+
+
 
 
   dimension: flg_mae_falecida {
@@ -538,12 +559,29 @@ view: alunos {
     description: "Indica UF do campus"
   }
 
+
+  dimension: mapa_uf_campus {
+    sql: ${TABLE}."UF_CAMPUS" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados do Aluno"
+    group_item_label: "UF Campus - Mapa"
+    description: "Indica a UF do campus, pode ser usado em gráficos de mapa"
+  }
+
   dimension: uf_instituicao {
     type: string
     sql: ${TABLE}."UF_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
     group_item_label: "UF IE"
     description: "Indica UF da IE"
+  }
+
+  dimension: mapa_uf_instituicao {
+    sql: ${TABLE}."UF_CAMPUS" ;;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    group_label: "Dados da Instituição"
+    group_item_label: "UF IE - Mapa"
+    description: "Indica a UF da instituição de ensino, pode ser usado em gráficos de mapa"
   }
 
   dimension: cargo_atual {
