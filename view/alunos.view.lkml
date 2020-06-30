@@ -68,6 +68,7 @@ view: alunos {
     group_item_label: "Celular"
     description: "Indica o número do celular do aluno"
     sql: ${TABLE}."CELULAR" ;;
+    required_access_grants: [grupo_telefone]
   }
 
   dimension: cep {
@@ -76,6 +77,7 @@ view: alunos {
     group_item_label: "CEP"
     description: "Indica o número do CEP correspondente ao endereço do aluno"
     sql: ${TABLE}."CEP" ;;
+    required_access_grants: [grupo_endereco]
   }
 
   dimension: cidade {
@@ -109,6 +111,7 @@ view: alunos {
     group_label: "Dados do Aluno"
     group_item_label: "Endereço"
     description: "Indica o e-endereço do aluno"
+    required_access_grants: [grupo_endereco]
   }
 
   dimension: renda_mensal {
@@ -225,6 +228,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Celular do Fiador"
     description: "Indica o celular do fiador"
+    required_access_grants: [grupo_telefone]
   }
 
   dimension: fia_cep {
@@ -233,6 +237,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "CEP do Fiador"
     description: "Indica o CEP do fiador"
+    required_access_grants: [grupo_endereco]
   }
 
   dimension: fia_cidade {
@@ -257,6 +262,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Endereço do Fiador"
     description: "Indica o endereço do fiador"
+    required_access_grants: [grupo_endereco]
   }
 
   dimension: fia_escolaridade {
@@ -298,6 +304,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Nome do Fiador"
     description: "Indica o nome do fiador"
+    required_access_grants: [grupo_nome]
   }
 
   dimension: fia_numero_dependentes {

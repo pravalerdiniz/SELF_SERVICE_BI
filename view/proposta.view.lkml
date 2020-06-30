@@ -18,6 +18,7 @@ view: proposta {
     hidden: yes
     description: "Indica o número de celular do aluno"
     sql: ${TABLE}."ALUNO_CELULAR" ;;
+    required_access_grants: [grupo_telefone]
   }
 
   dimension: aluno_cidade {
@@ -69,6 +70,7 @@ view: proposta {
     hidden: yes
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
+    required_access_grants: [grupo_nome]
   }
 
   dimension: aluno_renda {
@@ -621,6 +623,7 @@ view: proposta {
     label: "Celular"
     description: "Indica o número do celular do fiador do aluno."
     sql: ${TABLE}."FIA_CELULAR" ;;
+    required_access_grants: [grupo_telefone]
   }
 
   dimension: fia_cidade {
@@ -670,6 +673,7 @@ view: proposta {
     label: "Nome"
     description: "Indica o nome do fiador do aluno."
     sql: ${TABLE}."FIA_NOME" ;;
+    required_access_grants: [grupo_nome]
   }
 
   dimension: fia_renda {

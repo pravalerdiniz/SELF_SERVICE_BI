@@ -2,7 +2,18 @@ connection: "graduado"
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
-  #allowed_values: [ "finance", "executive" ]
+
+}
+
+access_grant: grupo_telefone {
+  user_attribute: grupo_telefone
+
+}
+
+
+access_grant: grupo_endereco {
+  user_attribute: grupo_endereco
+
 }
 
 map_layer: MAPA_ESTADO_ALUNO {
