@@ -1,5 +1,10 @@
 connection: "graduado"
 
+access_grant: grupo_nome {
+  user_attribute: grupo_nome
+  #allowed_values: [ "finance", "executive" ]
+}
+
 map_layer: MAPA_ESTADO_ALUNO {
   file: "/MAPAS/uf.json"
 }

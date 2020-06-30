@@ -19,7 +19,7 @@ view: alunos {
     description: "Número de identificação dos produtos contratados"
     hidden: yes
   }
-  #----------------------------------
+
 
   dimension: aluno_idade {
     type: number
@@ -43,6 +43,7 @@ view: alunos {
     group_item_label: "Nome"
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
+    required_access_grants: [grupo_nome]
   }
 
   dimension: ano_termino_ensino_medio {
