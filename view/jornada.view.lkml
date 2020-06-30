@@ -128,8 +128,6 @@ view: jornada {
     description: "Indica o último status geral"
   }
 
-  #----------------time frame
-
   dimension_group: data_inicio_da_proposta {
     type: time
     timeframes: [
@@ -704,24 +702,4 @@ view: jornada {
      description: "Indica a conversão de iniciados para cedidos, em porcentagem"
    }
 
-#   dimension_group: primeiro_interesse {
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year,
-#       time_of_day,
-#       month_name,
-#       day_of_year,
-#       hour_of_day,
-#       month_num
-#     ]
-#     sql: ${TABLE}."PRIMEIRO_INTERESSE" ;;
-#     label: "Primeiro Interesse"
-#     description: "Indica a data do primeiro acesso do aluno ao site do PRAVALER nos últimos 6 meses"
-#   }
 }
