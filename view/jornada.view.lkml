@@ -128,6 +128,232 @@ view: jornada {
     description: "Indica o último status geral"
   }
 
+  #----------------time frame
+
+  dimension_group: data_inicio_da_proposta {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DATA_INICIO_PROPOSTA" ;;
+    label: "Início da Proposta"
+    description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
+  }
+
+  dimension_group: data_status {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DT_STATUS" ;;
+    label: "Etapa"
+    description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
+  }
+
+  dimension_group: data_ultimo_status {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DT_ULTIMO_STATUS" ;;
+    label: "Último Status"
+    description: "Indica a data da última alteração de status que a proposta teve"
+  }
+
+
+  #Telemetria
+
+  dimension: descricao_detalhada_ultimo_status {
+    type: string
+    sql: ${TABLE}."DS_ULT_STATUS_DETALHADO" ;;
+    group_label: "Telemetria"
+    group_item_label: "Descrição Detalhada"
+    description: "Descrição do status filho do último status"
+  }
+
+  dimension: descricao_geral_ultimo_status {
+    type: string
+    sql: ${TABLE}."DS_ULT_STATUS_GERAL" ;;
+    group_label: "Telemetria"
+    group_item_label: "Descrição Geral"
+    description: "Descrição do status pai do último status"
+  }
+
+
+  dimension: ultimo_status {
+    type: string
+    sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
+    group_label: "Telemetria"
+    group_item_label: "Último Status da Proposta - Detalhado"
+    description: "Indica a última alteração de status que a proposta teve"
+
+  }
+
+  dimension: ultimo_status_geral {
+    type: number
+    sql: left(${ultimo_status},position('.',${ultimo_status})-1) ;;
+    group_label: "Telemetria"
+    group_item_label: "Último Status da Proposta - Geral"
+    description: "Indica a última alteração de status que a proposta teve, somente com o status pai"
+
+  }
+
+  dimension: tempo_no_status {
+    type: number
+    sql: datediff('day',${data_ultimo_status_raw},current_date) ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo no Status"
+    description: "Indica a quantos dias o aluno está no mesmo status"
+  }
+
+  dimension: tempo_no_status_hora {
+    type: number
+    sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
+    group_label: "Telemetria"
+    group_item_label: "Horas no Status"
+    description: "Indica a quantas horas o aluno está no mesmo status"
+  }
+
+
+
+  dimension: faixa_tempo_no_status {
+    type: string
+    case: {
+      when: {
+        sql: ${tempo_no_status} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${tempo_no_status} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${tempo_no_status} <= 30 ;;
+        label: "15 - 30"
+      }
+      else: "30 >"
+    }
+    group_label: "Telemetria"
+    group_item_label: "Faixa de Tempo no Status"
+    description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
+  }
+
+  dimension: ordem_faixa_tempo {
+    type: string
+    case: {
+      when: {
+        sql: ${tempo_no_status} <= 5 ;;
+        label: "1"
+      }
+      when: {
+        sql: ${tempo_no_status} <= 15 ;;
+        label: "2"
+      }
+      when: {
+        sql: ${tempo_no_status} <= 30 ;;
+        label: "3"
+      }
+      else: "4"
+    }
+    hidden: yes
+  }
+
+  dimension: ordem_faixa {
+    type: number
+    sql: ${ordem_faixa_tempo} ;;
+    hidden: yes
+  }
+
+  dimension: etapa_ultimo_status {
+    type: string
+    case: {
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (0,1) ;;
+        label: "Preenchendo Proposta"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1) = 2 ;;
+        label: "Análise de Risco"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1) in (8,9,10,19) ;;
+        label: "Não Aprovado por Risco"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (11) ;;
+        label: "Tela da Instituição"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (13,14,39,36) ;;
+        label: "Não Aprovado pela Instituição"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (25) ;;
+        label: "Preenchendo Dados Adicionais"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (31) ;;
+        label: "Aprovado para Geração de Contrato"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (40,42) ;;
+        label: "Formalização"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (41) ;;
+        label: "Formalizado"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (46,47,49) ;;
+        label: "Não Aprovado pela Formalização"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (50) ;;
+        label: "Cedido"
+      }
+      when: {
+        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (51) ;;
+        label: "Segundo Repasse"
+      }
+      else: "Outros"
+    }
+    group_label: "Telemetria"
+    group_item_label: "Etapa Atual"
+    description: "Etapa do último status do aluno"
+  }
 
   measure: count {
     type: count
@@ -222,7 +448,7 @@ view: jornada {
       value: "Contrato Gerado"
     }
     filters: {
-      field: tipo_proposta
+        field: tipo_proposta
       value: "Novo"
     }
     group_label: "Etapa - Aluno Novo"
@@ -477,303 +703,25 @@ view: jornada {
      value_format: "0.0%"
      description: "Indica a conversão de iniciados para cedidos, em porcentagem"
    }
-  #----------------time frame
 
-  dimension_group: data_inicio_da_proposta {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DATA_INICIO_DA_PROPOSTA" ;;
-    label: "Início da Proposta"
-    description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
-  }
-
-  dimension_group: primeiro_interesse {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."PRIMEIRO_INTERESSE" ;;
-    label: "Primeiro Interesse"
-    description: "Indica a data do primeiro acesso do aluno ao site do PRAVALER nos últimos 6 meses"
-  }
-
-  dimension_group: data_status {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DATA_STATUS" ;;
-    label: "Etapa"
-    description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
-  }
-
-  dimension_group: data_ultimo_status {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DATA_ULTIMO_STATUS" ;;
-    label: "Último Status"
-    description: "Indica a data da última alteração de status que a proposta teve"
-  }
-
-  dimension_group: ultimo_interesse {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."ULTIMO_INTERESSE" ;;
-    description: "Indica a data do último acesso realizado pelo aluno ao site do PRAVALER antes de iniciar uma proposta"
-  }
-#   #Telemetria - verificar
-
-#   dimension: descricao_detalhada_ultimo_status {
-#     type: string
-#     sql: ${TABLE}."DS_ULT_STATUS_DETALHADO" ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Descrição Detalhada"
-#     description: "Descrição do status filho do último status"
-
+#   dimension_group: primeiro_interesse {
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year,
+#       time_of_day,
+#       month_name,
+#       day_of_year,
+#       hour_of_day,
+#       month_num
+#     ]
+#     sql: ${TABLE}."PRIMEIRO_INTERESSE" ;;
+#     label: "Primeiro Interesse"
+#     description: "Indica a data do primeiro acesso do aluno ao site do PRAVALER nos últimos 6 meses"
 #   }
-
-#   dimension: descricao_geral_ultimo_status {
-#     type: string
-#     sql: ${TABLE}."DS_ULT_STATUS_GERAL" ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Descrição Geral"
-#     description: "Descrição do status pai do último status"
-
-#   }
-
-#   dimension: ultimo_status {
-#     type: string
-#     sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Último Status da Proposta - Detalhado"
-#     description: "Indica a última alteração de status que a proposta teve"
-
-#   }
-
-#   dimension: ultimo_status_geral {
-#     type: number
-#     sql: left(${ultimo_status},position('.',${ultimo_status})-1) ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Último Status da Proposta - Geral"
-#     description: "Indica a última alteração de status que a proposta teve, somente com o status pai"
-
-#   }
-
-#   dimension: tempo_no_status {
-#     type: number
-#     sql: datediff('day',${ultimo_status_geral},current_date) ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Tempo no Status"
-#     description: "Indica a quantos dias o aluno está no mesmo status"
-#   }
-
-#   dimension: tempo_no_status_hora {
-#     type: number
-#     sql: datediff('hour',${ultimo_status_geral},current_date) ;;
-#     group_label: "Telemetria"
-#     group_item_label: "Horas no Status"
-#     description: "Indica a quantas horas o aluno está no mesmo status"
-#   }
-
-#   dimension: faixa_tempo_no_status {
-#     type: string
-#     case: {
-#       when: {
-#         sql: ${tempo_no_status} <= 5 ;;
-#         label: "< 5"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} <= 15 ;;
-#         label: "5 - 15"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} <= 30 ;;
-#         label: "15 - 30"
-#       }
-#       else: "30 >"
-#     }
-#     group_label: "Telemetria"
-#     group_item_label: "Faixa de Tempo no Status"
-#     description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
-#   }
-
-#   dimension: ordem_faixa_tempo {
-#     type: string
-#     case: {
-#       when: {
-#         sql: ${tempo_no_status} <= 5 ;;
-#         label: "1"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} <= 15 ;;
-#         label: "2"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} <= 30 ;;
-#         label: "3"
-#       }
-#       else: "4"
-#     }
-#     hidden: yes
-#   }
-
-#   dimension: ordem_faixa {
-#     type: number
-#     sql: ${ordem_faixa_tempo} ;;
-#     hidden: yes
-#   }
-
-#   dimension: etapa_ultimo_status {
-#     type: string
-#     case: {
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (0,1) ;;
-#         label: "Preenchendo Proposta"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1) = 2 ;;
-#         label: "Análise de Risco"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1) in (8,9,10,19) ;;
-#         label: "Não Aprovado por Risco"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (11) ;;
-#         label: "Tela da Instituição"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (13,14,39,36) ;;
-#         label: "Não Aprovado pela Instituição"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (25) ;;
-#         label: "Preenchendo Dados Adicionais"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (31) ;;
-#         label: "Aprovado para Geração de Contrato"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (40,42) ;;
-#         label: "Formalização"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (41) ;;
-#         label: "Formalizado"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (46,47,49) ;;
-#         label: "Não Aprovado pela Formalização"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (50) ;;
-#         label: "Cedido"
-#       }
-#       when: {
-#         sql: left(${ultimo_status},position('.',${ultimo_status})-1)  in (51) ;;
-#         label: "Segundo Repasse"
-#       }
-#       else: "Outros"
-#     }
-#     group_label: "Telemetria"
-#     group_item_label: "Etapa Atual"
-#     description: "Etapa do último status do aluno"
-#   }
-
-#  dimension: de_para_sla {
-#     type: string
-#     case: {
-#       when: {
-#         sql: ${etapa_ultimo_status} = 'Preenchendo Proposta' and ${funil_geral_pivot.proposta_reprocessada} = 'Não' ;;
-#         label: "Proposta Nova"
-#       }
-#       when: {
-#         sql: ${etapa_ultimo_status} = 'Preenchendo Proposta' and ${funil_geral_pivot.proposta_reprocessada} = 'Sim' ;;
-#         label: "Proposta Reprocessada"
-#       }
-#       when: {
-#         sql: ${etapa_ultimo_status} = 'Cedido' and year(${ultimo_status_geral}) = year(current_date) and month(${ultimo_status_geral}) = month(current_date) ;;
-#         label: "No Mês"
-#       }
-#       when: {
-#         sql: ${etapa_ultimo_status} = 'Cedido' and (year(${ultimo_status_geral}) <> year(current_date) or month(${ultimo_status_geral}) <> month(current_date)) ;;
-#         label: "Fora do Mês"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} <= ${sla_etapa_atual_num} or ${etapa_ultimo_status} = 'Formalizado';;
-#         label: "Dentro"
-#       }
-#       when: {
-#         sql: ${tempo_no_status} > ${sla_etapa_atual_num} ;;
-#         label: "Fora"
-#       }
-#       else: "Não Atribuído"
-#     }
-#     group_label: "Telemetria"
-#     group_item_label: "Status do SLA"
-#     description: "Indica se o aluno está acima ou abaixo do SLA da etapa atual"
-#   }
-
 }
