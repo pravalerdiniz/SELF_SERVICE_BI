@@ -36,6 +36,7 @@ view: proposta {
     hidden: yes
     description: "Indica o e-mail do aluno"
     sql: ${TABLE}."ALUNO_EMAIL" ;;
+    required_access_grants: [grupo_email]
   }
 
   dimension: aluno_escolaridade {
@@ -80,6 +81,7 @@ view: proposta {
     label: "Renda"
     description: "Indica o valor de renda do aluno"
     sql: ${TABLE}."ALUNO_RENDA" ;;
+    required_access_grants: [grupo_renda]
   }
 
   dimension: aluno_uf {
@@ -640,6 +642,7 @@ view: proposta {
     label: "E-mail"
     description: "Indica o e-mail do fiador do aluno."
     sql: ${TABLE}."FIA_EMAIL" ;;
+    required_access_grants: [grupo_email]
   }
 
   dimension: fia_escolaridade {
@@ -683,6 +686,7 @@ view: proposta {
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do fiador do aluno."
     sql: ${TABLE}."FIA_RENDA" ;;
+    required_access_grants: [grupo_renda]
   }
 
   dimension: fia_uf {
@@ -1257,6 +1261,7 @@ view: proposta {
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda familia do aluno"
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
+    required_access_grants: [grupo_renda]
   }
 
   dimension: representante_atual {
@@ -2386,6 +2391,7 @@ view: proposta {
     group_label: "Renda Familiar"
     group_item_label: "Soma"
     description: "Soma da renda familiar"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_fam {
@@ -2395,6 +2401,7 @@ view: proposta {
     group_label: "Renda Familiar"
     group_item_label: "Média"
     description: "Média da renda familiar"
+    required_access_grants: [grupo_renda]
   }
 
   measure: sum_renda_fiador {
@@ -2404,6 +2411,7 @@ view: proposta {
     group_label: "Renda Fiador"
     group_item_label: "Soma"
     description: "Soma da renda do fiador"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_fiador {
@@ -2413,6 +2421,7 @@ view: proposta {
     group_label: "Renda Fiador"
     group_item_label: "Média"
     description: "Média da renda do fiador"
+    required_access_grants: [grupo_renda]
   }
 
   measure: sum_renda_aluno {
@@ -2422,6 +2431,7 @@ view: proposta {
     group_label: "Renda Aluno"
     group_item_label: "Soma"
     description: "Soma da renda do aluno"
+    required_access_grants: [grupo_renda]
   }
 
   measure: avg_renda_aluno {
@@ -2431,6 +2441,7 @@ view: proposta {
     group_label: "Renda Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
+    required_access_grants: [grupo_renda]
   }
 
 

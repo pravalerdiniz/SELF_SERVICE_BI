@@ -13,8 +13,16 @@ access_grant: grupo_telefone {
 
 access_grant: grupo_endereco {
   user_attribute: grupo_endereco
-
 }
+
+access_grant: grupo_email {
+  user_attribute: grupo_email
+}
+
+access_grant: grupo_renda {
+  user_attribute: grupo_renda
+}
+
 
 map_layer: MAPA_ESTADO_ALUNO {
   file: "/MAPAS/uf.json"
@@ -160,8 +168,6 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_renovacao,
   - proposta.count_tipo_proposta_seg_repasse
 
-
-
   ]
 
   join: proposta {
@@ -169,10 +175,16 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
-
   }
+
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
 }
 
+}
 
 explore: financeiro {
   label: "Financeiro"
