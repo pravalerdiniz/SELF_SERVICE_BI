@@ -282,7 +282,8 @@ view: proposta {
       month,
       month_name,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     convert_tz: no
     datatype: date
@@ -290,6 +291,20 @@ view: proposta {
     description: "Indica a data de repasse dos contratos cedidos."
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
+
+  dimension: analise_ytd {
+  type: yesno
+  label: "Concessão - YTD?"
+  description: "Indica o acumulado no ano mês a mês."
+  sql:
+   ${data_concessao_day_of_year} = 0 < EXTRACT(DOY FROM CURRENT_DATE());;
+  }
+
+
+
+
+
+
 
   dimension_group: data_fechamento_proposta {
     type: time
