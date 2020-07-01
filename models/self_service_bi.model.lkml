@@ -297,9 +297,13 @@ join: financeiro {
     sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
+  }
 
-
-
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
   }
 
 

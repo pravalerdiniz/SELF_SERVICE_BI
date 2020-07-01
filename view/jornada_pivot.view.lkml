@@ -4,7 +4,7 @@ view: jornada_pivot {
           id_proposta,
           ULT_STATUS_DETALHADO,
           DT_ULTIMO_STATUS,
-          tipo_proposta,
+          upper(tipo_proposta) as tipo_proposta,
           "'Lead'" as data_lead,
           "'Iniciado'" as data_iniciado,
           "'Finalizado'" as data_finalizado,
@@ -131,6 +131,217 @@ view: jornada_pivot {
   dimension_group: data_cedido {
     type: time
     sql: ${TABLE}."DATA_CEDIDO" ;;
+    hidden: yes
+  }
+
+  # Novos
+  dimension: sla_ini_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${data_lead_raw} , ${data_iniciado_raw}) < 0
+                   or ${data_lead_raw} is null or ${data_iniciado_raw} is null))
+              then null
+              else datediff(day,${data_lead_raw} , ${data_iniciado_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_fin_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_iniciado_raw} , ${data_finalizado_raw}) < 0
+                   or ${data_finalizado_raw} is null or ${data_finalizado_raw} is null)
+              then null
+              else datediff(day,${data_iniciado_raw} , ${data_finalizado_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_risco_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_finalizado_raw} , ${data_apr_risco_raw}) < 0
+                   or ${data_finalizado_raw} is null or ${data_apr_risco_raw} is null)
+              then null
+              else datediff(day,${data_finalizado_raw} , ${data_apr_risco_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_ies_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_apr_risco_raw},${data_apr_ies_raw}) < 0
+                   or ${data_apr_risco_raw} is null or ${data_apr_ies_raw} is null)
+              then null
+              else datediff(day,${data_apr_risco_raw},${data_apr_ies_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_conf_dados_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
+                   or ${data_apr_ies_raw} is null or ${data_dados_confirmados_raw} is null)
+              then null
+              else datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_cont_ger_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
+                   or ${data_dados_confirmados_raw} is null or ${data_cont_ger_raw} is null)
+              then null
+              else datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_cont_ass_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
+                   or ${data_cont_ger_raw} is null or ${data_cont_ass_raw} is null)
+              then null
+              else datediff(day,${data_cont_ger_raw},${data_cont_ass_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_form_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
+                   or ${data_cont_ass_raw} is null or ${data_form_raw} is null)
+              then null
+              else datediff(day,${data_cont_ass_raw},${data_form_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_ced_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_form_raw},${data_cedido_raw}) < 0
+                   or ${data_form_raw} is null or ${data_cedido_raw} is null)
+              then null
+              else datediff(day,${data_form_raw},${data_cedido_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_total_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_iniciado_raw},${data_cedido_raw}) < 0
+                   or ${data_iniciado_raw} is null or ${data_cedido_raw} is null)
+              then null
+              else datediff(day,${data_iniciado_raw},${data_cedido_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+# Renovação
+  dimension: sla_eleg_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_iniciado_raw} , ${data_elegivel_raw}) < 0
+                   or ${data_iniciado_raw} is null or ${data_elegivel_raw} is null)
+              then null
+              else datediff(day,${data_iniciado_raw} , ${data_elegivel_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_beha_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_elegivel_raw} , ${data_apr_behavior_raw}) < 0
+                   or ${data_elegivel_raw} is null or ${data_apr_behavior_raw} is null)
+              then null
+              else datediff(day,${data_elegivel_raw} , ${data_apr_behavior_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_ies_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_apr_behavior_raw} , ${data_apr_ies_raw}) < 0
+                   or ${data_apr_behavior_raw} is null or ${data_apr_ies_raw} is null)
+              then null
+              else datediff(day,${data_apr_behavior_raw} , ${data_apr_ies_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_dados_conf_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
+                   or ${data_apr_ies_raw} is null or ${data_dados_confirmados_raw} is null)
+              then null
+              else datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_cont_ger_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
+                   or ${data_dados_confirmados_raw} is null or ${data_cont_ger_raw} is null)
+              then null
+              else datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_cont_ass_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
+                   or ${data_cont_ger_raw} is null or ${data_cont_ass_raw} is null)
+              then null
+              else datediff(day,${data_cont_ger_raw},${data_cont_ass_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_form_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
+                   or ${data_cont_ass_raw} is null or ${data_form_raw} is null)
+              then null
+              else datediff(day,${data_cont_ass_raw},${data_form_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_ced_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_form_raw},${data_cedido_raw}) < 0
+                   or ${data_form_raw} is null or ${data_cedido_raw} is null)
+              then null
+              else datediff(day,${data_form_raw},${data_cedido_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_total_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_iniciado_raw},${data_cedido_raw}) < 0
+                   or ${data_iniciado_raw} is null or ${data_cedido_raw} is null)
+              then null
+              else datediff(day,${data_iniciado_raw},${data_cedido_raw})
+         end ;;
+    value_format: "0"
     hidden: yes
   }
 

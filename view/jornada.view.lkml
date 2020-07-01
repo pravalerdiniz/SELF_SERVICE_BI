@@ -2,20 +2,6 @@ view: jornada {
   sql_table_name: "SELF_SERVICE_BI"."JORNADA"
     ;;
 
-  dimension: ds_ult_status_detalhado {
-    type: string
-    sql: ${TABLE}."DS_ULT_STATUS_DETALHADO" ;;
-    label: "Descrição do Último Status Detalhado"
-    description: "Descrição do último status detalhado"
-  }
-
-  dimension: ds_ult_status_geral {
-    type: string
-    sql: ${TABLE}."DS_ULT_STATUS_GERAL" ;;
-  label: "Descrição do Último Status Geral"
-    description: "Descrição do último status geral"
-  }
-
   dimension_group: dt_status {
     type: time
     timeframes: [
@@ -33,99 +19,93 @@ view: jornada {
       month_num
     ]
     sql: ${TABLE}."DT_STATUS" ;;
-    label: "Status"
-    description: "Indica a data do status"
+    label: "Etapa"
+    description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
   }
 
-  dimension_group: dt_ultimo_status {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DT_ULTIMO_STATUS" ;;
-    label: "Último Status"
-    description: "Indica a data do último status"
-  }
+  #dimension_group: dt_ultimo_status { -- dimensão duplicada
+  #  type: time
+  #  timeframes: [
+  #    raw,
+  #    time,
+  #    date,
+  #    week,
+  #    month,
+  #    quarter,
+  #    year,
+  #    time_of_day,
+  #    month_name,
+  #    day_of_year,
+  #    hour_of_day,
+  #    month_num
+  #  ]
+  #  sql: ${TABLE}."DT_ULTIMO_STATUS" ;;
+  #  label: "Último Status"
+  #  description: "Indica a data do último status"
+  #}
 
   dimension: etapa {
     type: string
     sql: ${TABLE}."ETAPA" ;;
-    label: "Etapa"
-    description: "Etapa do último status do aluno"
+    group_label: "Dados da Etapa"
+    group_item_label: "Etapa"
+    description: "Etapas da esteira de contratação do PRAVALER"
   }
 
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
-    label: "ID CPF"
+    group_label: "Dados da Proposta"
+    group_item_label: "ID CPF"
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 
   dimension: id_elegivel {
     type: number
     sql: ${TABLE}."ID_ELEGIVEL" ;;
-    label: "ID Elegivel"
+    group_label: "Dados da Proposta"
+    group_item_label: "ID Elegivel"
     description: "Indica o código de elegibilidade"
   }
 
   dimension: id_proposta {
     type: number
     sql: ${TABLE}."ID_PROPOSTA" ;;
-    label: "ID Proposta"
+    group_label: "Dados da Proposta"
+    group_item_label: "ID Proposta"
     description: "Número de identificação da proposta"
   }
 
   dimension: proposta_ativa {
     type: string
     sql: ${TABLE}."PROPOSTA_ATIVA" ;;
-    label: "Proposta Ativa?"
+    group_label: "Dados da Proposta"
+    group_item_label: "Proposta Ativa?"
     description: "Indica se a proposta está ativa (Sim - Não)"
   }
 
   dimension: semestre_financiamento {
     type: string
     sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
-    label: "Semestre Financiado"
+    group_label: "Dados da Proposta"
+    group_item_label: "Semestre Financiado"
     description: "Indica o semestre financiado"
   }
 
   dimension: status_etapa {
     type: number
     sql: ${TABLE}."STATUS_ETAPA" ;;
-    label: "Status Etapa"
-    description: "Indica se o status está ativo(1) ou não (0)"
+    group_label: "Dados da Etapa"
+    group_item_label: "Status Etapa"
+    description: "Indica se o aluno passou pela etapa ou não. 1 = Sim; 0 = Não"
   }
 
   dimension: tipo_proposta {
     type: string
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
-    label: "Tipo de Proposta"
+    group_label: "Dados da Proposta"
+    group_item_label: "Tipo de Proposta"
     description: "Indica o tipo da proposta (ex. Novo, Renovação)"
-  }
-
-  dimension: ult_status_detalhado {
-    type: string
-    sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
-    label: "Último Status Detalhado"
-    description: "Indica o último status detalhado"
-  }
-
-  dimension: ult_status_geral {
-    type: number
-    sql: ${TABLE}."ULT_STATUS_GERAL" ;;
-    label: "Último Status Geral"
-    description: "Indica o último status geral"
   }
 
   dimension_group: data_inicio_da_proposta {
@@ -149,26 +129,26 @@ view: jornada {
     description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
   }
 
-  dimension_group: data_status {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DT_STATUS" ;;
-    label: "Etapa"
-    description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
-  }
+  #dimension_group: data_status { -- dimensão duplicada
+  #  type: time
+  #  timeframes: [
+  #    raw,
+  #    time,
+  #    date,
+  #    week,
+  #    month,
+  #    quarter,
+  #    year,
+  #    time_of_day,
+  #    month_name,
+  #    day_of_year,
+  #    hour_of_day,
+  #    month_num
+  #  ]
+  #  sql: ${TABLE}."DT_STATUS" ;;
+  #  label: "Etapa"
+  #  description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
+  #}
 
   dimension_group: data_ultimo_status {
     type: time
@@ -211,7 +191,7 @@ view: jornada {
   }
 
 
-  dimension: ultimo_status {
+  dimension: ultimo_status_detalhado {
     type: string
     sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
     group_label: "Telemetria"
@@ -222,7 +202,7 @@ view: jornada {
 
   dimension: ultimo_status_geral {
     type: number
-    sql: left(${ultimo_status},position('.',${ultimo_status})-1) ;;
+    sql: ${TABLE}."ULT_STATUS_GERAL" ;;
     group_label: "Telemetria"
     group_item_label: "Último Status da Proposta - Geral"
     description: "Indica a última alteração de status que a proposta teve, somente com o status pai"
@@ -299,51 +279,51 @@ view: jornada {
     type: string
     case: {
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (0,1) ;;
+        sql: ${ultimo_status_geral} in (0,1) ;;
         label: "Preenchendo Proposta"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1) = 2 ;;
+        sql: ${ultimo_status_geral} = 2 ;;
         label: "Análise de Risco"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1) in (8,9,10,19) ;;
+        sql: ${ultimo_status_geral} in (8,9,10,19) ;;
         label: "Não Aprovado por Risco"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (11) ;;
+        sql: ${ultimo_status_geral} in (11) ;;
         label: "Tela da Instituição"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (13,14,39,36) ;;
+        sql: ${ultimo_status_geral} in (13,14,39,36) ;;
         label: "Não Aprovado pela Instituição"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (25) ;;
+        sql: ${ultimo_status_geral} in (25) ;;
         label: "Preenchendo Dados Adicionais"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (31) ;;
+        sql: ${ultimo_status_geral} in (31) ;;
         label: "Aprovado para Geração de Contrato"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (40,42) ;;
+        sql: ${ultimo_status_geral} in (40,42) ;;
         label: "Formalização"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (41) ;;
+        sql: ${ultimo_status_geral} in (41) ;;
         label: "Formalizado"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (46,47,49) ;;
+        sql: ${ultimo_status_geral} in (46,47,49) ;;
         label: "Não Aprovado pela Formalização"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (50) ;;
+        sql: ${ultimo_status_geral} in (50) ;;
         label: "Cedido"
       }
       when: {
-        sql: left(${ult_status_detalhado},position('.',${ult_status_detalhado})-1)  in (51) ;;
+        sql: ${ultimo_status_geral} in (51) ;;
         label: "Segundo Repasse"
       }
       else: "Outros"
@@ -356,6 +336,7 @@ view: jornada {
   measure: count {
     type: count
     drill_fields: [id_proposta]
+    hidden: yes
   }
 
   measure: lead {
@@ -670,36 +651,246 @@ view: jornada {
    measure: count_cpf {
      type: count_distinct
      sql: ${id_cpf} ;;
-     label: "Quantidade de Alunos"
+     group_label: "Quantidade de Alunos"
+     group_item_label: "Valor"
      description: "Contagem de CPFs únicos"
    }
 
   measure: perc_cpf {
     type: percent_of_total
     sql: ${id_cpf} ;;
-    label: "Percentual de Alunos"
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
     description: "Percentual do total de alunos"
   }
 
   measure: count_proposta {
     type: count_distinct
     sql: ${id_proposta} ;;
-    label: "Quantidade de Propostas"
+    group_label: "Quantidade de Propostas"
+    group_item_label: "Valor"
     description: "Contagem de Propostas"
   }
 
   measure: perc_proposta {
     type: percent_of_total
     sql: ${id_proposta} ;;
-    label: "Percentual de Propostas"
+    group_label: "Quantidade de Propostas"
+    group_item_label: "Porcentagem"
     description: "Percentual do total de propostas"
   }
 
-   measure: conversao {
-     type: number
-     sql: ${cedidos}/nullif(${iniciados},0) ;;
-     value_format: "0.0%"
-     description: "Indica a conversão de iniciados para cedidos, em porcentagem"
-   }
+  measure: conversao {
+    type: number
+    sql: ${cedidos}/nullif(${iniciados},0) ;;
+    value_format: "0.0%"
+    description: "Indica a conversão de iniciados para cedidos, em porcentagem"
+  }
+
+  measure: tempo_status {
+    type: average
+    sql: ${tempo_no_status} ;;
+    group_label: "Tempo no Status Atual"
+    group_item_label: "Dias"
+    value_format: "0"
+    description: "Média de tempo no status"
+  }
+
+  measure: tempo_status_hora {
+    type: average
+    sql: ${tempo_no_status_hora} ;;
+    group_label: "Tempo no Status Atual"
+    group_item_label: "Horas"
+    value_format: "0"
+    description: "Média de horas no status"
+  }
+
+  # Jornada Novos
+  measure: iniciar_proposta_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_ini_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "1. Iniciar Proposta"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser lead e iniciar uma proposta"
+  }
+
+  measure: finalizar_proposta_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_fin_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "2. Finalizar Proposta"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno iniciar e finalizar uma proposta"
+  }
+
+  measure: mesa_risco_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_apr_risco_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "3. Mesa de Risco"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno finalizar uma proposta e ser aprovado por risco"
+  }
+
+  measure: aprovacao_instituicao_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "4. Aprovação da Instituição"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
+
+  measure: confirmacao_dados_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_conf_dados_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "5. Confirmação de Dados Adicionais"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+  }
+
+  measure: geracao_contrato_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_cont_ger_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "6. Geração de Contrato"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter seus dados confirmados e ter seu contrato gerado"
+  }
+
+  measure: assinatura_contrato_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_cont_ass_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "7. Assinatura de Contrato"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
+  }
+
+  measure: formalizacao_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_form_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "8. Formalização"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
+  measure: cessao_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_ced_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "9. Cessão"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno estar formalizado e ser cedido"
+  }
+
+  measure: total_novos {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_total_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "Total"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
+  }
+
+  # Jornada Renovação
+  measure: sla_eleg_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_eleg_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "1. Elegibilidade"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno iniciar uma id_proposta e se tornar elegível"
+  }
+
+  measure: sla_beha_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_beha_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "2. Aprovação Behavior"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser elegível e ser aprovado no behavior"
+  }
+  measure: sla_apr_ies_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "3. Aprovação da Instituição"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+  }
+  measure: sla_dados_conf_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_dados_conf_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "4. Confirmação de Dados"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+  }
+  measure: sla_cont_ger_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_cont_ger_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "5. Geração de Contrato"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter seus dados confirmados e o contrato gerado"
+  }
+  measure: sla_cont_ass_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_cont_ass_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "6. Assinatura de Contrato"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter o contrato gerado e ter o contrato assinado"
+  }
+
+  measure: sla_form_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_form_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "7. Formalização"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
+  measure: sla_ced_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_ced_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "8. Cessão"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno ter o contrado formalizado e cedido."
+  }
+
+  measure: total_renov {
+    type: average_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_total_renov} ;;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "Total"
+    value_format: "0"
+    description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
+  }
 
 }
