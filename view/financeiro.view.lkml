@@ -753,7 +753,7 @@ view: financeiro {
     type: sum
     sql: ${vl_pago_credito} ;;
     value_format: "$ #,###"
-    group_label: "Valor Pago -  Crédito"
+    group_label: "Valor Pago - Crédito"
     group_item_label: "Soma"
     description: "Soma do valor de pagamentos por crédito"
   }
@@ -792,7 +792,7 @@ view: financeiro {
     type: sum
     sql: ${vl_pago_debito} ;;
     value_format: "$ #,###"
-    group_label: "Valor Pago -  Débito"
+    group_label: "Valor Pago - Débito"
     group_item_label: "Soma"
     description: "Soma do valor de pagamentos por débito"
   }
