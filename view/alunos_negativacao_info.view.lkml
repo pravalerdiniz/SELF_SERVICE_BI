@@ -84,7 +84,7 @@ view: alunos_negativacao_info {
     }
 
     dimension: flg_negativado {
-      type: string
+      type: yesno
       label: "Negativado?"
       description: "Indica se o aluno ou garantidor está negativado"
       sql: ${TABLE}."FLG_NEGATIVADO" ;;
