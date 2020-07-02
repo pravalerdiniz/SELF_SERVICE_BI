@@ -109,7 +109,7 @@ view: proposta {
   dimension: campanha_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Campanha de Conversão"
+    label: "URL Conversão - Campanha"
     description: "Indica qual a campanha de acesso para conversão do aluno. EX: Orgânico, Paid Social, Core Business."
     sql: ${TABLE}."CAMPANHA_ACESSO_CONVERSAO" ;;
   }
@@ -117,7 +117,7 @@ view: proposta {
   dimension: campanha_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Campanha de Descoberta"
+    label: "URL Descoberta - Campanha"
     description: "Indica qual a campanha de acesso do aluno para preenchimento da proposta. EX: Orgânico, Paid Social, Core Business."
     sql: ${TABLE}."CAMPANHA_ACESSO_DESCOBERTA" ;;
   }
@@ -125,7 +125,7 @@ view: proposta {
   dimension: canal_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Canal de Conversão"
+    label: "URL Conversão - Canal"
     description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
     sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
   }
@@ -133,7 +133,7 @@ view: proposta {
   dimension: canal_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Canal de Descoberta"
+    label: "URL Descoberta - Canal"
     description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
     sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA" ;;
   }
@@ -576,7 +576,7 @@ view: proposta {
   dimension: ds_url_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - URL de Conversão"
+    label: "URL Conversão - Descrição"
     description: "Indica o canal de URL associada conversão do aluno no site do PRAVALER."
     sql: ${TABLE}."DS_URL_CONVERSAO" ;;
   }
@@ -584,7 +584,7 @@ view: proposta {
   dimension: ds_url_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - URL de Descoberta"
+    label: "URL Descoberta - Descrição"
     description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
     sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
   }
@@ -1068,7 +1068,7 @@ view: proposta {
   dimension: midia_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Midia de Conversão"
+    label: "URL Conversão - Midia"
     description: "Indica qual midia de acesso para conversão do aluno no PRAVALER."
     sql: ${TABLE}."MIDIA_ACESSO_CONVERSAO" ;;
   }
@@ -1076,7 +1076,7 @@ view: proposta {
   dimension: midia_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
-    label: "Acesso - Midia de Descoberta"
+    label:  "URL Descoberta - Midia"
     description: "Indica qual midia de acesso do aluno no PRAVALER."
     sql: ${TABLE}."MIDIA_ACESSO_DESCOBERTA" ;;
   }
