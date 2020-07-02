@@ -34,7 +34,8 @@ view: alunos_negativacao_info {
 
     measure: count {
       type: count_distinct
-      label: "Quantidade de Alunos"
+      sql: ${id_cpf} ;;
+      group_label: "Quantidade de Alunos"
       drill_fields: [detail*]
     }
 
@@ -42,7 +43,7 @@ view: alunos_negativacao_info {
       type: sum
       group_label: "Quantidade de Dias"
       group_item_label: "Soma"
-      description: "Soma da Quantidade de Dias de Atraso do aluno"
+      description: "Soma da Quantidade de Dias de Atraso do aluno ou fiador"
       sql: ${qtd_dias_atraso} ;;
     }
 
@@ -51,7 +52,7 @@ view: alunos_negativacao_info {
       type: average
       group_label: "Quantidade de Dias"
       group_item_label: "Média"
-      description: "Média da Quantidade de Dias de Atraso do aluno"
+      description: "Média da Quantidade de Dias de Atraso do aluno ou fiador"
       sql: ${qtd_dias_atraso} ;;
     }
 
@@ -72,7 +73,7 @@ view: alunos_negativacao_info {
     dimension_group: data_insercao {
       type: time
       label: "Data de Inserção"
-      description: "Indica a data de inserção do aluno"
+      description: "Indica a data de inserção do aluno ou fiador"
       sql: ${TABLE}."DATA_INSERCAO" ;;
     }
 
