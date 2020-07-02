@@ -33,8 +33,8 @@ view: alunos_negativacao_info {
     }
 
     measure: count {
-      type: count_distinct
-      label: "Quantidade de Alunos"
+      type: count
+      label: "Quantidade de Documentos"
       drill_fields: [detail*]
     }
 
@@ -42,7 +42,7 @@ view: alunos_negativacao_info {
       type: sum
       group_label: "Quantidade de Dias"
       group_item_label: "Soma"
-      description: "Soma da Quantidade de Dias de Atraso do aluno"
+      description: "Soma da quantidade de dias de atraso para negativação"
       sql: ${qtd_dias_atraso} ;;
     }
 
@@ -51,7 +51,7 @@ view: alunos_negativacao_info {
       type: average
       group_label: "Quantidade de Dias"
       group_item_label: "Média"
-      description: "Média da Quantidade de Dias de Atraso do aluno"
+      description: "Média da quantidade de dias de atraso para negativação"
       sql: ${qtd_dias_atraso} ;;
     }
 
@@ -72,35 +72,35 @@ view: alunos_negativacao_info {
     dimension_group: data_insercao {
       type: time
       label: "Data de Inserção"
-      description: "Indica a data de inserção do aluno"
+      description: "Indica a data de inserção do arquivo"
       sql: ${TABLE}."DATA_INSERCAO" ;;
     }
 
     dimension: ds_operacao {
       type: string
       label: "Operação"
-      description: "Indica qual estado do aluno perante o provedor. Ex: Inclusão ou Exclusão"
+      description: "Indica o tipo de operação do arquivo. Ex: Inclusão ou Exclusão"
       sql: ${TABLE}."DS_OPERACAO" ;;
     }
 
     dimension: flg_negativado {
       type: string
       label: "Negativado?"
-      description: "Indica se o aluno está negativado."
+      description: "Indica se o aluno ou garantidor está negativado"
       sql: ${TABLE}."FLG_NEGATIVADO" ;;
     }
 
     dimension: id_processamento {
       type: number
       label: "Etapa de Processamento"
-      description: "Indica o ID da Etapa de Processamento do Aluno."
+      description: "Indica o ID da etapa de processamento do arquivo"
       sql: ${TABLE}."ID_PROCESSAMENTO" ;;
     }
 
     dimension: qtd_dias_atraso {
       type: number
       label: "Quantidade de Dias de Atraso"
-      description: "Indica a quantidade de dias de atraso do aluno referente a negativação."
+      description: "Indica a quantidade de dias de atraso do pagamento referente a negativação"
       sql: ${TABLE}."QTD_DIAS_ATRASO" ;;
     }
 
@@ -114,8 +114,15 @@ view: alunos_negativacao_info {
   dimension: papel {
     type: string
     label: "Papel"
-    description: "Indica qual o papel. Ex: Aluno ou Fiador."
+    description: "Indica qual o papel do negativado. Ex: Aluno ou Fiador."
     sql: ${TABLE}."PAPEL" ;;
+  }
+
+  dimension: key {
+    type: string
+    sql: concat(${id_cpf},'#',${papel},'#',${ds_provedor}) ;;
+    hidden: yes
+    primary_key: yes
   }
 
     set: detail {
