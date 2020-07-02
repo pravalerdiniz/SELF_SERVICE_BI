@@ -1,16 +1,34 @@
 view: alunos_negativacao_info {
     derived_table: {
-      sql: select
-            id_cpf,
-            f.key as ds_provedor,
-            f.value:data_insercao::datetime as data_insercao,
-            f.value:ds_operacao::varchar as ds_operacao,
-            f.value:flg_negativado::boolean as flg_negativado,
-            f.value:id_etapa_processamento::int id_processamento,
-            f.value:qtd_dias_atraso::int as qtd_dias_atraso,
-            f.value:seunum::int as id_senum
-            from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
-            lateral flatten (input => aluno_negativacao_info) f
+      sql: select * from (
+      select
+                  id_cpf,
+                  f.key as ds_provedor,
+                  f.value:data_insercao::datetime as data_insercao,
+                  f.value:ds_operacao::varchar as ds_operacao,
+                  f.value:flg_negativado::boolean as flg_negativado,
+                  f.value:id_etapa_processamento::int id_processamento,
+                  f.value:qtd_dias_atraso::int as qtd_dias_atraso,
+                  f.value:seunum::int as id_senum,
+                  'Aluno' papel
+                  from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
+                  lateral flatten (input => aluno_negativacao_info) f
+
+      union all
+
+      select
+                  id_cpf,
+                  f.key as ds_provedor,
+                  f.value:data_insercao::datetime as data_insercao,
+                  f.value:ds_operacao::varchar as ds_operacao,
+                  f.value:flg_negativado::boolean as flg_negativado,
+                  f.value:id_etapa_processamento::int id_processamento,
+                  f.value:qtd_dias_atraso::int as qtd_dias_atraso,
+                  f.value:seunum::int as id_senum,
+                  'Fiador' papel
+                  from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
+                  lateral flatten (input => fia_negativacao_info) f
+      ) a
  ;;
     }
 
@@ -93,6 +111,13 @@ view: alunos_negativacao_info {
       sql: ${TABLE}."ID_SENUM" ;;
     }
 
+  dimension: papel {
+    type: string
+    label: "Papel"
+    description: "Indica qual o papel. Ex: Aluno ou Fiador."
+    sql: ${TABLE}."PAPEL" ;;
+  }
+
     set: detail {
       fields: [
         id_cpf,
@@ -102,8 +127,8 @@ view: alunos_negativacao_info {
         flg_negativado,
         id_processamento,
         qtd_dias_atraso,
-        id_senum
+        id_senum,
+        papel
       ]
     }
   }
-
