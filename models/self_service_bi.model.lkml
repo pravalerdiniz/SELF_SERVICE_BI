@@ -275,6 +275,9 @@ join: alunos_produtos_aprovados {
   relationship: one_to_many
   }
 
+
+
+
   join: alunos_maturidade_info {
     view_label: "1.2 Maturidade Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_maturidade_info.id_cpf} ;;
@@ -282,6 +285,15 @@ join: alunos_produtos_aprovados {
     relationship: one_to_many
 
  }
+
+
+  join: alunos_negativacao_info{
+    view_label: "1.3 Negativação Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
 
 
 

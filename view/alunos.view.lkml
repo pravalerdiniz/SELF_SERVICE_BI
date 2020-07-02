@@ -11,6 +11,8 @@ view: alunos {
 
   }
 
+
+
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -674,7 +676,7 @@ view: alunos {
     type: yesno
     sql: ${TABLE}."FLG_ALUNO_ATIVO" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "Proposta Ativa?"
+    group_item_label: "Aluno ativo?"
     description: "Indica se a proposta está ativa (yes/no)"
   }
 
