@@ -15,7 +15,6 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Celular"
-    hidden: yes
     description: "Indica o número de celular do aluno"
     sql: ${TABLE}."ALUNO_CELULAR" ;;
     required_access_grants: [grupo_telefone]
@@ -33,7 +32,6 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "E-mail"
-    hidden: yes
     description: "Indica o e-mail do aluno"
     sql: ${TABLE}."ALUNO_EMAIL" ;;
     required_access_grants: [grupo_email]
@@ -68,7 +66,6 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Nome"
-    hidden: yes
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
     required_access_grants: [grupo_nome]

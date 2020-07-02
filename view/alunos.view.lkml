@@ -171,7 +171,7 @@ view: alunos {
     group_label: "Dados do Aluno"
     group_item_label: "Nacionalidade"
     description: "Indica a nacionalidade do aluno"
-    hidden: yes
+
   }
 
   dimension: natureza_ocupacao {
@@ -290,7 +290,7 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Nacionalidade do Fiador"
     description: "Indica a nacionalidade do fiador"
-    hidden: yes
+
   }
 
   dimension: fia_natureza_ocupacao {
