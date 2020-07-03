@@ -22,26 +22,31 @@ view: alunos_maturidade_info {
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+    description: "Indica o ID do CPF do Aluno"
   }
 
   dimension: ano_mes {
     type: string
     sql: ${TABLE}."ANO_MES" ;;
+    description: "Mês de observação"
   }
 
   dimension: mob {
     type: number
     sql: ${TABLE}."MOB" ;;
+    description: "Mês de observação relativo à data de cessão"
   }
 
   dimension: dias_atraso_cpf {
     type: number
     sql: ${TABLE}."DIAS_ATRASO_CPF" ;;
+    description: "Maior tempo de atraso no pagamento no mês de observação"
   }
 
   dimension: maturidade {
     type: number
     sql: ${TABLE}."MATURIDADE" ;;
+    description: "Tempo que o aluno está ativo na carteira"
   }
 
   dimension: over15 {
