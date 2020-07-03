@@ -675,9 +675,9 @@ view: alunos {
   dimension: flg_aluno_ativo {
     type: yesno
     sql: ${TABLE}."FLG_ALUNO_ATIVO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Aluno"
     group_item_label: "Aluno ativo?"
-    description: "Indica se a proposta está ativa (yes/no)"
+    description: "Indica se o aluno está financeiramente ativo (yes/no)"
   }
 
 
