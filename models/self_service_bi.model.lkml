@@ -330,12 +330,13 @@ explore: inep {
   view_label: "Inep"
   description: "Censo da Educacional Superior de 2014 a 2018"
 
-  join: curso_qtd_vagas_inep {
-    type: left_outer
-    sql_on: ${inep.id_curso} = ${curso_qtd_vagas_inep.id_curso} ;;
-    fields: []
-    relationship: many_to_one
+  join: inep_curso_qtd_vagas_inep {
+  view_label: "Inep - Quantidade de Vagas Curso"
 
+    type: left_outer
+    sql_on: ${inep.id_curso} = ${inep_curso_qtd_vagas_inep.id_curso} ;;
+    relationship: many_to_one
+    fields: []
 
   }
 }

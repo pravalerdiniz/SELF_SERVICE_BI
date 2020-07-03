@@ -1,4 +1,4 @@
-view: curso_qtd_vagas_inep {
+view: inep_curso_qtd_vagas_inep {
   derived_table: {
     sql: SELECT ID_CURSO,
        DS_CURSO,
