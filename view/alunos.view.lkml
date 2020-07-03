@@ -758,6 +758,7 @@ view: alunos {
     ]
     convert_tz: no
     datatype: date
+    description: "Indica a data de matricula do aluno no curso"
     sql: ${TABLE}."DATA_MATRICULA" ;;
   }
 
@@ -773,6 +774,8 @@ view: alunos {
       year
     ]
     sql: ${TABLE}."DATA_PRIMEIRA_CESSAO" ;;
+    label: "Primeira Cessão"
+    description: "Indica a data da primeira cessão do aluno dentro do PRAVALER"
   }
 
   dimension_group: data_ultima_cessao {
@@ -787,6 +790,8 @@ view: alunos {
       year
     ]
     sql: ${TABLE}."DATA_ULTIMA_CESSAO" ;;
+    label: "Última Cessão"
+    description: "Indica a data da última cessão (mais recente) do aluno dentro do PRAVALER"
   }
 
   dimension_group: previsao_formatura {
@@ -802,6 +807,8 @@ view: alunos {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."PREVISAO_FORMATURA" ;;
+    label: "Previsão de Formatura"
+    description: "Indica a data de prevista para formatura do aluno"
   }
 
   dimension: id_fundo_investimento {
@@ -940,14 +947,11 @@ view: alunos {
     description: "Indica o valor total do financiamento do Aluno"
   }
 
-  measure: count {
-    type: count
-    drill_fields: [id_cpf]
-  }
+
 
   measure: count_id_cpf {
     type: count_distinct
-    sql: ${id_cpf}cpf} ;;
+    sql: ${id_cpf} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
@@ -1120,21 +1124,6 @@ view: alunos {
   }
 
 
-  measure: count_proposta {
-    type: count_distinct
-    sql: ${id_proposta_atual} ;;
-    drill_fields: [id_cpf,id_proposta_atual]
-    group_label: "Quantidade de Propostas"
-    group_item_label: "Valor"
-    description: "Contagem única de propostas"
-  }
 
-  measure: perc_proposta {
-    type: percent_of_total
-    sql: ${count_proposta} ;;
-    group_label: "Quantidade de Propostas"
-    group_item_label: "Porcentagem"
-    description: "Porcentagem do total de propostas únicas"
-  }
 
 }
