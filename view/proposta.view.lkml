@@ -511,7 +511,7 @@ view: proposta {
     type: string
     case: {
       when: {
-        sql: ${vl_ult_status}  in (0,1) ;;
+        sql: ${vl_ult_status}  like  '0%'   ;;
         label: "Preenchendo Proposta"
       }
       when: {
@@ -561,6 +561,7 @@ view: proposta {
       else: "Outros"
     }
     group_label: "Jornada"
+    hidden: yes
     group_item_label: "Etapa Atual"
     description: "Etapa do último status do aluno"
 

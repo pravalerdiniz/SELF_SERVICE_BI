@@ -743,6 +743,7 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "4. Aprovação da Instituição"
     value_format: "0"
+    drill_fields: [id_cpf,id_proposta,dt_status_date]
     description: "Média da diferença de data, em dias, entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
