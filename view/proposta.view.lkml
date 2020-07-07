@@ -927,6 +927,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "ID CPF"
     description: "Indica o código de referência do CPF do aluno."
+    value_format: "#"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -936,6 +937,7 @@ dimension: cpf_aluno {
   group_label: "Dados do Aluno"
   label: "CPF do Aluno"
   description: "Indica o CPF do Aluno"
+  value_format: "#"
   sql: ${TABLE}."CPF_ALUNO" ;;
 
 }
@@ -975,6 +977,7 @@ dimension: cpf_aluno {
     label: "CPF do Fiador"
     description: "Indica o CPF do Fiador"
     sql: ${TABLE}."CPF_FIADOR" ;;
+    value_format: "#"
 
   }
 

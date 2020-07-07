@@ -215,6 +215,7 @@ view: jornada {
     group_label: "Telemetria"
     group_item_label: "Tempo no Status"
     description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
   dimension: tempo_no_status_hora {
