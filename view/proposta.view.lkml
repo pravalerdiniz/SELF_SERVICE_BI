@@ -930,6 +930,20 @@ view: proposta {
     sql: ${TABLE}."ID_CPF" ;;
   }
 
+
+dimension: cpf_aluno {
+  type: number
+  group_label: "Dados do Aluno"
+  label: "CPF do Aluno"
+  description: "Indica o CPF do Aluno"
+  sql: ${TABLE}."CPF_ALUNO" ;;
+
+}
+
+
+
+
+
   dimension: id_curso {
     type: number
     group_label: "Dados do Curso"
@@ -953,6 +967,21 @@ view: proposta {
     description: "Indica o ID de referência do CPF do fiador do aluno."
     sql: ${TABLE}."ID_FIA_CPF" ;;
   }
+
+
+  dimension: cpf_garantidor {
+    type: number
+    group_label: "Dados do Fiador"
+    label: "CPF do Fiador"
+    description: "Indica o CPF do Fiador"
+    sql: ${TABLE}."CPF_FIADOR" ;;
+
+  }
+
+
+
+
+
 
   dimension: id_fundo_investimento {
     type: number
