@@ -27,6 +27,10 @@ access_grant: grupo_renda {
   allowed_values: ["grupo_renda"]
 }
 
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
 
 map_layer: MAPA_ESTADO_ALUNO {
   file: "/MAPAS/uf.json"
