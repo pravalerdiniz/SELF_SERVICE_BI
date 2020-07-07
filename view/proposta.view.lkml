@@ -939,12 +939,9 @@ dimension: cpf_aluno {
   description: "Indica o CPF do Aluno"
   value_format: "#"
   sql: ${TABLE}."CPF_ALUNO" ;;
+  required_access_grants: [grupo_cpf]
 
 }
-
-
-
-
 
   dimension: id_curso {
     type: number
@@ -978,13 +975,8 @@ dimension: cpf_aluno {
     description: "Indica o CPF do Fiador"
     sql: ${TABLE}."CPF_FIADOR" ;;
     value_format: "#"
-
+    required_access_grants: [grupo_cpf]
   }
-
-
-
-
-
 
   dimension: id_fundo_investimento {
     type: number
