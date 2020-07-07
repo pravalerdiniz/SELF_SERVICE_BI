@@ -334,6 +334,64 @@ view: jornada {
     description: "Etapa do último status do aluno"
   }
 
+
+  dimension: etapa_ultimo_status_renovacao {
+    type: string
+    case: {
+      when: {
+        sql: ${ultimo_status_geral} in (2000,2001,2002) ;;
+        label: "Pré Elegibilidade"
+      }
+      when: {
+        sql: ${ultimo_status_geral} = 2010 ;;
+        label: "Aguardando Análise Behavior"
+      }
+
+      when: {
+        sql: ${ultimo_status_geral} in (2011) ;;
+        label: "Tela da Instituição"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2031,2036) ;;
+        label: "Aguardando Confirmação dos Dados"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2040) ;;
+        label: "Aprovação para geração de Contrato"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2042,2044) ;;
+        label: "Formalização"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2041) ;;
+        label: "Formalizado"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (46,47,49) ;;
+        label: "Não Aprovado pela Formalização"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2050) ;;
+        label: "Cedido"
+      }
+
+      else: "Outros"
+    }
+    group_label: "Telemetria"
+    group_item_label: "Etapa Atual - Renovação"
+    description: "Etapa do último status do aluno de renovação"
+  }
+
+
+
+
+
+
+
+
+
+
   measure: count {
     type: count
     drill_fields: [id_proposta]
