@@ -511,7 +511,7 @@ view: proposta {
     type: string
     case: {
       when: {
-        sql: ${vl_ult_status}  in (0,1) ;;
+        sql: ${vl_ult_status}  like  '0%'   ;;
         label: "Preenchendo Proposta"
       }
       when: {
@@ -561,6 +561,7 @@ view: proposta {
       else: "Outros"
     }
     group_label: "Jornada"
+    hidden: yes
     group_item_label: "Etapa Atual"
     description: "Etapa do último status do aluno"
 
@@ -926,8 +927,24 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "ID CPF"
     description: "Indica o código de referência do CPF do aluno."
+    value_format: "#"
     sql: ${TABLE}."ID_CPF" ;;
   }
+
+
+dimension: cpf_aluno {
+  type: number
+  group_label: "Dados do Aluno"
+  label: "CPF do Aluno"
+  description: "Indica o CPF do Aluno"
+  value_format: "#"
+  sql: ${TABLE}."CPF_ALUNO" ;;
+
+}
+
+
+
+
 
   dimension: id_curso {
     type: number
@@ -952,6 +969,22 @@ view: proposta {
     description: "Indica o ID de referência do CPF do fiador do aluno."
     sql: ${TABLE}."ID_FIA_CPF" ;;
   }
+
+
+  dimension: cpf_garantidor {
+    type: number
+    group_label: "Dados do Fiador"
+    label: "CPF do Fiador"
+    description: "Indica o CPF do Fiador"
+    sql: ${TABLE}."CPF_FIADOR" ;;
+    value_format: "#"
+
+  }
+
+
+
+
+
 
   dimension: id_fundo_investimento {
     type: number

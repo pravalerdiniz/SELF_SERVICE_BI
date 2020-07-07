@@ -215,6 +215,7 @@ view: jornada {
     group_label: "Telemetria"
     group_item_label: "Tempo no Status"
     description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
   dimension: tempo_no_status_hora {
@@ -688,12 +689,12 @@ view: jornada {
   }
 
   measure: tempo_status {
-    type: average
+    type: median
     sql: ${tempo_no_status} ;;
     group_label: "Tempo no Status Atual"
     group_item_label: "Dias"
     value_format: "0"
-    description: "Média de tempo no status"
+    description: "Mediana de tempo no status"
   }
 
   measure: tempo_status_hora {
@@ -743,6 +744,7 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "4. Aprovação da Instituição"
     value_format: "0"
+    drill_fields: [id_cpf,id_proposta,dt_status_date]
     description: "Média da diferença de data, em dias, entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
