@@ -689,12 +689,12 @@ view: jornada {
   }
 
   measure: tempo_status {
-    type: average
+    type: median
     sql: ${tempo_no_status} ;;
     group_label: "Tempo no Status Atual"
     group_item_label: "Dias"
     value_format: "0"
-    description: "Média de tempo no status"
+    description: "Mediana de tempo no status"
   }
 
   measure: tempo_status_hora {
