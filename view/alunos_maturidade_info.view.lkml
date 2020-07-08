@@ -3,7 +3,7 @@ view: alunos_maturidade_info {
     sql: select
             id_cpf,
             f.key as ano_mes,
-            f.value:mob::int as mob,
+            f.value:MOB::int as mob,
             f.value:dias_atraso_cpf::int as dias_atraso_cpf,
             f.value:maturidade::int as maturidade,
             f.value:over15::boolean as over15,
