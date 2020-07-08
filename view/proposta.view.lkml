@@ -1263,7 +1263,7 @@ dimension: cpf_aluno {
   dimension: regional_original {
     type: string
     group_label: "Dados da Regional"
-    label: "Regional - Atual"
+    label: "Regional - Original"
     description: "Indica a regional atribuida ao campus na data de inicio da proposta"
     sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
   }
