@@ -7,7 +7,7 @@ view: beneficiados {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "ID_CPF"
+    group_item_label: "ID_CPF do Aluno"
     description: "Indica o ID do CPF do aluno"
   }
 
@@ -16,7 +16,7 @@ view: beneficiados {
     sql: ${TABLE}."RENDA_DO_ALUNO" ;;
     value_format: "$ #,##0.00"
     group_label: "Dados do Aluno"
-    group_item_label: "Renda"
+    group_item_label: "Renda do Aluno"
     description: "Indica a renda do aluno"
     required_access_grants: [grupo_renda]
   }
@@ -25,7 +25,7 @@ view: beneficiados {
     type: string
     sql: ${TABLE}."SEXO_DO_ALUNO" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Sexo"
+    group_item_label: "Sexo do Aluno"
     description: "Indica o sexo do aluno"
   }
 
@@ -33,7 +33,7 @@ view: beneficiados {
     type: string
     sql: ${TABLE}."UF_DO_ALUNO" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "UF"
+    group_item_label: "UF do Aluno"
     description: "Indica a UF do aluno"
   }
 
@@ -41,7 +41,7 @@ view: beneficiados {
     sql: ${TABLE}."UF_DO_ALUNO" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados do Aluno"
-    group_item_label: "UF - Mapa"
+    group_item_label: "UF do Aluno - Mapa"
     description: "Indica a UF do aluno, pode ser usado em gráficos de mapa"
   }
 
@@ -50,7 +50,7 @@ view: beneficiados {
     type: string
     sql: ${TABLE}."CIDADE_DO_ALUNO" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Cidade"
+    group_item_label: "Cidade do Aluno"
     description: "Indica a cidade do aluno"
   }
 
@@ -58,7 +58,7 @@ view: beneficiados {
     type: number
     sql: ${TABLE}."IDADE_DO_ALUNO" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Idade"
+    group_item_label: "Idade do Aluno"
     description: "Indica a idade do aluno"
   }
 

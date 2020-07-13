@@ -56,7 +56,7 @@ view: jornada {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "ID CPF"
+    group_item_label: "ID CPF do Aluno"
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 

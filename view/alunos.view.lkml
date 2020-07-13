@@ -26,7 +26,7 @@ view: alunos {
   dimension: aluno_idade {
     type: number
     group_label: "Dados do Aluno"
-    group_item_label: "Idade"
+    group_item_label: "Idade do Aluno"
     description: "Indica a idade atual do aluno"
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
@@ -42,7 +42,7 @@ view: alunos {
   dimension: aluno_nome {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Nome"
+    group_item_label: "Nome do Aluno"
     description: "Indica o nome do aluno"
     sql: ${TABLE}."ALUNO_NOME" ;;
     required_access_grants: [grupo_nome]
@@ -67,7 +67,7 @@ view: alunos {
   dimension: celular {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Celular"
+    group_item_label: "Celular do Aluno"
     description: "Indica o número do celular do aluno"
     sql: ${TABLE}."CELULAR" ;;
     required_access_grants: [grupo_telefone]
@@ -76,7 +76,7 @@ view: alunos {
   dimension: cep {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "CEP"
+    group_item_label: "CEP do Aluno"
     description: "Indica o número do CEP correspondente ao endereço do aluno"
     sql: ${TABLE}."CEP" ;;
     required_access_grants: [grupo_endereco]
@@ -85,7 +85,7 @@ view: alunos {
   dimension: cidade {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Cidade"
+    group_item_label: "Cidade do Aluno"
     description: "Indica a cidade que o aluno reside"
     sql: ${TABLE}."CIDADE" ;;
   }
@@ -102,7 +102,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."EMAIL" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "E-mail"
+    group_item_label: "E-mail do Aluno"
     description: "Indica o e-mail do aluno"
     required_access_grants: [grupo_email]
     suggestable: no
@@ -111,8 +111,8 @@ view: alunos {
   dimension: endereco {
     type: string
     sql: ${TABLE}."ENDERECO" ;;
-    group_label: "Dados do Aluno"
-    group_item_label: "Endereço"
+    group_label: "Dados do Aluno "
+    group_item_label: "Endereço do Aluno"
     description: "Indica o e-endereço do aluno"
     required_access_grants: [grupo_endereco]
   }
@@ -121,7 +121,7 @@ view: alunos {
     type: number
     sql: ${TABLE}."RENDA_MENSAL" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Renda Mensal"
+    group_item_label: "Renda Mensal do Aluno"
     description: "Indica a renda mensal do aluno"
     required_access_grants: [grupo_renda]
   }
@@ -130,7 +130,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."TIPO_RESIDENCIA" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Tipo de Residência"
+    group_item_label: "Tipo de Residência do Aluno"
     description: "Indica o tipo do residência do aluno (ex.: alugada, própria financiada, etc)"
   }
 
@@ -138,7 +138,7 @@ view: alunos {
     type: number
     sql: ${TABLE}."NUMERO_DEPENDENTES" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Número de dependentes"
+    group_item_label: "Número de dependentes do Aluno"
     description: "Indica o número de dependentes do aluno"
   }
 
@@ -154,7 +154,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."ESTADO_CIVIL" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Estado Civil"
+    group_item_label: "Estado Civil do Aluno"
     description: "Indica o estado civil do aluno"
   }
 
@@ -162,7 +162,7 @@ view: alunos {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "ID do CPF"
+    group_item_label: "ID do CPF do Aluno"
     primary_key: yes
     description: "Indica o ID do CPF do Aluno"
   }
@@ -171,7 +171,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."NACIONALIDADE" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Nacionalidade"
+    group_item_label: "Nacionalidade do Aluno"
     description: "Indica a nacionalidade do aluno"
 
   }
@@ -188,7 +188,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."PROFISSAO" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Profissão"
+    group_item_label: "Profissão do Aluno"
     description: "Indica a profissão do aluno"
   }
 
@@ -204,7 +204,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."UF" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "UF"
+    group_item_label: "UF do Aluno"
     description: "Indica a UF do aluno"
   }
 
@@ -212,7 +212,7 @@ view: alunos {
     sql: ${TABLE}."UF" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados do Aluno"
-    group_item_label: "UF - Mapa"
+    group_item_label: "UF do Aluno - Mapa"
     description: "Indica a UF do aluno, pode ser usado em gráficos de mapa"
   }
 
@@ -222,16 +222,16 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_BAIRRO" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Bairro do Fiador"
-    description: "Indica o bairro do fiador"
+    group_item_label: "Bairro do Garantidor"
+    description: "Indica o bairro do Garantidor"
   }
 
   dimension: fia_celular {
     type: string
     sql: ${TABLE}."FIA_CELULAR" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Celular do Fiador"
-    description: "Indica o celular do fiador"
+    group_item_label: "Celular do Garantidor"
+    description: "Indica o celular do Garantidor"
     required_access_grants: [grupo_telefone]
   }
 
@@ -239,8 +239,8 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_CEP" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "CEP do Fiador"
-    description: "Indica o CEP do fiador"
+    group_item_label: "CEP do Garantidor"
+    description: "Indica o CEP do Garantidor"
     required_access_grants: [grupo_endereco]
   }
 
@@ -248,16 +248,16 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_CIDADE" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Cidade do Fiador"
-    description: "Indica a cidade do fiador"
+    group_item_label: "Cidade do Garantidor"
+    description: "Indica a cidade do Garantidor"
   }
 
   dimension: fia_email {
     type: string
     sql: ${TABLE}."FIA_EMAIL" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "E-mail do Fiador"
-    description: "Indica o e-mail do fiador"
+    group_item_label: "E-mail do Garantidor"
+    description: "Indica o e-mail do Garantidor"
     required_access_grants: [grupo_email]
   }
 
@@ -265,8 +265,8 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_ENDERECO" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Endereço do Fiador"
-    description: "Indica o endereço do fiador"
+    group_item_label: "Endereço do Garantidor"
+    description: "Indica o endereço do Garantidor"
     required_access_grants: [grupo_endereco]
   }
 
@@ -274,24 +274,24 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_ESCOLARIDADE" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Escolaridade do Fiador"
-    description: "Indica a escolaridade do fiador"
+    group_item_label: "Escolaridade do Garantidor"
+    description: "Indica a escolaridade do Garantidor"
   }
 
   dimension: fia_estado_civil {
     type: string
     sql: ${TABLE}."FIA_ESTADO_CIVIL" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Estado Civil do Fiador"
-    description: "Indica o estado civil do fiador"
+    group_item_label: "Estado Civil do Garantidor"
+    description: "Indica o estado civil do Garantidor"
   }
 
   dimension: fia_nacionalidade {
     type: string
     sql: ${TABLE}."FIA_NACIONALIDADE" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Nacionalidade do Fiador"
-    description: "Indica a nacionalidade do fiador"
+    group_item_label: "Nacionalidade do Garantidor"
+    description: "Indica a nacionalidade do Garantidor"
 
   }
 
@@ -299,16 +299,16 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_NATUREZA_OCUPACAO" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Natureza da Ocupação do Fiador"
-    description: "Indica a natureza da ocupação do fiador"
+    group_item_label: "Natureza da Ocupação do Garantidor"
+    description: "Indica a natureza da ocupação do Garantidor"
   }
 
   dimension: fia_nome {
     type: string
     sql: ${TABLE}."FIA_NOME" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Nome do Fiador"
-    description: "Indica o nome do fiador"
+    group_item_label: "Nome do Garantidor"
+    description: "Indica o nome do Garantidor"
     required_access_grants: [grupo_nome]
   }
 
@@ -316,24 +316,24 @@ view: alunos {
     type: number
     sql: ${TABLE}."FIA_NUMERO_DEPENDENTES" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Número de Dependentes do Fiador"
-    description: "Indica o número de dependentes do fiador se houver"
+    group_item_label: "Número de Dependentes do Garantidor"
+    description: "Indica o número de dependentes do Garantidor se houver"
   }
 
   dimension: fia_profissao {
     type: string
     sql: ${TABLE}."FIA_PROFISSAO" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Profissão do Fiador"
-    description: "Indica a profissão do fiador"
+    group_item_label: "Profissão do Garantidor"
+    description: "Indica a profissão do Garantidor"
   }
 
   dimension: fia_renda_mensal {
     type: number
     sql: ${TABLE}."FIA_RENDA_MENSAL" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Renda Mensal do Fiador"
-    description: "Indica a renda mensal do fiador"
+    group_item_label: "Renda Mensal do Garantidor"
+    description: "Indica a renda mensal do Garantidor"
     required_access_grants: [grupo_renda]
   }
 
@@ -349,16 +349,16 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_TIPO_RESIDENCIA" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Tipo da Residência do Fiador"
-    description: "Indica o tipo de residência do fiador (ex.: alugada / própria quitada)"
+    group_item_label: "Tipo da Residência do Garantidor"
+    description: "Indica o tipo de residência do Garantidor (ex.: alugada / própria quitada)"
   }
 
   dimension: fia_uf {
     type: string
     sql: ${TABLE}."FIA_UF" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "UF do Fiador"
-    description: "Indica a UF do fiador"
+    group_item_label: "UF do Garantidor"
+    description: "Indica a UF do Garantidor"
   }
 
   dimension: mapa_uf_fiador {
@@ -366,7 +366,7 @@ view: alunos {
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados da Família e Garantidor"
     group_item_label: "UF - Mapa"
-    description: "Indica a UF do fiador, pode ser usado em gráficos de mapa"
+    description: "Indica a UF do Garantidor, pode ser usado em gráficos de mapa"
   }
 
 
@@ -392,8 +392,8 @@ view: alunos {
     type: number
     sql: ${TABLE}."ID_FIA_CPF_ATUAL" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "ID do CPF do Fiador"
-    description: "Indica o ID do CPF do fiador"
+    group_item_label: "ID do CPF do Garantidor"
+    description: "Indica o ID do CPF do Garantidor"
   }
 
   dimension: renda_fam_mensal {
