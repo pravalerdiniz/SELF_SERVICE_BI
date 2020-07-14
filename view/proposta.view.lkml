@@ -2480,5 +2480,9 @@ view: proposta {
     required_access_grants: [grupo_renda]
   }
 
+  measure: count_linhas {
+    type: count
+    drill_fields: []
+  }
 
 }
