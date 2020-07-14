@@ -426,6 +426,20 @@ view: proposta {
     {% endfor %} ;;
   }
 
+  dimension: motivo_rejeicao_doc {
+    type: string
+    group_label: "Dados da Formalização"
+    label: "Motivo de rejeição do documento"
+    description: "Indica todos os motivos de reijeição dos documentos para formalização"
+    sql: ${TABLE}."MOTIVO_REJEICAO_DOCUMENTO" ;;
+    html:
+    {% assign words = value| split: ','%}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
+  }
+
   dimension: ds_aluno_trabalha {
     type: string
     group_label: "Dados do Aluno"
