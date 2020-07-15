@@ -8,18 +8,18 @@ view: proposta_docs_pendentes {
        ;;
   }
 
-
-
   measure: count {
     type: count
     drill_fields: [detail*]
-    hidden: yes
-    label: "Quantidade"
+    hidden: no
+    label: "Documentos Pendentes"
+    description: "Quantidade de documentos pendentes por proposta durante a formalização"
   }
 
   dimension: id_proposta {
     type: number
     hidden: yes
+    primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
