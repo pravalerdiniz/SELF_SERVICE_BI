@@ -2455,6 +2455,34 @@ view: proposta {
     required_access_grants: [grupo_renda]
   }
 
+  dimension: qtd_arquivos_fila_interfile {
+    type: number
+    group_label: "Formalização"
+    description:"Indica a quantidade de arquivos na fila da Interfile."
+    sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
+  }
+
+  measure: sum_qtd_arquivos_fila_interfile {
+    type: sum
+    group_label: "Formalização"
+    sql:${qtd_arquivos_fila_interfile};;
+    description: "Soma da quantidade de arquivos na fila da Interfile."
+  }
+
+  dimension: qtd_arquivos_enviados {
+    type: number
+    group_label: "Formalização"
+    description:"Indica a quantidade de arquivos enviados para Interfile."
+    sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
+  }
+
+  measure: sum_qtd_arquivos_enviados {
+    type: sum
+    group_label: "Formalização"
+    sql:${qtd_arquivos_enviados};;
+    description: "Soma da quantidade de arquivos enviados para Interfile."
+  }
+
   measure: count_linhas {
     type: count
     drill_fields: []
