@@ -251,6 +251,19 @@ join: proposta_docs_pendentes {
   type: left_outer
 }
 
+  join: proposta_docs_entregues {
+    view_label: "1.2 Documentos Entregues"
+    sql_on: ${proposta_docs_entregues.id_proposta} = ${proposta.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_motivo_rejeicao_docs {
+    view_label: "1.3 Documentos Rejeitados"
+    sql_on: ${proposta_motivo_rejeicao_docs.id_proposta} = ${proposta.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
 
   join: status {

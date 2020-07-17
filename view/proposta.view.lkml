@@ -302,11 +302,6 @@ view: proposta {
   }
 
 
-
-
-
-
-
   dimension_group: data_fechamento_proposta {
     type: time
     timeframes: [
@@ -426,11 +421,11 @@ view: proposta {
     {% endfor %} ;;
   }
 
-  dimension: motivo_rejeicao_doc {
+  dimension: motivo_rejeicao_documento {
     type: string
     group_label: "Dados da Formalização"
     label: "Motivo de rejeição do documento"
-    description: "Indica todos os motivos de reijeição dos documentos para formalização"
+    description: "Indica todos os motivos de rejeição dos documentos para formalização"
     sql: ${TABLE}."MOTIVO_REJEICAO_DOCUMENTO" ;;
     html:
     {% assign words = value| split: ','%}
@@ -579,13 +574,7 @@ view: proposta {
     group_item_label: "Etapa Atual"
     description: "Etapa do último status do aluno"
 
-
-
-
-
-
-
-  }
+}
 
 
   dimension: ds_url_conversao {
@@ -603,8 +592,6 @@ view: proposta {
     description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
     sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
   }
-
-
 
 
   dimension: enfase_curso {
@@ -2082,16 +2069,6 @@ view: proposta {
     description: "Máximo do valor da rematricula do aluno por contrato"
   }
 
-
-  measure: sum_qtd_doc_pendentes {
-    type: sum
-    group_label: "Formalização"
-    group_item_label: "Quantidade de Documentos Pendentes"
-    sql:${qtd_docs_pendentes};;
-    description: "Soma da quantidade de documentos pendentes por proposta durante a formalização"
-  }
-
-
   measure: sum_taxa_mensal {
     type: sum
     group_label: "Taxa"
@@ -2107,8 +2084,6 @@ view: proposta {
     sql:${tx_mensal_aluno};;
     description: "Soma do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
   }
-
-
 
 
   measure: sum_taxa_anual {
@@ -2478,6 +2453,34 @@ view: proposta {
     group_item_label: "Média"
     description: "Média da renda do aluno"
     required_access_grants: [grupo_renda]
+  }
+
+  dimension: qtd_arquivos_fila_interfile {
+    type: number
+    group_label: "Formalização"
+    description:"Indica a quantidade de arquivos na fila da Interfile."
+    sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
+  }
+
+  measure: sum_qtd_arquivos_fila_interfile {
+    type: sum
+    group_label: "Formalização"
+    sql:${qtd_arquivos_fila_interfile};;
+    description: "Soma da quantidade de arquivos na fila da Interfile."
+  }
+
+  dimension: qtd_arquivos_enviados {
+    type: number
+    group_label: "Formalização"
+    description:"Indica a quantidade de arquivos enviados para Interfile."
+    sql: ${TABLE}."QTD_ARQUIVOS_ENVIADOS" ;;
+  }
+
+  measure: sum_qtd_arquivos_enviados {
+    type: sum
+    group_label: "Formalização"
+    sql:${qtd_arquivos_enviados};;
+    description: "Soma da quantidade de arquivos enviados para Interfile."
   }
 
   measure: count_linhas {
