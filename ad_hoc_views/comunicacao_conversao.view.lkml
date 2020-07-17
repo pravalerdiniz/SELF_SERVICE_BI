@@ -35,6 +35,7 @@ view: comunicacao_conversao {
     type: number
     sql: ${TABLE}."CPF" ;;
     hidden: yes
+    primary_key: yes
   }
 
   dimension_group: data_contato {
