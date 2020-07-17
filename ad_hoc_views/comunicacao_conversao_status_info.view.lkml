@@ -30,6 +30,7 @@ view: comunicacao_conversao_status_info {
     type: string
     sql: ${TABLE}."ID_LOG" ;;
     label: "ID do Log"
+    primary_key: yes
   }
 
   dimension_group: data_log {
@@ -42,6 +43,11 @@ view: comunicacao_conversao_status_info {
     ]
     sql: ${TABLE}."DATA_LOG" ;;
     label: "Log"
+  }
+
+  dimension: tempo_no_status {
+    type: number
+    sql: datediff('day',data_log,current_date) ;;
   }
 
   dimension: id_proposta_log {
