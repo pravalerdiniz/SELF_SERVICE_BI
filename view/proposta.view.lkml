@@ -2473,7 +2473,7 @@ view: proposta {
     type: number
     group_label: "Formalização"
     description:"Indica a quantidade de arquivos enviados para Interfile."
-    sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
+    sql: ${TABLE}."QTD_ARQUIVOS_ENVIADOS" ;;
   }
 
   measure: sum_qtd_arquivos_enviados {
