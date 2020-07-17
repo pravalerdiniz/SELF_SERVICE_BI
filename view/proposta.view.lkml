@@ -6,7 +6,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Calouro/Veterano?"
-    hidden: yes
+    hidden: no
     description: "Indica se o aluno é calouro ou veterano"
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
