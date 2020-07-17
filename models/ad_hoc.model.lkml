@@ -20,7 +20,10 @@ include: "/*/*.view.lkml"                # include all views in the views/ folde
 # }
 
 explore: comunicacao_conversao {
+  label: "Comunicação Conversão"
+  view_label: "Comunicação Conversão"
   join: comunicacao_conversao_status_info {
+    view_label: "Status Log Pós Contato"
     type: left_outer
     relationship: one_to_many
     sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
