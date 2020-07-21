@@ -459,6 +459,14 @@ view: proposta {
     sql: ${TABLE}."DS_COMO_SOUBE" ;;
   }
 
+  dimension: como_soube_canal {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "Como Soube Canal"
+    description: "Indica por qual canal de comunicação que o aluno conheceu o PRAVALER."
+    sql: ${TABLE}."COMO_SOUBE_CANAL" ;;
+  }
+
   dimension: ds_como_soube_complemento {
     type: string
     group_label: "Dados de Marketing"
@@ -1139,6 +1147,15 @@ view: proposta {
     description: "Indica o nome do produto."
     suggestable: yes
     sql: ${TABLE}."NM_PRODUTO" ;;
+  }
+
+  dimension: nm_produto_comercial {
+    type: string
+    group_label: "Dados do Produto"
+    label: "Produto Agrupado"
+    description: "Indica o nome do produto com agrupamento pré-definido. Ex: Compartilhado, Gestão e FIDC."
+    suggestable: yes
+    sql: ${TABLE}."NM_PRODUTO_COMERCIAL" ;;
   }
 
   dimension: num_da_renovacao {
