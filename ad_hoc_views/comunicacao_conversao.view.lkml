@@ -34,8 +34,9 @@ view: comunicacao_conversao {
   dimension: cpf {
     type: number
     sql: ${TABLE}."CPF" ;;
-    hidden: yes
+    label: "CPF"
     primary_key: yes
+    required_access_grants: [grupo_cpf]
   }
 
   dimension_group: data_contato {
@@ -89,7 +90,7 @@ view: comunicacao_conversao {
 
   dimension: tempo_resposta {
     type: number
-    sql: datediff('day',${pri_status_pos_contato_date},${data_contato_date}) ;;
+    sql: datediff('day',${data_contato_date},${pri_status_pos_contato_date}) ;;
   }
 
   dimension: score_original {

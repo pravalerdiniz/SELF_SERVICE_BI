@@ -19,6 +19,11 @@ include: "/*/*.view.lkml"                # include all views in the views/ folde
 #   }
 # }
 
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
+
 explore: comunicacao_conversao {
   label: "Comunicação Conversão"
   view_label: "Comunicação Conversão"
