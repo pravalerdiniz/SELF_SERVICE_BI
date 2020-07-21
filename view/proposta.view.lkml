@@ -462,7 +462,7 @@ view: proposta {
   dimension: como_soube_canal {
     type: string
     group_label: "Dados de Marketing"
-    label: "Como Soube Canal"
+    label: "Como Soube agrupado por Canal"
     description: "Indica por qual canal de comunicação que o aluno conheceu o PRAVALER."
     sql: ${TABLE}."COMO_SOUBE_CANAL" ;;
   }
