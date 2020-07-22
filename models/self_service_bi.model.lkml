@@ -39,7 +39,7 @@ map_layer: MAPA_ESTADO_ALUNO {
 map_layer: MAPA_CIDADE_ALUNO {
   file: "/MAPAS/municipio.json"
 }
-include: "/*/*.view.lkml"
+include: "/**/*.view.lkml"
 
 datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;

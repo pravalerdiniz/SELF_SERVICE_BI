@@ -381,7 +381,7 @@ view: instituicao {
   }
 
   dimension: id_campus {
-    type: number
+    type: string
     group_label: "Dados de Campus - IE"
     label:"ID do Campus"
     description:"Indica o  ID do Campus"
@@ -389,7 +389,7 @@ view: instituicao {
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     group_label:"Dados do Curso - IE"
     label:"ID do Curso"
     description:"Indica o ID do Curso"
@@ -397,7 +397,7 @@ view: instituicao {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     group_label: "Dados da Instituição"
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"

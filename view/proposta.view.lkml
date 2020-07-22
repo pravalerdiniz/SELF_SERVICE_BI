@@ -908,7 +908,7 @@ view: proposta {
   }
 
   dimension: id_campus {
-    type: number
+    type: string
     group_label: "Dados do Campus"
     label: "ID Campus"
     description: "Indica o ID do campus."
@@ -924,7 +924,7 @@ view: proposta {
   }
 
   dimension: id_contrato_conjunto {
-    type: number
+    type: string
     group_label: "Dados do Contrato"
     label: "ID Contrato Conjunto"
     description: "Indica o ID do Contrato Conjunto do Aluno. Segunda Etapa do contrato do aluno novo."
@@ -953,7 +953,7 @@ view: proposta {
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     group_label: "Dados do Curso"
     label: "ID Curso"
     description: "Indica o ID do Curso do aluno."
@@ -1004,7 +1004,7 @@ view: proposta {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     group_label: "Dados da Instituição"
     label: "ID Instituição"
     description: "Indica o ID da instituição."
@@ -1020,7 +1020,7 @@ view: proposta {
   }
 
   dimension: id_produto {
-    type: number
+    type: string
     group_label: "Dados do Produto"
     label: "ID Produto"
     description: "Indica o ID Produto PRAVALER."
@@ -1042,7 +1042,7 @@ view: proposta {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     group_label: "Dados da Proposta"
     label: "ID Proposta"
     description: "Indica o ID da proposta do aluno."

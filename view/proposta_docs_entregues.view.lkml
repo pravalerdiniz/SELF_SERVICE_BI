@@ -17,7 +17,7 @@ view: proposta_docs_entregues {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     hidden: yes
     primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;

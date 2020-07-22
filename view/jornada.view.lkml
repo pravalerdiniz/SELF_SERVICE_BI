@@ -69,7 +69,7 @@ view: jornada {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID Proposta"

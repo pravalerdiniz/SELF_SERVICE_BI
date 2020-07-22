@@ -3,7 +3,7 @@ view: alunos_produtos_aprovados {
     sql: select
       id_cpf,
       f.key as id_proposta,
-      f.value:id_produto::number as id_produto,
+      f.value:id_produto::varchar as id_produto,
       f.value:nm_modalidade_produto::varchar as nm_modalidade_produto,
       f.value:nm_produto::varchar as nm_produto
       from "SELF_SERVICE_BI"."ALUNOS" a,
@@ -31,7 +31,7 @@ view: alunos_produtos_aprovados {
   }
 
   dimension: id_produto {
-    type: number
+    type: string
     group_item_label: "ID do Produto"
     description: "Indica o ID do Produto aprovado para o aluno por proposta"
     sql: ${TABLE}."ID_PRODUTO" ;;
