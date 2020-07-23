@@ -1348,7 +1348,7 @@ view: proposta {
   dimension: tipo_atual {
     type: string
     group_label: "Dados da Regional"
-    label: "Tipo - Atual"
+    label: "Tipo de Representante - Atual"
     description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
     sql: ${TABLE}."TIPO_ATUAL" ;;
   }
@@ -1356,7 +1356,7 @@ view: proposta {
   dimension: tipo_original {
     type: string
     group_label: "Dados da Regional"
-    label: "Tipo - Original"
+    label: "Tipo de Representante - Original"
     description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
     sql: ${TABLE}."TIPO_ORIGINAL" ;;
   }
@@ -2474,28 +2474,32 @@ view: proposta {
 
   dimension: qtd_arquivos_fila_interfile {
     type: number
-    group_label: "Formalização"
+    label: "Quantidade de arquivos na fila"
+    group_label: "Dados da Formalização"
     description:"Indica a quantidade de arquivos na fila da Interfile."
     sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
   }
 
   measure: sum_qtd_arquivos_fila_interfile {
     type: sum
-    group_label: "Formalização"
+    label: "Quantidade de arquivos na fila"
+    group_label: "Dados da Formalização"
     sql:${qtd_arquivos_fila_interfile};;
     description: "Soma da quantidade de arquivos na fila da Interfile."
   }
 
   dimension: qtd_arquivos_enviados {
     type: number
-    group_label: "Formalização"
+    label: "Quantidade de arquivos enviados"
+    group_label: "Dados da Formalização"
     description:"Indica a quantidade de arquivos enviados para Interfile."
     sql: ${TABLE}."QTD_ARQUIVOS_ENVIADOS" ;;
   }
 
   measure: sum_qtd_arquivos_enviados {
     type: sum
-    group_label: "Formalização"
+    label: "Quantidade de arquivos enviados"
+    group_label: "Dados da Formalização"
     sql:${qtd_arquivos_enviados};;
     description: "Soma da quantidade de arquivos enviados para Interfile."
   }
