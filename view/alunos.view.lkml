@@ -454,7 +454,7 @@ view: alunos {
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CURSO" ;;
     group_label: "Dados do Curso"
     group_item_label: "ID Curso"
@@ -519,7 +519,7 @@ view: alunos {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     group_label:  "Dados da Instituição"
     group_item_label: "ID da IE"
@@ -535,7 +535,7 @@ view: alunos {
   }
 
   dimension: id_campus {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CAMPUS" ;;
     group_label:  "Dados da Instituição"
     group_item_label: "ID do Campus"
@@ -682,7 +682,7 @@ view: alunos {
 
 
   dimension: id_proposta_atual {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID da Proposta Atual"
@@ -707,7 +707,7 @@ view: alunos {
 
 
   dimension: id_produto {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PRODUTO" ;;
     group_label: "Dados do Produto"
     group_item_label: "ID do Produto"

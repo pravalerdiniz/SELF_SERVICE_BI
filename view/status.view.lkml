@@ -189,7 +189,7 @@ view: status {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
     label: "ID Proposta"
     description: "Indica o ID da proposta"

@@ -223,7 +223,7 @@ view: financeiro {
   }
 
   dimension: id_contrato {
-    type: number
+    type: string
     group_label: "Dados do Aluno"
     label: "ID do Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"

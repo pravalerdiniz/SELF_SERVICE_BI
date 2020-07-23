@@ -230,7 +230,7 @@ view: beneficiados {
 
 
     dimension: id_proposta {
-      type: number
+      type: string
       sql: ${TABLE}."ID_PROPOSTA" ;;
       primary_key: yes
       group_label: "Dados do Contrato"

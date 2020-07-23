@@ -39,7 +39,7 @@ view: jornada_pivot {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
     hidden: yes
   }
