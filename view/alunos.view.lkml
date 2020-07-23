@@ -111,7 +111,7 @@ view: alunos {
   dimension: endereco {
     type: string
     sql: ${TABLE}."ENDERECO" ;;
-    group_label: "Dados do Aluno "
+    group_label: "Dados do Aluno"
     group_item_label: "Endereço do Aluno"
     description: "Indica o e-endereço do aluno"
     required_access_grants: [grupo_endereco]
