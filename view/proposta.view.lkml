@@ -990,7 +990,7 @@ view: proposta {
     group_label: "Dados do Garantidor"
     label: "CPF do Garantidor"
     description: "Indica o CPF do Garantidor"
-    sql: ${TABLE}."CPF_FIADOR" ;;
+    sql: ${TABLE}."CPF_GARANTIDOR" ;;
     value_format: "#"
     required_access_grants: [grupo_cpf]
   }
