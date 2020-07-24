@@ -859,6 +859,14 @@ view: proposta {
     sql: ${TABLE}."FLG_PROPOSTA_ATIVA" ;;
   }
 
+  dimension: flg_proposta_nao_seguiu {
+    type: yesno
+    group_label: "Dados da Proposta"
+    label: "Proposta Renovação Inativa?"
+    description: "Indica se a proposta está inativa no PRAVALER."
+    sql: ${TABLE}."FLG_PROPOSTA_NAO_SEGUIU" ;;
+  }
+
   dimension: flg_testemunhas_assinaram {
     type: yesno
     group_label: "Dados do Contrato"
