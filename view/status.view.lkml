@@ -219,6 +219,7 @@ view: status {
     sql: ${id_cpf} ;;
     value_format: "#,###"
     label: "Quantidade de CPFs"
+    drill_fields: [id_cpf,id_proposta]
     description: "Contagem de CPFs únicos"
   }
 
