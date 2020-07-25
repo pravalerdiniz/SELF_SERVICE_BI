@@ -163,7 +163,6 @@ explore: jornada {
 fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.ds_ult_status,
   - proposta.id_status_detalhado,
-  - proposta.vl_ult_status,
   - proposta.tipo_proposta,
   - proposta.id_proposta,
   - proposta.flg_proposta_ativa,
