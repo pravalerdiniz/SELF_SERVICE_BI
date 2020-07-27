@@ -45,7 +45,7 @@ view: status {
 
     dimension: id {
       primary_key: yes
-      type: number
+      type: string
       sql: ${TABLE}."ID" ;;
       group_label: "Dados do Status"
       group_item_label: "ID"
