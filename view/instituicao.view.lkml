@@ -193,8 +193,9 @@ view: instituicao {
     {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
-    <li>word</li>
+    <li>{{word}}</li>
     {% endfor %} ;;
+
 
   }
 
