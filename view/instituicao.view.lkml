@@ -206,10 +206,10 @@ view: instituicao {
     description: "Indica todos os originadores inativos para determinado curso da instituição."
     sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
     html:
-    {% assign words = value| split: ',' %}
+     {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
-    <li>word</li>
+    <li>{{word}}</li>
     {% endfor %} ;;
 
   }
