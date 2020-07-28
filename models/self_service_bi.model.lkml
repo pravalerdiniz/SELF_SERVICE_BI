@@ -161,10 +161,8 @@ explore: jornada {
   view_label: "1. Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
 fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
-  - proposta.id_status_geral,
   - proposta.ds_ult_status,
   - proposta.id_status_detalhado,
-  - proposta.vl_ult_status,
   - proposta.tipo_proposta,
   - proposta.id_proposta,
   - proposta.flg_proposta_ativa,
