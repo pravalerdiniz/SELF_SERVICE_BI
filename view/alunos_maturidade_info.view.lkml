@@ -3,12 +3,13 @@ view: alunos_maturidade_info {
     sql: select
             id_cpf,
             f.key as ano_mes,
-            f.value:MOB::int as mob,
+            f.value:FPD::boolean as FPD,
+            f.value:MOB::int as MOB,
             f.value:dias_atraso_cpf::int as dias_atraso_cpf,
             f.value:maturidade::int as maturidade,
-            f.value:over15::boolean as over15,
-            f.value:over30::boolean as over30,
-            f.value:over60::boolean as over60
+            f.value:OVER15::boolean as over15,
+            f.value:OVER30::boolean as over30,
+            f.value:OVER60::boolean as over60
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => maturidade_info) f
  ;;
@@ -29,6 +30,12 @@ view: alunos_maturidade_info {
     type: string
     sql: ${TABLE}."ANO_MES" ;;
     description: "Mês de observação"
+  }
+
+  dimension: fpd {
+    type: string
+    sql: ${TABLE}."FPD" ;;
+
   }
 
   dimension: mob {
@@ -67,6 +74,7 @@ view: alunos_maturidade_info {
   set: detail {
     fields: [
       id_cpf,
+      fpd,
       ano_mes,
       mob,
       dias_atraso_cpf,
