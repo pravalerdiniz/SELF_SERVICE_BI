@@ -33,7 +33,7 @@ view: alunos_maturidade_info {
   }
 
   dimension: fpd {
-    type: string
+    type: yesno
     sql: ${TABLE}."FPD" ;;
 
   }
@@ -57,17 +57,17 @@ view: alunos_maturidade_info {
   }
 
   dimension: over15 {
-    type: string
+    type: yesno
     sql: ${TABLE}."OVER15" ;;
   }
 
   dimension: over30 {
-    type: string
+    type: yesno
     sql: ${TABLE}."OVER30" ;;
   }
 
   dimension: over60 {
-    type: string
+    type: yesno
     sql: ${TABLE}."OVER60" ;;
   }
 

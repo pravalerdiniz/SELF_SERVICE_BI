@@ -407,7 +407,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Lead"
@@ -424,7 +424,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Iniciado"
@@ -441,7 +441,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Finalizado"
@@ -458,7 +458,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Aprovado Risco"
@@ -475,7 +475,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Aprovado Instituição"
@@ -492,7 +492,7 @@ view: jornada {
     }
     filters: {
         field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Contrato Gerado"
@@ -509,7 +509,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Contrato Assinado"
@@ -526,7 +526,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Formalizado"
@@ -543,7 +543,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Cedido"
@@ -562,7 +562,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Iniciado"
@@ -579,7 +579,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Elegível"
@@ -596,7 +596,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Aprovado Behavior"
@@ -613,7 +613,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Aprovado Instituição"
@@ -630,7 +630,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Dados Confirmados"
@@ -647,7 +647,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Contrato Gerado"
@@ -664,7 +664,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Contrato Assinado"
@@ -681,7 +681,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Formalizado"
@@ -698,7 +698,7 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Cedido"
