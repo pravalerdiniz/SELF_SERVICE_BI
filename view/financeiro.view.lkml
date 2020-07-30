@@ -53,7 +53,6 @@ view: financeiro {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
     label: "Despesa"
     description: "Indica a Data que a despesa pode ser cobrada"
     sql: ${TABLE}."DATA_DESPESA" ;;
