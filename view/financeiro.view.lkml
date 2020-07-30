@@ -7,10 +7,13 @@ view: financeiro {
     timeframes: [
       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
-    group_label: "Status do Boleto"
-    label: "Data de Baixa"
+    label: "Baixa"
     description: "Indica a data de baixa realizada"
     datatype: date
     sql: ${TABLE}."DATA_BAIXA" ;;
@@ -25,11 +28,15 @@ view: financeiro {
     timeframes: [
       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de Compra"
+
+    label: "Compra"
     description: "Indica a Data de Compra do Título"
     sql: ${TABLE}."DATA_COMPRA" ;;
   }
@@ -37,13 +44,17 @@ view: financeiro {
   dimension_group: data_despesa {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
     group_label: "Dados do Título"
-    label: "Data de Despesa"
+    label: "Despesa"
     description: "Indica a Data que a despesa pode ser cobrada"
     sql: ${TABLE}."DATA_DESPESA" ;;
   }
@@ -51,13 +62,17 @@ view: financeiro {
   dimension_group: data_entrada {
     type: time
     timeframes: [
-      raw,
+        raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de Entrada"
+
+    label: "Entrada"
     description: "Indica a data de Entrada do Título do Sistema"
     sql: ${TABLE}."DATA_ENTRADA" ;;
   }
@@ -65,13 +80,17 @@ view: financeiro {
   dimension_group: data_pagamento {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Boleto"
-    label: "Data de Pagamento"
+
+    label: "Pagamento"
     description: "Indica a data que o boleto foi pago"
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
   }
@@ -79,13 +98,16 @@ view: financeiro {
   dimension_group: data_vencimento {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Boleto"
-    label: "Data de Vencimento"
+    label: "Vencimento"
     description: "Indica a data de vencimento do boleto"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
@@ -93,13 +115,17 @@ view: financeiro {
   dimension_group: data_writeoff {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de WriteOff"
+
+    label: "WriteOff"
     description: "Indica a data de entrada do título no W.O"
     sql: ${TABLE}."DATA_WRITEOFF" ;;
   }
