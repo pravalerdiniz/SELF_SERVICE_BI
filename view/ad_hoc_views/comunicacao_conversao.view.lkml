@@ -16,7 +16,7 @@ view: comunicacao_conversao {
 
   dimension: campanha {
     type: string
-    sql: ${TABLE}."CAMPANHA" ;;
+    sql: upper(${TABLE}."CAMPANHA") ;;
   }
 
   dimension: ced_pos_contato {
@@ -95,7 +95,7 @@ view: comunicacao_conversao {
 
   dimension: score_original {
     type: string
-    sql: ${TABLE}."SCORE_ORIGINAL" ;;
+    sql: coalesce(${TABLE}."SCORE_ORIGINAL",'NA') ;;
   }
 
   dimension: status_pos_contato {
