@@ -173,6 +173,7 @@ view: status {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -191,6 +192,7 @@ view: status {
   dimension: id_proposta {
     type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
+    group_label: "Dados da Proposta"
     label: "ID Proposta"
     description: "Indica o ID da proposta"
   }
@@ -198,6 +200,7 @@ view: status {
   dimension: tipo_proposta {
     type: string
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
+    group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
     description: "Indica o tipo da proposta"
   }
@@ -205,6 +208,7 @@ view: status {
   dimension: vl_vezes_proposta_no_status {
     type: number
     sql: ${TABLE}."VL_VEZES_PROPOSTA_NO_STATUS" ;;
+    group_label: "Dados do Status"
     label: "Número de Vezes no Status"
     description: "Indica o número de vezes em que a proposta passou por determinado status"
   }
@@ -217,7 +221,7 @@ view: status {
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Quantidade de CPFs"
     drill_fields: [id_cpf,id_proposta]
     description: "Contagem de CPFs únicos"
@@ -226,7 +230,7 @@ view: status {
   measure: cont_proposta {
     type: count_distinct
     sql: ${id_proposta} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Quantidade de Propostas"
     description: "Contagem de propostas únicas"
   }
@@ -234,7 +238,7 @@ view: status {
   measure: sum_vl_vezes_proposta_no_status {
     type: sum
     sql: ${vl_vezes_proposta_no_status} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Soma de Vezes Proposta no Status"
     description: " Soma de vezes que a proposta passou pelo status"
   }
