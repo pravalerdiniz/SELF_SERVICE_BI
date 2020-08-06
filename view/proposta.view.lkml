@@ -1612,7 +1612,7 @@ view: proposta {
 
   dimension: classe_modelo_iniciado {
     type: string
-    group_label: "Dados do Aluno"
+    group_label: "Dados da Proposta"
     group_item_label: "Classe - Modelo Iniciados"
     description: "Classificação do aluno de acordo com o seu potencial de conversão"
     sql: ${TABLE}."CLASSE_MODELO_INICIADO" ;;
