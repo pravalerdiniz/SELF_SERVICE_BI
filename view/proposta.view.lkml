@@ -185,7 +185,6 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AA"
-    value_format: "0"
     description: "Indica o valor do Custo Efetivo Total ao ano do contrato."
     sql: ${TABLE}."CET_AA" ;;
   }
@@ -194,7 +193,6 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AM"
-    value_format: "0"
     description: "Indica o valor do Custo Efetivo Total ao mês do contrato."
     sql: ${TABLE}."CET_AM" ;;
   }
@@ -1185,7 +1183,6 @@ view: proposta {
     label: "Porcentagem de Comissão da Instituição"
     description: "Indica a porcentagem de comissão recebida da Instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
-    value_format: "0"
   }
 
   dimension: perc_desagio {
@@ -1194,7 +1191,6 @@ view: proposta {
     label:"Porcentagem de Deságio"
     description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
     sql: ${TABLE}."PERC_DESAGIO" ;;
-    value_format: "0"
   }
 
   dimension: perc_tx_subsidiado_ies {
@@ -1203,7 +1199,6 @@ view: proposta {
     label:"Porcentagem da Taxa Subsidiada"
     description:"Indica a porcentagem da taxa subsidiada pela instituição por contrato."
     sql: ${TABLE}."PERC_TX_SUBSIDIADO_IES" ;;
-    value_format: "0"
   }
 
   dimension: periodo_curso {
@@ -1410,7 +1405,6 @@ view: proposta {
     label: "Taxa Anual"
     description: "Indica o valor da taxa de juros anual do contrato"
     sql: ${TABLE}."TX_ANUAL_TOTAL" ;;
-    value_format: "0"
   }
 
   dimension: tx_mensal_aluno {
@@ -1419,7 +1413,6 @@ view: proposta {
     label: "Taxa Mensal - Aluno"
     description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição. "
     sql: ${TABLE}."TX_MENSAL_ALUNO" ;;
-    value_format: "0"
   }
 
   dimension: tx_mensal_total {
@@ -1428,7 +1421,6 @@ view: proposta {
     label: "Taxa Mensal"
     description: "Indica o valor da taxa de juros mensal do contrato"
     sql: ${TABLE}."TX_MENSAL_TOTAL" ;;
-    value_format: "0"
   }
 
   dimension: uf_campus {
@@ -1670,7 +1662,6 @@ view: proposta {
     direction: "column"
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
-    value_format: "0"
 
   }
 
@@ -1679,7 +1670,6 @@ view: proposta {
   measure: sum_vl_cet_aa  {
     type: sum
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Soma A.A"
     sql:${cet_aa};;
     description: "Soma do valor do custo efetivo Total ao ano do contrato"
@@ -1689,7 +1679,6 @@ view: proposta {
     type: average
     group_label: "Custo Efetivo Total"
     group_item_label: "Média A.A"
-    value_format: "0"
     sql:${cet_aa};;
     description: "Média do valor dp custo efetivo Total ao ano do contrato"
   }
@@ -1697,7 +1686,6 @@ view: proposta {
   measure: min_vl_cet_aa  {
     type: min
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Mínimo A.A"
     sql:${cet_aa};;
     description: "Mínimo do valor do  custo efetivo Total ao ano do contrato"
@@ -1707,7 +1695,6 @@ view: proposta {
   measure: max_vl_cet_aa  {
     type: max
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Máximo A.A"
     sql:${cet_aa};;
     description: "Máximo do valor do custo efetivo Total ao ano do contrato"
@@ -1717,7 +1704,6 @@ view: proposta {
   measure: sum_vl_cet_am  {
     type: sum
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Soma A.M"
     sql:${cet_am};;
     description: "Soma do valor do custo efetivo Total ao mês do contrato"
@@ -1726,7 +1712,6 @@ view: proposta {
   measure: avg_vl_cet_am  {
     type: average
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Média A.M"
     sql:${cet_am};;
     description: "Média do valor do custo efetivo Total ao mês do contrato"
@@ -1735,7 +1720,6 @@ view: proposta {
   measure: min_vl_cet_am  {
     type: min
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Mínimo A.M"
     sql:${cet_am};;
     description: "Mínimo do valor do custo efetivo Total ao mês do contrato"
@@ -1745,7 +1729,6 @@ view: proposta {
   measure: max_vl_cet_am  {
     type: max
     group_label: "Custo Efetivo Total"
-    value_format: "0"
     group_item_label: "Máximo A.M"
     sql:${cet_am};;
     description: "Máximo do valor do custo efetivo Total ao mês do contrato"
@@ -1833,7 +1816,6 @@ view: proposta {
   measure: sum_iof {
     type: sum
     group_label: "IOF"
-    value_format: "0"
     group_item_label: "Soma"
     sql:${vl_iof};;
     description: "Soma do valor IOF aplicado ao contrato"
@@ -1842,7 +1824,6 @@ view: proposta {
   measure: avg_iof  {
     type: average
     group_label: "IOF"
-    value_format: "0"
     group_item_label: "Média"
     sql:${vl_iof};;
     description: "Média do valor IOF aplicado ao contrato"
@@ -1851,7 +1832,6 @@ view: proposta {
   measure: min_iof {
     type: min
     group_label: "IOF"
-    value_format: "0"
     group_item_label: "Mínimo"
     sql:${vl_iof};;
     description: "Mínimo do valor IOF aplicado ao contrato"
@@ -1861,7 +1841,6 @@ view: proposta {
   measure: max_iof  {
     type: max
     group_label: "IOF"
-    value_format: "0"
     group_item_label: "Máximo"
     sql:${vl_iof};;
     description: "Máximo do valor IOF aplicado ao contrato"
@@ -2134,7 +2113,6 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Mensal"
     sql:${tx_mensal_total};;
-    value_format: "0"
     description: "Soma do valor da taxa mensal do contrato"
   }
 
@@ -2143,7 +2121,6 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Mensal - Aluno"
     sql:${tx_mensal_aluno};;
-    value_format: "0"
     description: "Soma do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
   }
 
@@ -2153,7 +2130,6 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Anual"
     sql:${tx_anual_total};;
-    value_format: "0"
     description: "Soma do valor da taxa anual do contrato"
   }
 
@@ -2332,7 +2308,6 @@ view: proposta {
     group_item_label: "Desagio % - Soma"
     sql: ${vl_repasse_ies} / ${vl_financiamento};;
     description: "Soma de valor do Desagio % "
-    value_format: "0"
   }
 
   measure: avg_perc_comissao {
@@ -2341,7 +2316,6 @@ view: proposta {
     group_item_label: "Comissão % - Média"
     sql:${perc_comissao};;
     description: "Indica a porcentagem média de comissão paga ao Pravaler por produto contratado"
-    value_format: "0"
   }
 
 
