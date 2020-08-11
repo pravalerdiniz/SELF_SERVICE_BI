@@ -811,6 +811,16 @@ view: proposta {
     sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
   }
 
+  dimension: flg_sem_concessao {
+    type: yesno
+    group_label: "Dados do Contrato"
+    label: "Sem concessão"
+    description: "Indica os contratos gerados sem data de concessão."
+    sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
+  }
+
+
+
   dimension: flg_fia_assinou {
     type: yesno
     group_label: "Dados do Contrato"

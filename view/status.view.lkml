@@ -165,6 +165,14 @@ view: status {
     }
 
 
+  dimension: tempo_no_status {
+    type: number
+    sql: datediff('day',${dt_status_date},current_date) ;;
+    group_item_label: "Tempo no Status"
+    description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf]
+  }
+
   dimension_group: dt_status {
     type: time
     timeframes: [
