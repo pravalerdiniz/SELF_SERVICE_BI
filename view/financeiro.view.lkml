@@ -458,6 +458,7 @@ view: financeiro {
 
   measure: count_titulo {
     type: count
+    value_format: "0"
     group_item_label: "Quantidade de titulos"
     drill_fields: []
   }
@@ -466,14 +467,17 @@ view: financeiro {
   measure: count_alunos {
     type: count_distinct
     sql: ${id_cpf} ;;
+    value_format: "0"
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID_CPFs únicos"
-    drill_fields: [id_cpf, id_contrato,id_boleto,vl_boleto,data_pagamento_date
-
-                            ]
-
-
+    drill_fields: [
+      id_cpf,
+      id_contrato,
+      id_boleto,
+      vl_boleto,
+      data_pagamento_date
+      ]
   }
 
   measure: perc_alunos {
@@ -488,6 +492,7 @@ view: financeiro {
 
   measure: count_atraso {
     type: count
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Quantidade de Boletos em Atraso"
     description: "Indica a quantidade total de boletos em atraso"
@@ -500,6 +505,7 @@ view: financeiro {
   measure: avg_dias_atraso {
     type: average
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Média"
     description: "Média de dias de atraso de pagamento do boleto"
@@ -509,6 +515,7 @@ view: financeiro {
   measure: sum_dias_atraso {
     type: sum
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Soma"
     description: "Soma de dias de atraso de pagamento do boleto"
@@ -521,6 +528,7 @@ view: financeiro {
   measure: max_dias_atraso {
     type: max
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Máximo"
     description: "Valor máximo de dias de atraso do pagamento do boleto"

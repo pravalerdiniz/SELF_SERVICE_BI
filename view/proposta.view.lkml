@@ -74,7 +74,7 @@ view: proposta {
   dimension: aluno_renda {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
     sql: ${TABLE}."ALUNO_RENDA" ;;
@@ -146,6 +146,7 @@ view: proposta {
     label: "Dias de Carência"
     description: "Indica o número em dias da carência do contrato do aluno"
     sql: ${TABLE}."CARENCIA" ;;
+    value_format: "0"
   }
 
   dimension: cargo_atual {
@@ -184,7 +185,6 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AA"
-    value_format: "$ #,##0.00"
     description: "Indica o valor do Custo Efetivo Total ao ano do contrato."
     sql: ${TABLE}."CET_AA" ;;
   }
@@ -193,7 +193,6 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AM"
-    value_format: "$ #,##0.00"
     description: "Indica o valor do Custo Efetivo Total ao mês do contrato."
     sql: ${TABLE}."CET_AM" ;;
   }
@@ -204,6 +203,7 @@ view: proposta {
     label: "Cidade do Campus"
     description: "Indica a cidade correspondente ao campus do aluno."
     sql: ${TABLE}."CIDADE_CAMPUS" ;;
+    value_format: "0"
   }
 
   dimension: cidade_instituicao {
@@ -220,6 +220,7 @@ view: proposta {
     label: "Versão do Contrato"
     description: "Indica o número da versão do contrato."
     sql: ${TABLE}."CONTRATO_VERSAO" ;;
+    value_format: "0"
   }
 
   dimension: conversao_atual {
@@ -258,7 +259,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor - Custo da Cessão"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor de aquisição do contrato na cessão."
     hidden: yes
     sql: ${TABLE}."CUSTO_CESSAO" ;;
@@ -268,7 +269,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor - Custo da Original"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     hidden: yes
     description: "Indica o valor de originação quando o fundo de investimento não é BV (Banco Votorantim)."
     sql: ${TABLE}."CUSTO_ORIGINACAO" ;;
@@ -954,7 +955,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "ID CPF"
     description: "Indica o código de referência do CPF do aluno."
-    value_format: "#"
+    value_format: "0"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -964,7 +965,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "CPF do Aluno"
     description: "Indica o CPF do Aluno"
-    value_format: "#"
+    value_format: "0"
     sql: ${TABLE}."CPF_ALUNO" ;;
     required_access_grants: [grupo_cpf]
 
@@ -992,6 +993,7 @@ view: proposta {
     label: "ID Fiador"
     description: "Indica o ID de referência do CPF do Garantidor do aluno."
     sql: ${TABLE}."ID_FIA_CPF" ;;
+    value_format: "0"
   }
 
 
@@ -1001,7 +1003,7 @@ view: proposta {
     label: "CPF do Garantidor"
     description: "Indica o CPF do Garantidor"
     sql: ${TABLE}."CPF_GARANTIDOR" ;;
-    value_format: "#"
+    value_format: "0"
     required_access_grants: [grupo_cpf]
   }
 
@@ -1019,6 +1021,7 @@ view: proposta {
     label: "Contrato Instituição"
     description: "Indica o número do contrato da instituição com o PRAVALER."
     sql: ${TABLE}."ID_IES_CONTRATO" ;;
+    value_format: "0"
   }
 
   dimension: id_instituicao {
@@ -1286,6 +1289,7 @@ view: proposta {
     label:"Valor de Receita do Correspondente Bancário"
     description:"Indica valor da taxa paga por originador para cada boleto gerado."
     sql: ${TABLE}."RECEITA_CORBAN" ;;
+    value_format: "0"
   }
 
   dimension: regional_atual {
@@ -1316,7 +1320,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Renda Familia"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da renda familia do aluno"
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
     required_access_grants: [grupo_renda]
@@ -1467,7 +1471,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Financiado"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor financiado pelo aluno."
     hidden: yes
     sql: ${TABLE}."VL_FINANCIADO" ;;
@@ -1477,7 +1481,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor total do financiamento do contrato"
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
@@ -1486,7 +1490,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento - Aluno "
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno "
     sql: ${TABLE}."VL_FINANCIAMENTO_ALUNO" ;;
   }
@@ -1495,7 +1499,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor IOF "
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor de IOF aplicado ao contrato "
     sql: ${TABLE}."VL_IOF" ;;
   }
@@ -1504,7 +1508,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade Atual "
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da mensalidade atual do aluno"
     sql: ${TABLE}."VL_MEN_CORRENTE" ;;
   }
@@ -1513,7 +1517,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da mensalidade descrita no contrato"
     sql: ${TABLE}."VL_MENSALIDADE" ;;
   }
@@ -1522,7 +1526,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor da Parcela"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da parcela do contrato."
     hidden: yes
     sql: ${TABLE}."VL_PARCELA" ;;
@@ -1532,7 +1536,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Prestação"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da prestação do contrato"
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
@@ -1541,7 +1545,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Principal"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor principal do contrato."
     hidden: yes
 
@@ -1552,7 +1556,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Rematricula"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da rematricula do aluno por contrato"
     sql: ${TABLE}."VL_REMATRICULA" ;;
   }
@@ -1561,7 +1565,7 @@ view: proposta {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Repasse - Instituição"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor de repasse a instituição de ensino por contrato"
     hidden: yes
     sql: ${TABLE}."VL_REPASSE_IES" ;;
@@ -1573,13 +1577,14 @@ view: proposta {
     label: "Score"
     description: "Indica o valor de Score do aluno"
     sql: ${TABLE}."VL_SCORE" ;;
+    value_format: "0"
   }
 
   dimension: vl_subsidiado {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Subsidiado"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
     hidden: yes
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
@@ -1589,7 +1594,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Tarifa de Cadastro"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da tarifa de cadastro do contrato"
     sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
   }
@@ -1598,7 +1603,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Tarifa de Cadastro - Parcela"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor da parcela da tarifa de cadastro"
     sql: ${TABLE}."VL_TARIFA_PARCELA" ;;
   }
@@ -1607,7 +1612,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Financiado - BV "
-    value_format: "$ #,##0.00"
+    value_format: "0"
     description: "Indica o valor total financiado + valor de IOF da BV. "
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
@@ -1620,17 +1625,27 @@ view: proposta {
     sql: ${TABLE}."VL_ULT_STATUS" ;;
   }
 
+  dimension: classe_modelo_iniciado {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Classe - Modelo Iniciados"
+    description: "Classificação do aluno de acordo com o seu potencial de conversão"
+    sql: ${TABLE}."CLASSE_MODELO_INICIADO" ;;
+  }
+
   measure: count {
     type: count
     group_label: "Proposta"
     group_item_label: "Quantidade de Propostas"
     description: "Contagem de Propostas"
     drill_fields: []
+    value_format: "0"
   }
 
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
+    value_format: "0"
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de CPFs únicos"
@@ -1657,7 +1672,6 @@ view: proposta {
     direction: "column"
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
-    value_format:  "0.00\%"
 
   }
 
@@ -1666,7 +1680,6 @@ view: proposta {
   measure: sum_vl_cet_aa  {
     type: sum
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Soma A.A"
     sql:${cet_aa};;
     description: "Soma do valor do custo efetivo Total ao ano do contrato"
@@ -1676,7 +1689,6 @@ view: proposta {
     type: average
     group_label: "Custo Efetivo Total"
     group_item_label: "Média A.A"
-    value_format: "$ #,##0.00"
     sql:${cet_aa};;
     description: "Média do valor dp custo efetivo Total ao ano do contrato"
   }
@@ -1684,7 +1696,6 @@ view: proposta {
   measure: min_vl_cet_aa  {
     type: min
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Mínimo A.A"
     sql:${cet_aa};;
     description: "Mínimo do valor do  custo efetivo Total ao ano do contrato"
@@ -1694,7 +1705,6 @@ view: proposta {
   measure: max_vl_cet_aa  {
     type: max
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Máximo A.A"
     sql:${cet_aa};;
     description: "Máximo do valor do custo efetivo Total ao ano do contrato"
@@ -1704,7 +1714,6 @@ view: proposta {
   measure: sum_vl_cet_am  {
     type: sum
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Soma A.M"
     sql:${cet_am};;
     description: "Soma do valor do custo efetivo Total ao mês do contrato"
@@ -1713,7 +1722,6 @@ view: proposta {
   measure: avg_vl_cet_am  {
     type: average
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Média A.M"
     sql:${cet_am};;
     description: "Média do valor do custo efetivo Total ao mês do contrato"
@@ -1722,7 +1730,6 @@ view: proposta {
   measure: min_vl_cet_am  {
     type: min
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Mínimo A.M"
     sql:${cet_am};;
     description: "Mínimo do valor do custo efetivo Total ao mês do contrato"
@@ -1732,7 +1739,6 @@ view: proposta {
   measure: max_vl_cet_am  {
     type: max
     group_label: "Custo Efetivo Total"
-    value_format: "$ #,##0.00"
     group_item_label: "Máximo A.M"
     sql:${cet_am};;
     description: "Máximo do valor do custo efetivo Total ao mês do contrato"
@@ -1742,7 +1748,7 @@ view: proposta {
   measure: sum_vl_financiamento {
     type: sum
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Soma"
     sql:${vl_financiamento};;
     description: "Soma do valor total do financiamento do contrato"
@@ -1751,7 +1757,7 @@ view: proposta {
   measure: avg_vl_financiamento  {
     type: average
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Média"
     sql:${vl_financiamento};;
     description: "Média do valor total do financiamento do contrato"
@@ -1760,7 +1766,7 @@ view: proposta {
   measure: min_vl_financiamento {
     type: min
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Mínimo"
     sql:${vl_financiamento};;
     description: "Mínimo do valor total do financiamento do contrato"
@@ -1770,7 +1776,7 @@ view: proposta {
   measure: max_vl_financiamento  {
     type: max
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Máximo"
     sql:${vl_financiamento};;
     description: "Máximo do valor total do financiamento do contrato"
@@ -1782,7 +1788,7 @@ view: proposta {
   measure: sum_vl_financiamento_aluno {
     type: sum
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Aluno - Soma"
     sql:${vl_financiamento_aluno};;
     description: "Soma do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -1791,7 +1797,7 @@ view: proposta {
   measure: avg_vl_financiamento_aluno  {
     type: average
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Aluno - Média"
     sql:${vl_financiamento_aluno};;
     description: "Média do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -1800,7 +1806,7 @@ view: proposta {
   measure: min_vl_financiamento_aluno {
     type: min
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Aluno - Mínimo"
     sql:${vl_financiamento_aluno};;
     description: "Mínimo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -1810,7 +1816,7 @@ view: proposta {
   measure: max_vl_financiamento_aluno  {
     type: max
     group_label: "Financiamento"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Aluno - Máximo"
     sql:${vl_financiamento_aluno};;
     description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -1820,7 +1826,6 @@ view: proposta {
   measure: sum_iof {
     type: sum
     group_label: "IOF"
-    value_format: "$ #,##0.00"
     group_item_label: "Soma"
     sql:${vl_iof};;
     description: "Soma do valor IOF aplicado ao contrato"
@@ -1829,7 +1834,6 @@ view: proposta {
   measure: avg_iof  {
     type: average
     group_label: "IOF"
-    value_format: "$ #,##0.00"
     group_item_label: "Média"
     sql:${vl_iof};;
     description: "Média do valor IOF aplicado ao contrato"
@@ -1838,7 +1842,6 @@ view: proposta {
   measure: min_iof {
     type: min
     group_label: "IOF"
-    value_format: "$ #,##0.00"
     group_item_label: "Mínimo"
     sql:${vl_iof};;
     description: "Mínimo do valor IOF aplicado ao contrato"
@@ -1848,7 +1851,6 @@ view: proposta {
   measure: max_iof  {
     type: max
     group_label: "IOF"
-    value_format: "$ #,##0.00"
     group_item_label: "Máximo"
     sql:${vl_iof};;
     description: "Máximo do valor IOF aplicado ao contrato"
@@ -1858,7 +1860,7 @@ view: proposta {
   measure: sum_mensalidade_atual {
     type: sum
     group_label: "Mensalidade - Atual"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Soma"
     sql:${vl_men_corrente};;
     description: "Soma do valor da mensalidade atual do aluno"
@@ -1868,7 +1870,7 @@ view: proposta {
   measure: avg_mensalidade_atual  {
     type: average
     group_label: "Mensalidade - Atual"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Média"
     sql:${vl_men_corrente};;
     description: "Média do valor da mensalidade atual do aluno"
@@ -1877,7 +1879,7 @@ view: proposta {
   measure: min_mensalidade_atual {
     type: min
     group_label: "Mensalidade - Atual"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Mínimo"
     sql:${vl_men_corrente};;
     description: "Mínimo do valor da mensalidade atual do aluno"
@@ -1887,7 +1889,7 @@ view: proposta {
   measure: max_mensalidade_atual  {
     type: max
     group_label: "Mensalidade - Atual"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Máximo"
     sql:${vl_men_corrente};;
     description: "Máximo do valor da mensalidade atual do aluno"
@@ -1898,6 +1900,7 @@ view: proposta {
     group_label: "Mensalidade - Atual"
     group_item_label: "Quantidade de Mensalidades"
     sql:${qtd_men_corrente};;
+    value_format: "0"
     description: "Soma da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -1906,6 +1909,7 @@ view: proposta {
     group_label: "Mensalidade - Atual"
     group_item_label: "Quantidade de Mensalidades - Média"
     sql:${qtd_men_corrente};;
+    value_format: "0"
     description: "Média da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -1914,6 +1918,7 @@ view: proposta {
     group_label: "Mensalidade - Atual"
     group_item_label: "Quantidade de Mensalidades - Mínimo"
     sql:${qtd_men_corrente};;
+    value_format: "0"
     description: "Mínimo da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -1922,6 +1927,7 @@ view: proposta {
     group_label: "Mensalidade - Atual"
     group_item_label: "Quantidade de Mensalidades - Máximo"
     sql:${qtd_men_corrente};;
+    value_format: "0"
     description: "Máximo da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -1929,7 +1935,7 @@ view: proposta {
   measure: sum_mensalidade_contrato {
     type: sum
     group_label: "Mensalidade"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Soma"
     sql:${vl_mensalidade};;
     description: "Soma do valor da mensalidade descrita no contrato"
@@ -1938,7 +1944,7 @@ view: proposta {
   measure: avg_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Média"
     sql:${vl_mensalidade};;
     description: "Média do valor da mensalidade descrita no contrato"
@@ -1947,7 +1953,7 @@ view: proposta {
   measure: min_mensalidade_contrato {
     type: min
     group_label: "Mensalidade"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Mínimo"
     sql:${vl_mensalidade};;
     description: "Mínimo do valor da mensalidade descrita no contrato"
@@ -1957,7 +1963,7 @@ view: proposta {
   measure: max_mensalidade_contrato  {
     type: max
     group_label: "Mensalidade"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     group_item_label: "Máximo"
     sql:${vl_mensalidade};;
     description: "Máximo do valor da mensalidade descrita no contrato"
@@ -1968,6 +1974,7 @@ view: proposta {
     group_label: "Mensalidade"
     group_item_label: "Quantidade de Mensalidades"
     sql:${qtd_mensalidades};;
+    value_format: "0"
     description: "Soma da quantidade de mensalidades por contrato"
   }
 
@@ -1976,6 +1983,7 @@ view: proposta {
     group_label: "Mensalidade"
     group_item_label: "Quantidade de Mensalidades - Média"
     sql:${qtd_mensalidades};;
+    value_format: "0"
     description: "Média da quantidade de mensalidades por contrato"
   }
 
@@ -1984,6 +1992,7 @@ view: proposta {
     group_label: "Mensalidade"
     group_item_label: "Quantidade de Mensalidades - Mínimo"
     sql:${qtd_mensalidades};;
+    value_format: "0"
     description: "Mínimo da quantidade de mensalidades por contrato"
   }
 
@@ -1993,6 +2002,7 @@ view: proposta {
     group_label: "Mensalidade"
     group_item_label: "Quantidade de Mensalidades - Máximo"
     sql:${qtd_mensalidades};;
+    value_format: "0"
     description: "Máximo da quantidade de mensalidades por contrato"
   }
 
@@ -2001,7 +2011,7 @@ view: proposta {
     type: sum
     group_label: "Prestações"
     group_item_label: "Soma"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_prestacoes};;
     description: "Soma do valor das prestações do contrato"
   }
@@ -2010,7 +2020,7 @@ view: proposta {
     type: average
     group_label: "Prestações"
     group_item_label: "Média"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_prestacoes};;
     description: "Média do valor das prestações do contrato"
   }
@@ -2019,7 +2029,7 @@ view: proposta {
     type: min
     group_label: "Prestações"
     group_item_label: "Mínimo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_prestacoes};;
     description: "Mínimo do valor das prestações do contrato"
   }
@@ -2029,7 +2039,7 @@ view: proposta {
     type: max
     group_label: "Prestações"
     group_item_label: "Máximo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_prestacoes};;
     description: "Máximo o valor das prestações do contrato"
   }
@@ -2039,6 +2049,7 @@ view: proposta {
     group_label: "Prestações"
     group_item_label: "Quantidade de Prestações"
     sql:${qtd_prestacoes};;
+    value_format: "0"
     description: "Soma da quantidade de prestações do contrato"
   }
 
@@ -2047,6 +2058,7 @@ view: proposta {
     group_label: "Prestações"
     group_item_label: "Quantidade de Prestações - Média"
     sql:${qtd_prestacoes};;
+    value_format: "0"
     description: "Média da quantidade de prestações do contrato"
   }
 
@@ -2055,6 +2067,7 @@ view: proposta {
     group_label: "Prestações"
     group_item_label: "Quantidade de Prestações - Mínimo"
     sql:${qtd_prestacoes};;
+    value_format: "0"
     description: "Mínimo da quantidade de prestações do contrato"
   }
 
@@ -2064,6 +2077,7 @@ view: proposta {
     group_label: "Prestações"
     group_item_label: "Quantidade de Prestações - Máximo"
     sql:${qtd_prestacoes};;
+    value_format: "0"
     description: "Máximo da quantidade de prestações do contrato"
   }
 
@@ -2071,7 +2085,7 @@ view: proposta {
     type: sum
     group_label: "Rematricula"
     group_item_label: "Soma"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_rematricula};;
     description: "Soma do valor da rematricula do aluno por contrato"
   }
@@ -2080,7 +2094,7 @@ view: proposta {
     type: average
     group_label: "Rematricula"
     group_item_label: "Média"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_rematricula};;
     description: "Média do valor da rematricula do aluno por contrato"
   }
@@ -2089,7 +2103,7 @@ view: proposta {
     type: min
     group_label: "Rematricula"
     group_item_label: "Mínimo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_rematricula};;
     description: "Mínimo do valor da rematricula do aluno por contrato"
   }
@@ -2099,7 +2113,7 @@ view: proposta {
     type: max
     group_label: "Rematricula"
     group_item_label: "Máximo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${vl_rematricula};;
     description: "Máximo do valor da rematricula do aluno por contrato"
   }
@@ -2134,7 +2148,7 @@ view: proposta {
     type: sum
     group_label: "Ticket Médio"
     group_item_label: "Soma"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${ticket_medio};;
     description: "Soma do ticket médio do contrato"
   }
@@ -2144,7 +2158,7 @@ view: proposta {
     type: average
     group_label: "Ticket Médio"
     group_item_label: "Média"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${ticket_medio};;
     description: "Média do valor do ticket médio do contrato"
   }
@@ -2153,7 +2167,7 @@ view: proposta {
     type: min
     group_label: "Ticket Médio"
     group_item_label: "Mínimo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${ticket_medio};;
     description: "Mínimo do valor do ticket médio do contrato"
   }
@@ -2163,7 +2177,7 @@ view: proposta {
     type: max
     group_label: "Ticket Médio"
     group_item_label: "Máximo"
-    value_format: "$ #,##0.00"
+    value_format: "0"
     sql:${ticket_medio};;
     description: "Máximo do valor do ticket médio do contrato"
   }
@@ -2174,6 +2188,7 @@ view: proposta {
     group_label: "Proposta"
     group_item_label: "Quantidade de Contratos Anteriores"
     sql:${qtd_contratos_anteriores};;
+    value_format: "0"
     description: "Soma da quantidade contratos anteriores por proposta"
   }
 
@@ -2258,7 +2273,7 @@ view: proposta {
     group_item_label: "Repasse - Soma"
     sql:${vl_repasse_ies};;
     description: "Soma do valor repassado para as IES"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: avg_repasse {
@@ -2267,7 +2282,7 @@ view: proposta {
     group_item_label: "Repasse - Média"
     sql:${vl_repasse_ies};;
     description: "Valor médio repassado para as IES"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: sum_comissao {
@@ -2276,7 +2291,7 @@ view: proposta {
     group_item_label: "Comissão - Soma"
     sql:${vl_comissao_ideal};;
     description:  "Indica o valor de comissão paga ao Pravaler por produto contratado"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: avg_comissao {
@@ -2285,7 +2300,7 @@ view: proposta {
     group_item_label: "Comissão - Média"
     sql:${vl_comissao_ideal};;
     description:  "Indica o valor médio de comissão paga ao Pravaler por produto contratado"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: sum_desagio {
@@ -2294,7 +2309,7 @@ view: proposta {
     group_item_label: "Desagio - Soma"
     sql:${vl_financiamento} - ${vl_repasse_ies};;
     description: "Soma de valor do Desagio (Comissão + Juros)"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: sum_perc_desagio {
@@ -2303,7 +2318,6 @@ view: proposta {
     group_item_label: "Desagio % - Soma"
     sql: ${vl_repasse_ies} / ${vl_financiamento};;
     description: "Soma de valor do Desagio % "
-    value_format:  "0.00\%"
   }
 
   measure: avg_perc_comissao {
@@ -2312,7 +2326,6 @@ view: proposta {
     group_item_label: "Comissão % - Média"
     sql:${perc_comissao};;
     description: "Indica a porcentagem média de comissão paga ao Pravaler por produto contratado"
-    value_format:  "0.00\%"
   }
 
 
@@ -2322,7 +2335,7 @@ view: proposta {
     group_item_label: "Desagio % - Média"
     sql:${perc_desagio};;
     description: "Valor percentual médio do Desagio (Comissão + Juros)"
-    value_format:  "0.00\%"
+    value_format: "0"
   }
 
   measure: sum_tarifa_cadastro {
@@ -2331,7 +2344,7 @@ view: proposta {
     group_item_label: "Tarifa Cadastro - Soma"
     sql:${vl_tarifa_cadastro};;
     description:  "Indica a soma do valor da tarifa de cadastro do contrato"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: sum_juros_pago_ies {
@@ -2340,7 +2353,7 @@ view: proposta {
     group_item_label: "Juros Ies - Soma"
     sql: ((${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal}) * ${perc_tx_subsidiado_ies} ;;
     description:  "Indica a soma dos juros pagos pela Instituição"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
   measure: sum_juros_total {
@@ -2349,7 +2362,7 @@ view: proposta {
     group_item_label: "Juros Total - Soma"
     sql: (${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal} ;;
     description:  "Indica a soma dos juros do contrato"
-    value_format:  "\"R$ \"#,##0.00"
+    value_format: "0"
   }
 
 
@@ -2397,7 +2410,7 @@ view: proposta {
     group_item_label: "Custo de Originação - Soma"
     sql: ${custo_originacao} ;;
     description: "Indica o valor de originação do  contrato"
-    value_format: "$ #,##0.00"
+    value_format: "0"
   }
 
   measure: sum_receita_corban {
@@ -2406,7 +2419,7 @@ view: proposta {
     label:"Receita do Correspondente Bancário"
     description:"Indica valor da taxa paga por originador para cada boleto gerado."
     sql: ${TABLE}."RECEITA_CORBAN" ;;
-    value_format: "$ #,##0.00"
+    value_format: "0"
   }
 
   measure: sum_custo_total_cessao{
@@ -2415,7 +2428,7 @@ view: proposta {
     group_item_label: "Custo Total Cessão - Soma"
     sql: ${sum_comissao} + ${sum_repasse} + ${sum_iof} + ${sum_tarifa_cadastro} + ${sum_custo_originacao} ;;
     description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacao"
-    value_format: "$ #,##0.00"
+    value_format: "0"
   }
 
 

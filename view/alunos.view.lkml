@@ -947,6 +947,14 @@ view: alunos {
     description: "Indica o valor total do financiamento do Aluno"
   }
 
+  dimension: produto_inicial {
+    type: string
+    sql: ${TABLE}."PRODUTO_INICIAL" ;;
+    group_label: "Dados do Produto"
+    group_item_label: "Projeto de entrada"
+    description: "Indica se o aluno entrou no PRAVALER por meio de algum projeot, como FIES, Compra de carteira, entre outros"
+  }
+
 
 
   measure: count_id_cpf {

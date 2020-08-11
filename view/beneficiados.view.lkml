@@ -6,6 +6,7 @@ view: beneficiados {
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+    value_format: "0"
     group_label: "Dados do Aluno"
     group_item_label: "ID_CPF do Aluno"
     description: "Indica o ID do CPF do aluno"
@@ -311,6 +312,7 @@ view: beneficiados {
         date,
         week,
         month,
+        month_name,
         quarter,
         year
       ]
@@ -329,7 +331,7 @@ view: beneficiados {
 
     measure: count_cont {
       type: count
-      value_format: "#,###"
+      value_format: "0"
       group_label: "Quantidade de Contratos"
       group_item_label: "Valor"
       description: "Contagem de Contratos"
@@ -347,7 +349,7 @@ view: beneficiados {
     measure: count_id_cpf {
       type: count_distinct
       sql: ${id_cpf} ;;
-      value_format: "#,###"
+      value_format: "0"
       group_label: "Quantidade de Alunos"
       group_item_label: "Valor"
       description: "Contagem de CPFs únicos"
