@@ -1131,6 +1131,46 @@ view: alunos {
     description: "Valor máximo de mensalidade"
   }
 
+  dimension: gh_final {
+    type: string
+    sql: ${TABLE}."GH_FINAL" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Grupo Homogêneo Final"
+    description: "Indica o grupo homogêneo"
+  }
+
+  dimension: gh_collection {
+    type: string
+    sql: ${TABLE}."GH_COLLECTION" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Grupo Homogêneo Collection"
+    description: "Indica o grupo homogêneo do modelo de collection"
+  }
+
+  dimension: flg_promessa {
+    type: yesno
+    sql: ${TABLE}."FLG_PROMESSA" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Promessa Ativa?"
+    description: "Indica se o aluno possui promessa ativo (Yes/No)"
+  }
+
+  dimension_group: data_geracao_collection {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_GERACAO_COLLECTION" ;;
+    label: "Data Geração Collection"
+    description: "Indica a data de geração do collection"
+  }
+
 
 
 
