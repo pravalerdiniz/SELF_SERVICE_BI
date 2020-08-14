@@ -70,6 +70,21 @@ view: financeiro_log_titulo {
     label: "Faixa de dias para pagamento"
   }
 
+  dimension: dias_para_vencimento {
+    type: number
+    label: "Numero de dias para vencimento"
+    description: "Diferença de dias entre o dowload do boleto até o vencimento"
+    sql: DATEDIFF(day,${data_log_titulo_date},${financeiro.data_vencimento_date})   ;;
+  }
+
+  dimension: faixa_dias_para_vencimento {
+    type: tier
+    tiers: [0,1,2,3,4]
+    style: integer
+    sql: ${dias_para_vencimento} ;;
+    label: "Faixa de dias para vencimento"
+  }
+
   dimension: flg_ultimo_acesso {
     type: yesno
     sql: ${TABLE}."FLG_ULTIMO_ACESSO" ;;
