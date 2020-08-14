@@ -68,6 +68,7 @@ view: financeiro_log_titulo {
     style: integer
     sql: ${dias_para_pagamento} ;;
     label: "Faixa de dias para pagamento"
+    description: "Indica a faixa de dias para pagamento"
   }
 
   dimension: dias_para_vencimento {
@@ -83,6 +84,7 @@ view: financeiro_log_titulo {
     style: integer
     sql: ${dias_para_vencimento} ;;
     label: "Faixa de dias para vencimento"
+    description: "Indica a faixa de dias para vencimento"
   }
 
   dimension: flg_ultimo_acesso {
