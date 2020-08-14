@@ -80,7 +80,7 @@ view: financeiro_log_titulo {
 
   dimension: faixa_dias_para_vencimento {
     type: tier
-    tiers: [1,2,3,4,5,10,20,30]
+    tiers: [1,2,3,4,5,10,20]
     style: integer
     sql: ${dias_para_vencimento} ;;
     label: "Faixa de dias para vencimento"
