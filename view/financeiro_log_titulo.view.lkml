@@ -78,9 +78,18 @@ view: financeiro_log_titulo {
     sql: DATEDIFF(day,${data_log_titulo_date},${financeiro.data_vencimento_date})   ;;
   }
 
+  dimension: range_dias_para_vencimento {
+    type: string
+    label: "Range de dias para vencimento"
+    description: "Diferença de dias entre o dowload do boleto até o vencimento"
+    sql: case when ${dias_para_vencimento}=0 then 'VENCIMENTO NO MESMO DIA'
+              when ${dias_para_vencimento} between 1 and 7 then 'VENCIMENTO EM ATÉ 1 SEMANA'
+              else 'VENCIMENTO ACIMA DE 1 SEMANA' end ;;
+  }
+
   dimension: faixa_dias_para_vencimento {
     type: tier
-    tiers: [1,2,3,4,5,10,20]
+    tiers: [1,7,15,30]
     style: integer
     sql: ${dias_para_vencimento} ;;
     label: "Faixa de dias para vencimento"
