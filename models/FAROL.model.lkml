@@ -18,7 +18,7 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
-explore: fato_status {
+explore: farol {
   label: "FAROL DE STATUS"
   view_label: "FAROL"
   }
