@@ -156,7 +156,7 @@ view: instituicao {
     type: number
     label: "Número do Contrato"
     group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica o número do contrato da IE com Originador"
+    description: "Indica o número do contrato da Instituição com PRAVALER"
     sql: ${TABLE}."CONTRATO_IE";;
   }
 
