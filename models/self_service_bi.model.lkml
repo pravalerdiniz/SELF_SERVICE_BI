@@ -107,7 +107,6 @@ explore: instituicao {
     - proposta.grupo_instituicao,
     - proposta.flg_contrato_ies_ativo,
     - proposta.flg_wo_ies,
-    - proposta.id_ies_contrato,
     - proposta.flg_ipca_ies,
     - proposta.cidade_campus,
     - proposta.ds_campus,
