@@ -101,8 +101,6 @@ explore: instituicao {
     - proposta.flg_instituicao_ativa,
     - proposta.cidade_instituicao,
     - proposta.uf_instituicao,
-    - proposta.id_instituicao,
-    - proposta.ds_instituicao,
     - proposta.id_originadores_ativos_ies,
     - proposta.grupo_instituicao,
     - proposta.flg_contrato_ies_ativo,
