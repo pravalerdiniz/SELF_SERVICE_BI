@@ -76,12 +76,12 @@ view: jornada {
     description: "Número de identificação da proposta"
   }
 
-  dimension: proposta_ativa {
+  dimension: flg_proposta_atual {
     type: string
-    sql: ${TABLE}."PROPOSTA_ATIVA" ;;
+    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "Proposta Ativa?"
-    description: "Indica se a proposta está ativa (Sim - Não)"
+    group_item_label: "Proposta Atual?"
+    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
   }
 
   dimension: semestre_financiamento {
