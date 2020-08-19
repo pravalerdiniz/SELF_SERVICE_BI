@@ -44,6 +44,22 @@ view: alunos_acordo {
     sql: ${TABLE}."DATA_ACORDO" ;;
   }
 
+  dimension_group: data_acordo_grupo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    description: "Indica a data que o acordo foi realizadO"
+    sql: ${TABLE}."DATA_ACORDO" ;;
+  }
+
   dimension: vl_divida_atual {
     type: number
     label: "Valor da Divida Atual"

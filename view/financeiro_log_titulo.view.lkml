@@ -82,7 +82,8 @@ view: financeiro_log_titulo {
     type: string
     label: "Range de dias para vencimento"
     description: "Diferença de dias entre o dowload do boleto até o vencimento"
-    sql: case when ${dias_para_vencimento}=0 then 'VENCIMENTO NO MESMO DIA'
+    sql: case when ${dias_para_vencimento}<0 then 'BOLETO VENCIDO'
+              when ${dias_para_vencimento}=0 then 'VENCIMENTO NO MESMO DIA'
               when ${dias_para_vencimento} between 1 and 7 then 'VENCIMENTO EM ATÉ 1 SEMANA'
               else 'VENCIMENTO ACIMA DE 1 SEMANA' end ;;
   }
