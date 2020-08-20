@@ -1,5 +1,5 @@
 view: status {
-  sql_table_name: "SELF_SERVICE_BI"."STATUS"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."STATUS"
     ;;
   drill_fields: [id]
 
@@ -172,6 +172,7 @@ view: status {
     description: "Indica a quantos dias o aluno está no mesmo status"
     drill_fields: [id_proposta,id_cpf]
   }
+
 
   dimension_group: dt_status {
     type: time
