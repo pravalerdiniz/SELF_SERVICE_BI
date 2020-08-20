@@ -164,7 +164,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.id_status_detalhado,
   - proposta.tipo_proposta,
   - proposta.id_proposta,
-  - proposta.flg_proposta_ativa,
+  - proposta.flg_proposta_atual,
   - proposta.id_elegivel,
   - proposta.etapa_ult_status,
   - proposta.count_tipo_proposta_novo,
@@ -235,7 +235,7 @@ explore: proposta {
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
 fields: [ALL_FIELDS *,
-        - status.flg_proposta_ativa,
+        - status.flg_proposta_atual,
         - status.id_cpf,
         - status.id_elegivel,
         - status.id_proposta,

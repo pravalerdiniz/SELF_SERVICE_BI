@@ -42,6 +42,24 @@ view: alunos_acordo {
     label: "Data do Acordo"
     description: "Indica a data que o acordo foi realizado"
     sql: ${TABLE}."DATA_ACORDO" ;;
+    hidden: yes
+  }
+
+  dimension_group: data_acordo_grupo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Data do Acordo"
+    description: "Indica a data que o acordo foi realizadO"
+    sql: ${TABLE}."DATA_ACORDO" ;;
   }
 
   dimension: vl_divida_atual {

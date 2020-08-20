@@ -862,13 +862,15 @@ view: proposta {
     sql: ${TABLE}."FLG_PRODUTO_ATIVO" ;;
   }
 
-  dimension: flg_proposta_ativa {
+  dimension: flg_proposta_atual {
     type: yesno
     group_label: "Dados da Proposta"
-    label: "Ativo?"
-    description: "Indica se a proposta está ativa no PRAVALER."
-    sql: ${TABLE}."FLG_PROPOSTA_ATIVA" ;;
+    label: "Proposta Atual?"
+    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
   }
+
+
 
   dimension: flg_proposta_nao_seguiu {
     type: yesno

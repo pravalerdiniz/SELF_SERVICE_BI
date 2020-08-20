@@ -1,5 +1,5 @@
 view: status {
-  sql_table_name: "SELF_SERVICE_BI"."STATUS"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."STATUS"
     ;;
   drill_fields: [id]
 
@@ -149,12 +149,12 @@ view: status {
       description: "Indica a fonte do status (RNV, LOG)"
     }
 
-    dimension: flg_proposta_ativa {
-      type: yesno
-      sql: ${TABLE}."FLG_PROPOSTA_ATIVA" ;;
-      label: "Proposta Ativa?"
-      description: "Indica se a proposta está ativa (Sim ou Não)"
-      }
+  dimension: flg_proposta_atual {
+    type: yesno
+    label: "Proposta Atual?"
+    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
+  }
 
       dimension: id_elegivel {
       type: number
@@ -172,6 +172,7 @@ view: status {
     description: "Indica a quantos dias o aluno está no mesmo status"
     drill_fields: [id_proposta,id_cpf]
   }
+
 
   dimension_group: dt_status {
     type: time
