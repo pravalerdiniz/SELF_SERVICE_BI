@@ -485,4 +485,265 @@ view: farol {
     type: count
     drill_fields: []
   }
+
+
+  measure: perc_status11_sla_dentro {
+    type: number
+    sql: ${status_11_0_aluno_no_portal_da_ies_dentro_sla}/(${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla});;
+    label: "Status 11.0 - SLA Dentro"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status11_sla_fora {
+    type: number
+    sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla}/(${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla});;
+    label: "Status 11.0 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status11_2_sla_fora {
+    type: number
+    sql: ${status_11_2_aluno_no_portal_da_ies_dentro_sla}/(${status_11_2_aluno_no_portal_da_ies_dentro_sla} +   ${status_11_2_aluno_no_portal_da_ies_dentro_sla});;
+    label: "Status 11.2 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status11_2_sla_dentro {
+    type: number
+    sql: ${status_11_2_aluno_no_portal_da_ies_dentro_sla}/( ${status_11_2_aluno_no_portal_da_ies_fora_sla} +  ${status_11_2_aluno_no_portal_da_ies_dentro_sla});;
+    label: "Status 11.2 - SLA Dentro"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status13_sla_dentro {
+    type: number
+    sql: ${status_13_aluno_pendente_matricula_dentro_sla}/( ${status_13_aluno_pendente_matricula_fora_sla} +  ${status_13_aluno_pendente_matricula_dentro_sla});;
+    label: "Status 13 - SLA Dentro"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status13_sla_fora {
+    type: number
+    sql: ${status_13_aluno_pendente_matricula_fora_sla}/( ${status_13_aluno_pendente_matricula_fora_sla} +  ${status_13_aluno_pendente_matricula_dentro_sla});;
+    label: "Status 13 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status14_sla_fora {
+    type: number
+    sql: ${status_14_aluno_possui_divida_ies_fora_sla}/(${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla});;
+    label: "Status 14 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status14_sla_dentro {
+    type: number
+    sql: ${status_14_aluno_possui_divida_ies_dentro_sla}/(${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla});;
+    label: "Status 14 - SLA Dentro"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_0_sla_dentro {
+    type: number
+    sql: ${status_2_0_proposta_finalizada_dentro}/(${status_2_0_proposta_finalizada_dentro} + ${status_2_0_proposta_finalizada_fora});;
+    label: "Status 2.0 - SLA Dentro"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_0_sla_fora {
+    type: number
+    sql: ${status_2_0_proposta_finalizada_fora}/(${status_2_0_proposta_finalizada_dentro} + ${status_2_0_proposta_finalizada_fora});;
+    label: "Status 2.0 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_35_sla_dentro {
+    type: number
+    sql: ${status_2_35_validacao_dados_analise_dentro}/(${status_2_35_validacao_dados_analise_dentro} + ${status_2_35_validacao_dados_analise_fora});;
+    label: "Status 2.35 - SLA Dentro"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_35_sla_fora {
+    type: number
+    sql: ${status_2_35_validacao_dados_analise_fora}/(${status_2_35_validacao_dados_analise_dentro} + ${status_2_35_validacao_dados_analise_fora});;
+    label: "Status 2.35 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_37_sla_dentro {
+    type: number
+    sql: ${status_2_37_integracao_neo_xbo_dentro}/(${status_2_37_integracao_neo_xbo_dentro} + ${status_2_37_integracao_neo_xbo_fora});;
+    label: "Status 2.37 - SLA Dentro"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status2_37_sla_fora {
+    type: number
+    sql: ${status_2_37_integracao_neo_xbo_fora}/(${status_2_37_integracao_neo_xbo_dentro} + ${status_2_37_integracao_neo_xbo_fora});;
+    label: "Status 2.37 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_1_sla_dentro {
+    type: number
+    sql: ${status_25_1_confirmacao_dados_dentro}/(${status_25_1_confirmacao_dados_dentro} + ${status_25_1_confirmacao_dados_fora});;
+    label: "Status 25.1 - SLA Dentro"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_1_sla_fora {
+    type: number
+    sql: ${status_25_1_confirmacao_dados_fora}/(${status_25_1_confirmacao_dados_dentro} + ${status_25_1_confirmacao_dados_fora});;
+    label: "Status 25.1 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_2_sla_dentro {
+    type: number
+    sql: ${status_25_2_confirmacao_dados_bv_dentro}/(${status_25_2_confirmacao_dados_bv_dentro} + ${status_25_2_confirmacao_dados_bv_fora});;
+    label: "Status 25.2 - SLA Dentro"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_2_sla_fora {
+    type: number
+    sql: ${status_25_2_confirmacao_dados_bv_fora}/(${status_25_2_confirmacao_dados_bv_dentro} + ${status_25_2_confirmacao_dados_bv_fora});;
+    label: "Status 25.2 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_4_sla_dentro {
+    type: number
+    sql: ${status_25_4_escolha_produto_dentro}/(${status_25_4_escolha_produto_dentro} + ${status_25_4_escolha_produto_fora});;
+    label: "Status 25.4 - SLA Dentro"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status25_4_sla_fora {
+    type: number
+    sql: ${status_25_4_escolha_produto_fora}/(${status_25_4_escolha_produto_dentro} + ${status_25_4_escolha_produto_fora});;
+    label: "Status 25.4 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status26_1_sla_dentro {
+    type: number
+    sql: ${status_26_1_restritivo_bv_dentro}/(${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora});;
+    label: "Status 26.1 - SLA Dentro"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: PERC_status26_1_sla_fora {
+    type: number
+    sql: ${status_26_1_restritivo_bv_fora}/(${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora});;
+    label: "Status 26.1 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status41_sla_dentro {
+    type: number
+    sql:${status_41_formalizado_dentro}/(${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
+    label: "Status 41 - SLA Dentro"
+    group_label: "CESSÃO/CONTRATAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status41_sla_fora {
+    type: number
+    sql:${status_41_formalizado_fora}/(${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
+    label: "Status 41 - SLA Fora"
+    group_label: "CESSÃO/CONTRATAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status50_sla_dentro {
+    type: number
+    sql: ${status_50_credito_cedido_dentro}/(${status_50_credito_cedido_dentro} + ${status_50_credito_cedido_fora});;
+    label: "Status 50.0 - SLA Dentro"
+    group_label: "CRÉDITO CEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status50_sla_fora {
+    type: number
+   sql: ${status_50_credito_cedido_fora}/(${status_50_credito_cedido_dentro} + ${status_50_credito_cedido_fora});;
+    label: "Status 50.0 - SLA Fora"
+    group_label: "CRÉDITO CEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status46_sla_dentro {
+    type: number
+    sql: ${status_46_contrato_nao_concedido_dentro}/( ${status_46_contrato_nao_concedido_dentro} + ${status_46_contrato_nao_concedido_fora});;
+    label: "Status 46 - SLA Dentro"
+    group_label: "CONTRATO NÃO CONCEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status46_sla_fora {
+    type: number
+    sql: ${status_46_contrato_nao_concedido_fora}/( ${status_46_contrato_nao_concedido_dentro} + ${status_46_contrato_nao_concedido_fora});;
+    label: "Status 46 - SLA Fora"
+    group_label: "CONTRATO NÃO CONCEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status84_sla_dentro {
+    type: number
+    sql: ${status_84_1_exclusivo_cessao_aluno_formalizado_dentro}/(${status_84_1_exclusivo_cessao_aluno_formalizado_dentro} + ${status_84_1_exclusivo_cessao_aluno_formalizado_fora});;
+    label: "Status 81 - SLA Dentro"
+    group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status84_sla_fora {
+    type: number
+    sql: ${status_84_1_exclusivo_cessao_aluno_formalizado_fora}/(${status_84_1_exclusivo_cessao_aluno_formalizado_dentro} + ${status_84_1_exclusivo_cessao_aluno_formalizado_fora});;
+    label: "Status 81 - SLA Fora"
+    group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status99_sla_dentro {
+    type: number
+    sql: ${status_99_1_erros_cessao_dentro}/( ${status_99_1_erros_cessao_dentro} + ${status_99_1_erros_cessao_fora});;
+    label: "Status -99 - SLA Dentro"
+    group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
+    value_format: "0.0%"
+  }
+
+  measure:perc_status99_sla_fora {
+    type: number
+    sql: ${status_99_1_erros_cessao_fora}/( ${status_99_1_erros_cessao_dentro} + ${status_99_1_erros_cessao_fora});;
+    label: "Status -99 - SLA Fora"
+    group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
+    value_format: "0.0%"
+  }
+
+
+
+
 }
