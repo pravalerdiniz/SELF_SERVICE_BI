@@ -236,6 +236,16 @@ view: farol {
     sql: ${TABLE}."PROC_VALIDACAO_DADOS_2_35_FORA" ;;
   }
 
+  dimension: status34_0_processo_emissao_contrato_dentro {
+    type: number
+    sql: ${TABLE}."Status34_0_Processo_Emissao_Contrato_Dentro" ;;
+  }
+
+  dimension: status34_0_processo_emissao_contrato_fora {
+    type: number
+    sql: ${TABLE}."Status34_0_Processo_Emissao_Contrato_Fora" ;;
+  }
+
   dimension: status_11_0_aluno_no_portal_da_ies_dentro_sla {
     type: number
     sql: ${TABLE}."Status_11_0_Aluno_no_Portal_da_IES_Dentro_SLA" ;;
@@ -389,6 +399,36 @@ view: farol {
   dimension: status_33_0_mesa_geracao_contratos_fora {
     type: number
     sql: ${TABLE}."Status_33_0_Mesa_geracao_Contratos_Fora" ;;
+  }
+
+  dimension: status_33_2_erro_geracao_contrato_dentro {
+    type: number
+    sql: ${TABLE}."Status_33_2_Erro_Geracao_Contrato_Dentro" ;;
+  }
+
+  dimension: status_33_2_erro_geracao_contrato_fora {
+    type: number
+    sql: ${TABLE}."Status_33_2_Erro_Geracao_Contrato_Fora" ;;
+  }
+
+  dimension: status_34_0_processo_emissao_contrato_dentro {
+    type: number
+    sql: ${TABLE}."Status_34_0_Processo_Emissao_Contrato_Dentro" ;;
+  }
+
+  dimension: status_34_0_processo_emissao_contrato_fora {
+    type: number
+    sql: ${TABLE}."Status_34_0_Processo_Emissao_Contrato_Fora" ;;
+  }
+
+  dimension: status_34_1_aluno_aprovado_resumo_contrato_dentro {
+    type: number
+    sql: ${TABLE}."Status_34_1_Aluno_Aprovado_Resumo_Contrato_Dentro" ;;
+  }
+
+  dimension: status_34_1_aluno_aprovado_resumo_contrato_fora {
+    type: number
+    sql: ${TABLE}."Status_34_1_Aluno_Aprovado_Resumo_Contrato_Fora" ;;
   }
 
   dimension: status_35_0_aprovado_para_gerar_contrato_dentro {
