@@ -784,6 +784,79 @@ view: farol {
     value_format: "0.0%"
   }
 
+  measure: perc_status_31_1_sla_dentro {
+    type: number
+    sql: ${status_31_1_aprovado_pela_ies_dentro}/(${status_31_1_aprovado_pela_ies_fora} + ${status_31_1_aprovado_pela_ies_dentro});;
+    label: "Status 31.1 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_31_1_sla_fora {
+    type: number
+    sql: ${status_31_1_aprovado_pela_ies_fora}/(${status_31_1_aprovado_pela_ies_fora} + ${status_31_1_aprovado_pela_ies_dentro});;
+    label: "Status 31.1  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_31_4_sla_dentro {
+    type: number
+    sql: ${status_31_4_aguardando_geracao_contrato_dentro}/(${status_31_4_aguardando_geracao_contrato_fora} + ${status_31_4_aguardando_geracao_contrato_dentro});;
+    label: "Status 31.4 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_31_4_sla_fora {
+    type: number
+    sql: ${status_31_4_aguardando_geracao_contrato_fora}/(${status_31_4_aguardando_geracao_contrato_fora} + ${status_31_4_aguardando_geracao_contrato_dentro});;
+    label: "Status 31.4  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_33_0_sla_dentro {
+    type: number
+    sql: ${status_33_0_mesa_geracao_contratos_dentro}/(${perc_status_33_0_sla_fora} + ${status_33_0_mesa_geracao_contratos_dentro});;
+    label: "Status 33.0 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_33_0_sla_fora {
+    type: number
+    sql: ${status_33_0_mesa_geracao_contratos_fora}/(${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro});;
+    label: "Status 33.0  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
+  measure: perc_status_33_2_sla_dentro {
+    type: number
+    sql: ${status_33_2_erro_geracao_contrato_dentro}/(${status_33_2_erro_geracao_contrato_fora} + ${status_33_2_erro_geracao_contrato_dentro});;
+    label: "Status 33.2 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
+  measure: perc_status_33_2_sla_fora {
+    type: number
+    sql: ${status_33_2_erro_geracao_contrato_fora}/(${status_33_2_erro_geracao_contrato_fora} + ${status_33_2_erro_geracao_contrato_dentro});;
+    label: "Status 33.2  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_34_0_sla_dentro {
+    type: number
+    sql: ${status_34_0_processo_emissao_contrato_dentro}/(${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro});;
+    label: "Status 34.0 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
 
 
 
