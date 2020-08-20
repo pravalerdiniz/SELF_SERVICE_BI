@@ -520,6 +520,7 @@ view: farol {
     type: number
     sql: ${TABLE}."Status_9_Confirmacao_CPF_RF" ;;
   }
+  #a
 
   measure: count {
     type: count
