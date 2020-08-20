@@ -859,5 +859,64 @@ view: farol {
   }
 
 
+  measure: perc_status_34_0_sla_fora {
+    type: number
+    sql: ${status_34_0_processo_emissao_contrato_fora}/(${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro});;
+    label: "Status 34.0  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALICAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_34_1_sla_dentro {
+    type: number
+    sql: ${status_34_1_aluno_aprovado_resumo_contrato_dentro}/(${status_34_1_aluno_aprovado_resumo_contrato_fora} + ${status_34_1_aluno_aprovado_resumo_contrato_dentro});;
+    label: "Status 34.1 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
+  measure: perc_status_34_1_sla_fora {
+    type: number
+    sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora}/(${status_34_1_aluno_aprovado_resumo_contrato_fora} + ${status_34_1_aluno_aprovado_resumo_contrato_dentro});;
+    label: "Status 34.1  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_35_0_sla_dentro {
+    type: number
+    sql: ${status_35_0_aprovado_para_gerar_contrato_dentro}/(${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro});;
+    label: "Status 35.0 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
+  measure: perc_status_35_0_sla_fora {
+    type: number
+    sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora}/(${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro});;
+    label: "Status 35.0  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: perc_status_40_5_sla_dentro {
+    type: number
+    sql: ${status_40_5_aguardando_assinatura_contrato_dentro}/(${status_40_5_aguardando_assinatura_contrato_fora} + ${status_40_5_aguardando_assinatura_contrato_dentro});;
+    label: "Status 40.5 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
+  measure: perc_status_40_5_sla_fora {
+    type: number
+    sql: ${status_40_5_aguardando_assinatura_contrato_fora}/(${status_40_5_aguardando_assinatura_contrato_fora} + ${status_40_5_aguardando_assinatura_contrato_dentro});;
+    label: "Status 40.5  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
 
 }
