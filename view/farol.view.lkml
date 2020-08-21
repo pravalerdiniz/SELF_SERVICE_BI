@@ -312,6 +312,45 @@ view: farol {
   }
 
 
+  measure: status_2_90 {
+    type: sum
+    sql: ${status_2_90_problemas_integracao_produtos_neo_xbo};;
+    label: "Status 2.90 "
+    group_label: "ANÁLISE DE RISCO E CREDITO"
+
+  }
+
+
+  measure: status_8 {
+    type: sum
+    sql: ${status_8_mesa_bureaux};;
+    label: "Status 8 Mesa Bureaux"
+    group_label: "ANÁLISE DE RISCO E CREDITO"
+
+  }
+
+  measure: status_9 {
+    type: sum
+    sql: ${status_9_confirmacao_cpf_rf};;
+    label: "Status 9 Confirmação CPF na RF"
+    group_label: "ANÁLISE DE RISCO E CREDITO"
+
+  }
+
+
+
+  measure: status_9090 {
+    type: sum
+    sql: ${status_9090_dado_inconsistente};;
+    label: "Status 9090 Dado Inconsistente"
+    group_label: "ANÁLISE DE RISCO E CREDITO"
+
+  }
+
+
+
+
+
 
   measure: perc_status11_sla_fora {
     type: sum
@@ -403,6 +442,9 @@ view: farol {
     label: "Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
   }
+
+
+
 
 
 
@@ -550,6 +592,14 @@ view: farol {
     label: "Status 26.1 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
   }
+
+  measure: status8_33_erro_bv {
+    type: sum
+    sql: ${status_8_33_erro_bv_score};;
+    label: "Status 8.33"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+  }
+
 
 
   measure: perc_status_41_1_sla_fora {
