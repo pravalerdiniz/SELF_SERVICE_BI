@@ -778,7 +778,7 @@ view: farol {
   measure: perc_status_35_0_sla_fora {
     type: sum
     sql: ${status_35_0_aprovado_para_gerar_contrato_fora}/IFF(${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro}=0,1,
-    ${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro};;
+    ${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro});;
     label: "Porcentagem - Status 35.0 - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
     value_format: "0.0%"
