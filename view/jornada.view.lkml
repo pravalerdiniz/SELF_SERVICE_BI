@@ -69,19 +69,19 @@ view: jornada {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID Proposta"
     description: "Número de identificação da proposta"
   }
 
-  dimension: proposta_ativa {
+  dimension: flg_proposta_atual {
     type: string
-    sql: ${TABLE}."PROPOSTA_ATIVA" ;;
+    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "Proposta Ativa?"
-    description: "Indica se a proposta está ativa (Sim - Não)"
+    group_item_label: "Proposta Atual?"
+    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
   }
 
   dimension: semestre_financiamento {
@@ -407,10 +407,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Lead"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Lead"
   }
 
@@ -423,10 +424,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Iniciado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Iniciado"
   }
 
@@ -439,10 +441,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Finalizado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Finalizado"
   }
 
@@ -455,10 +458,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Aprovado Risco"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aprovado Risco"
   }
 
@@ -471,10 +475,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Aprovado Instituição"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aprovado Instituição"
   }
 
@@ -487,10 +492,11 @@ view: jornada {
     }
     filters: {
         field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Contrato Gerado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Contrato Gerado"
   }
 
@@ -503,10 +509,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Contrato Assinado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Contrato Assinado"
   }
 
@@ -519,10 +526,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Formalizado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Formalizado"
   }
 
@@ -535,10 +543,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Novo"
+      value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
     group_item_label: "Cedido"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Cedido"
   }
 
@@ -553,10 +562,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Iniciado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Iniciado"
   }
 
@@ -569,10 +579,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Elegível"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Elegível"
   }
 
@@ -585,10 +596,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Aprovado Behavior"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Aprovado Behavior"
   }
 
@@ -601,10 +613,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Aprovado Instituição"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Aprovado Instituição"
   }
 
@@ -617,10 +630,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Dados Confirmados"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Finalizado"
   }
 
@@ -633,10 +647,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Contrato Gerado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Contrato Gerado"
   }
 
@@ -649,10 +664,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Contrato Assinado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Contrato Assinado"
   }
 
@@ -665,10 +681,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Formalizado"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Formalizado"
   }
 
@@ -681,10 +698,11 @@ view: jornada {
     }
     filters: {
       field: tipo_proposta
-      value: "Renovação"
+      value: "RENOVACAO"
     }
     group_label: "Etapa - Aluno Renovação"
     group_item_label: "Cedido"
+    drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos renovação que passaram pela etapa Cedido"
   }
 

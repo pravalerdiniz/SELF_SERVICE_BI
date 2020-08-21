@@ -43,14 +43,14 @@ view: instituicao {
   dimension: campus_ativo {
     type: yesno
     sql: ${TABLE}."CAMPUS_ATIVO";;
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Campus Ativo?"
     description: "Indica se o campo está ativo."
   }
 
   dimension: campus_capacidade_alunos {
     type: number
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Qtd de Alunos - Capacidade Campus"
     description:"Indica a capacidade total de alunos que o campus da instituição suporta."
     sql: ${TABLE}."CAMPUS_CAPACIDADE_ALUNOS";;
@@ -58,7 +58,7 @@ view: instituicao {
 
   dimension: campus_possui_ead {
     type: yesno
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Possui EAD?"
     description: "Indica se o Campus a modadelidade de Ensino à Distância para determinado curso"
     sql: ${TABLE}."CAMPUS_POSSUI_EAD";;
@@ -66,7 +66,7 @@ view: instituicao {
 
   dimension: campus_tem_estacionamento {
     type: yesno
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Possui Estacionamento?"
     description: "Indica se o Campus tem estacionamento em suas depêndencias"
     sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO";;
@@ -74,7 +74,7 @@ view: instituicao {
 
   dimension: campus_tem_estacionamento_gratuito {
     type: yesno
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Possui Estacionamento GRATUITO?"
     description: "Indica se o Campus tem estacionamento GRATUITO em suas depêndencias"
     sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO_GRATUITO";;
@@ -98,7 +98,7 @@ view: instituicao {
 
   dimension: cep_campus {
     type: string
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "CEP"
     description: "Informação relacionado ao endereço. Indica o número do CEP do Campus"
     sql: ${TABLE}."CEP_CAMPUS";;
@@ -114,7 +114,7 @@ view: instituicao {
 
   dimension: cidade_campus {
     type: string
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Cidade"
     description: "Indica a cidade que está o campus da instituição"
     sql: ${TABLE}."CIDADE_CAMPUS";;
@@ -156,7 +156,7 @@ view: instituicao {
     type: number
     label: "Número do Contrato"
     group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica o número do contrato da IE com Originador"
+    description: "Indica o número do contrato da Instituição com PRAVALER"
     sql: ${TABLE}."CONTRATO_IE";;
   }
 
@@ -193,8 +193,9 @@ view: instituicao {
     {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
-    <li>word</li>
+    <li>{{word}}</li>
     {% endfor %} ;;
+
 
   }
 
@@ -205,10 +206,10 @@ view: instituicao {
     description: "Indica todos os originadores inativos para determinado curso da instituição."
     sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
     html:
-    {% assign words = value| split: ',' %}
+     {% assign words = value | split: ',' %}
     <ul>
     {% for word in words %}
-    <li>word</li>
+    <li>{{word}}</li>
     {% endfor %} ;;
 
   }
@@ -231,7 +232,7 @@ view: instituicao {
 
   dimension: ds_campus {
     type: string
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Nome do Campus"
     description: "Indica o nome do Campus da IE"
     sql: ${TABLE}."DS_CAMPUS";;
@@ -272,7 +273,7 @@ view: instituicao {
 
   dimension: endereco_campus {
     type: string
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Endereço - Campus"
     description: "Indica o Endereço do Campus"
     sql: ${TABLE}."ENDERECO_CAMPUS";;
@@ -335,7 +336,7 @@ view: instituicao {
 
   dimension: flg_matriz {
     type: yesno
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "Matriz?"
     description: "Indica se o campus é a matriz da instituição"
     sql: ${TABLE}."FLG_MATRIZ";;
@@ -381,15 +382,15 @@ view: instituicao {
   }
 
   dimension: id_campus {
-    type: number
-    group_label: "Dados de Campus - IE"
+    type: string
+    group_label: "Dados do Campus - IE"
     label:"ID do Campus"
     description:"Indica o  ID do Campus"
     sql: ${TABLE}."ID_CAMPUS";;
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     group_label:"Dados do Curso - IE"
     label:"ID do Curso"
     description:"Indica o ID do Curso"
@@ -397,7 +398,7 @@ view: instituicao {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     group_label: "Dados da Instituição"
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
@@ -591,7 +592,7 @@ view: instituicao {
 
   dimension: uf_campus {
     type: string
-    group_label: "Dados de Campus - IE"
+    group_label: "Dados do Campus - IE"
     label: "UF"
     description: "Indica a UF do Campus da instituição"
     sql: ${TABLE}."UF_CAMPUS";;

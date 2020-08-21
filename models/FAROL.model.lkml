@@ -18,19 +18,7 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
-
-access_grant: grupo_cpf {
-  user_attribute: grupo_cpf
-  allowed_values: ["grupo_cpf"]
-}
-
-explore: comunicacao_conversao {
-  label: "Comunicação Conversão"
-  view_label: "Comunicação Conversão"
-  join: comunicacao_conversao_status_info {
-    view_label: "Status Log Pós Contato"
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
+explore: farol {
+  label: "FAROL DE STATUS"
+  view_label: "FAROL"
   }
-}

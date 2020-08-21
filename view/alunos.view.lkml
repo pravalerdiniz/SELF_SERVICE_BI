@@ -111,7 +111,7 @@ view: alunos {
   dimension: endereco {
     type: string
     sql: ${TABLE}."ENDERECO" ;;
-    group_label: "Dados do Aluno "
+    group_label: "Dados do Aluno"
     group_item_label: "Endereço do Aluno"
     description: "Indica o e-endereço do aluno"
     required_access_grants: [grupo_endereco]
@@ -454,7 +454,7 @@ view: alunos {
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CURSO" ;;
     group_label: "Dados do Curso"
     group_item_label: "ID Curso"
@@ -519,7 +519,7 @@ view: alunos {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     group_label:  "Dados da Instituição"
     group_item_label: "ID da IE"
@@ -535,7 +535,7 @@ view: alunos {
   }
 
   dimension: id_campus {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CAMPUS" ;;
     group_label:  "Dados da Instituição"
     group_item_label: "ID do Campus"
@@ -682,7 +682,7 @@ view: alunos {
 
 
   dimension: id_proposta_atual {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID da Proposta Atual"
@@ -707,7 +707,7 @@ view: alunos {
 
 
   dimension: id_produto {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PRODUTO" ;;
     group_label: "Dados do Produto"
     group_item_label: "ID do Produto"
@@ -947,6 +947,14 @@ view: alunos {
     description: "Indica o valor total do financiamento do Aluno"
   }
 
+  dimension: produto_inicial {
+    type: string
+    sql: ${TABLE}."PRODUTO_INICIAL" ;;
+    group_label: "Dados do Produto"
+    group_item_label: "Projeto de entrada"
+    description: "Indica se o aluno entrou no PRAVALER por meio de algum projeot, como FIES, Compra de carteira, entre outros"
+  }
+
 
 
   measure: count_id_cpf {
@@ -1121,6 +1129,46 @@ view: alunos {
     group_label: "Valor Mensalidade"
     group_item_label: "Máximo"
     description: "Valor máximo de mensalidade"
+  }
+
+  dimension: gh_final {
+    type: string
+    sql: ${TABLE}."GH_FINAL" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Grupo Homogêneo Final"
+    description: "Indica o grupo homogêneo"
+  }
+
+  dimension: gh_collection {
+    type: string
+    sql: ${TABLE}."GH_COLLECTION" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Grupo Homogêneo Collection"
+    description: "Indica o grupo homogêneo do modelo de collection"
+  }
+
+  dimension: flg_promessa {
+    type: yesno
+    sql: ${TABLE}."FLG_PROMESSA" ;;
+    group_label: "1.4 Acordo Informações"
+    group_item_label: "Promessa Ativa?"
+    description: "Indica se o aluno possui promessa ativo (Yes/No)"
+  }
+
+  dimension_group: data_geracao_collection {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_GERACAO_COLLECTION" ;;
+    label: "Data Geração Collection"
+    description: "Indica a data de geração do collection"
   }
 
 

@@ -30,6 +30,7 @@ view: comunicacao_conversao_status_info {
     type: string
     sql: ${TABLE}."ID_LOG" ;;
     label: "ID do Log"
+    primary_key: yes
   }
 
   dimension_group: data_log {
@@ -42,6 +43,11 @@ view: comunicacao_conversao_status_info {
     ]
     sql: ${TABLE}."DATA_LOG" ;;
     label: "Log"
+  }
+
+  dimension: tempo_no_status {
+    type: number
+    sql: datediff('day',data_log,current_date) ;;
   }
 
   dimension: id_proposta_log {
@@ -59,13 +65,25 @@ view: comunicacao_conversao_status_info {
   dimension: status_origem {
     type: string
     sql: ${TABLE}."STATUS_ORIGEM" ;;
-    label: "Status Origem"
+    label: "Status Origem Detalhado"
+  }
+
+  dimension: status_origem_geral {
+    type: string
+    sql: left(${status_origem},position('.',${status_origem})-1) ;;
+    label: "Status Origem Geral"
   }
 
   dimension: status_destino {
     type: string
     sql: ${TABLE}."STATUS_DESTINO" ;;
-    label: "Status Destino"
+    label: "Status Destino Detalhado"
+  }
+
+  dimension: status_destino_geral {
+    type: string
+    sql: left(${status_destino},position('.',${status_destino})-1) ;;
+    label: "Status Destino Geral"
   }
 
   set: detail {

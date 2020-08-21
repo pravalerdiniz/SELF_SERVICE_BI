@@ -24,7 +24,7 @@ view: jornada_pivot {
       pivot(max(DT_STATUS) for ETAPA in ('Lead','Iniciado','Elegível','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
                                          'Dados Confirmados','Contrato Gerado','Contrato Assinado','Formalizado','Cedido')) as p
 
-      where upper(tipo_proposta) in ('NOVO','RENOVAÇÃO')
+      where upper(tipo_proposta) in ('NOVO','RENOVACAO')
 
       qualify row_number() over(partition by id_proposta order by data_iniciado) = 1
 
@@ -39,7 +39,7 @@ view: jornada_pivot {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
     hidden: yes
   }
@@ -248,7 +248,7 @@ view: jornada_pivot {
 # Renovação
   dimension: sla_eleg_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_iniciado_raw} , ${data_elegivel_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_iniciado_raw} , ${data_elegivel_raw}) < 0
                    or ${data_iniciado_raw} is null or ${data_elegivel_raw} is null)
               then null
               else datediff(day,${data_iniciado_raw} , ${data_elegivel_raw})
@@ -259,7 +259,7 @@ view: jornada_pivot {
 
   dimension: sla_beha_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_elegivel_raw} , ${data_apr_behavior_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_elegivel_raw} , ${data_apr_behavior_raw}) < 0
                    or ${data_elegivel_raw} is null or ${data_apr_behavior_raw} is null)
               then null
               else datediff(day,${data_elegivel_raw} , ${data_apr_behavior_raw})
@@ -270,7 +270,7 @@ view: jornada_pivot {
 
   dimension: sla_apr_ies_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_apr_behavior_raw} , ${data_apr_ies_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_apr_behavior_raw} , ${data_apr_ies_raw}) < 0
                    or ${data_apr_behavior_raw} is null or ${data_apr_ies_raw} is null)
               then null
               else datediff(day,${data_apr_behavior_raw} , ${data_apr_ies_raw})
@@ -281,7 +281,7 @@ view: jornada_pivot {
 
   dimension: sla_dados_conf_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
                    or ${data_apr_ies_raw} is null or ${data_dados_confirmados_raw} is null)
               then null
               else datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw})
@@ -292,7 +292,7 @@ view: jornada_pivot {
 
   dimension: sla_cont_ger_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
                    or ${data_dados_confirmados_raw} is null or ${data_cont_ger_raw} is null)
               then null
               else datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw})
@@ -303,7 +303,7 @@ view: jornada_pivot {
 
   dimension: sla_cont_ass_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
                    or ${data_cont_ger_raw} is null or ${data_cont_ass_raw} is null)
               then null
               else datediff(day,${data_cont_ger_raw},${data_cont_ass_raw})
@@ -314,7 +314,7 @@ view: jornada_pivot {
 
   dimension: sla_form_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
                    or ${data_cont_ass_raw} is null or ${data_form_raw} is null)
               then null
               else datediff(day,${data_cont_ass_raw},${data_form_raw})
@@ -325,7 +325,7 @@ view: jornada_pivot {
 
   dimension: sla_ced_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_form_raw},${data_cedido_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_form_raw},${data_cedido_raw}) < 0
                    or ${data_form_raw} is null or ${data_cedido_raw} is null)
               then null
               else datediff(day,${data_form_raw},${data_cedido_raw})
@@ -336,7 +336,7 @@ view: jornada_pivot {
 
   dimension: sla_total_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVAÇÃO' AND (datediff(day,${data_iniciado_raw},${data_cedido_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_iniciado_raw},${data_cedido_raw}) < 0
                    or ${data_iniciado_raw} is null or ${data_cedido_raw} is null)
               then null
               else datediff(day,${data_iniciado_raw},${data_cedido_raw})

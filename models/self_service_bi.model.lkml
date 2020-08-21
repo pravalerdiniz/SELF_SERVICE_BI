@@ -39,7 +39,7 @@ map_layer: MAPA_ESTADO_ALUNO {
 map_layer: MAPA_CIDADE_ALUNO {
   file: "/MAPAS/municipio.json"
 }
-include: "/*/*.view.lkml"
+include: "/**/*.view.lkml"
 
 datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -158,13 +158,11 @@ explore: jornada {
   view_label: "1. Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
 fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
-  - proposta.id_status_geral,
   - proposta.ds_ult_status,
   - proposta.id_status_detalhado,
-  - proposta.vl_ult_status,
   - proposta.tipo_proposta,
   - proposta.id_proposta,
-  - proposta.flg_proposta_ativa,
+  - proposta.flg_proposta_atual,
   - proposta.id_elegivel,
   - proposta.etapa_ult_status,
   - proposta.count_tipo_proposta_novo,
@@ -235,7 +233,7 @@ explore: proposta {
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
 fields: [ALL_FIELDS *,
-        - status.flg_proposta_ativa,
+        - status.flg_proposta_atual,
         - status.id_cpf,
         - status.id_elegivel,
         - status.id_proposta,
@@ -308,6 +306,16 @@ join: alunos_produtos_aprovados {
     relationship: one_to_many
 
   }
+
+  join: alunos_acordo {
+    view_label: "1.4 Acordo Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
 
 
 

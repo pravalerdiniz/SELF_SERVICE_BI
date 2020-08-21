@@ -1,5 +1,5 @@
 view: status {
-  sql_table_name: "SELF_SERVICE_BI"."STATUS"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."STATUS"
     ;;
   drill_fields: [id]
 
@@ -45,7 +45,7 @@ view: status {
 
     dimension: id {
       primary_key: yes
-      type: number
+      type: string
       sql: ${TABLE}."ID" ;;
       group_label: "Dados do Status"
       group_item_label: "ID"
@@ -149,12 +149,12 @@ view: status {
       description: "Indica a fonte do status (RNV, LOG)"
     }
 
-    dimension: flg_proposta_ativa {
-      type: yesno
-      sql: ${TABLE}."FLG_PROPOSTA_ATIVA" ;;
-      label: "Proposta Ativa?"
-      description: "Indica se a proposta está ativa (Sim ou Não)"
-      }
+  dimension: flg_proposta_atual {
+    type: yesno
+    label: "Proposta Atual?"
+    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
+  }
 
       dimension: id_elegivel {
       type: number
@@ -165,6 +165,15 @@ view: status {
     }
 
 
+  dimension: tempo_no_status {
+    type: number
+    sql: datediff('day',${dt_status_date},current_date) ;;
+    group_item_label: "Tempo no Status"
+    description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf]
+  }
+
+
   dimension_group: dt_status {
     type: time
     timeframes: [
@@ -173,6 +182,7 @@ view: status {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -189,8 +199,9 @@ view: status {
   }
 
   dimension: id_proposta {
-    type: number
+    type: string
     sql: ${TABLE}."ID_PROPOSTA" ;;
+    group_label: "Dados da Proposta"
     label: "ID Proposta"
     description: "Indica o ID da proposta"
   }
@@ -198,6 +209,7 @@ view: status {
   dimension: tipo_proposta {
     type: string
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
+    group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
     description: "Indica o tipo da proposta"
   }
@@ -205,6 +217,7 @@ view: status {
   dimension: vl_vezes_proposta_no_status {
     type: number
     sql: ${TABLE}."VL_VEZES_PROPOSTA_NO_STATUS" ;;
+    group_label: "Dados do Status"
     label: "Número de Vezes no Status"
     description: "Indica o número de vezes em que a proposta passou por determinado status"
   }
@@ -217,15 +230,16 @@ view: status {
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Quantidade de CPFs"
+    drill_fields: [id_cpf,id_proposta]
     description: "Contagem de CPFs únicos"
   }
 
   measure: cont_proposta {
     type: count_distinct
     sql: ${id_proposta} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Quantidade de Propostas"
     description: "Contagem de propostas únicas"
   }
@@ -233,7 +247,7 @@ view: status {
   measure: sum_vl_vezes_proposta_no_status {
     type: sum
     sql: ${vl_vezes_proposta_no_status} ;;
-    value_format: "#,###"
+    value_format: "0"
     label: "Soma de Vezes Proposta no Status"
     description: " Soma de vezes que a proposta passou pelo status"
   }

@@ -685,13 +685,13 @@ view: inep {
 
   dimension: id_aluno {
     type: string
-    hidden: yes
+
     sql: ${TABLE}."ID_ALUNO" ;;
   }
 
   dimension: id_aluno_curso {
     type: number
-    hidden: yes
+
     sql: ${TABLE}."ID_ALUNO_CURSO" ;;
   }
 

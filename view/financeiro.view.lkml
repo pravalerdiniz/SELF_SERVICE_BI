@@ -7,10 +7,13 @@ view: financeiro {
     timeframes: [
       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
-    group_label: "Status do Boleto"
-    label: "Data de Baixa"
+    label: "Baixa"
     description: "Indica a data de baixa realizada"
     datatype: date
     sql: ${TABLE}."DATA_BAIXA" ;;
@@ -25,11 +28,15 @@ view: financeiro {
     timeframes: [
       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de Compra"
+
+    label: "Compra"
     description: "Indica a Data de Compra do Título"
     sql: ${TABLE}."DATA_COMPRA" ;;
   }
@@ -37,13 +44,16 @@ view: financeiro {
   dimension_group: data_despesa {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de Despesa"
+    label: "Despesa"
     description: "Indica a Data que a despesa pode ser cobrada"
     sql: ${TABLE}."DATA_DESPESA" ;;
   }
@@ -51,13 +61,17 @@ view: financeiro {
   dimension_group: data_entrada {
     type: time
     timeframes: [
-      raw,
+        raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de Entrada"
+
+    label: "Entrada"
     description: "Indica a data de Entrada do Título do Sistema"
     sql: ${TABLE}."DATA_ENTRADA" ;;
   }
@@ -65,13 +79,17 @@ view: financeiro {
   dimension_group: data_pagamento {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Boleto"
-    label: "Data de Pagamento"
+
+    label: "Pagamento"
     description: "Indica a data que o boleto foi pago"
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
   }
@@ -79,13 +97,16 @@ view: financeiro {
   dimension_group: data_vencimento {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Boleto"
-    label: "Data de Vencimento"
+    label: "Vencimento"
     description: "Indica a data de vencimento do boleto"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
@@ -93,13 +114,17 @@ view: financeiro {
   dimension_group: data_writeoff {
     type: time
     timeframes: [
-      raw,
+       raw,
       date,
+      week,
+      month,
+      quarter,
+      year
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados do Título"
-    label: "Data de WriteOff"
+
+    label: "WriteOff"
     description: "Indica a data de entrada do título no W.O"
     sql: ${TABLE}."DATA_WRITEOFF" ;;
   }
@@ -223,7 +248,7 @@ view: financeiro {
   }
 
   dimension: id_contrato {
-    type: number
+    type: string
     group_label: "Dados do Aluno"
     label: "ID do Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
@@ -433,6 +458,7 @@ view: financeiro {
 
   measure: count_titulo {
     type: count
+    value_format: "0"
     group_item_label: "Quantidade de titulos"
     drill_fields: []
   }
@@ -441,14 +467,17 @@ view: financeiro {
   measure: count_alunos {
     type: count_distinct
     sql: ${id_cpf} ;;
+    value_format: "0"
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID_CPFs únicos"
-    drill_fields: [id_cpf, id_contrato,id_boleto,vl_boleto,data_pagamento_date
-
-                            ]
-
-
+    drill_fields: [
+      id_cpf,
+      id_contrato,
+      id_boleto,
+      vl_boleto,
+      data_pagamento_date
+      ]
   }
 
   measure: perc_alunos {
@@ -463,6 +492,7 @@ view: financeiro {
 
   measure: count_atraso {
     type: count
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Quantidade de Boletos em Atraso"
     description: "Indica a quantidade total de boletos em atraso"
@@ -475,6 +505,7 @@ view: financeiro {
   measure: avg_dias_atraso {
     type: average
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Média"
     description: "Média de dias de atraso de pagamento do boleto"
@@ -484,6 +515,7 @@ view: financeiro {
   measure: sum_dias_atraso {
     type: sum
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Soma"
     description: "Soma de dias de atraso de pagamento do boleto"
@@ -496,6 +528,7 @@ view: financeiro {
   measure: max_dias_atraso {
     type: max
     sql: ${dias_atraso} ;;
+    value_format: "0"
     group_label: "Atraso"
     group_item_label: "Dias - Máximo"
     description: "Valor máximo de dias de atraso do pagamento do boleto"

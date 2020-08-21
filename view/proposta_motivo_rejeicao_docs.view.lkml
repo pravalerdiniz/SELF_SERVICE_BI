@@ -17,7 +17,7 @@ view: proposta_motivo_rejeicao_docs {
     }
 
     dimension: id_proposta {
-      type: number
+      type: string
       hidden: yes
       primary_key: yes
       sql: ${TABLE}."ID_PROPOSTA" ;;
