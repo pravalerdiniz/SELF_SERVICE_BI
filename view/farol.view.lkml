@@ -317,7 +317,7 @@ view: farol {
     type: sum
     sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla}/IFF(${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla}=0,1,
    ${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla});;
-    label: "Status 11.0 - SLA Fora"
+    label: "Porcentagem - Status 11.0 - SLA Fora"
     group_label: "APROVAÇÃO IES"
     value_format: "0.0%"
   }
