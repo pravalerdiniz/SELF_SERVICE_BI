@@ -316,7 +316,7 @@ view: farol {
   measure: perc_status11_sla_fora {
     type: sum
     sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla}/IFF(${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla}=0,1,
-   ${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla};;
+   ${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla});;
     label: "Status 11.0 - SLA Fora"
     group_label: "APROVAÇÃO IES"
     value_format: "0.0%"
@@ -370,7 +370,7 @@ view: farol {
   measure: perc_status14_sla_fora {
     type: sum
     sql: ${status_14_aluno_possui_divida_ies_fora_sla}/IFF(${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla}=0,1,
-    ${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla};;
+    ${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla});;
     label: "Porcentagem - Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
     value_format: "0.0%"
@@ -382,7 +382,7 @@ view: farol {
   measure: status14_sla_fora {
     type: sum
     sql: ${status_14_aluno_possui_divida_ies_fora_sla};;
-    label: "Porcentagem - Status 14 - SLA Fora"
+    label: "Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
   }
 
