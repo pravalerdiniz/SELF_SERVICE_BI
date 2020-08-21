@@ -367,10 +367,28 @@ view: farol {
   }
 
 
+  measure: perc_status15_sla_fora {
+    type: sum
+    sql: ${status_15_aluno_revertido_nova_analise_ies_fora_sla}/IFF(${status_15_aluno_revertido_nova_analise_ies_fora_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla}=0,1,
+      ${status_15_aluno_revertido_nova_analise_ies_fora_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla});;
+    label: "Porcentagem - Status 15 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+  measure: status15_sla_fora {
+    type: sum
+    sql: ${status_15_aluno_revertido_nova_analise_ies_dentro_sla};;
+    label: "Status 15 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+  }
+
+
+
+
   measure: perc_status14_sla_fora {
     type: sum
-    sql: ${status_14_aluno_possui_divida_ies_fora_sla}/IFF(${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla}=0,1,
-    ${status_14_aluno_possui_divida_ies_fora_sla} +  ${status_14_aluno_possui_divida_ies_dentro_sla});;
+    sql: ${status_14_aluno_possui_divida_ies_fora_sla}/IFF(${status_14_aluno_possui_divida_ies_dentro_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla}=0,1,
+     ${status_14_aluno_possui_divida_ies_dentro_sla} + ${status_14_aluno_possui_divida_ies_fora_sla});;
     label: "Porcentagem - Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
     value_format: "0.0%"
@@ -385,6 +403,9 @@ view: farol {
     label: "Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
   }
+
+
+
 
 
   measure: PERC_status2_0_sla_fora {
