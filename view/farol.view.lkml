@@ -735,7 +735,7 @@ view: farol {
   measure: status_33_2_sla_fora {
     type: sum
     sql: ${status_33_2_erro_geracao_contrato_fora};;
-    label: "Número - Status 33.2  - SLA Fora"
+    label: "Status 33.2  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
   }
 
@@ -752,7 +752,7 @@ view: farol {
 
 
   measure: status_34_0_sla_fora {
-    type: number
+    type: sum
     sql: ${status_34_0_processo_emissao_contrato_fora};;
     label: "Número - Status 34.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALICAÇÃO"
