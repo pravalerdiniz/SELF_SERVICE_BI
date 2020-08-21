@@ -713,7 +713,7 @@ view: farol {
     type: sum
     sql: ${status_33_0_mesa_geracao_contratos_fora}/
 
-      IFF(${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro})=0,1,
+      IFF(${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro}=0,1,
 
      ${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro});;
     label: "Porcentagem - Status 33.0 - SLA Fora"
@@ -745,7 +745,7 @@ view: farol {
     IFF(${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro}=0,1,
     ${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro})
     ;;
-    label: "Status 34.0 - SLA Fora"
+    label: "Porcentagem - Status 34.0 - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
     value_format: "0.0%"
   }
@@ -787,7 +787,7 @@ view: farol {
 
   measure: status_35_0_sla_fora {
     type: sum
-    sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora};;
+    sql: ${status_35_0_aprovado_para_gerar_contrato_fora};;
     label: "Número - Status 35.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
   }
