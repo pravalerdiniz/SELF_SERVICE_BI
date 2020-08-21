@@ -716,7 +716,7 @@ view: farol {
       IFF(${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro})=0,1,
 
      ${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro});;
-    label: "Porcentagem - Status 33.0 - SLA Dentro"
+    label: "Porcentagem - Status 33.0 - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
     value_format: "0.0%"
   }
@@ -726,7 +726,7 @@ view: farol {
   measure: perc_status_33_2_sla_fora {
     type: sum
     sql: ${status_33_2_erro_geracao_contrato_fora}/IFF(${status_33_2_erro_geracao_contrato_fora} + ${status_33_2_erro_geracao_contrato_dentro});;
-    label: "Status 33.2 - SLA Fora"
+    label: "Porcentagem - Status 33.2 - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
     value_format: "0.0%"
   }
