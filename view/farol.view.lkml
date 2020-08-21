@@ -538,7 +538,7 @@ view: farol {
       IFF(${status_41_formalizado_fora} + ${status_41_formalizado_dentro}=0,1,
 
       ${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
-    label: "Status 41.1 - SLA Dentro"
+    label: "Porcentagem - Status 41.1 - SLA Fora"
     group_label: "CESSÃO/CONTRATAÇÃO"
     value_format: "0.0%"
   }
