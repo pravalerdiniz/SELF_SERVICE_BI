@@ -538,14 +538,14 @@ view: farol {
       IFF(${status_41_formalizado_fora} + ${status_41_formalizado_dentro}=0,1,
 
       ${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
-    label: "Porcentagem - Status 41.1 - SLA Fora"
+    label: "Porcentagem - Status 41 - SLA Fora"
     group_label: "CESSÃO/CONTRATAÇÃO"
     value_format: "0.0%"
   }
 
   measure:status41_sla_fora {
     type: sum
-    sql:${status_41_formalizado_fora}/(${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
+    sql:${status_41_formalizado_fora};;
     label: "Status 41 - SLA Fora"
     group_label: "CESSÃO/CONTRATAÇÃO"
 
