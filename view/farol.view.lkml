@@ -558,7 +558,7 @@ view: farol {
       IFF( ${status_50_credito_cedido_fora} + ${status_50_credito_cedido_dentro}=0,1,
 
        ${status_50_credito_cedido_fora} + ${status_50_credito_cedido_dentro});;
-    label: "Status 50.0 - SLA Dentro"
+    label: "Porcentagem - Status 50.0 - SLA Fora"
     group_label: "CRÉDITO CEDIDO"
     value_format: "0.0%"
   }
@@ -581,7 +581,7 @@ view: farol {
       IFF(${status_46_contrato_nao_concedido_fora} + ${status_46_contrato_nao_concedido_dentro}=0,1,
 
       ${status_46_contrato_nao_concedido_fora} + ${status_46_contrato_nao_concedido_dentro});;
-    label: "Porcentagem - Status 46 - SLA Dentro"
+    label: "Porcentagem - Status 46 - SLA Fora"
     group_label: "CONTRATO NÃO CONCEDIDO"
     value_format: "0.0%"
   }
@@ -600,7 +600,7 @@ view: farol {
       IFF(${status_84_1_exclusivo_cessao_aluno_formalizado_fora} + ${status_84_1_exclusivo_cessao_aluno_formalizado_dentro}=0,1,
 
       ${status_84_1_exclusivo_cessao_aluno_formalizado_fora} + ${status_84_1_exclusivo_cessao_aluno_formalizado_dentro});;
-    label: "Porcentagem - Status 84.1 - SLA Dentro"
+    label: "Porcentagem - Status 84.1 - SLA Fora"
     group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
     value_format: "0.0%"
   }
@@ -626,7 +626,7 @@ view: farol {
       IFF(${status_99_1_erros_cessao_fora} + ${status_99_1_erros_cessao_dentro}=0,1,
 
       ${status_99_1_erros_cessao_fora} + ${status_99_1_erros_cessao_dentro});;
-    label: "Porcentagem - Status 99.1 - SLA Dentro"
+    label: "Porcentagem - Status 99.1 - SLA Fora"
     group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
     value_format: "0.0%"
   }
