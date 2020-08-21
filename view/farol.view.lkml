@@ -516,7 +516,7 @@ view: farol {
 
   measure: PERC_status26_1_sla_fora {
     type: sum
-    sql: ${status_26_1_restritivo_bv_fora}/IFF(${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora}=0,1
+    sql: ${status_26_1_restritivo_bv_fora}/IFF(${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora}=0,1,
     ${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora});;
     label: "Porcentagem - Status 26.1 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
