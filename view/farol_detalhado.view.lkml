@@ -1,28 +1,44 @@
 view: farol_detalhado {
-  derived_table: {
-    sql: select "proposta", "cpf", concat("data",' ', "hora")::datetime data, concat("sl_status_destino",'.', "sl_status_destino_detalhe") status from BICHO.BO.PRV_STATUS_LOG
-      ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-
-  dimension: proposta {
-    type: number
-    sql: ${TABLE}."proposta" ;;
-  }
+  sql_table_name: "SELF_SERVICE_BI"."FAROL_DETALHADO"
+    ;;
 
   dimension: cpf {
     type: number
-    sql: ${TABLE}."cpf" ;;
+    sql: ${TABLE}."CPF" ;;
     required_access_grants: [grupo_cpf]
   }
 
   dimension_group: data {
     type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."DATA" ;;
+  }
+
+  dimension_group: data_carga {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: CAST(${TABLE}."DATA_CARGA" AS TIMESTAMP_NTZ) ;;
+  }
+
+  dimension: proposta {
+    type: number
+    sql: ${TABLE}."PROPOSTA" ;;
   }
 
   dimension: status {
@@ -30,7 +46,8 @@ view: farol_detalhado {
     sql: ${TABLE}."STATUS" ;;
   }
 
-  set: detail {
-    fields: [proposta, cpf, data_time, status]
+  measure: count {
+    type: count
+    drill_fields: []
   }
 }

@@ -329,7 +329,10 @@ dimension: ultima_data {
     sql: ${status_8_mesa_bureaux};;
     label: "Status 8 Mesa Bureaux"
     group_label: "ANÁLISE DE RISCO E CREDITO"
-
+    link: {
+      label: "Detalhado"
+    url:"/looks/449?&f[farol_detalhado.status]=-{{'8.33'}}&f[farol_detalhado.status]={{'8.'}}%25" }
+     #url:"/looks/449?&f[farol_detalhado.status]=-{{'8.33'}}"}
   }
 
   measure: status_9 {

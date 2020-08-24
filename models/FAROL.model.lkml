@@ -28,13 +28,8 @@ explore: farol {
   label: "FAROL DE STATUS"
   view_label: "FAROL"
 
-  join: farol_detalhado {
-    from: farol_detalhado
-    type: inner
-    relationship: many_to_many
-    sql_where: ${farol_detalhado.data_date} between dateadd(minute,${farol.data_carga_time}, -30) and ${farol.data_carga_time};;
-  }
+
 
   }
 
-#explore: farol_detalhado {}
+  explore: farol_detalhado {}
