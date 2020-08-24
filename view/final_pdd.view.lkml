@@ -3,30 +3,30 @@ view: final_pdd {
     sql: select
   id_cpf
   ,f.key as ano_mes
-  ,f.value:ANO_CESSAO_CPF:varchar as ano_cessao_cpf
-  ,f.value:ANO_CESSAO_FUNDO:varchar as  ano_cessao_fundo
-  ,f.value:ANO_MES_OBS:varchar as ano_mes_obs
+  ,f.value:ANO_CESSAO_CPF::varchar as ano_cessao_cpf
+  ,f.value:ANO_CESSAO_FUNDO::varchar as  ano_cessao_fundo
+  ,f.value:ANO_MES_OBS::varchar as ano_mes_obs
   ,f.value:DATA_VISAO::date as data_visao
-  ,f.value:DIAS_ATRASO_FUNDO:int as dias_atraso_fundo
-  ,f.value:FUNDO:int as fundo
-  ,f.value:ID_INSTITUICAO:varchar as id_instituicao
-  ,f.value:MATURIDADE_CESSAO:int as maturidade_cessao
-  ,f.value:MATURIDADE_FUNDO:int as maturidade_fundo
+  ,f.value:DIAS_ATRASO_FUNDO::int as dias_atraso_fundo
+  ,f.value:FUNDO::int as fundo
+  ,f.value:ID_INSTITUICAO::varchar as id_instituicao
+  ,f.value:MATURIDADE_CESSAO::int as maturidade_cessao
+  ,f.value:MATURIDADE_FUNDO::int as maturidade_fundo
   ,f.value:MATURIDADE_VISAO::int as maturidade_visao
-  ,f.value:MIN_DATA_VENCIMENTO:date as min_data_vencimento
-  ,f.value:MIN_MATURIDADE_CESSAO:int as min_maturidade_cessao
-  ,f.value:PORC_PROVISAO_CPF:float as porc_provisao_cpf
-  ,f.value:PROVISAO_CPF:int as provisao_cpf
-  ,f.value:PROVISAO_FUNDO:float as provisao_fundo
-  ,f.value:RATING_CPF:varchar as rating_cpf
-  ,f.value:RATING_FUNDO:varchar as rating_fundo
-  ,f.value:SAFRA_CESSAO_CPF:varchar as safra_cessao_cpf
-  ,f.value:SAFRA_CESSAO_FUNDO:varchar as safra_cessao_fundo
-  ,f.value:SAFRA_CESSAO_SEMESTRE:varchar as safra_cessao_semestre
+  ,f.value:MIN_DATA_VENCIMENTO::date as min_data_vencimento
+  ,f.value:MIN_MATURIDADE_CESSAO::int as min_maturidade_cessao
+  ,f.value:PORC_PROVISAO_CPF::float as porc_provisao_cpf
+  ,f.value:PROVISAO_CPF::int as provisao_cpf
+  ,f.value:PROVISAO_FUNDO::float as provisao_fundo
+  ,f.value:RATING_CPF::varchar as rating_cpf
+  ,f.value:RATING_FUNDO::varchar as rating_fundo
+  ,f.value:SAFRA_CESSAO_CPF::varchar as safra_cessao_cpf
+  ,f.value:SAFRA_CESSAO_FUNDO::varchar as safra_cessao_fundo
+  ,f.value:SAFRA_CESSAO_SEMESTRE::varchar as safra_cessao_semestre
   ,f.value:SEMESTRE_VISAO::varchar as semestre_visao
-  ,f.value:VL_PRESENTE:number as vl_presente
-  ,f.value:TX_PDD_NOVA:number as tx_pdd_nova
-  ,f.value:PROVISAO_CPF_TX_PDD_NOVA:number as provisao_cpf_tx_pdd_nova
+  ,f.value:VL_PRESENTE::number as vl_presente
+  ,f.value:TX_PDD_NOVA::number as tx_pdd_nova
+  ,f.value:PROVISAO_CPF_TX_PDD_NOVA::number as provisao_cpf_tx_pdd_nova
 from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
 lateral flatten (input => pdd) f
  ;;
@@ -41,26 +41,31 @@ lateral flatten (input => pdd) f
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     description: "Indica o ID do CPF do Aluno"
+    value_format: "0"
   }
 
   dimension: ano_mes {
     type: string
     sql: ${TABLE}."ANO_MES" ;;
     description: "Mês de observação"
+    value_format: "0"
   }
 
   dimension: ano_cessao_cpf {
     type: number
     sql: ${TABLE}."ANO_CESSAO_CPF" ;;
+    value_format: "0"
   }
 
   dimension: ano_cessao_fundo {
     type: number
     sql: ${TABLE}."ANO_CESSAO_FUNDO" ;;
+    value_format: "0"
   }
   dimension: ano_mes_obs {
     type: number
     sql: ${TABLE}."ANO_MES_OBS" ;;
+    value_format: "0"
   }
   dimension: data_visao {
     type: date
@@ -116,7 +121,7 @@ lateral flatten (input => pdd) f
   }
   dimension: rating_fundo {
     type: string
-    sql: ${TABLE}."ANO_CESSAO_CPF" ;;
+    sql: ${TABLE}."RATING_FUNDO" ;;
   }
   dimension: safra_cessao_cpf {
     type: number
@@ -125,6 +130,7 @@ lateral flatten (input => pdd) f
   dimension: safra_cessao_fundo {
     type: number
     sql: ${TABLE}."SAFRA_CESSAO_FUNDO" ;;
+    value_format: "0"
   }
   dimension: safra_cessao_semestre {
     type: string
