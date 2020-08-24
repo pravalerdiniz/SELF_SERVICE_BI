@@ -320,6 +320,9 @@ dimension: ultima_data {
     sql: ${status_2_90_problemas_integracao_produtos_neo_xbo};;
     label: "Status 2.90 "
     group_label: "ANÁLISE DE RISCO E CREDITO"
+    link: {
+      label: "Detalhado"
+    url: "/looks/449?&f[farol_detalhado.status]={{'2.90'}}"}
 
   }
 
@@ -331,8 +334,9 @@ dimension: ultima_data {
     group_label: "ANÁLISE DE RISCO E CREDITO"
     link: {
       label: "Detalhado"
-    url:"/looks/449?&f[farol_detalhado.status]=-{{'8.33'}}&f[farol_detalhado.status]={{'8.'}}%25" }
+    #url:"/looks/449?&f[farol_detalhado.status]={{'8.'}}%25" }
      #url:"/looks/449?&f[farol_detalhado.status]=-{{'8.33'}}"}
+      url:"/looks/449?&f[farol_detalhado.status]=8.%25%2C-8.33" }
   }
 
   measure: status_9 {
@@ -340,6 +344,10 @@ dimension: ultima_data {
     sql: ${status_9_confirmacao_cpf_rf};;
     label: "Status 9 Confirmação CPF na RF"
     group_label: "ANÁLISE DE RISCO E CREDITO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=9.%"}
+
 
   }
 
@@ -350,12 +358,12 @@ dimension: ultima_data {
     sql: ${status_9090_dado_inconsistente};;
     label: "Status 9090 Dado Inconsistente"
     group_label: "ANÁLISE DE RISCO E CREDITO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=%9090.%"}
+
 
   }
-
-
-
-
 
 
   measure: perc_status11_sla_fora {
@@ -372,6 +380,10 @@ dimension: ultima_data {
     sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla};;
     label: "Status 11.0 - SLA Fora "
     group_label: "APROVAÇÃO IES"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'11.0'}}"}
+
 
   }
 
@@ -390,6 +402,10 @@ dimension: ultima_data {
     sql: ${status_11_2_aluno_no_portal_da_ies_fora_sla};;
     label: "Status 11.2 - SLA Fora"
     group_label: "APROVAÇÃO IES"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'11.2'}}"}
+
   }
 
 
@@ -409,6 +425,10 @@ dimension: ultima_data {
     sql: ${status_13_aluno_pendente_matricula_fora_sla};;
     label: "Status 13 - SLA Fora"
     group_label: "APROVAÇÃO IES"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=13.%"}
+
   }
 
 
@@ -425,6 +445,10 @@ dimension: ultima_data {
     sql: ${status_15_aluno_revertido_nova_analise_ies_dentro_sla};;
     label: "Status 15 - SLA Fora"
     group_label: "APROVAÇÃO IES"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=15.%"}
+
   }
 
 
@@ -447,14 +471,11 @@ dimension: ultima_data {
     sql: ${status_14_aluno_possui_divida_ies_fora_sla};;
     label: "Status 14 - SLA Fora"
     group_label: "APROVAÇÃO IES"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=14.%"}
+
   }
-
-
-
-
-
-
-
 
   measure: PERC_status2_0_sla_fora {
     type: sum
@@ -477,6 +498,10 @@ dimension: ultima_data {
     sql: ${status_2_0_proposta_finalizada_fora};;
     label: "Status 2.0 - SLA Fora"
     group_label: "ANALISE DE RISCO E CREDITO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2.0'}}"}
+
   }
 
 
@@ -496,6 +521,10 @@ dimension: ultima_data {
     sql: ${status_2_35_validacao_dados_analise_fora};;
     label: "Status 2.35 - SLA Fora"
     group_label: "ANALISE DE RISCO E CREDITO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2.35'}}"}
+
   }
 
 
@@ -522,7 +551,11 @@ dimension: ultima_data {
     sql: ${status_2_37_integracao_neo_xbo_fora};;
     label: "Status 2.37 - SLA Fora"
     group_label: "ANALISE DE RISCO E CREDITO"
-    drill_fields: [farol_detalhado.proposta]
+    #drill_fields: [farol_detalhado.proposta]
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2.37'}}"}
+
   }
 
 
@@ -541,6 +574,10 @@ dimension: ultima_data {
     sql: ${status_25_1_confirmacao_dados_fora};;
     label: "Status 25.1 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'25.1'}}"}
+
 
   }
 
@@ -553,6 +590,8 @@ dimension: ultima_data {
     label: "Porcentagem - Status 25.2 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
     value_format: "0.0%"
+
+
   }
 
 
@@ -561,6 +600,9 @@ dimension: ultima_data {
     sql: ${status_25_2_confirmacao_dados_bv_fora};;
     label: "Status 25.2 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'25.2'}}"}
   }
 
 
@@ -580,6 +622,9 @@ dimension: ultima_data {
     sql: ${status_25_4_escolha_produto_fora};;
     label: "Status 25.4 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'25.4'}}"}
   }
 
 
@@ -598,6 +643,9 @@ dimension: ultima_data {
     sql: ${status_26_1_restritivo_bv_fora};;
     label: "Status 26.1 - SLA Fora"
     group_label: "CONFIRMAÇÃO DE DADOS"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'26.1'}}"}
   }
 
   measure: status8_33_erro_bv {
@@ -605,6 +653,9 @@ dimension: ultima_data {
     sql: ${status_8_33_erro_bv_score};;
     label: "Status 8.33"
     group_label: "CONFIRMAÇÃO DE DADOS"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'8.33'}}"}
   }
 
 
@@ -626,6 +677,9 @@ dimension: ultima_data {
     sql:${status_41_formalizado_fora};;
     label: "Status 41 - SLA Fora"
     group_label: "CESSÃO/CONTRATAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=41.%"}
 
   }
 
@@ -647,7 +701,9 @@ dimension: ultima_data {
     sql: ${status_50_credito_cedido_fora};;
     label: "Status 50.0 - SLA Fora"
     group_label: "CRÉDITO CEDIDO"
-
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'50.0'}}"}
   }
 
 
@@ -669,6 +725,9 @@ dimension: ultima_data {
     sql: ${status_46_contrato_nao_concedido_fora};;
     label: "Status 46 - SLA Fora"
     group_label: "CONTRATO NÃO CONCEDIDO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=46.%"}
   }
 
   measure: perc_status_84_1_sla_fora {
@@ -689,13 +748,10 @@ dimension: ultima_data {
     sql: ${status_84_1_exclusivo_cessao_aluno_formalizado_fora};;
     label: "Status 84.1 - SLA Fora"
     group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'84.1'}}"}
   }
-
-
-
-
-
-
 
   measure: perc_status_99_1_sla_fora {
     type: sum
@@ -715,6 +771,9 @@ dimension: ultima_data {
     sql: ${status_99_1_erros_cessao_fora};;
     label: "Status -99 SLA Fora"
     group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]=%99.1%"}
 
   }
 
@@ -736,7 +795,9 @@ dimension: ultima_data {
     sql: ${status_31_1_aprovado_pela_ies_fora};;
     label: "Número - Status 31.1  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'31.1'}}"}
   }
 
   measure: perc_status_31_4_sla_fora {
@@ -756,6 +817,9 @@ dimension: ultima_data {
     sql: ${status_31_4_aguardando_geracao_contrato_fora};;
     label: "Número - Status 31.4  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'31.4'}}"}
   }
 
 
@@ -764,6 +828,9 @@ dimension: ultima_data {
     sql: ${status_33_0_mesa_geracao_contratos_fora};;
     label: "Número - Status 33.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'33.0'}}"}
   }
 
   measure: perc_status_33_0_sla_fora {
@@ -795,6 +862,9 @@ dimension: ultima_data {
     sql: ${status_33_2_erro_geracao_contrato_fora};;
     label: "Status 33.2  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'33.2'}}"}
   }
 
   measure: perc_status_34_0_sla_fora {
@@ -814,6 +884,9 @@ dimension: ultima_data {
     sql: ${status_34_0_processo_emissao_contrato_fora};;
     label: "Número - Status 34.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALICAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'34.0'}}"}
   }
 
   measure: perc_status_34_1_sla_fora {
@@ -831,6 +904,9 @@ dimension: ultima_data {
     sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora};;
     label: "Número - Status 34.1  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'34.1'}}"}
   }
 
   measure: perc_status_35_0_sla_fora {
@@ -848,6 +924,9 @@ dimension: ultima_data {
     sql: ${status_35_0_aprovado_para_gerar_contrato_fora};;
     label: "Número - Status 35.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'35.0'}}"}
   }
 
   measure: perc_status_40_5_sla_fora {
@@ -866,6 +945,9 @@ dimension: ultima_data {
     sql: ${status_40_5_aguardando_assinatura_contrato_fora};;
     label: "Número - Status 40.5  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'40.5'}}"}
   }
 
 
