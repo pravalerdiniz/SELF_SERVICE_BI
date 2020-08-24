@@ -16,7 +16,10 @@ view: farol {
     sql: ${TABLE}."DATA_CARGA" ;;
   }
 
-
+dimension: ultima_data {
+  type: number
+   sql:row_number() over(order by ${TABLE}."DATA_CARGA" desc) ;;
+}
 
 
 
@@ -516,6 +519,7 @@ view: farol {
     sql: ${status_2_37_integracao_neo_xbo_fora};;
     label: "Status 2.37 - SLA Fora"
     group_label: "ANALISE DE RISCO E CREDITO"
+    drill_fields: [farol_detalhado.proposta]
   }
 
 
