@@ -18,7 +18,7 @@ view: instituicao_contrato_produto_info {
       ,f.value:FLG_WO::boolean as FLG_WO
       ,f.value:ID_PRODUTO::varchar as ID_PRODUTO
       ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
-      ,f.value:FLG_ATIVO::varchar as FLG_ATIVO
+      ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
       from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
       lateral flatten (input => ies_contrato) f
        ;;
@@ -135,7 +135,7 @@ view: instituicao_contrato_produto_info {
   }
 
   dimension: flg_wo {
-    type: string
+    type: yesno
     label: "Está em W.O?"
     description: "Indica se o contrato da instituição está em W.O"
     sql: ${TABLE}."FLG_WO" ;;
@@ -156,7 +156,7 @@ view: instituicao_contrato_produto_info {
   }
 
   dimension: flg_ativo {
-    type: string
+    type: yesno
     label: "Contrato Ativo?"
     description: "Indica se o contrato da instituição com produto está ativo ou não."
     sql: ${TABLE}."FLG_ATIVO" ;;
