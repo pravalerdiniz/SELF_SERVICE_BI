@@ -135,6 +135,15 @@ explore: instituicao {
     ]
 
 
+join: instituicao_contrato_produto_info {
+  view_label: "1.1. Contrato da Instituição por Produto"
+  sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+  relationship: one_to_many
+  type: left_outer
+
+
+}
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_curso} = ${instituicao.id_curso} ;;
