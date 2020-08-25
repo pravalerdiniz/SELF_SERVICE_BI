@@ -31,92 +31,134 @@ view: instituicao_contrato_produto_info {
 
   dimension: id_instituicao {
     type: string
-
+    label: "ID da Instituição"
+    description: "Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
   dimension: id_ies_contrato {
     type: string
+    label: "Contrato da IES"
+    description: "Indica o número do contrato da Instituição por produto"
     sql: ${TABLE}."ID_IES_CONTRATO" ;;
   }
 
   dimension: banco {
     type: string
+    group_label: "Dados Bancários"
+    label: "Banco"
+    description: "Indica o nome do Banco da Instituição"
     sql: ${TABLE}."BANCO" ;;
   }
 
   dimension: ds_banco_agencia {
     type: string
+    group_label: "Dados Bancários"
+    label: "Agência"
+    description: "Indica o número da agência bancária da Instituição"
     sql: ${TABLE}."DS_BANCO_AGENCIA" ;;
   }
 
   dimension: ds_banco_cc {
     type: string
+    group_label: "Dados Bancários"
+    label: "Conta Corrente"
+    description: "Indica o número da conta corrente da Instituição"
     sql: ${TABLE}."DS_BANCO_CC" ;;
   }
 
   dimension: dia_vencimento {
     type: number
+    label: "Dia de Vencimento"
+    description: "Indica o dia de vencimento do contrato da instituição"
     sql: ${TABLE}."DIA_VENCIMENTO" ;;
   }
 
   dimension: tipo_vencimento {
     type: string
+    label: "Tipo de Vencimento"
+    description: "Indica se o vencimento é em dia Útil ou em Dias Corridos. Ex: U = Útil, C = Corrido"
     sql: ${TABLE}."TIPO_VENCIMENTO" ;;
   }
 
   dimension: originadores_ativos {
     type: string
+    group_label: "Originador - Ativo"
+    label: "ID dos Originadores Ativos"
+    description: "Indica os originadores que tem contrato ativo com a instituição"
     sql: ${TABLE}."ORIGINADORES_ATIVOS" ;;
   }
 
   dimension: desc_originadores_ativos {
     type: string
+    group_label: "Originador"
+    label: "Descrição dos Originadores Ativos"
+    description: "Indica os originadores que tem contrato ativo com a instituição"
     sql: ${TABLE}."DESC_ORIGINADORES_ATIVOS" ;;
   }
 
   dimension: originadores_inativos {
     type: string
+    group_label: "Originador - Inativo"
+    label: "ID dos Originadores Inativos"
+    description: "Indica os originadores que tem contrato inativo com a instituição"
     sql: ${TABLE}."ORIGINADORES_INATIVOS" ;;
   }
 
   dimension: desc_originadores_inativos {
     type: string
+    group_label: "Originador - Inativo"
+    label: "Descrição dos Originadores Inativos"
+    description: "Indica os originadores que contrato inativo com a instituição"
     sql: ${TABLE}."DESC_ORIGINADORES_INATIVOS" ;;
   }
 
   dimension: perc_desagio {
     type: number
+    label: "Percentual de Deságio"
+    description: "Indica o percentual de deságio da Instituição por produto"
     sql: ${TABLE}."PERC_DESAGIO" ;;
   }
 
   dimension: perc_comissao {
     type: number
+    label: "Percentual de Comissão"
+    description: "Indica o percentual de comissão pago para a instituição por produto"
     sql: ${TABLE}."PERC_COMISSAO" ;;
   }
 
   dimension: vl_dias_wo {
     type: number
+    label: "Dias em W.O"
+    description: "Indica a quantidade de dias que a instituição está em WriteOff"
     sql: ${TABLE}."VL_DIAS_WO" ;;
   }
 
   dimension: flg_wo {
     type: string
+    label: "Está em W.O?"
+    description: "Indica se o contrato da instituição está em W.O"
     sql: ${TABLE}."FLG_WO" ;;
   }
 
   dimension: id_produto {
     type: string
+    label: "ID do Produto"
+    description: "Indica o ID do Produto correspondente ao contrato com a Instituição"
     sql: ${TABLE}."ID_PRODUTO" ;;
   }
 
   dimension: nm_produto {
     type: string
+    label: "Nome do Produto"
+    description: "Indica o Nome do Produto correspondente ao contrato com a Instituição"
     sql: ${TABLE}."NM_PRODUTO" ;;
   }
 
   dimension: flg_ativo {
     type: string
+    label: "Contrato Ativo?"
+    description: "Indica se o contrato da instituição com produto está ativo ou não."
     sql: ${TABLE}."FLG_ATIVO" ;;
   }
 
