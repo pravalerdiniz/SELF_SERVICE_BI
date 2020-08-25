@@ -33,3 +33,5 @@ explore: farol {
   }
 
   explore: farol_detalhado {}
+
+  explore: imagens {}

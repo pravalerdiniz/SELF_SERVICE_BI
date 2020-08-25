@@ -50,4 +50,16 @@ view: farol_detalhado {
     type: count
     drill_fields: []
   }
+
+  dimension: grupo {
+    type:  string
+    sql: case when ${status} ilike '46.%' then '46'
+              when  ${status} ilike '8.%' then '8'
+              when  ${status} ilike '9.%' then '9'
+              when  ${status} ilike '-9090.%' then '-9090'
+              when  ${status} ilike '15.%' then '15'
+              when  ${status} ilike '41.%' then '41'
+              else ${status} end;;
+
+  }
 }
