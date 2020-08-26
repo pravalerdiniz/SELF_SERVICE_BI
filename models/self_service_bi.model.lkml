@@ -324,13 +324,7 @@ join: alunos_produtos_aprovados {
 
   }
 
-  join: final_pdd {
-    view_label: "1.5 PDD Informações"
-    sql_on: ${alunos.id_cpf} = ${final_pdd.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
 
-  }
 
 
 
