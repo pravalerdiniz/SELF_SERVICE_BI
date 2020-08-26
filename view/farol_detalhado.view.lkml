@@ -34,6 +34,7 @@ view: farol_detalhado {
       year
     ]
     sql: CAST(${TABLE}."DATA_CARGA" AS TIMESTAMP_NTZ) ;;
+    label: "Data de entrada no Status"
   }
 
   dimension: proposta {
