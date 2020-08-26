@@ -370,7 +370,13 @@ view: alunos {
   }
 
 
-
+  dimension: flg_formado {
+    type: yesno
+    sql: ${TABLE}."FLG_FORMADO" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Aluno formado?"
+    description: "Indica se o aluno é formando (yes / no)"
+  }
 
   dimension: flg_mae_falecida {
     type: yesno
@@ -581,6 +587,7 @@ view: alunos {
     group_item_label: "UF Campus - Mapa"
     description: "Indica a UF do campus, pode ser usado em gráficos de mapa"
   }
+
 
   dimension: uf_instituicao {
     type: string
