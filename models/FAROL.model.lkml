@@ -18,7 +18,20 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
+
 explore: farol {
   label: "FAROL DE STATUS"
   view_label: "FAROL"
+
+
+
   }
+
+  explore: farol_detalhado {}
+
+  explore: imagens {}

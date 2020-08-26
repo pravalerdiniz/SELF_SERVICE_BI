@@ -10,13 +10,7 @@ view: instituicao {
     sql: ${TABLE}."ID";;
   }
 
-  dimension: agencia {
-    type: string
-    label: "Agência"
-    group_label: "Dados Bancários da IE"
-    description: "Número da Agência vinculada a Instituição de Ensino"
-    sql: ${TABLE}."AGENCIA";;
-  }
+
 
   dimension: ano_nota_enade {
     type: number
@@ -32,13 +26,7 @@ view: instituicao {
     sql: ${TABLE}."BAIRRO_SEDE_IE";;
   }
 
-  dimension: banco {
-    type: string
-    label: "Nome do Banco"
-    group_label: "Dados Bancários da IE"
-    description: "Indica o Banco correspondente a IE"
-    sql: ${TABLE}."BANCO";;
-  }
+
 
   dimension: campus_ativo {
     type: yesno
@@ -144,21 +132,8 @@ view: instituicao {
     sql: ${TABLE}."CNPJ_IE";;
   }
 
-  dimension: conta {
-    type: string
-    label: "Número da Conta"
-    group_label: "Dados Bancários da IE"
-    description: "Indica o número da conta correspondente a IE"
-    sql: ${TABLE}."CONTA";;
-  }
 
-  dimension: contrato_ie {
-    type: number
-    label: "Número do Contrato"
-    group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica o número do contrato da Instituição com PRAVALER"
-    sql: ${TABLE}."CONTRATO_IE";;
-  }
+
 
   dimension: conversao_regional {
     type: string
@@ -183,44 +158,9 @@ view: instituicao {
     sql: ${TABLE}."CURSO_ATIVO";;
   }
 
-  dimension: descricao_originadores_ativos {
-    type: string
-    label: "Originadores Ativos"
-    group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica todos os originadores ativos para determinado curso da instituição."
-    sql: ${TABLE}."DESCRICAO_ORIGINADORES_ATIVOS";;
-    html:
-    {% assign words = value | split: ',' %}
-    <ul>
-    {% for word in words %}
-    <li>{{word}}</li>
-    {% endfor %} ;;
 
 
-  }
 
-  dimension: descricao_originadores_inativos {
-    type: string
-    label: "Originadores Inativos"
-    group_label: "Dados Contratuais da IE/Originador"
-    description: "Indica todos os originadores inativos para determinado curso da instituição."
-    sql:${TABLE}."DESCRICAO_ORIGINADORES_INATIVOS";;
-    html:
-     {% assign words = value | split: ',' %}
-    <ul>
-    {% for word in words %}
-    <li>{{word}}</li>
-    {% endfor %} ;;
-
-  }
-
-  dimension: dia_vencimento {
-    type: number
-    label: "Dia de Vencimento"
-    description: "Indica o dia de vencimento do contrato"
-    group_label: "Dados Contratuais da IE/Originador"
-    sql: ${TABLE}."DIA_VENCIMENTO";;
-  }
 
   dimension: ds_area_conhecimento {
     type: string
@@ -358,12 +298,7 @@ view: instituicao {
     sql: ${TABLE}."FLG_RECEBE_CONTRATO";;
   }
 
-  dimension: flg_wo {
-    type: yesno
-    group_label: "Dados Contratuais da IE/Originador"
-    label: "W.O?"
-    sql: ${TABLE}."FLG_WO";;
-  }
+
 
   dimension: gerente_regional {
     type: string
@@ -405,19 +340,8 @@ view: instituicao {
     sql: ${TABLE}."ID_INSTITUICAO";;
   }
 
-  dimension: id_originadores_ativos {
-    type: string
-    group_label:"Dados Contratuais da IE/Originador"
-    label: "ID dos Originadores(Ativos)"
-    sql: ${TABLE}."ID_ORIGINADORES_ATIVOS";;
-  }
 
-  dimension: id_originadores_inativos {
-    type: string
-    group_label:"Dados Contratuais da IE/Originador"
-    label: "ID dos Originadores(Inativos)"
-    sql: ${TABLE}."ID_ORIGINADORES_INATIVOS";;
-  }
+
 
   dimension: ie_ativa {
     type: number
@@ -449,19 +373,12 @@ view: instituicao {
 
   dimension: modelo_contrato {
     type: string
-    group_label:"Dados Contratuais da IE/Originador"
+    group_label:"Dados da Instituição"
     label: "Modelo de Contrato"
     description: "Indica o modelo de contrato da Instituição de Ensino com o Originador. Ex: ANTIGO, NOVO."
     sql: ${TABLE}."MODELO_CONTRATO";;
   }
 
-  dimension: nm_produto {
-    type: string
-    group_label:"Dados do Curso - IE"
-    label:"Nome de Produto"
-    description:"Indica o produto PRAVALER contratado por curso"
-    sql: ${TABLE}."NM_PRODUTO";;
-  }
 
   dimension: nome_curso {
     type: string
@@ -487,21 +404,8 @@ view: instituicao {
     sql: ${TABLE}."NOTA_ENADE";;
   }
 
-  dimension: perc_comissao {
-    type: number
-    group_label:"Dados Contratuais da IE/Originador"
-    label: "Porcentagem de Comissão da Instituição"
-    description: "Indica a porcentagem de comissão paga à instituição por produto contratado"
-    sql: ${TABLE}."PERC_COMISSAO";;
-  }
 
-  dimension: perc_desagio {
-    type: number
-    group_label:"Dados Contratuais da IE/Originador"
-    label:"Porcentagem de Deságio"
-    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
-    sql: ${TABLE}."PERC_DESAGIO";;
-  }
+
 
   dimension: periodo {
     type: string
@@ -513,7 +417,7 @@ view: instituicao {
 
   dimension: porc_matricula_expressa {
     type: number
-    group_label:"Dados Contratuais da IE/Originador"
+    group_label:"Dados da Instituição"
     label:"Porcentagem de Matrícula Expressa"
     description:"Indica o valor da porcentagem aplicada sobre a mensalidade do curso para determinar o valor do boleto de matricula expressa."
     sql: ${TABLE}."PORC_MATRICULA_EXPRESSA";;
@@ -568,19 +472,13 @@ view: instituicao {
 
   dimension: reprova_por_score {
     type: string
-    group_label:"Dados Contratuais da IE/Originador"
+    group_label:"Dados da Instituição"
     label:"Reprovação por Score"
     description:"Indica a descrição de reprovação por score."
     sql: ${TABLE}."REPROVA_POR_SCORE";;
   }
 
-  dimension: tipo_dia_vencimento {
-    type: string
-    group_label:"Dados Contratuais da IE/Originador"
-    label:"Tipo de Dia de Vencimento"
-    description:"Indica se o vencimento ocorre no começo do mês ou no final."
-    sql: ${TABLE}."TIPO_DIA_VENCIMENTO";;
-  }
+
 
   dimension: tipo_regional {
     type: string
@@ -618,12 +516,7 @@ view: instituicao {
     sql: ${TABLE}."VALOR_MENSALIDADE";;
   }
 
-  dimension: vl_dias_wo {
-    type: number
-    group_label: "Dados Contratuais da IE/Originador"
-    label:"Quantidade de dias no W.O"
-    sql: ${TABLE}."VL_DIAS_WO";;
-  }
+
 
 
 
@@ -818,35 +711,6 @@ measure: qtd_ies_descadastrada {
 
 
 
-measure: qtd_ies_contrato  {
-  type: count_distinct
-  group_label: "Contrato"
-  group_item_label: "Quantidade de Contratos"
-  sql_distinct_key: ${id_instituicao};;
-  sql:  ${contrato_ie};;
-  description: "Quantidade de Contratos por instituição"
-  filters: [ie_ativa: "1"]
-}
-
-
-  measure: porc_ies_comissao  {
-    type: average_distinct
-    group_label: "Contrato"
-    sql_distinct_key: ${contrato_ie} ;;
-    group_item_label: "Porcentagem de Comissão"
-    sql:${perc_comissao};;
-    description: "Porcentagem de Comissão por contrato"
-  }
-
-  measure: porc_ies_desagio {
-    type: average_distinct
-    group_label: "Contrato"
-    sql_distinct_key: ${contrato_ie} ;;
-    group_item_label: "Porcentagem de Deságio"
-    sql:${perc_desagio};;
-    description: "Porcentagem de desagio por contrato"
-  }
-
 
 
   measure: avg_duracao_curso {
@@ -877,19 +741,7 @@ measure: qtd_ies_contrato  {
   }
 
 
-measure: count_produto {
-  type: count_distinct
-  sql: ${nm_produto} ;;
-  sql_distinct_key: ${id_instituicao} ;;
-  group_label: "Produto"
-  group_item_label: "Quantidade de Produto por instituição"
-  drill_fields: [nm_produto]
 
-
-
-
-
-}
 
 
 
