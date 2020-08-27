@@ -346,7 +346,7 @@ dimension: ultima_data {
     group_label: "ANÁLISE DE RISCO E CREDITO"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=9.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'9.'}}%25"}
 
 
   }
@@ -360,7 +360,7 @@ dimension: ultima_data {
     group_label: "ANÁLISE DE RISCO E CREDITO"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=%9090.%"}
+      url: "/looks/449?&f[farol_detalhado.status]=%25{{'9090.'}}%25"}
 
 
   }
@@ -427,7 +427,7 @@ dimension: ultima_data {
     group_label: "APROVAÇÃO IES"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=13.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'13.'}}%25"}
 
   }
 
@@ -447,7 +447,7 @@ dimension: ultima_data {
     group_label: "APROVAÇÃO IES"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=15.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'15.'}}%25"}
 
   }
 
@@ -473,7 +473,7 @@ dimension: ultima_data {
     group_label: "APROVAÇÃO IES"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=14.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'14.'}}%25"}
 
   }
 
@@ -679,7 +679,7 @@ dimension: ultima_data {
     group_label: "CESSÃO/CONTRATAÇÃO"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=41.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'41.'}}%25"}
 
   }
 
@@ -727,7 +727,7 @@ dimension: ultima_data {
     group_label: "CONTRATO NÃO CONCEDIDO"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=46.%"}
+      url: "/looks/449?&f[farol_detalhado.status]={{'46.'}}%25"}
   }
 
   measure: perc_status_84_1_sla_fora {
@@ -773,7 +773,7 @@ dimension: ultima_data {
     group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]=%99.1%"}
+      url: "/looks/449?&f[farol_detalhado.status]=%25{{'99.'}}%25"}
 
   }
 
