@@ -91,7 +91,7 @@ view: instituicao_contrato_produto_info {
 
   dimension: desc_originadores_ativos {
     type: string
-    group_label: "Originador"
+    group_label: "Originador - Ativo"
     label: "Descrição dos Originadores Ativos"
     description: "Indica os originadores que tem contrato ativo com a instituição"
     sql: ${TABLE}."DESC_ORIGINADORES_ATIVOS" ;;
