@@ -902,8 +902,8 @@ view: alunos {
     type: yesno
     sql: ${TABLE}."FLG_RENEGOCIACAO" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "Renovação?"
-    description: "Indica se é proposta de renovação (yes/no)"
+    group_item_label: "Renegociação?"
+    description: "Indica se é proposta de renegociação (yes/no)"
   }
 
   dimension: gh {
@@ -959,9 +959,19 @@ view: alunos {
     sql: ${TABLE}."PRODUTO_INICIAL" ;;
     group_label: "Dados do Produto"
     group_item_label: "Projeto de entrada"
-    description: "Indica se o aluno entrou no PRAVALER por meio de algum projeot, como FIES, Compra de carteira, entre outros"
+    description: "Indica se o aluno entrou no PRAVALER por meio de algum projeto, como FIES, Compra de carteira, entre outros"
   }
 
+
+dimension: ultimo_semestre_cedido_renovacao {
+  type: number
+  group_label: "Dados da Proposta"
+  label: "Renovação - Último Semestre Cedido"
+  description: "Indica qual o último semestre cedido do aluno de renovação."
+  sql: ${TABLE}."ULTIMO_SEMESTRE_CEDIDO_RENOVACAO" ;;
+
+
+}
 
 
   measure: count_id_cpf {
