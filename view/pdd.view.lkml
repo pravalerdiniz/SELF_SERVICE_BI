@@ -1,4 +1,4 @@
-view: final_pdd {
+view: pdd {
   derived_table: {
     sql: select
         id_cpf
