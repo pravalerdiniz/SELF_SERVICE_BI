@@ -127,7 +127,7 @@ view: proposta {
     group_label: "Dados de Marketing"
     label: "URL Conversão - Canal"
     description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
-    sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
+    sql: coalesce(${TABLE}."CANAL_ACESSO_CONVERSAO",'ORGANICO') ;;
   }
 
   dimension: canal_acesso_descoberta {
@@ -135,7 +135,7 @@ view: proposta {
     group_label: "Dados de Marketing"
     label: "URL Descoberta - Canal"
     description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
-    sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA" ;;
+    sql: coalesce(${TABLE}."CANAL_ACESSO_DESCOBERTA", 'ORGANICO');;
   }
 
 
