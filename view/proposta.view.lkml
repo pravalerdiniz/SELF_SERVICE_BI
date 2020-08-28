@@ -386,6 +386,40 @@ view: proposta {
     sql: ${TABLE}."DATA_VALIDADE" ;;
   }
 
+  dimension_group: data_inicio_url {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Validade inicial"
+    group_label:"Data Validade URL"
+    description: "Indica a data de validade da URL"
+    sql: ${TABLE}."DATA_INICIO_URL" ;;
+  }
+
+  dimension_group: data_fim_url {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Validade final"
+    group_label:"Data Validade URL"
+    description: "Indica a data de validade da URL"
+    sql: ${TABLE}."DATA_FIM_URL" ;;
+  }
+
   dimension: digito_verificador {
     type: number
     group_label: "Dados do Contrato"
