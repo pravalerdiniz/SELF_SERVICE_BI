@@ -453,6 +453,18 @@ view: financeiro {
     sql: ${TABLE}."VL_TAXA" ;;
   }
 
+  dimension: flg_titulo_diferenca {
+    type: yesno
+    group_label: "Dados do Boleto"
+    label: "Boleto de Diferença?"
+    description: "Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
+foi gerado por um pagamento menor do boleto anterior."
+    sql: ${TABLE}."FLG_TITULO_DIFERENCA" ;;
+  }
+
+
+
+
 
 
 

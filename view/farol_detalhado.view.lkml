@@ -20,6 +20,7 @@ view: farol_detalhado {
       year
     ]
     sql: ${TABLE}."DATA" ;;
+    label: "Data de entrada no Status"
   }
 
   dimension_group: data_carga {
@@ -34,6 +35,7 @@ view: farol_detalhado {
       year
     ]
     sql: CAST(${TABLE}."DATA_CARGA" AS TIMESTAMP_NTZ) ;;
+
   }
 
   dimension: proposta {
@@ -59,6 +61,7 @@ view: farol_detalhado {
               when  ${status} ilike '%9090.%' then '-9090.'
               when  ${status} ilike '15.%' then '15.'
               when  ${status} ilike '41.%' then '41.'
+              when  ${status} ilike '13.%' then '13.'
               else ${status} end;;
 
   }
