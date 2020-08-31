@@ -222,6 +222,17 @@ view: status {
     description: "Indica o número de vezes em que a proposta passou por determinado status"
   }
 
+
+  dimension: QTD_DIAS_STATUS {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Quantidade de Dias - Status Anterior"
+    description: "Indica a quantidade dias que o aluno ficou parado no status de origem"
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: [id]
