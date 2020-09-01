@@ -800,6 +800,26 @@ view: inep {
 
   }
 
+  dimension: ds_cor_raca {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Cor/Raça"
+    sql: ${TABLE}."DS_COR_RACA" ;;
+
+  }
+
+
+  dimension: idade_aluno {
+    type: number
+    group_label: "Dados do Aluno"
+    label: "Idade do Aluno"
+    sql: ${TABLE}."IDADE_ALUNO" ;;
+
+  }
+
+
+
+
 
   measure: curso_qtd_vaga_total {
     type: sum
