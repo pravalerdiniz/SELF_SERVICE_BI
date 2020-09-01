@@ -167,6 +167,17 @@ view: alunos {
     description: "Indica o ID do CPF do Aluno"
   }
 
+  dimension: cpf_aluno {
+    type: number
+    group_label: "Dados do Aluno"
+    label: "CPF do Aluno"
+    description: "Indica o CPF do Aluno"
+    value_format: "0"
+    sql: ${TABLE}."CPF" ;;
+    required_access_grants: [grupo_cpf]
+
+  }
+
   dimension: nacionalidade {
     type: string
     sql: ${TABLE}."NACIONALIDADE" ;;
