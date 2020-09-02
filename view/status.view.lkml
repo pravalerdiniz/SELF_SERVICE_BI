@@ -271,4 +271,25 @@ view: status {
     description: " Média de vezes que a proposta passou pelo status"
   }
 
+
+  measure: soma_dias_status {
+    type: sum
+    sql: ${tempo_no_status} ;;
+    label:"Tempo no Status"
+    description: "Soma de Dias da Proposta no Status"
+
+  }
+
+  measure: avg_dias_status {
+    type: average
+    sql: ${tempo_no_status} ;;
+    label:"Tempo médio no Status"
+    value_format: "0"
+    description: "Média de dias parado no Status"
+
+  }
+
+
+
+
 }
