@@ -290,6 +290,25 @@ view: status {
   }
 
 
+  measure: avg_qtd_dias_status_anterior{
+    type: average
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Média de quantidade de Dias - Status Anterior"
+    value_format: "0"
+    description: "Indica a média de quantidade dias que o aluno ficou parado no status de origem"
+  }
+
+  measure: median_qtd_dias_status_anterior{
+    type: median
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Mediana de quantidade de Dias - Status Anterior"
+    value_format: "0"
+    description: "Indica a mediana de quantidade dias que o aluno ficou parado no status de origem"
+  }
+
+
+
+
 
 
 }
