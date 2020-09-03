@@ -8,7 +8,7 @@ view: jornada_pivot {
           "'Lead'" as data_lead,
           "'Iniciado'" as data_iniciado,
           "'Finalizado'" as data_finalizado,
-          "'Elegível'" as data_elegivel,
+          "'Elegivel'" as data_elegivel,
           "'Aprovado Risco'" as data_apr_risco,
           "'Aprovado Behavior'" as data_apr_behavior,
           "'Aprovado Instituicao'" as data_apr_ies,
@@ -21,7 +21,7 @@ view: jornada_pivot {
       from "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
 
 
-      pivot(max(DT_STATUS) for ETAPA in ('Lead','Iniciado','Elegível','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
+      pivot(max(DT_STATUS) for ETAPA in ('Lead','Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
                                          'Dados Confirmados','Contrato Gerado','Contrato Assinado','Formalizado','Cedido')) as p
 
       where upper(tipo_proposta) in ('NOVO','RENOVACAO')
