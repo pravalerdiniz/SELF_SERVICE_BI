@@ -551,6 +551,14 @@ view: alunos {
     description: "Indica a qual grupo a IE pertence"
   }
 
+  dimension: id_grupo_instituicao {
+    type: number
+    sql: ${TABLE}."ID_GRUPO" ;;
+    group_label:  "Dados da Instituição"
+    group_item_label: "ID do Grupo da IE"
+    description: "Indica a qual é o ID do grupo da IE"
+  }
+
   dimension: id_campus {
     type: string
     sql: ${TABLE}."ID_CAMPUS" ;;
