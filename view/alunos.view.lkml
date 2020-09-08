@@ -1211,7 +1211,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: ds_ultimo_status {
     type: string
     sql: ${TABLE}."DS_ULTIMO_STATUS" ;;
-    group_label: "Status"
+    group_label: "Dados de Status"
     group_item_label: "Descrição - Último Status do Aluno"
     description: "Indica o nome do último status da proposta mais atual do aluno"
   }
@@ -1221,7 +1221,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: ultimo_status {
     type: string
     sql: ${TABLE}."ULTIMO_STATUS" ;;
-    group_label: "Status"
+    group_label: "Dados de Status"
     group_item_label: "Último Status do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
@@ -1230,7 +1230,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: data {
     type: string
     sql: ${TABLE}."ULTIMO_STATUS" ;;
-    group_label: "Status"
+    group_label: "Dados de Status"
     group_item_label: "Último Status do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
