@@ -20,6 +20,13 @@ view: alunos_log_negativacao {
     drill_fields: [detail*]
   }
 
+  dimension: id_cpf {
+    type: number
+    label: "ID CPF"
+    description: "ID referente ao CPF do Aluno"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
   dimension: seunum {
     type: string
     label: "Seunum"
