@@ -326,7 +326,7 @@ join: alunos_produtos_aprovados {
   }
 
   join: alunos_acordo {
-    view_label: "1.4 Acordo Informações"
+    view_label: "1.5 Acordo Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
@@ -334,7 +334,7 @@ join: alunos_produtos_aprovados {
   }
 
   join: pdd {
-    view_label: "1.5 PDD"
+    view_label: "1.6 PDD"
     sql_on: ${alunos.id_cpf} = ${pdd.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
