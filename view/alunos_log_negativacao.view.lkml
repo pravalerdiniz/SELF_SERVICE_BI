@@ -90,15 +90,36 @@ view: alunos_log_negativacao {
     sql: ${TABLE}."ID_PAPEL" ;;
   }
 
-  dimension: data_insert {
-    type: string
+  dimension_group: data_insert {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     label: "Data de Inserção"
     description: "Indica a data de inserção do arquivo"
     sql: ${TABLE}."DATA_INSERT" ;;
   }
 
-  dimension: data_update {
-    type: string
+
+  dimension_group: data_update {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     label: "Data de atualização"
     description: "Indica a data de atualização do arquivo"
     sql: ${TABLE}."DATA_UPDATE" ;;
@@ -113,9 +134,7 @@ view: alunos_log_negativacao {
       id_arquivo,
       id_provedor,
       id_fundo_investimento,
-      id_papel,
-      data_insert,
-      data_update
+      id_papel
     ]
   }
 }
