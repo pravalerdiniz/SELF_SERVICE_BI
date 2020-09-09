@@ -50,7 +50,7 @@ view: alunos_log_negativacao {
 
   dimension: id_arquivo {
     type: string
-    label: "ID_ARQUIVO"
+    label: "ID Arquivo"
     description: "ID do arquivo enviado para o provedor"
     sql: ${TABLE}."ID_ARQUIVO" ;;
   }
@@ -64,7 +64,7 @@ view: alunos_log_negativacao {
 
   dimension: id_fundo_investimento {
     type: string
-    label: "ID_FUNDO_INVESTIMENTO"
+    label: "ID Fundo Investimento"
     description: "ID do fundo de investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
