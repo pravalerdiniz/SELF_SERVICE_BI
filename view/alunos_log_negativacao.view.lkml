@@ -101,7 +101,7 @@ view: alunos_log_negativacao {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: datetime
     label: "Data de Inserção"
     description: "Indica a data de inserção do arquivo"
     sql: ${TABLE}."DATA_INSERT" ;;
@@ -119,7 +119,7 @@ view: alunos_log_negativacao {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: datetime
     label: "Data de atualização"
     description: "Indica a data de atualização do arquivo"
     sql: ${TABLE}."DATA_UPDATE" ;;
