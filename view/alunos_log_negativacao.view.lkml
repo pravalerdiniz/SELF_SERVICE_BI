@@ -134,7 +134,9 @@ view: alunos_log_negativacao {
       id_arquivo,
       id_provedor,
       id_fundo_investimento,
-      id_papel
+      id_papel,
+      data_insert_date,
+      data_update_date
     ]
   }
 }
