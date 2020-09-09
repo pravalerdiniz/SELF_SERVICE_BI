@@ -325,6 +325,14 @@ join: alunos_produtos_aprovados {
 
   }
 
+  join: alunos_log_negativacao{
+    view_label: "1.4 Negativação Logs"
+    sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
   join: alunos_acordo {
     view_label: "1.5 Acordo Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
