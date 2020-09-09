@@ -21,46 +21,64 @@ view: alunos_log_negativacao {
 
   dimension: seunum {
     type: string
+    label: "Seunum"
+    description: "Indica o número do Seunum do Aluno."
     sql: ${TABLE}."SEUNUM" ;;
   }
 
   dimension: flg_negativado {
     type: string
+    label: "Negativado?"
+    description: "Indica se o aluno ou garantidor está negativado"
     sql: ${TABLE}."FLG_NEGATIVADO" ;;
   }
 
   dimension: id_etapa_processamento {
     type: string
+    label: "Etapa de Processamento"
+    description: "Indica o ID da etapa de processamento do arquivo"
     sql: ${TABLE}."ID_ETAPA_PROCESSAMENTO" ;;
   }
 
   dimension: id_arquivo {
     type: string
+    label: "ID_ARQUIVO"
+    description: "ID do arquivo enviado para o provedor"
     sql: ${TABLE}."ID_ARQUIVO" ;;
   }
 
   dimension: id_provedor {
     type: string
+    label: "Provedor"
+    description: "Indica o provedor da negativação. Ex: Boa Vista ou Serasa"
     sql: ${TABLE}."ID_PROVEDOR" ;;
   }
 
   dimension: id_fundo_investimento {
     type: string
+    label: "ID_FUNDO_INVESTIMENTO"
+    description: "ID do fundo de investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: id_papel {
     type: string
+    label: "Papel"
+    description: "Indica qual o papel do negativado. Ex: Aluno ou Fiador."
     sql: ${TABLE}."ID_PAPEL" ;;
   }
 
   dimension: data_insert {
     type: string
+    label: "Data de Inserção"
+    description: "Indica a data de inserção do arquivo"
     sql: ${TABLE}."DATA_INSERT" ;;
   }
 
   dimension: data_update {
     type: string
+    label: "Data de atualização"
+    description: "Indica a data de atualização do arquivo"
     sql: ${TABLE}."DATA_UPDATE" ;;
   }
 
