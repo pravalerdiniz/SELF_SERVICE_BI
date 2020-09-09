@@ -1,6 +1,8 @@
 view: alunos_log_negativacao {
   derived_table: {
-    sql: select LN.value:SEUNUM AS SEUNUM,
+    sql: select
+      LN.key AS ID,
+      LN.value:SEUNUM AS SEUNUM,
       LN.value:FLG_NEGATIVADO AS FLG_NEGATIVADO,
       LN.value:ID_ETAPA_PROCESSAMENTO AS ID_ETAPA_PROCESSAMENTO,
       LN.value:ID_ARQUIVO AS ID_ARQUIVO,
@@ -19,6 +21,18 @@ view: alunos_log_negativacao {
     type: count
     drill_fields: [detail*]
   }
+
+  dimension: id {
+    type: number
+    label: "ID"
+    description: "ID da Tabela de Log Negativação"
+    hidden: yes
+    primary_key: yes
+    sql: ${TABLE}."ID" ;;
+  }
+
+
+
 
   dimension: id_cpf {
     type: number
@@ -92,6 +106,7 @@ view: alunos_log_negativacao {
 
   set: detail {
     fields: [
+      id,
       seunum,
       flg_negativado,
       id_etapa_processamento,
