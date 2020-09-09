@@ -9,8 +9,8 @@ view: alunos_log_negativacao {
       LN.value:ID_PROVEDOR AS ID_PROVEDOR,
       LN.value:ID_FUNDO_INVESTIMENTO AS ID_FUNDO_INVESTIMENTO,
       LN.value:ID_PAPEL AS ID_PAPEL,
-      LN.value:DATA_INSERT AS DATA_INSERT,
-      LN.value:DATA_UPDATE AS DATA_UPDATE,
+      LN.value:DATA_INSERT::datetime AS DATA_INSERT,
+      LN.value:DATA_UPDATE::datetime AS DATA_UPDATE,
       ID_CPF
       from "GRADUADO"."SELF_SERVICE_BI"."ALUNOS",
       lateral flatten(input => LOG_NEGATIVACAO) AS LN
