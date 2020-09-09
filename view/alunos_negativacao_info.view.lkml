@@ -34,7 +34,6 @@ view: alunos_negativacao_info {
 
     measure: count {
       type: count
-      label: "Quantidade de Documentos"
       drill_fields: [detail*]
     }
 

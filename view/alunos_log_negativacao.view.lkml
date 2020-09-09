@@ -26,7 +26,6 @@ view: alunos_log_negativacao {
     type: number
     label: "ID"
     description: "ID da Tabela de Log Negativação"
-    hidden: yes
     primary_key: yes
     sql: ${TABLE}."ID" ;;
   }
