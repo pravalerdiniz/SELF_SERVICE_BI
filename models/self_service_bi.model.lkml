@@ -295,7 +295,6 @@ explore: alunos {
   description: "Apresenta os dados de todos os alunos do PRAVALER"
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
-    - financeiro.id_contrato,
     - jornada.id_cpf,
     - jornada.id_proposta]
 join: alunos_produtos_aprovados {

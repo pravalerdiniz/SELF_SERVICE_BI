@@ -111,6 +111,13 @@ view: financeiro {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  measure: min_data_vencimento {
+    type:  date
+    label: "Menor Data Vencimento"
+    description: "Indica a menor data de vencimento do boleto"
+    sql: min(${data_vencimento_date}) ;;
+  }
+
   dimension_group: data_writeoff {
     type: time
     timeframes: [

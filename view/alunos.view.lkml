@@ -955,6 +955,7 @@ view: alunos {
     group_label: "Dados Financeiros"
     group_item_label: "Valor Presente"
     description: "Indica o valor presente"
+    value_format: "#.##"
   }
 
   dimension: vl_total_financiado {
