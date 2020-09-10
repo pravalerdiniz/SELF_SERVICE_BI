@@ -237,6 +237,23 @@ view: alunos {
     description: "Indica o bairro do Garantidor"
   }
 
+  dimension: fia_parentesco {
+    type: string
+    group_label: "Dados da Família e Garantidor"
+    group_item_label: "Parentesco do Garantidor"
+    description: "Indica o parentesco do garantidor"
+    sql: ${TABLE}."FIA_PARENTESCO" ;;
+  }
+
+  dimension: fia_idade {
+    type: number
+    group_label: "Dados da Família e Garantidor"
+    group_item_label: "Idade do Garantidor"
+    description: "Indica a idade do garantidor"
+    sql: ${TABLE}."FIA_IDADE" ;;
+  }
+
+
   dimension: fia_celular {
     type: string
     sql: ${TABLE}."FIA_CELULAR" ;;
