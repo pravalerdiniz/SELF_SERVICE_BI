@@ -1,14 +1,16 @@
 view: alunos_log_negativacao {
   derived_table: {
-    sql: select LN.value:SEUNUM AS SEUNUM,
+    sql: select
+      LN.key AS ID,
+      LN.value:SEUNUM AS SEUNUM,
       LN.value:FLG_NEGATIVADO AS FLG_NEGATIVADO,
       LN.value:ID_ETAPA_PROCESSAMENTO AS ID_ETAPA_PROCESSAMENTO,
       LN.value:ID_ARQUIVO AS ID_ARQUIVO,
       LN.value:ID_PROVEDOR AS ID_PROVEDOR,
       LN.value:ID_FUNDO_INVESTIMENTO AS ID_FUNDO_INVESTIMENTO,
       LN.value:ID_PAPEL AS ID_PAPEL,
-      LN.value:DATA_INSERT AS DATA_INSERT,
-      LN.value:DATA_UPDATE AS DATA_UPDATE,
+      LN.value:DATA_INSERT::datetime AS DATA_INSERT,
+      LN.value:DATA_UPDATE::datetime AS DATA_UPDATE,
       ID_CPF
       from "GRADUADO"."SELF_SERVICE_BI"."ALUNOS",
       lateral flatten(input => LOG_NEGATIVACAO) AS LN
@@ -19,6 +21,17 @@ view: alunos_log_negativacao {
     type: count
     drill_fields: [detail*]
   }
+
+  dimension: id {
+    type: number
+    label: "ID"
+    description: "ID da Tabela de Log Negativação"
+    primary_key: yes
+    sql: ${TABLE}."ID" ;;
+  }
+
+
+
 
   dimension: id_cpf {
     type: number
@@ -76,15 +89,36 @@ view: alunos_log_negativacao {
     sql: ${TABLE}."ID_PAPEL" ;;
   }
 
-  dimension: data_insert {
-    type: string
+  dimension_group: data_insert {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: datetime
     label: "Data de Inserção"
     description: "Indica a data de inserção do arquivo"
     sql: ${TABLE}."DATA_INSERT" ;;
   }
 
-  dimension: data_update {
-    type: string
+
+  dimension_group: data_update {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: datetime
     label: "Data de atualização"
     description: "Indica a data de atualização do arquivo"
     sql: ${TABLE}."DATA_UPDATE" ;;
@@ -92,6 +126,7 @@ view: alunos_log_negativacao {
 
   set: detail {
     fields: [
+      id,
       seunum,
       flg_negativado,
       id_etapa_processamento,
@@ -99,8 +134,8 @@ view: alunos_log_negativacao {
       id_provedor,
       id_fundo_investimento,
       id_papel,
-      data_insert,
-      data_update
+      data_insert_date,
+      data_update_date
     ]
   }
 }

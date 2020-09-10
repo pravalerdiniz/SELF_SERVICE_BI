@@ -912,7 +912,7 @@ view: alunos {
   dimension: vl_score {
     type: number
     sql: ${TABLE}."VL_SCORE" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Aluno"
     group_item_label: "Score"
     description: "Indica o Score do aluno"
   }
