@@ -90,6 +90,16 @@ view: proposta {
   }
 
 
+
+  dimension: gh_bhv{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "GH - Behavior"
+    description: "Indica a classificação do Behavior do Aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do Aluno."
+    sql: ${TABLE}."GH_BHV" ;;
+  }
+
+
   dimension: mapa_uf_aluno {
     sql: ${TABLE}."ALUNO_UF" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
