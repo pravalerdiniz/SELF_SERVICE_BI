@@ -710,7 +710,8 @@ view: jornada {
     type: sum
     sql: ${status_etapa} ;;
     value_format: "#,###"
-    drill_fields: [id_cpf, id_proposta]
+    drill_fields: [id_cpf, id_proposta,etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
+    filters: [status_etapa: "1"]
     group_label: "Quantidade de Status"
     group_item_label: "Valor"
     description: "Soma de Status da Etapa, indicando que o aluno passou pela etapa sendo analisada"
