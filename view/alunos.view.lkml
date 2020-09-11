@@ -178,6 +178,8 @@ view: alunos {
 
   }
 
+
+
   dimension: nacionalidade {
     type: string
     sql: ${TABLE}."NACIONALIDADE" ;;
@@ -252,6 +254,43 @@ view: alunos {
     description: "Indica a idade do garantidor"
     sql: ${TABLE}."FIA_IDADE" ;;
   }
+
+  dimension: cpf_fiador {
+    type: number
+    group_label: "Dados da Família e Garantidor"
+    label: "CPF do Garantidor"
+    description: "Indica o CPF do Garantidor"
+    value_format: "0"
+    sql: ${TABLE}."CPF_FIADOR" ;;
+    required_access_grants: [grupo_cpf]
+
+  }
+
+  dimension: nm_empresa {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome da Empresa Devedora"
+    description: "Nome da Empresa para qual o aluno deve"
+    sql: ${TABLE}."NOME_EMPRESA_COBRANCA" ;;
+  }
+
+  dimension: inibido {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "Aluno Inibido como Devedor"
+    description: "Aluno Inibido como Devedor"
+    sql: ${TABLE}."INIBIDO" ;;
+  }
+
+  dimension: vl_pdd {
+    type: number
+    group_label: "Dados Financeiros"
+    group_item_label: "Valor do PDD"
+    description: "Indica o Valor do PDD"
+    sql: ${TABLE}."VL_PDD" ;;
+    value_format: "#.##"
+  }
+
 
 
   dimension: fia_celular {
@@ -369,8 +408,8 @@ view: alunos {
     type: string
     sql: ${TABLE}."FIA_TEMPO_EMPRESA" ;;
     group_label: "Dados da Família e Garantidor"
-    group_item_label: "Tempo Empresa - Fiador"
-    description: "Indica há quanto tempo o fiador trabalha na empresa atual"
+    group_item_label: "Tempo Empresa - Garantidor"
+    description: "Indica há quanto tempo o garantidor trabalha na empresa atual"
   }
 
   dimension: fia_tipo_residencia {
