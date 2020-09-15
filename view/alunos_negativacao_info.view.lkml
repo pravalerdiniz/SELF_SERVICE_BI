@@ -142,6 +142,7 @@ view: alunos_negativacao_info {
         id_cpf,
         ds_provedor,
         data_insercao_time,
+        data_update_time,
         ds_operacao,
         flg_negativado,
         id_processamento,
