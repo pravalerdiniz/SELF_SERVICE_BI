@@ -12,7 +12,6 @@ view: alunos {
   }
 
 
-
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -444,6 +443,8 @@ view: alunos {
     group_item_label: "Aluno formado?"
     description: "Indica se o aluno é formando (yes / no)"
   }
+
+
 
   dimension: flg_mae_falecida {
     type: yesno
@@ -949,6 +950,14 @@ view: alunos {
     description: "Indica a quantidade de parcelas"
   }
 
+  dimension: qtd_renovacao {
+    type: number
+    sql: ${TABLE}."QTD_RENOVACAO" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Quantidade de Propostas de Renovação"
+    description: "Indica a quantidade de propostas de renovação"
+  }
+
   dimension: safra_cessao_semestre {
     type: string
     sql: ${TABLE}."SAFRA_CESSAO_SEMESTRE" ;;
@@ -987,6 +996,23 @@ view: alunos {
     group_label: "Dados da Proposta"
     group_item_label: "Grupo Homogêneo"
     description: "Indica o grupo homogêneo"
+  }
+
+  dimension: data_visao_diaria {
+    hidden:yes
+    type: date
+    sql: ${TABLE}."DT_VISAO_DIARIA" ;;
+    group_label: "Dados Financeiros"
+    group_item_label: "Data da Visão Diária "
+    description: "Indica "
+  }
+
+  dimension: flg_inadimplente {
+    type: yesno
+    sql: ${TABLE}."FLG_INADIMPLENTE" ;;
+    group_label: "Dados Financeiros"
+    group_item_label: "Aluno Inadimplente?"
+    description: "Indica se o aluno está inadimplente (yes / no)"
   }
 
   dimension: vl_boleto {
@@ -1265,6 +1291,7 @@ dimension: ultimo_semestre_cedido_renovacao {
     description: "Indica a data de geração do collection"
   }
 
+
   dimension: ds_ultimo_status {
     type: string
     sql: ${TABLE}."DS_ULTIMO_STATUS" ;;
@@ -1274,17 +1301,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   }
 
 
-
   dimension: ultimo_status {
-    type: string
-    sql: ${TABLE}."ULTIMO_STATUS" ;;
-    group_label: "Dados de Status"
-    group_item_label: "Último Status do Aluno"
-    description: "Indica o número do último status detalhado da proposta mais atual do aluno"
-  }
-
-
-  dimension: data {
     type: string
     sql: ${TABLE}."ULTIMO_STATUS" ;;
     group_label: "Dados de Status"
