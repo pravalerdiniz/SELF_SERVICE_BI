@@ -17,8 +17,8 @@ view: farol {
   }
 
 dimension: ultima_data {
-  type: number
-   sql:row_number() over(order by ${TABLE}."DATA_CARGA" desc) ;;
+  type: date_raw
+   sql:MAX(${data_carga_raw});;
 }
 
 
@@ -315,6 +315,8 @@ dimension: ultima_data {
   }
 
 
+
+
   measure: status_2_90 {
     type: sum
     sql: ${status_2_90_problemas_integracao_produtos_neo_xbo};;
@@ -475,6 +477,7 @@ dimension: ultima_data {
       label: "Detalhado"
       url: "/looks/449?&f[farol_detalhado.status]={{'14.'}}%25"}
 
+
   }
 
   measure: PERC_status2_0_sla_fora {
@@ -503,6 +506,7 @@ dimension: ultima_data {
       url: "/looks/449?&f[farol_detalhado.status]={{'2.0'}}"}
 
   }
+
 
 
 
@@ -949,6 +953,89 @@ dimension: ultima_data {
       label: "Detalhado"
       url: "/looks/449?&f[farol_detalhado.status]={{'40.5'}}"}
   }
+
+
+measure: status_erro {
+  type: number
+  sql: ${status_8}+${status_2_90}+${status_9090}+${status_9} ;;
+  hidden: yes
+}
+
+
+
+
+  measure: status_dentro {
+  type: sum
+  sql:  ${status_11_0_aluno_no_portal_da_ies_dentro_sla}+
+${status_11_2_aluno_no_portal_da_ies_dentro_sla}+
+${status_13_aluno_pendente_matricula_dentro_sla}+
+${status_14_aluno_possui_divida_ies_dentro_sla}+
+${status_15_aluno_revertido_nova_analise_ies_dentro_sla}+
+${status_2_0_proposta_finalizada_dentro}+
+${status_2_35_validacao_dados_analise_dentro}+
+${status_2_37_integracao_neo_xbo_dentro}+
+${status_25_1_confirmacao_dados_dentro}+
+${status_25_2_confirmacao_dados_bv_dentro}+
+${status_25_4_escolha_produto_dentro}+
+${status_26_1_restritivo_bv_dentro}+
+${status_31_1_aprovado_pela_ies_dentro}+
+${status_31_4_aguardando_geracao_contrato_dentro}+
+${status_33_0_mesa_geracao_contratos_dentro}+
+${status_33_2_erro_geracao_contrato_dentro}+
+${status_34_0_processo_emissao_contrato_dentro}+
+${status_34_1_aluno_aprovado_resumo_contrato_dentro}+
+${status_35_0_aprovado_para_gerar_contrato_dentro}+
+${status_40_5_aguardando_assinatura_contrato_dentro}+
+${status_41_formalizado_dentro}+
+${status_46_contrato_nao_concedido_dentro}+
+${status_50_credito_cedido_dentro}+
+${status_84_1_exclusivo_cessao_aluno_formalizado_dentro}+
+${status_99_1_erros_cessao_dentro};;
+}
+
+measure: status_fora {
+  type: number
+  sql: ${status2_0_sla_fora}+
+${status2_35_sla_fora}+
+${status2_37_sla_fora}+
+${status11_sla_fora}+
+${status11_2_sla_fora}+
+${status13_sla_fora}+
+${status14_sla_fora}+
+${status15_sla_fora}+
+${status41_sla_fora}+
+${status25_1_sla_fora}+
+${status25_2_sla_fora}+
+${status26_1_sla_fora}+
+${status25_4_sla_fora}+
+${status46_sla_fora}+
+${status50_sla_fora}+
+${status84_sla_fora}+
+${status99_sla_fora}+
+${status_34_0_sla_fora}+
+${status_31_4_sla_fora}+
+${status_31_1_sla_fora}+
+${status_33_0_sla_fora}+
+${status_34_1_sla_fora}+
+${status_35_0_sla_fora}+
+${status_40_5_sla_fora}+
+${status_33_2_sla_fora}+ ${status_erro};;
+}
+
+
+measure: perc_status_dentro_sla {
+  type: number
+  sql: ${status_dentro}/IFF(${status_dentro} + ${status_fora}=0,1,
+    ${status_dentro} + ${status_fora}
+    ) ;;
+  value_format: "0.0%"
+}
+
+
+
+
+
+
 
 
 
