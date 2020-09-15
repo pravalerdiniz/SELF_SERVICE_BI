@@ -10,6 +10,7 @@ view: alunos_negativacao_info {
                   f.value:id_etapa_processamento::int id_processamento,
                   f.value:qtd_dias_atraso::int as qtd_dias_atraso,
                   f.value:seunum::int as id_senum,
+                  f.value::data_usuario_update::datetime as data_update,
                   'Aluno' papel
                   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
                   lateral flatten (input => aluno_negativacao_info) f
@@ -25,6 +26,7 @@ view: alunos_negativacao_info {
                   f.value:id_etapa_processamento::int id_processamento,
                   f.value:qtd_dias_atraso::int as qtd_dias_atraso,
                   f.value:seunum::int as id_senum,
+                  f.value::data_usuario_update::datetime as data_update,
                   'Fiador' papel
                   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
                   lateral flatten (input => fia_negativacao_info) f
@@ -71,9 +73,20 @@ view: alunos_negativacao_info {
     dimension_group: data_insercao {
       type: time
       label: "Data de Inserção"
-      description: "Indica a data de inserção do arquivo"
+      description: "Indica a data de inserção do registro"
       sql: ${TABLE}."DATA_INSERCAO" ;;
     }
+
+
+  dimension_group: data_update {
+    type: time
+    label: "Data de Atualização"
+    description: "Indica a data de atualização do registro"
+    sql: ${TABLE}."DATA_UPDATE" ;;
+  }
+
+
+
 
     dimension: ds_operacao {
       type: string
