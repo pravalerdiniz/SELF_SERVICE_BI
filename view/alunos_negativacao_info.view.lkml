@@ -10,7 +10,7 @@ view: alunos_negativacao_info {
                   f.value:id_etapa_processamento::int id_processamento,
                   f.value:qtd_dias_atraso::int as qtd_dias_atraso,
                   f.value:seunum::int as id_senum,
-                  f.value::data_usuario_update::datetime as data_update,
+                  f.value:data_usuario_update::datetime as data_update,
                   'Aluno' papel
                   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
                   lateral flatten (input => aluno_negativacao_info) f
@@ -26,7 +26,7 @@ view: alunos_negativacao_info {
                   f.value:id_etapa_processamento::int id_processamento,
                   f.value:qtd_dias_atraso::int as qtd_dias_atraso,
                   f.value:seunum::int as id_senum,
-                  f.value::data_usuario_update::datetime as data_update,
+                  f.value:data_usuario_update::datetime as data_update,
                   'Fiador' papel
                   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
                   lateral flatten (input => fia_negativacao_info) f
