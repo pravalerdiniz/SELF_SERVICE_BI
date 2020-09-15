@@ -3,12 +3,12 @@ view: alunos_log_negativacao {
     sql: select
       LN.key AS ID,
       LN.value:SEUNUM AS SEUNUM,
-      LN.value:FLG_NEGATIVADO AS FLG_NEGATIVADO,
-      LN.value:ID_ETAPA_PROCESSAMENTO AS ID_ETAPA_PROCESSAMENTO,
-      LN.value:ID_ARQUIVO AS ID_ARQUIVO,
-      LN.value:ID_PROVEDOR AS ID_PROVEDOR,
-      LN.value:ID_FUNDO_INVESTIMENTO AS ID_FUNDO_INVESTIMENTO,
-      LN.value:ID_PAPEL AS ID_PAPEL,
+      LN.value:FLG_NEGATIVADO::boolean AS FLG_NEGATIVADO,
+      LN.value:ID_ETAPA_PROCESSAMENTO::int AS ID_ETAPA_PROCESSAMENTO,
+      LN.value:ID_ARQUIVO::int AS ID_ARQUIVO,
+      LN.value:ID_PROVEDOR::int AS ID_PROVEDOR,
+      LN.value:ID_FUNDO_INVESTIMENTO::int AS ID_FUNDO_INVESTIMENTO,
+      LN.value:ID_PAPEL::int AS ID_PAPEL,
       LN.value:DATA_INSERT::datetime AS DATA_INSERT,
       LN.value:DATA_UPDATE::datetime AS DATA_UPDATE,
       ID_CPF
