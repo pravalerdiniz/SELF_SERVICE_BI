@@ -48,14 +48,14 @@ view: alunos_log_negativacao {
   }
 
   dimension: flg_negativado {
-    type: string
+    type: yesno
     label: "Negativado?"
     description: "Indica se o aluno ou garantidor está negativado"
     sql: ${TABLE}."FLG_NEGATIVADO" ;;
   }
 
   dimension: id_etapa_processamento {
-    type: string
+    type: number
     label: "Etapa de Processamento"
     description: "Indica o ID da etapa de processamento do arquivo"
     sql: ${TABLE}."ID_ETAPA_PROCESSAMENTO" ;;
@@ -69,21 +69,21 @@ view: alunos_log_negativacao {
   }
 
   dimension: id_provedor {
-    type: string
+    type: number
     label: "Provedor"
     description: "Indica o provedor da negativação. Ex: Boa Vista ou Serasa"
     sql: ${TABLE}."ID_PROVEDOR" ;;
   }
 
   dimension: id_fundo_investimento {
-    type: string
+    type: number
     label: "ID Fundo Investimento"
     description: "ID do fundo de investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: id_papel {
-    type: string
+    type: number
     label: "Papel"
     description: "Indica qual o papel do negativado. Ex: Aluno ou Fiador."
     sql: ${TABLE}."ID_PAPEL" ;;
