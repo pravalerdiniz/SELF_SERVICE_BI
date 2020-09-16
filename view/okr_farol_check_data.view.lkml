@@ -1,7 +1,7 @@
 view: okr_farol_check_data {
   derived_table: {
     sql: SELECT
-      DATA_CARGA,
+      DATA_CARGA
       FROM
       GRADUADO."SELF_SERVICE_BI"."FAROL"
       QUALIFY ROW_NUMBER() OVER ( PARTITION BY TO_CHAR(DATA_CARGA, 'YYYY-MM-DD') ORDER BY DATA_CARGA DESC )=1
@@ -20,6 +20,6 @@ view: okr_farol_check_data {
 
 
   set: detail {
-    fields: [data_carga_time, ]
+    fields: [data_carga_time]
   }
 }
