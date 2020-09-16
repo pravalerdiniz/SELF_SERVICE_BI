@@ -999,12 +999,11 @@ view: alunos {
   }
 
   dimension: data_visao_diaria {
-    hidden:yes
     type: date
     sql: ${TABLE}."DT_VISAO_DIARIA" ;;
     group_label: "Dados Financeiros"
-    group_item_label: "Data da Visão Diária "
-    description: "Indica "
+    group_item_label: "Data da Visão Diária - PDD "
+    description: "Informa a data referente ao calculo diário do pdd do aluno"
   }
 
   dimension: flg_inadimplente {
