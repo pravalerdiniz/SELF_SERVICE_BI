@@ -869,6 +869,7 @@ view: alunos {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]

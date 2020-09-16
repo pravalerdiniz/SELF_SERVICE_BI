@@ -1230,7 +1230,7 @@ view: proposta {
     group_label: "Dados de Renovação"
     label: "Número de Renovação"
     description: "Indica a quantidade de renovações realizadas do contrato."
-    sql: ${TABLE}."NUM_DA_RENOVACAO" ;;
+    sql: IFNULL(${TABLE}."NUM_DA_RENOVACAO",0) ;;
   }
 
   dimension: perc_comissao {
@@ -2241,7 +2241,8 @@ view: proposta {
 
 
   measure: count_tipo_proposta_novo {
-    type: count
+    type: count_distinct
+    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Novo"
     filters: [tipo_proposta: "Novo"]
@@ -2250,7 +2251,8 @@ view: proposta {
 
 
   measure: count_tipo_proposta_renovacao {
-    type: count
+    type: count_distinct
+    sql: ${id_cpf}  ;;
     group_label: "Proposta"
     group_item_label: "Renovação"
     filters: [tipo_proposta: "Renovação"]
@@ -2258,7 +2260,8 @@ view: proposta {
   }
 
   measure: count_tipo_proposta_seg_repasse {
-    type: count
+    type: count_distinct
+    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Segundo Repasse"
     filters: [tipo_proposta: "Segundo Repasse"]
@@ -2266,7 +2269,8 @@ view: proposta {
   }
 
   measure: count_tipo_proposta_renegociacao {
-    type: count
+    type: count_distinct
+    sql: ${id_cpf}0} ;;
     group_label: "Proposta"
     group_item_label: "Renegociação"
     filters: [tipo_proposta: "Renegociação"]
@@ -2274,7 +2278,8 @@ view: proposta {
   }
 
   measure: count_tipo_proposta_reempacotado {
-    type: count
+    type: count_distinct
+    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Reempactado"
     filters: [tipo_proposta: "Reempacotado"]
