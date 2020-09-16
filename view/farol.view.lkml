@@ -1074,5 +1074,361 @@ measure: perc_okr_diario {
 }
 
 
+  dimension: status_2000_0 {
+    type: number
+    sql: ${TABLE}."STATUS_2000_0" ;;
+  }
+
+  dimension: status_2002_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2002_0_DENTRO" ;;
+  }
+
+  dimension: status_2002_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2002_0_FORA" ;;
+  }
+
+  dimension: status_2006_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2006_0_DENTRO" ;;
+  }
+
+  dimension: status_2006_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2006_0_FORA" ;;
+  }
+
+  dimension: status_2006_1 {
+    type: number
+    sql: ${TABLE}."STATUS_2006_1" ;;
+  }
+
+  dimension: status_2006_2 {
+    type: number
+    sql: ${TABLE}."STATUS_2006_2" ;;
+  }
+
+  dimension: status_2007_2_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2007_2_DENTRO" ;;
+  }
+
+  dimension: status_2007_2_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2007_2_FORA" ;;
+  }
+
+  dimension: status_2007_5 {
+    type: number
+    sql: ${TABLE}."STATUS_2007_5" ;;
+  }
+
+  dimension: status_2007_6_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2007_6_DENTRO" ;;
+  }
+
+  dimension: status_2007_6_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2007_6_FORA" ;;
+  }
+
+  dimension: status_2009_0 {
+    type: number
+    sql: ${TABLE}."STATUS_2009_0" ;;
+  }
+
+  dimension: status_2010_1 {
+    type: number
+    sql: ${TABLE}."STATUS_2010_1" ;;
+  }
+
+  dimension: status_2011_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2011_1_DENTRO" ;;
+  }
+
+  dimension: status_2011_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2011_1_FORA" ;;
+  }
+
+  dimension: status_2011_5_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2011_5_DENTRO" ;;
+  }
+
+  dimension: status_2011_5_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2011_5_FORA" ;;
+  }
+
+  dimension: status_2011_9_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2011_9_DENTRO" ;;
+  }
+
+  dimension: status_2011_9_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2011_9_FORA" ;;
+  }
+
+  dimension: status_2012_13_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2012_13_DENTRO" ;;
+  }
+
+  dimension: status_2012_13_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2012_13_FORA" ;;
+  }
+
+  dimension: status_2012_3_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2012_3_DENTRO" ;;
+  }
+
+  dimension: status_2012_3_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2012_3_FORA" ;;
+  }
+
+  dimension: status_2013_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2013_1_DENTRO" ;;
+  }
+
+  dimension: status_2013_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2013_1_FORA" ;;
+  }
+
+  dimension: status_2014_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2014_1_DENTRO" ;;
+  }
+
+  dimension: status_2014_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2014_1_FORA" ;;
+  }
+
+  dimension: status_2015_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2015_0_DENTRO" ;;
+  }
+
+  dimension: status_2015_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2015_0_FORA" ;;
+  }
+
+  dimension: status_2031_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2031_1_DENTRO" ;;
+  }
+
+  dimension: status_2031_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2031_1_FORA" ;;
+  }
+
+  dimension: status_2031_4_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2031_4_DENTRO" ;;
+  }
+
+  dimension: status_2031_4_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2031_4_FORA" ;;
+  }
+
+  dimension: status_2031_5_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2031_5_DENTRO" ;;
+  }
+
+  dimension: status_2031_5_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2031_5_FORA" ;;
+  }
+
+  dimension: status_2033_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2033_0_DENTRO" ;;
+  }
+
+  dimension: status_2033_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2033_0_FORA" ;;
+  }
+
+  dimension: status_2033_2 {
+    type: number
+    sql: ${TABLE}."STATUS_2033_2" ;;
+  }
+
+  dimension: status_2034_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2034_0_DENTRO" ;;
+  }
+
+  dimension: status_2034_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2034_0_FORA" ;;
+  }
+
+  dimension: status_2034_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2034_1_DENTRO" ;;
+  }
+
+  dimension: status_2034_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2034_1_FORA" ;;
+  }
+
+  dimension: status_2035_0_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2035_0_DENTRO" ;;
+  }
+
+  dimension: status_2035_0_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2035_0_FORA" ;;
+  }
+
+  dimension: status_2039_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2039_DENTRO" ;;
+  }
+
+  dimension: status_2039_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2039_FORA" ;;
+  }
+
+  dimension: status_2040_0 {
+    type: number
+    sql: ${TABLE}."STATUS_2040_0" ;;
+  }
+
+  dimension: status_2041_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2041_1_DENTRO" ;;
+  }
+
+  dimension: status_2041_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2041_1_FORA" ;;
+  }
+
+  dimension: status_2042_1 {
+    type: number
+    sql: ${TABLE}."STATUS_2042_1" ;;
+  }
+
+  dimension: status_2042_2 {
+    type: number
+    sql: ${TABLE}."STATUS_2042_2" ;;
+  }
+
+  dimension: status_2042_3 {
+    type: number
+    sql: ${TABLE}."STATUS_2042_3" ;;
+  }
+
+  dimension: status_2042_4 {
+    type: number
+    sql: ${TABLE}."STATUS_2042_4" ;;
+  }
+
+  dimension: status_2043_0 {
+    type: number
+    sql: ${TABLE}."STATUS_2043_0" ;;
+  }
+
+  dimension: status_2044_1 {
+    type: number
+    sql: ${TABLE}."STATUS_2044_1" ;;
+  }
+
+  dimension: status_2044_2 {
+    type: number
+    sql: ${TABLE}."STATUS_2044_2" ;;
+  }
+
+  dimension: status_2044_3 {
+    type: number
+    sql: ${TABLE}."STATUS_2044_3" ;;
+  }
+
+  dimension: status_2046_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2046_1_DENTRO" ;;
+  }
+
+  dimension: status_2046_1_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2046_1_FORA" ;;
+  }
+
+  dimension: status_2046_2_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2046_2_DENTRO" ;;
+  }
+
+  dimension: status_2046_2_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2046_2_FORA" ;;
+  }
+
+  dimension: status_2046_3_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2046_3_DENTRO" ;;
+  }
+
+  dimension: status_2046_3_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2046_3_FORA" ;;
+  }
+
+  dimension: status_2046_4_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2046_4_DENTRO" ;;
+  }
+
+  dimension: status_2046_4_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2046_4_FORA" ;;
+  }
+
+  dimension: status_2046_5_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2046_5_DENTRO" ;;
+  }
+
+  dimension: status_2046_5_fora {
+    type: number
+    sql: ${TABLE}."STATUS_2046_5_FORA" ;;
+  }
+
+  dimension: status_2084_1 {
+    type: number
+    sql: ${TABLE}."STATUS_2084_1" ;;
+  }
+
+  dimension: status_2084_1_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_2084_1_DENTRO" ;;
+  }
+
+  dimension: status_2099 {
+    type: number
+    sql: ${TABLE}."STATUS_2099" ;;
+  }
+
+
 
 }
