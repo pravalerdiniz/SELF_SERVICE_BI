@@ -29,8 +29,17 @@ explore: farol {
   view_label: "FAROL"
 
 
+join: okr_farol_check_data {
+  relationship: many_to_one
+  type: left_outer
+  sql_on: ${farol.data_carga_raw} = ${okr_farol_check_data.data_carga_raw} ;;
+  fields: []
+}
+
 
   }
+
+
 
   explore: farol_detalhado {}
 
