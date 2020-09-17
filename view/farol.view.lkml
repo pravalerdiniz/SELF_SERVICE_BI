@@ -1496,7 +1496,7 @@ view: farol {
 
           measure: sum_status_2006_0_fora {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.0 -  Consulta aos restritivos internos BV"
             sql: ${status_2006_0_fora} ;;
 
@@ -1506,7 +1506,7 @@ view: farol {
 
           measure: sum_status_2006_1 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.1 Fora - Erro ao consultar restrição - Banco Votorantim"
             sql: ${status_2006_1} ;;
 
@@ -1514,7 +1514,7 @@ view: farol {
 
           measure: sum_status_2006_2 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.2 Fora - Erro ao consultar restrição na confirmaç de dados - Banco Votorantim"
             sql: ${status_2006_2} ;;
 
@@ -1522,7 +1522,7 @@ view: farol {
 
           measure: sum_status_2007_2 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.2 Fora -  Processo de troca de IES invalidado"
             sql: ${status_2007_2_fora} ;;
 
@@ -1533,7 +1533,7 @@ view: farol {
 
           measure: sum_status_2007_5 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.5  - Recontratação erro consulta garantidor bureaux"
             sql: ${status_2007_5} ;;
 
@@ -1541,7 +1541,7 @@ view: farol {
 
           measure: sum_status_2007_6 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.6 Fora -  Troca de Garantidor: erro consulta aluno bureaux"
             sql: ${status_2007_6_fora} ;;
 
@@ -1549,7 +1549,7 @@ view: farol {
 
           measure: sum_status_2010_1 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2010.0 -  Elegível ao Processo de Recontratação"
             sql: ${status_2010_1} ;;
 
@@ -1557,7 +1557,7 @@ view: farol {
 
           measure: sum_status_2012_13 {
             type: sum
-            group_label: "ELEGIBILIDADE\RISCO"
+            group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2012.13 Fora -  Aguardando Pagamento em Atraso(behaviour)"
             sql: ${status_2012_13_fora} ;;
 
@@ -1974,19 +1974,19 @@ view: farol {
   }
   measure: perc_status_2007_6_fora{
     type: sum
-    group_label: "ELEGIBILIDADE  - RISCO"
+    group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2007 6  - Troca de Garantidor: erro consulta aluno bureaux"
     sql: ${status_2007_6_fora}  / IFF ( ${status_2007_6_fora} + ${status_2007_6_dentro}=0,1,${status_2007_6_fora} + ${status_2007_6_dentro});;
   }
   measure: perc_status_2012_13_fora{
     type: sum
-    group_label: "ELEGIBILIDADE  - RISCO"
+    group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 13  - Aguardando Pagamento em Atraso(behaviour)"
     sql: ${status_2012_13_fora} / IFF ( ${status_2012_13_fora} + ${status_2012_13_dentro}=0,1,${status_2012_13_fora} + ${status_2012_13_dentro});;
   }
   measure: perc_status_2012_3_fora{
     type: sum
-    group_label: "ELEGIBILIDADE  - RISCO"
+    group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 3  - 1º Processo - Mesa 1 - Tabela A"
     sql: ${status_2012_3_fora}  / IFF (  ${status_2012_3_fora} + ${status_2012_3_dentro}=0,1,${status_2012_3_fora} + ${status_2012_3_dentro});;
   }
