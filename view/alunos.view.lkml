@@ -1,5 +1,5 @@
 view: alunos {
-  sql_table_name: "SELF_SERVICE_BI"."ALUNOS"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."ALUNOS"
     ;;
 
 
@@ -1324,6 +1324,7 @@ dimension: ultimo_semestre_cedido_renovacao {
     label: "Data Último Status"
     description: "Indica a data do último Status do Aluno"
   }
+
 
 
 

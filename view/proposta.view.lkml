@@ -1,5 +1,5 @@
 view: proposta {
-  sql_table_name: "SELF_SERVICE_BI"."PROPOSTA"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA"
     ;;
 
   dimension: aluno_cal_vet {
@@ -1679,6 +1679,7 @@ view: proposta {
     sql: ${TABLE}."CLASSE_MODELO_INICIADO" ;;
   }
 
+
   measure: count {
     type: count
     group_label: "Proposta"
@@ -2245,7 +2246,7 @@ view: proposta {
     sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Novo"
-    filters: [tipo_proposta: "Novo"]
+    filters: [tipo_proposta: "NOVO"]
     description: "Contagem de propostas de aluno novo"
   }
 
@@ -2253,9 +2254,10 @@ view: proposta {
   measure: count_tipo_proposta_renovacao {
     type: count_distinct
     sql: ${id_cpf}  ;;
+    sql_distinct_key: ${num_da_renovacao} ;;
     group_label: "Proposta"
     group_item_label: "Renovação"
-    filters: [tipo_proposta: "Renovação"]
+    filters: [tipo_proposta: "RENOVACAO"]
     description: "Contagem de propostas de renovação"
   }
 
@@ -2264,16 +2266,16 @@ view: proposta {
     sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Segundo Repasse"
-    filters: [tipo_proposta: "Segundo Repasse"]
+    filters: [tipo_proposta: "SEGUNDO REPASSE"]
     description: "Contagem de propostas de segundo repasse"
   }
 
   measure: count_tipo_proposta_renegociacao {
     type: count_distinct
-    sql: ${id_cpf}0} ;;
+    sql: ${id_cpf} ;;
     group_label: "Proposta"
-    group_item_label: "Renegociação"
-    filters: [tipo_proposta: "Renegociação"]
+    group_item_label:  "Renegociação"
+    filters: [tipo_proposta: "RENEGOCIACAO"]
     description: "Contagem de propostas de renegociação"
   }
 
@@ -2281,10 +2283,11 @@ view: proposta {
     type: count_distinct
     sql: ${id_cpf} ;;
     group_label: "Proposta"
-    group_item_label: "Reempactado"
-    filters: [tipo_proposta: "Reempacotado"]
+    group_item_label: "Reempacotado"
+    filters: [tipo_proposta: "REEMPACOTADO"]
     description: "Contagem de propostas do tipo reempactado"
   }
+
 
 
   measure: count_contrato_gerado {
@@ -2590,5 +2593,7 @@ view: proposta {
     type: count
     drill_fields: []
   }
+
+
 
 }

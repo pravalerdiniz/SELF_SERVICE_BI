@@ -286,6 +286,13 @@ join: proposta_docs_pendentes {
     type: left_outer
   }
 
+  join: alunos {
+    fields: []
+    sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
 
 }
@@ -297,14 +304,13 @@ explore: alunos {
     - financeiro.id_cpf,
     - jornada.id_cpf,
     - jornada.id_proposta]
+
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
   type: left_outer
   relationship: one_to_many
   }
-
-
 
 
   join: alunos_maturidade_info {
@@ -349,7 +355,12 @@ join: alunos_produtos_aprovados {
   }
 
 
-
+  join: proposta {
+    fields: []
+    sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
 
