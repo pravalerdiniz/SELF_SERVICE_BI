@@ -1499,6 +1499,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.0 -  Consulta aos restritivos internos BV"
             sql: ${status_2006_0_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1509,14 +1512,20 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.1 Fora - Erro ao consultar restrição - Banco Votorantim"
             sql: ${status_2006_1} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.1'}}" }
 
           }
 
           measure: sum_status_2006_2 {
             type: sum
             group_label: "ELEGIBILIDADE - RISCO"
-            label: "Status 2006.2 Fora - Erro ao consultar restrição na confirmaç de dados - Banco Votorantim"
+            label: "Status 2006.2 Fora - Erro ao consultar restrição na confirmação de dados - Banco Votorantim"
             sql: ${status_2006_2} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.2'}}" }
 
           }
 
@@ -1567,6 +1576,9 @@ view: farol {
             type: sum
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2000.0 -  Recontratação Iniciada"
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2000.0'}}" }
             sql: ${status_2000_0} ;;
 
           }
@@ -1993,7 +2005,7 @@ view: farol {
     type: sum
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
-    label: "Porcentagem  status 2007 2  - Recontratação erro consulta garantidor bureaux"
+    label: "Porcentagem  status 2007 2  - Processo de troca de IES invalidado"
     sql:${status_2007_2_fora} / IFF ( ${status_2007_2_fora} + ${status_2007_2_dentro}=0,1,${status_2007_2_fora} + ${status_2007_2_dentro});;
   }
   measure: perc_status_2007_6_fora{
