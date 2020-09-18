@@ -2595,6 +2595,14 @@ view: proposta {
   }
 
 
+  dimension: qtd_contratos_cedidos {
+    type: number
+    sql: ${alunos.qtd_contratos_cedidos} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Quantidade de Contratos Cedidos"
+    description: "Indica a quantidade de contratos cedidos"
+  }
+
 
 
 
