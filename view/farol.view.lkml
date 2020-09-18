@@ -1534,6 +1534,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.2 Fora -  Processo de troca de IES invalidado"
             sql: ${status_2007_2_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1545,6 +1548,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.5  - Recontratação erro consulta garantidor bureaux"
             sql: ${status_2007_5} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1553,6 +1559,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.6 Fora -  Troca de Garantidor: erro consulta aluno bureaux"
             sql: ${status_2007_6_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1561,6 +1570,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2010.0 -  Elegível ao Processo de Recontratação"
             sql: ${status_2010_1} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1569,6 +1581,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2012.13 Fora -  Aguardando Pagamento em Atraso(behaviour)"
             sql: ${status_2012_13_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1588,6 +1603,9 @@ view: farol {
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2012.3 Fora - 1º Processo - Mesa 1 - Tabela A"
             sql: ${status_2012_3_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1597,6 +1615,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2002.0 Fora - Aluno em Processo de Transferência de IES"
             sql: ${status_2002_0_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
 
@@ -1605,6 +1626,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2009.0 - Ciclo de Recontratação Encerrado - Aluno Não avaliado pela IES"
             sql: ${status_2009_0} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2011_1 {
@@ -1612,6 +1636,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2011.1 Fora - Aluno no portal da IES"
             sql: ${status_2011_1_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure:sum_status_2011_5 {
@@ -1619,6 +1646,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2011.5 Fora - 2º Processo Iniciado na Tabela A"
             sql: ${status_2011_5_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure:sum_status_2011_9 {
@@ -1633,6 +1663,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2013.1 Fora - Pendente de Matrícula sem Promessa"
             sql: ${status_2013_1_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure:sum_status_2014_1  {
@@ -1640,6 +1673,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2014.1 Fora - Pendente de Dívida sem Promessa"
             sql: ${status_2014_1_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2015_0 {
@@ -1647,6 +1683,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2015.0 Fora - Aluno Revertido para Nova Avaliação da IES"
             sql: ${status_2015_0_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure:sum_status_2039 {
@@ -1654,6 +1693,9 @@ view: farol {
             group_label: "IES"
             label: "Status 2039 Fora - Recontratação Reprovada na IES (Aluno Formado)"
             sql: ${status_2039_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2031{
@@ -1661,6 +1703,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031 Fora Fora - Confirmado IES sem Promessa"
             sql: ${status_2031_1_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure:sum_status_2033_2 {
@@ -1668,6 +1713,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2033 Fora - Geração de Contratos - Erro na Geração"
             sql: ${status_2033_2} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
 
           }
@@ -1676,6 +1724,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2033.0 Fora - Mesa - Geração de contratos "
             sql: ${status_2033_0_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
           }
 
 
@@ -1684,6 +1735,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031_4 Fora - Mesa - Limite de Comprometimento Satisfeito sem Promessa "
             sql: ${status_2031_4_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2031_5 {
@@ -1691,6 +1745,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031_5 Fora - Análise do Comitê de Parcelas "
             sql: ${status_2031_5_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2040_0 {
@@ -1698,6 +1755,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2040.0 - Aguardando Confirmação de Dados  "
             sql: ${status_2040_0} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2042_1 {
@@ -1705,6 +1765,10 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.1 - Documento(s) de Renda Pendente   "
             sql: ${status_2042_1} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+
 
           }
           measure: sum_status_2042_2 {
@@ -1712,6 +1776,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.2 - Documento(s) de Renda e Outro(s) Documento(s) Pendente(s) "
             sql: ${status_2042_2} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2042_3 {
@@ -1719,12 +1786,19 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.3 - Documento(s) Pendente(s) e Boleto em atraso"
             sql: ${status_2042_3} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
           }
+
           measure: sum_status_2042_4 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.4 - Documento(s) Pendentes"
             sql: ${status_2042_4} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2044_1 {
@@ -1732,6 +1806,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.1 - Contrato Disponibilizado Sem Troca de Garantidor"
             sql: ${status_2044_1} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
           }
 
           measure: sum_status_2044_2 {
@@ -1739,6 +1816,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.2 - Contrato Disponibilizado Com Troca de Garantidor Aprovado na Mesa 4"
             sql: ${status_2044_1} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2044_3 {
@@ -1746,6 +1826,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.3 - Contrato Disponibilizado Com Garantidor Original na Mesa 3"
             sql: ${status_2044_3} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2043_0 {
@@ -1753,6 +1836,9 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2043.0 - Contrato Disponibilizado Com Garantidor Original na Mesa 3"
             sql: ${status_2043_0} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
           }
           measure: sum_status_2035_0 {
@@ -1760,12 +1846,19 @@ view: farol {
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2035.0 Fora - Aprovado na Pós-Validação de Emissão de Contrato"
             sql: ${status_2035_0_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
           }
+
           measure: sum_status_2034_1 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2034.1 Fora - Aprovado das Políticas de Renovação"
             sql: ${status_2034_1_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
           }
 
         measure: sum_status_2034_0 {
@@ -1773,16 +1866,16 @@ view: farol {
           group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
           label: "Status 2034.0 Fora - Aprovado para resumo de contrato"
           sql: ${status_2034_0_fora} ;;
+          link: {
+            label: "Detalhado"
+            url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
         }
 
-
-
-
-      measure: sum_status_2046_1 {
-      type: sum
-      group_label: "CESSÃO"
-      label: "Status 2046.1 Fora - Recontratação reprovada - aluno não confirmou os dados do contrato"
-      sql: ${status_2046_1_fora} ;;
+        measure: sum_status_2046_1 {
+          type: sum
+          group_label: "CESSÃO"
+          label: "Status 2046.1 Fora - Recontratação reprovada - aluno não confirmou os dados do contrato"
+          sql: ${status_2046_1_fora} ;;
 
         }
         measure: sum_status_2046_2 {
@@ -1790,6 +1883,9 @@ view: farol {
           group_label: "CESSÃO"
           label: "Status 2046.2 Fora - Recontratação reprovada - aluno não entregou o contrato"
           sql: ${status_2046_2_fora} ;;
+          link: {
+            label: "Detalhado"
+            url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
         }
 
 
@@ -1798,6 +1894,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status 2046.3 Fora - Recontratação reprovada - aluno entregou o contrato com pendência"
     sql: ${status_2046_3_fora} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
         }
 
 
@@ -1806,6 +1905,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status 2046.4 Fora - Recontratação Reprovada - Não completou troca de Garantidor no Prazo"
     sql: ${status_2046_4_fora} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
         }
   measure: sum_status_2046_5 {
@@ -1813,6 +1915,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status 2046.5 Fora- Recontratação Reprovada pela Cessão"
     sql: ${status_2046_5_fora} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
         }
 
 
@@ -1822,6 +1927,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status 2084.1 - Uso exclusivo da cessão - Aluno formalizado."
     sql: ${status_2084_1} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
         }
   measure: sum_status_2099_1 {
@@ -1829,6 +1937,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status -2099 - Exclusivo para Erros na Cessão."
     sql: ${status_2099} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
         }
   measure: sum_status_2041_1 {
@@ -1836,6 +1947,9 @@ view: farol {
     group_label: "CESSÃO"
     label: "Status 2041.1 - Aluno Formalizado sem Pendências."
     sql: ${status_2041_1_fora} ;;
+    link: {
+      label: "Detalhado"
+      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
 
         }
 
@@ -1845,6 +1959,7 @@ view: farol {
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 2  - Recontratação reprovada - aluno não entregou o contrato"
     sql: ${status_2046_2_fora}  / IFF ( ${status_2046_2_fora} + ${status_2046_2_dentro}=0,1,${status_2046_2_fora} + ${status_2046_2_dentro});;
+
   }
 
   measure: perc_status_2046_1_fora {
@@ -1853,21 +1968,26 @@ view: farol {
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 1  - Recontratação reprovada - aluno não confirmou os dados do contrato"
     sql: ${status_2046_1_fora}  / IFF  ( ${status_2046_1_fora} + ${status_2046_1_dentro}=0,1,${status_2046_1_fora} + ${status_2046_1_dentro});;
+
   }
+
   measure: perc_status_2046_3_fora {
     type: sum
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 3  - Recontratação reprovada - aluno entregou o contrato com pendência"
     sql:${status_2046_3_fora} / IFF ( ${status_2046_3_fora} + ${status_2046_3_dentro} =0,1,  ${status_2046_3_fora} + ${status_2046_3_dentro});;
-  }
+}
+
   measure:perc_status_2046_4_fora {
     type: sum
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 4  - Recontratação Reprovada - Não completou troca de Garantidor no Prazo"
     sql: ${status_2046_4_fora}  / IFF ( ${status_2046_4_fora} + ${status_2046_4_dentro}=0,1,${status_2046_4_fora} + ${status_2046_4_dentro});;
+
   }
+
   measure: perc_status_2046_5_fora{
     type: sum
     value_format: "0.0%"
@@ -1875,6 +1995,7 @@ view: farol {
     label: "Porcentagem  status 2046 5  - Recontratação Reprovada pela Cessão"
     sql: ${status_2046_5_fora}  / IFF ( ${status_2046_5_fora} + ${status_2046_5_dentro}=0,1,${status_2046_5_fora} + ${status_2046_5_dentro});;
   }
+
   measure: perc_status_2084_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1882,6 +2003,7 @@ view: farol {
     label: "Porcentagem  status 2084 1  - Uso exclusivo da cessão - Aluno formalizado."
     sql: ${status_2084_1} / IFF ( ${status_2084_1} + ${status_2084_1_dentro}=0,1,${status_2084_1} + ${status_2084_1_dentro});;
   }
+
   measure: perc_status_2041_1_fora {
     type: sum
     value_format: "0.0%"
@@ -1889,6 +2011,7 @@ view: farol {
     label: "Porcentagem  status 2041 1  - Aluno Formalizado sem Pendências"
     sql: ${status_2041_1_fora}  /  IFF ( ${status_2041_1_fora} + ${status_2041_1_dentro}=0,1,${status_2041_1_fora} + ${status_2041_1_dentro});;
   }
+
   measure:perc_status_2002_0_fora {
     type: sum
     value_format: "0.0%"
@@ -1896,6 +2019,7 @@ view: farol {
     label: "Porcentagem  status 2002 0  - Aluno em Processo de Transferência de IES"
     sql: ${status_2002_0_fora}  / IFF ( ${status_2002_0_fora} + ${status_2002_0_dentro}=0,1,${status_2002_0_fora} + ${status_2002_0_dentro});;
   }
+
   measure: perc_status_2011_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1903,6 +2027,7 @@ view: farol {
     label: "Porcentagem  status 2011 1  - Aluno no portal da IES"
     sql: ${status_2011_1_fora}  / IFF ( ${status_2011_1_fora} + ${status_2011_1_dentro}=0,1,${status_2011_1_fora} + ${status_2011_1_dentro});;
   }
+
   measure: perc_status_2011_5_fora{
     type: sum
     value_format: "0.0%"
@@ -1910,6 +2035,7 @@ view: farol {
     label: "Porcentagem  status 2011 5  - 2º Processo Iniciado na Tabela A"
     sql: ${status_2011_5_fora}  / IFF ( ${status_2011_5_fora} + ${status_2011_5_dentro}=0,1,${status_2011_5_fora} + ${status_2011_5_dentro});;
   }
+
   measure: perc_status_2011_9_fora{
     type: sum
     value_format: "0.0%"
@@ -1917,6 +2043,7 @@ view: farol {
     label: "Porcentagem  status 2011 9  - 3º Processo Iniciado na Tabela A"
     sql: ${status_2011_9_fora}  / IFF ( ${status_2011_9_fora} + ${status_2011_9_dentro}=0,1,${status_2011_9_fora} + ${status_2011_9_dentro});;
   }
+
   measure: perc_status_2013_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1924,6 +2051,7 @@ view: farol {
     label: "Porcentagem  status 2013 1  - Pendente de Matrícula sem Promessa"
     sql: ${status_2013_1_fora}  / IFF ( ${status_2013_1_fora} + ${status_2013_1_dentro}=0,1,${status_2013_1_fora} + ${status_2013_1_dentro});;
   }
+
   measure: perc_status_2014_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1931,6 +2059,7 @@ view: farol {
     label: "Porcentagem  status 2014 1  - Pendente de Dívida sem Promessa"
     sql: ${status_2014_1_fora}  / IFF ( ${status_2014_1_fora} + ${status_2014_1_dentro}=0,1,${status_2014_1_fora} + ${status_2014_1_dentro});;
   }
+
   measure: perc_status_2015_0_fora {
     type: sum
     value_format: "0.0%"
@@ -1938,6 +2067,7 @@ view: farol {
     label: "Porcentagem  status 2015 0  - Aluno Revertido para Nova Avaliação da IES"
     sql: ${status_2015_0_fora}  / IFF (  ${status_2015_0_fora} + ${status_2015_0_dentro}=0,1,${status_2015_0_fora} + ${status_2015_0_dentro});;
   }
+
   measure: perc_status_2039_fora{
     type: sum
     value_format: "0.0%"
@@ -1945,6 +2075,7 @@ view: farol {
     label:  "Porcentagem  status 2039  - Recontratação Reprovada na IES (Aluno Formado)"
     sql: ${status_2039_fora}  / IFF (${status_2039_fora} + ${status_2039_dentro}=0,1,${status_2039_fora} + ${status_2039_dentro});;
   }
+
   measure: perc_status_2035_0_fora {
     type: sum
     value_format: "0.0%"
@@ -1952,6 +2083,7 @@ view: farol {
     label: "Porcentagem  status 2035 0  - Aprovado na Pós-Validação de Emissão de Contrato"
     sql: ${status_2035_0_fora}  / IFF ( ${status_2035_0_fora} + ${status_2035_0_dentro}=0,1,${status_2035_0_fora} + ${status_2035_0_dentro});;
   }
+
   measure: perc_status_2034_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1959,6 +2091,7 @@ view: farol {
     label: "Porcentagem  status 2034 1  - Aprovado das Políticas de Renovação"
     sql: ${status_2034_1_fora}  / IFF ( ${status_2034_1_fora} + ${status_2034_1_dentro}=0,1,${status_2034_1_fora} + ${status_2034_1_dentro});;
   }
+
   measure: perc_status_2034_0_fora {
     type: sum
     value_format: "0.0%"
@@ -1966,6 +2099,7 @@ view: farol {
     label: "Porcentagem  status 2034 0  - Aprovado para resumo de contrato"
     sql: ${status_2034_0_fora}  / IFF (${status_2034_0_fora} + ${status_2034_0_dentro}=0,1,${status_2034_0_fora} + ${status_2034_0_dentro});;
   }
+
   measure: perc_status_2033_0_fora{
     type: sum
     value_format: "0.0%"
@@ -1973,6 +2107,7 @@ view: farol {
     label: "Porcentagem  status 2033 0  - Mesa - Geração de contratos"
     sql: ${status_2033_0_fora}  / IFF ( ${status_2033_0_fora} + ${status_2033_0_dentro}=0,1,${status_2033_0_fora} + ${status_2033_0_dentro});;
   }
+
   measure: perc_status_2031_5_fora{
     type: sum
     value_format: "0.0%"
@@ -1980,6 +2115,7 @@ view: farol {
     label: "Porcentagem  status 2031 5  - Análise do Comitê de Parcelas"
     sql:${status_2031_5_fora} / IFF ( ${status_2031_5_fora} + ${status_2031_5_dentro}=0,1,${status_2031_5_fora} + ${status_2031_5_dentro});;
   }
+
   measure:perc_status_2031_4_fora {
     type: sum
     value_format: "0.0%"
@@ -1987,6 +2123,7 @@ view: farol {
     label: "Porcentagem  status 2031 4  - Limite de Comprometimento Satisfeito sem Promessa"
     sql: ${status_2031_4_fora}  / IFF ( ${status_2031_4_fora} + ${status_2031_4_dentro}=0,1,${status_2031_4_fora} + ${status_2031_4_dentro});;
   }
+
   measure: perc_status_2031_1_fora{
     type: sum
     value_format: "0.0%"
@@ -1994,6 +2131,7 @@ view: farol {
     label: "Porcentagem  status 2031 1  - Confirmado IES sem Promessa"
     sql:${status_2031_1_fora} / IFF ( ${status_2031_1_fora} + ${status_2031_1_dentro}=0,1,${status_2031_1_fora} + ${status_2031_1_dentro});;
   }
+
   measure: perc_status_2006_0_fora{
     type: sum
     value_format: "0.0%"
@@ -2001,6 +2139,7 @@ view: farol {
     label:  "Porcentagem  status 2006 0  - Consulta aos restritivos internos BV"
     sql: ${status_2006_0_fora}  / IFF ( ${status_2006_0_fora} + ${status_2006_0_dentro}=0,1,${status_2006_0_fora} + ${status_2006_0_dentro});;
   }
+
   measure: perc_status_2007_2_fora{
     type: sum
     value_format: "0.0%"
@@ -2008,6 +2147,7 @@ view: farol {
     label: "Porcentagem  status 2007 2  - Processo de troca de IES invalidado"
     sql:${status_2007_2_fora} / IFF ( ${status_2007_2_fora} + ${status_2007_2_dentro}=0,1,${status_2007_2_fora} + ${status_2007_2_dentro});;
   }
+
   measure: perc_status_2007_6_fora{
     type: sum
     value_format: "0.0%"
@@ -2015,6 +2155,7 @@ view: farol {
     label: "Porcentagem  status 2007 6  - Troca de Garantidor: erro consulta aluno bureaux"
     sql: ${status_2007_6_fora}  / IFF ( ${status_2007_6_fora} + ${status_2007_6_dentro}=0,1,${status_2007_6_fora} + ${status_2007_6_dentro});;
   }
+
   measure: perc_status_2012_13_fora{
     type: sum
     value_format: "0.0%"
@@ -2022,6 +2163,7 @@ view: farol {
     label: "Porcentagem  status 2012 13  - Aguardando Pagamento em Atraso(behaviour)"
     sql: ${status_2012_13_fora} / IFF ( ${status_2012_13_fora} + ${status_2012_13_dentro}=0,1,${status_2012_13_fora} + ${status_2012_13_dentro});;
   }
+
   measure: perc_status_2012_3_fora{
     type: sum
     value_format: "0.0%"
@@ -2030,6 +2172,4 @@ view: farol {
     sql: ${status_2012_3_fora}  / IFF (  ${status_2012_3_fora} + ${status_2012_3_dentro}=0,1,${status_2012_3_fora} + ${status_2012_3_dentro});;
   }
 
-
-
-      }
+}

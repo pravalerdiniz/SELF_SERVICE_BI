@@ -1,5 +1,5 @@
 view: farol_detalhado {
-  sql_table_name: "SELF_SERVICE_BI"."FAROL_DETALHADO"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."FAROL_DETALHADO"
     ;;
 
   dimension: cpf {
