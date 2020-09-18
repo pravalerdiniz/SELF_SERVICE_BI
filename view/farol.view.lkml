@@ -1859,7 +1859,7 @@ view: farol {
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 3  - Recontratação reprovada - aluno entregou o contrato com pendência"
-    sql:${status_2046_3_fora} / IFF ( ${status_2046_3_fora} + ${status_2046_3_dentro} =0,1,   ${status_2046_3_fora} / ( ${status_2046_3_fora} + ${status_2046_3_dentro}=0,1,${status_2046_3_fora} + ${status_2046_3_dentro});;
+    sql:${status_2046_3_fora} / IFF ( ${status_2046_3_fora} + ${status_2046_3_dentro} =0,1,  ${status_2046_3_fora} + ${status_2046_3_dentro});;
   }
   measure:perc_status_2046_4_fora {
     type: sum
