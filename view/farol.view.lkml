@@ -1829,6 +1829,7 @@ view: farol {
 
   measure: perc_status_2046_2_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 2  - Recontratação reprovada - aluno não entregou o contrato"
     sql: ${status_2046_2_fora}  / IFF ( ${status_2046_2_fora} + ${status_2046_2_dentro}=0,1,${status_2046_2_fora} + ${status_2046_2_dentro});;
@@ -1836,159 +1837,187 @@ view: farol {
 
   measure: perc_status_2046_1_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 1  - Recontratação reprovada - aluno não confirmou os dados do contrato"
     sql: ${status_2046_1_fora}  / IFF  ( ${status_2046_1_fora} + ${status_2046_1_dentro}=0,1,${status_2046_1_fora} + ${status_2046_1_dentro});;
   }
   measure: perc_status_2046_3_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 3  - Recontratação reprovada - aluno entregou o contrato com pendência"
     sql:${status_2046_3_fora} / IFF ( ${status_2046_3_fora} + ${status_2046_3_dentro} =0,1,   ${status_2046_3_fora} / ( ${status_2046_3_fora} + ${status_2046_3_dentro}=0,1,${status_2046_3_fora} + ${status_2046_3_dentro});;
   }
   measure:perc_status_2046_4_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 4  - Recontratação Reprovada - Não completou troca de Garantidor no Prazo"
     sql: ${status_2046_4_fora}  / IFF ( ${status_2046_4_fora} + ${status_2046_4_dentro}=0,1,${status_2046_4_fora} + ${status_2046_4_dentro});;
   }
   measure: perc_status_2046_5_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 5  - Recontratação Reprovada pela Cessão"
     sql: ${status_2046_5_fora}  / IFF ( ${status_2046_5_fora} + ${status_2046_5_dentro}=0,1,${status_2046_5_fora} + ${status_2046_5_dentro});;
   }
   measure: perc_status_2084_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2084 1  - Uso exclusivo da cessão - Aluno formalizado."
     sql: ${status_2084_1} / IFF ( ${status_2084_1} + ${status_2084_1_dentro}=0,1,${status_2084_1} + ${status_2084_1_dentro});;
   }
   measure: perc_status_2041_1_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2041 1  - Aluno Formalizado sem Pendências"
     sql: ${status_2041_1_fora}  /  IFF ( ${status_2041_1_fora} + ${status_2041_1_dentro}=0,1,${status_2041_1_fora} + ${status_2041_1_dentro});;
   }
   measure:perc_status_2002_0_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2002 0  - Aluno em Processo de Transferência de IES"
     sql: ${status_2002_0_fora}  / IFF ( ${status_2002_0_fora} + ${status_2002_0_dentro}=0,1,${status_2002_0_fora} + ${status_2002_0_dentro});;
   }
   measure: perc_status_2011_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 1  - Aluno no portal da IES"
     sql: ${status_2011_1_fora}  / IFF ( ${status_2011_1_fora} + ${status_2011_1_dentro}=0,1,${status_2011_1_fora} + ${status_2011_1_dentro});;
   }
   measure: perc_status_2011_5_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 5  - 2º Processo Iniciado na Tabela A"
     sql: ${status_2011_5_fora}  / IFF ( ${status_2011_5_fora} + ${status_2011_5_dentro}=0,1,${status_2011_5_fora} + ${status_2011_5_dentro});;
   }
   measure: perc_status_2011_9_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 9  - 3º Processo Iniciado na Tabela A"
     sql: ${status_2011_9_fora}  / IFF ( ${status_2011_9_fora} + ${status_2011_9_dentro}=0,1,${status_2011_9_fora} + ${status_2011_9_dentro});;
   }
   measure: perc_status_2013_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2013 1  - Pendente de Matrícula sem Promessa"
     sql: ${status_2013_1_fora}  / IFF ( ${status_2013_1_fora} + ${status_2013_1_dentro}=0,1,${status_2013_1_fora} + ${status_2013_1_dentro});;
   }
   measure: perc_status_2014_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2014 1  - Pendente de Dívida sem Promessa"
     sql: ${status_2014_1_fora}  / IFF ( ${status_2014_1_fora} + ${status_2014_1_dentro}=0,1,${status_2014_1_fora} + ${status_2014_1_dentro});;
   }
   measure: perc_status_2015_0_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2015 0  - Aluno Revertido para Nova Avaliação da IES"
     sql: ${status_2015_0_fora}  / IFF (  ${status_2015_0_fora} + ${status_2015_0_dentro}=0,1,${status_2015_0_fora} + ${status_2015_0_dentro});;
   }
   measure: perc_status_2039_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "IES"
     label:  "Porcentagem  status 2039  - Recontratação Reprovada na IES (Aluno Formado)"
     sql: ${status_2039_fora}  / IFF (${status_2039_fora} + ${status_2039_dentro}=0,1,${status_2039_fora} + ${status_2039_dentro});;
   }
   measure: perc_status_2035_0_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2035 0  - Aprovado na Pós-Validação de Emissão de Contrato"
     sql: ${status_2035_0_fora}  / IFF ( ${status_2035_0_fora} + ${status_2035_0_dentro}=0,1,${status_2035_0_fora} + ${status_2035_0_dentro});;
   }
   measure: perc_status_2034_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2034 1  - Aprovado das Políticas de Renovação"
     sql: ${status_2034_1_fora}  / IFF ( ${status_2034_1_fora} + ${status_2034_1_dentro}=0,1,${status_2034_1_fora} + ${status_2034_1_dentro});;
   }
   measure: perc_status_2034_0_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2034 0  - Aprovado para resumo de contrato"
     sql: ${status_2034_0_fora}  / IFF (${status_2034_0_fora} + ${status_2034_0_dentro}=0,1,${status_2034_0_fora} + ${status_2034_0_dentro});;
   }
   measure: perc_status_2033_0_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2033 0  - Mesa - Geração de contratos"
     sql: ${status_2033_0_fora}  / IFF ( ${status_2033_0_fora} + ${status_2033_0_dentro}=0,1,${status_2033_0_fora} + ${status_2033_0_dentro});;
   }
   measure: perc_status_2031_5_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 5  - Análise do Comitê de Parcelas"
     sql:${status_2031_5_fora} / IFF ( ${status_2031_5_fora} + ${status_2031_5_dentro}=0,1,${status_2031_5_fora} + ${status_2031_5_dentro});;
   }
   measure:perc_status_2031_4_fora {
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 4  - Limite de Comprometimento Satisfeito sem Promessa"
     sql: ${status_2031_4_fora}  / IFF ( ${status_2031_4_fora} + ${status_2031_4_dentro}=0,1,${status_2031_4_fora} + ${status_2031_4_dentro});;
   }
   measure: perc_status_2031_1_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 1  - Confirmado IES sem Promessa"
     sql:${status_2031_1_fora} / IFF ( ${status_2031_1_fora} + ${status_2031_1_dentro}=0,1,${status_2031_1_fora} + ${status_2031_1_dentro});;
   }
   measure: perc_status_2006_0_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label:  "Porcentagem  status 2006 0  - Consulta aos restritivos internos BV"
     sql: ${status_2006_0_fora}  / IFF ( ${status_2006_0_fora} + ${status_2006_0_dentro}=0,1,${status_2006_0_fora} + ${status_2006_0_dentro});;
   }
   measure: perc_status_2007_2_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2007 2  - Recontratação erro consulta garantidor bureaux"
     sql:${status_2007_2_fora} / IFF ( ${status_2007_2_fora} + ${status_2007_2_dentro}=0,1,${status_2007_2_fora} + ${status_2007_2_dentro});;
   }
   measure: perc_status_2007_6_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2007 6  - Troca de Garantidor: erro consulta aluno bureaux"
     sql: ${status_2007_6_fora}  / IFF ( ${status_2007_6_fora} + ${status_2007_6_dentro}=0,1,${status_2007_6_fora} + ${status_2007_6_dentro});;
   }
   measure: perc_status_2012_13_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 13  - Aguardando Pagamento em Atraso(behaviour)"
     sql: ${status_2012_13_fora} / IFF ( ${status_2012_13_fora} + ${status_2012_13_dentro}=0,1,${status_2012_13_fora} + ${status_2012_13_dentro});;
   }
   measure: perc_status_2012_3_fora{
     type: sum
+    value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 3  - 1º Processo - Mesa 1 - Tabela A"
     sql: ${status_2012_3_fora}  / IFF (  ${status_2012_3_fora} + ${status_2012_3_dentro}=0,1,${status_2012_3_fora} + ${status_2012_3_dentro});;
   }
+
+
 
       }
