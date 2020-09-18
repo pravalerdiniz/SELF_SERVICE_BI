@@ -2253,8 +2253,8 @@ view: proposta {
 
   measure: count_tipo_proposta_renovacao {
     type: count_distinct
-    sql: ${id_cpf}  ;;
-    sql_distinct_key: ${num_da_renovacao} ;;
+    sql: ${id_proposta}  ;;
+    sql_distinct_key: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Renovação"
     filters: [tipo_proposta: "RENOVACAO"]
@@ -2595,13 +2595,11 @@ view: proposta {
   }
 
 
-  dimension: qtd_contratos_cedidos {
-    type: number
-    sql: ${alunos.qtd_contratos_cedidos} ;;
-    group_label: "Dados do Aluno"
-    group_item_label: "Quantidade de Contratos Cedidos"
-    description: "Indica a quantidade de contratos cedidos"
-  }
+
+
+
+
+
 
 
 
