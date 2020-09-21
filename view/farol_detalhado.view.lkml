@@ -62,6 +62,8 @@ view: farol_detalhado {
               when  ${status} ilike '15.%' then '15.'
               when  ${status} ilike '41.%' then '41.'
               when  ${status} ilike '13.%' then '13.'
+              when  ${status} ilike '2039.%' then '2039.'
+
               else ${status} end;;
 
   }
