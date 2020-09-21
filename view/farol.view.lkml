@@ -1946,7 +1946,7 @@ view: farol {
     sql: ${status_2099} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'-2099.1'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]=%25{{'-2099'}}%25" }
 
         }
   measure: sum_status_2041_1 {
