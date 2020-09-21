@@ -129,7 +129,8 @@ explore: instituicao {
     - proposta.tipo_original,
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - proposta.qtd_contratos_cedidos
     ]
 
 
@@ -176,7 +177,8 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_reempacotado,
   - proposta.count_tipo_proposta_renegociacao,
   - proposta.count_tipo_proposta_renovacao,
-  - proposta.count_tipo_proposta_seg_repasse
+  - proposta.count_tipo_proposta_seg_repasse,
+  - proposta.qtd_contratos_cedidos
 
   ]
 
@@ -211,7 +213,8 @@ explore: financeiro {
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
   fields: [ALL_FIELDS * ,
           proposta.id_cpf,
-          proposta.id_proposta
+          proposta.id_proposta,
+        - proposta.qtd_contratos_cedidos
 
           ]
   join: financeiro_extrato_titulo {

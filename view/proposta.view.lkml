@@ -2608,6 +2608,14 @@ view: proposta {
     description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
   }
 
+  dimension: qtd_contratos_cedidos {
+    type: number
+    sql: ${alunos.qtd_contratos_cedidos}" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Quantidade de Contratos Cedidos"
+    description: "Indica a quantidade de contratos cedidos"
+  }
+
   measure: count_linhas {
     type: count
     drill_fields: []
