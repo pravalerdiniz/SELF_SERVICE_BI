@@ -2592,6 +2592,22 @@ view: proposta {
     description: "Soma da quantidade de arquivos enviados para Interfile."
   }
 
+  dimension: renovou_proximo_ciclo {
+    type: string
+    label: "Renovou Proximo Ciclo"
+    group_label: "Dados do Aluno"
+    description:"Indica se o aluno renovou o ciclo seguinte."
+    sql: ${TABLE}."FLG_RENOVOU_PROXIMO_CICLO" ;;
+  }
+
+  measure: count_renovou_proximo_ciclo {
+    type: number
+    label: "Quantidade de Renovados Proximo Ciclo"
+    group_label: "Proposta"
+    sql: COUNT(${renovou_proximo_ciclo});;
+    description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
+  }
+
   measure: count_linhas {
     type: count
     drill_fields: []
