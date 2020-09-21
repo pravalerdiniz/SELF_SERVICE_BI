@@ -1956,9 +1956,8 @@ view: farol {
     sql: ${status_2041_1_fora} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2041.1'}}" }
-
-        }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2041.1'}}"}
+  }
 
   measure: perc_status_2046_2_fora {
     type: sum
