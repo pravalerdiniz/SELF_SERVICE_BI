@@ -1820,7 +1820,7 @@ view: farol {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.2 - Contrato Disponibilizado Com Troca de Garantidor Aprovado na Mesa 4"
-            sql: ${status_2044_1} ;;
+            sql: ${status_2044_2} ;;
             link: {
               label: "Detalhado"
               url: "/looks/449?&f[farol_detalhado.status]={{'2044.2'}}" }
