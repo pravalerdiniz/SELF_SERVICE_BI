@@ -1696,7 +1696,10 @@ view: proposta {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de CPFs únicos"
-    drill_fields: [id_proposta,
+    drill_fields: [
+      cpf_aluno,
+      id_cpf,
+      id_proposta,
       ds_fundo_investimento,
       grupo_instituicao,
       ds_instituicao,

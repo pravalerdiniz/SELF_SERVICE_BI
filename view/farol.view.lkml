@@ -1,5 +1,5 @@
 view: farol {
-  sql_table_name: "SELF_SERVICE_BI"."FAROL"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."FAROL"
     ;;
 
   dimension_group: data_carga {
@@ -1536,7 +1536,7 @@ view: farol {
             sql: ${status_2007_2_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2007.2'}}" }
 
           }
 
@@ -1550,7 +1550,7 @@ view: farol {
             sql: ${status_2007_5} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2007.5'}}" }
 
           }
 
@@ -1561,7 +1561,7 @@ view: farol {
             sql: ${status_2007_6_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2007.6'}}" }
 
           }
 
@@ -1572,7 +1572,7 @@ view: farol {
             sql: ${status_2010_1} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2010.1'}}" }
 
           }
 
@@ -1583,7 +1583,7 @@ view: farol {
             sql: ${status_2012_13_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2012.13'}}" }
 
           }
 
@@ -1605,7 +1605,7 @@ view: farol {
             sql: ${status_2012_3_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2012.3'}}" }
 
           }
 
@@ -1617,7 +1617,7 @@ view: farol {
             sql: ${status_2002_0_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2002.0'}}" }
 
           }
 
@@ -1628,7 +1628,7 @@ view: farol {
             sql: ${status_2009_0} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2009.0'}}" }
 
           }
           measure: sum_status_2011_1 {
@@ -1638,7 +1638,7 @@ view: farol {
             sql: ${status_2011_1_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2011.1'}}" }
 
           }
           measure:sum_status_2011_5 {
@@ -1648,7 +1648,7 @@ view: farol {
             sql: ${status_2011_5_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2011.5'}}" }
 
           }
           measure:sum_status_2011_9 {
@@ -1656,6 +1656,10 @@ view: farol {
             group_label: "IES"
             label: "Status 2011.9 Fora - 3º Processo Iniciado na Tabela A"
             sql: ${status_2011_9_fora} ;;
+            link: {
+              label: "Detalhado"
+              url: "/looks/449?&f[farol_detalhado.status]={{'2011.9'}}" }
+
 
           }
           measure: sum_status_2013_1 {
@@ -1665,7 +1669,7 @@ view: farol {
             sql: ${status_2013_1_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2013.1'}}" }
 
           }
           measure:sum_status_2014_1  {
@@ -1675,7 +1679,7 @@ view: farol {
             sql: ${status_2014_1_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2014.1'}}" }
 
           }
           measure: sum_status_2015_0 {
@@ -1685,7 +1689,7 @@ view: farol {
             sql: ${status_2015_0_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2015.0'}}" }
 
           }
           measure:sum_status_2039 {
@@ -1695,7 +1699,7 @@ view: farol {
             sql: ${status_2039_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2039'}}" }
 
           }
           measure: sum_status_2031{
@@ -1705,7 +1709,7 @@ view: farol {
             sql: ${status_2031_1_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2031'}}" }
 
           }
           measure:sum_status_2033_2 {
@@ -1715,10 +1719,11 @@ view: farol {
             sql: ${status_2033_2} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2033.2'}}" }
 
 
           }
+
           measure:sum_status_2033_0 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
@@ -1726,7 +1731,7 @@ view: farol {
             sql: ${status_2033_0_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2033.0'}}" }
           }
 
 
@@ -1737,7 +1742,7 @@ view: farol {
             sql: ${status_2031_4_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2031.4'}}" }
 
           }
           measure: sum_status_2031_5 {
@@ -1747,7 +1752,7 @@ view: farol {
             sql: ${status_2031_5_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2031.5'}}" }
 
           }
           measure: sum_status_2040_0 {
@@ -1757,7 +1762,7 @@ view: farol {
             sql: ${status_2040_0} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2040.0'}}" }
 
           }
           measure: sum_status_2042_1 {
@@ -1767,7 +1772,7 @@ view: farol {
             sql: ${status_2042_1} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2042.1'}}" }
 
 
           }
@@ -1778,7 +1783,7 @@ view: farol {
             sql: ${status_2042_2} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2042.2'}}" }
 
           }
           measure: sum_status_2042_3 {
@@ -1788,7 +1793,7 @@ view: farol {
             sql: ${status_2042_3} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2042.3'}}" }
           }
 
           measure: sum_status_2042_4 {
@@ -1798,7 +1803,7 @@ view: farol {
             sql: ${status_2042_4} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2042.4'}}" }
 
           }
           measure: sum_status_2044_1 {
@@ -1808,7 +1813,7 @@ view: farol {
             sql: ${status_2044_1} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2044.1'}}" }
           }
 
           measure: sum_status_2044_2 {
@@ -1818,7 +1823,7 @@ view: farol {
             sql: ${status_2044_1} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2044.2'}}" }
 
           }
           measure: sum_status_2044_3 {
@@ -1828,7 +1833,7 @@ view: farol {
             sql: ${status_2044_3} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2044.3'}}" }
 
           }
           measure: sum_status_2043_0 {
@@ -1838,7 +1843,7 @@ view: farol {
             sql: ${status_2043_0} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2043.0'}}" }
 
           }
           measure: sum_status_2035_0 {
@@ -1848,7 +1853,7 @@ view: farol {
             sql: ${status_2035_0_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2035.0'}}" }
           }
 
           measure: sum_status_2034_1 {
@@ -1858,7 +1863,7 @@ view: farol {
             sql: ${status_2034_1_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]={{'2034.1'}}" }
           }
 
         measure: sum_status_2034_0 {
@@ -1868,7 +1873,7 @@ view: farol {
           sql: ${status_2034_0_fora} ;;
           link: {
             label: "Detalhado"
-            url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+            url: "/looks/449?&f[farol_detalhado.status]={{'2034.0'}}" }
         }
 
         measure: sum_status_2046_1 {
@@ -1876,7 +1881,9 @@ view: farol {
           group_label: "CESSÃO"
           label: "Status 2046.1 Fora - Recontratação reprovada - aluno não confirmou os dados do contrato"
           sql: ${status_2046_1_fora} ;;
-
+          link: {
+            label: "Detalhado"
+            url: "/looks/449?&f[farol_detalhado.status]={{'2046.1'}}" }
         }
         measure: sum_status_2046_2 {
           type: sum
@@ -1885,7 +1892,7 @@ view: farol {
           sql: ${status_2046_2_fora} ;;
           link: {
             label: "Detalhado"
-            url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+            url: "/looks/449?&f[farol_detalhado.status]={{'2046.2'}}" }
         }
 
 
@@ -1896,7 +1903,7 @@ view: farol {
     sql: ${status_2046_3_fora} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2046.3'}}" }
         }
 
 
@@ -1907,7 +1914,7 @@ view: farol {
     sql: ${status_2046_4_fora} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2046.4'}}" }
 
         }
   measure: sum_status_2046_5 {
@@ -1917,7 +1924,7 @@ view: farol {
     sql: ${status_2046_5_fora} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2046.5'}}" }
         }
 
 
@@ -1929,7 +1936,7 @@ view: farol {
     sql: ${status_2084_1} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2084.1'}}" }
 
         }
   measure: sum_status_2099_1 {
@@ -1939,7 +1946,7 @@ view: farol {
     sql: ${status_2099} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2099.1'}}" }
 
         }
   measure: sum_status_2041_1 {
@@ -1949,7 +1956,7 @@ view: farol {
     sql: ${status_2041_1_fora} ;;
     link: {
       label: "Detalhado"
-      url: "/looks/449?&f[farol_detalhado.status]={{'2006.0'}}" }
+      url: "/looks/449?&f[farol_detalhado.status]={{'2041.1'}}" }
 
         }
 
