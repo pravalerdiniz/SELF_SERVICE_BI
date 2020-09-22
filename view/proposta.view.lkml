@@ -2317,7 +2317,7 @@ view: proposta {
   measure: count_boleto_atrasado{
     type: count_distinct
     group_label: "Contrato"
-    sql_distinct_key: ${id_proposta} ;;
+    sql_distinct_key: ${renovou_proximo_ciclo} ;;
     group_item_label: "Quantidade de Contratos - Boletos Atrasados"
     sql:${id_proposta};;
     filters: [flg_boleto_atrasado: "yes"]
@@ -2595,16 +2595,18 @@ view: proposta {
   dimension: renovou_proximo_ciclo {
     type: string
     label: "Renovou Proximo Ciclo"
-    group_label: "Dados do Aluno"
+    group_label: "Dados de Renovação"
     description:"Indica se o aluno renovou o ciclo seguinte."
     sql: ${TABLE}."FLG_RENOVOU_PROXIMO_CICLO" ;;
   }
 
   measure: count_renovou_proximo_ciclo {
-    type: number
+    type: count_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql:${id_proposta};;
+    filters: [renovou_proximo_ciclo: "SIM"]
     label: "Quantidade de Renovados Proximo Ciclo"
     group_label: "Proposta"
-    sql: COUNT(${renovou_proximo_ciclo});;
     description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
   }
 
@@ -2616,17 +2618,13 @@ view: proposta {
     description: "Indica a quantidade de contratos cedidos"
   }
 
+
+
+
   measure: count_linhas {
     type: count
     drill_fields: []
   }
-
-
-
-
-
-
-
 
 
 
