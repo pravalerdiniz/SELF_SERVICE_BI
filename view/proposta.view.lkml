@@ -2246,48 +2246,42 @@ view: proposta {
 
   measure: count_tipo_proposta_novo {
     type: count_distinct
-    sql: ${id_cpf} ;;
+    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO"  ;;
     group_label: "Proposta"
     group_item_label: "Novo"
-    filters: [tipo_proposta: "NOVO"]
     description: "Contagem de propostas de aluno novo"
   }
 
 
   measure: count_tipo_proposta_renovacao {
     type: count_distinct
-    sql: ${id_proposta}  ;;
-    sql_distinct_key: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Renovação"
-    filters: [tipo_proposta: "RENOVACAO"]
+    sql: ${TABLE}."TIPO_PROPOSTA" = "RENOVACAO";;
     description: "Contagem de propostas de renovação"
   }
 
   measure: count_tipo_proposta_seg_repasse {
     type: count_distinct
-    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Segundo Repasse"
-    filters: [tipo_proposta: "SEGUNDO REPASSE"]
+    sql:${TABLE}."TIPO_PROPOSTA" = "SEGUNDO REPASSE";;
     description: "Contagem de propostas de segundo repasse"
   }
 
   measure: count_tipo_proposta_renegociacao {
     type: count_distinct
-    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label:  "Renegociação"
-    filters: [tipo_proposta: "RENEGOCIACAO"]
+    sql:${TABLE}."TIPO_PROPOSTA" = "RENEGOCIACAO";;
     description: "Contagem de propostas de renegociação"
   }
 
   measure: count_tipo_proposta_reempacotado {
     type: count_distinct
-    sql: ${id_cpf} ;;
     group_label: "Proposta"
     group_item_label: "Reempacotado"
-    filters: [tipo_proposta: "REEMPACOTADO"]
+    sql:${TABLE}."TIPO_PROPOSTA" = "REEMPACOTADO";;
     description: "Contagem de propostas do tipo reempactado"
   }
 

@@ -157,6 +157,32 @@ join: instituicao_contrato_produto_info {
 explore: status {
   label: "Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
+  fields: [ALL_FIELDS *,
+    - proposta.flg_proposta_atual,
+    - proposta.id_cpf,
+    - proposta.id_elegivel,
+    - proposta.id_proposta,
+    - proposta.tipo_proposta,
+
+    ]
+
+  join: proposta
+  {
+    view_label: "2. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${proposta.id_proposta} ;;
+    type: left_outer
+
+    relationship: many_to_one
+  }
+
+
+  join: alunos {
+    view_label: "3. Alunos"
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
 
 }
@@ -252,7 +278,95 @@ fields: [ALL_FIELDS *,
         - status.id_cpf,
         - status.id_elegivel,
         - status.id_proposta,
-        - status.tipo_proposta, ]
+        - status.tipo_proposta,
+        - alunos.id_cpf,
+- alunos.id_proposta_atual,
+- alunos.aluno_nome,
+- alunos.aluno_idade,
+- alunos.aluno_genero,
+- alunos.email,
+- alunos.celular,
+- alunos.escolaridade,
+- alunos.numero_dependentes,
+- alunos.cep,
+- alunos.bairro,
+- alunos.cidade,
+- alunos.uf,
+- alunos.tipo_residencia,
+- alunos.estado_civil,
+- alunos.tempo_empresa,
+- alunos.natureza_ocupacao,
+- alunos.profissao,
+- alunos.nacionalidade,
+- alunos.renda_mensal,
+- alunos.renda_fam_mensal,
+- alunos.ds_trabalha,
+- alunos.ano_termino_ensino_medio,
+- alunos.flg_pai_falecido,
+- alunos.flg_mae_falecida,
+- alunos.ds_cal_vet,
+- alunos.id_fia_cpf_atual,
+- alunos.fia_nome,
+- alunos.fia_email,
+- alunos.fia_celular,
+- alunos.fia_escolaridade,
+- alunos.fia_numero_dependentes,
+- alunos.fia_cep,
+- alunos.fia_bairro,
+- alunos.fia_cidade,
+- alunos.fia_uf,
+- alunos.fia_tipo_residencia,
+- alunos.fia_estado_civil,
+- alunos.fia_tempo_empresa,
+- alunos.fia_natureza_ocupacao,
+- alunos.fia_profissao,
+- alunos.fia_nacionalidade,
+- alunos.fia_renda_mensal,
+- alunos.fia_parentesco,
+- alunos.fia_idade,
+- alunos.cpf_fiador,
+- alunos.qtd_cursos_procurados,
+- alunos.id_curso,
+- alunos.ds_curso,
+- alunos.flg_curso_ativo,
+- alunos.periodo_curso,
+- alunos.area_conhecimento_curso,
+- alunos.enfase_curso,
+- alunos.qtd_semestre_curso,
+- alunos.nivel_curso,
+- alunos.id_instituicao,
+- alunos.ds_instituicao,
+- alunos.grupo_instituicao,
+- alunos.cidade_instituicao,
+- alunos.uf_instituicao,
+- alunos.flg_instituicao_ativa,
+- alunos.qtd_campus_procurados,
+- alunos.id_campus,
+- alunos.ds_campus,
+- alunos.flg_campus_ativo,
+- alunos.cidade_campus,
+- alunos.uf_campus,
+- alunos.id_produto,
+- alunos.nm_produto,
+- alunos.flg_produto_ativo,
+- alunos.nm_modalidade_produto,
+- alunos.tipo_produto,
+- alunos.fia_endereco,
+- alunos.mapa_uf_fiador,
+- alunos.mapa_uf_aluno,
+- alunos.mapa_uf_campus,
+- alunos.mapa_uf_instituicao,
+- alunos.cpf_aluno,
+- alunos.endereco,
+- alunos.ds_fundo_investimento,
+- alunos.id_fundo_investimento,
+
+
+
+
+
+
+        ]
 
 join: proposta_docs_pendentes {
   view_label: "1.1 Documentos Pendentes"
@@ -277,17 +391,17 @@ join: proposta_docs_pendentes {
 
 
   join: status {
-    view_label: "2. Status"
+    view_label: "3. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: alunos {
-    fields: []
+    view_label: "2. Alunos"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 
@@ -415,7 +529,7 @@ join: alunos_produtos_aprovados {
 
 
   join: proposta {
-    view_label: "3. Proposta"
+    view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
@@ -423,10 +537,17 @@ join: alunos_produtos_aprovados {
 
   }
 
+  join: status {
+    view_label: "5. Status"
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 
 
 join: financeiro {
-  view_label: "2. Financeiro"
+  view_label: "3. Financeiro"
   sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} ;;
   type: left_outer
   relationship: one_to_many

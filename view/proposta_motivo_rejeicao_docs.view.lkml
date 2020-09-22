@@ -13,7 +13,7 @@ view: proposta_motivo_rejeicao_docs {
       drill_fields: [detail*]
       hidden: no
       description: "Quantidade de documentos por motivos de rejeição por proposta durante a formalização"
-      label: "Motivo de rejeicao docs"
+      label: "Motivo de Rejeição dos Documentos"
     }
 
     dimension: id_proposta {
@@ -27,7 +27,7 @@ view: proposta_motivo_rejeicao_docs {
       type: string
       sql: ${TABLE}."MOTIVO_REJEICAO_DOCUMENTO" ;;
       description: "Indica todos os motivos de rejeição dos documentos para formalização"
-      label: "Motivo de rejeicao docs"
+      label: "Motivo de Rejeição dos Documentos"
     }
 
     set: detail {

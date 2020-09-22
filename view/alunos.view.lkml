@@ -982,8 +982,8 @@ view: alunos {
     type: number
     sql: ${TABLE}."VL_SCORE" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Score"
-    description: "Indica o Score do aluno"
+    group_item_label: "Score - Análise de Crédito"
+    description: "Indica o Score do aluno no momento que ele passou pela etapa de Análise de Risco."
   }
 
   dimension: flg_renegociacao {
