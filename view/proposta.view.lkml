@@ -2605,6 +2605,14 @@ view: proposta {
   }
 
 
+  measure: sum_qtd_contratos_cedidos {
+    type: sum
+    sql: qtd_contratos_cedidos ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Quantidade de Contratos Cedidos"
+    description: "Indica a quantidade de contratos cedidos"
+  }
+
 
 
 
