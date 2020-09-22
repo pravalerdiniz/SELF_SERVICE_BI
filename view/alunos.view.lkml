@@ -771,8 +771,8 @@ view: alunos {
     type: string
     sql: ${TABLE}."ID_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
-    group_item_label: "ID da Proposta Atual"
-    description: "Número de idenficação da proposta atual"
+    group_item_label: "ID da Proposta Pai"
+    description: "Número de idenficação da proposta Pai do Aluno, ou seja, proposta inicial do aluno cedido."
   }
 
   dimension: id_propostas_enviadas {
