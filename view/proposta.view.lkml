@@ -219,7 +219,7 @@ view: proposta {
   dimension: cidade_instituicao {
     type: string
     group_label: "Dados da Instituição"
-    label: "Cidade da IE"
+    label: "Cidade da Instituição"
     description: "Indica a cidade correspondente à instituição do aluno."
     sql: ${TABLE}."CIDADE_INSTITUICAO" ;;
   }
@@ -920,7 +920,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Proposta Renovação Inativa?"
-    description: "Indica se a proposta está inativa no PRAVALER."
+    description: "Indica se a proposta de renovação está inativa no fluxo de Renovação do Aluno."
     sql: ${TABLE}."FLG_PROPOSTA_NAO_SEGUIU" ;;
   }
 
@@ -1220,7 +1220,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Produto Agrupado"
-    description: "Indica o nome do produto com agrupamento pré-definido. Ex: Compartilhado, Gestão e FIDC."
+    description: "Indica o nome do produto com agrupamento pré-definido. Ex: Compra de Carteira, EAD, Controle, Sem Juros, Sem Fiador, Outros."
     suggestable: yes
     sql: ${TABLE}."NM_PRODUTO_COMERCIAL" ;;
   }
@@ -2495,7 +2495,7 @@ view: proposta {
     sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos - Cedidos"
     sql:${id_proposta};;
-    filters: [flg_boleto_atrasado: "yes"]
+    filters: [flg_contrato_cedido:"yes"]
     description: "Soma da quantidade de contratos cedidos"
   }
 
@@ -2610,13 +2610,7 @@ view: proposta {
     description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
   }
 
-  dimension: qtd_contratos_cedidos {
-    type: number
-    sql: ${alunos.qtd_contratos_cedidos}" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Quantidade de Contratos Cedidos"
-    description: "Indica a quantidade de contratos cedidos"
-  }
+
 
 
 

@@ -130,7 +130,7 @@ explore: instituicao {
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies,
-    - proposta.qtd_contratos_cedidos
+
     ]
 
 
@@ -178,7 +178,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_renegociacao,
   - proposta.count_tipo_proposta_renovacao,
   - proposta.count_tipo_proposta_seg_repasse,
-  - proposta.qtd_contratos_cedidos
+
 
   ]
 
@@ -214,7 +214,6 @@ explore: financeiro {
   fields: [ALL_FIELDS * ,
           proposta.id_cpf,
           proposta.id_proposta,
-        - proposta.qtd_contratos_cedidos
 
           ]
   join: financeiro_extrato_titulo {
@@ -301,7 +300,66 @@ explore: alunos {
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
     - jornada.id_cpf,
-    - jornada.id_proposta]
+    - jornada.id_proposta,
+    - proposta.aluno_cal_vet,
+- proposta.aluno_celular,
+- proposta.aluno_cidade,
+- proposta.aluno_email,
+- proposta.aluno_escolaridade,
+- proposta.aluno_genero,
+- proposta.aluno_idade,
+- proposta.aluno_nome,
+- proposta.aluno_renda,
+- proposta.aluno_uf,
+- proposta.id_instituicao,
+- proposta.ds_instituicao,
+- proposta.grupo_instituicao,
+- proposta.cidade_instituicao,
+- proposta.uf_instituicao,
+- proposta.flg_instituicao_ativa,
+- proposta.id_campus,
+- proposta.ds_campus,
+- proposta.flg_campus_ativo,
+- proposta.cidade_campus,
+- proposta.uf_campus,
+- proposta.id_fia_cpf,
+- proposta.fia_nome,
+- proposta.fia_email,
+- proposta.fia_celular,
+- proposta.fia_genero,
+- proposta.fia_escolaridade,
+- proposta.ds_fia_trabalha,
+- proposta.fia_idade,
+- proposta.fia_renda,
+- proposta.fia_cidade,
+- proposta.fia_uf,
+- proposta.regional_atual,
+- proposta.carteira_atual,
+- proposta.gerente_atual,
+- proposta.conversao_atual,
+- proposta.representante_atual,
+- proposta.cargo_atual,
+- proposta.tipo_atual,
+- proposta.cp_atual,
+- proposta.id_curso,
+- proposta.ds_curso,
+- proposta.flg_curso_ativo,
+- proposta.periodo_curso,
+- proposta.area_conhecimento_curso,
+- proposta.enfase_curso,
+- proposta.qtd_semestre_curso,
+- proposta.nivel_curso,
+- proposta.id_produto,
+- proposta.nm_produto,
+- proposta.flg_produto_ativo,
+- proposta.nm_modalidade_produto,
+- proposta.tipo_produto,
+
+
+
+
+
+    ]
 
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
@@ -354,10 +412,12 @@ join: alunos_produtos_aprovados {
 
 
   join: proposta {
-    fields: []
+    view_label: "3. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
+
+
   }
 
 
@@ -374,7 +434,7 @@ join: financeiro {
 
 
   join: jornada {
-    view_label: "3. Jornada"
+    view_label: "4. Jornada"
     sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
     relationship: one_to_many

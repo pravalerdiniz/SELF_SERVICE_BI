@@ -93,9 +93,11 @@ view: alunos {
     type: string
     sql: ${TABLE}."DS_TRABALHA" ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Trabalha?"
-    description: "Indica se o aluno trabalha ou não"
+    label: "Vínculo Empregatício"
+    description: "Indica qual o vinculo empregáticio do aluno. Ex: Trabalha, Desempregado, Desempregado com renda."
   }
+
+
 
   dimension: email {
     type: string
@@ -498,8 +500,8 @@ view: alunos {
   dimension: ds_cal_vet {
     type: string
     sql: ${TABLE}."DS_CAL_VET" ;;
-    group_label: "Dados do Curso"
-    group_item_label: "Descrição Calouro/Veterano"
+    group_label: "Dados do Aluno"
+    label: "Calouro/Veterano?"
     description: "Descreve se o aluno é calouro, veterano ou outros"
   }
 
@@ -562,14 +564,14 @@ view: alunos {
   dimension: qtd_campus_procurados {
     type: number
     sql: ${TABLE}."QTD_CAMPUS_PROCURADOS" ;;
-    group_label: "Dados do Curso"
+    group_label: "Dados do Campus"
     group_item_label: "Quantidade de Campus Procurados"
     description: "Indica a quantidade de campus procurados pelo aluno"
   }
 
   dimension: cidade_campus {
     type: string
-    group_label: "Dados da Instituição"
+    group_label:  "Dados do Campus"
     group_item_label: "Cidade - Campus"
     description: "Indica a cidade do campus da instituição de ensino"
     sql: ${TABLE}."CIDADE_CAMPUS" ;;
@@ -579,7 +581,7 @@ view: alunos {
   dimension: flg_campus_ativo {
     type: yesno
     sql: ${TABLE}."FLG_CAMPUS_ATIVO" ;;
-    group_label:  "Dados da Instituição"
+    group_label:  "Dados do Campus"
     group_item_label: "Campus Ativo?"
     description: "Indica se o campus está ativo (yes/no)"
   }
@@ -588,7 +590,7 @@ view: alunos {
     type: yesno
     sql: ${TABLE}."FLG_INSTITUICAO_ATIVA" ;;
     group_label:  "Dados da Instituição"
-    group_item_label: "IE Ativa?"
+    group_item_label: "Instituição Ativa?"
     description: "Indica se instituição de ensino está ativa (yes/no)"
   }
 
@@ -596,30 +598,30 @@ view: alunos {
     type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     group_label:  "Dados da Instituição"
-    group_item_label: "ID da IE"
-    description: "Número de identificação da IE"
+    group_item_label: "ID Instituição"
+    description: "Número de identificação da Instituição"
   }
 
   dimension: grupo_instituicao {
     type: string
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
     group_label:  "Dados da Instituição"
-    group_item_label: "Grupo da IE"
-    description: "Indica a qual grupo a IE pertence"
+    group_item_label: "Grupo da Instituição de Ensino"
+    description: "Indica a qual grupo a Instituição de Ensino pertence"
   }
 
   dimension: id_grupo_instituicao {
     type: number
     sql: ${TABLE}."ID_GRUPO" ;;
     group_label:  "Dados da Instituição"
-    group_item_label: "ID do Grupo da IE"
+    group_item_label: "ID do Grupo da Instituição de Ensino"
     description: "Indica a qual é o ID do grupo da IE"
   }
 
   dimension: id_campus {
     type: string
     sql: ${TABLE}."ID_CAMPUS" ;;
-    group_label:  "Dados da Instituição"
+    group_label:  "Dados do Campus"
     group_item_label: "ID do Campus"
     description: "Número de identificação do campus"
   }
@@ -628,6 +630,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."CIDADE_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
+    group_item_label: "Cidade da Instituição"
     description: "Indica a cidade da Instituição de Ensino"
   }
 
@@ -635,22 +638,22 @@ view: alunos {
     type: string
     sql: ${TABLE}."DS_CAMPUS" ;;
     group_item_label: "Campus"
-    group_label: "Dados da Instituição"
-    description: "Indica o campus da IE"
+    group_label:  "Dados do Campus"
+    description: "Indica o campus da Instituição de Ensino"
   }
 
   dimension: ds_instituicao {
     type: string
     sql: ${TABLE}."DS_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
-    group_item_label: "Instituição"
+    group_item_label: "Nome da Instituição de Ensino"
     description: "Indica o nome da IE"
   }
 
   dimension: uf_campus {
     type: string
     sql: ${TABLE}."UF_CAMPUS" ;;
-    group_label: "Dados da Instituição"
+    group_label:  "Dados do Campus"
     group_item_label: "UF Campus"
     description: "Indica UF do campus"
   }
@@ -659,7 +662,7 @@ view: alunos {
   dimension: mapa_uf_campus {
     sql: ${TABLE}."UF_CAMPUS" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
-    group_label: "Dados do Aluno"
+    group_label:  "Dados do Campus"
     group_item_label: "UF Campus - Mapa"
     description: "Indica a UF do campus, pode ser usado em gráficos de mapa"
   }
@@ -669,7 +672,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."UF_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
-    group_item_label: "UF IE"
+    group_item_label: "UF Instituição de Ensino"
     description: "Indica UF da IE"
   }
 
@@ -677,7 +680,7 @@ view: alunos {
     sql: ${TABLE}."UF_CAMPUS" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados da Instituição"
-    group_item_label: "UF IE - Mapa"
+    group_item_label: "UF Instituição de Ensino - Mapa"
     description: "Indica a UF da instituição de ensino, pode ser usado em gráficos de mapa"
   }
 
@@ -749,8 +752,8 @@ view: alunos {
   dimension: ds_fundo_investimento {
     type: string
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Descrição do Fundo de Investimento"
+    group_label: "Dados do Fundo de Investimento"
+    group_item_label: "Nome do Fundo de Investimento"
     description: "Indica o fundo responsável pelo financiamento"
 
   }
@@ -777,7 +780,7 @@ view: alunos {
     sql: ${TABLE}."ID_PROPOSTAS_ENVIADAS" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID Propostas Enviadas"
-    description: "Número de identificação das propostas"
+    description: "Número de identificação das propostas enviadas pelo aluno"
   }
 
   dimension: qtd_propostas_enviadas {
@@ -898,7 +901,7 @@ view: alunos {
   dimension: id_fundo_investimento {
     type: number
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Fundo de Investimento"
     group_item_label: "ID Fundo de Investimento"
     description: "Número de identificação do fundo de investimento"
   }
@@ -914,7 +917,7 @@ view: alunos {
   dimension: num_da_renovacao {
     type: number
     sql: ${TABLE}."NUM_DA_RENOVACAO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados de Renovação"
     group_item_label: "Número da Renovação"
     description: "Indica o número da renovação"
   }
@@ -954,7 +957,7 @@ view: alunos {
   dimension: qtd_renovacao {
     type: number
     sql: ${TABLE}."QTD_RENOVACAO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados de Renovação"
     group_item_label: "Quantidade de Propostas de Renovação"
     description: "Indica a quantidade de propostas de renovação"
   }
@@ -970,7 +973,7 @@ view: alunos {
   dimension: tipo_renovacao {
     type: string
     sql: ${TABLE}."TIPO_RENOVACAO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados de Renovação"
     group_item_label: "Tipo de Renovação"
     description: "Indica o tipo de renovação (par/ímpar)"
   }
@@ -1067,7 +1070,7 @@ view: alunos {
 
 dimension: ultimo_semestre_cedido_renovacao {
   type: number
-  group_label: "Dados da Proposta"
+  group_label: "Dados de Renovação"
   label: "Renovação - Último Semestre Cedido"
   value_format: "0"
   description: "Indica qual o último semestre cedido do aluno de renovação."
@@ -1254,7 +1257,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: gh_final {
     type: string
     sql: ${TABLE}."GH_FINAL" ;;
-    group_label: "1.4 Acordo Informações"
+    group_label: "1.5 Acordo Informações"
     group_item_label: "Grupo Homogêneo Final"
     description: "Indica o grupo homogêneo"
   }
@@ -1262,7 +1265,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: gh_collection {
     type: string
     sql: ${TABLE}."GH_COLLECTION" ;;
-    group_label: "1.4 Acordo Informações"
+    group_label: "1.5 Acordo Informações"
     group_item_label: "Grupo Homogêneo Collection"
     description: "Indica o grupo homogêneo do modelo de collection"
   }
@@ -1270,7 +1273,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   dimension: flg_promessa {
     type: yesno
     sql: ${TABLE}."FLG_PROMESSA" ;;
-    group_label: "1.4 Acordo Informações"
+    group_label: "1.5 Acordo Informações"
     group_item_label: "Promessa Ativa?"
     description: "Indica se o aluno possui promessa ativo (Yes/No)"
   }
