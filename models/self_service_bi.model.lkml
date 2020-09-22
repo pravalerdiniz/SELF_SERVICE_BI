@@ -155,7 +155,7 @@ join: instituicao_contrato_produto_info {
 }
 
 explore: status {
-  label: "Status"
+  label: "1. Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
   fields: [ALL_FIELDS *,
     - proposta.flg_proposta_atual,
