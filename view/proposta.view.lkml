@@ -2613,9 +2613,29 @@ view: proposta {
     description: "Indica a quantidade de contratos cedidos"
   }
 
+  measure: sum_valor_principal_futuro {
+    type: sum
+    sql: ${TABLE}."VL_PRINCIPAL_FUTURO" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Valor Principal Futuro"
+    description: "Indica o valor previsto do contrato a ser cedido"
+  }
 
+  measure: sum_valor_repasse_futuro {
+    type: sum
+    sql: ${TABLE}."REPASSE_IES_FUTURO" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Valor Repasse IES Futuro"
+    description: "Indica o valor previsto do repasse da IES do contrato a ser cedido"
+  }
 
-
+  measure: sum_valor_comissao_futuro {
+    type: sum
+    sql: ${TABLE}."COMISSAO_PRV_FUTURO" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Valor comissão PRV Futuro"
+    description: "Indica o valor previsto da comissão PRV do contrato a ser cedido"
+  }
 
   measure: count_linhas {
     type: count
