@@ -1121,6 +1121,13 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
           }
 
 
+          measure: okr_diario_meta {
+            type: number
+            sql: CASE WHEN ${perc_okr_diario_novos} = 100 THEN 1 ELSE 0 END;;
+
+          }
+
+
 
   measure: perc_okr_diario_novos {
     type: sum
