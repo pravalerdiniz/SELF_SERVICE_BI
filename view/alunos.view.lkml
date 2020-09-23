@@ -1034,13 +1034,12 @@ view: alunos {
     description: "Indica o valor da mensalidade atual"
   }
 
-  dimension: vl_presente {
-    type: number
+  measure: vl_presente {
+    type: sum
     sql: ${TABLE}."VL_PRESENTE" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor Presente"
     description: "Indica o valor presente"
-    value_format: "#.##"
   }
 
   dimension: vl_total_financiado {
