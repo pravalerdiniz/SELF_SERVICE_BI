@@ -185,6 +185,14 @@ explore: status {
   }
 
 
+  join: financeiro {
+    view_label: "4. Financeiro"
+    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
 
 }
 
