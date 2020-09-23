@@ -164,6 +164,8 @@ explore: status {
     - proposta.id_elegivel,
     - proposta.id_proposta,
     - proposta.tipo_proposta,
+    - financeiro.id_cpf,
+    - alunos.id_cpf,
 
     ]
 
