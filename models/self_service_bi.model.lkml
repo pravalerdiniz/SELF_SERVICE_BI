@@ -164,15 +164,16 @@ explore: status {
     - proposta.id_elegivel,
     - proposta.id_proposta,
     - proposta.tipo_proposta,
+    - financeiro.id_cpf,
+    - alunos.id_cpf,
 
     ]
 
   join: proposta
   {
     view_label: "2. Proposta"
-    sql_on:  ${proposta.id_proposta} = ${proposta.id_proposta} ;;
+    sql_on:  ${proposta.id_proposta} = ${status.id_proposta};;
     type: left_outer
-
     relationship: many_to_one
   }
 
@@ -181,6 +182,14 @@ explore: status {
     view_label: "3. Alunos"
     sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
     relationship: many_to_one
+    type: left_outer
+  }
+
+
+  join: financeiro {
+    view_label: "4. Financeiro"
+    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} and ${status.id_proposta} = ${financeiro.id_contrato} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
