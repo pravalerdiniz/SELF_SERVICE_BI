@@ -2642,6 +2642,14 @@ view: proposta {
     drill_fields: []
   }
 
+  measure: qtd_alunos_cessao{
+    type: count_distinct
+    group_label: "Dados da Proposta"
+    group_item_label: "Quantidade Alunos Cessão"
+    description: "Indica a quantidade total de alunos na cessão"
+    sql: ${id_cpf} ;;
+  }
+
 
 
 
