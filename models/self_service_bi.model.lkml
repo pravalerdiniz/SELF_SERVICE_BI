@@ -172,9 +172,8 @@ explore: status {
   join: proposta
   {
     view_label: "2. Proposta"
-    sql_on:  ${proposta.id_proposta} = ${proposta.id_proposta} ;;
+    sql_on:  ${proposta.id_proposta} = ${status.id_proposta};;
     type: left_outer
-
     relationship: many_to_one
   }
 
