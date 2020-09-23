@@ -1107,7 +1107,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_renda_alu {
     type: sum
     sql: ${renda_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda do Aluno"
     group_item_label: "Soma"
     description: "Soma da renda do aluno"
@@ -1117,7 +1116,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: avg_renda_alu {
     type: average
     sql: ${renda_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda do Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
@@ -1127,7 +1125,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_renda_fia {
     type: sum
     sql: ${fia_renda_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda do Garantidor"
     group_item_label: "Soma"
     description: "Soma da renda do garantidor"
@@ -1137,7 +1134,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: avg_renda_fia {
     type: average
     sql: ${fia_renda_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda do Garantidor"
     group_item_label: "Média"
     description: "Média da renda do garantidor"
@@ -1147,7 +1143,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_renda_fam {
     type: sum
     sql: ${renda_fam_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda Familiar"
     group_item_label: "Soma"
     description: "Soma da renda familiar"
@@ -1157,7 +1152,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: avg_renda_fam {
     type: average
     sql: ${renda_fam_mensal} ;;
-    value_format: "$ ,.00"
     group_label: "Renda Familiar"
     group_item_label: "Média"
     description: "Média da renda familiar"
@@ -1168,7 +1162,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_qtd_mens_fin {
     type: sum
     sql: ${qtd_mensalidade_total} ;;
-    value_format: ","
     group_label: "Quantidade de Mensalidade Financiada"
     group_item_label: "Soma"
     description: "Soma da quantidade de mensalidades que foram efetivamente financiadas pelo PRAVALER"
@@ -1185,7 +1178,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_valor_fin {
     type: sum
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Financiado"
     group_item_label: "Soma"
     description: "Soma dos valores efetivamente financiados pelo PRAVALER"
@@ -1194,7 +1186,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: avg_valor_fin {
     type: average
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Financiado"
     group_item_label: "Média"
     description: "Valor médio efetivamente financiado pelo PRAVALER"
@@ -1203,7 +1194,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: min_valor_fin {
     type: min
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Financiado"
     group_item_label: "Mínimo"
     description: "Valor mínimo efetivamente financiado pelo PRAVALER"
@@ -1212,7 +1202,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: max_valor_fin {
     type: max
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Financiado"
     group_item_label: "Máximo"
     description: "Valor máximo efetivamente financiado pelo PRAVALER"
@@ -1221,7 +1210,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: sum_mensalidade {
     type: sum
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Mensalidade"
     group_item_label: "Soma"
     description: "Soma do valor de mensalidade"
@@ -1230,7 +1218,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: avg_mensalidade {
     type: average
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Mensalidade"
     group_item_label: "Média"
     description: "Valor médio de mensalidade"
@@ -1239,7 +1226,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: min_mensalidade {
     type: min
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Mensalidade"
     group_item_label: "Mínimo"
     description: "Valor mínimo de mensalidade"
@@ -1248,7 +1234,6 @@ dimension: ultimo_semestre_cedido_renovacao {
   measure: max_mensalidade {
     type: max
     sql: ${vl_mensalidade_atual} ;;
-    value_format: "$ ,"
     group_label: "Valor Mensalidade"
     group_item_label: "Máximo"
     description: "Valor máximo de mensalidade"
