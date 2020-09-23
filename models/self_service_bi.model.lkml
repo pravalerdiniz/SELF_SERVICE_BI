@@ -187,8 +187,8 @@ explore: status {
 
   join: financeiro {
     view_label: "4. Financeiro"
-    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} ;;
-    relationship: many_to_one
+    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} and ${status.id_proposta} = ${financeiro.id_contrato} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
