@@ -34,3 +34,8 @@ explore: comunicacao_conversao {
     sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
   }
 }
+
+explore: orcamento {
+  label: "Orçamento"
+  view_label: "Orçamento"
+}

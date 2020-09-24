@@ -1,5 +1,5 @@
-view: a_orca {
-  view_label: "orcamento"
+view: orcamento {
+  view_label: "Orçamento"
   derived_table: {
     sql: select
       TIPO_ORCAMENTO,
