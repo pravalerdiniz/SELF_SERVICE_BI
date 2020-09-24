@@ -304,6 +304,25 @@ view: proposta {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  dimension_group: data_cessao_original {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Concessão"
+    description: "Indica a data de cessão original."
+    sql: ${TABLE}."DATA_CESSAO_ORIGINAL" ;;
+  }
+
   dimension: analise_ytd {
     type: yesno
     label: "Concessão - YTD?"
