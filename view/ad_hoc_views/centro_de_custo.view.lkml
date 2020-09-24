@@ -1,5 +1,5 @@
 view: centro_de_custo {
-  sql_table_name: "BACKOFFICE"."CENTRO_DE_CUSTO"
+  sql_table_name: "DATA_LAKE"."BACKOFFICE"."CENTRO_DE_CUSTO"
     ;;
 
   dimension: centro_de_custo {
