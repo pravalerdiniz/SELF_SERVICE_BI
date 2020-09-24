@@ -38,4 +38,16 @@ explore: comunicacao_conversao {
 explore: orcamento {
   label: "Orçamento"
   view_label: "Orçamento"
+
+  access_filter: {
+    field: descricao_centro_de_custo
+    user_attribute: acesso_orcamento
+  }
+
+  join: diretoria {
+    from: centro_de_custo
+    fields: [diretoria.diretoria]
+    relationship: many_to_one
+    sql_on: ${orcamento.centro_de_custo} = ${diretoria.centro_de_custo} ;;
+  }
 }
