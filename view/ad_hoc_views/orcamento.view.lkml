@@ -201,7 +201,6 @@ TEMPORADA
 
   measure: soma_realizado{
     type: sum
-    value_format: "$ #,###"
     filters: {
       field: visao
       value: "Realizado"
