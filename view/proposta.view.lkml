@@ -304,6 +304,25 @@ view: proposta {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  dimension_group: data_cessao_original {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Concessão"
+    description: "Indica a data de cessão original."
+    sql: ${TABLE}."DATA_CESSAO_ORIGINAL" ;;
+  }
+
   dimension: analise_ytd {
     type: yesno
     label: "Concessão - YTD?"
@@ -2642,6 +2661,14 @@ view: proposta {
   measure: count_linhas {
     type: count
     drill_fields: []
+  }
+
+  measure: qtd_alunos_cessao{
+    type: count_distinct
+    group_label: "Dados da Proposta"
+    group_item_label: "Quantidade Alunos Cessão"
+    description: "Indica a quantidade total de alunos na cessão"
+    sql: ${id_cpf} ;;
   }
 
 
