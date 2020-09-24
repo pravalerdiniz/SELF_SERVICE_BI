@@ -318,7 +318,7 @@ view: proposta {
     ]
     convert_tz: no
     datatype: date
-    label: "Concessão"
+    label: "Concessão original"
     description: "Indica a data de cessão original."
     sql: ${TABLE}."DATA_CESSAO_ORIGINAL" ;;
   }
