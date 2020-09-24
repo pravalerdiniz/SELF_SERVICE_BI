@@ -2489,7 +2489,9 @@ view: proposta {
     sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos - Cedidos"
     sql:${id_proposta};;
-    filters: [flg_contrato_cedido:"yes"]
+    filters: [flg_contrato_cedido:"yes"
+              ]
+    filters: [flg_contrato_ativo: "yes"]
     description: "Soma da quantidade de contratos cedidos"
   }
 
