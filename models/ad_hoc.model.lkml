@@ -51,3 +51,16 @@ explore: orcamento {
     sql_on: ${orcamento.centro_de_custo} = ${diretoria.centro_de_custo} ;;
   }
 }
+
+explore: fato_swap {
+  label: "Swap"
+  view_label: "Swap"
+
+  join: fato_swap_realizado {
+    type: left_outer
+    sql_on: ${fato_swap.fim_mes_referencia_date} = ${fato_swap_realizado.fim_mes_referencia_date} ;;
+    relationship: many_to_one
+  }
+
+
+}
