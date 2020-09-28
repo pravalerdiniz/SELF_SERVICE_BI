@@ -34,3 +34,33 @@ explore: comunicacao_conversao {
     sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
   }
 }
+
+explore: orcamento {
+  label: "Orçamento"
+  view_label: "Orçamento"
+
+  access_filter: {
+    field: descricao_centro_de_custo
+    user_attribute: acesso_orcamento
+  }
+
+  join: diretoria {
+    from: centro_de_custo
+    fields: [diretoria.diretoria]
+    relationship: many_to_one
+    sql_on: ${orcamento.centro_de_custo} = ${diretoria.centro_de_custo} ;;
+  }
+}
+
+explore: fato_swap {
+  label: "Swap"
+  view_label: "Swap"
+
+  join: fato_swap_realizado {
+    type: left_outer
+    sql_on: ${fato_swap.fim_mes_referencia_date} = ${fato_swap_realizado.fim_mes_referencia_date} ;;
+    relationship: many_to_one
+  }
+
+
+}

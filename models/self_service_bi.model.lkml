@@ -254,7 +254,7 @@ explore: financeiro {
           ]
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
-    sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -274,6 +274,13 @@ explore: financeiro {
     relationship: many_to_one
     type: left_outer
 
+  }
+
+  join: financeiro_parcelas_futuro {
+    view_label: "3 Boletos futuros"
+    sql_on: ${financeiro_parcelas_futuro.id_cpf} = ${financeiro.id_cpf} and ${financeiro_parcelas_futuro.contrato} = ${financeiro.id_contrato};;
+    relationship: many_to_many
+    type: left_outer
   }
 
 

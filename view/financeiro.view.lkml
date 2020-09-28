@@ -955,14 +955,32 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Valor máximo da taxa bancária"
   }
 
-measure: vl_atraso {
-  type: sum
-  sql: case when ${data_vencimento_date}<current_date then ${vl_boleto} else 0 end ;;
-  value_format: "$ #,###"
-  group_label: "Valor em Atraso"
-  group_item_label: "Soma"
-  description: "Soma do valor em atraso"
-}
+  measure: vl_atraso {
+    type: sum
+    sql: case when ${data_vencimento_date}<current_date then ${vl_boleto} else 0 end ;;
+    value_format: "$ #,###"
+    group_label: "Valor em Atraso"
+    group_item_label: "Soma"
+    description: "Soma do valor em atraso"
+  }
+
+  dimension_group: data_transferencia {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+
+    label: "Data de Transferência"
+    description: "Indica a Data de Transferência do Valor"
+    sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
+  }
 
 
 
