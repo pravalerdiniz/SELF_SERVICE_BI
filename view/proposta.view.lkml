@@ -2510,11 +2510,15 @@ view: proposta {
     sql:${id_proposta};;
     filters: [flg_contrato_cedido:"yes"
               ]
-    filters: [flg_contrato_ativo: "yes"]
-
     drill_fields: [id_cpf, id_proposta,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta]
     description: "Soma da quantidade de contratos cedidos"
   }
+
+
+
+
+
+
 
 
   measure: sum_renda_fam {

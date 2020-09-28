@@ -1121,11 +1121,24 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
           }
 
 
-          measure: okr_diario_meta {
+
+
+          measure: okr_trimestre_meta_novos {
             type: number
-            sql: CASE WHEN ${perc_okr_diario_novos} = 100 THEN 1 ELSE 0 END;;
+            label: "OKR TRIMESTRE - Novos"
+            value_format: "0.0%"
+            sql: CASE WHEN ${perc_okr_diario_novos} = 1 THEN 1 ELSE 0 END;;
 
           }
+
+
+         measure: okr_trimestre_meta_renovacao {
+         type: number
+         label: "OKR TRIMESTRE - Renovação"
+          value_format: "0.0%"
+          sql: CASE WHEN ${perc_okr_diario_renovacao} = 1 THEN 1 ELSE 0 END;;
+
+  }
 
 
 
