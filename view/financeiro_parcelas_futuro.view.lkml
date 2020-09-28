@@ -48,7 +48,7 @@ view: financeiro_parcelas_futuro {
     datatype: date
     label: "Vencimento"
     description: "Indica a data de vencimento do boleto futuro"
-    group_label: "Dados do Boleto Futuro"
+    group_label: "Data de Vencimento do Boleto Futuro"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
