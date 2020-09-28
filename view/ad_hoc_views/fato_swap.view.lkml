@@ -1,5 +1,5 @@
 view: fato_swap {
-  sql_table_name: "FATO"."FATO_SWAP"
+  sql_table_name: "VETERANO"."FATO"."FATO_SWAP"
     ;;
 
   dimension: id_volume {
@@ -103,14 +103,17 @@ view: fato_swap {
     description: ""
   }
 
-  dimension: fcx_swap {
-    type: number
-    sql: ${TABLE}."FCX_SWAP" ;;
+  measure: fcx_swap {
+    type: sum
+    sql:
+      SELECT CASE
+        WHEN ${TABLE}.fim_mes_referencia =  ${TABLE}.fim_mes_vencimento
+        THEN ${mtm_vp_diff}
+      END ;;
     value_format:  "\"R$ \"#,##0.00"
     group_label: "Soma"
     group_item_label: "FCX Swap"
     description: "Soma do VP Diferencial a receber no mes de vencimento do volume"
-
   }
 
   dimension_group: fim_mes_entrada {
@@ -273,6 +276,7 @@ view: fato_swap {
   dimension: orcado_vp_diferencial_receber {
     type: number
     sql: ${TABLE}."ORCADO_VP_DIFERENCIAL_RECEBER" ;;
+
   }
 
   dimension: passivo_vm {
@@ -309,6 +313,10 @@ view: fato_swap {
   dimension: valor_contabil_diff {
     type: number
     sql: ${TABLE}."VALOR_CONTABIL_DIFF" ;;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Valor Contabil"
+    group_item_label: "Dif a Receber"
+    description: ""
   }
 
   dimension: valor_contabil_passivo {
@@ -316,7 +324,7 @@ view: fato_swap {
     sql: ${TABLE}."VALOR_CONTABIL_PASSIVO" ;;
     value_format:  "\"R$ \"#,##0.00"
     group_label: "Valor Contabil"
-    group_item_label: "Diferencial A Receber"
+    group_item_label: "Passivo"
     description: ""
   }
 
@@ -517,12 +525,40 @@ view: fato_swap {
     description: "Indica uma previsão do passivo contábil no fechamento do mes referente"
   }
 
+  measure: sum_orcado_ativo {
+    type: sum
+    sql:
+      CASE
+        WHEN ${TABLE}.fim_mes_referencia <  ${TABLE}.fim_mes_vencimento
+        THEN ${valor_contabil_ativo}
+      END ;;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Orçado"
+    group_item_label: "Ativo"
+    description: "Indica uma previsão do ativo contábil no fechamento do mes referente"
+  }
+
+  measure: sum_orcado_passivo {
+    type: sum
+    sql:
+      SELECT CASE
+      WHEN ${TABLE}.fim_mes_referencia <  ${TABLE}.fim_mes_vencimento
+      THEN ${valor_contabil_passivo}
+      END ;;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Orçado"
+    group_item_label: "Passivo"
+    description: "Indica uma previsão do passivo contábil no fechamento do mes referente"
+  }
+
+
 measure: orcado_dif_a_receber_mes_ant {
   type: number
   sql:    TO_NUMBER( LAG(${orcado_vp_diferencial_receber}, 1)
       OVER(PARTITION BY ${id_fundo}, ${fim_mes_vencimento_date} ORDER BY ${fim_mes_referencia_date} ASC),10,8)
     ;;
   hidden: yes
+
   #value_format:  "\"R$ \"#,##0.00"
 }
 
@@ -552,6 +588,34 @@ measure: real_dif_a_receber {
   group_item_label: "Dif a Receber"
   description: ""
 }
+
+  measure: sum_orcado_resultado_curva {
+    type: number
+    sql: ${orcado_dif_a_receber} + ${fcx_swap};;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Orçado"
+    group_item_label: "Resultado Curva"
+    description: ""
+  }
+
+  measure: sum_orcado_resultado_mtm {
+    type: sum
+    sql: ${orcado_resultado_mtm} ;;
+    group_label: "Orçado"
+    group_item_label: "Resultado MTM"
+    description: ""
+  }
+
+
+  measure: orcado_dif_a_receber {
+    type: number
+    sql: ${sum_orcado_ativo} - ${sum_orcado_passivo} ;;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Orçado"
+    group_item_label: "Dif a Receber"
+    description: ""
+  }
+
 
 
 set: detail {

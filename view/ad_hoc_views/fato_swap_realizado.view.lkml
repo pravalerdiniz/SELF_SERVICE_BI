@@ -1,5 +1,5 @@
 view: fato_swap_realizado {
-  sql_table_name: "FATO"."FATO_SWAP_REALIZADO"
+  sql_table_name: "VETERANO"."FATO"."FATO_SWAP_REALIZADO"
     ;;
 
   dimension: diferencial_a_receber {
