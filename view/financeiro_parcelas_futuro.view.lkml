@@ -76,6 +76,14 @@ view: financeiro_parcelas_futuro {
     sql: ${TABLE}."ID_CPF" ;;
   }
 
+  measure: soma_valor {
+    type: sum
+    label: "Valor do Boleto"
+    sql: ${valor} ;;
+
+  }
+
+
   set: detail {
     fields: [contrato, contrato_release, digito_verificador, valor,id_cpf]
   }
