@@ -255,7 +255,7 @@ explore: financeiro {
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
     sql_on: ${financeiro_extrato_titulo.id_titulo} = ${financeiro.id_titulo} ;;
-    relationship: one_to_many
+    relationship: many_to_one
     type: left_outer
   }
 
