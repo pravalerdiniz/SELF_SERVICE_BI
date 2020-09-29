@@ -279,13 +279,14 @@ explore: financeiro {
 
   join: financeiro_parcelas_futuro {
     view_label: "3 Boletos futuros"
-    sql_on: ${financeiro_parcelas_futuro.id_cpf} = ${financeiro.id_cpf} and ${financeiro_parcelas_futuro.contrato} = ${financeiro.id_contrato};;
-    relationship: many_to_many
+    sql_on: ${financeiro.id_cpf} = ${financeiro_parcelas_futuro.id_cpf}
+    and ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
-
 }
+
 
 explore: proposta {
   label: "Proposta"
