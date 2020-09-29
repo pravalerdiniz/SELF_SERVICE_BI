@@ -575,7 +575,7 @@ view: farol {
           #drill_fields: [farol_detalhado.proposta]
           link: {
             label: "Detalhado"
-            url: "/looks/449?&f[farol_detalhado.status]={{'2.37'}}"}
+            url: "/looks/449?&f[farol_detalhado.status]=%25{{'2.37'}}%25"}
 
         }
 

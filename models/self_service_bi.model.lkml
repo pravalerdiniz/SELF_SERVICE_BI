@@ -85,7 +85,8 @@ explore: beneficiados {
              proposta.ds_url_conversao,
              proposta.ds_url_descoberta,
              proposta.campanha_acesso_conversao,
-             proposta.campanha_acesso_descoberta
+             proposta.campanha_acesso_descoberta,
+             proposta.cpf_aluno
 
 
              ]
