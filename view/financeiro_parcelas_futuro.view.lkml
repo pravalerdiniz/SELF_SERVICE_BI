@@ -81,6 +81,8 @@ view: financeiro_parcelas_futuro {
 
   measure: sum_vl_extrato {
     type: sum
+    label: "Soma dos Valor do Boleto"
+    description: "Valor do Boleto Futuro"
     sql:  ${valor} ;;
   }
 

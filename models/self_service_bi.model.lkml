@@ -239,9 +239,6 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     relationship: many_to_many
     type: left_outer
   }
-
-
-
 }
 
 explore: financeiro {
@@ -251,8 +248,8 @@ explore: financeiro {
   fields: [ALL_FIELDS * ,
           proposta.id_cpf,
           proposta.id_proposta,
-
           ]
+
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
     sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo} ;;
@@ -265,23 +262,12 @@ explore: financeiro {
     sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
-
-
   }
 
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta}=${financeiro.id_contrato} ;;
     relationship: many_to_one
-    type: left_outer
-
-  }
-
-  join: financeiro_parcelas_futuro {
-    view_label: "3 Boletos futuros"
-    sql_on: ${financeiro.id_cpf} = ${financeiro_parcelas_futuro.id_cpf}
-    and ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
-    relationship: one_to_many
     type: left_outer
   }
 
