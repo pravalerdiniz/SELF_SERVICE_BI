@@ -831,7 +831,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Cedido?"
-    description: "Indica se o contrato do aluno está cedido. Desconsiderando propostas de 'SEGUNDO REPASSE'."
+    description: "Indica se o contrato do aluno está cedido."
     sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
   }
 
