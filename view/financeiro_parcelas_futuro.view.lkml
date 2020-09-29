@@ -9,7 +9,7 @@ view: financeiro_parcelas_futuro {
           p.value:digito_verificador::int as digito_verificador,
           p.value:valor::float as valor
         from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
-             lateral flatten( input => PARCELAS ) p
+             lateral flatten( input => parcelas ) p
        ;;
   }
 
