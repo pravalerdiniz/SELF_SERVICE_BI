@@ -2,12 +2,12 @@
 view: financeiro_parcelas_futuro {
   derived_table: {
     sql: select
-          p.value:CONTRATO::varchar as contrato,
-          p.value:CONTRATO_RELEASE::int as contrato_release,
-          p.value:DATA_VENCIMENTO::date as data_vencimento,
-          p.value:DIGITO_VERIFICADOR::int as digito_verificador,
-          p.value:VALOR::float as valor,
-          ID_CPF
+          id_cpf,
+          p.key as contrato,
+          p.value:contrato_release::int as contrato_release,
+          p.value:data_vencimento::date as data_vencimento,
+          p.value:digito_verificador::int as digito_verificador,
+          p.value:valor::float as valor
         from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
              lateral flatten( input => PARCELAS ) p
        ;;
@@ -21,6 +21,7 @@ view: financeiro_parcelas_futuro {
 
   dimension: contrato {
     type: string
+    primary_key: yes
     label: "Contrato"
     description: "Boletos Futuros"
     group_label: "Dados do Boleto Futuro"

@@ -429,7 +429,7 @@ join: proposta_docs_pendentes {
   }
 
   join: financeiro_parcelas_futuro {
-    view_label: "3.1 Log Título "
+    view_label: "3.1 Boletos Futuros "
     sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
     relationship: one_to_many
     type: left_outer
