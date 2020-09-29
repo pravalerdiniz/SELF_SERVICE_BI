@@ -422,6 +422,22 @@ join: proposta_docs_pendentes {
     relationship: many_to_one
   }
 
+  join: financeiro {
+    view_label: "3. Financeiro"
+    sql_on: ${proposta.id_proposta} = ${financeiro.id_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: financeiro_parcelas_futuro {
+    view_label: "3.1 Log Título "
+    sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
+  }
+
 
 
 }
@@ -569,9 +585,6 @@ join: financeiro {
   sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} ;;
   type: left_outer
   relationship: one_to_many
-
-
-
 }
 
 
