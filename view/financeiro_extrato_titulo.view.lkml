@@ -259,7 +259,6 @@ view: financeiro_extrato_titulo {
   }
 
 
-
   set: detail {
     fields: [id_titulo,
       transferencia_date,
