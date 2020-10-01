@@ -2,7 +2,7 @@ view: orcamento {
   view_label: "Orçamento"
   derived_table: {
     sql: select
-      TIPO_ORCAMENTO,
+TIPO_ORCAMENTO,
 DESCRICAO_CENTRO_DE_CUSTO,
 TIPO_DE_DESPESA,
 VISAO,
@@ -55,6 +55,7 @@ TEMPORADA
       FROM "VETERANO"."FATO"."ORCAMENTO_REALIZADO" AS a
       LEFT JOIN "VETERANO"."DIMENSAO"."DIM_DATE" b ON b.ID_DATE = a.DATA) ;;
   }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -187,7 +188,8 @@ TEMPORADA
   measure: soma_despesa {
     type: sum
     sql: ${montante};;
-    description: "Soma dos valores das despesas"}
+    description: "Soma dos valores das despesas"
+    }
 
   measure: soma_orcado {
     type: sum
@@ -199,7 +201,7 @@ TEMPORADA
     description: "Soma das despesas orçadas"
   }
 
-  measure: soma_realizado{
+  measure: soma_realizado {
     type: sum
     filters: {
       field: visao
@@ -209,16 +211,7 @@ TEMPORADA
     description: "Soma das despesas realizadas"
   }
 
-  measure: soma_forecast{
-    type: sum
-    value_format: "$ #,###"
-    filters: {
-      field: visao
-      value: "Forecast"
-    }
-    sql: ${montante};;
-    description: "Soma do forecast das despesas"
-  }
+
 
   measure: Real_vs_Orcado{
     type: number

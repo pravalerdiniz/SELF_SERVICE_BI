@@ -18,8 +18,12 @@ view: alunos_acordo {
  ;;
   }
 
-  measure: count {
-    type: count
+  measure: count_id_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID CPFs únicos"
     drill_fields: [detail*]
   }
 
@@ -52,6 +56,7 @@ view: alunos_acordo {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -140,7 +145,8 @@ view: alunos_acordo {
       data_pagamento,
       cod_tipo_usuario,
       descricao_acordo,
-      id_instituicao
+      id_instituicao,
+      proposta.data_concessao
     ]
   }
 }
