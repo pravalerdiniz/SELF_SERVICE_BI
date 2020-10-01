@@ -786,190 +786,224 @@ view: jornada {
 
   # Jornada Novos
   measure: iniciar_proposta_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_ini_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ser lead e iniciar uma proposta"
+    description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
   }
 
   measure: finalizar_proposta_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_fin_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "2. Finalizar Proposta"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno iniciar e finalizar uma proposta"
+    description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
 
   measure: mesa_risco_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_apr_risco_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "3. Mesa de Risco"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno finalizar uma proposta e ser aprovado por risco"
+    description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
 
   measure: aprovacao_instituicao_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_apr_ies_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "4. Aprovação da Instituição"
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,dt_status_date]
-    description: "Média da diferença de data, em dias, entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+    description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
   measure: confirmacao_dados_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_conf_dados_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "5. Confirmação de Dados Adicionais"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
   }
 
   measure: geracao_contrato_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_cont_ger_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "6. Geração de Contrato"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter seus dados confirmados e ter seu contrato gerado"
+    description: "Mediana do tempo entre o aluno ter seus dados confirmados e ter seu contrato gerado"
   }
 
   measure: assinatura_contrato_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_cont_ass_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "7. Assinatura de Contrato"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
+    description: "Mediana do tempo entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
   }
 
   measure: formalizacao_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_form_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "8. Formalização"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+    description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
 
   measure: cessao_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_ced_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "9. Cessão"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno estar formalizado e ser cedido"
+    description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
   }
 
+
+  measure: median_total_novos {
+    type: number
+    sql: ${iniciar_proposta_novos}+
+     ${finalizar_proposta_novos}+
+    ${mesa_risco_novos}+${aprovacao_instituicao_novos}+
+    ${confirmacao_dados_novos}+
+    ${geracao_contrato_novos}+
+    ${assinatura_contrato_novos}+
+    ${formalizacao_novos}+
+    ${cessao_novos};;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "Total - Tempo de Jornada do Aluno Novo"
+    value_format: "0"
+    description: "Soma da mediana do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+  }
+
+
   measure: total_novos {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_total_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "Total"
     value_format: "0"
+    hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
 
   # Jornada Renovação
   measure: sla_eleg_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_eleg_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "1. Elegibilidade"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno iniciar uma id_proposta e se tornar elegível"
+    description: "Mediana do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
   }
 
   measure: sla_beha_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_beha_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "2. Aprovação Behavior"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ser elegível e ser aprovado no behavior"
+    description: "Mediana do tempo entre o aluno ser elegível e ser aprovado no behavior"
   }
   measure: sla_apr_ies_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_apr_ies_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "3. Aprovação da Instituição"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+    description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
   }
   measure: sla_dados_conf_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_dados_conf_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "4. Confirmação de Dados"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
   }
   measure: sla_cont_ger_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_cont_ger_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "5. Geração de Contrato"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter seus dados confirmados e o contrato gerado"
+    description: "Mediana do tempo entre o aluno ter seus dados confirmados e o contrato gerado"
   }
   measure: sla_cont_ass_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_cont_ass_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "6. Assinatura de Contrato"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter o contrato gerado e ter o contrato assinado"
+    description: "Mediana do tempo entre o aluno ter o contrato gerado e ter o contrato assinado"
   }
 
   measure: sla_form_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_form_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "7. Formalização"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+    description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
 
   measure: sla_ced_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_ced_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "8. Cessão"
     value_format: "0"
-    description: "Média da diferença de data, em dias, entre o aluno ter o contrado formalizado e cedido."
+    description: "Mediana do tempo entre o aluno ter o contrado formalizado e cedido."
   }
 
+  measure: median_total_renov {
+    type: number
+    sql: ${sla_eleg_renov}+${sla_beha_renov}+
+     ${sla_form_renov}+${sla_apr_ies_renov}+
+     ${sla_dados_conf_renov}+
+    ${sla_cont_ass_renov}
+    ${sla_form_renov}+${sla_ced_renov};;
+    group_label: "Tempo de Jornada - Renovação"
+    group_item_label: "Total - Tempo de Jornada do Aluno de Renovação"
+    value_format: "0"
+    description: "Soma da mediana do tempo de todas as etapas do aluno de renovação durante o processo de contratação no PRAVALER"
+  }
+
+
   measure: total_renov {
-    type: average_distinct
+    type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_total_renov} ;;
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "Total"
     value_format: "0"
+    hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
 
