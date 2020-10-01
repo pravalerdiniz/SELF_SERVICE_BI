@@ -6,7 +6,6 @@ view: financeiro_extrato_titulo {
       a.data_transferencia,
       a.id_cpf,
       a.id_contrato,
-      a.id_seunum,
       f.value:ds_extrato_transacao::varchar as ds_extrato_transacao,
       f.value:ds_extrato_transacao_tipo::varchar as ds_extrato_transacao_tipo,
       f.value:vl_extrato::float(2) as vl_extrato
@@ -34,14 +33,6 @@ view: financeiro_extrato_titulo {
     label: "ID do Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
     sql: ${TABLE}."ID_CONTRATO" ;;
-    value_format: "#"
-  }
-
-  dimension: id_seunum {
-    type: number
-    label: "Seunum"
-    description: "Indica o código único do boleto."
-    sql: ${TABLE}."ID_SEUNUM" ;;
     value_format: "#"
   }
 
@@ -140,90 +131,78 @@ view: financeiro_extrato_titulo {
   measure: sum_vl_debito {
     type: sum
     sql: - ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "DEBITO"
-    ]
+    filters: [ds_extrato_transacao_tipo: "DEBITO"]
     group_label: "Débito"
     group_item_label: "Soma"
     description: "Soma do valor do extrato."
   }
 
-  measure: avg_vl_debito {
+   measure: avg_vl_debito {
     type: average
     sql: - ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "DEBITO"
-    ]
+    filters: [ds_extrato_transacao_tipo: "DEBITO"]
     group_label: "Débito"
     group_item_label: "Média"
     description: "Média do valor do extrato."
   }
 
-  measure: max_vl_debito {
-    type: max
-    sql: - ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "DEBITO"
-    ]
-    group_label: "Débito"
-    group_item_label: "Máximo"
-    description: "Máximo do valor do extrato."
-  }
+    measure: max_vl_debito {
+     type: max
+     sql: - ${vl_extrato} ;;
+     filters: [ ds_extrato_transacao_tipo: "DEBITO"]
+     group_label: "Débito"
+     group_item_label: "Máximo"
+     description: "Máximo do valor do extrato."
+    }
 
   measure: min_vl_debito {
-    type: min
-    sql: - ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "DEBITO"
-    ]
-    group_label: "Débito"
-    group_item_label: "Mínimo"
-    description: "Mínimo do valor do extrato."
-  }
+      type: min
+        sql: - ${vl_extrato} ;;
+        filters: [ds_extrato_transacao_tipo: "DEBITO"]
+        group_label: "Débito"
+        group_item_label: "Mínimo"
+        description: "Mínimo do valor do extrato."
+     }
 
-  measure: sum_vl_credito {
-    type: sum
-    sql:  ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "CREDITO"
-    ]
-    group_label: "Crédito"
-    group_item_label: "Soma"
-    description: "Soma do valor do extrato."
-  }
+      measure: sum_vl_credito {
+        type: sum
+        sql:  ${vl_extrato} ;;
+        filters: [ds_extrato_transacao_tipo: "CREDITO"]
+        group_label: "Crédito"
+        group_item_label: "Soma"
+        description: "Soma do valor do extrato."
+      }
 
-  measure: avg_vl_credito {
-    type: average
-    sql: ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "CREDITO"
-    ]
-    group_label: "Crédito"
-    group_item_label: "Média"
-    description: "Média do valor do extrato."
-  }
+    measure: avg_vl_credito {
+        type: average
+        sql: ${vl_extrato} ;;
+        filters: [ds_extrato_transacao_tipo: "CREDITO"]
+        group_label: "Crédito"
+        group_item_label: "Média"
+        description: "Média do valor do extrato."
+    }
 
-  measure: max_vl_credito {
-    type: max
-    sql: ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "CREDITO"
-    ]
-    group_label: "Crédito"
-    group_item_label: "Máximo"
-    description: "Máximo do valor do extrato."
-  }
+    measure: max_vl_credito {
+      type: max
+      sql: ${vl_extrato} ;;
+      filters: [
+            ds_extrato_transacao_tipo: "CREDITO"
+          ]
+        group_label: "Crédito"
+        group_item_label: "Máximo"
+        description: "Máximo do valor do extrato."
+      }
 
-  measure: min_vl_credito {
-    type: min
-    sql: ${vl_extrato} ;;
-    filters: [
-      ds_extrato_transacao_tipo: "CREDITO"
-    ]
-    group_label: "Crédito"
-    group_item_label: "Mínimo"
-    description: "Mínimo do valor do extrato."
-  }
+    measure: min_vl_credito {
+        type: min
+        sql: ${vl_extrato} ;;
+        filters: [
+          ds_extrato_transacao_tipo: "CREDITO"
+        ]
+        group_label: "Crédito"
+        group_item_label: "Mínimo"
+        description: "Mínimo do valor do extrato."
+      }
 
   measure: sum_comissao {
     type: sum
@@ -274,10 +253,10 @@ view: financeiro_extrato_titulo {
 
 
   measure: sum_repasse{
-  type: number
-  #sql: ${sum_vl_debito} - ${sum_comissao};;
-  sql: ${vl_extrato};;
-  value_format:  "\"R$ \"#,##0.00"
+    type: number
+    #sql: ${sum_vl_debito} - ${sum_comissao};;
+    sql: ${vl_extrato};;
+    value_format:  "\"R$ \"#,##0.00"
   }
 
 

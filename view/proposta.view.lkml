@@ -831,7 +831,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Cedido?"
-    description: "Indica se o contrato do aluno está cedido. Desconsiderando propostas de 'SEGUNDO REPASSE'."
+    description: "Indica se o contrato do aluno está cedido."
     sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
   }
 
@@ -2510,11 +2510,15 @@ view: proposta {
     sql:${id_proposta};;
     filters: [flg_contrato_cedido:"yes"
               ]
-    filters: [flg_contrato_ativo: "yes"]
-
     drill_fields: [id_cpf, id_proposta,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta]
     description: "Soma da quantidade de contratos cedidos"
   }
+
+
+
+
+
+
 
 
   measure: sum_renda_fam {

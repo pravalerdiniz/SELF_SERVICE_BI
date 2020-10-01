@@ -85,7 +85,8 @@ explore: beneficiados {
              proposta.ds_url_conversao,
              proposta.ds_url_descoberta,
              proposta.campanha_acesso_conversao,
-             proposta.campanha_acesso_descoberta
+             proposta.campanha_acesso_descoberta,
+             proposta.cpf_aluno
 
 
              ]
@@ -238,9 +239,6 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     relationship: many_to_many
     type: left_outer
   }
-
-
-
 }
 
 explore: financeiro {
@@ -250,11 +248,11 @@ explore: financeiro {
   fields: [ALL_FIELDS * ,
           proposta.id_cpf,
           proposta.id_proposta,
-
           ]
+
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
-    sql_on: ${financeiro.id_seunum} = ${financeiro_extrato_titulo.id_seunum} ;;
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -264,8 +262,6 @@ explore: financeiro {
     sql_on: ${financeiro_log_titulo.id_titulo} = ${financeiro.id_titulo} ;;
     relationship: one_to_many
     type: left_outer
-
-
   }
 
   join: proposta {
@@ -273,18 +269,10 @@ explore: financeiro {
     sql_on: ${proposta.id_proposta}=${financeiro.id_contrato} ;;
     relationship: many_to_one
     type: left_outer
-
   }
-
-  join: financeiro_parcelas_futuro {
-    view_label: "3 Boletos futuros"
-    sql_on: ${financeiro_parcelas_futuro.id_cpf} = ${financeiro.id_cpf} and ${financeiro_parcelas_futuro.contrato} = ${financeiro.id_contrato};;
-    relationship: many_to_many
-    type: left_outer
-  }
-
 
 }
+
 
 explore: proposta {
   label: "Proposta"
@@ -419,6 +407,22 @@ join: proposta_docs_pendentes {
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: financeiro {
+    view_label: "3. Financeiro"
+    sql_on: ${proposta.id_proposta} = ${financeiro.id_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: financeiro_parcelas_futuro {
+    view_label: "3.1 Boletos Futuros "
+    sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
   }
 
 
@@ -568,9 +572,6 @@ join: financeiro {
   sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} ;;
   type: left_outer
   relationship: one_to_many
-
-
-
 }
 
 

@@ -8,7 +8,7 @@ view: financeiro_parcelas_futuro {
           p.value:DIGITO_VERIFICADOR::int as digito_verificador,
           p.value:VALOR::float as valor,
           ID_CPF
-        from GRADUADO.SELF_SERVICE_BI.FINANCEIRO,
+        from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
              lateral flatten( input => PARCELAS ) p
        ;;
   }
@@ -18,8 +18,10 @@ view: financeiro_parcelas_futuro {
     drill_fields: [detail*]
   }
 
+
   dimension: contrato {
     type: string
+    primary_key: yes
     label: "Contrato"
     description: "Boletos Futuros"
     group_label: "Dados do Boleto Futuro"
@@ -41,6 +43,7 @@ view: financeiro_parcelas_futuro {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -61,7 +64,7 @@ view: financeiro_parcelas_futuro {
   }
 
   dimension: valor {
-    type: string
+    type: number
     label: "Valor do Boleto"
     description: "Valor do Boleto Futuro"
     group_label: "Dados do Boleto Futuro"
@@ -69,12 +72,20 @@ view: financeiro_parcelas_futuro {
   }
 
   dimension: id_cpf {
-    type: string
+    type: number
     label: "ID CPF"
     description: "ID do CPF do Aluno"
     group_label: "Dados do Boleto Futuro"
     sql: ${TABLE}."ID_CPF" ;;
   }
+
+  measure: sum_vl_extrato {
+    type: sum
+    label: "Soma dos Valor do Boleto"
+    description: "Valor do Boleto Futuro"
+    sql:  ${valor} ;;
+  }
+
 
   set: detail {
     fields: [contrato, contrato_release, digito_verificador, valor,id_cpf]
