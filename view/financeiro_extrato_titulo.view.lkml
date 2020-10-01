@@ -275,10 +275,10 @@ view: financeiro_extrato_titulo {
 
   measure: sum_repasse{
   type: number
-  sql: ${sum_vl_debito} - ${sum_comissao};;
+  #sql: ${sum_vl_debito} - ${sum_comissao};;
+  sql: ${vl_extrato};;
   value_format:  "\"R$ \"#,##0.00"
   }
-
 
 
   set: detail {
