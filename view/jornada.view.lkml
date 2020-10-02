@@ -60,6 +60,17 @@ view: jornada {
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 
+
+
+  dimension: cpf_aluno {
+    type: number
+    sql: ${proposta.cpf_aluno} ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "ID CPF do Aluno"
+    hidden: yes
+    description: "Indica o ID do CPF correspondente ao CPF do aluno"
+  }
+
   dimension: id_elegivel {
     type: number
     sql: ${TABLE}."ID_ELEGIVEL" ;;
@@ -99,6 +110,8 @@ view: jornada {
     group_item_label: "Status Etapa"
     description: "Indica se o aluno passou pela etapa ou não. 1 = Sim; 0 = Não"
   }
+
+
 
   dimension: tipo_proposta {
     type: string
@@ -710,7 +723,7 @@ view: jornada {
     type: sum
     sql: ${status_etapa} ;;
     value_format: "#,###"
-    drill_fields: [id_cpf, id_proposta,etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
+    drill_fields: [id_cpf, cpf_aluno,id_proposta,etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
     filters: [status_etapa: "1"]
     group_label: "Quantidade de Status"
     group_item_label: "Valor"
