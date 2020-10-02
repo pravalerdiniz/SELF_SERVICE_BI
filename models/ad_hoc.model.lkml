@@ -35,6 +35,8 @@ explore: comunicacao_conversao {
   }
 }
 
+
+
 explore: orcamento {
   label: "Orçamento"
   view_label: "Orçamento"

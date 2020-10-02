@@ -1,5 +1,5 @@
 view: instituicao {
-  sql_table_name: "SELF_SERVICE_BI"."INSTITUICAO"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INSTITUICAO"
     ;;
   drill_fields: [id]
 

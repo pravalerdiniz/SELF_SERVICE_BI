@@ -18,17 +18,10 @@ view: alunos_acordo {
  ;;
   }
 
-  measure: count_id_cpf {
-    type: count_distinct
-    sql: ${id_cpf} ;;
-    group_label: "Quantidade de Alunos"
-    group_item_label: "Valor"
-    description: "Contagem de ID CPFs únicos"
-    drill_fields: [detail*]
-  }
 
   dimension: id_cpf {
     type: number
+    primary_key: yes
     label: "ID CPF"
     description: "Indica o ID do CPF do aluno"
     sql: ${TABLE}."ID_CPF" ;;
@@ -131,6 +124,64 @@ view: alunos_acordo {
     description: "Indica o código da instituição do Pravaler"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
+
+  measure: count_id_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    label: "Quantidade de Alunos"
+    description: "Contagem de ID CPFs únicos"
+    drill_fields: [detail*]
+  }
+
+  measure: count_acordos {
+    type: count_distinct
+    sql: ${id_acordo} ;;
+    label: "Quantidade de Acordos"
+    description: "Contagem de ID Acordos únicos"
+    drill_fields: [detail*]
+  }
+
+  measure: count_status_acordo{
+    type: count_distinct
+    sql: ${id_acordo} ;;
+    sql_distinct_key: ${descricao_acordo} ;;
+    label: "Quantidade de Acordos por Status"
+    description: "Indica o status do acordo"
+  }
+
+  measure: sum_valor_divida {
+    type: sum
+    sql: ${vl_divida_atual} ;;
+    label: "Soma Valor Divida"
+    description: ""
+  }
+
+  measure: sum_valor_promessa {
+    type: sum
+    sql: ${vl_promessa} ;;
+    label: "Soma Valor Promessa"
+    description: ""
+  }
+
+  measure: sum_valor_presentes {
+    type: sum
+    sql: ${pdd.vl_presente} ;;
+    label: "Soma Valor Presente"
+    description: ""
+  }
+
+  measure: sum_valor_provisao {
+    type: sum
+    sql: ${pdd.provisao_cpf} ;;
+    label: "Soma Valor Provisão"
+    description: ""
+  }
+
+
+
+
+
+
 
   set: detail {
     fields: [

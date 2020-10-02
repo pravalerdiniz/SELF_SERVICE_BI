@@ -40,6 +40,7 @@ view: pdd {
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+    primary_key: yes
     value_format: "0"
     group_label: "Dados do Aluno"
     group_item_label: "ID_CPF do Aluno"
