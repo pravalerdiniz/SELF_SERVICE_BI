@@ -265,7 +265,7 @@ view: financeiro_extrato_titulo {
 
   measure: sum_repasse{
     type: number
-    sql: ${sum_vl_debito} - ${sum_comissao};;
+    sql: ${sum_vl_credito} - ${sum_comissao};;
     value_format:  "\"R$ \"#,##0.00"
   }
 
@@ -275,6 +275,12 @@ view: financeiro_extrato_titulo {
     value_format:  "\"R$ \"#,##0.00"
     group_label: "Comissão Gestão"
     description: "Comissão de Pagamentos Gestão (valor - seguros)."
+  }
+
+  measure: sum_repasse_gestao{
+    type: number
+    sql: ${sum_vl_credito} - ${sum_comissao_gestao};;
+    value_format:  "\"R$ \"#,##0.00"
   }
 
   set: detail {
