@@ -111,7 +111,7 @@ UNION ALL
     sql: ${TABLE}."TAXA_JUROS_MENSAL";;
   }
 
-dimension: proc_subsidiado_ies {
+dimension: porc_subsidiado_ies {
   type:  number
   group_label: "Taxas"
   group_item_label:  "Porc Subsidiado pela Instituição"
@@ -119,12 +119,13 @@ dimension: proc_subsidiado_ies {
   sql: ${TABLE}."PROC_SUBSIDIADO_IES";;
 }
 
+
 dimension: juros_aluno {
   type: number
   group_label: "Taxas"
   group_item_label: "Juros do Aluno"
   description:"Indica o juros pago pelo aluno"
-  sql: ${TABLE}."JUROS_ALUNO";;
+  sql: ${taxa_juros_mensal} - IFNULL(${porc_subsidiado_ies},0);;
 }
 
 dimension: taxa_adesao {
@@ -176,7 +177,7 @@ dimension: taxa_fee_unico {
             numero_contratacao,
             multiplicador_parcela,
             taxa_juros_mensal,
-            proc_subsidiado_ies,
+            porc_subsidiado_ies,
             juros_aluno,
             taxa_adesao,
             taxa_adm,

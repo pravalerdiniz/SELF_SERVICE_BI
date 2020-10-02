@@ -148,7 +148,7 @@ join: instituicao_taxas_ies {
   sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_ies.id_instituicao}
   AND ${instituicao_taxas_ies.id_produto} =  ${instituicao_taxas_ies.id_produto}
   ;;
-  relationship: one_to_many
+  relationship: many_to_many
   type: left_outer
 
 }
