@@ -1,4 +1,4 @@
-view: instiuicao_taxas_ies {
+view: instituicao_taxas_ies {
   derived_table: {
       sql: select
             id_instituicao,
@@ -16,7 +16,7 @@ view: instiuicao_taxas_ies {
             taxa_fee_unico
 from(select
       id_instituicao,
-      f.value:ID_CONTRATO_INSTITUICAO::boolean as id_contrato_instituicao,
+      id_contrato_instituicao,
       f.value:ID_PRODUTO::int as id_produto,
       f.value:NUMERO_CONTRATACAO::int as numero_contracao,
       null as multiplicador_parcela,
@@ -44,13 +44,14 @@ UNION ALL
         g.value:TX_ADM::float as taxa_adm,
         g.value:TX_COMISSAO::float as taxa_comissao,
         g.value:TX_FEE_MENSAL::float as taxa_fee_mensal,
-        g.value:TX_FEE_UNICO::float as taxa_fee_unico,
+        g.value:TX_FEE_UNICO::float as taxa_fee_unico
           from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
-          lateral flatten (input => gestao) g;;
+          lateral flatten (input => gestao) g);;
     }
 
   dimension: id_instituicao {
     type: number
+    primary_key: yes
     group_label: "Dados da Instituição"
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
