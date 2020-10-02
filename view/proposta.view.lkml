@@ -2510,7 +2510,7 @@ view: proposta {
     sql:${id_proposta};;
     filters: [flg_contrato_cedido:"yes"
               ]
-    drill_fields: [id_cpf, id_proposta,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta]
+    drill_fields: [id_cpf, id_proposta,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta,perc_tx_subsidiado_ies,perc_desagio,tx_mensal_total,tx_mensal_aluno]
     description: "Soma da quantidade de contratos cedidos"
   }
 
