@@ -173,6 +173,17 @@ view: financeiro_extrato_titulo {
         description: "Soma do valor do extrato."
       }
 
+  measure: sum_seguros {
+    type: sum
+    sql: ${vl_extrato} ;;
+    filters: [
+      ds_extrato_transacao: "SEGUROS"
+    ]
+    group_label: "Seguros"
+    group_item_label: "Soma"
+    description: "Soma do valor de seguro."
+  }
+
     measure: avg_vl_credito {
         type: average
         sql: ${vl_extrato} ;;
@@ -258,6 +269,13 @@ view: financeiro_extrato_titulo {
     value_format:  "\"R$ \"#,##0.00"
   }
 
+  measure: sum_comissao_gestao{
+    type: number
+    sql: ${sum_vl_debito} - ${sum_seguros};;
+    value_format:  "\"R$ \"#,##0.00"
+    group_label: "Comissão Gestão"
+    description: "Comissão de Pagamentos Gestão (valor - seguros)."
+  }
 
   set: detail {
     fields: [id_titulo,
