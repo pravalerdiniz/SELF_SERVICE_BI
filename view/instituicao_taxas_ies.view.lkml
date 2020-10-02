@@ -1,61 +1,71 @@
 view: instituicao_taxas_ies {
   derived_table: {
-      sql: select
+      sql:select
             id_instituicao,
             id_contrato_instituicao,
             id_produto,
-            numero_contracao,
+            numero_contratacao,
             multiplicador_parcela,
             taxa_juros_mensal,
-            porc_subsidiado_ies,
+            proc_subsidiado_ies,
             juros_aluno,
             taxa_adesao,
             taxa_adm,
             taxa_comissao,
             taxa_fee_mensal,
-            taxa_fee_unico
+            taxa_fee_unico,
+            modalidade
 from(select
-      id_instituicao,
-      id_contrato_instituicao,
-      f.value:ID_PRODUTO::int as id_produto,
-      f.value:NUMERO_CONTRATACAO::int as numero_contracao,
+      a.id_instituicao,
+      f.value:ID_CONTTRATO_INSTITUICAO::int as id_contrato_instituicao,
+      f.value:ID_PRODUTO::varchar as id_produto,
+      f.value:NUMERO_CONTRATACAO::int as numero_contratacao,
       null as multiplicador_parcela,
-      f.value:VL_IES_TAXA_MENSAL::boolean as taxa_juros_mensal,
-      f.value:PROC_SUBSIDIADO_IES::boolean as porc_subsidiado_ies,
-      f.value:JUROS_ALUNO::boolean as juros_aluno,
+      f.value:VL_IES_TAXA_MENSAL::float as taxa_juros_mensal,
+      f.value:PROC_SUBSIDIADO_IES::float as proc_subsidiado_ies,
+      f.value:JUROS_ALUNO::float as juros_aluno,
       null as taxa_adesao,
       null as taxa_adm,
       null as taxa_comissao,
       null as taxa_fee_mensal,
-      null as  taxa_fee_unico
+      null as  taxa_fee_unico,
+      'Antecipação' as modalidade
         from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
         lateral flatten (input => antecipacao) f
 UNION ALL
       select
-        id_instituicao,
-        null as id_contrato_instituicao,
-        g.value:ID_PRODUTO::int as id_produto,
-        g.value:CONTRATACAO::int as numero_contracao,
+        b.id_instituicao,
+        null id_contrato_instituicao,
+        g.value:ID_PRODUTO::varchar as id_produto,
+        g.value:CONTRATACAO::int as numero_contratacao,
         g.value:MULTIPLICADOR_PARCELA::int as multiplicador_parcela,
         g.value:TX_JUROS::float as taxa_juros_mensal,
-        null as porc_subsidiado_ies,
+        null as proc_subsidiado_ies,
         null as juros_aluno,
         g.value:TX_ADESAO::float as taxa_adesao,
         g.value:TX_ADM::float as taxa_adm,
         g.value:TX_COMISSAO::float as taxa_comissao,
         g.value:TX_FEE_MENSAL::float as taxa_fee_mensal,
-        g.value:TX_FEE_UNICO::float as taxa_fee_unico
-          from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
+        g.value:TX_FEE_UNICO::float as taxa_fee_unico,
+        'Gestão' as modalidade
+          from GRADUADO.SELF_SERVICE_BI.INSTITUICAO b,
           lateral flatten (input => gestao) g);;
     }
 
+  dimension: modalidade {
+    type: string
+    group_label: "Dados do Produto"
+    label: "Modalidade"
+    description: "Indica a modalidade do produto. Ex: Gestão e Antecipação."
+    sql: ${TABLE}."MODALIDADE";;
+  }
+
   dimension: id_instituicao {
-    type: number
-    primary_key: yes
+    type: string
     group_label: "Dados da Instituição"
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
-    sql: ${TABLE}."ID_CONTRATO_INSTITUICAO";;
+    sql: ${TABLE}."ID_INSTITUICAO";;
   }
 
 
@@ -64,19 +74,19 @@ UNION ALL
     group_label: "Dados da Instituição"
     label: "Contrato da IES"
     description: "Indica o número do contrato da Instituição por produto"
-    sql: ${TABLE}."ID_PRODUTO";;
+    sql: ${TABLE}."ID_CONTRATO_INSTITUICAO";;
   }
 
   dimension: id_produto {
-    type: number
+    type: string
     group_label: "Dados do Produto"
     label: "ID Produto"
     description: "Indica o ID Produto PRAVALER."
-    sql: ${TABLE}."ID_INSTITUICAO";;
+    sql: ${TABLE}."ID_PRODUTO";;
   }
 
 
-  dimension: numero_contracao {
+  dimension: numero_contratacao {
     type: number
     group_label: "Dados do Aluno"
     label: "Número da Contratação"
@@ -101,7 +111,7 @@ UNION ALL
     sql: ${TABLE}."TAXA_JUROS_MENSAL";;
   }
 
-dimension: porc_subsidiado_ies {
+dimension: proc_subsidiado_ies {
   type:  number
   group_label: "Taxas"
   group_item_label:  "Porc Subsidiado pela Instituição"
@@ -160,19 +170,20 @@ dimension: taxa_fee_unico {
 
   set: detail {
     fields: [
-             id_instituicao,
+            id_instituicao,
             id_contrato_instituicao,
             id_produto,
-            numero_contracao,
+            numero_contratacao,
             multiplicador_parcela,
             taxa_juros_mensal,
-            porc_subsidiado_ies,
+            proc_subsidiado_ies,
             juros_aluno,
             taxa_adesao,
             taxa_adm,
             taxa_comissao,
             taxa_fee_mensal,
-            taxa_fee_unico
+            taxa_fee_unico,
+            modalidade
     ]
   }
 
