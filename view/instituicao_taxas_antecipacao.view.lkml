@@ -1,6 +1,7 @@
 view: instituicao_taxas_antecipacao {
   derived_table: {
-      sql:a.id_instituicao,
+      sql:select
+      a.id_instituicao,
       f.value:ID_CONTTRATO_INSTITUICAO::int as id_contrato_instituicao,
       f.value:ID_PRODUTO::varchar as id_produto,
       f.value:NUMERO_CONTRATACAO::int as numero_contratacao,
@@ -16,8 +17,7 @@ view: instituicao_taxas_antecipacao {
 
   dimension: id_instituicao {
     type: string
-    group_label: "Dados da Instituição"
-    label: "ID da Instituição"
+        label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
   }
@@ -25,7 +25,6 @@ view: instituicao_taxas_antecipacao {
 
   dimension: id_contrato_instituicao {
     type: number
-    group_label: "Dados da Instituição"
     label: "Contrato da IES"
     description: "Indica o número do contrato da Instituição por produto"
     sql: ${TABLE}."ID_CONTRATO_INSTITUICAO";;
@@ -33,7 +32,6 @@ view: instituicao_taxas_antecipacao {
 
   dimension: id_produto {
     type: string
-    group_label: "Dados do Produto"
     label: "ID Produto"
     description: "Indica o ID Produto PRAVALER."
     sql: ${TABLE}."ID_PRODUTO";;
@@ -42,7 +40,6 @@ view: instituicao_taxas_antecipacao {
 
   dimension: numero_contratacao {
     type: number
-    group_label: "Dados do Aluno"
     label: "Número da Contratação"
     description:"Indica em qual contratação o aluno está"
     sql: ${TABLE}."NUMERO_CONTRATACAO";;
