@@ -35,6 +35,8 @@ explore: comunicacao_conversao {
   }
 }
 
+explore: instituicao_taxas_ies  {}
+
 explore: orcamento {
   label: "Orçamento"
   view_label: "Orçamento"
