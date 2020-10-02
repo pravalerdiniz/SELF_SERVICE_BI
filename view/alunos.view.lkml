@@ -792,6 +792,14 @@ view: alunos {
   }
 
 
+  dimension: ativo_ano_mes {
+    type: string
+    sql: ${TABLE}."ATIVO_ANOMES" ;;
+    group_label: "Ano Mês Aluno Ativo"
+    description: "Identifica os meses e anos que o aluno está ativo"
+  }
+
+
   dimension: id_produto {
     type: string
     sql: ${TABLE}."ID_PRODUTO" ;;

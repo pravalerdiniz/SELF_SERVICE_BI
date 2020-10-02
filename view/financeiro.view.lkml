@@ -118,6 +118,15 @@ view: financeiro {
     sql: min(${data_vencimento_date}) ;;
   }
 
+  dimension: pagamento_prazo {
+    sql: CASE
+        WHEN ${TABLE}."DATA_PAGAMENTO" > ${TABLE}."DATA_VENCIMENTO"  THEN 'Atrasado'
+        ELSE 'No Prazo'
+        END ;;
+    label: "Pagou no prazo"
+    description: "Indica se boleto foi pago no prazo ou em atraso"
+  }
+
   dimension_group: data_writeoff {
     type: time
     timeframes: [
