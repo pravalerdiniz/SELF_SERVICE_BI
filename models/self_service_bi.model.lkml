@@ -153,7 +153,7 @@ join: instituicao_taxas_antecipacao {
 }
 
   join: instituicao_taxas_gestao {
-    view_label: "1.2. Taxas da Instituição por Produto Gestão"
+    view_label: "1.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_gestao.id_instituicao}
         AND ${instituicao_contrato_produto_info.id_produto} =  ${instituicao_taxas_gestao.id_produto}
         ;;
