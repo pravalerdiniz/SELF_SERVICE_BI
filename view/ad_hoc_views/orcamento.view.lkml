@@ -195,7 +195,7 @@ TEMPORADA
     type: sum
     filters: {
       field: visao
-      value: "Orçado"
+      value: "ORÇADO"
     }
     sql: ${montante};;
     description: "Soma das despesas orçadas"
