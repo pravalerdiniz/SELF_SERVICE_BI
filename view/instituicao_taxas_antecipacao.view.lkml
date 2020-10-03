@@ -10,7 +10,7 @@ view: instituicao_taxas_antecipacao {
       f.value:JUROS_ALUNO::float as juros_aluno,
       'Antecipação' as modalidade
         from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
-        lateral flatten (input => antecipacao) f;;
+        lateral flatten (input => ANTECIPACAO) f;;
 
     }
 
@@ -51,6 +51,7 @@ view: instituicao_taxas_antecipacao {
     group_item_label: "Taxa de Juros Mensal"
     description:"Indica a Taxa de Juros Mensal do Produto"
     sql: ${TABLE}."TAXA_JUROS_MENSAL";;
+    value_format: "0.00"
   }
 
 dimension: porc_subsidiado_ies {
@@ -59,6 +60,7 @@ dimension: porc_subsidiado_ies {
   group_item_label:  "Porc Subsidiado pela Instituição"
   description:"Indica o juros pago pela Instituição de Ensino"
   sql: ${TABLE}."PROC_SUBSIDIADO_IES";;
+  value_format: "0.00"
 }
 
 
@@ -68,13 +70,13 @@ dimension: juros_aluno {
   group_item_label: "Juros do Aluno"
   description:"Indica o juros pago pelo aluno"
   sql: ${taxa_juros_mensal} - IFNULL(${porc_subsidiado_ies},0);;
+  value_format: "0.00"
 }
 
 
 
   dimension: modalidade {
     type: string
-    group_label: "Dados do Produto"
     label: "Modalidade"
     description: "Indica a modalidade do produto. Ex: Gestão e Antecipação."
     sql: ${TABLE}."MODALIDADE";;
