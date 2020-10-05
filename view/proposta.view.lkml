@@ -2265,7 +2265,7 @@ view: proposta {
 
   measure: count_tipo_proposta_novo {
     type: count_distinct
-    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO"  ;;
+    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO";;
     group_label: "Proposta"
     group_item_label: "Novo"
     description: "Contagem de propostas de aluno novo"
@@ -2284,7 +2284,7 @@ view: proposta {
     type: count_distinct
     group_label: "Proposta"
     group_item_label: "Segundo Repasse"
-    sql:${TABLE}."TIPO_PROPOSTA" = "SEGUNDO REPASSE";;
+    sql: ${TABLE}."TIPO_PROPOSTA" = "SEGUNDO REPASSE";;
     description: "Contagem de propostas de segundo repasse"
   }
 
@@ -2629,6 +2629,7 @@ view: proposta {
     label: "Quantidade de Renovados Proximo Ciclo"
     group_label: "Proposta"
     description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
+    drill_fields: [detail*]
   }
 
 
@@ -2677,7 +2678,16 @@ view: proposta {
     sql: ${id_cpf} ;;
   }
 
+  set: detail {
+    fields: [
+      id_proposta,
+      id_cpf,
+      data_concessao_date,
+      id_instituicao,
+      tipo_proposta
 
+    ]
+  }
 
 
 }
