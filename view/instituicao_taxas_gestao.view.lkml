@@ -14,7 +14,7 @@ view: instituicao_taxas_gestao {
         g.value:TX_FEE_UNICO::float as taxa_fee_unico,
         'Gestão' as modalidade
           from GRADUADO.SELF_SERVICE_BI.INSTITUICAO b,
-          lateral flatten (input => gestao) g;;
+          lateral flatten (input => GESTAO) g;;
   }
 
   dimension: id_instituicao {
