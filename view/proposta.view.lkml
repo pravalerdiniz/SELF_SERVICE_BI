@@ -519,7 +519,7 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "Como Soube"
-    description: "Indica por qual canal de comunicação que o aluno conheceu o PRAVALER."
+    description: "Indica por qual canal de comunicação que o aluno conheceu o PRAVALER. Ex: Atendente da Faculdade, Site da Faculdade, Consultor Pravaler, Google e etc"
     sql: ${TABLE}."DS_COMO_SOUBE" ;;
   }
 
@@ -527,7 +527,7 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "Como Soube - Canal"
-    description: "Indica por qual canal de comunicação que o aluno conheceu o PRAVALER."
+    description: "Indica por qual canal de comunicação online que o aluno conheceu o PRAVALER. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade. "
     sql: ${TABLE}."COMO_SOUBE_CANAL" ;;
   }
 
