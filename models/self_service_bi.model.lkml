@@ -152,9 +152,7 @@ join: instituicao_taxas_antecipacao {
 
   join: instituicao_taxas_gestao {
     view_label: "1.3. Taxas da Instituição por Produto Gestão"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_gestao.id_instituicao}
-        AND ${instituicao_contrato_produto_info.id_produto} =  ${instituicao_taxas_gestao.id_produto}
-        ;;
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_gestao.id_instituicao};;
     relationship: one_to_many
     type: left_outer
 
@@ -622,4 +620,35 @@ explore: inep {
     fields: []
 
   }
-}
+  }
+
+explore: interacoes {
+  label: "Interações"
+  view_label: "Interações"
+  description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
+
+  join: interacoes_detalhes_ligacao {
+    view_label: "Detalhes da ligação"
+
+    type: left_outer
+    sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
+    relationship: many_to_one
+    #fields: []
+  }
+  }
+
+  explore: crx_agentes {
+    label: "Interações - Métricas do agente"
+    view_label: "Interações - Métricas do agente"
+    description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+
+    join: crx_agentes_detalhes_pausas {
+      view_label: "Detalhes da pausa"
+
+      type: left_outer
+      sql_on: ${crx_agentes.nome} = ${crx_agentes_detalhes_pausas.nome}
+      and ${crx_agentes.data_registro} = ${crx_agentes_detalhes_pausas.data_evento_ini};;
+      relationship: many_to_one
+      #fields: []
+    }
+  }
