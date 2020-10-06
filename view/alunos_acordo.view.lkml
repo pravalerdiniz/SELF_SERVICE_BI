@@ -125,6 +125,11 @@ view: alunos_acordo {
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
+  dimension: valor_presente {
+    type: number
+    sql: ${alunos.val_presente} ;;
+  }
+
   measure: count_id_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
@@ -152,30 +157,50 @@ view: alunos_acordo {
   measure: sum_valor_divida {
     type: sum
     sql: ${vl_divida_atual} ;;
-    label: "Soma Valor Divida"
+    group_label: "Valor Divida"
+    label: "Soma"
+    description: ""
+  }
+
+  measure: avg_valor_divida {
+    type: average
+    sql: ${vl_divida_atual} ;;
+    group_label: "Valor Divida"
+    label: "Média"
+    description: ""
+  }
+
+  measure: min_valor_divida {
+    type: min
+    sql: ${vl_divida_atual} ;;
+    group_label: "Valor Divida"
+    label: "Minimo"
+    description: ""
+  }
+
+  measure: max_valor_divida {
+    type: max
+    sql: ${vl_divida_atual} ;;
+    group_label: "Valor Divida"
+    label: "Máximo"
     description: ""
   }
 
   measure: sum_valor_promessa {
     type: sum
     sql: ${vl_promessa} ;;
-    label: "Soma Valor Promessa"
+    label: "Valor Promessa"
     description: ""
   }
 
-  measure: sum_valor_presentes {
+  measure: sum_valor_pdd {
     type: sum
-    sql: ${pdd.vl_presente} ;;
-    label: "Soma Valor Presente"
+    sql: ${alunos.vl_pdd} ;;
+    label: "Valor PDD"
     description: ""
   }
 
-  measure: sum_valor_provisao {
-    type: sum
-    sql: ${pdd.provisao_cpf} ;;
-    label: "Soma Valor Provisão"
-    description: ""
-  }
+
 
 
 
