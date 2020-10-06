@@ -145,14 +145,16 @@ join: instituicao_contrato_produto_info {
 
 join: instituicao_taxas_antecipacao {
   view_label: "1.2. Taxas da Instituição por Produto Antecipação"
-  sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao} ;;
+  sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+  AND ${instituicao_contrato_produto_info.flg_ativo} = 1;;
   relationship: one_to_many
   type: left_outer
 }
 
   join: instituicao_taxas_gestao {
     view_label: "1.3. Taxas da Instituição por Produto Gestão"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_gestao.id_instituicao};;
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_gestao.id_instituicao}
+      AND ${instituicao_contrato_produto_info.flg_ativo} = 1;;
     relationship: one_to_many
     type: left_outer
 
@@ -160,7 +162,9 @@ join: instituicao_taxas_antecipacao {
 
   join: proposta {
     view_label: "2. Proposta"
-    sql_on: ${proposta.id_curso} = ${instituicao.id_curso} ;;
+    sql_on: ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
+    AND ${proposta.id_campus} = ${instituicao.id_campus}
+    AND    ${proposta.id_curso} = ${instituicao.id_curso} ;;
     relationship: one_to_many
     type: left_outer
 
