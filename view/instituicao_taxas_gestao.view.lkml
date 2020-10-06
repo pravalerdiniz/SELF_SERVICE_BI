@@ -19,7 +19,6 @@ view: instituicao_taxas_gestao {
 
   dimension: id_instituicao {
     type: string
-    group_label: "Dados da Instituição"
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
@@ -27,7 +26,6 @@ view: instituicao_taxas_gestao {
 
   dimension: id_produto {
     type: string
-    group_label: "Dados do Produto"
     label: "ID Produto"
     description: "Indica o ID Produto PRAVALER."
     sql: ${TABLE}."ID_PRODUTO";;
@@ -35,7 +33,6 @@ view: instituicao_taxas_gestao {
 
   dimension: numero_contratacao {
     type: number
-    group_label: "Dados do Aluno"
     label: "Número da Contratação"
     description:"Indica em qual contratação o aluno está"
     sql: ${TABLE}."NUMERO_CONTRATACAO";;
@@ -43,7 +40,6 @@ view: instituicao_taxas_gestao {
 
   dimension: multiplicador_parcela {
     type: number
-    group_label: "Dados da Instituição"
     group_item_label: "Multiplicador de Parcela"
     description:""
     sql: ${TABLE}."MULTIPLICADOR_PARCELA";;
