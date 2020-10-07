@@ -5,6 +5,7 @@ view: farol_detalhado {
   dimension: cpf {
     type: number
     sql: ${TABLE}."CPF" ;;
+    value_format: "0"
     required_access_grants: [grupo_cpf]
   }
 
@@ -46,6 +47,32 @@ view: farol_detalhado {
   dimension: status {
     type: string
     sql: ${TABLE}."STATUS" ;;
+  }
+
+  dimension: id_instituicao {
+    type: string
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+  }
+
+
+  dimension: nome_instituicao {
+    type: string
+    sql: ${TABLE}."NOME_INSTITUICAO" ;;
+  }
+
+  dimension: grupo_instituicao {
+    type: string
+    sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
+  }
+
+  dimension: id_produto {
+    type: string
+    sql: ${TABLE}."ID_PRODUTO" ;;
+  }
+
+  dimension: nome_produto {
+    type: string
+    sql: ${TABLE}."NOME_PRODUTO" ;;
   }
 
   measure: count {
