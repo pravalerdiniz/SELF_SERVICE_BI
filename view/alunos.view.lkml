@@ -794,7 +794,7 @@ view: alunos {
 
   dimension: ativo_ano_mes {
     type: string
-    sql: ${TABLE}."ATIVO_ANOMES" ;;
+    sql: CAST(${TABLE}."ATIVO_ANOMES" AS STRING);;
     group_label: "Ano Mês Aluno Ativo"
     description: "Identifica os meses e anos que o aluno está ativo"
   }
