@@ -793,10 +793,12 @@ view: alunos {
 
 
   dimension: ativo_ano_mes {
-    type: string
-    sql: CAST(${TABLE}."ATIVO_ANOMES" AS STRING);;
-    group_label: "Ano Mês Aluno Ativo"
-    description: "Identifica os meses e anos que o aluno está ativo"
+    type: number
+    sql: ${ano_mes_carteira_ativa.ano_mes};;
+    group_label: "Dados do Aluno"
+    group_item_label: "Ano Mês Aluno Ativo"
+    description: "Indica o Ano e o Mês em que o status do aluno é financeiramente ativo"
+
   }
 
 

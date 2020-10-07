@@ -185,6 +185,7 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
+    - alunos.ativo_ano_mes
 
     ]
 
@@ -383,7 +384,7 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-
+- alunos.ativo_ano_mes
 
 
 
@@ -580,6 +581,13 @@ join: alunos_produtos_aprovados {
     view_label: "5. Status"
     sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
     relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ano_mes_carteira_ativa {
+    fields: []
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
+    relationship: many_to_one
     type: left_outer
   }
 
