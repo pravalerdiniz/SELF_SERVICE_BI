@@ -4,7 +4,7 @@ view: interacoes {
 
   dimension: canal {
     type: string
-    group_label: "Dados do ticket"
+    group_label: "Dados do Ticket"
     group_item_label: "Canal"
     description: "Indica o canal do ticket. Ex: Chat, Web, API."
     sql: ${TABLE}."CANAL" ;;
@@ -18,7 +18,7 @@ view: interacoes {
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
 
-  dimension_group: chat_data_fim {
+  dimension_group: chat_deta_fim {
     type: time
     label: "Fim do Chat"
     timeframes: [
@@ -31,6 +31,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_FIM" ;;
+    group_label: "Dados do Chat"
     description: "Indica a data Fim do Chat"
   }
 
@@ -47,6 +48,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_INICIO" ;;
+    group_label: "Dados do Chat"
     description: "Indica a data de Inicio do Chat"
   }
 
@@ -54,7 +56,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Duração do Chat"
-    description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
+    description: "Indica a duração do chat em segundos. A duração é calculade apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
 
@@ -110,7 +112,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Primeira - Tempo de Resposta"
-    description: "Indica o tempo da primeira resposta do chat."
+    description: "Indica o tempo de primeira resposta do chat."
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
 
@@ -118,13 +120,13 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Total de Mensagens"
-    description: "Indica a quantidade de mensagens do agente e visitante e o total."
+    description: "Indica a quantidede de mensagens do agente e visitante e o total."
     sql: ${TABLE}."CHAT_TOTAL_MENSAGENS" ;;
   }
 
   dimension: comentario_pesquisa {
     type: string
-    group_label: "Dados da Pesquisa de Satisfação"
+    group_label: "Dados de Pesquisa de Satisfação"
     group_item_label: "Comentários"
     description: "Indica os comentários realizados na pesquisa de satisfação por ticket."
     sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
@@ -134,7 +136,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Quem realizou o contato?"
-    description: "Indica quem realizou o contato no chat por ticket. Ex: Aluno, Garantidor, Aluno sem cadastro, Outros."
+    description: "Indica quem realizou o contato no chat por ticket. Ex: Aluno, Garantidor, Aluno sem cadestro, Outros."
     sql: ${TABLE}."CONTATO_FEITO_POR" ;;
   }
 
@@ -176,7 +178,7 @@ view: interacoes {
       quarter,
       year
     ]
-   label: "Atualização"
+    label: "Atualização"
     description: "Indica a data de atualização do ticket."
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
@@ -193,8 +195,9 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO_PESQUISA" ;;
-   label: "Pesquisa - Atualização"
-    description: "Indica a data de atualização da pesquisa de satisfação."
+    label: "Atualização - Pesquisa"
+    group_label: "Dados de Pesquisa de Satisfação"
+    description: "Indica a data de atualização de pesquisa de satisfação."
   }
 
   dimension_group: data_criacao {
@@ -209,11 +212,12 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
-   label: "Criação"
-    description: "Indica da data de criação do ticket."
+    label: "Criação"
+    group_label: "Dados do Ticket"
+    description: "Indica de data de criação do ticket."
   }
 
-  dimension_group: data_envio_pesquisa {
+  dimension_group: deta_envio_pesquisa {
     type: time
     timeframes: [
       raw,
@@ -226,10 +230,11 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
     label: "Pesquisa - Envio"
-    description: "Indica da data de envio da pesquisa de satisfação."
+    group_label: "Dados de Pesquisa de Satisfação"
+    description: "Indica de deta de envio de pesquisa de satisfação."
   }
 
-  dimension_group: data_finalizacao {
+  dimension_group: deta_finalizacao {
     type: time
     timeframes: [
       raw,
@@ -241,22 +246,23 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
-   label: "Finalização"
-    description: "Indica da data de finalização do ticket."
+    label: "Finalização"
+    group_label: "Dados do Ticket"
+    description: "Indica de deta de finalização do ticket."
   }
 
-  dimension: data_monitoria {
+  dimension: deta_monitoria {
     type: string
     group_label: "Dados de Monitoria"
     group_item_label: "Data de Monitoria"
-    description: "Indica a data da monitoria realizada."
+    description: "Indica a deta de monitoria realizade."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
   dimension: detalhes_ligacao {
     type: string
-    group_label: "Dados da Ligação"
-    group_item_label: "Detalhes da Ligação"
+    group_label: "Dados de Ligação"
+    group_item_label: "Detalhes de Ligação"
     description: "Indica lista de detalhes atribuidos a ligação. Ex: Custo, Data, Duração, entre outros."
     sql: ${TABLE}."DETALHES_LIGACAO" ;;
   }
@@ -269,11 +275,11 @@ view: interacoes {
     sql: ${TABLE}."FILA" ;;
   }
 
-  dimension: flg_pesquisa_disparada {
+  dimension: flg_pesquisa_disparade {
     type: yesno
-    group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "Pesquisa disparada?"
-    description: "Indica se a pesquisa foi disparada ou não."
+    group_label: "Dados de Pesquisa de Satisfação"
+    group_item_label: "Pesquisa disparade?"
+    description: "Indica se a pesquisa foi disparade ou não."
     sql: ${TABLE}."FLG_PESQUISA_DISPARADA" ;;
   }
 
@@ -295,9 +301,9 @@ view: interacoes {
 
   dimension: id_pesquisa {
     type: number
-    group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "ID da Pesquisa"
-    description: "Indica o identificador da pesquisa de satifação."
+    group_label: "Dados de Pesquisa de Satisfação"
+    group_item_label: "ID de Pesquisa"
+    description: "Indica o identificador de pesquisa de satifação."
     sql: ${TABLE}."ID_PESQUISA" ;;
   }
 
@@ -319,9 +325,9 @@ view: interacoes {
 
   dimension: justificativa_pesquisa {
     type: string
-    group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "Justificativa da Pesquisa"
-    description: "Indica a justificativa da pesquisa de satisfação."
+    group_label: "Dados de Pesquisa de Satisfação"
+    group_item_label: "Justificativa de Pesquisa"
+    description: "Indica a justificativa de pesquisa de satisfação."
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }
 
@@ -343,8 +349,9 @@ view: interacoes {
 
   dimension: nome_assignee {
     type: string
-    group_item_label: "Nome Assignee"
-    description: "Indica o nome do assignee."
+    group_label: "Dados do Atendente"
+    group_item_label: "Nome do Atendente"
+    description: "Indica o nome do atendente."
     sql: ${TABLE}."NOME_ASSIGNEE" ;;
   }
 
@@ -364,11 +371,11 @@ view: interacoes {
     sql: ${TABLE}."NOME_SUBMITTER" ;;
   }
 
-  dimension: prioridade {
+  dimension: prioridede {
     type: string
-    group_label: "Dados do ticket"
-    group_item_label: "Prioridade"
-    description: "Indica a prioridade do ticket. Ex: Normal, High, Low, Urgent."
+    group_label: "Dados do Ticket"
+    group_item_label: "Prioridede"
+    description: "Indica a prioridede do ticket. Ex: Normal, High, Low, Urgent."
     sql: ${TABLE}."PRIORIDADE" ;;
   }
 
@@ -382,7 +389,7 @@ view: interacoes {
 
   dimension: score {
     type: string
-    group_label: "Dados da Pesquisa de Satisfação"
+    group_label: "Dados de Pesquisa de Satisfação"
     group_item_label: "Score"
     description: "Indica o score atribuido para a pesquisa de satisfação."
     sql: ${TABLE}."SCORE" ;;
@@ -392,13 +399,13 @@ view: interacoes {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Status - Atual"
-    description: "Indica o código do status da última proposta do aluno."
+    description: "Indica o código do status de última proposta do aluno."
     sql: ${TABLE}."STATUS_ALUNO" ;;
   }
 
   dimension: status_ticket {
     type: string
-    group_label: "Dados do ticket"
+    group_label: "Dados do Ticket"
     group_item_label: "Status"
     description: "Indica o status do ticket.Ex: Closed, Open, Solved, Pending, New, Hold."
     sql: ${TABLE}."STATUS_TICKET" ;;
@@ -414,7 +421,7 @@ view: interacoes {
 
   dimension: titulo_ticket {
     type: string
-    group_label: "Dados do ticket"
+    group_label: "Dados do Ticket"
     group_item_label: "Título"
     description: "Indica o título do ticket."
     sql: ${TABLE}."TITULO_TICKET" ;;
@@ -422,7 +429,7 @@ view: interacoes {
 
   dimension: total_abandono {
     type: number
-    group_label: "Dados da Ligação"
+    group_label: "Dados de Ligação"
     group_item_label: "Total de Abandono"
     description: "Indica o total de ligações de abandono."
     sql: ${TABLE}."TOTAL_ABANDONO" ;;
@@ -475,7 +482,7 @@ view: interacoes {
     type: string
     group_item_label: "Tipo Proposta - Corrente"
     group_label: "Dados do Aluno"
-    description: "Indica o tipo da última proposta do aluno."
+    description: "Indica o tipo de última proposta do aluno."
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
   }
 
@@ -483,7 +490,7 @@ view: interacoes {
     type: string
     group_item_label: "Descrição do Status - Atual"
     group_label: "Dados do Aluno"
-    description: "Indica a descrição do status da última proposta do aluno."
+    description: "Indica a descrição do status de última proposta do aluno."
     sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
