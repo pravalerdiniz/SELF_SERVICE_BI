@@ -50,8 +50,8 @@ view: interacoes_detalhes_ligacao {
     sql: ${TABLE}."FILA_ATENDIMENTO" ;;
   }
 
-  dimension_group: horario_entrada_ligacao {
-    type: time
+  dimension: horario_entrada_ligacao {
+    type: date_time
     label: "Entrada da Ligação - Horário"
     description: "Indica a hora de entrada da ligação do ticket."
     sql: ${TABLE}."HORARIO_ENTRADA_LIGACAO" ;;
@@ -111,7 +111,7 @@ view: interacoes_detalhes_ligacao {
       data_ligacao,
       duracao_chamada,
       fila_atendimento,
-      horario_entrada_ligacao_time,
+      horario_entrada_ligacao,
       nome_agente,
       tempo_espera_ate_atendimento,
       tempo_falado,

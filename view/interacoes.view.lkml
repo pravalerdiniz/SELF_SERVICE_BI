@@ -20,7 +20,7 @@ view: interacoes {
 
   dimension_group: chat_data_fim {
     type: time
-    label: "Fim do Chat"
+    label: "Chat - Finalização"
     timeframes: [
       raw,
       time,
@@ -36,7 +36,7 @@ view: interacoes {
 
   dimension_group: chat_data_inicio {
     type: time
-    label: "Inicio do Chat"
+    label: "Chat - Inicio"
     timeframes: [
       raw,
       time,
