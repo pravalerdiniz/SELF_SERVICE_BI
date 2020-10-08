@@ -140,8 +140,9 @@ view: interacoes {
 
   dimension: cpf_assignee {
     type: string
-    group_item_label: "CPF Assigne"
-    description: "Indica o CPF do Administrador (Agente)."
+    group_label: "Dados do Atendente"
+    group_item_label: "CPF do Atendente"
+    description: "Indica o CPF do Atendente responsável pelo ticket."
     sql: ${TABLE}."CPF_ASSIGNEE" ;;
   }
 
@@ -150,15 +151,15 @@ view: interacoes {
 
   dimension: cpf_requester {
     type: string
-    group_item_label: "CPF Requester"
-    description: "Indica o CPF do Solicitante do Chat."
+    group_label: "Dados do Solicitante"
+    group_item_label: "CPF do Solicitante"
+    description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
   dimension: cpf_submitter {
     type: string
-    group_label: "Função "
-    group_item_label: "CPF Submitter"
+    group_item_label: "Dados do Transmissor"
     description: "Indica o CPF do Requisitante do chat."
     sql: ${TABLE}."CPF_SUBMITTER" ;;
   }
@@ -277,9 +278,9 @@ view: interacoes {
 
   dimension: grupo {
     type: string
-    group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "Pesquisa disparada?"
-    description: "Indica se a pesquisa foi disparada ou não."
+    group_label: "Dados do Atendente"
+    group_item_label: "Grupo"
+    description: "Indica qual é o grupo do Atendente. Ex: SAC, Cobrança,SAC Atento, SAC Action Line. "
     sql: ${TABLE}."GRUPO" ;;
   }
 
@@ -301,9 +302,9 @@ view: interacoes {
 
   dimension: id_problema {
     type: number
-    group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "ID da Pesquisa"
-    description: "Indica o identificador da pesquisa de satifação."
+    group_label: "Dados do Ticket"
+    group_item_label: "ID do Problema"
+    description: "Indica o identificador do problema do ticket."
     sql: ${TABLE}."ID_PROBLEMA" ;;
   }
 
@@ -348,16 +349,17 @@ view: interacoes {
 
   dimension: nome_requester {
     type: string
-    group_label: "Dados do Requisitante"
-    group_item_label: "Nome do Requisitante"
-    description: "Indica o nome do requisitante do ticket. Este campo pode ser atribuido com o nome do aluno, garantidor, agente."
+    group_label: "Dados do Solicitante"
+    group_item_label: "Nome do Solicitante"
+    description: "Indica o nome do solicitante do ticket. Este campo pode ser atribuido com o nome do aluno, garantidor, agente."
     sql: ${TABLE}."NOME_REQUESTER" ;;
   }
 
   dimension: nome_submitter {
     type: string
-    group_item_label: "Nome Submitter"
-    description: "Indica o nome do submitter."
+    group_label: "Dados do Transmissor"
+    group_item_label: "Nome do Transmissor"
+    description: "Indica o nome do transmissor."
     sql: ${TABLE}."NOME_SUBMITTER" ;;
   }
 
@@ -371,7 +373,9 @@ view: interacoes {
 
   dimension: requester_id {
     type: number
-    group_item_label: "ID do Requester"
+    group_item_label: "ID do Solicitante"
+    group_label: "Dados do Solicitante"
+    description: "Indica o identificador do solicitante do ticket."
     sql: ${TABLE}."REQUESTER_ID" ;;
   }
 
@@ -386,7 +390,7 @@ view: interacoes {
   dimension: status_aluno {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Status"
+    group_item_label: "Status - Atual"
     description: "Indica o código do status da última proposta do aluno."
     sql: ${TABLE}."STATUS_ALUNO" ;;
   }
@@ -424,46 +428,51 @@ view: interacoes {
   }
   dimension: email_agente {
     type: string
-    group_label: "Dados do Agente"
+    group_label: "Dados do Atendente"
     group_item_label: "E-mail"
-    description: "Indica o e-mail do agente do ticket."
+    description: "Indica o e-mail do atendente do ticket."
     sql: ${TABLE}."EMAIL_AGENTE" ;;
   }
 
 
   dimension: EMPRESA_AGENTE{
     type: string
-    group_label: "Dados do Agente"
+    group_label: "Dados do Atendente"
     group_item_label: "Empresa"
-    description: "Indica a empresa do agente do ticket."
+    description: "Indica a empresa do atendente do ticket."
     sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
   dimension: submitter_role{
     type: string
-    group_item_label: "Função Submitter"
+    group_label: "Dados do Transmissor"
+    group_item_label: "Função Transmissor"
+    description: "Indica a função do transmissor do ticket. Ex: AGENT, END_USER, ADMIN"
     sql: ${TABLE}."SUBMITTER_ROLE" ;;
   }
 
 
   dimension: assignee_role{
     type: string
-    group_item_label: "Função Assignee"
+    group_label: "Dados do Atendente"
+    group_item_label: "Função do Atendente"
+    description: "Indica a função do atendente no ticket. Ex: AGENT, ADMIN"
     sql: ${TABLE}."ASSIGNEE_ROLE" ;;
   }
 
 
   dimension: requester_role{
     type: string
-    group_label: "Dados de Requesitante"
-    group_item_label: "Função Requester"
+    group_label: "Dados do Solicitante"
+    group_item_label: "Função do Solicitante"
+    description: "Indica a função do solicitante no ticket. Ex: AGENT, END_USER, ADMIN"
     sql: ${TABLE}."REQUESTER_ROLE" ;;
   }
 
 
   dimension: tipo_ultima_proposta{
     type: string
-    group_item_label: "Tipo Proposta"
+    group_item_label: "Tipo Proposta - Corrente"
     group_label: "Dados do Aluno"
     description: "Indica o tipo da última proposta do aluno."
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
@@ -471,7 +480,7 @@ view: interacoes {
 
   dimension: descricao_status{
     type: string
-    group_item_label: "Descrição do Status"
+    group_item_label: "Descrição do Status - Atual"
     group_label: "Dados do Aluno"
     description: "Indica a descrição do status da última proposta do aluno."
     sql: ${TABLE}."DESCRICAO_STATUS" ;;
