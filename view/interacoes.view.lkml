@@ -180,6 +180,7 @@ view: interacoes {
     ]
     label: "Atualização"
     description: "Indica a data de atualização do ticket."
+    group_label: "Dados do Ticket"
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
