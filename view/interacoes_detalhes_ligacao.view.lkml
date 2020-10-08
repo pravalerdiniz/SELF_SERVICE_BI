@@ -8,8 +8,8 @@ view: interacoes_detalhes_ligacao {
       f.value:"NOME_AGENTE"::varchar as NOME_AGENTE,
       f.value:"TEMPO_ESPERA_ATE_ATENDIMENTO"::varchar as TEMPO_ESPERA_ATE_ATENDIMENTO,
       f.value:"TEMPO_FALADO"::varchar as TEMPO_FALADO,
-      f.value:"TEMPO_MAX_DURACAO_CHAMADA"::varchar as TEMPO_MAX_DURACAO_CHAMADA,
-      f.value:"TEMPO_URA"::varchar as TEMPO_URA,
+      f.value:"TEMPO_URA"::varchar as TEMPO_MAX_DURACAO_CHAMADA,
+      f.value:"CAMINHO_URA"::varchar as TEMPO_URA,
       f.value:"TIPO_CONEXAO"::varchar as TIPO_CONEXAO,
       f.value:"TIPO_LIGACAO"::varchar as TIPO_LIGACAO
       from "GRADUADO"."SELF_SERVICE_BI"."INTERACOES" a,
@@ -24,62 +24,85 @@ view: interacoes_detalhes_ligacao {
 
   dimension: id_ticket {
     type: number
+   hidden: yes
     sql: ${TABLE}."ID_TICKET" ;;
   }
 
 
   dimension: data_ligacao {
     type: date
+    group_item_label: "Data de ligação"
+    description: "Indica a data da ligação do ticket."
     sql: ${TABLE}."DATA_LIGACAO" ;;
   }
 
   dimension: duracao_chamada {
-    type: string
+    type: duration_second
+    group_item_label: "Duração da chamada"
+    description: "Indica a duração da chamada em HH:MM:SS."
     sql: ${TABLE}."DURACAO_CHAMADA" ;;
   }
 
   dimension: fila_atendimento {
     type: string
+    group_item_label: "Fila"
+    description: "Indica a fila de atendimento durante a ligação."
     sql: ${TABLE}."FILA_ATENDIMENTO" ;;
   }
 
   dimension_group: horario_entrada_ligacao {
     type: time
+    group_item_label: "Entrada da Ligação - Horário"
+    description: "Indica a hora de entrada da ligação do ticket."
     sql: ${TABLE}."HORARIO_ENTRADA_LIGACAO" ;;
   }
 
   dimension: nome_agente {
     type: string
+    group_item_label: "Nome do Atendente"
+    description: "Indica o nome do atendente responsável pela ligação no ticket."
     sql: ${TABLE}."NOME_AGENTE" ;;
   }
 
   dimension: tempo_espera_ate_atendimento {
-    type: string
+    type: duration_second
+    group_item_label: "Tempo de Espera"
+    description: "Indica o tempo de espera da ligação até o atendimento em segundos."
     sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO" ;;
   }
 
   dimension: tempo_falado {
-    type: string
+    type: duration_second
+    group_item_label: "Tempo de Espera"
+    description: "Indica o tempo de espera da ligação até o atendimento em segundos."
     sql: ${TABLE}."TEMPO_FALADO" ;;
   }
 
-  dimension: tempo_max_duracao_chamada {
-    type: string
-    sql: ${TABLE}."TEMPO_MAX_DURACAO_CHAMADA" ;;
+  dimension: tempo_ura {
+    type: duration_second
+    group_item_label: "Duração de Chamada - Máximo"
+    description: "Indica a duração da ligação na URA"
+    sql: ${TABLE}."TEMPO_URA" ;;
   }
 
-  dimension: tempo_ura {
+  dimension: caminho_ura {
     type: string
-    sql: ${TABLE}."TEMPO_URA" ;;
+    group_item_label: "URA - Tempo"
+    description: "Indica o tempo máximo de duração da chamada."
+    sql: ${TABLE}."CAMINHO_URA" ;;
   }
 
   dimension: tipo_conexao {
     type: string
+    group_item_label: "Tipo de Conexão"
+    description: "Indica o tipo de conexão da chamada. Ex: Interno ou Externo."
     sql: ${TABLE}."TIPO_CONEXAO" ;;
   }
 
   dimension: tipo_ligacao {
     type: string
+    group_item_label: "Tipo de Ligação"
+    description: "Indica o tipo de ligação."
     sql: ${TABLE}."TIPO_LIGACAO" ;;
   }
 
@@ -92,7 +115,7 @@ view: interacoes_detalhes_ligacao {
       nome_agente,
       tempo_espera_ate_atendimento,
       tempo_falado,
-      tempo_max_duracao_chamada,
+      caminho_ura,
       tempo_ura,
       tipo_conexao,
       tipo_ligacao
