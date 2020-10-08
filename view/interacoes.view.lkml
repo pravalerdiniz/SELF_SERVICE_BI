@@ -137,7 +137,6 @@ view: interacoes {
 
   dimension: cpf_assignee {
     type: string
-    group_label: "Função - Assigne"
     group_item_label: "CPF Assigne"
     description: "Indica o CPF do Administrador (Agente)."
     sql: ${TABLE}."CPF_ASSIGNEE" ;;
@@ -148,16 +147,15 @@ view: interacoes {
 
   dimension: cpf_requester {
     type: string
-    group_label: "Dados do Chat"
-    group_item_label: "CPF do Solicitante"
+    group_item_label: "CPF Requester"
     description: "Indica o CPF do Solicitante do Chat."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
   dimension: cpf_submitter {
     type: string
-    group_label: "Dados do Chat"
-    group_item_label: "CPF do Requisitante "
+    group_label: "Função "
+    group_item_label: "CPF Submitter"
     description: "Indica o CPF do Requisitante do chat."
     sql: ${TABLE}."CPF_SUBMITTER" ;;
   }
@@ -381,20 +379,23 @@ view: interacoes {
     sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
-  dimension: subimitter_role{
+  dimension: submitter_role{
     type: string
-    sql: ${TABLE}."SUBIMITTER_ROLE" ;;
+    group_item_label: "Função Submitter"
+    sql: ${TABLE}."SUBMITTER_ROLE" ;;
   }
 
 
   dimension: assigne_role{
     type: string
+    group_item_label: "Função Assigne"
     sql: ${TABLE}."ASSIGNEE_ROLE" ;;
   }
 
 
   dimension: requester_role{
     type: string
+    group_item_label: "Função Requester"
     sql: ${TABLE}."REQUESTER_ROLE" ;;
   }
 
