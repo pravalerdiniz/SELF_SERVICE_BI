@@ -80,15 +80,15 @@ view: interacoes_detalhes_ligacao {
 
   dimension: tempo_ura {
     type: duration_second
-    label: "Duração de Chamada - Máximo"
-    description: "Indica a duração da ligação na URA"
+    label: "URA - Tempo"
+    description: "Indica o tempo da ligação na URA em segundos"
     sql: ${TABLE}."TEMPO_URA" ;;
   }
 
   dimension: caminho_ura {
     type: string
-    label: "URA - Tempo"
-    description: "Indica o tempo máximo de duração da chamada."
+    label: "URA - Caminho"
+    description: "Indica o caminho da URA."
     sql: ${TABLE}."CAMINHO_URA" ;;
   }
 
