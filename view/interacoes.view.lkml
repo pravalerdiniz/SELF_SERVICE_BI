@@ -137,11 +137,17 @@ view: interacoes {
 
   dimension: cpf_assignee {
     type: string
+    group_label: "Dados do Chat"
+    group_item_label: "CPF do Agente"
+    description: "Indica o CPF do Administrador (Agente)."
     sql: ${TABLE}."CPF_ASSIGNEE" ;;
   }
 
   dimension: cpf_requester {
     type: string
+    group_label: "Dados do Chat"
+    group_item_label: "CPF do "
+    description: "Indica o CPF do Administrador (Agente)."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
@@ -335,6 +341,12 @@ view: interacoes {
     type: number
     sql: ${TABLE}."TOTAL_ABANDONO" ;;
   }
+  dimension: email_agente {
+    type: string
+    sql: ${TABLE}."EMAIL_AGENTE" ;;
+  }
+
+
 
   measure: count {
     type: count
