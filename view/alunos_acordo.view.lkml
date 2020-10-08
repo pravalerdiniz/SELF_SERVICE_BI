@@ -12,7 +12,7 @@ view: alunos_acordo {
             f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO,
             f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
             f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
-            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
+            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO,
             f.value:TOTAL_ACORDO::float as TOTAL_ACORDO,
             f.value:QTD_PRESTACOES::float as QTD_PRESTACOES,
             f.value:PRI_VECTO::date as PRI_VECTO,
@@ -196,6 +196,14 @@ view: alunos_acordo {
     sql: ${id_cpf} ;;
     label: "Quantidade de Alunos"
     description: "Contagem de ID CPFs únicos"
+    drill_fields: [detail*]
+  }
+
+  measure: count {
+    type: count
+    #sql: ${id_cpf} ;;
+    label: "Quantidade de Alunos"
+    description: "Contagem de ID CPFs"
     drill_fields: [detail*]
   }
 
