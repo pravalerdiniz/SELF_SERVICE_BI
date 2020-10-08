@@ -137,11 +137,14 @@ view: interacoes {
 
   dimension: cpf_assignee {
     type: string
-    group_label: "Dados do Chat"
-    group_item_label: "CPF do Agente"
+    group_label: "Função - Assigne"
+    group_item_label: "CPF Assigne"
     description: "Indica o CPF do Administrador (Agente)."
     sql: ${TABLE}."CPF_ASSIGNEE" ;;
   }
+
+
+
 
   dimension: cpf_requester {
     type: string
@@ -255,16 +258,25 @@ view: interacoes {
 
   dimension: fila {
     type: string
+    group_label: "Dados do Agente"
+    group_item_label: "Fila"
+    description: "Indica a fila do ticket. Ex: Cobrança, SAC, KROTON."
     sql: ${TABLE}."FILA" ;;
   }
 
   dimension: flg_pesquisa_disparada {
     type: yesno
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "Pesquisa disparada?"
+    description: "Indica se a pesquisa foi disparada ou não."
     sql: ${TABLE}."FLG_PESQUISA_DISPARADA" ;;
   }
 
   dimension: grupo {
     type: string
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "Pesquisa disparada?"
+    description: "Indica se a pesquisa foi disparada ou não."
     sql: ${TABLE}."GRUPO" ;;
   }
 
@@ -300,6 +312,7 @@ view: interacoes {
 
   dimension: tipo_contato {
     type: string
+
     sql: ${TABLE}."TIPO_CONTATO" ;;
   }
 
@@ -368,6 +381,22 @@ view: interacoes {
     sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
+  dimension: subimitter_role{
+    type: string
+    sql: ${TABLE}."SUBIMITTER_ROLE" ;;
+  }
+
+
+  dimension: assigne_role{
+    type: string
+    sql: ${TABLE}."ASSIGNEE_ROLE" ;;
+  }
+
+
+  dimension: requester_role{
+    type: string
+    sql: ${TABLE}."REQUESTER_ROLE" ;;
+  }
 
 
   measure: count {
