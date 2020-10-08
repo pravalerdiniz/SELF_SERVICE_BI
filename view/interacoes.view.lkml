@@ -320,8 +320,8 @@ view: interacoes {
   dimension: justificativa_pesquisa {
     type: string
     group_label: "Dados da Pesquisa de Satisfação"
-    group_item_label: "ID da Pesquisa"
-    description: "Indica o identificador da pesquisa de satisfação."
+    group_item_label: "Justificativa da Pesquisa"
+    description: "Indica a justificativa da pesquisa de satisfação."
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }
 
