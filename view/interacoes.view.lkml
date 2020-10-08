@@ -159,8 +159,9 @@ view: interacoes {
 
   dimension: cpf_submitter {
     type: string
-    group_item_label: "Dados do Transmissor"
-    description: "Indica o CPF do Requisitante do chat."
+    group_item_label: "CPF do Transmissor"
+    group_label: "Dados do Transmissor"
+    description: "Indica o CPF do transmissor do ticket."
     sql: ${TABLE}."CPF_SUBMITTER" ;;
   }
 
