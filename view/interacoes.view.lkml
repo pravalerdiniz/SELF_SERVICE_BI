@@ -20,7 +20,7 @@ view: interacoes {
 
   dimension_group: chat_data_fim {
     type: time
-    group_item_label: "Fim do Chat"
+    label: "Fim do Chat"
     timeframes: [
       raw,
       time,
@@ -36,7 +36,7 @@ view: interacoes {
 
   dimension_group: chat_data_inicio {
     type: time
-    group_item_label: "Inicio do Chat"
+    label: "Inicio do Chat"
     timeframes: [
       raw,
       time,
@@ -174,7 +174,7 @@ view: interacoes {
       quarter,
       year
     ]
-    group_item_label: "Atualização"
+   label: "Atualização"
     description: "Indica a data de atualização do ticket."
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
@@ -191,7 +191,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO_PESQUISA" ;;
-    group_item_label: "Pesquisa - Atualização"
+   label: "Pesquisa - Atualização"
     description: "Indica a data de atualização da pesquisa de satisfação."
   }
 
@@ -207,7 +207,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
-    group_item_label: "Criação"
+   label: "Criação"
     description: "Indica da data de criação do ticket."
   }
 
@@ -223,7 +223,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
-    group_item_label: "Pesquisa - Envio"
+    label: "Pesquisa - Envio"
     description: "Indica da data de envio da pesquisa de satisfação."
   }
 
@@ -239,7 +239,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
-    group_item_label: "Finalização"
+   label: "Finalização"
     description: "Indica da data de finalização do ticket."
   }
 
