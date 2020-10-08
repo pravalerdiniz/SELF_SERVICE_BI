@@ -176,7 +176,7 @@ view: interacoes {
       quarter,
       year
     ]
-    label: "Atualização"
+    label: "Ticket - Atualização"
     description: "Indica a data de atualização do ticket."
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
@@ -193,7 +193,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO_PESQUISA" ;;
-    label: "Atualização - Pesquisa"
+    label: "Pesquisa - Atualização"
     description: "Indica a data de atualização de pesquisa de satisfação."
   }
 
