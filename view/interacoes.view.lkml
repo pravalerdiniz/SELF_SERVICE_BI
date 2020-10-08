@@ -146,13 +146,16 @@ view: interacoes {
   dimension: cpf_requester {
     type: string
     group_label: "Dados do Chat"
-    group_item_label: "CPF do "
-    description: "Indica o CPF do Administrador (Agente)."
+    group_item_label: "CPF do Solicitante"
+    description: "Indica o CPF do Solicitante do Chat."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
   dimension: cpf_submitter {
     type: string
+    group_label: "Dados do Chat"
+    group_item_label: "CPF do Requisitante "
+    description: "Indica o CPF do Requisitante do chat."
     sql: ${TABLE}."CPF_SUBMITTER" ;;
   }
 
@@ -167,6 +170,8 @@ view: interacoes {
       quarter,
       year
     ]
+    group_item_label: "Atualização"
+    description: "Indica a data de atualização do ticket."
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
@@ -182,6 +187,8 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO_PESQUISA" ;;
+    group_item_label: "Pesquisa - Atualização"
+    description: "Indica a data de atualização da pesquisa de satisfação."
   }
 
   dimension_group: data_criacao {
@@ -196,6 +203,8 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
+    group_item_label: "Criação"
+    description: "Indica da data de criação do ticket."
   }
 
   dimension_group: data_envio_pesquisa {
@@ -210,6 +219,8 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
+    group_item_label: "Pesquisa - Envio"
+    description: "Indica da data de envio da pesquisa de satisfação."
   }
 
   dimension_group: data_finalizacao {
@@ -224,10 +235,15 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
+    group_item_label: "Finalização"
+    description: "Indica da data de finalização do ticket."
   }
 
   dimension: data_monitoria {
     type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Data de Monitoria"
+    description: "Indica a data da monitoria realizada."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
@@ -344,6 +360,12 @@ view: interacoes {
   dimension: email_agente {
     type: string
     sql: ${TABLE}."EMAIL_AGENTE" ;;
+  }
+
+
+  dimension: EMPRESA_AGENTE{
+    type: string
+    sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
 
