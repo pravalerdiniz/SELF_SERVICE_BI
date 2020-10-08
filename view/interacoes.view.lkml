@@ -253,8 +253,10 @@ view: interacoes {
 
   dimension: detalhes_ligacao {
     type: string
+    group_label: "Dados da Ligação"
+    group_item_label: "Detalhes da Ligação"
+    description: "Indica lista de detalhes atribuidos a ligação. Ex: Custo, Data, Duração, entre outros."
     sql: ${TABLE}."DETALHES_LIGACAO" ;;
-    hidden: yes
   }
 
   dimension: fila {
@@ -299,6 +301,9 @@ view: interacoes {
 
   dimension: id_problema {
     type: number
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "ID da Pesquisa"
+    description: "Indica o identificador da pesquisa de satifação."
     sql: ${TABLE}."ID_PROBLEMA" ;;
   }
 
@@ -312,6 +317,9 @@ view: interacoes {
 
   dimension: justificativa_pesquisa {
     type: string
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "ID da Pesquisa"
+    description: "Indica o identificador da pesquisa de satisfação."
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }
 
@@ -328,31 +336,44 @@ view: interacoes {
 
   dimension: nome_assignee {
     type: string
+    group_item_label: "Nome Assignee"
+    description: "Indica o nome do assignee."
     sql: ${TABLE}."NOME_ASSIGNEE" ;;
   }
 
   dimension: nome_requester {
     type: string
+    group_item_label: "Nome Requester"
+    description: "Indica o nome do requester."
     sql: ${TABLE}."NOME_REQUESTER" ;;
   }
 
   dimension: nome_submitter {
     type: string
+    group_item_label: "Nome Submitter"
+    description: "Indica o nome do submitter."
     sql: ${TABLE}."NOME_SUBMITTER" ;;
   }
 
   dimension: prioridade {
     type: string
+    group_label: "Dados do ticket"
+    group_item_label: "Prioridade"
+    description: "Indica a prioridade do ticket. Ex: Normal, High, Low, Urgent."
     sql: ${TABLE}."PRIORIDADE" ;;
   }
 
   dimension: requester_id {
     type: number
+    group_item_label: "ID do Requester"
     sql: ${TABLE}."REQUESTER_ID" ;;
   }
 
   dimension: score {
     type: string
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "Score"
+    description: "Indica o score atribuido para a pesquisa de satisfação."
     sql: ${TABLE}."SCORE" ;;
   }
 
