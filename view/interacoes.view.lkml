@@ -18,7 +18,7 @@ view: interacoes {
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
 
-  dimension_group: chat_deta_fim {
+  dimension_group: chat_data_fim {
     type: time
     label: "Fim do Chat"
     timeframes: [
@@ -293,7 +293,7 @@ view: interacoes {
 
   dimension: id_canal {
     type: number
-    group_label: "Dados do ticket"
+    group_label: "Dados do Ticket"
     group_item_label: "ID do Canal"
     description: "Indica o identificador do canal do ticket."
     sql: ${TABLE}."ID_CANAL" ;;
@@ -317,7 +317,7 @@ view: interacoes {
 
   dimension: id_ticket {
     type: number
-    group_label: "Dados do ticket"
+    group_label: "Dados do Ticket"
     group_item_label: "ID do Ticket"
     description: "Indica o ID do Ticket."
     sql: ${TABLE}."ID_TICKET" ;;
