@@ -4,6 +4,9 @@ view: interacoes {
 
   dimension: canal {
     type: string
+    group_label: "Dados do ticket"
+    group_item_label: "Canal"
+    description: "Indica o canal do ticket. Ex: Chat, Web, API."
     sql: ${TABLE}."CANAL" ;;
   }
 
@@ -256,7 +259,7 @@ view: interacoes {
 
   dimension: fila {
     type: string
-    group_label: "Dados do Agente"
+    group_label: "Dados do Ticket"
     group_item_label: "Fila"
     description: "Indica a fila do ticket. Ex: Cobrança, SAC, KROTON."
     sql: ${TABLE}."FILA" ;;
@@ -280,11 +283,17 @@ view: interacoes {
 
   dimension: id_canal {
     type: number
+    group_label: "Dados do ticket"
+    group_item_label: "ID do Canal"
+    description: "Indica o identificador do canal do ticket."
     sql: ${TABLE}."ID_CANAL" ;;
   }
 
   dimension: id_pesquisa {
     type: number
+    group_label: "Dados da Pesquisa de Satisfação"
+    group_item_label: "ID da Pesquisa"
+    description: "Indica o identificador da pesquisa de satifação."
     sql: ${TABLE}."ID_PESQUISA" ;;
   }
 
@@ -295,6 +304,9 @@ view: interacoes {
 
   dimension: id_ticket {
     type: number
+    group_label: "Dados do ticket"
+    group_item_label: "ID do Ticket"
+    description: "Indica o ID do Ticket."
     sql: ${TABLE}."ID_TICKET" ;;
   }
 
@@ -346,36 +358,57 @@ view: interacoes {
 
   dimension: status_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Status"
+    description: "Indica o código do status da última proposta do aluno."
     sql: ${TABLE}."STATUS_ALUNO" ;;
   }
 
   dimension: status_ticket {
     type: string
+    group_label: "Dados do ticket"
+    group_item_label: "Status"
+    description: "Indica o status do ticket.Ex: Closed, Open, Solved, Pending, New, Hold."
     sql: ${TABLE}."STATUS_TICKET" ;;
   }
 
   dimension: tipo_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Tipo de Aluno"
+    description: "Indica o tipo de aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
   dimension: titulo_ticket {
     type: string
+    group_label: "Dados do ticket"
+    group_item_label: "Título"
+    description: "Indica o título do ticket."
     sql: ${TABLE}."TITULO_TICKET" ;;
   }
 
   dimension: total_abandono {
     type: number
+    group_label: "Dados da Ligação"
+    group_item_label: "Total de Abandono"
+    description: "Indica o total de ligações de abandono."
     sql: ${TABLE}."TOTAL_ABANDONO" ;;
   }
   dimension: email_agente {
     type: string
+    group_label: "Dados do Agente"
+    group_item_label: "E-mail"
+    description: "Indica o e-mail do agente do ticket."
     sql: ${TABLE}."EMAIL_AGENTE" ;;
   }
 
 
   dimension: EMPRESA_AGENTE{
     type: string
+    group_label: "Dados do Agente"
+    group_item_label: "Empresa"
+    description: "Indica a empresa do agente do ticket."
     sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
@@ -386,9 +419,9 @@ view: interacoes {
   }
 
 
-  dimension: assigne_role{
+  dimension: assignee_role{
     type: string
-    group_item_label: "Função Assigne"
+    group_item_label: "Função Assignee"
     sql: ${TABLE}."ASSIGNEE_ROLE" ;;
   }
 
@@ -397,6 +430,23 @@ view: interacoes {
     type: string
     group_item_label: "Função Requester"
     sql: ${TABLE}."REQUESTER_ROLE" ;;
+  }
+
+
+  dimension: tipo_ultima_proposta{
+    type: string
+    group_item_label: "Tipo Proposta"
+    group_label: "Dados do Aluno"
+    description: "Indica o tipo da última proposta do aluno."
+    sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
+  }
+
+  dimension: descricao_status{
+    type: string
+    group_item_label: "Descrição do Status"
+    group_label: "Dados do Aluno"
+    description: "Indica a descrição do status da última proposta do aluno."
+    sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
 
