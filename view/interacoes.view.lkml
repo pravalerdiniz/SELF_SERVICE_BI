@@ -31,7 +31,6 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_FIM" ;;
-    group_label: "Dados do Chat"
     description: "Indica a data Fim do Chat"
   }
 
@@ -48,7 +47,6 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_INICIO" ;;
-    group_label: "Dados do Chat"
     description: "Indica a data de Inicio do Chat"
   }
 
@@ -180,7 +178,6 @@ view: interacoes {
     ]
     label: "Atualização"
     description: "Indica a data de atualização do ticket."
-    group_label: "Dados do Ticket"
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
@@ -197,7 +194,6 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO_PESQUISA" ;;
     label: "Atualização - Pesquisa"
-    group_label: "Dados de Pesquisa de Satisfação"
     description: "Indica a data de atualização de pesquisa de satisfação."
   }
 
@@ -213,7 +209,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
-    label: "Criação"
+    label: "Ticket - Criação"
     group_label: "Dados do Ticket"
     description: "Indica de data de criação do ticket."
   }
@@ -231,7 +227,6 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
     label: "Pesquisa - Envio"
-    group_label: "Dados de Pesquisa de Satisfação"
     description: "Indica de deta de envio de pesquisa de satisfação."
   }
 
@@ -247,8 +242,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
-    label: "Finalização"
-    group_label: "Dados do Ticket"
+    label: "Ticket - Finalização"
     description: "Indica de deta de finalização do ticket."
   }
 
@@ -372,11 +366,11 @@ view: interacoes {
     sql: ${TABLE}."NOME_SUBMITTER" ;;
   }
 
-  dimension: prioridede {
+  dimension: prioridade {
     type: string
     group_label: "Dados do Ticket"
-    group_item_label: "Prioridede"
-    description: "Indica a prioridede do ticket. Ex: Normal, High, Low, Urgent."
+    group_item_label: "Prioridade"
+    description: "Indica a prioridade do ticket. Ex: Normal, High, Low, Urgent."
     sql: ${TABLE}."PRIORIDADE" ;;
   }
 
