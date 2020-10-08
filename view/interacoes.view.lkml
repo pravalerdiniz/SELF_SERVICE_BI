@@ -124,7 +124,7 @@ view: interacoes {
 
   dimension: comentario_pesquisa {
     type: string
-    group_label: "Dados de Pesquisa de Satisfação"
+    group_label: "Dados da Pesquisa de Satisfação"
     group_item_label: "Comentários"
     description: "Indica os comentários realizados na pesquisa de satisfação por ticket."
     sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
