@@ -80,14 +80,14 @@ view: interacoes_detalhes_ligacao {
 
   dimension: tempo_ura {
     type: duration_second
-    label: "URA - Tempo"
+    label: "Tempo na URA"
     description: "Indica o tempo da ligação na URA em segundos"
     sql: ${TABLE}."TEMPO_URA" ;;
   }
 
   dimension: caminho_ura {
     type: string
-    label: "URA - Caminho"
+    label: "Caminho da URA"
     description: "Indica o caminho da URA."
     sql: ${TABLE}."CAMINHO_URA" ;;
   }
