@@ -9,11 +9,15 @@ view: interacoes {
 
   dimension: chat_agentes {
     type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Agentes"
+    description: "Indica o nome dos agentes responsáveis pelo ticket"
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
 
   dimension_group: chat_data_fim {
     type: time
+    group_item_label: "Fim do Chat"
     timeframes: [
       raw,
       time,
@@ -24,10 +28,12 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_FIM" ;;
+    description: "Indica a data Fim do Chat"
   }
 
   dimension_group: chat_data_inicio {
     type: time
+    group_item_label: "Inicio do Chat"
     timeframes: [
       raw,
       time,
@@ -38,60 +44,94 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_INICIO" ;;
+    description: "Indica a data de Inicio do Chat"
   }
 
   dimension: chat_duracao {
     type: number
+    group_label: "Dados de Chat"
+    group_item_label: "Duração do Chat"
+    description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
 
   dimension: chat_flg_nao_lido {
     type: yesno
+    group_label: "Dados de Chat"
+    group_item_label: "Não lido?"
+    description: "Indica se o chat não foi lido."
     sql: ${TABLE}."CHAT_FLG_NAO_LIDO" ;;
   }
 
   dimension: chat_flg_perdido {
     type: yesno
+    group_label: "Dados de Chat"
+    group_item_label: "Perdido?"
+    description: "Indica se o chat foi perdido ou não."
     sql: ${TABLE}."CHAT_FLG_PERDIDO" ;;
   }
 
   dimension: chat_nome_departamento {
     type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Nome do Departamento"
+    description: "Indica o nome do departamento por ticket."
     sql: ${TABLE}."CHAT_NOME_DEPARTAMENTO" ;;
   }
 
   dimension: chat_nome_visitante {
     type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Nome do Visitante"
+    description: "Indica o nome do visitante do ticket."
     sql: ${TABLE}."CHAT_NOME_VISITANTE" ;;
   }
 
   dimension: chat_tempo_max_resposta {
     type: number
+    group_label: "Dados de Chat"
+    group_item_label: "Máximo - Tempo de Resposta"
+    description: "Indica o tempo máximo de resposta do chat."
     sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA" ;;
   }
 
   dimension: chat_tempo_medio_resposta {
     type: number
+    group_label: "Dados de Chat"
+    group_item_label: "Médio - Tempo de Resposta"
+    description: "Indica o tempo médio de resposta do chat."
     sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA" ;;
   }
 
   dimension: chat_tempo_primeira_resposta {
     type: number
+    group_label: "Dados de Chat"
+    group_item_label: "Primeira - Tempo de Resposta"
+    description: "Indica o tempo da primeira resposta do chat."
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
 
   dimension: chat_total_mensagens {
     type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Total de Mensagens"
+    description: "Indica a quantidade de mensagens do agente e visitante e o total."
     sql: ${TABLE}."CHAT_TOTAL_MENSAGENS" ;;
   }
 
   dimension: comentario_pesquisa {
     type: string
+    group_label: "Dados de Pesquisa de Satisfação"
+    group_item_label: "Comentários"
+    description: "Indica os comentários realizados na pesquisa de satisfação por ticket."
     sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
   }
 
   dimension: contato_feito_por {
     type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Quem realizou o contato?"
+    description: "Indica quem realizou o contato no chat por ticket. Ex: Aluno, Garantidor, Aluno sem cadastro, Outros."
     sql: ${TABLE}."CONTATO_FEITO_POR" ;;
   }
 
@@ -231,14 +271,14 @@ view: interacoes {
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }
 
-  dimension: motivo_contato_ativo {
+  dimension: motivo_contato {
     type: string
-    sql: ${TABLE}."MOTIVO_CONTATO_ATIVO" ;;
+    sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
-  dimension: motivo_contato_receptivo {
+  dimension: tipo_contato {
     type: string
-    sql: ${TABLE}."MOTIVO_CONTATO_RECEPTIVO" ;;
+    sql: ${TABLE}."TIPO_CONTATO" ;;
   }
 
   dimension: nome_assignee {
