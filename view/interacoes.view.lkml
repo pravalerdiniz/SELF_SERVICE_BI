@@ -325,12 +325,17 @@ view: interacoes {
 
   dimension: motivo_contato {
     type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Motivo de Contato"
+    description: "Indica o motivo de contato realizado no ticket."
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
   dimension: tipo_contato {
     type: string
-
+    group_label: "Dados do Ticket"
+    group_item_label: "Tipo de Contato"
+    description: "Indica o tipo de contato realizado no ticket.Ex: Ativo, Receptivo, Não qualificado."
     sql: ${TABLE}."TIPO_CONTATO" ;;
   }
 
