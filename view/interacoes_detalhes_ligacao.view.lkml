@@ -37,7 +37,7 @@ view: interacoes_detalhes_ligacao {
   }
 
   dimension: duracao_chamada {
-    type: duration_second
+    type: string
     label: "Duração da chamada"
     description: "Indica a duração da chamada em HH:MM:SS."
     sql: ${TABLE}."DURACAO_CHAMADA" ;;
@@ -65,21 +65,21 @@ view: interacoes_detalhes_ligacao {
   }
 
   dimension: tempo_espera_ate_atendimento {
-    type: duration_second
+    type: string
     label: "Tempo de Espera"
     description: "Indica o tempo de espera da ligação até o atendimento em segundos."
     sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO" ;;
   }
 
   dimension: tempo_falado {
-    type: duration_second
+    type: string
     label: "Tempo Falado"
     description: "Indica o tempo falado da ligação em segundos."
     sql: ${TABLE}."TEMPO_FALADO" ;;
   }
 
   dimension: tempo_ura {
-    type: duration_second
+    type: string
     label: "Tempo na URA"
     description: "Indica o tempo da ligação na URA em segundos"
     sql: ${TABLE}."TEMPO_URA" ;;
