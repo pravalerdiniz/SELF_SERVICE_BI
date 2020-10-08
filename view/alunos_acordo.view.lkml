@@ -13,6 +13,10 @@ view: alunos_acordo {
             f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
             f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
             f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
+            f.value:TOTAL_ACORDO::float as TOTAL_ACORDO,
+            f.value:QTD_PRESTACOES::float as QTD_PRESTACOES,
+            f.value:PRI_VECTO::date as PRI_VECTO,
+            f.value:ULT_VECTO::date as ULT_VECTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -62,7 +66,8 @@ view: alunos_acordo {
 
   dimension: vl_divida_atual {
     type: number
-    label: "Valor da Divida Atual"
+    group_label: "Valores"
+    group_item_label: "Valor da Divida Atual"
     value_format: "$ ,.00"
     description: "Indica a divida atual do aluno com o Pravaler"
     sql: ${TABLE}."VL_DIVIDA_ATUAL" ;;
@@ -70,7 +75,8 @@ view: alunos_acordo {
 
   dimension: vl_promessa {
     type: number
-    label: "Valor da Promessa"
+    group_label: "Valores"
+    group_item_label: "Valor da Promessa"
     value_format: "$ ,.00"
     description: "Indica o valor da divida do aluno após o acordo"
     sql: ${TABLE}."VL_PROMESSA" ;;
@@ -125,8 +131,63 @@ view: alunos_acordo {
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
+  dimension: total_acordo {
+    type: number
+    group_label: "Valores"
+    group_item_label: "Total Acordo"
+    description: "Indica o valor total do acordo do aluno"
+    sql: ${TABLE}."TOTAL_ACORDO" ;;
+  }
+
+  dimension: qtd_prestacoes_acordo {
+    type: string
+    group_label: "Valores"
+    group_item_label: "Quantidade Prestações"
+    description: "Indica o a quantidade de prestações do acordo do aluno"
+    sql: ${TABLE}."QTD_PRESTACOES" ;;
+  }
+
+  dimension_group: primeiro_vecto {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Primeiro Vencimento"
+    description: "Indica a data do vencimento da primeira parcela do acordo"
+    sql: ${TABLE}."PRI_VECTO" ;;
+  }
+
+  dimension_group: ultimo_vecto {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Ultimo Vencimento"
+    description: "Indica a data do vencimento da ultima parcela do acordo"
+    sql: ${TABLE}."ULT_VECTO" ;;
+  }
+
   dimension: valor_presente {
     type: number
+    group_label: "Valores"
+    group_item_label: "Valor Presente"
+    description: "Indica o valor total da dívida do aluno trazendo as parcelas futuras ao valor presente"
     sql: ${alunos.val_presente} ;;
   }
 
@@ -196,7 +257,32 @@ view: alunos_acordo {
   measure: sum_valor_pdd {
     type: sum
     sql: ${alunos.vl_pdd} ;;
-    label: "Valor PDD"
+    group_label: "Valor PDD"
+    group_item_label: "Soma"
+    description: ""
+  }
+
+  measure: avg_valor_pdd {
+    type: average
+    sql: ${alunos.vl_pdd} ;;
+    group_label: "Valor PDD"
+    group_item_label: "Média"
+    description: ""
+  }
+
+  measure: min_valor_pdd {
+    type: min
+    sql: ${alunos.vl_pdd} ;;
+    group_label: "Valor PDD"
+    group_item_label: "Mínimo"
+    description: ""
+  }
+
+  measure: max_valor_pdd {
+    type: max
+    sql: ${alunos.vl_pdd} ;;
+    group_label: "Valor PDD"
+    group_item_label: "Máximo"
     description: ""
   }
 
