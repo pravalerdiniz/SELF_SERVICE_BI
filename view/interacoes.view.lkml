@@ -13,8 +13,8 @@ view: interacoes {
   dimension: chat_agentes {
     type: string
     group_label: "Dados de Chat"
-    group_item_label: "Agentes"
-    description: "Indica o nome dos agentes responsáveis pelo ticket"
+    group_item_label: "Atendentes"
+    description: "Indica o nome dos atendentes responsáveis pelo ticket"
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
 
@@ -141,7 +141,7 @@ view: interacoes {
   dimension: cpf_assignee {
     type: string
     group_label: "Dados do Atendente"
-    group_item_label: "CPF do Atendente"
+    group_item_label: "CPF"
     description: "Indica o CPF do Atendente responsável pelo ticket."
     sql: ${TABLE}."CPF_ASSIGNEE" ;;
   }
@@ -152,14 +152,14 @@ view: interacoes {
   dimension: cpf_requester {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF do Solicitante"
+    group_item_label: "CPF"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
   dimension: cpf_submitter {
     type: string
-    group_item_label: "CPF do Transmissor"
+    group_item_label: "CPF"
     group_label: "Dados do Transmissor"
     description: "Indica o CPF do transmissor do ticket."
     sql: ${TABLE}."CPF_SUBMITTER" ;;
@@ -213,7 +213,7 @@ view: interacoes {
     description: "Indica de data de criação do ticket."
   }
 
-  dimension_group: deta_envio_pesquisa {
+  dimension_group: data_envio_pesquisa {
     type: time
     timeframes: [
       raw,
@@ -245,11 +245,11 @@ view: interacoes {
     description: "Indica de deta de finalização do ticket."
   }
 
-  dimension: deta_monitoria {
+  dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
     group_item_label: "Data de Monitoria"
-    description: "Indica a deta de monitoria realizade."
+    description: "Indica a data de monitoria realizade."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
@@ -289,6 +289,7 @@ view: interacoes {
     type: number
     group_label: "Dados do Ticket"
     group_item_label: "ID do Canal"
+    hidden: yes
     description: "Indica o identificador do canal do ticket."
     sql: ${TABLE}."ID_CANAL" ;;
   }
@@ -344,7 +345,7 @@ view: interacoes {
   dimension: nome_assignee {
     type: string
     group_label: "Dados do Atendente"
-    group_item_label: "Nome do Atendente"
+    group_item_label: "Nome"
     description: "Indica o nome do atendente."
     sql: ${TABLE}."NOME_ASSIGNEE" ;;
   }
@@ -352,7 +353,7 @@ view: interacoes {
   dimension: nome_requester {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "Nome do Solicitante"
+    group_item_label: "Nome"
     description: "Indica o nome do solicitante do ticket. Este campo pode ser atribuido com o nome do aluno, garantidor, agente."
     sql: ${TABLE}."NOME_REQUESTER" ;;
   }
@@ -360,7 +361,7 @@ view: interacoes {
   dimension: nome_submitter {
     type: string
     group_label: "Dados do Transmissor"
-    group_item_label: "Nome do Transmissor"
+    group_item_label: "Nome"
     description: "Indica o nome do transmissor."
     sql: ${TABLE}."NOME_SUBMITTER" ;;
   }
@@ -377,6 +378,7 @@ view: interacoes {
     type: number
     group_item_label: "ID do Solicitante"
     group_label: "Dados do Solicitante"
+    hidden: yes
     description: "Indica o identificador do solicitante do ticket."
     sql: ${TABLE}."REQUESTER_ID" ;;
   }
@@ -448,7 +450,7 @@ view: interacoes {
   dimension: submitter_role{
     type: string
     group_label: "Dados do Transmissor"
-    group_item_label: "Função Transmissor"
+    group_item_label: "Função"
     description: "Indica a função do transmissor do ticket. Ex: AGENT, END_USER, ADMIN"
     sql: ${TABLE}."SUBMITTER_ROLE" ;;
   }
@@ -457,7 +459,7 @@ view: interacoes {
   dimension: assignee_role{
     type: string
     group_label: "Dados do Atendente"
-    group_item_label: "Função do Atendente"
+    group_item_label: "Função"
     description: "Indica a função do atendente no ticket. Ex: AGENT, ADMIN"
     sql: ${TABLE}."ASSIGNEE_ROLE" ;;
   }
@@ -466,7 +468,7 @@ view: interacoes {
   dimension: requester_role{
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "Função do Solicitante"
+    group_item_label: "Função"
     description: "Indica a função do solicitante no ticket. Ex: AGENT, END_USER, ADMIN"
     sql: ${TABLE}."REQUESTER_ROLE" ;;
   }
@@ -474,7 +476,7 @@ view: interacoes {
 
   dimension: tipo_ultima_proposta{
     type: string
-    group_item_label: "Tipo Proposta - Corrente"
+    group_item_label: "Tipo Proposta - Atual"
     group_label: "Dados do Aluno"
     description: "Indica o tipo de última proposta do aluno."
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;

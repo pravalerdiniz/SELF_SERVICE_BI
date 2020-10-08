@@ -8,8 +8,8 @@ view: interacoes_detalhes_ligacao {
       f.value:"NOME_AGENTE"::varchar as NOME_AGENTE,
       f.value:"TEMPO_ESPERA_ATE_ATENDIMENTO"::varchar as TEMPO_ESPERA_ATE_ATENDIMENTO,
       f.value:"TEMPO_FALADO"::varchar as TEMPO_FALADO,
-      f.value:"TEMPO_URA"::varchar as TEMPO_MAX_DURACAO_CHAMADA,
-      f.value:"CAMINHO_URA"::varchar as TEMPO_URA,
+      f.value:"TEMPO_URA"::varchar as TEMPO_URA,
+      f.value:"CAMINHO_URA"::varchar as CAMINHO_URA,
       f.value:"TIPO_CONEXAO"::varchar as TIPO_CONEXAO,
       f.value:"TIPO_LIGACAO"::varchar as TIPO_LIGACAO
       from "GRADUADO"."SELF_SERVICE_BI"."INTERACOES" a,
