@@ -348,8 +348,9 @@ view: interacoes {
 
   dimension: nome_requester {
     type: string
-    group_item_label: "Nome Requester"
-    description: "Indica o nome do requester."
+    group_label: "Dados do Requisitante"
+    group_item_label: "Nome do Requisitante"
+    description: "Indica o nome do requisitante do ticket. Este campo pode ser atribuido com o nome do aluno, garantidor, agente."
     sql: ${TABLE}."NOME_REQUESTER" ;;
   }
 
@@ -454,6 +455,7 @@ view: interacoes {
 
   dimension: requester_role{
     type: string
+    group_label: "Dados de Requesitante"
     group_item_label: "Função Requester"
     sql: ${TABLE}."REQUESTER_ROLE" ;;
   }
