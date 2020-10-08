@@ -210,7 +210,6 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
     label: "Ticket - Criação"
-    group_label: "Dados do Ticket"
     description: "Indica de data de criação do ticket."
   }
 
