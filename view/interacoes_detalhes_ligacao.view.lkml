@@ -40,7 +40,7 @@ measure: DURACAO_CHAMADA_SEG{
    }
 
   measure: medio_duracao_chamada_seg {
-    type: number
+    type: average
     sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
     label: "Tempo Médio - Duração de Chamada"
     description: "Média do tempo de duração de chamada"
