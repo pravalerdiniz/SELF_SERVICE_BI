@@ -54,7 +54,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Duração do Chat"
-    description: "Indica a duração do chat em segundos. A duração é calculade apenas durante o atendimento do ticket, tempo de espera não é considerado."
+    description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
 
@@ -70,7 +70,7 @@ view: interacoes {
     type: yesno
     group_label: "Dados de Chat"
     group_item_label: "Perdido?"
-    description: "Indica se o chat foi perdido ou não."
+    description: "Indica se o chat foi perdido."
     sql: ${TABLE}."CHAT_FLG_PERDIDO" ;;
   }
 
@@ -226,7 +226,7 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
     label: "Pesquisa - Envio"
-    description: "Indica de data de envio de pesquisa de satisfação."
+    description: "Indica a data de envio da pesquisa de satisfação."
   }
 
   dimension_group: data_finalizacao {
@@ -242,14 +242,14 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
     label: "Ticket - Finalização"
-    description: "Indica de data de finalização do ticket."
+    description: "Indica a data de finalização do ticket."
   }
 
   dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
     group_item_label: "Data de Monitoria"
-    description: "Indica a data de monitoria realizade."
+    description: "Indica a data de monitoria realizada."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
