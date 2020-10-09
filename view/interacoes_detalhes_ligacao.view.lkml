@@ -49,6 +49,7 @@ measure: DURACAO_CHAMADA_SEG{
 
   measure: TEMPO_URA_SEG{
     type: sum
+    label: "Tempo de Ura"
     sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -137,10 +138,7 @@ measure: DURACAO_CHAMADA_SEG{
     sql: ${TABLE}."TIPO_LIGACAO" ;;
   }
 
-  measure: Quantidade {
-    type: count
-    drill_fields: []
-  }
+
 
   set: detail {
     fields: [

@@ -78,8 +78,8 @@ view: interacoes {
   dimension: chat_nome_departamento {
     type: string
     group_label: "Dados de Chat"
-    group_item_label: "Nome do Departamento"
-    description: "Indica o nome do departamento por ticket."
+    group_item_label: "Nome do Grupo"
+    description: "Indica o nome do grupo do atendente por ticket."
     sql: ${TABLE}."CHAT_NOME_DEPARTAMENTO" ;;
   }
 
