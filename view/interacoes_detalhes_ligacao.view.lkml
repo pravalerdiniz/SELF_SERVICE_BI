@@ -31,24 +31,32 @@ view: interacoes_detalhes_ligacao {
 measure: DURACAO_CHAMADA_SEG{
   type: sum
   sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
+  label: "Duração"
+  description: "Soma do tempo falado da ligação."
   value_format: "[hh]:mm:ss"
 
    }
 
   measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{
     type: sum
+    label: "Tempo de Espera"
+    description: "Soma do tempo espera até atendimento da ligação."
     sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
   measure: TEMPO_FALADO_SEG{
     type: sum
+    label: "Tempo Falado"
+    description: "Soma do tempo falado da ligação."
     sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
   measure: TEMPO_URA_SEG{
     type: sum
+    label: "Tempo na URA"
+    description: "Soma do tempo de ligação na URA."
     sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }

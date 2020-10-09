@@ -494,6 +494,51 @@ view: interacoes {
   }
 
 
+measure: primeiro_tempo_resposta {
+
+  type: sum
+  group_label: "Chat"
+  label: "Primeira Resposta"
+  description: "Soma do tempo da primeira resposta chat em HH:MM:SS."
+  sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
+  value_format: "[hh]:mm:ss"
+}
+
+
+  measure: duracao_chat {
+
+    type: sum
+    group_label: "Chat"
+    label: "Duração"
+    description: "Soma do tempo da duracao do chat em HH:MM:SS."
+    sql: ${TABLE}."CHAT_DURACAO"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+  measure: tempo_medio_resposta {
+
+    type: sum
+    group_label: "Chat"
+    label: "Resposta - Tempo Médio"
+    description: "Soma do tempo médio de resposta do chat em HH:MM:SS."
+    sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+
+  measure: tempo_maximo_resposta {
+    type: sum
+    group_label: "Chat"
+    label: "Resposta - Tempo Máximo"
+    description: "Soma do tempo máximo de resposta do chat em HH:MM:SS."
+    sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+
+
+
+
   measure: count {
     type: count
     drill_fields: []
