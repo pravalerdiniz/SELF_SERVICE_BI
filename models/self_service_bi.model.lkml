@@ -660,7 +660,7 @@ explore: interacoes {
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
 
   join: interacoes_detalhes_ligacao {
-    view_label: "Detalhes da ligação"
+    view_label: "Detalhes de ligação"
 
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;

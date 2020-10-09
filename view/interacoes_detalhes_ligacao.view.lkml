@@ -32,6 +32,7 @@ measure: DURACAO_CHAMADA_SEG{
   type: sum
   sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
   value_format: "[hh]:mm:ss"
+
    }
 
   measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{

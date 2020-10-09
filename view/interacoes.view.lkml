@@ -226,10 +226,10 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
     label: "Pesquisa - Envio"
-    description: "Indica de deta de envio de pesquisa de satisfação."
+    description: "Indica de data de envio de pesquisa de satisfação."
   }
 
-  dimension_group: deta_finalizacao {
+  dimension_group: data_finalizacao {
     type: time
     timeframes: [
       raw,
@@ -242,7 +242,7 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
     label: "Ticket - Finalização"
-    description: "Indica de deta de finalização do ticket."
+    description: "Indica de data de finalização do ticket."
   }
 
   dimension: data_monitoria {
@@ -257,6 +257,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Ligação"
     group_item_label: "Detalhes de Ligação"
+    hidden: yes
     description: "Indica lista de detalhes atribuidos a ligação. Ex: Custo, Data, Duração, entre outros."
     sql: ${TABLE}."DETALHES_LIGACAO" ;;
   }
@@ -269,11 +270,11 @@ view: interacoes {
     sql: ${TABLE}."FILA" ;;
   }
 
-  dimension: flg_pesquisa_disparade {
+  dimension: flg_pesquisa_disparada {
     type: yesno
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "Pesquisa disparade?"
-    description: "Indica se a pesquisa foi disparade ou não."
+    group_item_label: "Pesquisa disparada?"
+    description: "Indica se a pesquisa foi disparada ou não."
     sql: ${TABLE}."FLG_PESQUISA_DISPARADA" ;;
   }
 
@@ -411,7 +412,7 @@ view: interacoes {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Tipo de Aluno"
-    description: "Indica o tipo de aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
+    description: "Indica o tipo da última proposta cedida do Aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
@@ -478,7 +479,7 @@ view: interacoes {
     type: string
     group_item_label: "Tipo Proposta - Atual"
     group_label: "Dados do Aluno"
-    description: "Indica o tipo de última proposta do aluno."
+    description: "Indica o tipo da proposta atual do aluno. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
   }
 
