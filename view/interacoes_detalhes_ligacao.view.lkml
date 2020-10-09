@@ -1,7 +1,7 @@
 view: interacoes_detalhes_ligacao {
   derived_table: {
     sql: select a.id_ticket,
-      concat(right(f.value:"DATA_LIGACAO"::varchar,4),'-',left(right(f.value:"DATA_LIGACAO"::varchar,7),2),'-',left(f.value:"DATA_LIGACAO"::varchar,2))::date as DATA_LIGACAO,
+      (f.value:"DATA_LIGACAO"::timestamp)::date  as DATA_LIGACAO,
       f.value:"DURACAO_CHAMADA"::varchar as DURACAO_CHAMADA,
       f.value:"FILA_ATENDIMENTO"::varchar as FILA_ATENDIMENTO,
       --f.value:"HORARIO_ENTRADA_LIGACAO"::time as HORARIO_ENTRADA_LIGACAO,
