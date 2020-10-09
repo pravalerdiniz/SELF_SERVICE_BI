@@ -10,6 +10,16 @@ view: interacoes {
     sql: ${TABLE}."CANAL" ;;
   }
 
+
+
+  dimension: tags {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Tags"
+    description: "Indica a tag utilizada no ticket"
+    sql: ${TABLE}."TAGS" ;;
+  }
+
   dimension: chat_agentes {
     type: string
     group_label: "Dados de Chat"
@@ -212,6 +222,7 @@ view: interacoes {
       week,
       month,
       quarter,
+      hour,
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;

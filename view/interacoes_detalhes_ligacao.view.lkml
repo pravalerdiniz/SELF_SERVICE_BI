@@ -82,7 +82,7 @@ measure: DURACAO_CHAMADA_SEG{
   measure: medio_tempo_falado_seg {
     type: number
     sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count};;
-    label: "Tempo Médio - Espera"
+    label: "Tempo Médio - Falado"
     description: "Média do tempo falado da chamada"
     value_format: "[hh]:mm:ss"
 
