@@ -2,7 +2,7 @@ view: instituicao_contrato_produto_info {
   derived_table: {
     sql: select
         id_instituicao
-        ,f.key as ID_IES_CONTRATO
+          ,f.key as ID_IES_CONTRATO
         ,f.value:BANCO::varchar as BANCO
       ,f.value:AGENCIA::varchar as DS_BANCO_AGENCIA
       ,f.value:CONTA::varchar as DS_BANCO_CC
