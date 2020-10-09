@@ -1,22 +1,22 @@
 view: alunos_acordo {
   derived_table: {
     sql: select
-            id_cpf,
-            f.key as id_acordo,
-            f.value:DATA_ACORDO::DATE as DATA_ACORDO,
-            f.value:VL_DIVIDA_ATUAL::float as VL_DIVIDA_ATUAL,
-            f.value:VL_PROMESSA::float as VL_PROMESSA,
-            f.value:TIR_TITULOS::int as TIR_TITULOS,
-            f.value:LOGIN::varchar as LOGIN,
-            f.value:DATA_VENCIMENTO_PROMESSA::date as DATA_VENCIMENTO_PROMESSA,
-            f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO,
-            f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
-            f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
-            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
-            f.value:TOTAL_ACORDO::float as TOTAL_ACORDO,
-            f.value:QTD_PRESTACOES::float as QTD_PRESTACOES,
-            f.value:PRI_VECTO::date as PRI_VECTO,
-            f.value:ULT_VECTO::date as ULT_VECTO
+            id_cpf
+            ,f.key as id_acordo
+            ,f.value:DATA_ACORDO::DATE as DATA_ACORDO
+            ,f.value:VL_DIVIDA_ATUAL::float as VL_DIVIDA_ATUAL
+            ,f.value:VL_PROMESSA::float as VL_PROMESSA
+            ,f.value:TIR_TITULOS::int as TIR_TITULOS
+            ,f.value:LOGIN::varchar as LOGIN
+            ,f.value:DATA_VENCIMENTO_PROMESSA::date as DATA_VENCIMENTO_PROMESSA
+            ,f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO
+            ,f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO
+            ,f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO
+            ,f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
+            ,f.value:TOTAL_ACORDO::float as TOTAL_ACORDO
+            ,f.value:QTD_PRESTACOES::float as QTD_PRESTACOES
+            ,CAST(f.value:PRI_VECTO::timestamp AS DATE) as PRI_VECTO
+            ,f.value:ULT_VECTO::timestamp as ULT_VECTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -147,7 +147,7 @@ view: alunos_acordo {
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
-  dimension_group: primeiro_vecto {
+  dimension_group: primeiro_vecto{
     type: time
     timeframes: [
       raw,
@@ -159,11 +159,11 @@ view: alunos_acordo {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: timestamp
     label: "Primeiro Vencimento"
     description: "Indica a data do vencimento da primeira parcela do acordo"
-    sql: ${TABLE}."PRI_VECTO" ;;
-  }
+    sql:${TABLE}."PRI_VECTO" ;;
+}
 
   dimension_group: ultimo_vecto {
     type: time
@@ -177,7 +177,7 @@ view: alunos_acordo {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: timestamp
     label: "Ultimo Vencimento"
     description: "Indica a data do vencimento da ultima parcela do acordo"
     sql: ${TABLE}."ULT_VECTO" ;;
@@ -214,6 +214,7 @@ view: alunos_acordo {
     label: "Quantidade de Acordos por Status"
     description: "Indica o status do acordo"
   }
+
 
   measure: sum_valor_divida {
     type: sum
@@ -284,6 +285,14 @@ view: alunos_acordo {
     group_label: "Valor PDD"
     group_item_label: "Máximo"
     description: ""
+  }
+
+  dimension: duracao_acordo {
+    type: number
+    sql: datediff('day',${primeiro_vecto_date},${ultimo_vecto_date}) ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
   }
 
 
