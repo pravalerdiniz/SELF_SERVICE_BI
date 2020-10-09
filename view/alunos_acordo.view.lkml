@@ -1,22 +1,22 @@
 view: alunos_acordo {
   derived_table: {
     sql: select
-            id_cpf
-            ,f.key as id_acordo
-            ,f.value:DATA_ACORDO::DATE as DATA_ACORDO
-            ,f.value:VL_DIVIDA_ATUAL::float as VL_DIVIDA_ATUAL
-            ,f.value:VL_PROMESSA::float as VL_PROMESSA
-            ,f.value:TIR_TITULOS::int as TIR_TITULOS
-            ,f.value:LOGIN::varchar as LOGIN
-            ,f.value:DATA_VENCIMENTO_PROMESSA::date as DATA_VENCIMENTO_PROMESSA
-            ,f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO
-            ,f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO
-            ,f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO
-            ,f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
-            ,f.value:TOTAL_ACORDO::float as TOTAL_ACORDO
-            ,f.value:QTD_PRESTACOES::float as QTD_PRESTACOES
-            ,CAST(f.value:PRI_VECTO::timestamp AS DATE) as PRI_VECTO
-            ,f.value:ULT_VECTO::timestamp as ULT_VECTO
+            id_cpf,
+            f.key as id_acordo,
+            f.value:DATA_ACORDO::DATE as DATA_ACORDO,
+            f.value:VL_DIVIDA_ATUAL::float as VL_DIVIDA_ATUAL,
+            f.value:VL_PROMESSA::float as VL_PROMESSA,
+            f.value:TIR_TITULOS::int as TIR_TITULOS,
+            f.value:LOGIN::varchar as LOGIN,
+            f.value:DATA_VENCIMENTO_PROMESSA::date as DATA_VENCIMENTO_PROMESSA,
+            f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO,
+            f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
+            f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
+            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO,
+            f.value:TOTAL_ACORDO::float as TOTAL_ACORDO,
+            f.value:QTD_PRESTACOES::float as QTD_PRESTACOES,
+            f.value:PRI_VECTO::date as PRI_VECTO,
+            f.value:ULT_VECTO::date as ULT_VECTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -196,6 +196,14 @@ view: alunos_acordo {
     sql: ${id_cpf} ;;
     label: "Quantidade de Alunos"
     description: "Contagem de ID CPFs únicos"
+    drill_fields: [detail*]
+  }
+
+  measure: count {
+    type: count
+    #sql: ${id_cpf} ;;
+    label: "Quantidade de Alunos"
+    description: "Contagem de ID CPFs"
     drill_fields: [detail*]
   }
 
