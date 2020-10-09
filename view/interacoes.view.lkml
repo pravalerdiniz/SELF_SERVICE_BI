@@ -513,7 +513,7 @@ view: interacoes {
 
   measure: media_primeiro_tempo_resposta {
     type: average
-    group_label: "Chat"
+    group_label: "Dados de Chat"
     label: "Tempo Médio de Primeira Resposta"
     description: "Tempo médio de primeira resposta chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
@@ -524,7 +524,7 @@ view: interacoes {
 
   measure: duracao_chat {
     type: average
-    group_label: "Chat"
+    group_label: "Dados de Chat"
     label: "Tempo Médio de Duração"
     description: "Tempo médio de duração do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_DURACAO"/ 86400.0;;
@@ -536,7 +536,7 @@ view: interacoes {
   measure: tempo_medio_resposta {
 
     type: average
-    group_label: "Chat"
+    group_label: "Dados de Chat"
     label: "Tempo Médio de Resposta"
     description: "Tempo médio de resposta do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA"/ 86400.0;;
