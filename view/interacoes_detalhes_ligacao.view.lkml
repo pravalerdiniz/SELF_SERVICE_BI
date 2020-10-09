@@ -4,22 +4,52 @@ view: interacoes_detalhes_ligacao {
       concat(right(f.value:"DATA_LIGACAO"::varchar,4),'-',left(right(f.value:"DATA_LIGACAO"::varchar,7),2),'-',left(f.value:"DATA_LIGACAO"::varchar,2))::date as DATA_LIGACAO,
       f.value:"DURACAO_CHAMADA"::varchar as DURACAO_CHAMADA,
       f.value:"FILA_ATENDIMENTO"::varchar as FILA_ATENDIMENTO,
-      f.value:"HORARIO_ENTRADA_LIGACAO"::time as HORARIO_ENTRADA_LIGACAO,
+      --f.value:"HORARIO_ENTRADA_LIGACAO"::time as HORARIO_ENTRADA_LIGACAO,
       f.value:"NOME_AGENTE"::varchar as NOME_AGENTE,
       f.value:"TEMPO_ESPERA_ATE_ATENDIMENTO"::varchar as TEMPO_ESPERA_ATE_ATENDIMENTO,
       f.value:"TEMPO_FALADO"::varchar as TEMPO_FALADO,
       f.value:"TEMPO_URA"::varchar as TEMPO_URA,
       f.value:"CAMINHO_URA"::varchar as CAMINHO_URA,
       f.value:"TIPO_CONEXAO"::varchar as TIPO_CONEXAO,
+    f.value:"DURACAO_CHAMADA_SEG"::int as DURACAO_CHAMADA_SEG,
+    f.value:"TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"::int as TEMPO_ESPERA_ATE_ATENDIMENTO_SEG,
+    f.value:"TEMPO_FALADO_SEG"::int as TEMPO_FALADO_SEG,
+    f.value:"TEMPO_URA_SEG"::int as TEMPO_URA_SEG,
       f.value:"TIPO_LIGACAO"::varchar as TIPO_LIGACAO
       from "GRADUADO"."SELF_SERVICE_BI"."INTERACOES" a,
       lateral flatten (input => detalhes_ligacao) f
        ;;
+
+
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+measure: DURACAO_CHAMADA_SEG{
+  type: sum
+  sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
+  value_format: "[hh]:mm:ss"
+   }
+
+  measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{
+    type: sum
+    sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+  measure: TEMPO_FALADO_SEG{
+    type: sum
+    sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+  measure: TEMPO_URA_SEG{
+    type: sum
+    sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
   }
 
   dimension: id_ticket {
