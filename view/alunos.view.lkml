@@ -1261,15 +1261,15 @@ dimension: ultimo_semestre_cedido_renovacao {
     type: string
     sql: ${TABLE}."GH_FINAL" ;;
     group_label: "1.5 Acordo Informações"
-    group_item_label: "Grupo Homogêneo Final"
-    description: "Indica o grupo homogêneo"
+    group_item_label: "GH PPP"
+    description: "GH de propensão à pagamento de promessa"
   }
 
   dimension: gh_collection {
     type: string
     sql: ${TABLE}."GH_COLLECTION" ;;
     group_label: "1.5 Acordo Informações"
-    group_item_label: "Grupo Homogêneo Collection"
+    group_item_label: "Collection"
     description: "Indica o grupo homogêneo do modelo de collection"
   }
 
