@@ -106,6 +106,11 @@ view: interacoes_detalhes_ligacao {
     sql: ${TABLE}."TIPO_LIGACAO" ;;
   }
 
+  measure: Quantidade {
+    type: count
+    drill_fields: []
+  }
+
   set: detail {
     fields: [
       data_ligacao,
@@ -121,4 +126,6 @@ view: interacoes_detalhes_ligacao {
       tipo_ligacao
     ]
   }
+
+
 }
