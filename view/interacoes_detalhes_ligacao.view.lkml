@@ -152,7 +152,7 @@ measure: DURACAO_CHAMADA_SEG{
 
   dimension: duracao_chamada {
     type: string
-    label: "Duração da chamada"
+    label: "Duração de chamada"
     description: "Indica a duração da chamada em HH:MM:SS."
     sql: ${TABLE}."DURACAO_CHAMADA" ;;
   }
