@@ -14,6 +14,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Atendentes"
+    hidden: yes
     description: "Indica o nome dos atendentes responsáveis pelo ticket"
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
@@ -54,7 +55,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Duração do Chat"
-    description: "Indica a duração do chat em segundos. A duração é calculade apenas durante o atendimento do ticket, tempo de espera não é considerado."
+    description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
 
@@ -70,15 +71,15 @@ view: interacoes {
     type: yesno
     group_label: "Dados de Chat"
     group_item_label: "Perdido?"
-    description: "Indica se o chat foi perdido ou não."
+    description: "Indica se o chat foi perdido."
     sql: ${TABLE}."CHAT_FLG_PERDIDO" ;;
   }
 
   dimension: chat_nome_departamento {
     type: string
     group_label: "Dados de Chat"
-    group_item_label: "Nome do Departamento"
-    description: "Indica o nome do departamento por ticket."
+    group_item_label: "Nome do Grupo"
+    description: "Indica o nome do grupo do atendente por ticket."
     sql: ${TABLE}."CHAT_NOME_DEPARTAMENTO" ;;
   }
 
@@ -118,6 +119,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Total de Mensagens"
+    hidden: yes
     description: "Indica a quantidede de mensagens do agente e visitante e o total."
     sql: ${TABLE}."CHAT_TOTAL_MENSAGENS" ;;
   }
@@ -226,10 +228,10 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
     label: "Pesquisa - Envio"
-    description: "Indica de deta de envio de pesquisa de satisfação."
+    description: "Indica a data de envio da pesquisa de satisfação."
   }
 
-  dimension_group: deta_finalizacao {
+  dimension_group: data_finalizacao {
     type: time
     timeframes: [
       raw,
@@ -242,14 +244,14 @@ view: interacoes {
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
     label: "Ticket - Finalização"
-    description: "Indica de deta de finalização do ticket."
+    description: "Indica a data de finalização do ticket."
   }
 
   dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
     group_item_label: "Data de Monitoria"
-    description: "Indica a data de monitoria realizade."
+    description: "Indica a data de monitoria realizada."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
@@ -257,6 +259,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Ligação"
     group_item_label: "Detalhes de Ligação"
+    hidden: yes
     description: "Indica lista de detalhes atribuidos a ligação. Ex: Custo, Data, Duração, entre outros."
     sql: ${TABLE}."DETALHES_LIGACAO" ;;
   }
@@ -269,11 +272,11 @@ view: interacoes {
     sql: ${TABLE}."FILA" ;;
   }
 
-  dimension: flg_pesquisa_disparade {
+  dimension: flg_pesquisa_disparada {
     type: yesno
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "Pesquisa disparade?"
-    description: "Indica se a pesquisa foi disparade ou não."
+    group_item_label: "Pesquisa disparada?"
+    description: "Indica se a pesquisa foi disparada ou não."
     sql: ${TABLE}."FLG_PESQUISA_DISPARADA" ;;
   }
 
@@ -411,7 +414,7 @@ view: interacoes {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Tipo de Aluno"
-    description: "Indica o tipo de aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
+    description: "Indica o tipo da última proposta cedida do Aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
@@ -478,7 +481,7 @@ view: interacoes {
     type: string
     group_item_label: "Tipo Proposta - Atual"
     group_label: "Dados do Aluno"
-    description: "Indica o tipo de última proposta do aluno."
+    description: "Indica o tipo da proposta atual do aluno. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
   }
 

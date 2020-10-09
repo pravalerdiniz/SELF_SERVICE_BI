@@ -147,7 +147,7 @@ view: alunos_acordo {
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
-  dimension_group: primeiro_vecto {
+  dimension_group: primeiro_vecto{
     type: time
     timeframes: [
       raw,
@@ -159,11 +159,11 @@ view: alunos_acordo {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: timestamp
     label: "Primeiro Vencimento"
     description: "Indica a data do vencimento da primeira parcela do acordo"
-    sql: ${TABLE}."PRI_VECTO" ;;
-  }
+    sql:${TABLE}."PRI_VECTO" ;;
+}
 
   dimension_group: ultimo_vecto {
     type: time
@@ -177,7 +177,7 @@ view: alunos_acordo {
       year
     ]
     convert_tz: no
-    datatype: date
+    datatype: timestamp
     label: "Ultimo Vencimento"
     description: "Indica a data do vencimento da ultima parcela do acordo"
     sql: ${TABLE}."ULT_VECTO" ;;
@@ -222,6 +222,7 @@ view: alunos_acordo {
     label: "Quantidade de Acordos por Status"
     description: "Indica o status do acordo"
   }
+
 
   measure: sum_valor_divida {
     type: sum
@@ -292,6 +293,14 @@ view: alunos_acordo {
     group_label: "Valor PDD"
     group_item_label: "Máximo"
     description: ""
+  }
+
+  dimension: duracao_acordo {
+    type: number
+    sql: datediff('day',${primeiro_vecto_date},${ultimo_vecto_date}) ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
   }
 
 

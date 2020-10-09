@@ -32,6 +32,7 @@ measure: DURACAO_CHAMADA_SEG{
   type: sum
   sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
   value_format: "[hh]:mm:ss"
+
    }
 
   measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{
@@ -55,6 +56,7 @@ measure: DURACAO_CHAMADA_SEG{
   dimension: id_ticket {
     type: number
     hidden: yes
+    primary_key: yes
     sql: ${TABLE}."ID_TICKET" ;;
   }
 
@@ -136,6 +138,8 @@ measure: DURACAO_CHAMADA_SEG{
     sql: ${TABLE}."TIPO_LIGACAO" ;;
   }
 
+
+
   set: detail {
     fields: [
       data_ligacao,
@@ -151,4 +155,6 @@ measure: DURACAO_CHAMADA_SEG{
       tipo_ligacao
     ]
   }
+
+
 }
