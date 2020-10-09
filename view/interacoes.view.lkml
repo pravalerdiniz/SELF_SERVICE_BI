@@ -55,6 +55,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Duração do Chat"
+    hidden: yes
     description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
@@ -96,6 +97,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Máximo - Tempo de Resposta"
     description: "Indica o tempo máximo de resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA" ;;
   }
 
@@ -104,6 +106,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Médio - Tempo de Resposta"
     description: "Indica o tempo médio de resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA" ;;
   }
 
@@ -112,6 +115,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Primeira - Tempo de Resposta"
     description: "Indica o tempo de primeira resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
 
@@ -541,6 +545,7 @@ measure: primeiro_tempo_resposta {
 
   measure: count {
     type: count
+    label: "Quantidade de Tickets"
     drill_fields: []
   }
 }

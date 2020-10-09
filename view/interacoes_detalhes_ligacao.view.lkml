@@ -26,40 +26,86 @@ view: interacoes_detalhes_ligacao {
 
   measure: count {
     type: count
+    label: "Quantidade de Ligações"
     drill_fields: [detail*]
   }
 
 measure: DURACAO_CHAMADA_SEG{
   type: sum
   sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
-  label: "Duração"
+  label: "Tempo Total - Duração de Chamada"
   description: "Soma do tempo falado da ligação."
   value_format: "[hh]:mm:ss"
 
    }
 
+  measure: medio_duracao_chamada_seg {
+    type: number
+    sql: ${DURACAO_CHAMADA_SEG}/${count} ;;
+    label: "Tempo Médio - Duração de Chamada"
+    description: "Média do tempo de duração de chamada"
+    value_format: "[hh]:mm:ss"
+
+  }
+
+
+
+
   measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{
     type: sum
-    label: "Tempo de Espera"
+    label: "Tempo Total - Espera"
     description: "Soma do tempo espera até atendimento da ligação."
     sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
+
+  measure: medio_tempo_espera_ate_atendimento {
+    type: number
+    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count} ;;
+    label: "Tempo Médio - Espera"
+    description: "Média do tempo de espera até o atendimento chamada"
+    value_format: "[hh]:mm:ss"
+
+
+  }
+
   measure: TEMPO_FALADO_SEG{
     type: sum
-    label: "Tempo Falado"
+    label: "Tempo Total - Falado"
     description: "Soma do tempo falado da ligação."
     sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
+
+  measure: medio_tempo_falado_seg {
+    type: number
+    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count};;
+    label: "Tempo Médio - Espera"
+    description: "Média do tempo falado da chamada"
+    value_format: "[hh]:mm:ss"
+
+
+  }
+
   measure: TEMPO_URA_SEG{
     type: sum
-    label: "Tempo na URA"
+    label: "Tempo Total -  URA"
     description: "Soma do tempo de ligação na URA."
     sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
+  }
+
+
+  measure: medio_tempo_ura {
+    type: number
+    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count} ;;
+    label: "Tempo Médio - URA"
+    description: "Média do tempo da URA"
+    value_format: "[hh]:mm:ss"
+
+
   }
 
   dimension: id_ticket {
@@ -123,6 +169,7 @@ measure: DURACAO_CHAMADA_SEG{
     type: string
     label: "Tempo de Espera"
     description: "Indica o tempo de espera da ligação até o atendimento em segundos."
+
     sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO" ;;
   }
 
