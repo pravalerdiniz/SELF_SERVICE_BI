@@ -4,36 +4,55 @@ view: crx_agentes {
 
   dimension: data_registro {
     type: string
+
     sql: ${TABLE}."DATA_REGISTRO" ;;
   }
 
   dimension: dias_logados {
     type: string
+    group_label: "Dados do Atendente"
+    group_item_label: "Logado?"
+    description: "Indica a quantidade de dias logados do atendente"
     sql: ${TABLE}."DIAS_LOGADOS" ;;
   }
 
   dimension: media_tempo_logado_dia {
     type: string
+    group_label: "Dados de Atendimento"
+    label: "Dia - Tempo Logado Média"
+    description: "Indica a média de tempo logado do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_DIA" ;;
   }
 
   dimension: media_tempo_logado_sessao {
     type: string
+    group_label: "Dados de Atendimento"
+    label: "Dia - Tempo Logado"
+    description: "Indica a média de tempo logado do atendente por sessão."
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_SESSAO" ;;
   }
 
   dimension: media_tempo_pausado_dia {
     type: string
+    group_label: "Dados de Atendimento"
+    label: "Dia - Tempo Pausado Média"
+    description: "Indica a média tempo de pausa do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_PAUSADO_DIA" ;;
   }
 
   dimension: nome {
     type: string
+    group_label: "Dados do Atendente"
+    group_item_label: "Nome"
+    description: "Indica o nome do atendente"
     sql: ${TABLE}."NOME" ;;
   }
 
   dimension: numero_ramal {
     type: string
+    group_label: "Dados do Atendente"
+    group_item_label: "Ramal"
+    description: "Indica o número do ramal do atendente"
     sql: ${TABLE}."NUMERO_RAMAL" ;;
   }
 
@@ -45,81 +64,128 @@ view: crx_agentes {
 
   dimension: produtividade {
     type: string
+    group_label: "Dados de Atendimento"
+    group_item_label: "Produtividade"
     sql: ${TABLE}."PRODUTIVIDADE" ;;
   }
 
   dimension: qtd_atendimento_ativo {
     type: string
+    group_label: "Dados de Atendimento"
+    group_item_label: "Ativo"
+    description: "Indica a quantidade de atendimentos ativos do atendente"
     sql: ${TABLE}."QTD_ATENDIMENTO_ATIVO" ;;
   }
 
   dimension: qtd_atendimento_receptivo {
     type: string
+    group_label: "Dados de Atendimento"
+    group_item_label: "Receptivo"
+    description: "Indica a quantidade de atendimentos receptivos do atendente"
     sql: ${TABLE}."QTD_ATENDIMENTO_RECEPTIVO" ;;
   }
 
   dimension: qtd_ligacoes_atendidas {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Atendidas"
+    description: "Indica a quantidade de ligações atendidas pelo atendente"
     sql: ${TABLE}."QTD_LIGACOES_ATENDIDAS" ;;
   }
 
   dimension: qtd_ligacoes_nao_atendidas {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Não Atendidas"
+    description: "Indica a quantidade de ligações NÃO atendidas pelo atendente"
     sql: ${TABLE}."QTD_LIGACOES_NAO_ATENDIDAS" ;;
   }
 
   dimension: qtd_pausas {
     type: string
+    group_label: "Dados de Pausa"
+    group_item_label: "Quantidade de Pausa"
+    description: "Indica a quantidade de pausas realizadas pelo atendente"
     sql: ${TABLE}."QTD_PAUSAS" ;;
   }
 
   dimension: qtd_recusa {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Recusa"
+    description: "Indica a quantidade de ligaçoes recusadas pelo atendente"
     sql: ${TABLE}."QTD_RECUSA" ;;
   }
 
   dimension: sla_atendimento {
     type: string
+    group_label: "Dados de Atendimento"
+    group_item_label: "SLA"
+    description: "Indica o tempo de SLA de atendimento do atendente"
     sql: ${TABLE}."SLA_ATENDIMENTO" ;;
   }
 
   dimension: tempo_maximo_ligacao {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Tempo Máximo"
+    description: "Indica o tempo máximo do atendente durante a ligação"
     sql: ${TABLE}."TEMPO_MAXIMO_LIGACAO" ;;
   }
 
   dimension: tempo_medio_falado {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Falado - Tempo Médio"
+    description: "Indica o tempo médio falado do atendente durante a ligações"
     sql: ${TABLE}."TEMPO_MEDIO_FALADO" ;;
   }
 
   dimension: tempo_medio_pausado {
     type: string
+    group_label: "Dados de Pausa"
+    group_item_label: "Tempo Médio"
+    description: "Indica o tempo médio de pausa do atendente"
     sql: ${TABLE}."TEMPO_MEDIO_PAUSADO" ;;
   }
 
   dimension: tempo_minimo_ligacao {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Tempo Mínimo"
+    description: "Indica o tempo mínimo de ligação do atendente"
     sql: ${TABLE}."TEMPO_MINIMO_LIGACAO" ;;
   }
 
   dimension: tempo_ociosidade {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Ociosidade"
+    description: "Indica o tempo de ociosidade do atendente"
     sql: ${TABLE}."TEMPO_OCIOSIDADE" ;;
   }
 
   dimension: tempo_total_falado {
     type: string
+    group_label: "Dados de Ligação"
+    group_item_label: "Falado - Total"
+    description: "Indica o tempo total falado do atendente durante as ligações"
     sql: ${TABLE}."TEMPO_TOTAL_FALADO" ;;
   }
 
   dimension: tempo_total_logado {
     type: string
+    group_label: "Dados do Atendente"
+    group_item_label: "Logado - Total"
+    description: "Indica o tempo total logado do atendente"
     sql: ${TABLE}."TEMPO_TOTAL_LOGADO" ;;
   }
 
   dimension: tempo_total_pausado {
     type: string
+    group_label: "Dados de Pausa"
+    group_item_label: "Pausado - Total"
+    description: "Indica o tempo total de pausa do atendente"
     sql: ${TABLE}."TEMPO_TOTAL_PAUSADO" ;;
   }
 

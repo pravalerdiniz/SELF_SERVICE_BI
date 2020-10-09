@@ -1,9 +1,10 @@
 view: interacoes_detalhes_ligacao {
   derived_table: {
     sql: select a.id_ticket,
-      (f.value:"DATA_LIGACAO"::timestamp)::date  as DATA_LIGACAO,
+      (f.value:"DATA_LIGACAO"::timestamp)  as DATA_LIGACAO,
       f.value:"DURACAO_CHAMADA"::varchar as DURACAO_CHAMADA,
       f.value:"FILA_ATENDIMENTO"::varchar as FILA_ATENDIMENTO,
+      f.value:"ID_LIGACAO"::varchar as ID_LIGACAO,
       --f.value:"HORARIO_ENTRADA_LIGACAO"::time as HORARIO_ENTRADA_LIGACAO,
       f.value:"NOME_AGENTE"::varchar as NOME_AGENTE,
       f.value:"TEMPO_ESPERA_ATE_ATENDIMENTO"::varchar as TEMPO_ESPERA_ATE_ATENDIMENTO,
@@ -64,17 +65,37 @@ measure: DURACAO_CHAMADA_SEG{
   dimension: id_ticket {
     type: number
     hidden: yes
-    primary_key: yes
     sql: ${TABLE}."ID_TICKET" ;;
   }
 
 
-  dimension: data_ligacao {
-    type: date
+  dimension: id_ligacao {
+    type: string
+    hidden: yes
+    primary_key: yes
+    sql: ${TABLE}."ID_LIGACAO" ;;
+  }
+
+
+  dimension_group: data_ligacao {
+    type: time
     label: "Data de ligação"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     description: "Indica a data da ligação do ticket."
     sql: ${TABLE}."DATA_LIGACAO" ;;
   }
+
+
+
+
 
   dimension: duracao_chamada {
     type: string
@@ -90,12 +111,6 @@ measure: DURACAO_CHAMADA_SEG{
     sql: ${TABLE}."FILA_ATENDIMENTO" ;;
   }
 
-  dimension: horario_entrada_ligacao {
-    type: date_time
-    label: "Entrada da Ligação - Horário"
-    description: "Indica a hora de entrada da ligação do ticket."
-    sql: ${TABLE}."HORARIO_ENTRADA_LIGACAO" ;;
-  }
 
   dimension: nome_agente {
     type: string
@@ -150,10 +165,10 @@ measure: DURACAO_CHAMADA_SEG{
 
   set: detail {
     fields: [
-      data_ligacao,
+      data_ligacao_date,
+      data_ligacao_time,
       duracao_chamada,
       fila_atendimento,
-      horario_entrada_ligacao,
       nome_agente,
       tempo_espera_ate_atendimento,
       tempo_falado,
