@@ -12,7 +12,7 @@ view: alunos_acordo {
             f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO,
             f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
             f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
-            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO,
+            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
