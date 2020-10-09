@@ -509,16 +509,6 @@ view: interacoes {
   }
 
 
-measure: primeiro_tempo_resposta {
-
-  type: average
-  group_label: "Chat"
-  label: "Primeira Resposta"
-  description: "Tempo médio de primeira resposta chat em HH:MM:SS."
-  sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
-  value_format: "[hh]:mm:ss"
-}
-
 
 
   measure: media_primeiro_tempo_resposta {
@@ -558,7 +548,7 @@ measure: primeiro_tempo_resposta {
 
   measure: tempo_maximo_resposta {
     type: average
-    group_label: "Chat"
+    group_label: "Dados de Chat"
     label: "Tempo Máximo de Resposta"
     description: "Média do tempo máximo de resposta do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA"/ 86400.0;;
