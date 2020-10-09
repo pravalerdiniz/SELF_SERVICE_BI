@@ -61,8 +61,8 @@ measure: DURACAO_CHAMADA_SEG{
 
 
   measure: medio_tempo_espera_ate_atendimento {
-    type: number
-    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count} ;;
+    type: average
+    sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
     label: "Tempo Médio - Espera"
     description: "Média do tempo de espera até o atendimento chamada"
     value_format: "[hh]:mm:ss"
@@ -79,15 +79,22 @@ measure: DURACAO_CHAMADA_SEG{
   }
 
 
-  measure: medio_tempo_falado_seg {
-    type: number
-    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count};;
+  measure: MEDIA_TEMPO_FALADO_SEG{
+    type: average
     label: "Tempo Médio - Falado"
-    description: "Média do tempo falado da chamada"
+    description: "Soma do tempo falado da ligação."
+    sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
     value_format: "[hh]:mm:ss"
-
-
   }
+
+
+
+
+
+
+
+
+
 
   measure: TEMPO_URA_SEG{
     type: sum
@@ -99,8 +106,8 @@ measure: DURACAO_CHAMADA_SEG{
 
 
   measure: medio_tempo_ura {
-    type: number
-    sql: ${TEMPO_ESPERA_ATE_ATENDIMENTO_SEG}/${count} ;;
+    type: average
+    sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
     label: "Tempo Médio - URA"
     description: "Média do tempo da URA"
     value_format: "[hh]:mm:ss"
