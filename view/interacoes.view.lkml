@@ -14,6 +14,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Atendentes"
+    hidden: yes
     description: "Indica o nome dos atendentes responsáveis pelo ticket"
     sql: ${TABLE}."CHAT_AGENTES" ;;
   }
@@ -118,6 +119,7 @@ view: interacoes {
     type: string
     group_label: "Dados de Chat"
     group_item_label: "Total de Mensagens"
+    hidden: yes
     description: "Indica a quantidede de mensagens do agente e visitante e o total."
     sql: ${TABLE}."CHAT_TOTAL_MENSAGENS" ;;
   }
