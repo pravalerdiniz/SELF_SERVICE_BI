@@ -665,7 +665,6 @@ explore: interacoes {
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
     relationship: many_to_one
-    #fields: []
   }
   }
 
