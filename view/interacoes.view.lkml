@@ -222,7 +222,7 @@ view: interacoes {
       week,
       month,
       quarter,
-      hour,
+      hour_of_day,
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
@@ -445,6 +445,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Ligação"
     group_item_label: "Total de Abandono"
+    hidden: yes
     description: "Indica o total de ligações de abandono."
     sql: ${TABLE}."TOTAL_ABANDONO" ;;
   }
@@ -556,8 +557,17 @@ view: interacoes {
   }
 
 
+measure: sum_total_abadono {
+  type: sum
+  group_label: "Dados de Ligação"
+  label: "Total de Abandono"
+  description: "Total ligações abandonadas"
+  sql: ${total_abandono};;
 
 
+
+
+}
 
   measure: count {
     type: count
