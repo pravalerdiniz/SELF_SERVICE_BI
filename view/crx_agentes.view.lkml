@@ -4,7 +4,9 @@ view: crx_agentes {
 
   dimension: data_registro {
     type: date
-
+    group_label: "Dados de Atendimento"
+    group_item_label: "Data de registro"
+    description: "Indica a data em que o registro da ação do atendente foi realizada. Ex: atendimentos e pausas."
     sql: ${TABLE}."DATA_REGISTRO" ;;
   }
 
@@ -19,7 +21,7 @@ view: crx_agentes {
   measure: media_tempo_logado_dia {
     type: sum
      group_label: "Dados de Atendimento"
-    label: "Dia - Tempo Logado Média"
+    label: "Tempo Médio Logado"
     description: "Indica a média de tempo logado do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_DIA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -39,7 +41,7 @@ view: crx_agentes {
     type: sum
     group_label: "Dados de Atendimento"
     label: "Dia - Tempo Pausado Média"
-    description: "Indica a média tempo de pausa do atendente por dia."
+    description: "Indica a média de tempo de pausa do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_PAUSADO_DIA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -109,8 +111,8 @@ view: crx_agentes {
 
   measure: qtd_pausas {
     type: sum
-    group_label: "Dados de Pausa"
-    group_item_label: "Quantidade de Pausa"
+    group_label: "Dados do Atendente"
+    group_item_label: "Quantidade de Pausas"
     description: "Indica a quantidade de pausas realizadas pelo atendente"
     sql: ${TABLE}."QTD_PAUSAS" ;;
   }
@@ -118,7 +120,7 @@ view: crx_agentes {
   measure: qtd_recusa {
     type: sum
     group_label: "Dados de Ligação"
-    group_item_label: "Recusa"
+    group_item_label: "Recusadas"
     description: "Indica a quantidade de ligaçoes recusadas pelo atendente"
     sql: ${TABLE}."QTD_RECUSA" ;;
   }
@@ -144,7 +146,7 @@ view: crx_agentes {
    measure: tempo_medio_falado {
     type: sum
     group_label: "Dados de Ligação"
-    group_item_label: "Falado - Tempo Médio"
+    group_item_label: "Tempo Médio Falado"
     description: "Indica o tempo médio falado do atendente durante a ligações"
     sql: ${TABLE}."TEMPO_MEDIO_FALADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -152,8 +154,8 @@ view: crx_agentes {
 
   measure: tempo_medio_pausado {
     type: sum
-   group_label: "Dados de Pausa"
-    group_item_label: "Tempo Médio"
+   group_label: "Dados do Atendente"
+    group_item_label: "Tempo Médio de Pausa"
     description: "Indica o tempo médio de pausa do atendente"
     sql: ${TABLE}."TEMPO_MEDIO_PAUSADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -183,7 +185,7 @@ view: crx_agentes {
   measure: tempo_total_falado {
     type: average
     group_label: "Dados de Ligação"
-    group_item_label: "Falado - Total"
+    group_item_label: "Tempo Tota Falado"
     description: "Indica o tempo total falado do atendente durante as ligações"
     sql: ${TABLE}."TEMPO_TOTAL_FALADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -192,7 +194,7 @@ view: crx_agentes {
   measure: tempo_total_logado {
     type: average
      group_label: "Dados do Atendente"
-    group_item_label: "Logado - Total"
+    group_item_label: "Tempo Total Logado"
     description: "Indica o tempo total logado do atendente"
     sql: ${TABLE}."TEMPO_TOTAL_LOGADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -201,8 +203,8 @@ view: crx_agentes {
 
   measure: tempo_total_pausado {
     type: average
-     group_label: "Dados de Pausa"
-    group_item_label: "Pausado - Total"
+     group_label: "Dados do Atendente"
+    group_item_label: "Tempo Total Pausado"
     description: "Indica o tempo total de pausa do atendente"
     sql: ${TABLE}."TEMPO_TOTAL_PAUSADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"

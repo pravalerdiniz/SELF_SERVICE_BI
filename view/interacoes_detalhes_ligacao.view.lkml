@@ -43,7 +43,7 @@ measure: DURACAO_CHAMADA_SEG{
     type: average
     sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
     label: "Tempo Médio - Duração da Chamada"
-    description: "Média do tempo de duração de chamada"
+    description: "Média do tempo de duração da chamada"
     value_format: "[hh]:mm:ss"
 
   }
@@ -152,7 +152,7 @@ measure: DURACAO_CHAMADA_SEG{
 
   dimension: duracao_chamada {
     type: string
-    label: "Duração de chamada"
+    label: "Duração da chamada"
     description: "Indica a duração da chamada em HH:MM:SS."
     sql: ${TABLE}."DURACAO_CHAMADA" ;;
   }
