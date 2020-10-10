@@ -6,7 +6,7 @@ view: crx_agentes {
     type: date
     group_label: "Dados de Atendimento"
     group_item_label: "Data de registro"
-    description: "Indica a data em que o registro da ação do atendente foi realizada. Ex: atendimentos e pausas."
+    description: "Indica a data em que o registro da ação do atendente foi realizada."
     sql: ${TABLE}."DATA_REGISTRO" ;;
   }
 
