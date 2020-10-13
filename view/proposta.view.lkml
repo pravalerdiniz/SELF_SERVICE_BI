@@ -2265,7 +2265,7 @@ view: proposta {
 
   measure: count_tipo_proposta_novo {
     type: count_distinct
-    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO";;
+    sql: ${TABLE}."TIPO_PROPOSTA" =  "NOVO";;
     group_label: "Proposta"
     group_item_label: "Novo"
     description: "Contagem de propostas de aluno novo"
