@@ -678,18 +678,50 @@ explore: interacoes {
   }
   }
 
-  explore: crx_agentes {
-    label: "Interações - Métricas do agente"
-    view_label: "Interações - Métricas do agente"
-    description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+ explore: crx_agentes{
+  label: "Interações - Métricas do agente"
+  view_label: "Interações - Métricas do agente"
+  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+}
 
-    join: crx_agentes_detalhes_pausas {
-      view_label: "Detalhes da pausa"
 
-      type: left_outer
-      sql_on: ${crx_agentes.nome} = ${crx_agentes_detalhes_pausas.nome}
+explore: crx_agentes_detalhes_pausas{
+  label: "Interações - Métricas de pausa"
+  view_label: "Interações - Métricas de pausa"
+  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+  fields: [ALL_FIELDS * ,
+          - crx_agentes.count,
+          - crx_agentes.nome_data ,
+          - crx_agentes.dias_logados ,
+          - crx_agentes.media_tempo_logado_dia ,
+          - crx_agentes.media_tempo_logado_sessao ,
+          - crx_agentes.media_tempo_pausado_dia ,
+          - crx_agentes.numero_ramal ,
+          - crx_agentes.pausas ,
+          - crx_agentes.produtividade ,
+          - crx_agentes.qtd_atendimento_ativo ,
+          - crx_agentes.qtd_atendimento_receptivo ,
+          - crx_agentes.qtd_ligacoes_atendidas ,
+          - crx_agentes.qtd_ligacoes_nao_atendidas ,
+          - crx_agentes.qtd_pausas ,
+          - crx_agentes.qtd_recusa ,
+          - crx_agentes.sla_atendimento ,
+          - crx_agentes.tempo_maximo_ligacao ,
+          - crx_agentes.tempo_medio_falado ,
+          - crx_agentes.tempo_medio_pausado ,
+          - crx_agentes.tempo_minimo_ligacao ,
+          - crx_agentes.tempo_ociosidade ,
+          - crx_agentes.tempo_total_falado ,
+          - crx_agentes.tempo_total_logado ,
+          - crx_agentes.tempo_total_pausado ,
+
+  ]
+  join: crx_agentes{
+    view_label: "Detalhes do Agente"
+
+    type: left_outer
+    sql_on: ${crx_agentes.nome} = ${crx_agentes_detalhes_pausas.nome}
       and ${crx_agentes.data_registro} = ${crx_agentes_detalhes_pausas.data_evento_ini};;
-      relationship: many_to_one
-      #fields: []
-    }
+    relationship: many_to_many
   }
+}
