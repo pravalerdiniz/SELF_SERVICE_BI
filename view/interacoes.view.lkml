@@ -10,6 +10,16 @@ view: interacoes {
     sql: ${TABLE}."CANAL" ;;
   }
 
+
+
+  dimension: tags {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Tags"
+    description: "Indica a tag utilizada no ticket"
+    sql: ${TABLE}."TAGS" ;;
+  }
+
   dimension: chat_agentes {
     type: string
     group_label: "Dados de Chat"
@@ -55,6 +65,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Chat"
     group_item_label: "Duração do Chat"
+    hidden: yes
     description: "Indica a duração do chat em segundos. A duração é calculada apenas durante o atendimento do ticket, tempo de espera não é considerado."
     sql: ${TABLE}."CHAT_DURACAO" ;;
   }
@@ -62,7 +73,7 @@ view: interacoes {
   dimension: chat_flg_nao_lido {
     type: yesno
     group_label: "Dados de Chat"
-    group_item_label: "Não lido?"
+    group_item_label: "Chat Não lido?"
     description: "Indica se o chat não foi lido."
     sql: ${TABLE}."CHAT_FLG_NAO_LIDO" ;;
   }
@@ -70,7 +81,7 @@ view: interacoes {
   dimension: chat_flg_perdido {
     type: yesno
     group_label: "Dados de Chat"
-    group_item_label: "Perdido?"
+    group_item_label: "Chat Perdido?"
     description: "Indica se o chat foi perdido."
     sql: ${TABLE}."CHAT_FLG_PERDIDO" ;;
   }
@@ -96,6 +107,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Máximo - Tempo de Resposta"
     description: "Indica o tempo máximo de resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA" ;;
   }
 
@@ -104,6 +116,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Médio - Tempo de Resposta"
     description: "Indica o tempo médio de resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA" ;;
   }
 
@@ -112,6 +125,7 @@ view: interacoes {
     group_label: "Dados de Chat"
     group_item_label: "Primeira - Tempo de Resposta"
     description: "Indica o tempo de primeira resposta do chat."
+    hidden: yes
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
 
@@ -208,6 +222,7 @@ view: interacoes {
       week,
       month,
       quarter,
+      hour_of_day,
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
@@ -300,7 +315,7 @@ view: interacoes {
   dimension: id_pesquisa {
     type: number
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "ID de Pesquisa"
+    group_item_label: "ID da Pesquisa"
     description: "Indica o identificador de pesquisa de satifação."
     sql: ${TABLE}."ID_PESQUISA" ;;
   }
@@ -324,7 +339,7 @@ view: interacoes {
   dimension: justificativa_pesquisa {
     type: string
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "Justificativa de Pesquisa"
+    group_item_label: "Justificativa da Pesquisa"
     description: "Indica a justificativa de pesquisa de satisfação."
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }
@@ -430,6 +445,7 @@ view: interacoes {
     type: number
     group_label: "Dados de Ligação"
     group_item_label: "Total de Abandono"
+    hidden: yes
     description: "Indica o total de ligações de abandono."
     sql: ${TABLE}."TOTAL_ABANDONO" ;;
   }
@@ -494,53 +510,68 @@ view: interacoes {
   }
 
 
-measure: primeiro_tempo_resposta {
 
-  type: sum
-  group_label: "Chat"
-  label: "Primeira Resposta"
-  description: "Soma do tempo da primeira resposta chat em HH:MM:SS."
-  sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
-  value_format: "[hh]:mm:ss"
-}
+
+  measure: media_primeiro_tempo_resposta {
+    type: average
+    group_label: "Dados de Chat"
+    label: "Tempo Médio de Primeira Resposta"
+    description: "Tempo médio de primeira resposta chat em HH:MM:SS."
+    sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
 
 
   measure: duracao_chat {
-
-    type: sum
-    group_label: "Chat"
-    label: "Duração"
-    description: "Soma do tempo da duracao do chat em HH:MM:SS."
+    type: average
+    group_label: "Dados de Chat"
+    label: "Tempo Médio de Duração"
+    description: "Tempo médio de duração do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_DURACAO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
+
+
   measure: tempo_medio_resposta {
 
-    type: sum
-    group_label: "Chat"
-    label: "Resposta - Tempo Médio"
-    description: "Soma do tempo médio de resposta do chat em HH:MM:SS."
+    type: average
+    group_label: "Dados de Chat"
+    label: "Tempo Médio de Resposta"
+    description: "Tempo médio de resposta do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_TEMPO_MEDIO_RESPOSTA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
 
+
+
   measure: tempo_maximo_resposta {
-    type: sum
-    group_label: "Chat"
-    label: "Resposta - Tempo Máximo"
-    description: "Soma do tempo máximo de resposta do chat em HH:MM:SS."
+    type: average
+    group_label: "Dados de Chat"
+    label: "Tempo Máximo de Resposta"
+    description: "Média do tempo máximo de resposta do chat em HH:MM:SS."
     sql: ${TABLE}."CHAT_TEMPO_MAX_RESPOSTA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
 
+measure: sum_total_abadono {
+  type: sum
+  group_label: "Dados de Ligação"
+  label: "Total de Abandono"
+  description: "Total ligações abandonadas"
+  sql: ${total_abandono};;
 
 
+
+
+}
 
   measure: count {
     type: count
+    label: "Quantidade de Tickets"
     drill_fields: []
   }
 }

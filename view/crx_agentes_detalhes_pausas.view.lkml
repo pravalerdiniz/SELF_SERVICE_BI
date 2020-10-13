@@ -14,20 +14,31 @@ view: crx_agentes_detalhes_pausas {
     drill_fields: [detail*]
   }
 
-  dimension: duracao_pausa {
-    type: string
-    sql: ${TABLE}."DURACAO_PAUSA" ;;
+  measure: duracao_pausa {
+    type: sum
+    group_label: "Dados da Pausa"
+    group_item_label: "Duração da Pausa"
+    description: "Indica o tempo que durou a pausa realizada pelo atendente"
+    sql: ${TABLE}."DURACAO_PAUSA"/ 86400.0 ;;
+    value_format: "[hh]:mm:ss"
   }
 
   dimension: motivo_pausa {
     type: string
+    group_label: "Dados da Pausa"
+    group_item_label: "Motivo da Pausa"
+    description: "Indica o motivo pelo qual a pausa foi realizada. Ex: feedback, pausa lanche, etc"
     sql: ${TABLE}."MOTIVO_PAUSA" ;;
   }
 
   dimension: data_evento_ini {
     type: date
-    sql: ${TABLE}."DATA_EVENTO_INI" ;;
+    group_label: "Dados da Pausa"
+    group_item_label: "Data da Pausa"
+    description: "Indica a data em que a pausa foi realizada"
+        sql: ${TABLE}."DATA_EVENTO_INI" ;;
   }
+
 
   dimension: nome {
     type: string
