@@ -14,12 +14,13 @@ view: crx_agentes_detalhes_pausas {
     drill_fields: [detail*]
   }
 
-  dimension: duracao_pausa {
-    type: string
+  measure: duracao_pausa {
+    type: sum
     group_label: "Dados da Pausa"
     group_item_label: "Duração da Pausa"
     description: "Indica o tempo que durou a pausa realizada pelo atendente"
-    sql: ${TABLE}."DURACAO_PAUSA" ;;
+    sql: ${TABLE}."DURACAO_PAUSA"/ 86400.0 ;;
+    value_format: "[hh]:mm:ss"
   }
 
   dimension: motivo_pausa {
