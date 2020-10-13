@@ -2,17 +2,16 @@ view: instituicao_taxas_antecipacao {
   derived_table: {
       sql:select
       a.id_instituicao,
-      f.value:ID_CONTTRATO_INSTITUICAO::int as id_contrato_instituicao,
+      f.value:ID_CONTRATO_INSTITUICAO::int as id_contrato_instituicao,
       f.value:ID_PRODUTO::varchar as id_produto,
       f.value:NUMERO_CONTRATACAO::int as numero_contratacao,
       f.value:VL_IES_TAXA_MENSAL::float as taxa_juros_mensal,
       f.value:PROC_SUBSIDIADO_IES::float as proc_subsidiado_ies,
       f.value:JUROS_ALUNO::float as juros_aluno,
-      c.value:PERC_COMISSAO::float as perc_comissao
       'Antecipação' as modalidade
         from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
-        lateral flatten (input => ANTECIPACAO) f,
-        lateral flatten (input => CONTRATO_IES) c;;
+        lateral flatten (input => ANTECIPACAO) f;;
+
 
     }
 
@@ -60,19 +59,11 @@ dimension: porc_subsidiado_ies {
   type:  number
   group_label: "Taxas"
   group_item_label:  "Porc Subsidiado pela Instituição"
-  description:"Indica o juros pago pela Instituição de Ensino"
-  sql: ${TABLE}."PERC_COMISSAO";;
+  description:"Indica o percentual de juros pago pela Instituição de Ensino"
+  sql: ${TABLE}."PROC_SUBSIDIADO_IES";;
   value_format: "0.00"
 }
 
-  dimension: perc_comissao_prv {
-    type:  number
-    group_label: "Taxas"
-    group_item_label:  "Comissão"
-    description:"Indica o percentual de comissão pago pela Instituição de Ensino ao PRV"
-    sql: ${TABLE}."PROC_SUBSIDIADO_IES";;
-    value_format: "0.00"
-  }
 
 
 dimension: juros_aluno {

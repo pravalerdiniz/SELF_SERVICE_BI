@@ -166,7 +166,7 @@ join: instituicao_contrato_produto_info {
 join: instituicao_taxas_antecipacao {
   view_label: "1.2. Taxas da Instituição por Produto Antecipação"
   sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-  AND ${instituicao_contrato_produto_info.flg_ativo} = 1;;
+  AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao};;
   relationship: one_to_many
   type: left_outer
 }
@@ -574,6 +574,16 @@ join: alunos_produtos_aprovados {
   join: alunos_acordo {
     view_label: "1.5 Acordo Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: alunos_acordo_renegociacao {
+    view_label: "1.5.2 Acordo Renegociação Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
+    AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
+    ;;
     type: left_outer
     relationship: one_to_many
 

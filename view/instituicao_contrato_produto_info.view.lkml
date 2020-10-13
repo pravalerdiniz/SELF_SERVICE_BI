@@ -37,7 +37,7 @@ view: instituicao_contrato_produto_info {
   }
 
   dimension: id_ies_contrato {
-    type: string
+    type: number
     label: "Contrato da IES"
     description: "Indica o número do contrato da Instituição por produto"
     sql: ${TABLE}."ID_IES_CONTRATO" ;;
