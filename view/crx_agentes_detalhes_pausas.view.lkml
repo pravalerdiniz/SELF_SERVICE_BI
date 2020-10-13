@@ -42,7 +42,7 @@ view: crx_agentes_detalhes_pausas {
 
 
 dimension: nome_data {
-  sql: CONCACT(${nome},${data_evento_ini});;
+  sql: CONCAT(${nome},${data_evento_ini});;
   primary_key: yes
   hidden: yes
 

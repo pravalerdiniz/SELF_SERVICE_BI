@@ -126,7 +126,7 @@ view: crx_agentes {
   }
 
   dimension: sla_atendimento {
-    type: string
+    type: number
     group_label: "Dados de Atendimento"
     group_item_label: "SLA"
     description: "Indica o tempo de SLA de atendimento do atendente"
@@ -185,7 +185,7 @@ view: crx_agentes {
   measure: tempo_total_falado {
     type: sum
     group_label: "Dados de Ligação"
-    group_item_label: "Tempo Tota Falado"
+    group_item_label: "Tempo Total Falado"
     description: "Indica o tempo total falado do atendente durante as ligações"
     sql: ${TABLE}."TEMPO_TOTAL_FALADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -209,6 +209,8 @@ view: crx_agentes {
     sql: ${TABLE}."TEMPO_TOTAL_PAUSADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
+
+
 
   measure: count {
     type: count
