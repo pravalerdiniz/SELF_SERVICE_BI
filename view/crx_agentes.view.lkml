@@ -183,7 +183,7 @@ view: crx_agentes {
 
 
   measure: tempo_total_falado {
-    type: average
+    type: sum
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Tota Falado"
     description: "Indica o tempo total falado do atendente durante as ligações"
@@ -192,7 +192,7 @@ view: crx_agentes {
   }
 
   measure: tempo_total_logado {
-    type: average
+    type: sum
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Logado"
     description: "Indica o tempo total logado do atendente"
@@ -202,7 +202,7 @@ view: crx_agentes {
 
 
   measure: tempo_total_pausado {
-    type: average
+    type: sum
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Pausado"
     description: "Indica o tempo total de pausa do atendente"
