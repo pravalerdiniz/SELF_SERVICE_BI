@@ -19,7 +19,7 @@ view: crx_agentes {
   }
 
   measure: media_tempo_logado_dia {
-    type: sum
+    type: average
      group_label: "Dados de Atendimento"
     label: "Tempo Médio Logado"
     description: "Indica a média de tempo logado do atendente por dia."
@@ -29,7 +29,7 @@ view: crx_agentes {
 
 
   measure: media_tempo_logado_sessao {
-    type: sum
+    type: average
      group_label: "Dados de Atendimento"
     label: "Média Tempo Logado sessão"
     description: "Indica a média de tempo logado do atendente por sessão."
@@ -38,7 +38,7 @@ view: crx_agentes {
   }
 
   measure: media_tempo_pausado_dia {
-    type: sum
+    type: average
     group_label: "Dados de Atendimento"
     label: "Dia - Tempo Pausado Média"
     description: "Indica a média de tempo de pausa do atendente por dia."
@@ -135,7 +135,7 @@ view: crx_agentes {
 
 
   measure: tempo_maximo_ligacao {
-    type: sum
+    type: average
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Máximo"
     description: "Indica o tempo máximo do atendente durante a ligação"
@@ -144,7 +144,7 @@ view: crx_agentes {
   }
 
    measure: tempo_medio_falado {
-    type: sum
+    type: average
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Médio Falado"
     description: "Indica o tempo médio falado do atendente durante a ligações"
@@ -153,7 +153,7 @@ view: crx_agentes {
   }
 
   measure: tempo_medio_pausado {
-    type: sum
+    type: average
    group_label: "Dados do Atendente"
     group_item_label: "Tempo Médio de Pausa"
     description: "Indica o tempo médio de pausa do atendente"
