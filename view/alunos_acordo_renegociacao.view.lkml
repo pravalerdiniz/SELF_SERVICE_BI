@@ -1,10 +1,12 @@
-view: alunos_renegociacao {
+##tabela referente aos acordos de renegociação retirados da tabela: "bicho"."cobranca"."prv_aco_acordo"
+
+view: alunos_acordo_renegociacao {
   derived_table: {
     sql: select
   id_cpf,
   f.key as id_acordo,
   f.value:DATA::timestamp as data_acordo,
-  f.value:PROPOSTA::int as proposta,
+  CONCAT('BOF-'||f.value:PROPOSTA::int)::varchar as proposta,
   f.value:VP_DIVIDA::float as vp_divida,
   f.value:VALOR_ACORDO::float as valor_acordo,
   f.value:QTD_PRESTACOES::int as qtd_prestacoes,
@@ -12,7 +14,7 @@ view: alunos_renegociacao {
   f.value:PRI_VECT::timestamp as pri_vecto,
   f.value:ULT_VECTO::timestamp as ult_vecto,
   f.value:CD_TIPO_ACORDO::int as cd_tipo_acordo,
-  f.value:DT_CONCESSAO::date as data_concessao_acordo,
+  f.value:DT_CONCESSAO::date as dt_concessao,
   f.value:ID_ACO_ACORDO_DIF as id_aco_acordo_dif
   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
   lateral flatten (input => RENEGOCIACAO) f ;;
@@ -47,7 +49,7 @@ view: alunos_renegociacao {
     ]
     convert_tz: no
     datatype: date
-    label: "Data do Acordo"
+    label: "Acordo"
     description: "Indica a data que o acordo foi realizado"
     sql: ${TABLE}."DATA_ACORDO" ;;
   }
@@ -55,7 +57,7 @@ view: alunos_renegociacao {
 
 
   dimension: id_proposta_acordo {
-    type: number
+    type: string
     label: "ID Proposta"
     description: "Indica o ID do novo contrato gerado pelo acordo"
     sql: ${TABLE}."PROPOSTA" ;;
@@ -140,6 +142,7 @@ view: alunos_renegociacao {
     label: "Tipo de Acordo"
     description: "Indica o código do tipo de acordo"
     sql: ${TABLE}."CD_TIPO_ACORDO" ;;
+    hidden: yes
   }
 
   dimension_group: concessao_acordo {
@@ -155,17 +158,34 @@ view: alunos_renegociacao {
     ]
     convert_tz: no
     datatype: timestamp
-    label: "Data Concessão Acordo"
+    label: "Concessão Acordo"
     description: "Indica a data de concessão do contrato do acordo"
     sql: ${TABLE}."DT_CONCESSAO" ;;
   }
 
   dimension: id_acordo_dif {
     type: string
-    label: "ID do Acordo"
-    description: "Indica o ID do acordo de renegociação"
+    label: "ID do Acordo Dif"
+    description: "Indica o ID Dif do acordo de renegociação"
     sql: ${TABLE}."ID_ACO_ACORDO_DIF" ;;
+    hidden: yes
   }
+
+  dimension: flg_contrato_cedido {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}."PROPOSTA" = ${proposta.id_proposta}
+          AND ${proposta.flg_contrato_cedido} = true;;
+        label: "yes"
+      }
+      else: "no"
+    }
+    label: "Contrato Cedido"
+    description: "Indica se os contratos de acordo foram ou não cedidos "
+    drill_fields: [detail*]
+  }
+
 
 
   measure: count_id_cpf {
@@ -190,14 +210,6 @@ view: alunos_renegociacao {
     label: "Quantidade de Acordos"
     description: "Contagem de ID Acordos únicos"
     drill_fields: [detail*]
-  }
-
-  measure: count_status_acordo{
-    type: count_distinct
-    sql: ${id_acordo} ;;
-    sql_distinct_key: ${cod_tipo_acordo} ;;
-    label: "Quantidade de Acordos por Tipo"
-    description: "Indica a quantidade de acordos por tipo de acordo. "
   }
 
 
@@ -241,21 +253,67 @@ view: alunos_renegociacao {
     drill_fields: [detail*]
   }
 
+  measure: count_duracao_acordo {
+    type: number
+    sql: ${duracao_acordo} ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
+  }
 
-  measure: valor_presente_divida {
+  measure: avg_duracao_acordo {
+    type: average
+    sql: ${duracao_acordo} ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
+  }
+
+
+
+  measure: sum_valor_presente_divida {
     type: sum
     group_label: "Valores"
-    group_item_label: "Valor Presente"
+    group_item_label: "Valor Presente Dívida"
     description: "Indica o valor total da dívida do aluno trazendo as parcelas futuras ao valor presente"
     sql: ${vl_presente_divida} ;;
   }
 
+  measure: sum_valor_presente_aluno {
+    type: sum
+    group_label: "Valores"
+    group_item_label: "Valor Presente "
+    description: "Indica o valor total da dívida do aluno trazendo as parcelas futuras ao valor presente"
+    sql: ${alunos.val_presente} ;;
+  }
+
+
+
+  measure: count_contratos_cedidos  {
+    type: count_distinct
+    sql: ${id_proposta_acordo} ;;
+    filters: [flg_contrato_cedido: "yes"]
+    label: "Contrato Cedido"
+    description: "Contagem dos contratos de acordo cedidos"
+
+  }
+
   set: detail {
     fields: [
-      id_cpf,
-      id_acordo,
-      data_acordo_date,
-      vl_presente_divida
+        id_cpf,
+        id_acordo,
+        data_acordo_date,
+        id_proposta_acordo,
+        vl_presente_divida,
+        valor_acordo,
+        qtd_prestacoes_acordo,
+        total_acordo,
+        primeiro_vecto_date,
+        ultimo_vecto_date,
+        concessao_acordo_date,
+        flg_contrato_cedido,
+        proposta.id_fundo_investimento,
+        duracao_acordo
     ]
   }
 

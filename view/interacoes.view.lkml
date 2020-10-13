@@ -73,7 +73,7 @@ view: interacoes {
   dimension: chat_flg_nao_lido {
     type: yesno
     group_label: "Dados de Chat"
-    group_item_label: "Não lido?"
+    group_item_label: "Chat Não lido?"
     description: "Indica se o chat não foi lido."
     sql: ${TABLE}."CHAT_FLG_NAO_LIDO" ;;
   }
@@ -81,7 +81,7 @@ view: interacoes {
   dimension: chat_flg_perdido {
     type: yesno
     group_label: "Dados de Chat"
-    group_item_label: "Perdido?"
+    group_item_label: "Chat Perdido?"
     description: "Indica se o chat foi perdido."
     sql: ${TABLE}."CHAT_FLG_PERDIDO" ;;
   }
@@ -315,7 +315,7 @@ view: interacoes {
   dimension: id_pesquisa {
     type: number
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "ID de Pesquisa"
+    group_item_label: "ID da Pesquisa"
     description: "Indica o identificador de pesquisa de satifação."
     sql: ${TABLE}."ID_PESQUISA" ;;
   }
@@ -339,7 +339,7 @@ view: interacoes {
   dimension: justificativa_pesquisa {
     type: string
     group_label: "Dados de Pesquisa de Satisfação"
-    group_item_label: "Justificativa de Pesquisa"
+    group_item_label: "Justificativa da Pesquisa"
     description: "Indica a justificativa de pesquisa de satisfação."
     sql: ${TABLE}."JUSTIFICATIVA_PESQUISA" ;;
   }

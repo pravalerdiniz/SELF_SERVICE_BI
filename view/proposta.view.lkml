@@ -1462,7 +1462,6 @@ view: proposta {
     group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
     description: "Indica se a proposta do aluno é Renovação, Renegociação, Segundo Repasse ou Reempactado"
-    suggestable: yes
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
@@ -1699,7 +1698,7 @@ view: proposta {
   }
 
 
-  measure: count {
+  measure: count_proposta {
     type: count
     group_label: "Proposta"
     group_item_label: "Quantidade de Propostas"
@@ -2265,7 +2264,7 @@ view: proposta {
 
   measure: count_tipo_proposta_novo {
     type: count_distinct
-    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO";;
+    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO");;
     group_label: "Proposta"
     group_item_label: "Novo"
     description: "Contagem de propostas de aluno novo"
@@ -2274,9 +2273,9 @@ view: proposta {
 
   measure: count_tipo_proposta_renovacao {
     type: count_distinct
+    sql: ${TABLE}."TIPO_PROPOSTA" = "RENOVACAO" ;;
     group_label: "Proposta"
     group_item_label: "Renovação"
-    sql: ${TABLE}."TIPO_PROPOSTA" = "RENOVACAO";;
     description: "Contagem de propostas de renovação"
   }
 
