@@ -141,10 +141,20 @@ view: crx_agentes {
     type: number
     group_label: "Dados de Atendimento"
     group_item_label: "SLA"
+    value_format: "0.0%"
     description: "Indica o tempo de SLA de atendimento do atendente"
     sql: ${TABLE}."SLA_ATENDIMENTO" ;;
   }
 
+
+  measure: media_sla_atendimento {
+    type: average
+    group_label: "Dados de Atendimento"
+    group_item_label: "SLA"
+    value_format: "0.0%"
+    description: "Indica o tempo de SLA de atendimento do atendente"
+    sql: ${TABLE}."SLA_ATENDIMENTO" ;;
+  }
 
   measure: tempo_maximo_ligacao {
     type: average

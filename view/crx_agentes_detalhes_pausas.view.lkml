@@ -11,6 +11,8 @@ view: crx_agentes_detalhes_pausas {
 
   measure: count {
     type: count
+    label: "Quantidade de Pausa"
+    group_label: "Dados da Pausa"
     drill_fields: [detail*]
   }
 
