@@ -6,6 +6,7 @@ view: crx_agentes_detalhes_pausas {
       f.value:"nome"::varchar as NOME
       from "GRADUADO"."SELF_SERVICE_BI"."CRX_AGENTES" a,
       lateral flatten (input => pausas) f
+      where f.value:"DATA_EVENTO_INI"::date is not null
        ;;
   }
 
