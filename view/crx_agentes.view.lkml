@@ -2,6 +2,17 @@ view: crx_agentes {
   sql_table_name: "SELF_SERVICE_BI"."CRX_AGENTES"
     ;;
 
+  dimension: nome_data {
+    type: string
+    sql: CONCAT(${nome},${data_registro}) ;;
+    primary_key: yes
+
+
+
+
+
+
+  }
   dimension: data_registro {
     type: date
     group_label: "Dados de Atendimento"
@@ -191,12 +202,14 @@ view: crx_agentes {
     value_format: "[hh]:mm:ss"
   }
 
+
+
   measure: tempo_total_logado {
     type: sum
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Logado"
     description: "Indica o tempo total logado do atendente"
-    sql: ${TABLE}."TEMPO_TOTAL_LOGADO"/ 86400.0;;
+    sql: ${TABLE}."TEMPO_TOTAL_LOGADO"/86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
@@ -206,7 +219,7 @@ view: crx_agentes {
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Pausado"
     description: "Indica o tempo total de pausa do atendente"
-    sql: ${TABLE}."TEMPO_TOTAL_PAUSADO"/ 86400.0;;
+    sql: ${TABLE}."TEMPO_TOTAL_PAUSADO"/86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
