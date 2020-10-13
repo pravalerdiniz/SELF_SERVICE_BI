@@ -693,6 +693,7 @@ explore: crx_agentes_detalhes_pausas{
           - crx_agentes.count,
           - crx_agentes.nome_data ,
           - crx_agentes.dias_logados ,
+          - crx_agentes.sum_dias_logados,
           - crx_agentes.media_tempo_logado_dia ,
           - crx_agentes.media_tempo_logado_sessao ,
           - crx_agentes.media_tempo_pausado_dia ,

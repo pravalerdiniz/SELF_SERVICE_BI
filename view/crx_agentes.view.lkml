@@ -14,6 +14,14 @@ view: crx_agentes {
 
 
   }
+  dimension: dias_logados {
+    type: number
+    group_label: "Dados do Atendente"
+    group_item_label: "Logado?"
+    description: "Indica se o atendente estava logado no dia ou não. Ex: Sim = 1 ou Não = 0"
+    sql: ${TABLE}."DIAS_LOGADOS" ;;
+  }
+
   dimension: data_registro {
     type: date
     group_label: "Dados de Atendimento"
@@ -22,12 +30,12 @@ view: crx_agentes {
     sql: ${TABLE}."DATA_REGISTRO" ;;
   }
 
-  measure: dias_logados {
+  measure: sum_dias_logados {
     type: sum
     group_label: "Dados do Atendente"
-    group_item_label: "Logado?"
+    group_item_label: "Quantidade de dias logado"
     description: "Indica a quantidade de dias logados do atendente"
-    sql: ${TABLE}."DIAS_LOGADOS" ;;
+    sql: ${dias_logados} ;;
   }
 
   measure: media_tempo_logado_dia {
@@ -142,6 +150,7 @@ view: crx_agentes {
     group_label: "Dados de Atendimento"
     group_item_label: "SLA"
     value_format: "0.0%"
+    hidden: yes
     description: "Indica o tempo de SLA de atendimento do atendente"
     sql: ${TABLE}."SLA_ATENDIMENTO" ;;
   }
@@ -157,7 +166,7 @@ view: crx_agentes {
   }
 
   measure: tempo_maximo_ligacao {
-    type: average
+    type: sum
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Máximo"
     description: "Indica o tempo máximo do atendente durante a ligação"
@@ -179,13 +188,14 @@ view: crx_agentes {
    group_label: "Dados do Atendente"
     group_item_label: "Tempo Médio de Pausa"
     description: "Indica o tempo médio de pausa do atendente"
+
     sql: ${TABLE}."TEMPO_MEDIO_PAUSADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
 
 
   measure: tempo_minimo_ligacao {
-    type: average
+    type: sum
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Mínimo"
     description: "Indica o tempo mínimo de ligação do atendente"
@@ -209,6 +219,7 @@ view: crx_agentes {
     group_label: "Dados de Ligação"
     group_item_label: "Tempo Total Falado"
     description: "Indica o tempo total falado do atendente durante as ligações"
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."TEMPO_TOTAL_FALADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -220,6 +231,7 @@ view: crx_agentes {
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Logado"
     description: "Indica o tempo total logado do atendente"
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."TEMPO_TOTAL_LOGADO"/86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -230,6 +242,7 @@ view: crx_agentes {
      group_label: "Dados do Atendente"
     group_item_label: "Tempo Total Pausado"
     description: "Indica o tempo total de pausa do atendente"
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."TEMPO_TOTAL_PAUSADO"/86400.0;;
     value_format: "[hh]:mm:ss"
   }
