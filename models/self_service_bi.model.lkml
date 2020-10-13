@@ -696,7 +696,6 @@ explore: crx_agentes_detalhes_pausas{
           - crx_agentes.media_tempo_logado_dia ,
           - crx_agentes.media_tempo_logado_sessao ,
           - crx_agentes.media_tempo_pausado_dia ,
-          - crx_agentes.numero_ramal ,
           - crx_agentes.pausas ,
           - crx_agentes.produtividade ,
           - crx_agentes.qtd_atendimento_ativo ,
@@ -715,7 +714,7 @@ explore: crx_agentes_detalhes_pausas{
           - crx_agentes.tempo_total_logado ,
           - crx_agentes.tempo_total_pausado ,
           - crx_agentes.data_registro,
-          crx_agentes.numero_ramal
+
 
   ]
   join: crx_agentes{
