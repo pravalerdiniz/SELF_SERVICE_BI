@@ -44,6 +44,7 @@ view: crx_agentes {
      group_label: "Dados de Atendimento"
     label: "Tempo Médio Logado"
     description: "Indica a média de tempo logado do atendente por dia."
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_DIA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -54,6 +55,7 @@ view: crx_agentes {
      group_label: "Dados de Atendimento"
     label: "Média Tempo Logado sessão"
     description: "Indica a média de tempo logado do atendente por sessão."
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_SESSAO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -62,6 +64,7 @@ view: crx_agentes {
     type: average
     group_label: "Dados de Atendimento"
     label: "Dia - Tempo Pausado Média"
+    filters: [dias_logados: "1"]
     description: "Indica a média de tempo de pausa do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_PAUSADO_DIA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
