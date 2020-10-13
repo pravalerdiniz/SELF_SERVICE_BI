@@ -722,7 +722,7 @@ explore: crx_agentes_detalhes_pausas{
   join: crx_agentes{
     view_label: "Detalhes do Agente"
 
-    type: left_outer
+    type: inner
     sql_on: ${crx_agentes.nome} = ${crx_agentes_detalhes_pausas.nome}
       and ${crx_agentes.data_registro} = ${crx_agentes_detalhes_pausas.data_evento_ini};;
     relationship: many_to_many
