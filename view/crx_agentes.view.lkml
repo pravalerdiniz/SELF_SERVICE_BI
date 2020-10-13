@@ -19,6 +19,7 @@ view: crx_agentes {
     group_label: "Dados do Atendente"
     group_item_label: "Logado?"
     description: "Indica se o atendente estava logado no dia ou não. Ex: Sim = 1 ou Não = 0"
+    hidden: yes
     sql: ${TABLE}."DIAS_LOGADOS" ;;
   }
 
@@ -180,6 +181,7 @@ view: crx_agentes {
     group_item_label: "Tempo Médio Falado"
     description: "Indica o tempo médio falado do atendente durante a ligações"
     sql: ${TABLE}."TEMPO_MEDIO_FALADO"/ 86400.0;;
+    filters: [dias_logados: "1"]
     value_format: "[hh]:mm:ss"
   }
 
@@ -188,7 +190,7 @@ view: crx_agentes {
    group_label: "Dados do Atendente"
     group_item_label: "Tempo Médio de Pausa"
     description: "Indica o tempo médio de pausa do atendente"
-
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."TEMPO_MEDIO_PAUSADO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -209,6 +211,7 @@ view: crx_agentes {
      group_label: "Dados de Ligação"
     group_item_label: "Tempo Ocioso"
     description: "Indica o tempo de ociosidade do atendente"
+    filters: [dias_logados: "1"]
     sql: ${TABLE}."TEMPO_OCIOSIDADE"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
