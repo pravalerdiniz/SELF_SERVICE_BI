@@ -245,6 +245,8 @@ view: financeiro {
     value_format: "#"
   }
 
+
+
   dimension: id_banco {
     type: number
     group_label: "Dados do Banco"
@@ -392,16 +394,27 @@ view: financeiro {
   dimension: vl_boleto {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor de Boleto"
     description: "Indica o valor do boleto"
     sql: ${TABLE}."VL_BOLETO" ;;
   }
 
+
+  dimension: vl_total {
+    type: number
+    group_label: "Dados do Boleto"
+    value_format: "$ #,###.##"
+    label: "Valor Total"
+    description: "Indica o valor total do boleto. Considerando: Valor de Boleto + Juros + Multa + Despesa de Cobrança"
+    sql: ${vl_boleto}+${vl_juros}+${vl_multa}+${vl_despesa};;
+  }
+
+
   dimension: vl_despesa {
     type: number
     group_label: "Dados do Título"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor de Despesa"
     description: "Indica o valor de cobrança de despesa do título."
     sql: ${TABLE}."VL_DESPESA" ;;
@@ -410,7 +423,7 @@ view: financeiro {
   dimension: vl_ipca {
     type: number
     group_label: "Dados do Título"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor do IPCA"
     description: "Indica o valor do IPCA sobre o título."
     sql: ${TABLE}."VL_IPCA" ;;
@@ -427,7 +440,7 @@ view: financeiro {
   dimension: vl_multa {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor da Multa"
     description: "Indica o valor da multa aplicada sobre o boleto"
     sql: ${TABLE}."VL_MULTA" ;;
@@ -436,7 +449,7 @@ view: financeiro {
   dimension: vl_pago {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor do Pagamento"
     description: "Indica o valor de pagamento do boleto gerado"
     sql: ${TABLE}."VL_PAGO" ;;
@@ -445,7 +458,7 @@ view: financeiro {
   dimension: vl_pago_credito {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor do Pagamento - Crédito"
     description: "Indica o valor de pagamento por crédito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_CREDITO" ;;
@@ -454,7 +467,7 @@ view: financeiro {
   dimension: vl_pago_debito {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor do Pagamento - Débito"
     description: "Indica o valor de pagamento por débito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_DEBITO" ;;
@@ -463,7 +476,7 @@ view: financeiro {
   dimension: vl_seguro {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor do Seguro"
     description: "Indica o valor do seguro do boleto gerado"
     sql: ${TABLE}."VL_SEGURO" ;;
@@ -472,11 +485,14 @@ view: financeiro {
   dimension: vl_taxa {
     type: number
     group_label: "Dados do Boleto"
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     label: "Valor da Taxa Bancária"
     description: "Indica o valor da taxa bancária"
     sql: ${TABLE}."VL_TAXA" ;;
   }
+
+
+
 
   dimension: flg_titulo_diferenca {
     type: yesno
@@ -966,12 +982,16 @@ foi gerado por um pagamento menor do boleto anterior."
 
   measure: vl_atraso {
     type: sum
-    sql: case when ${data_vencimento_date}<current_date then ${vl_boleto} else 0 end ;;
-    value_format: "$ #,###"
+    sql: ${vl_total};;
+    value_format: "$ #,###.##"
     group_label: "Valor em Atraso"
+    filters: [flg_boleto_atrasado: "yes"]
     group_item_label: "Soma"
-    description: "Soma do valor em atraso"
+    description: "Soma do valor total em atraso. O valor considerado para este cálculo é o 'Valor Total' do boleto"
   }
+
+
+
 
   dimension_group: data_transferencia {
     type: time
