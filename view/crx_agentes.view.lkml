@@ -56,6 +56,7 @@ view: crx_agentes {
     label: "Média Tempo Logado sessão"
     description: "Indica a média de tempo logado do atendente por sessão."
     filters: [dias_logados: "1"]
+    hidden: yes
     sql: ${TABLE}."MEDIA_TEMPO_LOGADO_SESSAO"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
@@ -65,6 +66,7 @@ view: crx_agentes {
     group_label: "Dados de Atendimento"
     label: "Dia - Tempo Pausado Média"
     filters: [dias_logados: "1"]
+    hidden: yes
     description: "Indica a média de tempo de pausa do atendente por dia."
     sql: ${TABLE}."MEDIA_TEMPO_PAUSADO_DIA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
@@ -151,7 +153,7 @@ view: crx_agentes {
 
   dimension: sla_atendimento {
     type: number
-    group_label: "Dados de Atendimento"
+    group_label: "Dados de Atendente"
     group_item_label: "SLA"
     value_format: "0.0%"
     hidden: yes
@@ -162,7 +164,7 @@ view: crx_agentes {
 
   measure: media_sla_atendimento {
     type: average
-    group_label: "Dados de Atendimento"
+    group_label: "Dados de Atendente"
     group_item_label: "SLA"
     value_format: "0.0%"
     description: "Indica o tempo de SLA de atendimento do atendente"
