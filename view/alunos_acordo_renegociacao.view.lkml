@@ -253,6 +253,23 @@ view: alunos_acordo_renegociacao {
     drill_fields: [detail*]
   }
 
+  measure: count_duracao_acordo {
+    type: number
+    sql: ${duracao_acordo} ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
+  }
+
+  measure: avg_duracao_acordo {
+    type: average
+    sql: ${duracao_acordo} ;;
+    group_item_label: "Duração do Acordo"
+    description: "Indica em dias a duração total do acordo"
+    drill_fields: [detail*]
+  }
+
+
 
   measure: sum_valor_presente_divida {
     type: sum
@@ -295,7 +312,8 @@ view: alunos_acordo_renegociacao {
         ultimo_vecto_date,
         concessao_acordo_date,
         flg_contrato_cedido,
-        proposta.id_fundo_investimento
+        proposta.id_fundo_investimento,
+        duracao_acordo
     ]
   }
 
