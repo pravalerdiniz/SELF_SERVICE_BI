@@ -6,6 +6,7 @@ view: crx_agentes {
     type: string
     sql: CONCAT(${nome},${data_registro}) ;;
     primary_key: yes
+    hidden: yes
 
 
 
