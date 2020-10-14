@@ -1,5 +1,5 @@
 view: jornada {
-  sql_table_name: "SELF_SERVICE_BI"."JORNADA"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
     ;;
 
   dimension_group: dt_status {
@@ -81,6 +81,7 @@ view: jornada {
 
   dimension: id_proposta {
     type: string
+    primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
     group_label: "Dados da Proposta"
     group_item_label: "ID Proposta"

@@ -2261,19 +2261,24 @@ view: proposta {
   }
 
 
-
   measure: count_tipo_proposta_novo {
     type: count_distinct
-    sql: ${TABLE}."TIPO_PROPOSTA" = "NOVO");;
+    sql:   CASE WHEN ${tipo_proposta} = 'NOVO'
+       THEN ${id_proposta}
+       ELSE NULL
+       END  ;;
     group_label: "Proposta"
     group_item_label: "Novo"
     description: "Contagem de propostas de aluno novo"
-  }
+    }
 
 
   measure: count_tipo_proposta_renovacao {
     type: count_distinct
-    sql: ${TABLE}."TIPO_PROPOSTA" = "RENOVACAO" ;;
+    sql:   CASE WHEN ${tipo_proposta} = 'RENOVACAO'
+       THEN ${id_proposta}
+       ELSE NULL
+       END;;
     group_label: "Proposta"
     group_item_label: "Renovação"
     description: "Contagem de propostas de renovação"
@@ -2283,7 +2288,10 @@ view: proposta {
     type: count_distinct
     group_label: "Proposta"
     group_item_label: "Segundo Repasse"
-    sql: ${TABLE}."TIPO_PROPOSTA" = "SEGUNDO REPASSE";;
+    sql:   CASE WHEN ${tipo_proposta} = 'SEGUNDO REPASSE'
+    THEN ${id_proposta}
+    ELSE NULL
+    END;;
     description: "Contagem de propostas de segundo repasse"
   }
 
@@ -2291,7 +2299,10 @@ view: proposta {
     type: count_distinct
     group_label: "Proposta"
     group_item_label:  "Renegociação"
-    sql:${TABLE}."TIPO_PROPOSTA" = "RENEGOCIACAO";;
+    sql:   CASE WHEN ${tipo_proposta} = 'RENEGOCIACAO'
+    THEN ${id_proposta}
+    ELSE NULL
+    END;;
     description: "Contagem de propostas de renegociação"
   }
 
@@ -2299,7 +2310,10 @@ view: proposta {
     type: count_distinct
     group_label: "Proposta"
     group_item_label: "Reempacotado"
-    sql:${TABLE}."TIPO_PROPOSTA" = "REEMPACOTADO";;
+    sql:   CASE WHEN ${tipo_proposta} = 'REEMPACOTADO'
+    THEN ${id_proposta}
+    ELSE NULL
+    END;;
     description: "Contagem de propostas do tipo reempactado"
   }
 
