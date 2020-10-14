@@ -3,7 +3,8 @@ view: crx_agentes_detalhes_pausas {
     sql: select f.value:"DURACAO"::varchar as DURACAO_PAUSA,
       f.value:"MOTIVO_PAUSA"::varchar as MOTIVO_PAUSA,
       f.value:"DATA_EVENTO_INI"::date as DATA_EVENTO_INI,
-      f.value:"nome"::varchar as NOME
+      f.value:"nome"::varchar as NOME,
+      A.PAUSAS:"ID"::INT ID
       from "GRADUADO"."SELF_SERVICE_BI"."CRX_AGENTES" a,
       lateral flatten (input => pausas) f
       where f.value:"DATA_EVENTO_INI"::date is not null
@@ -15,6 +16,12 @@ view: crx_agentes_detalhes_pausas {
     label: "Quantidade de Pausa"
     group_label: "Dados da Pausa"
     drill_fields: [detail*]
+  }
+
+  dimension: id {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."ID" ;;
   }
 
   measure: duracao_pausa {

@@ -9,11 +9,15 @@ view: crx_agentes {
     hidden: yes
 
 
-
-
-
-
   }
+
+  dimension: id {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."ID" ;;
+  }
+
+
   dimension: dias_logados {
     type: number
     group_label: "Dados do Atendente"
