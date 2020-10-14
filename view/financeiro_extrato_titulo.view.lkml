@@ -3,12 +3,14 @@ view: financeiro_extrato_titulo {
     sql: select
       id_titulo,
       f.key as id_extrato_titulo,
-      a.data_transferencia,
+      f.value:DATA_TRANSFERENCIA::date as data_transferencia,
       a.id_cpf,
       a.id_contrato,
       f.value:ds_extrato_transacao::varchar as ds_extrato_transacao,
       f.value:ds_extrato_transacao_tipo::varchar as ds_extrato_transacao_tipo,
-      f.value:vl_extrato::float(2) as vl_extrato
+      f.value:vl_extrato::float(2) as vl_extrato,
+      f.value:id_instituicao::varchar,
+      f.value:id_produto::varchar
       from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
       lateral flatten (input => id_extrato_titulo_info) f
        ;;
@@ -177,7 +179,8 @@ view: financeiro_extrato_titulo {
     type: sum
     sql: ${vl_extrato} ;;
     filters: [
-      ds_extrato_transacao: "SEGUROS"
+      ds_extrato_transacao: "SEGUROS",
+      ds_extrato_transacao_tipo: "CREDITO"
     ]
     group_label: "Seguros"
     group_item_label: "Soma"
