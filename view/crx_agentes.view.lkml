@@ -41,7 +41,7 @@ view: crx_agentes {
 
   measure: media_tempo_logado_dia {
     type: average
-     group_label: "Dados de Atendimento"
+     group_label: "Dados do Atendente"
     label: "Tempo Médio Logado"
     description: "Indica a média de tempo logado do atendente por dia."
     filters: [dias_logados: "1"]
