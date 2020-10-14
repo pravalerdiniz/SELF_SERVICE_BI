@@ -996,6 +996,16 @@ view: alunos {
     description: "Indica o Score do aluno no momento que ele passou pela etapa de Análise de Risco."
   }
 
+  dimension: nome_mae {
+    type: string
+    sql: ${TABLE}."NOME_MAE" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome da Mãe"
+    description: "Indica o nome da mãe do aluno."
+  }
+
+
+
   dimension: flg_renegociacao {
     type: yesno
     sql: ${TABLE}."FLG_RENEGOCIACAO" ;;
@@ -1297,6 +1307,30 @@ dimension: ultimo_semestre_cedido_renovacao {
     description: "Indica a data de geração do collection"
   }
 
+  dimension_group: data_nascimento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_NASCIMENTO" ;;
+    group_label: "Dados do Aluno"
+    label: "Data de Nascimento"
+    description: "Indica a data de nascimento do aluno"
+  }
+
+  dimension: flg_wo {
+    type: string
+    sql: ${TABLE}."FLG_WO" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Teve writeoff"
+    description: "Indica se o aluno já teve algum titulo em writeoff."
+  }
 
   dimension: ds_ultimo_status {
     type: string
