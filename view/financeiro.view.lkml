@@ -492,6 +492,15 @@ view: financeiro {
   }
 
 
+  dimension: faixa_atraso {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Faixa de Atraso"
+    description: "Indica a faixa de atraso de pagamento do Aluno"
+    sql: ${TABLE}."FAIXA_ATRASO" ;;
+  }
+
+
 
 
   dimension: flg_titulo_diferenca {

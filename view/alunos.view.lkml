@@ -1315,6 +1315,16 @@ dimension: ultimo_semestre_cedido_renovacao {
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
 
+
+  dimension: random_digit {
+    type: string
+    sql: ${TABLE}."RANDOM_DIGIT" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF do Aluno - Random Digit"
+    description: "Indica o 6º e 7º digito do CPF do Aluno. Exemplo: 000.00X.X00-00"
+  }
+
+
   dimension_group: data_ultimo_status {
     type: time
     timeframes: [
