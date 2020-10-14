@@ -153,7 +153,7 @@ view: crx_agentes {
 
   dimension: sla_atendimento {
     type: number
-    group_label: "Dados de Atendente"
+    group_label: "Dados do Atendente"
     group_item_label: "SLA"
     value_format: "0.0%"
     hidden: yes
@@ -164,7 +164,7 @@ view: crx_agentes {
 
   measure: media_sla_atendimento {
     type: average
-    group_label: "Dados de Atendente"
+    group_label: "Dados do Atendente"
     group_item_label: "SLA"
     value_format: "0.0%"
     description: "Indica o tempo de SLA de atendimento do atendente"
