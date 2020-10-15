@@ -400,14 +400,16 @@ view: financeiro {
     sql: ${TABLE}."VL_BOLETO" ;;
   }
 
-
   dimension: vl_total {
     type: number
     group_label: "Dados do Boleto"
     value_format: "$ #,###.##"
     label: "Valor Total"
     description: "Indica o valor total do boleto. Considerando: Valor de Boleto + Juros + Multa + Despesa de Cobrança"
-    sql: ${vl_boleto}+${vl_juros}+${vl_multa}+${vl_despesa};;
+    sql: CASE WHEN ${dias_atraso} = 0 THEN ${vl_boleto}
+          WHEN ${dias_atraso} > 0 AND ${dias_atraso} < 11 THEN (${dias_atraso} * ${vl_juros}) + ${vl_boleto} +  ${vl_multa}
+          WHEN ${dias_atraso} > 10 THEN (${dias_atraso} * ${vl_juros}) + ${vl_boleto} + ${vl_multa} + ${vl_despesa}
+          ELSE 0 END;;
   }
 
 
@@ -492,13 +494,7 @@ view: financeiro {
   }
 
 
-  dimension: faixa_atraso {
-    type: string
-    group_label: "Dados do Aluno"
-    label: "Faixa de Atraso"
-    description: "Indica a faixa de atraso de pagamento do Aluno"
-    sql: ${TABLE}."FAIXA_ATRASO" ;;
-  }
+
 
 
 

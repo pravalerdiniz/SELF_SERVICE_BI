@@ -21,6 +21,14 @@ view: alunos {
     hidden: yes
   }
 
+  dimension: faixa_atraso {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Faixa de Atraso"
+    description: "Indica a faixa de atraso de pagamento do Aluno"
+    sql: ${TABLE}."FAIXA_ATRASO" ;;
+  }
+
 
   dimension: aluno_idade {
     type: number
