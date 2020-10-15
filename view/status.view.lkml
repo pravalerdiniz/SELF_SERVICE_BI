@@ -181,6 +181,7 @@ view: status {
       time,
       date,
       week,
+      day_of_month,
       month,
       month_name,
       quarter,
