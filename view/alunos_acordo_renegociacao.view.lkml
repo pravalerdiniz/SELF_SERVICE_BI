@@ -15,9 +15,14 @@ view: alunos_acordo_renegociacao {
   f.value:ULT_VECTO::timestamp as ult_vecto,
   f.value:CD_TIPO_ACORDO::int as cd_tipo_acordo,
   f.value:DT_CONCESSAO::date as dt_concessao,
-  f.value:ID_ACO_ACORDO_DIF as id_aco_acordo_dif
+  f.value:ID_ACO_ACORDO_DIF as id_aco_acordo_dif,
+  l.value:DATA::date as data_status,
+  l.value:STATUS_ORIGEM::varchar as  status_origem,
+  l.value:STATUS_DESTINO::varchar as status_destino,
+  l.value:FUNDO_INVESTIMENTO::int as fundo_investimento
   from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
-  lateral flatten (input => RENEGOCIACAO) f ;;
+  lateral flatten (input => RENEGOCIACAO) f ,
+  lateral flatten (input => ACORDO_LOG) l;;
     }
 
   dimension: id_cpf {
@@ -171,6 +176,22 @@ view: alunos_acordo_renegociacao {
     hidden: yes
   }
 
+  dimension: status_origem {
+    type: string
+    label: "Status Origem"
+    description: "Indica o status anterior do contrato de acordo"
+    sql: ${TABLE}."STATUS_ORIGEM" ;;
+    hidden: no
+  }
+
+  dimension: status_destino {
+    type: string
+    label: "Status Destino"
+    description: "Indica o status atual do contrato de acordo"
+    sql: ${TABLE}."STATUS_DESTINO" ;;
+    hidden: no
+  }
+
   dimension: flg_contrato_cedido {
     type: string
     case: {
@@ -186,6 +207,31 @@ view: alunos_acordo_renegociacao {
     drill_fields: [detail*]
   }
 
+  dimension_group: status_log {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: timestamp
+    label: "Status Log"
+    description: "Indica a data de alteração de status do contrato do acordo"
+    sql: ${TABLE}."DATA" ;;
+  }
+
+  dimension: id_fundo_investimento {
+    type: number
+    group_label: "Dados do Fundo de Investimento"
+    label: "ID Fundo de Investimento"
+    description: "Indica o ID do Fundo de Investimento."
+    sql: ${TABLE}."FUNDO_INVESTIMENTO" ;;
+  }
 
 
   measure: count_id_cpf {

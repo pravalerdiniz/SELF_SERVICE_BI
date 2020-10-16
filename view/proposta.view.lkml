@@ -64,7 +64,7 @@ view: proposta {
 
   dimension: faixa_etaria_aluno {
     type: tier
-    tiers: [18,25,30,35,40,45,50,55,60]
+    tiers: [16,18,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
     style: integer
     sql: ${aluno_idade} ;;
     group_label: "Dados do Aluno"
@@ -750,7 +750,8 @@ view: proposta {
     group_label: "Dados do Garantidor"
     label: "Gênero do Garantidor"
     description: "Indica o sexo do Garantidor do aluno."
-    sql: ${TABLE}."FIA_GENERO" ;;
+
+    sql: IFNULL(${TABLE}."FIA_GENERO",'NÃO INFORMADO') ;;
   }
 
   dimension: fia_idade {
