@@ -23,7 +23,7 @@ view: alunos {
 
   dimension: faixa_atraso {
     type: string
-    group_label: "Dados do Aluno"
+    group_label: "Dados Financeiros"
     label: "Faixa de Atraso"
     description: "Indica a faixa de atraso de pagamento do Aluno"
     sql: ${TABLE}."FAIXA_ATRASO" ;;
