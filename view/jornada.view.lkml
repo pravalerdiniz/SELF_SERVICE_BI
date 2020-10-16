@@ -807,7 +807,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,iniciar_proposta_novos]
+    filters: [etapa: "Iniciado", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
     description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
   }
 
@@ -818,7 +820,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "2. Finalizar Proposta"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,finalizar_proposta_novos]
+    filters: [etapa: "Finalizado", status_etapa: "1"
+      ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
 
@@ -829,7 +833,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "3. Mesa de Risco"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,mesa_risco_novos]
+    filters: [etapa: "Aprovado Risco", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mesa_risco_novos]
     description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
 
@@ -840,7 +846,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "4. Aprovação da Instituição"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,finalizar_proposta_novos]
+    filters: [etapa: "Aprovado Instituicao", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
@@ -851,7 +859,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "5. Confirmação de Dados Adicionais"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,finalizar_proposta_novos]
+    filters: [etapa: "Dados Confirmados", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,confirmacao_dados_novos]
     description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
   }
 
@@ -862,7 +872,10 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "6. Geração de Contrato"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,geracao_contrato_novos]
+    filters: [etapa: "Contrato Gerado", status_etapa: "1"
+    ]
+
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,geracao_contrato_novos]
     description: "Mediana do tempo entre o aluno ter seus dados confirmados e ter seu contrato gerado"
   }
 
@@ -873,7 +886,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "7. Assinatura de Contrato"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,assinatura_contrato_novos]
+    filters: [etapa: "Contrato Assinado", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,assinatura_contrato_novos]
     description: "Mediana do tempo entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
   }
 
@@ -884,7 +899,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "8. Formalização"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,formalizacao_novos]
+    filters: [etapa: "Formalizado", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,formalizacao_novos]
     description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
 
@@ -895,7 +912,9 @@ view: jornada {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "9. Cessão"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,cessao_novos]
+    filters: [etapa: "Cedido", status_etapa: "1"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,cessao_novos]
     description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
   }
 
