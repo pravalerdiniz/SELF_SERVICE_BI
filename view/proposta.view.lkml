@@ -50,7 +50,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "Gênero do Aluno"
     description: "Indica o sexo do aluno"
-    sql: ${TABLE}."ALUNO_GENERO" ;;
+    sql: IFNULL(${TABLE}."ALUNO_GENERO",'NÃO INFORMADO') ;;
   }
 
   dimension: aluno_idade {
