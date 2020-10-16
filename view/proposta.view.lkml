@@ -62,6 +62,16 @@ view: proposta {
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
 
+  dimension: faixa_etaria_aluno {
+    type: tier
+    tiers: [18,25,30,35,40,45,50,55,60]
+    style: integer
+    sql: ${aluno_idade} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Faixa Etária"
+    description: "Indica a faixa etária do aluno"
+  }
+
   dimension: aluno_nome {
     type: string
     group_label: "Dados do Aluno"
@@ -80,6 +90,17 @@ view: proposta {
     sql: ${TABLE}."ALUNO_RENDA" ;;
     required_access_grants: [grupo_renda]
   }
+
+  dimension: faixa_renda_aluno {
+    type: tier
+    tiers: [1000,2000,3000,4000,6000,8000,10000]
+    style: integer
+    sql: ${aluno_renda} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Faixa de Renda"
+    description: "Indica a faixa de renda do aluno"
+  }
+
 
   dimension: aluno_uf {
     type: string
@@ -741,6 +762,16 @@ view: proposta {
     sql: ${TABLE}."FIA_IDADE" ;;
   }
 
+  dimension: faixa_etaria_fiador {
+    type: tier
+    tiers: [18,25,30,35,40,45,50,55,60]
+    style: integer
+    sql: ${fia_idade} ;;
+    group_label: "Dados do Garantidor"
+    group_item_label: "Faixa Etária do Garantidor"
+    description: "Indica a faixa etária do garantidor"
+  }
+
   dimension: fia_nome {
     type: string
     group_label: "Dados do Garantidor"
@@ -759,6 +790,17 @@ view: proposta {
     sql: ${TABLE}."FIA_RENDA" ;;
     required_access_grants: [grupo_renda]
   }
+
+  dimension: faixa_renda_fiador {
+    type: tier
+    tiers: [1000,2000,3000,4000,6000,8000,10000]
+    style: integer
+    sql: ${fia_renda} ;;
+    group_label: "Dados do Garantidor"
+    group_item_label: "Faixa de Renda do Garantidor"
+    description: "Indica a faixa de renda do garantidor"
+  }
+
 
   dimension: fia_uf {
     type: string
@@ -1386,9 +1428,19 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "Renda Familia"
     value_format: "0"
-    description: "Indica o valor da renda familia do aluno"
+    description: "Indica o valor da renda familiar do aluno"
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
     required_access_grants: [grupo_renda]
+  }
+
+  dimension: faixa_renda_familiar {
+    type: tier
+    tiers: [1000,2000,3000,4000,6000,8000,10000]
+    style: integer
+    sql: ${renda_familiar} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Faixa de Renda Familia"
+    description: "Indica a faixa de renda familiar do aluno"
   }
 
   dimension: representante_atual {
