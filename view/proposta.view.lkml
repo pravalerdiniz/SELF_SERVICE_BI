@@ -64,7 +64,7 @@ view: proposta {
 
   dimension: faixa_etaria_aluno {
     type: tier
-    tiers: [16,18,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
+    tiers: [16,18,25,30,35,40,50]
     style: integer
     sql: ${aluno_idade} ;;
     group_label: "Dados do Aluno"
@@ -1301,6 +1301,7 @@ view: proposta {
     label: "Porcentagem de Comissão da Instituição"
     description: "Indica a porcentagem de comissão recebida da Instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
+
   }
 
   dimension: perc_desagio {

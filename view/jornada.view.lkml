@@ -737,12 +737,14 @@ view: jornada {
     group_label: "Quantidade de Status"
     group_item_label: "Porcentagem"
     sql: ${sum_status} ;;
+
     description: "Porcentagem do total da soma de status"
   }
 
    measure: count_cpf {
      type: count_distinct
      sql: ${id_cpf} ;;
+    drill_fields: [detail*]
      group_label: "Quantidade de Alunos"
      group_item_label: "Valor"
      description: "Contagem de CPFs únicos"
@@ -751,6 +753,7 @@ view: jornada {
   measure: perc_cpf {
     type: percent_of_total
     sql: ${id_cpf} ;;
+    drill_fields: [detail*]
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     description: "Percentual do total de alunos"
@@ -759,6 +762,7 @@ view: jornada {
   measure: count_proposta {
     type: count_distinct
     sql: ${id_proposta} ;;
+    drill_fields: [detail*]
     group_label: "Quantidade de Propostas"
     group_item_label: "Valor"
     description: "Contagem de Propostas"
@@ -767,6 +771,7 @@ view: jornada {
   measure: perc_proposta {
     type: percent_of_total
     sql: ${id_proposta} ;;
+    drill_fields: [detail*]
     group_label: "Quantidade de Propostas"
     group_item_label: "Porcentagem"
     description: "Percentual do total de propostas"
@@ -822,6 +827,19 @@ view: jornada {
     value_format: "0"
     filters: [etapa: "Finalizado", status_etapa: "1"
       ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
+    description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
+  }
+
+  measure: avgfinalizar_proposta_novos {
+    type: average
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_fin_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "2. Finalizar Proposta avg"
+    value_format: "0"
+    filters: [etapa: "Finalizado", status_etapa: "1"
+    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -929,6 +947,7 @@ view: jornada {
     ${assinatura_contrato_novos}+
     ${formalizacao_novos}+
     ${cessao_novos};;
+
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "Total - Tempo de Jornada do Aluno Novo"
     value_format: "0"
@@ -941,6 +960,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_total_novos} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "Total"
     value_format: "0"
@@ -953,6 +973,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_eleg_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "1. Elegibilidade"
     value_format: "0"
@@ -963,6 +984,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_beha_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "2. Aprovação Behavior"
     value_format: "0"
@@ -972,6 +994,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "3. Aprovação da Instituição"
     value_format: "0"
@@ -981,6 +1004,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_dados_conf_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "4. Confirmação de Dados"
     value_format: "0"
@@ -990,6 +1014,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_cont_ger_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "5. Geração de Contrato"
     value_format: "0"
@@ -999,6 +1024,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_cont_ass_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "6. Assinatura de Contrato"
     value_format: "0"
@@ -1009,6 +1035,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_form_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "7. Formalização"
     value_format: "0"
@@ -1019,6 +1046,7 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta};;
     sql: ${jornada_pivot.sla_ced_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "8. Cessão"
     value_format: "0"
@@ -1032,6 +1060,7 @@ view: jornada {
      ${sla_dados_conf_renov}+
     ${sla_cont_ass_renov}
     ${sla_form_renov}+${sla_ced_renov};;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "Total - Tempo de Jornada do Aluno de Renovação"
     value_format: "0"
@@ -1043,11 +1072,25 @@ view: jornada {
     type: median
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_total_renov} ;;
+    drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
     group_item_label: "Total"
     value_format: "0"
     hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
+  }
+
+
+  set: detail {
+    fields: [
+      id_cpf,
+      cpf_aluno,
+      id_proposta,
+      etapa,
+      descricao_geral_ultimo_status
+
+
+    ]
   }
 
 }

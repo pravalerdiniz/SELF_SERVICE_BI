@@ -219,10 +219,10 @@ view: alunos_acordo_renegociacao {
       year
     ]
     convert_tz: no
-    datatype: timestamp
+    datatype: date
     label: "Status Log"
     description: "Indica a data de alteração de status do contrato do acordo"
-    sql: ${TABLE}."DATA" ;;
+    sql: ${TABLE}."DATA_STATUS" ;;
   }
 
   dimension: id_fundo_investimento {
