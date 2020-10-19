@@ -72,7 +72,7 @@ view: alunos_acordo_renegociacao {
   dimension: vl_presente_divida {
     type: number
     group_label: "Valores"
-    group_item_label:  "Valor Presente"
+    group_item_label:  "Valor Presente Dívida"
     value_format: "$ ,.00"
     description: "Indica o valor total da dívida do aluno trazendo as parcelas futuras ao valor presente"
     sql: ${TABLE}."VP_DIVIDA" ;;
@@ -333,6 +333,24 @@ view: alunos_acordo_renegociacao {
     sql: ${alunos.val_presente} ;;
   }
 
+  measure: sum_total_acordo {
+    type: sum
+    group_label: "Valores"
+    group_item_label: "Total Acordo"
+    description: "Indica a soma do valor total do acordo do aluno"
+    sql: ${total_acordo} ;;
+  }
+
+  dimension: sum_valor_acordo {
+    type: number
+    group_label: "Valores"
+    group_item_label: "Valor Acordo"
+    description: "Indica a soma dos valores do acordo do aluno"
+    sql: ${valor_acordo} ;;
+  }
+
+
+
 
 
   measure: count_contratos_cedidos  {
@@ -351,6 +369,7 @@ view: alunos_acordo_renegociacao {
         data_acordo_date,
         id_proposta_acordo,
         vl_presente_divida,
+        sum_valor_presente_aluno,
         valor_acordo,
         qtd_prestacoes_acordo,
         total_acordo,

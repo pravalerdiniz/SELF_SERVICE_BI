@@ -1,5 +1,5 @@
 view: financeiro {
-  sql_table_name: "SELF_SERVICE_BI"."FINANCEIRO"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."FINANCEIRO"
     ;;
 
   dimension_group: data_baixa {
