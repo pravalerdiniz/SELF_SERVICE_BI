@@ -1340,22 +1340,31 @@ dimension: ultimo_semestre_cedido_renovacao {
     description: "Indica se o aluno já teve algum titulo em writeoff."
   }
 
-  dimension: ds_ultimo_status {
+  dimension: ds_ultimo_status_proposta {
     type: string
-    sql: ${TABLE}."DS_ULTIMO_STATUS" ;;
+    sql: ${TABLE}."DESC_ST_ULT_PROPOSTA" ;;
     group_label: "Dados de Status"
-    group_item_label: "Descrição - Último Status do Aluno"
+    group_item_label: "Descrição - Último Status da Proposta do Aluno"
     description: "Indica o nome do último status da proposta mais atual do aluno"
   }
 
 
-  dimension: ultimo_status {
+  dimension: ultimo_status_proposta {
+    type: string
+    sql: ${TABLE}."ULT_ST_ULT_PROPOSTA" ;;
+    group_label: "Dados de Status"
+    group_item_label: "Último Status da Proposta do Aluno"
+    description: "Indica o número do último status detalhado da proposta mais atual do aluno"
+  }
+
+  dimension: ultima_proposta {
     type: string
     sql: ${TABLE}."ULTIMO_STATUS" ;;
     group_label: "Dados de Status"
     group_item_label: "Último Status do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
+
 
 
   dimension: random_digit {
@@ -1367,7 +1376,7 @@ dimension: ultimo_semestre_cedido_renovacao {
   }
 
 
-  dimension_group: data_ultimo_status {
+  dimension_group: data_ultimo_status_proposta {
     type: time
     timeframes: [
       raw,
@@ -1378,9 +1387,9 @@ dimension: ultimo_semestre_cedido_renovacao {
       quarter,
       year
     ]
-    sql: ${TABLE}."DATA_ULTIMO_STATUS" ;;
+    sql: ${TABLE}."ULT_DATA_ST_ULT_PROPOSTA" ;;
     label: "Data Último Status"
-    description: "Indica a data do último Status do Aluno"
+    description: "Indica a data do último Status da Proposta mais atual do aluno"
   }
 
 
