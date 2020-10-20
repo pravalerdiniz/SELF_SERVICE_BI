@@ -801,13 +801,32 @@ view: alunos {
 
 
   dimension: ativo_ano_mes {
-    type: number
+    type: string
     sql: ${ano_mes_carteira_ativa.ano_mes};;
     group_label: "Dados do Aluno"
     group_item_label: "Ano Mês Aluno Ativo"
     description: "Indica o Ano e o Mês em que o status do aluno é financeiramente ativo"
+    hidden: yes
 
   }
+
+  dimension_group: ativo_ano_mes {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    sql: TO_DATE(${ativo_ano_mes});;
+    description: "Indica o Ano e o Mês em que o status do aluno é financeiramente ativo"
+
+
+  }
+
 
 
   dimension: id_produto {
@@ -857,6 +876,7 @@ view: alunos {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -870,10 +890,10 @@ view: alunos {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -906,6 +926,7 @@ view: alunos {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
