@@ -99,7 +99,7 @@ view: jornada {
 
 
   dimension: flg_continuacao{
-    type: string
+    type: yesno
     sql: ${TABLE}."FLG_CONTINUACAO" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Proposta de Continuação?"
