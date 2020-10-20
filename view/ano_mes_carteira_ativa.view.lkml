@@ -5,7 +5,7 @@ view: ano_mes_carteira_ativa {
   derived_table: {
     sql: select
             id_cpf,
-            TO_NUMBER(f.value::varchar) as ano_mes
+            LEFT(f.value,4)||'-'||RIGHT(f.value,2)||'-'||'01'::varchar as ano_mes
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => ATIVO_ANOMES) f ;;
   }
@@ -20,15 +20,10 @@ view: ano_mes_carteira_ativa {
   }
 
   dimension: ano_mes {
-    type: number
+    type: date
     label: "Ativo Ano Mes"
     description: "Indica o Ano e o Mês em que o status do aluno é financeiramente ativo"
-    sql: ${TABLE}."ANO_MES" ;;
+    sql: TO_DATE(${TABLE}."ANO_MES") ;;
   }
 
   }
-
-
-
-
-
