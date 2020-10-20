@@ -57,6 +57,7 @@ view: status {
       type: number
       sql: ${TABLE}."CICLO" ;;
       group_label:"Dados do Status"
+      value_format: "#"
       group_item_label: "Ciclo"
       description: "Indica o ciclo - Ano e Semestre (ex. 202002 se refere ao segundo semestre de 2020) "
     }
