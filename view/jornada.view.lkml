@@ -96,6 +96,17 @@ view: jornada {
     description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
   }
 
+
+  dimension: flg_continuacao{
+    type: string
+    sql: ${TABLE}."FLG_CONTINUACAO" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Proposta de Continuação?"
+    description: "Indica se é a proposta é continuação de uma proposta anterior ou não"
+  }
+
+
+
   dimension: semestre_financiamento {
     type: string
     sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
