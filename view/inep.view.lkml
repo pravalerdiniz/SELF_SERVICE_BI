@@ -825,6 +825,7 @@ view: inep {
     type: sum
     group_label:"Dados do Curso"
     label: "Vagas por Curso TOTAL"
+
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_total} ;;
 
   }

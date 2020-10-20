@@ -14,7 +14,7 @@ view: inep_curso_qtd_vagas_inep {
 
 
 
-       FROM "SELF_SERVICE_BI"."INEP" group by 1,2
+       FROM "SELF_SERVICE_BI"."INEP" group by 1,2,3
  ;;
   }
 
