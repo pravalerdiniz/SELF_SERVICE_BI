@@ -843,18 +843,6 @@ view: jornada {
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
 
-  measure: avgfinalizar_proposta_novos {
-    type: average
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_fin_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "2. Finalizar Proposta avg"
-    value_format: "0"
-    filters: [etapa: "Finalizado", status_etapa: "1"
-    ]
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
-    description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
-  }
 
   measure: mesa_risco_novos {
     type: median

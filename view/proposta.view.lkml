@@ -447,8 +447,7 @@ view: proposta {
       quarter,
       year
     ]
-    label: "Validade inicial"
-    group_label:"Data Validade URL"
+    label: "URL - Validade Inicial"
     description: "Indica a data de validade da URL"
     sql: ${TABLE}."DATA_INICIO_URL" ;;
   }
@@ -464,8 +463,7 @@ view: proposta {
       quarter,
       year
     ]
-    label: "Validade final"
-    group_label:"Data Validade URL"
+    label: "URL - Validade Final"
     description: "Indica a data de validade da URL"
     sql: ${TABLE}."DATA_FIM_URL" ;;
   }
