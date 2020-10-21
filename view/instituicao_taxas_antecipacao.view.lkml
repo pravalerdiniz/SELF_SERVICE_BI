@@ -16,19 +16,14 @@ view: instituicao_taxas_antecipacao {
     }
 
 
-dimension: id_instituicao_contrato_numero {
-  type: string
-  sql: CONCAT(${id_instituicao},${id_contrato_instituicao},${id_produto},${numero_contratacao}) ;;
-  primary_key: yes
-  hidden: yes
 
-}
 
   dimension: id_instituicao {
     type: string
         label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
+    primary_key: yes
   }
 
 
