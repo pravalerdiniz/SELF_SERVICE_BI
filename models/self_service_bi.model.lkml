@@ -190,6 +190,25 @@ join: instituicao_taxas_antecipacao {
 
   }
 
+  join: alunos {
+    view_label: "3. Alunos"
+    sql_on: ${alunos.id_instituicao}  = ${instituicao.id_instituicao}
+          AND ${alunos.id_campus} = ${instituicao.id_campus}
+          AND    ${alunos.id_curso} = ${instituicao.id_curso} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: ano_mes_carteira_ativa {
+    fields: []
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
+
 
 }
 
