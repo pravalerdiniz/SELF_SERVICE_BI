@@ -22,7 +22,17 @@ view: instituicao_taxas_gestao {
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
+
+  }
+
+
+  dimension:  instituicao_contrato_numero{
+    type: string
+    label: "ID da Instituição"
+    description:"Indica o ID da Instituição de Ensino"
+    sql:CONCAT(${id_instituicao},${id_produto},${numero_contratacao});;
     primary_key: yes
+
   }
 
 
