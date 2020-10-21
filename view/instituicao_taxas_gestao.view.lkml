@@ -32,6 +32,7 @@ view: instituicao_taxas_gestao {
     description:"Indica o ID da Instituição de Ensino"
     sql:CONCAT(${id_instituicao},${id_produto},${numero_contratacao});;
     primary_key: yes
+    hidden: yes
 
   }
 
