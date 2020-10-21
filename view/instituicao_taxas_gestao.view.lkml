@@ -54,7 +54,7 @@ view: instituicao_taxas_gestao {
   }
 
   dimension: modalidade {
-    type: number
+    type: string
     label: "Modalidade"
     description:"Indica a modalidade do produto"
     sql: ${TABLE}."MODALIDADE";;
