@@ -1397,9 +1397,9 @@ dimension: ultimo_semestre_cedido_renovacao {
   }
 
 
-  dimension: dc_pdd_vl_presente {
+  dimension: dcpdd_vl_presente {
     type: number
-    sql: ${TABLE}."DC_PDD_VL_PRESENTE" ;;
+    sql: ${TABLE}."DCPDD_VL_PRESENTE" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Dívida - Valor Presente (DC_PDD)"
     description: "Indica o valor presente da dívida do aluno com PRAVALER."
