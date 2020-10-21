@@ -825,8 +825,9 @@ view: inep {
     type: sum
     group_label:"Dados do Curso"
     label: "Vagas por Curso TOTAL"
-
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_total} ;;
+    sql_distinct_key: ${id_curso} ;;
+    drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_total]
 
   }
 
@@ -835,6 +836,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - EAD"
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_anual_ead} ;;
+    drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_anual_ead]
 
   }
 
@@ -843,6 +845,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - INTEGRAL"
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_anual_integral} ;;
+    drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_anual_integral]
 
   }
 
@@ -851,6 +854,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - NOTURNO"
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_anual_noturno} ;;
+    drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_anual_noturno]
 
   }
 
@@ -860,6 +864,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Vagas por Curso ANUAL - VESPERTINO"
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_anual_vespertino} ;;
+    drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_anual_vespertino]
 
   }
 

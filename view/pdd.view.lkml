@@ -83,13 +83,33 @@ view: pdd {
     description: "Indica 1 mes após o mes de referencia"
   }
 
-  dimension: data_visao {
-    type: date
-    sql: ${TABLE}."DATA_VISAO" ;;
-    group_label: "Dados do PDD"
-    group_item_label: "Data Visão"
+
+  dimension_group: data_visao {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Data Visão"
     description: "Data do Fechamento"
+    sql: ${TABLE}."DATA_VISAO" ;;
   }
+
+  measure: maxima_data_visao {
+    type: date
+    sql: MAX(${data_visao_raw}) ;;
+    label: "Data Máxima - Visão"
+    convert_tz: no
+  }
+
 
   dimension: dias_atraso_fundo  {
     type: number
@@ -243,7 +263,7 @@ view: pdd {
       ano_cessao_cpf  ,
       ano_cessao_fundo  ,
       ano_mes_obs ,
-      data_visao  ,
+      data_visao_date  ,
       dias_atraso_fundo ,
       fundo ,
       id_instituicao  ,
