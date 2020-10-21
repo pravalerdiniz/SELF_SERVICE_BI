@@ -988,7 +988,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: vl_atraso {
     type: sum
     sql: ${vl_total};;
-    value_format: "$ #,###"
+    value_format: "$ #,###.##"
     group_label: "Valor em Atraso"
     filters: [flg_boleto_atrasado: "yes"]
     group_item_label: "Soma"
