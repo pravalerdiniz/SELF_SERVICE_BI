@@ -57,7 +57,7 @@ view: instituicao_taxas_gestao {
     type: number
     label: "Modalidade"
     description:"Indica a modalidade do produto"
-    sql: ${TABLE}."NUMERO_CONTRATACAO";;
+    sql: ${TABLE}."MODALIDADE";;
   }
   dimension: multiplicador_parcela {
     type: number
