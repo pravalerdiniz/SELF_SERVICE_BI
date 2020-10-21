@@ -24,6 +24,9 @@ view: instituicao_taxas_gestao {
     sql: ${TABLE}."ID_INSTITUICAO";;
   }
 
+
+
+
   dimension: id_produto {
     type: string
     label: "ID Produto"
@@ -38,6 +41,12 @@ view: instituicao_taxas_gestao {
     sql: ${TABLE}."NUMERO_CONTRATACAO";;
   }
 
+  dimension: modalidade {
+    type: number
+    label: "Modalidade"
+    description:"Indica a modalidade do produto"
+    sql: ${TABLE}."NUMERO_CONTRATACAO";;
+  }
   dimension: multiplicador_parcela {
     type: number
     group_item_label: "Multiplicador de Parcela"
@@ -105,7 +114,8 @@ view: instituicao_taxas_gestao {
       taxa_adm,
       taxa_comissao,
       taxa_fee_mensal,
-      taxa_fee_unico
+      taxa_fee_unico,
+      modalidade,
       ]
  }
 
