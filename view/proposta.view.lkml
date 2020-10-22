@@ -1816,6 +1816,8 @@ view: proposta {
 
 
 
+
+
   measure: count_proposta {
     type: count
     group_label: "Proposta"
