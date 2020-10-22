@@ -1749,6 +1749,72 @@ view: proposta {
     sql: ${TABLE}."CLASSE_MODELO_INICIADO" ;;
   }
 
+  dimension: estado_civil_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Estado Civil"
+    description: "Indica o estado civil do aluno"
+    sql: ${TABLE}."ESTADO_CIVIL_ALUNO" ;;
+  }
+
+  dimension: reside_qtd_pessoas_aluno {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "Quantidade de Pessoas na Residência"
+    description: "Informa a quantidade de pessoas que mora na mesma residência que o aluno"
+    sql: ${TABLE}."RESID_QTD_PESSOAS_ALUNO" ;;
+  }
+
+  dimension: tipo_residencia_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Tipo de Residência"
+    description: "Indica o tipo de residencia que o aluno mora (EX. Aluguel, Propria, Financiada, Quitada)"
+    sql: ${TABLE}."TIPO_RESIDENCIA_ALUNO" ;;
+  }
+
+  dimension: estado_civil_fia {
+    type: string
+    group_label: "Dados do Fiador"
+    group_item_label: "Estado Civil"
+    description: "Indica o estado civil do fiador"
+    sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
+  }
+
+  dimension: reside_qtd_pessoas_fia {
+    type: number
+    group_label: "Dados do Fiador"
+    group_item_label: "Quantidade de Pessoas na Residência"
+    description: "Informa a quantidade de pessoas que mora na mesma residência que o fiador"
+    sql: ${TABLE}."RESID_QTD_PESSOAS_FIADOR" ;;
+  }
+
+    dimension: tipo_residencia_fia {
+      type: string
+      group_label: "Dados do Fiador"
+      group_item_label: "Tipo de Residência"
+      description: "Indica o tipo de residencia que o fiador mora (EX. Aluguel, Propria, Financiada, Quitada)"
+      sql: ${TABLE}."TIPO_RESIDENCIA_FIADOR" ;;
+    }
+
+  dimension: fia_parentesco {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Parentesco do Fiador"
+    description: "Indica o tipo de parentesco que o fiador tem com o aluno (EX Pai, Mae, Irmão, Conjuge)"
+    sql: ${TABLE}."FIA_PARENTESCO" ;;
+  }
+
+  dimension: reside_com{
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Mora com quem"
+    description: "Indica quem são as pessoas que moram na mesma residência que o aluno"
+    sql: ${TABLE}."RESIDE_COM" ;;
+  }
+
+
+
 
   measure: count_proposta {
     type: count
@@ -2501,8 +2567,6 @@ view: proposta {
   }
 
 
-
-
   measure: somarprodutocomissao {
     type: sum
     group_label: "Valores Cessão"
@@ -2578,12 +2642,6 @@ view: proposta {
     drill_fields: [id_cpf, id_proposta,id_produto,nm_produto,nm_modalidade_produto,flg_produto_ativo,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta,perc_tx_subsidiado_ies,perc_desagio,tx_mensal_total,tx_mensal_aluno,tx_anual_total]
     description: "Soma da quantidade de contratos cedidos"
   }
-
-
-
-
-
-
 
 
   measure: sum_renda_fam {
