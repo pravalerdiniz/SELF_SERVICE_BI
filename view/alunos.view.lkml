@@ -1317,7 +1317,18 @@ dimension: ultimo_semestre_cedido_renovacao {
     sql: ${TABLE}."FLG_PROMESSA" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "Promessa Ativa?"
+    hidden: yes
     description: "Indica se o aluno possui promessa ativo (Yes/No)"
+  }
+
+
+
+  dimension: status_promessa {
+    type: yesno
+    sql: ${TABLE}."STATUS_PROMESSA" ;;
+    group_label: "1.5 Acordo Informações"
+    group_item_label: "Status da Promessa"
+    description: "Indica qual é o Status da Promessa de pagamento de dívida do Aluno. Ex: Quitada, Aberta ou Quebrada."
   }
 
   dimension_group: data_geracao_collection {
@@ -1404,6 +1415,10 @@ dimension: ultimo_semestre_cedido_renovacao {
     group_item_label: "Dívida - Valor Presente (DC_PDD)"
     description: "Indica o valor presente da dívida do aluno com PRAVALER."
   }
+
+
+
+
 
 
   dimension_group: data_ultimo_status_proposta {
