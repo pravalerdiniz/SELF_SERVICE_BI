@@ -194,7 +194,8 @@ join: instituicao_taxas_antecipacao {
     view_label: "3. Alunos"
     sql_on: ${alunos.id_instituicao}  = ${instituicao.id_instituicao}
           AND ${alunos.id_campus} = ${instituicao.id_campus}
-          AND    ${alunos.id_curso} = ${instituicao.id_curso} ;;
+          AND    ${alunos.id_curso} = ${instituicao.id_curso}
+          and   ${alunos.id_produto} = ${instituicao_contrato_produto_info.id_produto};;
     relationship: one_to_many
     type: left_outer
 

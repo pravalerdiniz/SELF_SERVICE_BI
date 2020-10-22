@@ -58,6 +58,8 @@ view: instituicao_taxas_gestao {
     label: "Modalidade"
     description:"Indica a modalidade do produto"
     sql: ${TABLE}."MODALIDADE";;
+    can_filter: yes
+    suggestions: ["Gestão"]
   }
   dimension: multiplicador_parcela {
     type: number
@@ -73,6 +75,10 @@ view: instituicao_taxas_gestao {
     description:"Indica a Taxa de Juros Mensal do Produto"
     sql: ${TABLE}."TAXA_JUROS_MENSAL";;
   }
+
+
+
+
 
   dimension: taxa_adesao {
     type: number
