@@ -412,6 +412,31 @@ view: jornada {
 
 
 
+dimension: faixa_tempo_sla_iniciados {
+  type: string
+  label: "SLA de Iniciados - Faixa de Tempo"
+  case: {
+    when: {
+      sql: ${jornada_pivot.sla_ini_novos} = '0' ;;
+      label: "0"
+    }
+      when: {
+        sql: ${jornada_pivot.sla_ini_novos} <= 5 ;;
+        label: "< 5"
+      }
+    when: {
+      sql: ${jornada_pivot.sla_ini_novos} <= 15 ;;
+      label: "5 - 15"
+    }
+    when: {
+      sql: ${jornada_pivot.sla_ini_novos} <= 30 ;;
+      label: "15 - 30"
+    }
+    else: "30 >"
+  }
+  }
+
+
 
 
 
