@@ -529,7 +529,7 @@ explore: alunos {
 - proposta.fia_cidade,
 - proposta.fia_uf,
 - proposta.cpf_aluno,
-- proposta.cpf_garantidor,
+- proposta.cpf_fiador,
 - proposta.fia_uf,
 - proposta.regional_atual,
 - proposta.carteira_atual,

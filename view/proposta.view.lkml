@@ -568,9 +568,9 @@ view: proposta {
 
   dimension: ds_fia_trabalha {
     type: string
-    group_label: "Dados do Garantidor"
+    group_label: "Dados do Fiador"
     label: "Vínculo Empregatício"
-    description: "Indica qual o vinculo empregáticio do Garantidor. Ex: Trabalha, Desempregado, Desempregado com renda."
+    description: "Indica qual o vinculo empregáticio do Fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_FIA_TRABALHA" ;;
   }
 
@@ -711,52 +711,52 @@ view: proposta {
 
   dimension: fia_celular {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "Celular do Garantidor"
-    description: "Indica o número do celular do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Celular do Fiador"
+    description: "Indica o número do celular do Fiador do aluno."
     sql: ${TABLE}."FIA_CELULAR" ;;
     required_access_grants: [grupo_telefone]
   }
 
   dimension: fia_cidade {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "Cidade do Garantidor"
-    description: "Indica a cidade de origem do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Cidade do Fiador"
+    description: "Indica a cidade de origem do Fiador do aluno."
     sql: ${TABLE}."FIA_CIDADE" ;;
   }
 
   dimension: fia_email {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "E-mail do Garantidor"
-    description: "Indica o e-mail do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "E-mail do Fiador"
+    description: "Indica o e-mail do Fiador do aluno."
     sql: ${TABLE}."FIA_EMAIL" ;;
     required_access_grants: [grupo_email]
   }
 
   dimension: fia_escolaridade {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "Escolaridade do Garantidor"
-    description: "Indica a escolaridade do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Escolaridade do Fiador"
+    description: "Indica a escolaridade do Fiador do aluno."
     sql: ${TABLE}."FIA_ESCOLARIDADE" ;;
   }
 
   dimension: fia_genero {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "Gênero do Garantidor"
-    description: "Indica o sexo do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Gênero do Fiador"
+    description: "Indica o sexo do Fiador do aluno."
 
     sql: IFNULL(${TABLE}."FIA_GENERO",'NÃO INFORMADO') ;;
   }
 
   dimension: fia_idade {
     type: number
-    group_label: "Dados do Garantidor"
-    label: "Idade do Garantidor"
-    description: "Indica a idade do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Idade do Fiador"
+    description: "Indica a idade do Fiador do aluno."
     value_format_name: id
     sql: ${TABLE}."FIA_IDADE" ;;
   }
@@ -766,26 +766,26 @@ view: proposta {
     tiers: [18,25,30,35,40,45,50,55,60]
     style: integer
     sql: ${fia_idade} ;;
-    group_label: "Dados do Garantidor"
-    group_item_label: "Faixa Etária do Garantidor"
-    description: "Indica a faixa etária do garantidor"
+    group_label: "Dados do Fiador"
+    group_item_label: "Faixa Etária do Fiador"
+    description: "Indica a faixa etária do Fiador"
   }
 
   dimension: fia_nome {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "Nome do Garantidor"
-    description: "Indica o nome do Garantidor do aluno."
+    group_label: "Dados do Fiador"
+    label: "Nome do Fiador"
+    description: "Indica o nome do Fiador do aluno."
     sql: ${TABLE}."FIA_NOME" ;;
     required_access_grants: [grupo_nome]
   }
 
   dimension: fia_renda {
     type: number
-    group_label: "Dados do Garantidor"
-    label: "Renda do Garantidor"
+    group_label: "Dados do Fiador"
+    label: "Renda do Fiador"
     value_format: "$ #,##0.00"
-    description: "Indica o valor da renda do Garantidor do aluno."
+    description: "Indica o valor da renda do Fiador do aluno."
     sql: ${TABLE}."FIA_RENDA" ;;
     required_access_grants: [grupo_renda]
   }
@@ -795,16 +795,16 @@ view: proposta {
     tiers: [1000,2000,3000,4000,6000,8000,10000]
     style: integer
     sql: ${fia_renda} ;;
-    group_label: "Dados do Garantidor"
-    group_item_label: "Faixa de Renda do Garantidor"
-    description: "Indica a faixa de renda do garantidor"
+    group_label: "Dados do Fiador"
+    group_item_label: "Faixa de Renda do Fiador"
+    description: "Indica a faixa de renda do Fiador"
   }
 
 
   dimension: fia_uf {
     type: string
-    group_label: "Dados do Garantidor"
-    label: "UF do Garantidor"
+    group_label: "Dados do Fiador"
+    label: "UF do Fiador"
     sql: ${TABLE}."FIA_UF" ;;
 
   }
@@ -812,9 +812,9 @@ view: proposta {
   dimension: mapa_uf_fiador {
     sql: ${TABLE}."FIA_UF" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
-    group_label: "Dados do Garantidor"
-    group_item_label: "UF do Garantidor - Mapa"
-    description: "Indica a UF do Garantidor, pode ser usado em gráficos de mapa"
+    group_label: "Dados do Fiador"
+    group_item_label: "UF do Fiador - Mapa"
+    description: "Indica a UF do Fiador, pode ser usado em gráficos de mapa"
   }
 
 
@@ -828,11 +828,11 @@ view: proposta {
     sql: ${TABLE}."FLG_ACEITA_TERMO" ;;
   }
 
-  dimension: flg_aceita_termo_garantidor {
+  dimension: flg_aceita_termo_Fiador {
     type: yesno
     group_label: "Dados do Contrato"
-    label: "Etapa Clicksign - Aceita Termo Garantidor?"
-    description: "Indica se o garantidor aceitou o termo de contração digital"
+    label: "Etapa Clicksign - Aceita Termo Fiador?"
+    description: "Indica se o Fiador aceitou o termo de contração digital"
     sql: ${TABLE}."FLG_ACEITA_TERMO_GARANTIDOR" ;;
   }
 
@@ -1095,19 +1095,19 @@ view: proposta {
 
   dimension: id_fia_cpf {
     type: number
-    group_label: "Dados do Garantidor"
+    group_label: "Dados do Fiador"
     label: "ID Fiador"
-    description: "Indica o ID de referência do CPF do Garantidor do aluno."
+    description: "Indica o ID de referência do CPF do Fiador do aluno."
     sql: ${TABLE}."ID_FIA_CPF" ;;
     value_format: "0"
   }
 
 
-  dimension: cpf_garantidor {
+  dimension: cpf_fiador {
     type: number
-    group_label: "Dados do Garantidor"
-    label: "CPF do Garantidor"
-    description: "Indica o CPF do Garantidor"
+    group_label: "Dados do Fiador"
+    label: "CPF do Fiador"
+    description: "Indica o CPF do Fiador"
     sql: ${TABLE}."CPF_GARANTIDOR" ;;
     value_format: "0"
     required_access_grants: [grupo_cpf]
@@ -1210,7 +1210,7 @@ view: proposta {
     sql: ${TABLE}."LINK_ASSINATURA_ALUNO" ;;
   }
 
-  dimension: link_assinatura_garantidor {
+  dimension: link_assinatura_fiador {
     type: string
     group_label: "Dados do Contrato"
     label: "URL - Assinatura Fiador"
@@ -1799,8 +1799,8 @@ view: proposta {
 
   dimension: fia_parentesco {
     type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Parentesco do Fiador"
+    group_label: "Dados do Fiador"
+    group_item_label: "Parentesco"
     description: "Indica o tipo de parentesco que o fiador tem com o aluno (EX Pai, Mae, Irmão, Conjuge)"
     sql: ${TABLE}."FIA_PARENTESCO" ;;
   }
@@ -2670,7 +2670,7 @@ view: proposta {
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
     group_item_label: "Soma"
-    description: "Soma da renda do Garantidor"
+    description: "Soma da renda do Fiador"
     required_access_grants: [grupo_renda]
   }
 
@@ -2680,7 +2680,7 @@ view: proposta {
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
     group_item_label: "Média"
-    description: "Média da renda do Garantidor"
+    description: "Média da renda do Fiador"
     required_access_grants: [grupo_renda]
   }
 
