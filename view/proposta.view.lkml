@@ -2323,6 +2323,15 @@ view: proposta {
   }
 
 
+  measure: avg_taxa_mensal_aluno {
+    type: average
+    group_label: "Taxa"
+    group_item_label: "Taxa Mensal - Aluno | Média"
+    sql:${tx_mensal_aluno};;
+    description: "Média do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
+  }
+
+
   measure: sum_taxa_anual {
     type: sum
     group_label: "Taxa"
@@ -2802,6 +2811,9 @@ view: proposta {
     description: "Indica a quantidade total de alunos na cessão"
     sql: ${id_cpf} ;;
   }
+
+
+
 
   set: detail {
     fields: [
