@@ -2324,9 +2324,9 @@ view: proposta {
   measure: avg_taxa_mensal_aluno {
     type: average
     group_label: "Taxa"
-    group_item_label: "Taxa Mensal - Aluno"
+    group_item_label: "Taxa Mensal - Aluno | Média"
     sql:${tx_mensal_aluno};;
-    description: "Soma do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
+    description: "Média do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
   }
 
 
