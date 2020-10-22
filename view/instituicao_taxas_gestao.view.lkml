@@ -23,7 +23,22 @@ view: instituicao_taxas_gestao {
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
+
   }
+
+
+  dimension:  instituicao_contrato_numero{
+    type: string
+    label: "ID da Instituição"
+    description:"Indica o ID da Instituição de Ensino"
+    sql:CONCAT(${id_instituicao},${id_produto},${numero_contratacao});;
+    primary_key: yes
+    hidden: yes
+
+  }
+
+
+
 
   dimension: id_produto {
     type: string
@@ -47,6 +62,12 @@ view: instituicao_taxas_gestao {
     sql: ${TABLE}."NUMERO_CONTRATACAO";;
   }
 
+  dimension: modalidade {
+    type: string
+    label: "Modalidade"
+    description:"Indica a modalidade do produto"
+    sql: ${TABLE}."MODALIDADE";;
+  }
   dimension: multiplicador_parcela {
     type: number
     group_item_label: "Multiplicador de Parcela"
@@ -114,7 +135,8 @@ view: instituicao_taxas_gestao {
       taxa_adm,
       taxa_comissao,
       taxa_fee_mensal,
-      taxa_fee_unico
+      taxa_fee_unico,
+      modalidade,
       ]
  }
 
