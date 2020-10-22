@@ -1324,7 +1324,7 @@ dimension: ultimo_semestre_cedido_renovacao {
 
 
   dimension: status_promessa {
-    type: yesno
+    type: string
     sql: ${TABLE}."STATUS_PROMESSA" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "Status da Promessa"
