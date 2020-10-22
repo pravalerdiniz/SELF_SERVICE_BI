@@ -4,6 +4,7 @@ view: instituicao_taxas_gestao {
       select
         b.id_instituicao,
         g.value:ID_PRODUTO::varchar as id_produto,
+        g.value:NOME_PRODUTO::varchar as nome_produto,
         g.value:CONTRATACAO::int as numero_contratacao,
         g.value:MULTIPLICADOR_PARCELA::int as multiplicador_parcela,
         g.value:TX_JUROS::float as taxa_juros_mensal,
@@ -44,6 +45,14 @@ view: instituicao_taxas_gestao {
     label: "ID Produto"
     description: "Indica o ID Produto PRAVALER."
     sql: ${TABLE}."ID_PRODUTO";;
+  }
+
+
+  dimension: nome_produto {
+    type: string
+    label: "Nome Produto"
+    description: "Indica o nome do Produto PRAVALER."
+    sql: ${TABLE}."NOME_PRODUTO";;
   }
 
   dimension: numero_contratacao {

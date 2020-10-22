@@ -42,6 +42,7 @@ view: instituicao_taxas_antecipacao {
     label: "Contrato da IES"
     description: "Indica o número do contrato da Instituição por produto"
     sql: ${TABLE}."ID_CONTRATO_INSTITUICAO";;
+    value_format: "0"
   }
 
   dimension: id_produto {
@@ -50,7 +51,6 @@ view: instituicao_taxas_antecipacao {
     description: "Indica o ID Produto PRAVALER."
     sql: ${TABLE}."ID_PRODUTO";;
   }
-
 
   dimension: numero_contratacao {
     type: number
