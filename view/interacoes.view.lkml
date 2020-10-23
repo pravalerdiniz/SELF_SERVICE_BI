@@ -583,7 +583,7 @@ view: interacoes {
 
   dimension: avaliador_monitoria{
     type: string
-    group_item_label: "Agent de Monitoria"
+    group_item_label: "Avaliador de Monitoria"
     group_label: "Dados de Monitoria"
     description: "Indica o nome do Agent de monitoria."
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
