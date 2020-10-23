@@ -509,8 +509,85 @@ view: interacoes {
     sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
+  dimension: feedback{
+    type: string
+    group_item_label: "Feedback"
+    group_label: "Dados de Monitoria"
+    description: "Indica a descrição do feedback de monitoria."
+    sql: ${TABLE}."FEEDBACK" ;;
+  }
 
+  dimension_group: data_criacao_monitoria {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_CRIACAO_MONITORIA" ;;
+    label: "Monitoria - Criação"
+    description: "Indica a data de criação da monitoria."
+  }
 
+  dimension_group: data_atualizacao_monitoria {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_ATUALIZACAO_MONITORIA" ;;
+    label: "Monitoria - Atualização"
+    description: "Indica a data de atualização da monitoria."
+  }
+
+  dimension: flg_primeira_avaliacao{
+    type: yesno
+    group_item_label: "Primeira Avaliação?"
+    group_label: "Dados de Monitoria"
+    description: "Indica se é a primeira avaliação de monitoria."
+    sql: ${TABLE}."FLG_PRIMERA_AVALIACAO" ;;
+  }
+
+  dimension: tipo_checklist{
+    type: string
+    group_item_label: "Tipo do checklist de Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica a descrição do tipo do checklist de monitoria."
+    sql: ${TABLE}."TIPO_CHECKLIST" ;;
+  }
+
+  dimension: nota_monitoramento{
+    type: number
+    group_item_label: "Nota de Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota de monitoria."
+    sql: ${TABLE}."NOTA" ;;
+  }
+
+  dimension: agent_monitoria{
+    type: string
+    group_item_label: "Agent de Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica o nome do Agent de monitoria."
+    sql: ${TABLE}."AGENT_MONITORIA" ;;
+  }
+
+  dimension: avaliador_monitoria{
+    type: string
+    group_item_label: "Agent de Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica o nome do Agent de monitoria."
+    sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
+  }
 
   measure: media_primeiro_tempo_resposta {
     type: average
