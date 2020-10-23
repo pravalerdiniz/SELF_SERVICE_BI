@@ -2721,7 +2721,7 @@ view: proposta {
           id_cpf,
           aluno_nome,
           aluno_email,
-          tipo_proposta,]
+          tipo_proposta]
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Soma"
@@ -2741,7 +2741,7 @@ view: proposta {
       id_cpf,
       aluno_nome,
       aluno_email,
-      tipo_proposta,]
+      tipo_proposta]
   }
 
   dimension: qtd_arquivos_fila_interfile {
