@@ -585,7 +585,7 @@ view: interacoes {
     type: string
     group_item_label: "Avaliador de Monitoria"
     group_label: "Dados de Monitoria"
-    description: "Indica o nome do Agent de monitoria."
+    description: "Indica o nome do Avaliador de monitoria."
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
   }
 
