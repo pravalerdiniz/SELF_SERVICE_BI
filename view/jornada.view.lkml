@@ -770,7 +770,7 @@ dimension: faixa_tempo_sla_iniciados {
 
   measure: perc_status {
     type: percent_of_total
-    drill_fields: [id_cpf, id_proposta]
+    drill_fields: [detail*]
     group_label: "Quantidade de Status"
     group_item_label: "Porcentagem"
     sql: ${sum_status} ;;
@@ -827,13 +827,14 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo no Status Atual"
     group_item_label: "Dias"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta]
+    drill_fields: [detail*]
     description: "Media de tempo no status"
   }
 
   measure: tempo_status_hora {
     type: average
     sql: ${tempo_no_status_hora} ;;
+    drill_fields: [detail*]
     group_label: "Tempo no Status Atual"
     group_item_label: "Horas"
     value_format: "0"
@@ -1112,9 +1113,16 @@ dimension: faixa_tempo_sla_iniciados {
       cpf_aluno,
       id_proposta,
       etapa,
-      descricao_geral_ultimo_status
-
-
+      status_etapa,
+      flg_proposta_atual,
+      tipo_proposta,
+      descricao_geral_ultimo_status,
+      data_inicio_da_proposta_date,
+      dt_status_date,
+      proposta.fia_parentesco,
+      proposta.reside_com,
+      proposta.fia_aluno_moram_juntos,
+      proposta.aluno_email
     ]
   }
 

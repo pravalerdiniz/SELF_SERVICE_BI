@@ -67,6 +67,7 @@ view: proposta {
     tiers: [16,18,25,30,35,40,50]
     style: integer
     sql: ${aluno_idade} ;;
+    drill_fields: [id_cpf, cpf_aluno,aluno_idade, id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     group_label: "Dados do Aluno"
     group_item_label: "Faixa Etária"
     description: "Indica a faixa etária do aluno"
@@ -88,6 +89,7 @@ view: proposta {
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
     sql: ${TABLE}."ALUNO_RENDA" ;;
+    drill_fields: [id_cpf, cpf_aluno,id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     required_access_grants: [grupo_renda]
   }
 
@@ -96,6 +98,7 @@ view: proposta {
     tiers: [1000,2000,3000,4000,6000,8000,10000]
     style: integer
     sql: ${aluno_renda} ;;
+    drill_fields: [id_cpf, cpf_aluno,id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     group_label: "Dados do Aluno"
     group_item_label: "Faixa de Renda"
     description: "Indica a faixa de renda do aluno"
@@ -748,7 +751,7 @@ view: proposta {
     group_label: "Dados do Fiador"
     label: "Gênero do Fiador"
     description: "Indica o sexo do Fiador do aluno."
-
+    drill_fields: [detail*]
     sql: IFNULL(${TABLE}."FIA_GENERO",'NÃO INFORMADO') ;;
   }
 
@@ -766,6 +769,7 @@ view: proposta {
     tiers: [18,25,30,35,40,45,50,55,60]
     style: integer
     sql: ${fia_idade} ;;
+    drill_fields: [detail*]
     group_label: "Dados do Fiador"
     group_item_label: "Faixa Etária do Fiador"
     description: "Indica a faixa etária do Fiador"
@@ -787,6 +791,7 @@ view: proposta {
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do Fiador do aluno."
     sql: ${TABLE}."FIA_RENDA" ;;
+
     required_access_grants: [grupo_renda]
   }
 
@@ -1813,7 +1818,19 @@ view: proposta {
     sql: ${TABLE}."RESIDE_COM" ;;
   }
 
-
+  dimension: fia_aluno_moram_juntos{
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Reside com o Fiador"
+    description: "Indica se aluno e fiador moram na mesma residencia"
+    case: {
+      when: {
+        sql: ${reside_com} = ${fia_parentesco};;
+        label: "Sim"
+      }
+      else: "Não"
+    }
+  }
 
 
 
@@ -2678,6 +2695,7 @@ view: proposta {
   measure: sum_renda_fiador {
     type: sum
     sql: ${fia_renda} ;;
+    drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email ]
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
     group_item_label: "Soma"
@@ -2688,6 +2706,7 @@ view: proposta {
   measure: avg_renda_fiador {
     type: average
     sql: ${fia_renda} ;;
+    drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email ]
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
     group_item_label: "Média"
@@ -2698,6 +2717,7 @@ view: proposta {
   measure: sum_renda_aluno {
     type: sum
     sql: ${aluno_renda} ;;
+    drill_fields: [id_proposta, id_cpf, aluno_nome, aluno_email, ]
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Soma"
@@ -2708,6 +2728,7 @@ view: proposta {
   measure: avg_renda_aluno {
     type: average
     sql: ${fia_renda} ;;
+    drill_fields: [id_proposta, id_cpf, aluno_nome, aluno_email, ]
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Média"
