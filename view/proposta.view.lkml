@@ -2706,7 +2706,7 @@ view: proposta {
   measure: avg_renda_fiador {
     type: average
     sql: ${fia_renda} ;;
-    drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email ]
+    drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email, fia_parentesco ]
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
     group_item_label: "Média"
@@ -2717,7 +2717,11 @@ view: proposta {
   measure: sum_renda_aluno {
     type: sum
     sql: ${aluno_renda} ;;
-    drill_fields: [id_proposta, id_cpf, aluno_nome, aluno_email, ]
+    drill_fields: [id_proposta,
+          id_cpf,
+          aluno_nome,
+          aluno_email,
+          tipo_proposta,]
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Soma"
@@ -2728,12 +2732,16 @@ view: proposta {
   measure: avg_renda_aluno {
     type: average
     sql: ${fia_renda} ;;
-    drill_fields: [id_proposta, id_cpf, aluno_nome, aluno_email, ]
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
     required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta,]
   }
 
   dimension: qtd_arquivos_fila_interfile {
