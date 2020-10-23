@@ -179,7 +179,7 @@ view: status {
     type: yesno
     sql: ${TABLE}."FLG_STATUS_PERFORMANCE";;
     group_item_label: "Status - Performance (1º vez no Status)"
-    description: "ndica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
+    description: "Indica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
   }
 
 
