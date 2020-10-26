@@ -1321,7 +1321,20 @@ view: proposta {
     label:"Porcentagem da Taxa Subsidiada"
     description:"Indica a porcentagem da taxa subsidiada pela instituição por contrato."
     sql: ${TABLE}."PERC_TX_SUBSIDIADO_IES" ;;
+    value_format: "0.00%"
   }
+
+  dimension: vl_perc_tx_subsidiado_ies {
+    type: number
+    group_label: "Dados da Instituição"
+    label:"Percentual Subsidiado da Taxa"
+    description:"Indica o percentual da taxa subsidiado pela instituição por contrato."
+    sql: ${perc_tx_subsidiado_ies} * ${tx_mensal_total} ;;
+    value_format: "0.00"
+  }
+
+
+
 
   dimension: periodo_curso {
     type: string
@@ -1536,6 +1549,7 @@ view: proposta {
     label: "Taxa Anual"
     description: "Indica o valor da taxa de juros anual do contrato"
     sql: ${TABLE}."TX_ANUAL_TOTAL" ;;
+    value_format: "0.00"
   }
 
   dimension: tx_mensal_aluno {
@@ -1544,6 +1558,7 @@ view: proposta {
     label: "Taxa Mensal - Aluno"
     description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição. "
     sql: ${TABLE}."TX_MENSAL_ALUNO" ;;
+    value_format: "0.00"
   }
 
   dimension: tx_mensal_total {
@@ -1552,6 +1567,7 @@ view: proposta {
     label: "Taxa Mensal"
     description: "Indica o valor da taxa de juros mensal do contrato"
     sql: ${TABLE}."TX_MENSAL_TOTAL" ;;
+    value_format: "0.00"
   }
 
   dimension: uf_campus {
