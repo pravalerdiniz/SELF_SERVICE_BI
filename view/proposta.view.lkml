@@ -1833,6 +1833,15 @@ view: proposta {
   }
 
 
+  dimension: flg_primeira_contratacao{
+    type: yesno
+    group_label: "Dados de Renovação"
+    group_item_label: "Primeira Recontratação?"
+    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado. (Renovação + Ciclo)"
+    sql: ${TABLE}."FLG_PRIMEIRA_CONTRATACAO" ;;
+  }
+
+
 
 
   measure: count_proposta {
@@ -2790,16 +2799,29 @@ view: proposta {
     sql:${id_proposta};;
     filters: [renovou_proximo_ciclo: "SIM"]
     label: "Quantidade de Renovados Proximo Ciclo"
-    group_label: "Proposta"
+    group_label: "Contrato"
     description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
     drill_fields: [detail*]
   }
 
 
+  measure: count_primeira_contratacao {
+    type: count_distinct
+    sql_distinct_key: ${id_proposta} ;;
+    sql:${id_proposta};;
+    filters: [flg_primeira_contratacao: "yes"]
+    label: "Quantidade de Renovados"
+    group_label: "Contrato"
+    description: "Soma da quantidade de alunos que renovaram por ciclo."
+    drill_fields: [detail*]
+  }
+
+
+
   measure: sum_qtd_contratos_cedidos {
     type: sum
     sql: qtd_contratos_cedidos ;;
-    group_label: "Dados da Proposta"
+    group_label: "Proposta"
     group_item_label: "Quantidade de Contratos Cedidos"
     description: "Indica a quantidade de contratos cedidos"
   }
@@ -2807,7 +2829,7 @@ view: proposta {
   measure: sum_valor_principal_futuro {
     type: sum
     sql: ${TABLE}."VL_PRINCIPAL_FUTURO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Proposta"
     group_item_label: "Valor Principal Futuro"
     description: "Indica o valor previsto do contrato a ser cedido"
   }
@@ -2815,7 +2837,7 @@ view: proposta {
   measure: sum_valor_repasse_futuro {
     type: sum
     sql: ${TABLE}."REPASSE_IES_FUTURO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Proposta"
     group_item_label: "Valor Repasse IES Futuro"
     description: "Indica o valor previsto do repasse da IES do contrato a ser cedido"
   }
@@ -2823,7 +2845,7 @@ view: proposta {
   measure: sum_valor_comissao_futuro {
     type: sum
     sql: ${TABLE}."COMISSAO_PRV_FUTURO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Proposta"
     group_item_label: "Valor comissão PRV Futuro"
     description: "Indica o valor previsto da comissão PRV do contrato a ser cedido"
   }
@@ -2835,7 +2857,7 @@ view: proposta {
 
   measure: qtd_alunos_cessao{
     type: count_distinct
-    group_label: "Dados da Proposta"
+    group_label: "Proposta"
     group_item_label: "Quantidade Alunos Cessão"
     description: "Indica a quantidade total de alunos na cessão"
     sql: ${id_cpf} ;;
