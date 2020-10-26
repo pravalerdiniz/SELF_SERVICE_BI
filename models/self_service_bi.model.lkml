@@ -499,11 +499,7 @@ join: proposta_docs_pendentes {
     sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
     relationship: one_to_many
     type: left_outer
-
-
   }
-
-
 
 }
 

@@ -265,8 +265,8 @@ view: interacoes {
   dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
-    group_item_label: "Data de Monitoria"
-    description: "Indica a data de monitoria realizada."
+    group_item_label: "Data de Registro"
+    description: "Indica a data de registro da monitoria realizada."
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
@@ -529,8 +529,8 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO_MONITORIA" ;;
-    label: "Data de Registro"
-    description: "Indica a data de registro da monitoria."
+    label: "Monitoria - Criação"
+    description: "Indica a data de criação da monitoria."
   }
 
   dimension_group: data_atualizacao_monitoria {
