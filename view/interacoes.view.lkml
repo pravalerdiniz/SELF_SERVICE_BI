@@ -529,8 +529,8 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO_MONITORIA" ;;
-    label: "Monitoria - Criação"
-    description: "Indica a data de criação da monitoria."
+    label: "Data de Registro"
+    description: "Indica a data de registro da monitoria."
   }
 
   dimension_group: data_atualizacao_monitoria {
@@ -559,15 +559,15 @@ view: interacoes {
 
   dimension: tipo_checklist{
     type: string
-    group_item_label: "Tipo do checklist de Monitoria"
+    group_item_label: "Tipo de Checklist"
     group_label: "Dados de Monitoria"
-    description: "Indica a descrição do tipo do checklist de monitoria."
+    description: "Indica a descrição do Tipo de Checklist de monitoria."
     sql: ${TABLE}."TIPO_CHECKLIST" ;;
   }
 
   dimension: nota_monitoramento{
     type: number
-    group_item_label: "Nota de Monitoria"
+    group_item_label: "Nota"
     group_label: "Dados de Monitoria"
     description: "Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
@@ -575,15 +575,15 @@ view: interacoes {
 
   dimension: agent_monitoria{
     type: string
-    group_item_label: "Agent de Monitoria"
+    group_item_label: "Atendente"
     group_label: "Dados de Monitoria"
-    description: "Indica o nome do Agent de monitoria."
+    description: "Indica o nome do Atendente de monitoria."
     sql: ${TABLE}."AGENT_MONITORIA" ;;
   }
 
   dimension: avaliador_monitoria{
     type: string
-    group_item_label: "Avaliador de Monitoria"
+    group_item_label: "Avaliador"
     group_label: "Dados de Monitoria"
     description: "Indica o nome do Avaliador de monitoria."
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
