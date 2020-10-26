@@ -274,6 +274,10 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_renegociacao,
   - proposta.count_tipo_proposta_renovacao,
   - proposta.count_tipo_proposta_seg_repasse,
+  - status.id_proposta,
+  - status.id_cpf,
+  - status.flg_proposta_atual,
+  - status.tipo_proposta
 
 
   ]
@@ -298,7 +302,22 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     relationship: many_to_many
     type: left_outer
   }
+
+  join: status {
+    view_label: "3. Status"
+    sql_on: ${jornada.id_cpf} = ${status.id_cpf} and ${jornada.id_proposta} = ${status.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
 }
+
+
+
+
+}
+
+
 
 explore: financeiro {
   label: "Financeiro"
