@@ -1329,7 +1329,7 @@ view: proposta {
     group_label: "Dados da Instituição"
     label:"Percentual Subsidiado da Taxa"
     description:"Indica o percentual da taxa subsidiado pela instituição por contrato."
-    sql: ${perc_tx_subsidiado_ies} * ${tx_mensal_total} ;;
+    sql: IFNULL(${perc_tx_subsidiado_ies} * ${tx_mensal_total},0) ;;
     value_format: "0.00"
   }
 
@@ -1557,7 +1557,7 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Taxa Mensal - Aluno"
     description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição. "
-    sql: ${TABLE}."TX_MENSAL_ALUNO" ;;
+    sql: IFNULL(${TABLE}."TX_MENSAL_ALUNO",0) ;;
     value_format: "0.00"
   }
 
