@@ -1844,6 +1844,10 @@ view: proposta {
         sql: ${reside_com} = ${fia_parentesco};;
         label: "Sim"
       }
+      when: {
+        sql: ${reside_com} IS NULL ;;
+        label: "Não Informado"
+      }
       else: "Não"
     }
   }
