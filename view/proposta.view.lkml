@@ -1891,7 +1891,7 @@ view: proposta {
       perc_tx_subsidiado_ies,
       vl_subsidiado,
       sum_juros_pago_ies,
-      sum_juros_total,
+      sum_juros_subsidiado,
       tipo_proposta
     ]
   }
@@ -2610,12 +2610,12 @@ view: proposta {
     value_format: "0"
   }
 
-  measure: sum_juros_total {
+  measure: sum_juros_subsidiado {
     type: sum
     group_label: "Valores Cessão"
-    group_item_label: "Juros Total - Soma"
+    group_item_label: "Juros Subsidiado - Soma"
     sql: (${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal} ;;
-    description:  "Indica a soma dos juros do contrato"
+    description:  "Indica a soma do valor do juro subsidiado pela IES do contrato"
     value_format: "0"
   }
 

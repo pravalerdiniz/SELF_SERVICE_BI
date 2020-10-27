@@ -276,6 +276,9 @@ view: jornada {
     description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
   }
 
+
+
+
   dimension: ordem_faixa_tempo {
     type: string
     case: {
@@ -412,31 +415,32 @@ view: jornada {
 
 
 
-dimension: faixa_tempo_sla_iniciados {
-  type: string
-  label: "SLA de Iniciados - Faixa de Tempo"
-  case: {
-    when: {
-      sql: ${jornada_pivot.sla_ini_novos} = '0' ;;
-      label: "0"
-    }
+
+
+
+  dimension: faixa_tempo_sla_iniciados2 {
+    type: string
+    group_label: "Telemetria"
+    label: "SLA de Iniciados - Faixa de Tempo"
+    case: {
       when: {
-        sql: ${jornada_pivot.sla_ini_novos} <= 5 ;;
-        label: "< 5"
+        sql: ${jornada_pivot.sla_ini_novos} = '0' ;;
+        label: "0"
       }
-    when: {
-      sql: ${jornada_pivot.sla_ini_novos} <= 15 ;;
-      label: "5 - 15"
+      else: "0 >"
     }
-    when: {
-      sql: ${jornada_pivot.sla_ini_novos} <= 30 ;;
-      label: "15 - 30"
-    }
-    else: "30 >"
-  }
   }
 
-
+  dimension: dias_iniciar_proposta_novos {
+    type: number
+    sql: ${jornada_pivot.sla_ini_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "1. Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
+    description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
+    hidden: yes
+  }
 
 
 
@@ -843,15 +847,28 @@ dimension: faixa_tempo_sla_iniciados {
   }
 
   # Jornada Novos
+
+
+  measure: iniciar_proposta_novos2 {
+    type: median
+    sql: ${dias_iniciar_proposta_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "1. Iniciar Proposta (Maior que 0)"
+    value_format: "0"
+    filters: [dias_iniciar_proposta_novos: ">0"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos2]
+    description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta, desconsiderando os alunos que tem diferença de dias = 0"
+  }
+
+
   measure: iniciar_proposta_novos {
     type: median
     sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_ini_novos} ;;
+    sql:${jornada_pivot.sla_ini_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
-    filters: [etapa: "Iniciado", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
     description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
   }
@@ -863,8 +880,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "2. Finalizar Proposta"
     value_format: "0"
-    filters: [etapa: "Finalizado", status_etapa: "1"
-      ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -877,8 +892,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "3. Mesa de Risco"
     value_format: "0"
-    filters: [etapa: "Aprovado Risco", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mesa_risco_novos]
     description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
@@ -890,8 +903,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "4. Aprovação da Instituição"
     value_format: "0"
-    filters: [etapa: "Aprovado Instituicao", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
@@ -903,8 +914,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "5. Confirmação de Dados Adicionais"
     value_format: "0"
-    filters: [etapa: "Dados Confirmados", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,confirmacao_dados_novos]
     description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
   }
@@ -916,9 +925,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "6. Geração de Contrato"
     value_format: "0"
-    filters: [etapa: "Contrato Gerado", status_etapa: "1"
-    ]
-
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,geracao_contrato_novos]
     description: "Mediana do tempo entre o aluno ter seus dados confirmados e ter seu contrato gerado"
   }
@@ -930,8 +936,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "7. Assinatura de Contrato"
     value_format: "0"
-    filters: [etapa: "Contrato Assinado", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,assinatura_contrato_novos]
     description: "Mediana do tempo entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
   }
@@ -943,8 +947,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "8. Formalização"
     value_format: "0"
-    filters: [etapa: "Formalizado", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,formalizacao_novos]
     description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
@@ -956,8 +958,6 @@ dimension: faixa_tempo_sla_iniciados {
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "9. Cessão"
     value_format: "0"
-    filters: [etapa: "Cedido", status_etapa: "1"
-    ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,cessao_novos]
     description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
   }
