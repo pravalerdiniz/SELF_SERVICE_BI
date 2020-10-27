@@ -1848,6 +1848,10 @@ view: proposta {
         sql: ${reside_com} IS NULL ;;
         label: "Não Informado"
       }
+      when: {
+        sql: ${fia_parentesco} IS NULL ;;
+        label: "Não Informado"
+      }
       else: "Não"
     }
   }
