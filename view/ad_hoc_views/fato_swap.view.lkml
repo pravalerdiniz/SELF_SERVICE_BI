@@ -459,7 +459,7 @@ view: fato_swap {
 
   measure: somaproduto_tx_pre {
     type: sum
-    sql: ${taxa_pre} * ${passivo_vm} ;;
+    sql: ${taxa_pre} * ${volume_inicial} ;;
     hidden: yes
   }
 
@@ -480,7 +480,7 @@ view: fato_swap {
 
   measure: acum_tx_pre {
     type: number
-    sql: (${somaproduto_tx_pre} / nullif(${soma_passivo_vm},0)) *100  ;;
+    sql: (${somaproduto_tx_pre} / nullif(${soma_volume_inicial},0)) *100  ;;
     value_format: "0.00\%"
     group_label: "Média Ponderada"
     group_item_label: "Taxa Pré Acumulada"
