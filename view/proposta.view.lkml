@@ -746,6 +746,10 @@ view: proposta {
     sql: ${TABLE}."FIA_ESCOLARIDADE" ;;
   }
 
+
+
+
+
   dimension: fia_genero {
     type: string
     group_label: "Dados do Fiador"
@@ -1053,15 +1057,7 @@ view: proposta {
     sql: ${TABLE}."ID_CONSULTOR_FINALIZOU" ;;
   }
 
-  dimension: vl_total_pago  {
-    type: number
-    group_label: "Financiamento"
-    group_item_label: "Aluno - Valor Total"
-    value_format: "$ #,###.00"
-    hidden: yes
-    sql:${vl_prestacoes}*${qtd_prestacoes};;
-    description: "Indica o valor total do financiamento que deverá ser pago pelo aluno."
-  }
+
 
 
   dimension: id_contrato_conjunto {
@@ -1513,6 +1509,8 @@ view: proposta {
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
 
+
+
   dimension: tipo_atual {
     type: string
     group_label: "Dados da Regional"
@@ -1734,7 +1732,7 @@ view: proposta {
     label: "Valor Subsidiado"
     value_format: "0"
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
-    hidden: yes
+
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
 
@@ -1764,6 +1762,33 @@ view: proposta {
     description: "Indica o valor total financiado + valor de IOF da BV. "
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
+
+
+  dimension: juros_total {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Total"
+    sql: CASE WHEN
+           ${vl_financiamento_aluno}-${vl_financiamento} > 1
+          THEN ${vl_financiamento_aluno}-${vl_financiamento}
+          ELSE (${vl_financiamento} - (${vl_repasse_ies} + ${vl_comissao_ideal}))
+          END;;
+    description:  "Indica a soma do valor do juros total do contrato do aluno"
+    hidden: yes
+    value_format: "$ #,###.00"
+  }
+
+
+  dimension: juros_aluno {
+    type: number
+    group_label: "Dados do Contrato"
+    group_item_label: "Valor - Juros do Aluno"
+    sql: ${juros_total} -  (${vl_financiamento} - (${vl_repasse_ies} + ${vl_comissao_ideal}));;
+    description:  "Indica a soma do valor do juros total do contrato do aluno"
+    hidden: yes
+    value_format: "$ #,###.00"
+  }
+
 
 
 
@@ -2077,14 +2102,6 @@ view: proposta {
   }
 
 
-  measure: sum_vl_total_pago  {
-    type: sum
-    group_label: "Financiamento"
-    group_item_label: "Aluno - Valor Total"
-    value_format: "$ #,###.00"
-    sql:${vl_total_pago};;
-    description: "Indica o valor total do financiamento que deverá ser pago pelo aluno."
-  }
 
 
 
@@ -2643,6 +2660,7 @@ view: proposta {
     group_item_label: "Juros Ies - Soma"
     sql: ((${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal}) * ${perc_tx_subsidiado_ies} ;;
     description:  "Indica a soma dos juros pagos pela Instituição"
+    hidden: yes
     value_format: "$ #,###.00"
   }
 
@@ -2650,20 +2668,43 @@ view: proposta {
     type: sum
     group_label: "Valores Cessão"
     group_item_label: "Juros Subsidiado - Soma"
-    sql: (${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal} ;;
+    sql: (${vl_financiamento} - (${vl_repasse_ies} + ${vl_comissao_ideal})) ;;
     description:  "Indica a soma do valor do juros subsidiado pela IES do contrato"
     value_format: "$ #,###.00"
   }
+
+
+
+
+
+
+
 
 
   measure: sum_juros_total {
     type: sum
     group_label: "Valores Cessão"
     group_item_label: "Juros Total - Soma"
-    sql: ${vl_total_pago}-${vl_financiamento}  ;;
+    sql: ${juros_total}  ;;
     description:  "Indica a soma do valor do juros total do contrato do aluno"
     value_format: "$ #,###.00"
   }
+
+
+
+  measure: sum_juros_aluno {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Aluno- Soma"
+    sql: ${juros_aluno}  ;;
+    description:  "Indica a soma do valor do juros do aluno por contrato"
+    value_format: "$ #,###.00"
+  }
+
+
+
+
+
 
 
 
