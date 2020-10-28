@@ -2690,7 +2690,7 @@ view: proposta {
     value_format: "$ #,###.00"
   }
 
-  measure: juros_aluno {
+  measure: sum_juros_aluno {
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Juros Aluno - Soma"
@@ -2701,14 +2701,6 @@ view: proposta {
 
 
 
-  measure: sum_juros_aluno {
-    type: sum
-    group_label: "Valores Cessão"
-    group_item_label: "Juros Aluno- Soma"
-    sql: ${juros_aluno}  ;;
-    description:  "Indica a soma do valor do juros do aluno por contrato"
-    value_format: "$ #,###.00"
-  }
 
 
 
