@@ -1053,6 +1053,17 @@ view: proposta {
     sql: ${TABLE}."ID_CONSULTOR_FINALIZOU" ;;
   }
 
+  dimension: vl_total_pago  {
+    type: number
+    group_label: "Financiamento"
+    group_item_label: "Aluno - Valor Total"
+    value_format: "$ #,###.00"
+    hidden: yes
+    sql:${vl_prestacoes}*${qtd_prestacoes};;
+    description: "Indica o valor total do financiamento que deverá ser pago pelo aluno."
+  }
+
+
   dimension: id_contrato_conjunto {
     type: string
     group_label: "Dados do Contrato"
@@ -1618,7 +1629,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor total do financiamento do contrato"
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
@@ -1627,7 +1638,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento - Aluno "
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno "
     sql: ${TABLE}."VL_FINANCIAMENTO_ALUNO" ;;
   }
@@ -1654,7 +1665,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor da mensalidade descrita no contrato"
     sql: ${TABLE}."VL_MENSALIDADE" ;;
   }
@@ -1673,7 +1684,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Prestação"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor da prestação do contrato"
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
@@ -1753,6 +1764,10 @@ view: proposta {
     description: "Indica o valor total financiado + valor de IOF da BV. "
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
+
+
+
+
 
   dimension: vl_ult_status {
     type: string
@@ -1986,7 +2001,7 @@ view: proposta {
   measure: sum_vl_financiamento {
     type: sum
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Soma"
     sql:${vl_financiamento};;
     description: "Soma do valor total do financiamento do contrato"
@@ -1995,7 +2010,7 @@ view: proposta {
   measure: avg_vl_financiamento  {
     type: average
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Média"
     sql:${vl_financiamento};;
     description: "Média do valor total do financiamento do contrato"
@@ -2004,7 +2019,7 @@ view: proposta {
   measure: min_vl_financiamento {
     type: min
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Mínimo"
     sql:${vl_financiamento};;
     description: "Mínimo do valor total do financiamento do contrato"
@@ -2014,7 +2029,7 @@ view: proposta {
   measure: max_vl_financiamento  {
     type: max
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Máximo"
     sql:${vl_financiamento};;
     description: "Máximo do valor total do financiamento do contrato"
@@ -2026,7 +2041,7 @@ view: proposta {
   measure: sum_vl_financiamento_aluno {
     type: sum
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Aluno - Soma"
     sql:${vl_financiamento_aluno};;
     description: "Soma do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -2035,7 +2050,7 @@ view: proposta {
   measure: avg_vl_financiamento_aluno  {
     type: average
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Aluno - Média"
     sql:${vl_financiamento_aluno};;
     description: "Média do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -2044,7 +2059,7 @@ view: proposta {
   measure: min_vl_financiamento_aluno {
     type: min
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Aluno - Mínimo"
     sql:${vl_financiamento_aluno};;
     description: "Mínimo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
@@ -2054,11 +2069,23 @@ view: proposta {
   measure: max_vl_financiamento_aluno  {
     type: max
     group_label: "Financiamento"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Aluno - Máximo"
     sql:${vl_financiamento_aluno};;
+
     description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
   }
+
+
+  measure: sum_vl_total_pago  {
+    type: sum
+    group_label: "Financiamento"
+    group_item_label: "Aluno - Valor Total"
+    value_format: "$ #,###.00"
+    sql:${vl_total_pago};;
+    description: "Indica o valor total do financiamento que deverá ser pago pelo aluno."
+  }
+
 
 
   measure: sum_iof {
@@ -2173,7 +2200,7 @@ view: proposta {
   measure: sum_mensalidade_contrato {
     type: sum
     group_label: "Mensalidade"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Soma"
     sql:${vl_mensalidade};;
     description: "Soma do valor da mensalidade descrita no contrato"
@@ -2182,7 +2209,7 @@ view: proposta {
   measure: avg_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Média"
     sql:${vl_mensalidade};;
     description: "Média do valor da mensalidade descrita no contrato"
@@ -2191,7 +2218,7 @@ view: proposta {
   measure: min_mensalidade_contrato {
     type: min
     group_label: "Mensalidade"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Mínimo"
     sql:${vl_mensalidade};;
     description: "Mínimo do valor da mensalidade descrita no contrato"
@@ -2201,7 +2228,7 @@ view: proposta {
   measure: max_mensalidade_contrato  {
     type: max
     group_label: "Mensalidade"
-    value_format: "0"
+    value_format: "$ #,###.00"
     group_item_label: "Máximo"
     sql:${vl_mensalidade};;
     description: "Máximo do valor da mensalidade descrita no contrato"
@@ -2322,8 +2349,7 @@ view: proposta {
   measure: sum_vl_rematricula {
     type: sum
     group_label: "Rematricula"
-    group_item_label: "Soma"
-    value_format: "0"
+    value_format: "$ #,###.00"
     sql:${vl_rematricula};;
     description: "Soma do valor da rematricula do aluno por contrato"
   }
@@ -2332,7 +2358,7 @@ view: proposta {
     type: average
     group_label: "Rematricula"
     group_item_label: "Média"
-    value_format: "0"
+    value_format: "$ #,###.00"
     sql:${vl_rematricula};;
     description: "Média do valor da rematricula do aluno por contrato"
   }
@@ -2341,8 +2367,9 @@ view: proposta {
     type: min
     group_label: "Rematricula"
     group_item_label: "Mínimo"
-    value_format: "0"
+    value_format: "$ #,###.00"
     sql:${vl_rematricula};;
+
     description: "Mínimo do valor da rematricula do aluno por contrato"
   }
 
@@ -2351,8 +2378,8 @@ view: proposta {
     type: max
     group_label: "Rematricula"
     group_item_label: "Máximo"
-    value_format: "0"
     sql:${vl_rematricula};;
+    value_format: "$ #,###.00"
     description: "Máximo do valor da rematricula do aluno por contrato"
   }
 
@@ -2361,6 +2388,7 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Mensal"
     sql:${tx_mensal_total};;
+    value_format: "$ #,###.00"
     description: "Soma do valor da taxa mensal do contrato"
   }
 
@@ -2534,8 +2562,8 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Repasse - Soma"
     sql:${vl_repasse_ies};;
+    value_format: "$ #,###.00"
     description: "Soma do valor repassado para as IES"
-    value_format: "0"
   }
 
   measure: avg_repasse {
@@ -2615,7 +2643,7 @@ view: proposta {
     group_item_label: "Juros Ies - Soma"
     sql: ((${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal}) * ${perc_tx_subsidiado_ies} ;;
     description:  "Indica a soma dos juros pagos pela Instituição"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_juros_subsidiado {
@@ -2623,9 +2651,21 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Juros Subsidiado - Soma"
     sql: (${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal} ;;
-    description:  "Indica a soma do valor do juro subsidiado pela IES do contrato"
-    value_format: "0"
+    description:  "Indica a soma do valor do juros subsidiado pela IES do contrato"
+    value_format: "$ #,###.00"
   }
+
+
+  measure: sum_juros_total {
+    type: sum
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Total - Soma"
+    sql: ${vl_total_pago}-${vl_financiamento}  ;;
+    description:  "Indica a soma do valor do juros total do contrato do aluno"
+    value_format: "$ #,###.00"
+  }
+
+
 
 
   measure: somarprodutocomissao {
