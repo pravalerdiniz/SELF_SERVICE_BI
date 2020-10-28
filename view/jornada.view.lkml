@@ -299,11 +299,71 @@ view: jornada {
     hidden: yes
   }
 
+
   dimension: ordem_faixa {
     type: number
     sql: ${ordem_faixa_tempo} ;;
     hidden: yes
   }
+
+  dimension: ordem_etapa {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Ordem - Etapa"
+    description: "Indica a ordem correta por etapa do funil. "
+    sql: ${ordem_etapa_funil} ;;
+
+  }
+
+  dimension: ordem_etapa_funil {
+    type: string
+    case: {
+      when: {
+        sql: ${etapa} = 'Lead' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${etapa} = 'Iniciado' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'Finalizado' ;;
+        label: "3"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Risco' ;;
+        label: "4"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Instituicao' ;;
+        label: "5"
+      }
+      when: {
+        sql: ${etapa} = 'Dados Confirmados' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Gerado' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "8"
+      }
+
+      when: {
+        sql: ${etapa} = 'Formalizado' ;;
+        label: "9"
+      }
+      when: {
+        sql: ${etapa} = 'Cedido';;
+        label: "10"
+      }
+      else: "0"
+    }
+    hidden: yes
+  }
+
 
   dimension: etapa_ultimo_status {
     type: string
