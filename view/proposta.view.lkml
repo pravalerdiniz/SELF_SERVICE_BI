@@ -2690,6 +2690,15 @@ view: proposta {
     value_format: "$ #,###.00"
   }
 
+  measure: juros_aluno {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Juros Aluno - Soma"
+    sql: ${sum_juros_total}-${sum_juros_subsidiado}  ;;
+    description:  "Indica a soma do valor do juros pago pelo aluno"
+    value_format: "$ #,###.00"
+  }
+
 
 
   measure: sum_juros_aluno {
