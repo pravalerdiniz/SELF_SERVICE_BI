@@ -461,7 +461,7 @@ view: farol {
     }
     measure: status15_sla_fora {
       type: sum
-      sql: ${status_15_aluno_revertido_nova_analise_ies_dentro_sla};;
+      sql: ${status_15_aluno_revertido_nova_analise_ies_fora_sla};;
       label: "Status 15 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       link: {
