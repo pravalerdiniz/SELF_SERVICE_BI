@@ -90,6 +90,17 @@ view: financeiro_extrato_titulo {
     description: "Contagem de Extrato por título"
   }
 
+  measure: qtd_parcelas_pagas {
+    type: count_distinct
+    sql: ${id_extrato_titulo} ;;
+    sql_distinct_key: ${id_contrato} ;;
+    filters: [ds_extrato_transacao: "PARCELA"]
+    drill_fields: [detail*]
+    label: "Quantidade de Parcelas Pagas"
+  }
+
+
+
   measure: alunos {
     type: count_distinct
     sql: ${id_cpf} ;;
