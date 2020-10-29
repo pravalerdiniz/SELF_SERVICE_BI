@@ -2694,7 +2694,11 @@ view: proposta {
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Juros Aluno - Soma"
-    sql: ${sum_juros_total}-${sum_juros_subsidiado}  ;;
+    sql: CASE WHEN
+         ${sum_juros_total}-${sum_juros_subsidiado} < 0
+        THEN 0
+        ELSE  ${sum_juros_total}-${sum_juros_subsidiado}
+        END;;
     description:  "Indica a soma do valor do juros pago pelo aluno"
     value_format: "$ #,###.00"
   }
