@@ -90,6 +90,7 @@ view: financeiro_extrato_titulo {
     description: "Contagem de Extrato por título"
   }
 
+
   measure: alunos {
     type: count_distinct
     sql: ${id_cpf} ;;
