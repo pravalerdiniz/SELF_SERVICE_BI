@@ -1023,12 +1023,8 @@ view: farol {
             type: number
             label: "OKR 100% Diario - Alunos Novos"
             sql: CASE WHEN ${TABLE}."Status_11_2_Aluno_no_Portal_da_IES_FORA_SLA" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_13_Aluno_Pendente_Matricula_Fora_SLA" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_14_Aluno_Possui_Divida_IES_Fora_SLA" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_15_Aluno_Revertido_Nova_Analise_IES_Fora_SLA" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_41_Formalizado_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_50_Credito_cedido_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_46_Contrato_Nao_Concedido_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_84_1_Exclusivo_cessao_Aluno_formalizado_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_99_1_Erros_Cessao_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_25_1_Confirmacao_Dados_Fora" = 0 THEN 1 ELSE 0 END+
@@ -1039,7 +1035,6 @@ view: farol {
               CASE WHEN ${TABLE}."Status_31_4_Aguardando_Geracao_contrato_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_33_0_Mesa_geracao_Contratos_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_35_0_Aprovado_Para_Gerar_contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_40_5_Aguardando_Assinatura_Contrato_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_2_0_Proposta_finalizada_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_2_35_Validacao_Dados_Analise_Fora" = 0 THEN 1 ELSE 0 END+
               CASE WHEN ${TABLE}."Status_2_37_Integracao_NeoXBo_Fora" = 0 THEN 1 ELSE 0 END+
@@ -1145,7 +1140,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   measure: perc_okr_diario_novos {
     type: sum
     value_format: "0.0%"
-    sql: ${total_status_fora_novos}/30 ;;
+    sql: ${total_status_fora_novos}/25 ;;
     label: "OKR Diário - Novos"
 
 
