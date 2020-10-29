@@ -1764,7 +1764,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
             sql: ${status_2039_fora} ;;
             link: {
               label: "Detalhado"
-              url: "/looks/449?&f[farol_detalhado.status]={{'2039'}}" }
+              url: "/looks/449?&f[farol_detalhado.status]=%25{{'2039'}}%25" }
 
           }
           measure: sum_status_2031{
