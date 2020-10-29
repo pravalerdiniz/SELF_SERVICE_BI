@@ -39,6 +39,13 @@ join: okr_farol_check_data {
 
   }
 
+datagroup: max_data_carga_farol {
+  sql_trigger:
+      SELECT max(DATA_CARGA) FROM "GRADUADO"."SELF_SERVICE_BI"."FAROL";;
+  max_cache_age: "30 minutes"
+  label: "Última data de Carga - Farol"
+}
+
 
 
   explore: farol_detalhado {}
