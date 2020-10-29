@@ -782,7 +782,7 @@ view: inep {
     type: string
     group_label:"Dados da IES"
     label: "Sigla"
-    sql: ${TABLE}."SGL_IES" ;;
+    sql: ${TABLE}."SIGLA_UF" ;;
   }
 
   dimension: uf_ies {
