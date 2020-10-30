@@ -782,6 +782,7 @@ view: inep {
     type: string
     group_label:"Dados da IES"
     label: "Sigla"
+    hidden: yes
     sql: ${TABLE}."SIGLA_UF" ;;
   }
 
