@@ -789,7 +789,7 @@ view: inep {
     type: string
     group_label: "UF"
     label: "UF"
-    sql: ${TABLE}."UF_IES" ;;
+    sql: ${TABLE}."DS_UF_IES" ;;
   }
 
   dimension: ds_municipio_ies {
