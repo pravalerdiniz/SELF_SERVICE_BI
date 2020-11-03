@@ -1873,26 +1873,12 @@ view: proposta {
     sql: ${TABLE}."RESIDE_COM" ;;
   }
 
-  dimension: fia_aluno_moram_juntos{
-    type: string
+  dimension: flg_mora_fiador{
+    type: yesno
     group_label: "Dados do Aluno"
     group_item_label: "Reside com o Fiador"
     description: "Indica se aluno e fiador moram na mesma residencia"
-    case: {
-      when: {
-        sql: ${reside_com} = ${fia_parentesco};;
-        label: "Sim"
-      }
-      when: {
-        sql: ${reside_com} IS NULL ;;
-        label: "Não Informado"
-      }
-      when: {
-        sql: ${fia_parentesco} IS NULL ;;
-        label: "Não Informado"
-      }
-      else: "Não"
-    }
+    sql: ${TABLE}."FLG_MORA_FIADOR" ;;
   }
 
 
