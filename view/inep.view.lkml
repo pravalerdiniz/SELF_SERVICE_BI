@@ -884,7 +884,7 @@ view: inep {
   }
 
   dimension: mapa_uf {
-    sql: iff(${uf_ies} = 'Não Preenchido', null, ${uf_ies}) ;;
+    sql: iff(${sgl_ies} = 'Não Preenchido', null, ${sgl_ies}) ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "UF"
     label: "UF - Mapa"
