@@ -1693,7 +1693,6 @@ view: proposta {
     label: "Valor Principal"
     value_format: "0"
     description: "Indica o valor principal do contrato."
-    hidden: yes
 
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
