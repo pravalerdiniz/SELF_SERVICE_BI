@@ -780,16 +780,15 @@ view: inep {
 
   dimension: sgl_ies {
     type: string
-    group_label:"Dados da IES"
-    label: "Sigla"
-    hidden: yes
+    group_label:"UF"
+    label: "UF - Sigla"
     sql: ${TABLE}."SIGLA_UF" ;;
   }
 
   dimension: uf_ies {
     type: string
     group_label: "UF"
-    label: "UF"
+    label: "UF - Descrição"
     sql: ${TABLE}."DS_UF_IES" ;;
   }
 
