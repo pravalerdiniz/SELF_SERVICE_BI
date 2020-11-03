@@ -497,7 +497,7 @@ view: instituicao {
   }
 
   dimension: mapa_uf_campus {
-    sql: ${TABLE}."FIA_UF" ;;
+    sql: ${TABLE}."UF_CAMPUS" ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados do Campus - IE"
     group_item_label: "UF - Mapa"
