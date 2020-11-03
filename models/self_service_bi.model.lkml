@@ -473,6 +473,17 @@ join: proposta_docs_pendentes {
   }
 
 
+  join: proposta_metas_gc {
+    view_label: "1.4 Metas - GC"
+    sql_on: ${proposta_metas_gc.grupo_ies}=${proposta.grupo_instituicao} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
+
+
+
   join: status {
     view_label: "3. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
