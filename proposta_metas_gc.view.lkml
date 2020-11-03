@@ -27,6 +27,7 @@ view: proposta_metas_gc {
   dimension: grupo_ies {
     type: string
     label: "Grupo da Instituição"
+    description: "Indica o grupo da instituição de Ensino no PRAVALER."
     sql: ${TABLE}."GRUPO_IES" ;;
   }
 
@@ -47,7 +48,7 @@ view: proposta_metas_gc {
   dimension: marco {
     type: number
     group_label: "Meta"
-    label: "JMarço"
+    label: "Março"
     sql: ${TABLE}."MARCO" ;;
   }
 
