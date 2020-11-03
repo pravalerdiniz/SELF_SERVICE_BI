@@ -257,7 +257,7 @@ view: financeiro {
   }
 
   dimension: id_boleto {
-    type: number
+    type: string
     group_label: "Dados do Boleto"
     label: "ID do Boleto"
     description: "Indica o código de identificação do boleto. O número do Cedente (cednum)."
