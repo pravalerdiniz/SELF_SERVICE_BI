@@ -1959,7 +1959,7 @@ view: proposta {
     value_format: "0"
     group_label: "Quantidade de Alunos"
     group_item_label: "CPF+Ciclo"
-    description: "Contagem de CPFs únicos por Semestre Financiado."
+    description: "Contagem de CPFs únicos por Semestre Financiado. Ex: CPF = 123456 | Semestre Financiado = 202001 (123456202001)"
     drill_fields: [
       cpf_aluno,
       id_cpf,
