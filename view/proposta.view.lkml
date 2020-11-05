@@ -1955,7 +1955,7 @@ view: proposta {
 
   measure: count_cpf_semestre_financiado {
     type: count_distinct
-    sql: ${cpf_semestre_financiado } ;;
+    sql: ${cpf_semestre_financiado} ;;
     value_format: "0"
     group_label: "Quantidade de Alunos"
     group_item_label: "CPF+Ciclo"
