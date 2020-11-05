@@ -1874,11 +1874,25 @@ view: proposta {
   }
 
   dimension: flg_mora_fiador{
-    type: yesno
+    type: string
     group_label: "Dados do Aluno"
     group_item_label: "Reside com o Fiador"
     description: "Indica se aluno e fiador moram na mesma residencia"
     sql: ${TABLE}."FLG_MORA_FIADOR" ;;
+    hidden: yes
+  }
+
+  dimension: mora_com_fiador {
+    case: {
+      when: {
+        sql: ${flg_mora_fiador} = false ;;
+        label: "Não"
+      }
+      else: "Sim"
+    }
+    group_label: "Dados do Aluno"
+    group_item_label: "Reside com o Fiador"
+    description: "Indica se aluno e fiador moram na mesma residencia"
   }
 
 
