@@ -52,6 +52,16 @@ view: jornada {
     description: "Etapas da esteira de contratação do PRAVALER"
   }
 
+
+  dimension: cpf_semestre_financiado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF + Financiado"
+    hidden: yes
+    description: "Indica a chave de CPF + Ciclo de renovação do aluno"
+    sql:CONCAT(${id_cpf},${semestre_financiamento}) ;;
+  }
+
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
@@ -850,6 +860,23 @@ view: jornada {
      group_item_label: "Valor"
      description: "Contagem de CPFs únicos"
    }
+
+
+
+  measure: count_cpf_semestre_financiado {
+    type: count_distinct
+    sql: ${cpf_semestre_financiado} ;;
+    value_format: "0"
+    group_label: "Quantidade de Alunos"
+    group_item_label: "CPF+Ciclo"
+    description: "Contagem de CPFs únicos por Semestre Financiado. Ex: CPF = 123456 | Semestre Financiado = 202001 (123456202001)"
+    drill_fields: [
+      cpf_aluno,
+      id_cpf,
+      id_proposta,
+    ]
+  }
+
 
   measure: perc_cpf {
     type: percent_of_total
