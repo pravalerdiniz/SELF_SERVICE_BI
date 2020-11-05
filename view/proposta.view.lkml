@@ -11,6 +11,16 @@ view: proposta {
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
+
+  dimension: cpf_semestre_financiado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF + Financiado"
+    hidden: yes
+    description: "Indica a chave de CPF + Ciclo de renovação do aluno"
+    sql:CONCAT(${id_cpf},${semestre_financiado}) ;;
+  }
+
   dimension: aluno_celular {
     type: string
     group_label: "Dados do Aluno"
@@ -1942,6 +1952,36 @@ view: proposta {
       tipo_proposta
     ]
   }
+
+  measure: count_cpf_semestre_financiado {
+    type: count_distinct
+    sql: ${cpf_semestre_financiado } ;;
+    value_format: "0"
+    group_label: "Quantidade de Alunos"
+    group_item_label: "CPF+Ciclo"
+    description: "Contagem de CPFs únicos por Semestre Financiado."
+    drill_fields: [
+      cpf_aluno,
+      id_cpf,
+      id_proposta,
+      ds_fundo_investimento,
+      grupo_instituicao,
+      ds_instituicao,
+      area_conhecimento_curso,
+      nm_modalidade_produto,
+      nm_produto,
+      tx_mensal_total,
+      tx_anual_total,
+      perc_tx_subsidiado_ies,
+      vl_subsidiado,
+      sum_juros_pago_ies,
+      sum_juros_subsidiado,
+      tipo_proposta
+    ]
+  }
+
+
+
 
   measure: perc_cpf {
     type: percent_of_total
