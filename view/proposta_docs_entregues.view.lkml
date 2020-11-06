@@ -31,7 +31,6 @@ view: proposta_docs_entregues {
     sql: ${sum_documentos};;
     drill_fields: [detail*]
     label: "Média Documentos Entregues"
-    hidden:yes
     description: "Quantidade média de documentos entregues por proposta durante a formalização"
   }
 
