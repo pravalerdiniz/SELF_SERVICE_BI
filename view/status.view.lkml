@@ -62,6 +62,18 @@ view: status {
       description: "Indica o ciclo - Ano e Semestre (ex. 202002 se refere ao segundo semestre de 2020) "
     }
 
+
+  dimension: cpf_semestre_financiado {
+    type: number
+    sql: CONCAT(${id_cpf},${ciclo}) ;;
+    group_label:"Dados do Status"
+    value_format: "#"
+    group_item_label: "CPF+Ciclo"
+    description: "Indica o CPF + Ciclo do Aluno de Renovação"
+    hidden: yes
+  }
+
+
     dimension: flg_status_atual {
       type: yesno
       sql: ${TABLE}."FLG_STATUS_ATUAL" ;;
@@ -257,6 +269,16 @@ view: status {
     label: "Quantidade de CPFs"
     drill_fields: [id_cpf,id_proposta]
     description: "Contagem de CPFs únicos"
+  }
+
+
+  measure: count_cpf_ciclo {
+    type: count_distinct
+    sql: ${cpf_semestre_financiado} ;;
+    value_format: "0"
+    label: "Quantidade de CPF+Ciclo"
+    drill_fields: [id_cpf,id_proposta]
+    description: "Contagem de CPFs únicos + Ciclo (Semestre Financiado)"
   }
 
   measure: cont_proposta {

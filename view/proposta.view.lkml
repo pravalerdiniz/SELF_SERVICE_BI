@@ -1953,32 +1953,6 @@ view: proposta {
     ]
   }
 
-  measure: count_cpf_semestre_financiado {
-    type: count_distinct
-    sql: ${cpf_semestre_financiado} ;;
-    value_format: "0"
-    group_label: "Quantidade de Alunos"
-    group_item_label: "CPF+Ciclo"
-    description: "Contagem de CPFs únicos por Semestre Financiado. Ex: CPF = 123456 | Semestre Financiado = 202001 (123456202001)"
-    drill_fields: [
-      cpf_aluno,
-      id_cpf,
-      id_proposta,
-      ds_fundo_investimento,
-      grupo_instituicao,
-      ds_instituicao,
-      area_conhecimento_curso,
-      nm_modalidade_produto,
-      nm_produto,
-      tx_mensal_total,
-      tx_anual_total,
-      perc_tx_subsidiado_ies,
-      vl_subsidiado,
-      sum_juros_pago_ies,
-      sum_juros_subsidiado,
-      tipo_proposta
-    ]
-  }
 
 
 
