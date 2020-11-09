@@ -81,8 +81,8 @@ view: alunos_maturidade_info {
 
   measure: count_alunos {
     type: count_distinct
-    sql_distinct_key: ${ano_mes} ;;
-    sql: ${id_cpf} ;;
+    sql_distinct_key:  ${ano_mes} ;;
+    sql:${id_cpf} ;;
   }
 
 
@@ -96,8 +96,9 @@ view: alunos_maturidade_info {
   measure: perc_over15  {
     group_label: "Over 15"
     group_item_label: "Percentual"
-    type: percent_of_total
-    sql: ${count_alunos} ;;
+    type: number
+    sql: (${count_over15}  / NULLIF(${count_alunos},0)) * 100;;
+    value_format: "0.00\%"
   }
 
   measure: count_over30  {
@@ -110,12 +111,13 @@ view: alunos_maturidade_info {
   measure: perc_over30  {
     group_label: "Over 30"
     group_item_label: "Percentual"
-    type: percent_of_total
-    sql: ${count_alunos} ;;
+    type: number
+    sql: (${count_over30}  / NULLIF(${count_alunos},0))*100;;
+    value_format: "0.00\%"
   }
 
   measure: count_over60  {
-    group_label: "Over 15"
+    group_label: "Over 60"
     group_item_label: "Quantidade de Alunos"
     type: count
     filters: [over60: "yes"]
@@ -124,8 +126,10 @@ view: alunos_maturidade_info {
   measure: perc_over60  {
     group_label: "Over 60"
     group_item_label: "Percentual"
-    type: percent_of_total
-    sql: ${count_alunos} ;;
+    type: number
+    sql: (${count_over60}  / NULLIF(${count_alunos},0)*100);;
+    value_format: "0.00\%"
+
   }
 
   set: detail {
