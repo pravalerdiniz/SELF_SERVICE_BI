@@ -916,8 +916,7 @@ view: jornada {
       ds_instituicao,
       ds_campus,
       nm_modalidade_produto,
-      nm_produto,
-      etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
+      nm_produto]
      group_label: "Quantidade de Alunos"
      group_item_label: "Valor"
      description: "Contagem de CPFs únicos"

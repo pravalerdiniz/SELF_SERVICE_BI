@@ -337,8 +337,7 @@ grupo_instituicao,
 ds_instituicao,
 ds_campus,
 nm_modalidade_produto,
-nm_produto,
-status_origem_geral,status_destino_geral_descricao,dt_status_date
+nm_produto
 ]
     description: "Contagem de CPFs únicos"
   }
@@ -357,8 +356,7 @@ grupo_instituicao,
 ds_instituicao,
 ds_campus,
 nm_modalidade_produto,
-nm_produto,
-status_origem_geral,status_destino_geral_descricao,dt_status_date
+nm_produto
 ]
     description: "Contagem de CPFs únicos + Ciclo (Semestre Financiado)"
   }
