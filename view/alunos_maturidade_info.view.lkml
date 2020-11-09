@@ -7,9 +7,9 @@ view: alunos_maturidade_info {
             f.value:MOB::int as MOB,
             f.value:dias_atraso_cpf::int as dias_atraso_cpf,
             f.value:maturidade::int as maturidade,
-            f.value:OVER15::boolean as over15,
-            f.value:OVER30::boolean as over30,
-            f.value:OVER60::boolean as over60
+            f.value:"OVER 15"::boolean as over15,
+            f.value:"OVER 30"::boolean as over30,
+            f.value:"OVER 60"::boolean as over60
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => maturidade_info) f
  ;;
@@ -59,16 +59,73 @@ view: alunos_maturidade_info {
   dimension: over15 {
     type: yesno
     sql: ${TABLE}."OVER15" ;;
+    label: "Over 15 (Yes/No)"
+    description: "Indica se o aluno de uma safra específica ficou acima de 15 dias em atraso 2 meses depois de cedido"
   }
 
   dimension: over30 {
     type: yesno
     sql: ${TABLE}."OVER30" ;;
+    label: "Over 30 (Yes/No)"
+    description: "Indica se o aluno de uma safra específica ficou acima de 30 dias em atraso 3 meses depois de cedido"
+
   }
 
   dimension: over60 {
     type: yesno
     sql: ${TABLE}."OVER60" ;;
+    label: "Over 60 (Yes/No)"
+    description: "Indica se o aluno de uma safra específica ficou acima de 60 dias em atraso 6 meses depois de cedido"
+
+  }
+
+  measure: count_alunos {
+    type: count_distinct
+    sql_distinct_key: ${ano_mes} ;;
+    sql: ${id_cpf} ;;
+  }
+
+
+  measure: count_over15  {
+    group_label: "Over 15"
+    group_item_label: "Quantidade de Alunos"
+    type: count
+    filters: [over15: "yes"]
+    }
+
+  measure: perc_over15  {
+    group_label: "Over 15"
+    group_item_label: "Percentual"
+    type: percent_of_total
+    sql: ${count_alunos} ;;
+  }
+
+  measure: count_over30  {
+    group_label: "Over 30"
+    group_item_label: "Quantidade de Alunos"
+    type: count
+    filters: [over30: "yes"]
+  }
+
+  measure: perc_over30  {
+    group_label: "Over 30"
+    group_item_label: "Percentual"
+    type: percent_of_total
+    sql: ${count_alunos} ;;
+  }
+
+  measure: count_over60  {
+    group_label: "Over 15"
+    group_item_label: "Quantidade de Alunos"
+    type: count
+    filters: [over60: "yes"]
+  }
+
+  measure: perc_over60  {
+    group_label: "Over 60"
+    group_item_label: "Percentual"
+    type: percent_of_total
+    sql: ${count_alunos} ;;
   }
 
   set: detail {
