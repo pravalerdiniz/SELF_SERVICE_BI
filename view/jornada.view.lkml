@@ -508,6 +508,66 @@ view: jornada {
 
 
 
+  dimension: aluno_email {
+    sql: ${proposta.aluno_email};;
+    hidden: yes
+
+  }
+
+
+  dimension: aluno_celular {
+    sql: ${proposta.aluno_celular};;
+    hidden: yes
+
+  }
+
+
+  dimension: grupo_instituicao {
+    sql: ${proposta.grupo_instituicao};;
+    hidden: yes
+
+  }
+
+
+  dimension: ds_instituicao {
+    sql: ${proposta.ds_instituicao};;
+    hidden: yes
+
+  }
+
+
+
+  dimension: ds_campus {
+    sql: ${proposta.ds_campus};;
+    hidden: yes
+
+  }
+
+
+
+
+
+  dimension: nm_modalidade_produto{
+    sql: ${proposta.nm_modalidade_produto};;
+    hidden: yes
+
+  }
+
+
+  dimension: nm_produto{
+    sql: ${proposta.nm_produto};;
+    hidden: yes
+
+  }
+
+  dimension: ds_curso{
+    sql: ${proposta.ds_curso};;
+    hidden: yes
+
+}
+
+
+
 
 
   measure: count {
@@ -848,7 +908,15 @@ view: jornada {
    measure: count_cpf {
      type: count_distinct
      sql: ${id_cpf} ;;
-    drill_fields: [detail*]
+    drill_fields: [cpf_aluno, id_proposta,
+      aluno_email,
+      aluno_celular,
+      ds_curso,
+      grupo_instituicao,
+      ds_instituicao,
+      ds_campus,
+      nm_modalidade_produto,
+      nm_produto]
      group_label: "Quantidade de Alunos"
      group_item_label: "Valor"
      description: "Contagem de CPFs únicos"
