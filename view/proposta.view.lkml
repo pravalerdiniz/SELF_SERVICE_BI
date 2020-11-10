@@ -369,13 +369,14 @@ view: proposta {
   dimension_group: data_fechamento_proposta {
     type: time
     timeframes: [
-      raw,
-      time,
+       raw,
       date,
       week,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     label: "Fechamento da Proposta"
     description: "Indica a data de fechamento da proposta"
@@ -385,13 +386,14 @@ view: proposta {
   dimension_group: data_preenchimento {
     type: time
     timeframes: [
-      raw,
-      time,
+       raw,
       date,
       week,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
