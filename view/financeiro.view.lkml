@@ -630,7 +630,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_aquisicao {
     type: max
     sql: ${vl_aquisicao} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Aquisição"
     group_item_label: "Máximo"
     description: "Valor máximo de aquisição do titulo"
@@ -640,7 +640,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: avg_boleto {
     type: average
     sql: ${vl_boleto} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor do Boleto"
     group_item_label: "Média"
     description: "Valor médio do boleto."
@@ -649,7 +649,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_boleto {
     type: sum
     sql: ${vl_boleto} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor do Boleto"
     group_item_label: "Soma"
     description: "Soma do valor do boleto."
@@ -659,7 +659,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: min_boleto {
     type: min
     sql: ${vl_boleto} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor do Boleto"
     group_item_label: "Mínimo"
     description: "Valor minimo do boleto"
@@ -669,7 +669,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_boleto {
     type: max
     sql: ${vl_boleto} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor do Boleto"
     group_item_label: "Máximo"
     description: "Valor máximo de aquisição do titulo"
@@ -679,7 +679,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: avg_despesa {
     type: average
     sql: ${vl_despesa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Despesa"
     group_item_label: "Média"
     description: "Valor médio de cobrança da despesa"
@@ -688,7 +688,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_despesa {
     type: sum
     sql: ${vl_despesa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Despesa"
     group_item_label: "Soma"
     description: "Soma do valor de cobrança da despesa."
@@ -698,7 +698,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: min_despesa {
     type: min
     sql: ${vl_despesa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Despesa"
     group_item_label: "Mínimo"
     description: "Valor minimo de cobrança da despesa"
@@ -708,7 +708,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_despesa {
     type: max
     sql: ${vl_despesa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Despesa"
     group_item_label: "Máximo"
     description: "Valor máximo de cobrança da despesa"
@@ -717,7 +717,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: avg_juros {
     type: average
     sql: ${vl_juros} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Juros"
     group_item_label: "Média"
     description: "Valor médio de juros aplicado"
@@ -726,7 +726,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_juros {
     type: sum
     sql: ${vl_juros} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Juros"
     group_item_label: "Soma"
     description: "Soma do valor de juros aplicado"
@@ -736,7 +736,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: min_juros {
     type: min
     sql: ${vl_juros} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Juros"
     group_item_label: "Mínimo"
     description: "Valor minimo de juros aplicado"
@@ -746,7 +746,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_juros {
     type: max
     sql: ${vl_juros} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Juros"
     group_item_label: "Máximo"
     description: "Valor máximo de juros aplicado"
@@ -756,7 +756,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: avg_multa {
     type: average
     sql: ${vl_multa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Multa"
     group_item_label: "Média"
     description: "Valor médio de multa aplicada"
@@ -765,7 +765,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_multa {
     type: sum
     sql: ${vl_multa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Multa"
     group_item_label: "Soma"
     description: "Soma do valor da multa aplicada"
@@ -775,7 +775,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: min_multa {
     type: min
     sql: ${vl_multa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Multa"
     group_item_label: "Mínimo"
     description: "Valor minimo da multa aplicada"
@@ -785,7 +785,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_multa {
     type: max
     sql: ${vl_multa} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Multa"
     group_item_label: "Máximo"
     description: "Valor máximo de multa aplicada"
