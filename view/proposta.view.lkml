@@ -2743,7 +2743,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Comissão - Média % Ponderada"
     description: "Valor percentual da comissão média ponderada da Cessão"
-    sql: (${somarprodutocomissao} / ${sum_vl_financiamento}) * 100;;
+    sql: (NULLIF(${somarprodutocomissao},0) / NULLIF(${sum_vl_financiamento},0)) * 100;;
     value_format: "0.00\%"
   }
 
@@ -2761,7 +2761,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Taxa - Média % Ponderada"
     description: "Valor percentual da taxa média ponderada da Cessão"
-    sql: ${somarprodutotaxa} / ${sum_vl_financiamento};;
+    sql: NULLIF(${somarprodutotaxa},0) / NULLIF(${sum_vl_financiamento},0);;
     value_format: "0.00\%"
   }
 
