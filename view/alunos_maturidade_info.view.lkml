@@ -2,7 +2,7 @@ view: alunos_maturidade_info {
   derived_table: {
     sql: select
             id_cpf,
-            f.key as ano_mes,
+            LEFT(f.key,4)||'-'||RIGHT(f.key,2)||'-'||'01'::varchar as ano_mes,
             f.value:FPD::boolean as FPD,
             f.value:MOB::int as MOB,
             f.value:dias_atraso_cpf::int as dias_atraso_cpf,
@@ -26,9 +26,15 @@ view: alunos_maturidade_info {
     description: "Indica o ID do CPF do Aluno"
   }
 
-  dimension: ano_mes {
-    type: string
-    sql: ${TABLE}."ANO_MES" ;;
+  dimension_group: ano_mes {
+    type: time
+    timeframes: [
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: TO_DATE(${TABLE}."ANO_MES");;
     description: "Mês de observação"
   }
 
@@ -81,7 +87,7 @@ view: alunos_maturidade_info {
 
   measure: count_alunos {
     type: count_distinct
-    sql_distinct_key:  ${ano_mes} ;;
+    sql_distinct_key:  ${ano_mes_month} ;;
     sql:${id_cpf} ;;
   }
 
@@ -136,7 +142,7 @@ view: alunos_maturidade_info {
     fields: [
       id_cpf,
       fpd,
-      ano_mes,
+      ano_mes_month,
       mob,
       dias_atraso_cpf,
       maturidade,
