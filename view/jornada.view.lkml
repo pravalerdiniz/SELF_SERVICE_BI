@@ -494,9 +494,35 @@ view: jornada {
     }
   }
 
+
+  dimension: faixa_tempo_sla_finalizado2 {
+    type: string
+    group_label: "Telemetria"
+    label: "SLA de Finalizado - Faixa de Tempo"
+    case: {
+      when: {
+        sql: ${jornada_pivot.sla_fin_novos} = 0 ;;
+        label: "0"
+      }
+      else: "0 >"
+    }
+  }
+
   dimension: dias_iniciar_proposta_novos {
     type: number
     sql: ${jornada_pivot.sla_ini_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "1. Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
+    description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
+    hidden: yes
+  }
+
+
+  dimension: dias_finalizar_proposta_novos {
+    type: number
+    sql: ${jornada_pivot.sla_fin_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
@@ -1019,6 +1045,20 @@ view: jornada {
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
+
+
+  measure: finalizar_proposta_novos2 {
+    type: median
+    sql: ${dias_finalizar_proposta_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "2. Finalizar Proposta (Maior que 0)"
+    value_format: "0"
+    filters: [dias_finalizar_proposta_novos: ">0"
+    ]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos2]
+    description: "Mediana do tempo entre o aluno iniciar  e finalizar uma proposta, desconsiderando os alunos que tem diferença de dias = 0"
+  }
+
 
 
   measure: mesa_risco_novos {
