@@ -62,6 +62,18 @@ view: status {
       description: "Indica o ciclo - Ano e Semestre (ex. 202002 se refere ao segundo semestre de 2020) "
     }
 
+
+  dimension: cpf_semestre_financiado {
+    type: number
+    sql: CONCAT(${id_cpf},${ciclo}) ;;
+    group_label:"Dados do Status"
+    value_format: "#"
+    group_item_label: "CPF+Ciclo"
+    description: "Indica o CPF + Ciclo do Aluno de Renovação"
+    hidden: yes
+  }
+
+
     dimension: flg_status_atual {
       type: yesno
       sql: ${TABLE}."FLG_STATUS_ATUAL" ;;
@@ -244,7 +256,69 @@ view: status {
   }
 
 
+  dimension: cpf_aluno {
+    sql: ${proposta.cpf_aluno};;
+    hidden: yes
 
+  }
+
+  dimension: aluno_email {
+    sql: ${proposta.aluno_email};;
+    hidden: yes
+
+  }
+
+
+  dimension: aluno_celular {
+    sql: ${proposta.aluno_celular};;
+    hidden: yes
+
+  }
+
+
+  dimension: grupo_instituicao {
+    sql: ${proposta.grupo_instituicao};;
+    hidden: yes
+
+  }
+
+
+  dimension: ds_instituicao {
+    sql: ${proposta.ds_instituicao};;
+    hidden: yes
+
+  }
+
+
+
+  dimension: ds_campus {
+    sql: ${proposta.ds_campus};;
+    hidden: yes
+
+  }
+
+
+
+
+
+  dimension: nm_modalidade_produto{
+    sql: ${proposta.nm_modalidade_produto};;
+    hidden: yes
+
+  }
+
+
+  dimension: nm_produto{
+    sql: ${proposta.nm_produto};;
+    hidden: yes
+
+  }
+
+  dimension: ds_curso{
+    sql: ${proposta.ds_curso};;
+    hidden: yes
+
+  }
   measure: count {
     type: count
     drill_fields: [id]
@@ -255,8 +329,36 @@ view: status {
     sql: ${id_cpf} ;;
     value_format: "0"
     label: "Quantidade de CPFs"
-    drill_fields: [id_cpf,id_proposta]
+    drill_fields: [cpf_aluno, id_proposta,
+      aluno_email,
+aluno_celular,
+ds_curso,
+grupo_instituicao,
+ds_instituicao,
+ds_campus,
+nm_modalidade_produto,
+nm_produto
+]
     description: "Contagem de CPFs únicos"
+  }
+
+
+  measure: count_cpf_ciclo {
+    type: count_distinct
+    sql: ${cpf_semestre_financiado} ;;
+    value_format: "0"
+    label: "Quantidade de CPF+Ciclo"
+    drill_fields: [cpf_aluno, id_proposta,
+      aluno_email,
+aluno_celular,
+ds_curso,
+grupo_instituicao,
+ds_instituicao,
+ds_campus,
+nm_modalidade_produto,
+nm_produto
+]
+    description: "Contagem de CPFs únicos + Ciclo (Semestre Financiado)"
   }
 
   measure: cont_proposta {
@@ -300,6 +402,8 @@ view: status {
     description: "Média de dias parado no Status"
 
   }
+
+
 
 
   measure: avg_qtd_dias_status_anterior{

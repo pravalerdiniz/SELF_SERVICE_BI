@@ -1057,8 +1057,6 @@ view: farol {
     type: number
     label: "OKR 100% Diario - Alunos Renovação"
     sql: CASE WHEN ${TABLE}."STATUS_2006_0_FORA" = 0 THEN 1 ELSE 0 END+
-CASE WHEN ${TABLE}."STATUS_2012_3_FORA" = 0 THEN 1 ELSE 0 END+
-CASE WHEN ${TABLE}."STATUS_2012_13_FORA" = 0 THEN 1 ELSE 0 END+
 CASE WHEN ${TABLE}."STATUS_2002_0_FORA" = 0 THEN 1 ELSE 0 END+
 CASE WHEN ${TABLE}."STATUS_2011_1_FORA" = 0 THEN 1 ELSE 0 END+
 CASE WHEN ${TABLE}."STATUS_2011_5_FORA" = 0 THEN 1 ELSE 0 END+
@@ -1095,7 +1093,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
           measure: perc_okr_diario_renovacao {
             type: sum
             value_format: "0.0%"
-            sql: ${total_status_fora_renovacao}/27 ;;
+            sql: ${total_status_fora_renovacao}/28 ;;
             label: "OKR Diário - Renovação"
 
 

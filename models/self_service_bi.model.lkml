@@ -718,7 +718,7 @@ explore: interacoes {
   join: interacoes_detalhes_ligacao {
     view_label: "Detalhes de ligação"
 
-    type: left_outer
+    type: full_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
     relationship: many_to_one
   }

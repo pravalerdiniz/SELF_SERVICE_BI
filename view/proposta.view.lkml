@@ -11,6 +11,16 @@ view: proposta {
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
+
+  dimension: cpf_semestre_financiado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF + Financiado"
+    hidden: yes
+    description: "Indica a chave de CPF + Ciclo de renovação do aluno"
+    sql:CONCAT(${id_cpf},${semestre_financiado}) ;;
+  }
+
   dimension: aluno_celular {
     type: string
     group_label: "Dados do Aluno"
@@ -359,13 +369,14 @@ view: proposta {
   dimension_group: data_fechamento_proposta {
     type: time
     timeframes: [
-      raw,
-      time,
+       raw,
       date,
       week,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     label: "Fechamento da Proposta"
     description: "Indica a data de fechamento da proposta"
@@ -375,13 +386,14 @@ view: proposta {
   dimension_group: data_preenchimento {
     type: time
     timeframes: [
-      raw,
-      time,
+       raw,
       date,
       week,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
@@ -1943,6 +1955,10 @@ view: proposta {
     ]
   }
 
+
+
+
+
   measure: perc_cpf {
     type: percent_of_total
     sql: ${cont_cpf} ;;
@@ -2727,7 +2743,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Comissão - Média % Ponderada"
     description: "Valor percentual da comissão média ponderada da Cessão"
-    sql: (${somarprodutocomissao} / ${sum_vl_financiamento}) * 100;;
+    sql: (NULLIF(${somarprodutocomissao},0) / NULLIF(${sum_vl_financiamento},0)) * 100;;
     value_format: "0.00\%"
   }
 
@@ -2745,7 +2761,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Taxa - Média % Ponderada"
     description: "Valor percentual da taxa média ponderada da Cessão"
-    sql: ${somarprodutotaxa} / ${sum_vl_financiamento};;
+    sql: NULLIF(${somarprodutotaxa},0) / NULLIF(${sum_vl_financiamento},0);;
     value_format: "0.00\%"
   }
 
