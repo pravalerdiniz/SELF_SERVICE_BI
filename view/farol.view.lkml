@@ -353,9 +353,9 @@ view: farol {
       group_label: "ANÁLISE DE RISCO E CREDITO"
       link: {
         label: "Detalhado"
-        #url:"/looks/449?&f[farol_detalhado.status]={{'8.'}}%25" }
+        url:"/looks/449?&f[farol_detalhado.status]={{'8.'}}%25,-8.33" }
         #url:"/looks/449?&f[farol_detalhado.status]=-{{'8.33'}}"}
-        url:"/looks/449?&f[farol_detalhado.status]=8.%25%2C-8.33" }
+        #url:"/looks/449?&f[farol_detalhado.status]=8.%25%2C-8.33" }
     }
 
     measure: status_9 {
