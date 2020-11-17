@@ -755,6 +755,8 @@ view: jornada {
     description: "Soma de todos os alunos novos que passaram pela etapa Cedido"
   }
 
+
+
 # ETAPA RENOVAÇÃO
 
   measure: iniciado {
@@ -910,6 +912,101 @@ view: jornada {
     description: "Soma de todos os alunos renovação que passaram pela etapa Cedido"
   }
 
+
+  #ETAPA DE INTERCÂMBIO
+
+
+  measure: cadastro_finalizado {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Cadastro Finalizado"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "INTERCAMBIO"
+    }
+    group_label: "Etapa - Aluno Intercâmbio"
+    group_item_label: "Cadastro Finalizado"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa de Cadastro Finalizado"
+  }
+
+
+
+
+  measure: aguardando_documento {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Aguardando Documentos"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "INTERCAMBIO"
+    }
+    group_label: "Etapa - Aluno Intercâmbio"
+    group_item_label: "Aguardando Documento"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa de Aguardando Documento"
+  }
+
+
+  measure: aguardando_assinatura {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Aguardando Assinatura"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "INTERCAMBIO"
+    }
+    group_label: "Etapa - Aluno Intercâmbio"
+    group_item_label: "Aguardando Assinatura do Contrato"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa de Aguardando Assinatura"
+  }
+
+
+  measure: aguardando_cessao {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Aguardando Cessao"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "INTERCAMBIO"
+    }
+    group_label: "Etapa - Aluno Intercâmbio"
+    group_item_label: "Aguardando Cessao"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa de Aguardando Cessao"
+  }
+
+
+  measure: cedido_intercambio {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Cedido"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "INTERCAMBIO"
+    }
+    group_label: "Etapa - Aluno Intercâmbio"
+    group_item_label: "Cedido"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa de Cedido"
+  }
+
   measure: sum_status {
     type: sum
     sql: ${status_etapa} ;;
@@ -983,6 +1080,14 @@ view: jornada {
   measure: conversao {
     type: number
     sql: ${cedidos}/nullif(${iniciados},0) ;;
+    value_format: "0.0%"
+    description: "Indica a conversão de iniciados para cedidos, em porcentagem"
+  }
+
+  measure: conversao_intercambio {
+    type: number
+    label: "Conversão - Intercâmbio"
+    sql: ${cedido_intercambio}/nullif(${cadastro_finalizado},0) ;;
     value_format: "0.0%"
     description: "Indica a conversão de iniciados para cedidos, em porcentagem"
   }

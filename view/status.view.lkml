@@ -348,7 +348,7 @@ nm_produto
     sql: ${cpf_semestre_financiado} ;;
     value_format: "0"
     label: "Quantidade de CPF+Ciclo"
-    drill_fields: [cpf_aluno, id_proposta,
+    drill_fields: [cpf_aluno, ciclo, id_proposta, tipo_proposta,
       aluno_email,
 aluno_celular,
 ds_curso,
