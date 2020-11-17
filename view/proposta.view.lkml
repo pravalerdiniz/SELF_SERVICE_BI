@@ -1080,6 +1080,15 @@ view: proposta {
     sql: ${TABLE}."ID_CONTRATO_CONJUNTO" ;;
   }
 
+  dimension: id_contrato {
+    type: string
+    group_label: "Dados do Contrato"
+    label: "ID Contrato"
+    description: "Indica o ID do Contrato, se vier do BO é o mesmo número da proposta, se for Intercâmbio o número é diferente."
+    sql: ${TABLE}."ID_CONTRATO" ;;
+  }
+
+
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno"
