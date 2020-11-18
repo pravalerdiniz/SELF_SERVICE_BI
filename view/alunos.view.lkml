@@ -1136,6 +1136,19 @@ dimension: ultimo_semestre_cedido_renovacao {
 
 }
 
+dimension: meses_evasao {
+  type: number
+  group_label: "Evasão"
+  label: "Evasão - Quantidade de Meses"
+  description: "Indica a quantidade de meses que o aluno evadiou do pravaler"
+  sql: datediff('month',${data_primeira_cessao_date},${data_ultimo_status_proposta_date}) ;;
+}
+
+
+
+
+
+
 
   measure: count_id_cpf {
     type: count_distinct
@@ -1143,6 +1156,7 @@ dimension: ultimo_semestre_cedido_renovacao {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
+    drill_fields: [id_cpf]
   }
 
   measure: perc_cpf {
@@ -1385,11 +1399,11 @@ dimension: ultimo_semestre_cedido_renovacao {
     type: string
     sql: ${TABLE}."ULT_ST_ULT_PROPOSTA" ;;
     group_label: "Dados de Status"
-    group_item_label: "Último Status da Proposta do Aluno"
+    group_item_label: "Último Status da Proposta do Aluno - Detalhado"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
 
-  dimension: ultima_proposta {
+  dimension: ultimo_status {
     type: string
     sql: ${TABLE}."ULTIMO_STATUS" ;;
     group_label: "Dados de Status"
@@ -1440,7 +1454,30 @@ dimension: ultimo_semestre_cedido_renovacao {
 
 
 
+measure: evasao_pravaler {
+  type: count_distinct
+  sql: ${id_cpf} ;;
+  group_label: "Evasão Pravaler"
+  group_item_label: "Valor"
+  description: "Contagem de ID CPFs únicos"
+  filters: [ultimo_status: "102.0, 2048.0, 2048.1"]
+  drill_fields: [id_cpf]
 
+
+}
+
+measure: porc_evasao {
+  type: number
+  sql: ${evasao_pravaler}/${count_id_cpf} ;;
+  group_label: "Evasão Pravaler"
+  group_item_label: "Porcentagem"
+  value_format: "0.00\%"
+  drill_fields: [id_cpf]
+
+
+
+
+}
 
 
 }
