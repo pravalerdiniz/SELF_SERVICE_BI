@@ -1154,7 +1154,7 @@ dimension: faixa_tempo_meses_evasao {
   case: {
     when: {
       sql: ${meses_evasao} <= 6 ;;
-      label: "< 5"
+      label: "< 6"
     }
     when: {
       sql: ${meses_evasao} <= 12 ;;
