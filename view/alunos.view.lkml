@@ -1140,8 +1140,9 @@ dimension: meses_evasao {
   type: number
   group_label: "Evasão"
   label: "Evasão - Quantidade de Meses"
-  description: "Indica a quantidade de meses que o aluno evadiou do pravaler"
+  description: "Indica a quantidade de meses que o foi cedido até ele evadir do pravaler. Deve-se utilizar essa dimensão com as medidas relacionadas a invasão."
   sql: datediff('month',${data_primeira_cessao_date},${data_ultimo_status_proposta_date}) ;;
+
 }
 
 
@@ -1471,7 +1472,7 @@ measure: porc_evasao {
   sql: ${evasao_pravaler}/${count_id_cpf} ;;
   group_label: "Evasão Pravaler"
   group_item_label: "Porcentagem"
-  value_format: "0.00\%"
+  value_format: "0%"
   drill_fields: [id_cpf]
 
 
