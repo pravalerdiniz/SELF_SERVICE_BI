@@ -1498,7 +1498,8 @@ measure: porc_evasao {
   group_label: "Evasão Pravaler"
   group_item_label: "Porcentagem"
   value_format: "0%"
-  drill_fields: [id_cpf]
+  drill_fields: [cpf_aluno,data_primeira_cessao_date,data_ultimo_status_proposta_date,ultimo_status]
+
 
 
 
