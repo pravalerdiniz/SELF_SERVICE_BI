@@ -1140,8 +1140,33 @@ dimension: meses_evasao {
   type: number
   group_label: "Evasão"
   label: "Evasão - Quantidade de Meses"
-  description: "Indica a quantidade de meses que o foi cedido até ele evadir do pravaler. Deve-se utilizar essa dimensão com as medidas relacionadas a invasão."
+  description: "Indica a quantidade de meses que o foi cedido até ele evadir do pravaler. Deve-se utilizar essa dimensão com as medidas relacionadas a evasão do pravaler."
   sql: datediff('month',${data_primeira_cessao_date},${data_ultimo_status_proposta_date}) ;;
+
+}
+
+
+dimension: faixa_tempo_meses_evasao {
+  type: string
+  group_label: "Evasão"
+  label: "Faixa de Tempo em Meses"
+  description: "Indica a faixa de tempo entre o aluno ser cedido até ele evadir em meses.Deve-se utilizar essa dimensão com as medidas relacionadas a evasão do pravaler."
+  case: {
+    when: {
+      sql: ${meses_evasao} <= 5 ;;
+      label: "< 5"
+    }
+    when: {
+      sql: ${meses_evasao} <= 15 ;;
+      label: "5 - 15"
+    }
+    when: {
+      sql: ${meses_evasao} <= 30 ;;
+      label: "15 - 30"
+    }
+    else: "30 >"
+  }
+
 
 }
 
