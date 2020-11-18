@@ -1926,6 +1926,18 @@ view: proposta {
   }
 
 
+  dimension: projeto{
+    type: string
+    group_label: "Dados do Produto"
+    group_item_label: "Projeto"
+    description: "Indica o projeto que a proposta pertentece. EX: P-FIES, KROTON"
+    sql: ${TABLE}."PROJETO" ;;
+  }
+
+
+
+
+
 
 
   measure: count_proposta {
