@@ -1153,18 +1153,22 @@ dimension: faixa_tempo_meses_evasao {
   description: "Indica a faixa de tempo entre o aluno ser cedido até ele evadir em meses.Deve-se utilizar essa dimensão com as medidas relacionadas a evasão do pravaler."
   case: {
     when: {
-      sql: ${meses_evasao} <= 5 ;;
+      sql: ${meses_evasao} <= 6 ;;
       label: "< 5"
     }
     when: {
-      sql: ${meses_evasao} <= 15 ;;
-      label: "5 - 15"
+      sql: ${meses_evasao} <= 12 ;;
+      label: "6 - 12"
     }
     when: {
-      sql: ${meses_evasao} <= 30 ;;
-      label: "15 - 30"
+      sql: ${meses_evasao} <= 18 ;;
+      label: "12 - 18"
     }
-    else: "30 >"
+    when: {
+      sql: ${meses_evasao} <= 24 ;;
+      label: "18 - 24"
+    }
+    else: "24 >"
   }
 
 
