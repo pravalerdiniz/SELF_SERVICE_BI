@@ -1926,6 +1926,14 @@ view: proposta {
   }
 
 
+  dimension: flg_primeira_contratacao_status{
+    type: yesno
+    group_label: "Dados de Renovação"
+    group_item_label: "Primeira Recontratação Ciclo?"
+    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado. (Renovação + Ciclo)"
+    sql: ${TABLE}."FLG_PRIMEIRA_CONTRATACAO_STATUS" ;;
+  }
+
   dimension: projeto{
     type: string
     group_label: "Dados do Produto"
