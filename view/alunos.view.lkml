@@ -1420,8 +1420,8 @@ dimension: faixa_tempo_meses_evasao {
     type: string
     sql: ${TABLE}."DESC_ST_ULT_PROPOSTA" ;;
     group_label: "Dados de Status"
-    group_item_label: "Descrição - Último Status da Proposta do Aluno"
-    description: "Indica o nome do último status da proposta mais atual do aluno"
+    group_item_label: "Descrição - Último Status Detalhado Aluno"
+    description: "Indica o nome do último status detalhado da proposta mais atual do aluno"
   }
 
 
@@ -1431,26 +1431,30 @@ dimension: faixa_tempo_meses_evasao {
     type: string
     sql: ${TABLE}."ULT_ST_ULT_PROPOSTA" ;;
     group_label: "Dados de Status"
-    group_item_label: "Último Status da Proposta do Aluno - Detalhado"
+    group_item_label: "Último Status Detalhado do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
 
-  dimension: ultimo_status {
+  dimension: id_status_geral {
     type: string
-    sql: ${TABLE}."ULTIMO_STATUS" ;;
+    sql: ${TABLE}."ID_STATUS_GERAL" ;;
     group_label: "Dados de Status"
-    group_item_label: "Último Status do Aluno"
-    description: "Indica o número do último status detalhado da proposta mais atual do aluno"
+    group_item_label: "Último Status Geral do Aluno"
+    description: "Indica o número do último status geral da proposta mais atual do aluno"
   }
 
 
-  dimension: ds_ultimo_status {
+  dimension: ds_status_geral {
     type: string
-    sql: ${TABLE}."DS_ULTIMO_STATUS" ;;
+    sql: ${TABLE}."ID_STATUS_GERAL" ;;
     group_label: "Dados de Status"
-    group_item_label: "Descrição do último Status do Aluno"
-    description: "Descrição do último status detalhado da proposta mais atual do aluno"
+    group_item_label: "Descrição - Último Status Geral do Aluno"
+    description: "Indica o nome do último status geral da proposta mais atual do aluno"
   }
+
+
+
+
 
 
   dimension: random_digit {
@@ -1500,7 +1504,7 @@ measure: evasao_pravaler {
   group_label: "Evasão Pravaler"
   group_item_label: "Valor"
   description: "Contagem de ID CPFs únicos"
-  filters: [ultimo_status: "102.0, 2048.0, 2048.1"]
+  filters: [ultimo_status_proposta: "102.0, 2048.0, 2048.1"]
   drill_fields: [id_cpf]
 
 
@@ -1513,7 +1517,7 @@ measure: porc_evasao {
   group_item_label: "Porcentagem"
   description: "Indica a porcentagem de alunos que evadiram do PRAVALER"
   value_format: "0%"
-  drill_fields: [cpf_aluno,data_primeira_cessao_date,data_ultimo_status_proposta_date,ultimo_status]
+  drill_fields: [cpf_aluno,data_primeira_cessao_date,data_ultimo_status_proposta_date,ultimo_status_proposta]
 
 
 
