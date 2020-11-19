@@ -1425,6 +1425,8 @@ dimension: faixa_tempo_meses_evasao {
   }
 
 
+
+
   dimension: ultimo_status_proposta {
     type: string
     sql: ${TABLE}."ULT_ST_ULT_PROPOSTA" ;;
@@ -1441,6 +1443,14 @@ dimension: faixa_tempo_meses_evasao {
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
   }
 
+
+  dimension: ds_ultimo_status {
+    type: string
+    sql: ${TABLE}."DS_ULTIMO_STATUS" ;;
+    group_label: "Dados de Status"
+    group_item_label: "Descrição do último Status do Aluno"
+    description: "Descrição do último status detalhado da proposta mais atual do aluno"
+  }
 
 
   dimension: random_digit {
