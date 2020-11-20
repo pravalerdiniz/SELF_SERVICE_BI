@@ -1504,7 +1504,7 @@ measure: evasao_pravaler {
   group_label: "Evasão Pravaler"
   group_item_label: "Valor"
   description: "Contagem de ID CPFs únicos"
-  filters: [ultimo_status_proposta: "102.0, 2048.0, 2048.1"]
+  filters: [id_status_geral:  "102, 2048"]
   drill_fields: [id_cpf]
 
 
