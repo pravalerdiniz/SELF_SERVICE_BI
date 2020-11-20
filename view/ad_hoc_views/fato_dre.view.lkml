@@ -5,7 +5,7 @@ view: fato_dre {
   dimension: custo_captacao {
     type: number
     sql: ${TABLE}."CUSTO_CAPTACAO" ;;
-    value_format: ""
+    value_format: "\"R$ \"#,##0.00"
     group_label: ""
     group_item_label: "Custo de Captação"
     description: "O custo de captação refere-se à remuneração paga aos cotistas dos fundos."
@@ -14,7 +14,7 @@ view: fato_dre {
   dimension: custo_com_pessoal {
     type: number
     sql: ${TABLE}."CUSTO_COM_PESSOAL" ;;
-    value_format: ""
+    value_format: "\"R$ \"#,##0.00"
     group_label: ""
     group_item_label: "Custo com Pessoal"
     description: "O custo com pessoal refere-se aos gastos com salários e benefícios."
