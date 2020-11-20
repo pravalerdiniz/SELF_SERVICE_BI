@@ -26,7 +26,7 @@ view: fato_dre {
     value_format: ""
     group_label: ""
     group_item_label: "Custo de Serviços Prestados"
-    description: "O custo de serviços prestados refere-se as receitas com comissão."
+    description: "O custo de serviços prestados refere-se aos gastos operacionais."
   }
 
   dimension: data {
@@ -43,7 +43,7 @@ view: fato_dre {
     value_format: ""
     group_label: ""
     group_item_label: "Depreciação e Amortização"
-    description: "Refere-se as despesas com depreciação. Exemplo: mobiliário e equipamentos de tecnologia."
+    description: "Refere-se às despesas com depreciação. Exemplo: mobiliário e equipamentos de tecnologia."
   }
 
   dimension: despesa_com_pessoal {
@@ -97,7 +97,7 @@ view: fato_dre {
     value_format: ""
     group_label: ""
     group_item_label: "Receita de Juros Líquida"
-    description: "Refere-se às receitas com as operações"
+    description: "Refere-se às receitas de juros das carteiras de crédito dos FIDCs."
   }
 
   dimension: receita_servicos_liquida {
@@ -106,7 +106,7 @@ view: fato_dre {
     value_format: ""
     group_label: ""
     group_item_label: "Receita de Serviços Líquida"
-    description: ""
+    description: "Refere-se às receitas de comissão."
   }
 
   dimension: resultado_financeiro {
@@ -114,8 +114,8 @@ view: fato_dre {
     sql: ${TABLE}."RESULTADO_FINANCEIRO" ;;
     value_format: ""
     group_label: ""
-    group_item_label: ""
-    description: ""
+    group_item_label: "Resultado financeiro"
+    description: "Refere-se aos rendimentos das aplicações financeiras."
   }
 
   dimension: tipo {
@@ -124,7 +124,7 @@ view: fato_dre {
     value_format: ""
     group_label: ""
     group_item_label: "Real/Orçado"
-    description: ""
+    description: "Indica se a métrica é proveniente do orçamento ou realizado."
   }
 
   measure: count {
