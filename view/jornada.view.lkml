@@ -540,6 +540,11 @@ view: jornada {
 
   }
 
+  dimension: aluno_nome {
+    sql: ${proposta.aluno_nome};;
+    hidden: yes
+
+  }
 
   dimension: aluno_celular {
     sql: ${proposta.aluno_celular};;
@@ -1031,7 +1036,7 @@ view: jornada {
    measure: count_cpf {
      type: count_distinct
      sql: ${id_cpf} ;;
-    drill_fields: [cpf_aluno, id_proposta,
+    drill_fields: [cpf_aluno, aluno_nome, id_proposta,
       aluno_email,
       aluno_celular,
       ds_curso,

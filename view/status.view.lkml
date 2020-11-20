@@ -319,6 +319,13 @@ view: status {
     hidden: yes
 
   }
+
+  dimension: aluno_nome {
+    sql: ${proposta.aluno_nome};;
+    hidden: yes
+
+  }
+
   measure: count {
     type: count
     drill_fields: [id]
@@ -329,7 +336,7 @@ view: status {
     sql: ${id_cpf} ;;
     value_format: "0"
     label: "Quantidade de CPFs"
-    drill_fields: [cpf_aluno, id_proposta,
+    drill_fields: [cpf_aluno, id_proposta, aluno_nome,
       aluno_email,
 aluno_celular,
 ds_curso,

@@ -274,7 +274,6 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
   - proposta.count_tipo_proposta_renegociacao,
   - proposta.count_tipo_proposta_renovacao,
   - proposta.count_tipo_proposta_seg_repasse,
-  - status.id_proposta,
   - status.id_cpf,
   - status.flg_proposta_atual,
   - status.tipo_proposta
