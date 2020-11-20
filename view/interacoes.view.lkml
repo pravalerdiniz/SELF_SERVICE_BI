@@ -10,7 +10,13 @@ view: interacoes {
     sql: ${TABLE}."CANAL" ;;
   }
 
-
+  dimension: originador {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Originador"
+    description: "Indica o originador da proposta do aluno."
+    sql: ${TABLE}."ORIGINADOR" ;;
+  }
 
   dimension: tags {
     type: string
