@@ -127,12 +127,13 @@ view: fato_dre {
     description: ""
   }
 
+
   measure: count {
     type: count
     drill_fields: []
   }
 
-  measure: sum_usto_captacao {
+  measure: sum_custo_captacao {
     type: sum
     sql: ${custo_captacao} ;;
     value_format: ""
