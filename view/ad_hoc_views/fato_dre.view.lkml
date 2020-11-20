@@ -131,4 +131,91 @@ view: fato_dre {
     type: count
     drill_fields: []
   }
+
+  measure: sum_usto_captacao {
+    type: sum
+    sql: ${custo_captacao} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: sum_custo_com_pessoal {
+    type: sum
+    sql: ${custo_com_pessoal} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: sum_custo_servicos_prestados {
+    type: sum
+    sql: ${custo_servicos_prestados} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+
+  measure: sum_depreciacao_amortizacao {
+    type: sum
+    sql: ${depreciacao_amortizacao} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: sum_despesa_com_pessoal {
+    type: number
+    sql: ${despesa_com_pessoal} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+
+
+  measure:sum_pdd {
+    type: sum
+    sql: ${pdd} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+
+
+  measure: sum_receita_juros_liquida {
+    type: sum
+    sql: ${receita_juros_liquida} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: sum_receita_servicos_liquida {
+    type: sum
+    sql: ${receita_servicos_liquida} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: sum_resultado_financeiro {
+    type: sum
+    sql: ${receita_servicos_liquida} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
 }
