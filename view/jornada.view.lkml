@@ -326,7 +326,11 @@ view: jornada {
         label: "1"
       }
       when: {
-        sql: ${etapa} = 'Iniciado' or 'Iniciado / Elegivel' ;;
+        sql: ${etapa} = 'Iniciado'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'Iniciado / Elegivel'  ;;
         label: "2"
       }
       when: {
@@ -337,12 +341,21 @@ view: jornada {
         sql: ${etapa} = 'Aprovado Risco' ;;
         label: "4"
       }
+
+      when: {
+        sql: ${etapa} = 'Aprovado Behavior' ;;
+        label: "4"
+      }
       when: {
         sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "5"
       }
       when: {
-        sql: ${etapa} = 'Dados Confirmados' or 'Confirmacao De Dados';;
+        sql: ${etapa} = 'Dados Confirmados';;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Confirmacao De Dados';;
         label: "6"
       }
       when: {
