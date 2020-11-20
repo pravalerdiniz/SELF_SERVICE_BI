@@ -326,7 +326,7 @@ view: jornada {
         label: "1"
       }
       when: {
-        sql: ${etapa} = 'Iniciado' ;;
+        sql: ${etapa} = 'Iniciado' or 'Iniciado / Elegivel' ;;
         label: "2"
       }
       when: {
@@ -342,7 +342,7 @@ view: jornada {
         label: "5"
       }
       when: {
-        sql: ${etapa} = 'Dados Confirmados' ;;
+        sql: ${etapa} = 'Dados Confirmados' or 'Confirmacao De Dados';;
         label: "6"
       }
       when: {
