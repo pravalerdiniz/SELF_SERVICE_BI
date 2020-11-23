@@ -439,6 +439,15 @@ view: interacoes {
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
+
+  dimension: nome_produto {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome do Produto"
+    description: "Indica o nome do produto contratado pelo aluno referente a última proposta cedida"
+    sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
+
   dimension: titulo_ticket {
     type: string
     group_label: "Dados do Ticket"
