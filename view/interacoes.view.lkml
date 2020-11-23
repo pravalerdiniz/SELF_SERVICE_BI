@@ -445,7 +445,7 @@ view: interacoes {
     group_label: "Dados do Aluno"
     group_item_label: "Nome do Produto"
     description: "Indica o nome do produto contratado pelo aluno referente a última proposta cedida"
-    sql: ${TABLE}."TIPO_ALUNO" ;;
+    sql: ${TABLE}."NOME_PRODUTO" ;;
   }
 
   dimension: titulo_ticket {
