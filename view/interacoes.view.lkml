@@ -10,7 +10,13 @@ view: interacoes {
     sql: ${TABLE}."CANAL" ;;
   }
 
-
+  dimension: originador {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Originador"
+    description: "Indica o originador da proposta do aluno."
+    sql: ${TABLE}."ORIGINADOR" ;;
+  }
 
   dimension: tags {
     type: string
@@ -431,6 +437,15 @@ view: interacoes {
     group_item_label: "Tipo de Aluno"
     description: "Indica o tipo da última proposta cedida do Aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
     sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
+
+
+  dimension: nome_produto {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome do Produto"
+    description: "Indica o nome do produto contratado pelo aluno referente a última proposta cedida"
+    sql: ${TABLE}."NOME_PRODUTO" ;;
   }
 
   dimension: titulo_ticket {
