@@ -1446,7 +1446,7 @@ dimension: faixa_tempo_meses_evasao {
 
   dimension: ds_status_geral {
     type: string
-    sql: ${TABLE}."ID_STATUS_GERAL" ;;
+    sql: ${TABLE}."DS_STATUS_GERAL" ;;
     group_label: "Dados de Status"
     group_item_label: "Descrição - Último Status Geral do Aluno"
     description: "Indica o nome do último status geral da proposta mais atual do aluno"
