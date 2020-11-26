@@ -322,6 +322,66 @@ view: farol {
     }
 
 
+  dimension: id_cpf {
+    type: number
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+
+  dimension: cpf {
+    type: number
+    sql: ${TABLE}."CPF" ;;
+  }
+
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}."STATUS" ;;
+  }
+
+  dimension: proposta {
+    type: string
+    sql: ${TABLE}."PROPOSTA" ;;
+  }
+
+
+  dimension: data {
+    type: date
+    sql: ${TABLE}."DATA" ;;
+  }
+
+
+  dimension: id_instituicao {
+    type: number
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+  }
+
+
+  dimension: nome_instituicao {
+    type: string
+    sql: ${TABLE}."NOME_INSTITUICAO" ;;
+  }
+
+  dimension: grupo_instituicao {
+    type: string
+    sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
+  }
+
+  dimension: id_produto {
+    type: string
+    sql: ${TABLE}."ID_PRODUTO" ;;
+  }
+
+  dimension: nome_produto {
+    type: string
+    sql: ${TABLE}."NOME_PRODUTO" ;;
+  }
+
+
+  dimension: flg_ultima_carga {
+    type: string
+    sql: ${TABLE}."FLG_ULTIMA_CARGA" ;;
+  }
 
 
 
