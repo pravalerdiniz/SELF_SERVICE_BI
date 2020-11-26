@@ -1,135 +1,98 @@
 view: proposta_metas_gc {
-  derived_table: {
-    sql: select
+    derived_table: {
+      sql: select
             f.key as grupo_ies,
-            f.value:JANEIRO::float as JANEIRO,
-             f.value:FEVEREIRO::float as FEVEREIRO,
-              f.value:MARCO::float as MARCO,
-               f.value:ABRIL::float as ABRIL,
-                f.value:MAIO::float as MAIO,
-                 f.value:JUNHO::float as JUNHO,
-                  f.value:JULHO::float as JULHO,
-                   f.value:AGOSTO::float as AGOSTO,
-                    f.value:SETEMBRO::float as SETEMBRO,
-                     f.value:OUTUBRO::float as OUTUBRO,
-                      f.value:NOVEMBRO::float as NOVEMBRO,
-                       f.value:DEZEMBRO::float as DEZEMBRO
+            f.value:INICIADOS::float as INICIADOS,
+             f.value:APROVADOS_RISCO::float as APROVADOS_RISCO,
+              f.value:FINALIZADOS::float as FINALIZADOS,
+               f.value:APROVADOS_IES::float as APROVADOS_IES,
+                f.value:GERADOS::float as GERADOS,
+                 f.value:CEDIDOS::float as CEDIDOS,
+                  f.value:REGIONAL::varchar as REGIONAL,
+                   f.value:ANO::int as ANO,
+                   f.value:MES::varchar as MES
             from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
             lateral flatten (input => metas_gc) f
  ;;
-  }
+    }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+    measure: count {
+      type: count
+      drill_fields: [detail*]
+    }
 
-  dimension: grupo_ies {
-    type: string
-    label: "Grupo da Instituição"
-    description: "Indica o grupo da instituição de Ensino no PRAVALER."
-    sql: ${TABLE}."GRUPO_IES" ;;
-  }
+    dimension: grupo_ies {
+      type: string
+      label: "Grupo da Instituição"
+      sql: ${TABLE}."GRUPO_IES" ;;
+    }
 
-  dimension: janeiro {
-    type: number
-    group_label: "Meta"
-    label: "Janeiro"
-    sql: ${TABLE}."JANEIRO" ;;
-  }
+    dimension: iniciados {
+      type: number
+      label: "Iniciados"
+      sql: ${TABLE}."INICIADOS" ;;
+    }
 
-  dimension: fevereiro {
-    type: number
-    group_label: "Meta"
-    label: "Fevereiro"
-    sql: ${TABLE}."FEVEREIRO" ;;
-  }
+    dimension: aprovados_risco {
+      type: number
+      label: "Aprovados Risco"
+      sql: ${TABLE}."APROVADOS_RISCO" ;;
+    }
 
-  dimension: marco {
-    type: number
-    group_label: "Meta"
-    label: "Março"
-    sql: ${TABLE}."MARCO" ;;
-  }
+    dimension: finalizados {
+      type: number
+      label: "Finalizados"
+      sql: ${TABLE}."FINALIZADOS" ;;
+    }
 
-  dimension: abril {
-    type: number
-    group_label: "Meta"
-    label: "Abril"
-    sql: ${TABLE}."ABRIL" ;;
-  }
+    dimension: aprovados_ies {
+      type: number
+      label: "Aprovados IES"
+      sql: ${TABLE}."APROVADOS_IES" ;;
+    }
 
-  dimension: maio {
-    type: number
-    group_label: "Meta"
-    label: "Maio"
-    sql: ${TABLE}."MAIO" ;;
-  }
+    dimension: gerados {
+      type: number
+      label: "Gerados"
+      sql: ${TABLE}."GERADOS" ;;
+    }
 
-  dimension: junho {
-    type: number
-    group_label: "Meta"
-    label: "Junho"
-    sql: ${TABLE}."JUNHO" ;;
-  }
+    dimension: cedidos {
+      type: number
+      label: "Cedidos"
+      sql: ${TABLE}."CEDIDOS" ;;
+    }
 
-  dimension: julho {
-    type: number
-    group_label: "Meta"
-    label: "Julho"
-    sql: ${TABLE}."JULHO" ;;
-  }
+    dimension: regional {
+      type: string
+      label: "Regional"
+      sql: ${TABLE}."REGIONAL" ;;
+    }
 
-  dimension: agosto {
-    type: number
-    group_label: "Meta"
-    label: "Agosto"
-    sql: ${TABLE}."AGOSTO" ;;
-  }
+    dimension: ano {
+      type: number
+      label: "Ano"
+      sql: ${TABLE}."ANO" ;;
+    }
 
-  dimension: setembro {
-    type: number
-    group_label: "Meta"
-    label: "Setembro"
-    sql: ${TABLE}."SETEMBRO" ;;
-  }
+    dimension: mes {
+      type: string
+      label: "Mês"
+      sql: ${TABLE}."MES" ;;
+    }
 
-  dimension: outubro {
-    type: number
-    group_label: "Meta"
-    label: "Outubro"
-    sql: ${TABLE}."OUTUBRO" ;;
+    set: detail {
+      fields: [
+        grupo_ies,
+        iniciados,
+        aprovados_risco,
+        finalizados,
+        aprovados_ies,
+        gerados,
+        cedidos,
+        regional,
+        ano,
+        mes
+      ]
+    }
   }
-
-  dimension: novembro {
-    type: number
-    group_label: "Meta"
-    label: "Novembro"
-    sql: ${TABLE}."NOVEMBRO" ;;
-  }
-
-  dimension: dezembro {
-    type: number
-    group_label: "Meta"
-    label: "Dezembro"
-    sql: ${TABLE}."DEZEMBRO" ;;
-  }
-
-  set: detail {
-    fields: [
-      grupo_ies,
-      janeiro,
-      fevereiro,
-      marco,
-      abril,
-      maio,
-      junho,
-      julho,
-      agosto,
-      setembro,
-      outubro,
-      novembro,
-      dezembro
-    ]
-  }
-}
