@@ -640,6 +640,17 @@ join: alunos_produtos_aprovados {
   }
 
 
+  join: alunos_painel_risco {
+    view_label: "1.7 Análise de Risco e Crédito - Decisão"
+    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
+
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
