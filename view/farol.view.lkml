@@ -980,7 +980,7 @@ dimension: tempo_status {
   measure: status_82_sla_fora {
     type: sum
     sql: ${status_82_fora};;
-    label: "Número - Status 81 SEM FIADOR  - SLA Fora"
+    label: "Número - Status 82 SEM FIADOR  - SLA Fora"
     group_label: "CRÉDITO CEDIDO"
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
   }
