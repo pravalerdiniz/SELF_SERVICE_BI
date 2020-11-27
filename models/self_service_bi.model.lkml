@@ -579,7 +579,6 @@ explore: alunos {
 - proposta.id_produto,
 - proposta.nm_produto,
 - proposta.flg_produto_ativo,
-- proposta.nm_modalidade_produto,
 - proposta.tipo_produto,
 
 
