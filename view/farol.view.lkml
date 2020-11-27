@@ -321,11 +321,37 @@ view: farol {
       sql: ${TABLE}."Status_9_Confirmacao_CPF_RF" ;;
     }
 
+  dimension: status_81_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_81_DENTRO" ;;
+  }
+
+
+  dimension: status_81_fora {
+    type: number
+    sql: ${TABLE}."STATUS_81_FORA" ;;
+  }
+
+
+  dimension: status_82_fora {
+    type: number
+    sql: ${TABLE}."STATUS_82_FORA" ;;
+  }
+
+
+  dimension: status_82_dentro {
+    type: number
+    sql: ${TABLE}."STATUS_82_DENTRO" ;;
+  }
+
 
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
   }
+
+
+
 
 
   dimension: cpf {
@@ -379,7 +405,7 @@ view: farol {
 
 
   dimension: flg_ultima_carga {
-    type: string
+    type: yesno
     sql: ${TABLE}."FLG_ULTIMA_CARGA" ;;
   }
 
@@ -1030,6 +1056,24 @@ view: farol {
             label: "Detalhado"
             url: "/looks/449?&f[farol_detalhado.status]={{'40.5'}}"}
         }
+
+
+
+  measure: status_81_sla_fora {
+    type: sum
+    sql: ${status_81_fora};;
+    label: "Número - Status 81 SEM FIADOR  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+  }
+
+
+  measure: status_82_sla_fora {
+    type: sum
+    sql: ${status_82_fora};;
+    label: "Número - Status 81 SEM FIADOR  - SLA Fora"
+    group_label: "CRÉDITO CEDIDO"
+  }
+
 
 
 
