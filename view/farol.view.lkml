@@ -1196,7 +1196,7 @@ dimension: tempo_status {
     measure: porc_status40_5 {
       type: max
       sql: ${porc40_5};;
-      label: "Porcentagem - Status 35.0 - SLA Fora"
+      label: "Porcentagem - Status 40.5 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
