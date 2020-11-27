@@ -1238,31 +1238,31 @@ dimension: tempo_status {
           dimension: total_status_fora_novos {
             type: number
             label: "OKR 100% Diario - Alunos Novos"
-            sql: CASE WHEN ${TABLE}."Status_11_2_Aluno_no_Portal_da_IES_FORA_SLA" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_15_Aluno_Revertido_Nova_Analise_IES_Fora_SLA" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_41_Formalizado_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_84_1_Exclusivo_cessao_Aluno_formalizado_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_99_1_Erros_Cessao_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_25_1_Confirmacao_Dados_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_25_2_Confirmacao_Dados_BV_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_25_4_Escolha_Produto_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_26_1_Restritivo_BV_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_31_1_Aprovado_pela_IES_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_31_4_Aguardando_Geracao_contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_33_0_Mesa_geracao_Contratos_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_35_0_Aprovado_Para_Gerar_contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_2_0_Proposta_finalizada_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_2_35_Validacao_Dados_Analise_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_2_37_Integracao_NeoXBo_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status34_0_Processo_Emissao_Contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_33_2_Erro_Geracao_Contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_34_1_Aluno_Aprovado_Resumo_Contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_34_0_Processo_Emissao_Contrato_Fora" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_8_Mesa_Bureaux" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_8_33_Erro_BV_Score" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_9_Confirmacao_CPF_RF" = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_2_90_Problemas_Integracao_Produtos_NeoXBo"  = 0 THEN 1 ELSE 0 END+
-              CASE WHEN ${TABLE}."Status_9090_Dado_Inconsistente"  = 0 THEN 1 ELSE 0 END
+            sql: CASE WHEN sum(${TABLE}."Status_11_2_Aluno_no_Portal_da_IES_FORA_SLA") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_15_Aluno_Revertido_Nova_Analise_IES_Fora_SLA") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_41_Formalizado_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_84_1_Exclusivo_cessao_Aluno_formalizado_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_99_1_Erros_Cessao_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_25_1_Confirmacao_Dados_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_25_2_Confirmacao_Dados_BV_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_25_4_Escolha_Produto_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_26_1_Restritivo_BV_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_31_1_Aprovado_pela_IES_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_31_4_Aguardando_Geracao_contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_33_0_Mesa_geracao_Contratos_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_35_0_Aprovado_Para_Gerar_contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_2_0_Proposta_finalizada_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_2_35_Validacao_Dados_Analise_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_2_37_Integracao_NeoXBo_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status34_0_Processo_Emissao_Contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_33_2_Erro_Geracao_Contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_34_1_Aluno_Aprovado_Resumo_Contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_34_0_Processo_Emissao_Contrato_Fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_8_Mesa_Bureaux") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_8_33_Erro_BV_Score") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_9_Confirmacao_CPF_RF") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_2_90_Problemas_Integracao_Produtos_NeoXBo")  = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."Status_9090_Dado_Inconsistente")  = 0 THEN 1 ELSE 0 END
 
               ;;
             hidden: yes
@@ -1338,7 +1338,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
 
 
   measure: perc_okr_diario_novos {
-    type: sum
+    type: number
     value_format: "0.0%"
     sql: ${total_status_fora_novos}/25 ;;
     label: "OKR Diário - Novos"
