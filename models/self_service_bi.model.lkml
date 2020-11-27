@@ -302,6 +302,14 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     type: left_outer
   }
 
+  join: proposta_metas_gc {
+    view_label: "2.2 Metas GC"
+    sql_on: ${proposta.grupo_instituicao} = ${proposta_metas_gc.grupo_ies} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+
   join: status {
     view_label: "3. Status"
     sql_on: ${jornada.id_cpf} = ${status.id_cpf} and ${jornada.id_proposta} = ${status.id_proposta} ;;
@@ -571,7 +579,6 @@ explore: alunos {
 - proposta.id_produto,
 - proposta.nm_produto,
 - proposta.flg_produto_ativo,
-- proposta.nm_modalidade_produto,
 - proposta.tipo_produto,
 
 

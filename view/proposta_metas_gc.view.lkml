@@ -81,6 +81,57 @@ view: proposta_metas_gc {
       sql: ${TABLE}."MES" ;;
     }
 
+
+
+
+  measure: min_cedidos {
+    type: min
+    label: "Minimo"
+    group_label: "Cedidos"
+    sql: ${cedidos} ;;
+
+  }
+
+  measure: max_cedidos {
+    type: max
+    label: "Máximo"
+    group_label: "Cedidos"
+    sql: ${cedidos} ;;
+
+  }
+
+
+  measure: avg_cedidos {
+    type: average
+    label: "Média"
+    group_label: "Cedidos"
+    sql: ${cedidos} ;;
+
+  }
+
+
+
+
+
+
+
+
+    measure: sum_cedidos {
+     type: sum
+     label: "Soma"
+    group_label: "Cedidos"
+    sql: ${cedidos} ;;
+
+    }
+
+
+
+
+
+
+
+
+
     set: detail {
       fields: [
         grupo_ies,
