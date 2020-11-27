@@ -344,6 +344,198 @@ view: farol {
     sql: ${TABLE}."STATUS_82_DENTRO" ;;
   }
 
+  dimension: porc34_0 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC34_0" ;;
+  }
+
+  dimension: porc11_0 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC11_0" ;;
+  }
+
+  dimension: porc11_2 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC11_2" ;;
+  }
+
+  dimension: porc13 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC13" ;;
+  }
+
+  dimension: porc14 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC14" ;;
+  }
+
+  dimension: porc15 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC15" ;;
+  }
+
+  dimension: porc25_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC25_1" ;;
+  }
+
+  dimension: porc25_2 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC25_2" ;;
+  }
+
+  dimension: porc25_4 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC25_4" ;;
+  }
+
+  dimension: porc26_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC26_1" ;;
+  }
+
+  dimension: porc2_0 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC2_0" ;;
+  }
+
+  dimension: porc2_35 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC2_35" ;;
+  }
+
+  dimension: porc2_37 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC2_37" ;;
+  }
+
+  dimension: porc2_90 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC2_90" ;;
+  }
+
+  dimension: porc31_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC31_1" ;;
+  }
+
+  dimension: porc31_4 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC31_4" ;;
+  }
+
+  dimension: porc33_0 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC33_0" ;;
+  }
+
+  dimension: porc33_2 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC33_2" ;;
+  }
+
+
+  dimension: porc34_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC34_1" ;;
+  }
+
+  dimension: porc35_0 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC35_0" ;;
+  }
+
+  dimension: porc40_5 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC40_5" ;;
+  }
+
+  dimension: porc41 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC41" ;;
+  }
+
+  dimension: porc46 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC46" ;;
+  }
+
+  dimension: porc50 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC50" ;;
+  }
+
+  dimension: porc81 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC81" ;;
+  }
+
+  dimension: porc82 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC82" ;;
+  }
+
+  dimension: porc84_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC84_1" ;;
+  }
+
+  dimension: porc8_33 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC8_33" ;;
+  }
+
+  dimension: porc8 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC8" ;;
+  }
+
+  dimension: porc9090 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC9090" ;;
+  }
+
+  dimension: porc99_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC99_1" ;;
+  }
+
+  dimension: porc9 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC9" ;;
+  }
 
   dimension: id_cpf {
     type: number
@@ -416,6 +608,7 @@ view: farol {
 
   dimension: flg_ultima_carga {
     type: yesno
+
     sql: ${TABLE}."FLG_ULTIMA_CARGA" ;;
   }
 
@@ -480,14 +673,7 @@ dimension: tempo_status {
     }
 
 
-    measure: perc_status11_sla_fora {
-      type: sum
-      sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla}/IFF(${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla}=0,1,
-        ${status_11_0_aluno_no_portal_da_ies_fora_sla} + ${status_11_0_aluno_no_portal_da_ies_dentro_sla});;
-      label: "Porcentagem - Status 11.0 - SLA Fora"
-      group_label: "APROVAÇÃO IES"
-      value_format: "0.0%"
-    }
+
 
     measure: status11_sla_fora {
       type: sum
@@ -499,15 +685,6 @@ dimension: tempo_status {
 
     }
 
-
-    measure: perc_status11_2_sla_fora {
-      type: sum
-      sql: ${status_11_2_aluno_no_portal_da_ies_fora_sla}/IFF(${status_11_2_aluno_no_portal_da_ies_dentro_sla} +   ${status_11_2_aluno_no_portal_da_ies_dentro_sla}=0,1,
-        ${status_11_2_aluno_no_portal_da_ies_dentro_sla} +   ${status_11_2_aluno_no_portal_da_ies_dentro_sla}) ;;
-      label: "Porcentagem - Status 11.2 - SLA Fora"
-      group_label: "APROVAÇÃO IES"
-      value_format: "0.0%"
-    }
 
     measure: status11_2_sla_fora {
       type: sum
@@ -521,14 +698,7 @@ dimension: tempo_status {
 
 
 
-    measure: perc_status13_sla_fora {
-      type: sum
-      sql: ${status_13_aluno_pendente_matricula_fora_sla}/IFF( ${status_13_aluno_pendente_matricula_fora_sla} +  ${status_13_aluno_pendente_matricula_dentro_sla}=0,1,
-        ${status_13_aluno_pendente_matricula_fora_sla} +  ${status_13_aluno_pendente_matricula_dentro_sla} );;
-      label: "Porcentagem - Status 13 - SLA Fora"
-      group_label: "APROVAÇÃO IES"
-      value_format: "0.0%"
-    }
+
 
     measure: status13_sla_fora {
       type: sum
@@ -540,14 +710,7 @@ dimension: tempo_status {
     }
 
 
-    measure: perc_status15_sla_fora {
-      type: sum
-      sql: ${status_15_aluno_revertido_nova_analise_ies_fora_sla}/IFF(${status_15_aluno_revertido_nova_analise_ies_fora_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla}=0,1,
-        ${status_15_aluno_revertido_nova_analise_ies_fora_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla});;
-      label: "Porcentagem - Status 15 - SLA Fora"
-      group_label: "APROVAÇÃO IES"
-      value_format: "0.0%"
-    }
+
     measure: status15_sla_fora {
       type: sum
       sql: ${status_15_aluno_revertido_nova_analise_ies_fora_sla};;
@@ -557,16 +720,6 @@ dimension: tempo_status {
     }
 
 
-
-
-    measure: perc_status14_sla_fora {
-      type: sum
-      sql: ${status_14_aluno_possui_divida_ies_fora_sla}/IFF(${status_14_aluno_possui_divida_ies_dentro_sla} +  ${status_15_aluno_revertido_nova_analise_ies_dentro_sla}=0,1,
-        ${status_14_aluno_possui_divida_ies_dentro_sla} + ${status_14_aluno_possui_divida_ies_fora_sla});;
-      label: "Porcentagem - Status 14 - SLA Fora"
-      group_label: "APROVAÇÃO IES"
-      value_format: "0.0%"
-    }
 
 
 
@@ -581,21 +734,7 @@ dimension: tempo_status {
 
     }
 
-    measure: PERC_status2_0_sla_fora {
-      type: sum
-      sql: ${status_2_0_proposta_finalizada_fora}/
 
-                      IFF(${status_2_0_proposta_finalizada_dentro} + ${status_2_0_proposta_finalizada_fora}=0,1,
-
-                      ${status_2_0_proposta_finalizada_dentro} + ${status_2_0_proposta_finalizada_fora});;
-
-        label: "Porcentagem - Status 2.0 - SLA Fora"
-
-        group_label: "ANALISE DE RISCO E CREDITO"
-
-        value_format: "0.0%"
-
-      }
 
       measure: status2_0_sla_fora {
         type: sum
@@ -610,14 +749,7 @@ dimension: tempo_status {
 
 
 
-      measure: PERC_status2_35_sla_fora {
-        type: sum
-        sql: ${status_2_35_validacao_dados_analise_fora}/IFF(${status_2_35_validacao_dados_analise_dentro} + ${status_2_35_validacao_dados_analise_fora}=0,1,
-          ${status_2_35_validacao_dados_analise_dentro} + ${status_2_35_validacao_dados_analise_fora});;
-        label: "Porcentagem - Status 2.35 - SLA Fora"
-        group_label: "ANALISE DE RISCO E CREDITO"
-        value_format: "0.0%"
-      }
+
 
       measure: status2_35_sla_fora {
         type: sum
@@ -630,21 +762,7 @@ dimension: tempo_status {
 
 
 
-      measure: PERC_status2_37_sla_fora {
-        type: sum
-        sql: ${status_2_37_integracao_neo_xbo_fora}/
 
-                        IFF(${status_2_37_integracao_neo_xbo_dentro} + ${status_2_37_integracao_neo_xbo_fora}=0,1,
-
-                        ${status_2_37_integracao_neo_xbo_dentro} + ${status_2_37_integracao_neo_xbo_fora}  );;
-
-          label: "Porcentagem - Status 2.37 - SLA Fora"
-
-          group_label: "ANALISE DE RISCO E CREDITO"
-
-          value_format: "0.0%"
-
-        }
 
 
         measure: status2_37_sla_fora {
@@ -657,15 +775,6 @@ dimension: tempo_status {
         }
 
 
-        measure: PERC_status25_1_sla_fora {
-          type: sum
-          sql: ${status_25_1_confirmacao_dados_fora}/IFF(${status_25_1_confirmacao_dados_dentro} + ${status_25_1_confirmacao_dados_fora}=0,1,
-                ${status_25_1_confirmacao_dados_dentro} + ${status_25_1_confirmacao_dados_fora}
-                );;
-          label: "Porcentagem - Status 25.1 - SLA Fora"
-          group_label: "CONFIRMAÇÃO DE DADOS"
-          value_format: "0.0%"
-        }
 
         measure: status25_1_sla_fora {
           type: sum
@@ -679,14 +788,7 @@ dimension: tempo_status {
 
 
 
-        measure: PERC_status25_2_sla_fora {
-          type: sum
-          sql: ${status_25_2_confirmacao_dados_bv_fora}/IFF(${status_25_2_confirmacao_dados_bv_dentro} + ${status_25_2_confirmacao_dados_bv_fora}=0,1,
-            ${status_25_2_confirmacao_dados_bv_dentro} + ${status_25_2_confirmacao_dados_bv_fora} );;
-          label: "Porcentagem - Status 25.2 - SLA Fora"
 
-
-        }
 
 
         measure: status25_2_sla_fora {
@@ -699,14 +801,6 @@ dimension: tempo_status {
 
 
 
-        measure: PERC_status25_4_sla_fora {
-          type: sum
-          sql: ${status_25_4_escolha_produto_fora}/IFF(${status_25_4_escolha_produto_dentro} + ${status_25_4_escolha_produto_fora}=0,1,
-            ${status_25_4_escolha_produto_dentro} + ${status_25_4_escolha_produto_fora});;
-          label: "Porcentagem - Status 25.4 - SLA Fora"
-          group_label: "CONFIRMAÇÃO DE DADOS"
-          value_format: "0.0%"
-        }
 
 
         measure:status25_4_sla_fora {
@@ -719,14 +813,7 @@ dimension: tempo_status {
 
 
 
-        measure: PERC_status26_1_sla_fora {
-          type: sum
-          sql: ${status_26_1_restritivo_bv_fora}/IFF(${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora}=0,1,
-            ${status_26_1_restritivo_bv_dentro} + ${status_26_1_restritivo_bv_fora});;
-          label: "Porcentagem - Status 26.1 - SLA Fora"
-          group_label: "CONFIRMAÇÃO DE DADOS"
-          value_format: "0.0%"
-        }
+
 
         measure: status26_1_sla_fora {
           type: sum
@@ -745,17 +832,7 @@ dimension: tempo_status {
 
 
 
-        measure: perc_status_41_1_sla_fora {
-          type: sum
-          sql: ${status_41_formalizado_fora}/
 
-                  IFF(${status_41_formalizado_fora} + ${status_41_formalizado_dentro}=0,1,
-
-                  ${status_41_formalizado_fora} + ${status_41_formalizado_dentro});;
-          label: "Porcentagem - Status 41 - SLA Fora"
-          group_label: "CESSÃO/CONTRATAÇÃO"
-          value_format: "0.0%"
-        }
 
         measure:status41_sla_fora {
           type: sum
@@ -766,17 +843,6 @@ dimension: tempo_status {
 
         }
 
-        measure: perc_status_50_0_sla_fora {
-          type: sum
-          sql: ${status_50_credito_cedido_fora}/
-
-                  IFF( ${status_50_credito_cedido_fora} + ${status_50_credito_cedido_dentro}=0,1,
-
-                   ${status_50_credito_cedido_fora} + ${status_50_credito_cedido_dentro});;
-          label: "Porcentagem - Status 50.0 - SLA Fora"
-          group_label: "CRÉDITO CEDIDO"
-          value_format: "0.0%"
-        }
 
 
         measure:status50_sla_fora {
@@ -789,17 +855,6 @@ dimension: tempo_status {
 
 
 
-        measure: perc_status_46_sla_fora {
-          type: sum
-          sql: ${status_46_contrato_nao_concedido_fora}/
-
-                  IFF(${status_46_contrato_nao_concedido_fora} + ${status_46_contrato_nao_concedido_dentro}=0,1,
-
-                  ${status_46_contrato_nao_concedido_fora} + ${status_46_contrato_nao_concedido_dentro});;
-          label: "Porcentagem - Status 46 - SLA Fora"
-          group_label: "CONTRATO NÃO CONCEDIDO"
-          value_format: "0.0%"
-        }
 
         measure:status46_sla_fora {
           type: sum
@@ -809,17 +864,6 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_84_1_sla_fora {
-          type: sum
-          sql: ${status_84_1_exclusivo_cessao_aluno_formalizado_fora}/
-
-                  IFF(${status_84_1_exclusivo_cessao_aluno_formalizado_fora} + ${status_84_1_exclusivo_cessao_aluno_formalizado_dentro}=0,1,
-
-                  ${status_84_1_exclusivo_cessao_aluno_formalizado_fora} + ${status_84_1_exclusivo_cessao_aluno_formalizado_dentro});;
-          label: "Porcentagem - Status 84.1 - SLA Fora"
-          group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
 
         measure:status84_sla_fora {
@@ -830,17 +874,6 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_99_1_sla_fora {
-          type: sum
-          sql: ${status_99_1_erros_cessao_fora}/
-
-                  IFF(${status_99_1_erros_cessao_fora} + ${status_99_1_erros_cessao_dentro}=0,1,
-
-                  ${status_99_1_erros_cessao_fora} + ${status_99_1_erros_cessao_dentro});;
-          label: "Porcentagem - Status 99.1 - SLA Fora"
-          group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
-          value_format: "0.0%"
-        }
 
 
         measure:status99_sla_fora {
@@ -853,17 +886,6 @@ dimension: tempo_status {
         }
 
 
-        measure: perc_status_31_1_sla_fora {
-          type: sum
-          sql: ${status_31_1_aprovado_pela_ies_fora}/
-
-                  IFF(${status_31_1_aprovado_pela_ies_fora} + ${status_31_1_aprovado_pela_ies_dentro}=0,1,
-
-                  ${status_31_1_aprovado_pela_ies_fora} + ${status_31_1_aprovado_pela_ies_dentro});;
-          label: "Porcentagem - Status 31.1 - SLA Dentro"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
         measure: status_31_1_sla_fora {
           type: sum
@@ -873,17 +895,6 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_31_4_sla_fora {
-          type: sum
-          sql: ${status_31_4_aguardando_geracao_contrato_fora}/
-
-                  IFF(${status_31_4_aguardando_geracao_contrato_fora} + ${status_31_4_aguardando_geracao_contrato_dentro}=0,1,
-
-                  ${status_31_4_aguardando_geracao_contrato_fora} + ${status_31_4_aguardando_geracao_contrato_dentro});;
-          label: "Porcentagem - Status 31.4 - SLA Dentro"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
         measure: status_31_4_sla_fora {
           type: sum
@@ -902,48 +913,18 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_33_0_sla_fora {
-          type: sum
-          sql: ${status_33_0_mesa_geracao_contratos_fora}/
 
-                  IFF(${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro}=0,1,
-
-                 ${status_33_0_mesa_geracao_contratos_fora} + ${status_33_0_mesa_geracao_contratos_dentro});;
-          label: "Porcentagem - Status 33.0 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
+  measure: status_33_2_sla_fora {
+    type: sum
+    sql: ${status_33_2_erro_geracao_contrato_fora};;
+    label: "Número - Status 32.0  - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+  }
 
 
 
-        measure: perc_status_33_2_sla_fora {
-          type: sum
-          sql: ${status_33_2_erro_geracao_contrato_fora}/IFF(${status_33_2_erro_geracao_contrato_fora} + ${status_33_2_erro_geracao_contrato_dentro}=0,1,
-            ${status_33_2_erro_geracao_contrato_fora} + ${status_33_2_erro_geracao_contrato_dentro});;
-          label: "Porcentagem - Status 33.2 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
-
-        measure: status_33_2_sla_fora {
-          type: sum
-          sql: ${status_33_2_erro_geracao_contrato_fora};;
-          label: "Status 33.2  - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
-        }
-
-        measure: perc_status_34_0_sla_fora {
-          type: sum
-          sql: ${status_34_0_processo_emissao_contrato_fora}/
-                IFF(${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro}=0,1,
-                ${status_34_0_processo_emissao_contrato_fora} + ${status_34_0_processo_emissao_contrato_dentro})
-                ;;
-          label: "Porcentagem - Status 34.0 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
 
         measure: status_34_0_sla_fora {
@@ -954,14 +935,6 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_34_1_sla_fora {
-          type: sum
-          sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora}/IFF(${status_34_1_aluno_aprovado_resumo_contrato_fora} + ${status_34_1_aluno_aprovado_resumo_contrato_dentro}=0,1,
-            ${status_34_1_aluno_aprovado_resumo_contrato_fora} + ${status_34_1_aluno_aprovado_resumo_contrato_dentro});;
-          label: "Porcentagem - Status 34.1 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
 
         measure: status_34_1_sla_fora {
@@ -972,14 +945,6 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_35_0_sla_fora {
-          type: sum
-          sql: ${status_35_0_aprovado_para_gerar_contrato_fora}/IFF(${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro}=0,1,
-            ${status_35_0_aprovado_para_gerar_contrato_fora} + ${status_35_0_aprovado_para_gerar_contrato_dentro});;
-          label: "Porcentagem - Status 35.0 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
 
 
         measure: status_35_0_sla_fora {
@@ -990,15 +955,7 @@ dimension: tempo_status {
           drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
 
-        measure: perc_status_40_5_sla_fora {
-          type: sum
-          sql: ${status_40_5_aguardando_assinatura_contrato_fora}/IFF(${status_40_5_aguardando_assinatura_contrato_fora} + ${status_40_5_aguardando_assinatura_contrato_dentro}=0,1,
-                ${status_40_5_aguardando_assinatura_contrato_fora} + ${status_40_5_aguardando_assinatura_contrato_dentro}
-                );;
-          label: "Porcentagem - Status 40.5 - SLA Fora"
-          group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          value_format: "0.0%"
-        }
+
 
 
         measure: status_40_5_sla_fora {
@@ -1027,6 +984,208 @@ dimension: tempo_status {
     group_label: "CRÉDITO CEDIDO"
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
   }
+
+  measure: porc_status11_0 {
+    type: number
+    sql: ${porc11_0};;
+    label: "Porcentagem - Status 11.0 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status11_2 {
+    type: number
+    sql: ${porc11_2} ;;
+    label: "Porcentagem - Status 11.2 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status13 {
+    type: number
+    sql: ${porc13} );;
+    label: "Porcentagem - Status 13 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status15 {
+    type: number
+    sql: ${porc15};;
+    label: "Porcentagem - Status 15 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status14 {
+    type: number
+    sql: ${porc14};;
+    label: "Porcentagem - Status 14 - SLA Fora"
+    group_label: "APROVAÇÃO IES"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status2_0 {
+    type: number
+    sql: ${porc2_0};;
+    label: "Porcentagem - Status 2.0 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status2_35 {
+    type: number
+    sql: ${porc2_35};;
+    label: "Porcentagem - Status 2.35 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status2_37 {
+    type: number
+    sql: ${porc2_37}  );;
+    label: "Porcentagem - Status 2.37 - SLA Fora"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status25_1 {
+    type: number
+    sql: ${porc25_1};;
+    label: "Porcentagem - Status 25.1 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status25_2 {
+    type: number
+    sql: ${porc25_2};;
+    label: "Porcentagem - Status 25.2 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status25_4 {
+    type: number
+    sql: ${porc25_4};;
+    label: "Porcentagem - Status 25.4 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status26_1 {
+    type: number
+    sql: ${porc26_1};;
+    label: "Porcentagem - Status 26.1 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_41 {
+    type: number
+    sql: ${porc41};;
+    label: "Porcentagem - Status 41 - SLA Fora"
+    group_label: "CESSÃO/CONTRATAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_50 {
+    type: number
+    sql: ${porc50};;
+    label: "Porcentagem - Status 50.0 - SLA Fora"
+    group_label: "CRÉDITO CEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_46 {
+    type: number
+    sql: ${porc46};;
+    label: "Porcentagem - Status 46 - SLA Fora"
+    group_label: "CONTRATO NÃO CONCEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_81 {
+    type: number
+    sql: ${porc81};;
+    label: "Porcentagem - Status 81 - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_82 {
+    type: number
+    sql: ${porc82};;
+    label: "Porcentagem - Status 82 - SLA Fora"
+    group_label: "CRÉDITO CEDIDO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_84_1 {
+    type: number
+    sql: ${porc84_1};;
+    label: "Porcentagem - Status 84.1 - SLA Fora"
+    group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_99_1 {
+    type: number
+    sql: ${porc99_1};;
+    label: "Porcentagem - Status 99.1 - SLA Fora"
+    group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_31_1 {
+    type: number
+    sql: ${porc31_1};;
+    label: "Porcentagem - Status 31.1 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_31_4 {
+    type: number
+    sql: ${porc31_4};;
+    label: "Porcentagem - Status 31.4 - SLA Dentro"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_33_0 {
+    type: number
+    sql: ${porc33_0};;
+    label: "Porcentagem - Status 33.0 - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_33_2 {
+    type: number
+    sql: ${porc33_2};;
+    label: "Porcentagem - Status 33.2 - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_34_0 {
+    type: number
+    sql: ${porc34_0};;
+    label: "Porcentagem - Status 34.0 - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+  measure: porc_status_34_1 {
+    type: number
+    sql: ${porc34_1};;
+    label: "Porcentagem - Status 34.1 - SLA Fora"
+    group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+    value_format: "0.0%"
+  }
+
+
 
 
 
