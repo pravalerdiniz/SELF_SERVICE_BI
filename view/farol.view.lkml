@@ -986,200 +986,200 @@ dimension: tempo_status {
   }
 
     measure: porc_status11_0 {
-      type: sum
-      sql: ${porc11_0});;
+      type: max
+      sql: ${porc11_0};;
       label: "Porcentagem - Status 11.0 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       value_format: "0.0%"
     }
 
     measure: porc_status11_2 {
-      type: sum
-      sql: ${porc11_2}) ;;
+      type: max
+      sql: ${porc11_2} ;;
       label: "Porcentagem - Status 11.2 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       value_format: "0.0%"
     }
 
     measure: porc_status13 {
-      type: sum
-      sql: ${porc13} );;
+      type: max
+      sql: ${porc13} ;;
       label: "Porcentagem - Status 13 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       value_format: "0.0%"
     }
 
     measure: porc_status15 {
-      type: sum
-      sql: ${porc15});;
+      type: max
+      sql: ${porc15};;
       label: "Porcentagem - Status 15 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       value_format: "0.0%"
     }
 
     measure: porc_status14 {
-      type: sum
-      sql: ${porc14});;
+      type: max
+      sql: ${porc14};;
       label: "Porcentagem - Status 14 - SLA Fora"
       group_label: "APROVAÇÃO IES"
       value_format: "0.0%"
     }
 
     measure: porc_status2_0 {
-      type: sum
-      sql: ${porc2_0});;
+      type: max
+      sql: ${porc2_0};;
       label: "Porcentagem - Status 2.0 - SLA Fora"
       group_label: "ANALISE DE RISCO E CREDITO"
       value_format: "0.0%"
     }
 
     measure: porc_status2_35 {
-      type: sum
-      sql: ${porc2_35});;
+      type: max
+      sql: ${porc2_35};;
       label: "Porcentagem - Status 2.35 - SLA Fora"
       group_label: "ANALISE DE RISCO E CREDITO"
       value_format: "0.0%"
     }
 
     measure: porc_status2_37 {
-      type: sum
-      sql: ${porc2_37}  );;
+      type: max
+      sql: ${porc2_37}  ;;
       label: "Porcentagem - Status 2.37 - SLA Fora"
       group_label: "ANALISE DE RISCO E CREDITO"
       value_format: "0.0%"
     }
 
     measure: porc_status25_1 {
-      type: sum
-      sql: ${porc25_1});;
+      type: max
+      sql: ${porc25_1};;
       label: "Porcentagem - Status 25.1 - SLA Fora"
       group_label: "CONFIRMAÇÃO DE DADOS"
       value_format: "0.0%"
     }
 
     measure: porc_status25_2 {
-      type: sum
-      sql: ${porc25_2});;
+      type: max
+      sql: ${porc25_2};;
       label: "Porcentagem - Status 25.2 - SLA Fora"
       group_label: "CONFIRMAÇÃO DE DADOS"
       value_format: "0.0%"
     }
 
     measure: porc_status25_4 {
-      type: sum
-      sql: ${porc25_4});;
+      type: max
+      sql: ${porc25_4};;
       label: "Porcentagem - Status 25.4 - SLA Fora"
       group_label: "CONFIRMAÇÃO DE DADOS"
       value_format: "0.0%"
     }
 
     measure: porc_status26_1 {
-      type: sum
-      sql: ${porc26_1});;
+      type: max
+      sql: ${porc26_1};;
       label: "Porcentagem - Status 26.1 - SLA Fora"
       group_label: "CONFIRMAÇÃO DE DADOS"
       value_format: "0.0%"
     }
 
     measure: porc_status_41 {
-      type: sum
-      sql: ${porc41});;
+      type: max
+      sql: ${porc41};;
       label: "Porcentagem - Status 41 - SLA Fora"
       group_label: "CESSÃO/CONTRATAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_50 {
-      type: sum
-      sql: ${porc50});;
+      type: max
+      sql: ${porc50};;
       label: "Porcentagem - Status 50.0 - SLA Fora"
       group_label: "CRÉDITO CEDIDO"
       value_format: "0.0%"
     }
 
     measure: porc_status_46 {
-      type: sum
-      sql: ${porc46});;
+      type: max
+      sql: ${porc46};;
       label: "Porcentagem - Status 46 - SLA Fora"
       group_label: "CONTRATO NÃO CONCEDIDO"
       value_format: "0.0%"
     }
 
     measure: porc_status_81 {
-      type: sum
-      sql: ${porc81});;
+      type: max
+      sql: ${porc81};;
       label: "Porcentagem - Status 81 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_82 {
-      type: sum
-      sql: ${porc82});;
+      type: max
+      sql: ${porc82};;
       label: "Porcentagem - Status 82 - SLA Fora"
       group_label: "CRÉDITO CEDIDO"
       value_format: "0.0%"
     }
 
     measure: porc_status_84_1 {
-      type: sum
-      sql: ${porc84_1});;
+      type: max
+      sql: ${porc84_1};;
       label: "Porcentagem - Status 84.1 - SLA Fora"
       group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_99_1 {
-      type: sum
-      sql: ${porc99_1});;
+      type: max
+      sql: ${porc99_1};;
       label: "Porcentagem - Status 99.1 - SLA Fora"
       group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_31_1 {
-      type: sum
-      sql: ${porc31_1});;
+      type: max
+      sql: ${porc31_1};;
       label: "Porcentagem - Status 31.1 - SLA Dentro"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_31_4 {
-      type: sum
-      sql: ${porc31_4});;
+      type: max
+      sql: ${porc31_4};;
       label: "Porcentagem - Status 31.4 - SLA Dentro"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_33_0 {
-      type: sum
-      sql: ${porc33_0});;
+      type: max
+      sql: ${porc33_0};;
       label: "Porcentagem - Status 33.0 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_33_2 {
-      type: sum
-      sql: ${porc33_2});;
+      type: max
+      sql: ${porc33_2};;
       label: "Porcentagem - Status 33.2 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_34_0 {
-      type: sum
-      sql: ${porc34_0});;
+      type: max
+      sql: ${porc34_0};;
       label: "Porcentagem - Status 34.0 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
     }
 
     measure: porc_status_34_1 {
-      type: sum
-      sql: ${porc34_1});;
+      type: max
+      sql: ${porc34_1};;
       label: "Porcentagem - Status 34.1 - SLA Fora"
       group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
       value_format: "0.0%"
@@ -2464,7 +2464,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2046_2_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 2  - Recontratação reprovada - aluno não entregou o contrato"
@@ -2473,7 +2473,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2046_1_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 1  - Recontratação reprovada - aluno não confirmou os dados do contrato"
@@ -2482,7 +2482,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2046_3_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 3  - Recontratação reprovada - aluno entregou o contrato com pendência"
@@ -2490,7 +2490,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure:perc_status_2046_4_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 4  - Recontratação Reprovada - Não completou troca de Garantidor no Prazo"
@@ -2499,7 +2499,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2046_5_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2046 5  - Recontratação Reprovada pela Cessão"
@@ -2507,7 +2507,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2084_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2084 1  - Uso exclusivo da cessão - Aluno formalizado."
@@ -2515,7 +2515,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2041_1_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "CESSÃO"
     label: "Porcentagem  status 2041 1  - Aluno Formalizado sem Pendências"
@@ -2523,7 +2523,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure:perc_status_2002_0_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2002 0  - Aluno em Processo de Transferência de IES"
@@ -2531,7 +2531,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2011_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 1  - Aluno no portal da IES"
@@ -2539,7 +2539,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2011_5_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 5  - 2º Processo Iniciado na Tabela A"
@@ -2547,7 +2547,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2011_9_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2011 9  - 3º Processo Iniciado na Tabela A"
@@ -2555,7 +2555,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2013_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2013 1  - Pendente de Matrícula sem Promessa"
@@ -2563,7 +2563,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2014_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2014 1  - Pendente de Dívida sem Promessa"
@@ -2571,7 +2571,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2015_0_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label: "Porcentagem  status 2015 0  - Aluno Revertido para Nova Avaliação da IES"
@@ -2579,7 +2579,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2039_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "IES"
     label:  "Porcentagem  status 2039  - Recontratação Reprovada na IES (Aluno Formado)"
@@ -2587,7 +2587,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2035_0_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2035 0  - Aprovado na Pós-Validação de Emissão de Contrato"
@@ -2595,7 +2595,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2034_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2034 1  - Aprovado das Políticas de Renovação"
@@ -2603,7 +2603,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2034_0_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2034 0  - Aprovado para resumo de contrato"
@@ -2611,7 +2611,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2033_0_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2033 0  - Mesa - Geração de contratos"
@@ -2619,7 +2619,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2031_5_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 5  - Análise do Comitê de Parcelas"
@@ -2627,7 +2627,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure:perc_status_2031_4_fora {
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 4  - Limite de Comprometimento Satisfeito sem Promessa"
@@ -2635,7 +2635,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2031_1_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
     label: "Porcentagem  status 2031 1  - Confirmado IES sem Promessa"
@@ -2643,7 +2643,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2006_0_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label:  "Porcentagem  status 2006 0  - Consulta aos restritivos internos BV"
@@ -2651,7 +2651,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2007_2_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2007 2  - Processo de troca de IES invalidado"
@@ -2659,7 +2659,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2007_6_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2007 6  - Troca de Garantidor: erro consulta aluno bureaux"
@@ -2667,7 +2667,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2012_13_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 13  - Aguardando Pagamento em Atraso(behaviour)"
@@ -2675,7 +2675,7 @@ CASE WHEN ${TABLE}."STATUS_2099" = 0 THEN 1 ELSE 0 END
   }
 
   measure: perc_status_2012_3_fora{
-    type: sum
+    type: max
     value_format: "0.0%"
     group_label: "ELEGIBILIDADE - RISCO"
     label: "Porcentagem  status 2012 3  - 1º Processo - Mesa 1 - Tabela A"
