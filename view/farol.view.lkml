@@ -615,7 +615,7 @@ view: farol {
 
 dimension: tempo_status {
   type: number
-  sql: diff_hours(${farol.data_time},now());;
+  sql: datediff(hour, ${TABLE}."DATA" ,current_date());;
   label: "Tempo no Status"
   description: "Tempo do Aluno parado no Status"
 
