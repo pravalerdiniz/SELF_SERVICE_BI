@@ -576,8 +576,6 @@ explore: alunos {
 - proposta.enfase_curso,
 - proposta.qtd_semestre_curso,
 - proposta.nivel_curso,
-- proposta.id_produto,
-- proposta.nm_produto,
 - proposta.flg_produto_ativo,
 - proposta.tipo_produto,
 
