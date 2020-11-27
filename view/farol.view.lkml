@@ -1185,6 +1185,22 @@ dimension: tempo_status {
       value_format: "0.0%"
     }
 
+    measure: porc_status35_0 {
+      type: max
+      sql: ${porc35_0};;
+      label: "Porcentagem - Status 35.0 - SLA Fora"
+      group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+      value_format: "0.0%"
+    }
+
+    measure: porc_status40_5 {
+      type: max
+      sql: ${porc40_5};;
+      label: "Porcentagem - Status 35.0 - SLA Fora"
+      group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
+      value_format: "0.0%"
+    }
+
 
 
 
