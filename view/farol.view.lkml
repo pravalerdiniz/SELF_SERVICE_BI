@@ -637,7 +637,7 @@ dimension: tempo_status {
       sql: ${status_2_90_problemas_integracao_produtos_neo_xbo};;
       label: "Status 2.90 "
       group_label: "ANÁLISE DE RISCO E CREDITO"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
     }
 
@@ -647,7 +647,7 @@ dimension: tempo_status {
       sql: ${status_8_mesa_bureaux};;
       label: "Status 8 Mesa Bureaux"
       group_label: "ANÁLISE DE RISCO E CREDITO"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
     }
 
     measure: status_9 {
@@ -655,7 +655,7 @@ dimension: tempo_status {
       sql: ${status_9_confirmacao_cpf_rf};;
       label: "Status 9 Confirmação CPF na RF"
       group_label: "ANÁLISE DE RISCO E CREDITO"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
     }
@@ -667,7 +667,7 @@ dimension: tempo_status {
       sql: ${status_9090_dado_inconsistente};;
       label: "Status 9090 Dado Inconsistente"
       group_label: "ANÁLISE DE RISCO E CREDITO"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
     }
@@ -680,7 +680,7 @@ dimension: tempo_status {
       sql: ${status_11_0_aluno_no_portal_da_ies_fora_sla};;
       label: "Status 11.0 - SLA Fora "
       group_label: "APROVAÇÃO IES"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
     }
@@ -691,7 +691,7 @@ dimension: tempo_status {
       sql: ${status_11_2_aluno_no_portal_da_ies_fora_sla};;
       label: "Status 11.2 - SLA Fora"
       group_label: "APROVAÇÃO IES"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
     }
 
@@ -705,7 +705,7 @@ dimension: tempo_status {
       sql: ${status_13_aluno_pendente_matricula_fora_sla};;
       label: "Status 13 - SLA Fora"
       group_label: "APROVAÇÃO IES"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
     }
 
@@ -715,7 +715,7 @@ dimension: tempo_status {
       type: sum
       sql: ${status_15_aluno_revertido_nova_analise_ies_fora_sla};;
       label: "Status 15 - SLA Fora"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
     }
 
@@ -729,7 +729,7 @@ dimension: tempo_status {
       sql: ${status_14_aluno_possui_divida_ies_fora_sla};;
       label: "Status 14 - SLA Fora"
       group_label: "APROVAÇÃO IES"
-      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+      drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
     }
@@ -741,7 +741,7 @@ dimension: tempo_status {
         sql: ${status_2_0_proposta_finalizada_fora};;
         label: "Status 2.0 - SLA Fora"
         group_label: "ANALISE DE RISCO E CREDITO"
-        drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+        drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
       }
 
@@ -756,7 +756,7 @@ dimension: tempo_status {
         sql: ${status_2_35_validacao_dados_analise_fora};;
         label: "Status 2.35 - SLA Fora"
         group_label: "ANALISE DE RISCO E CREDITO"
-        drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+        drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
       }
 
@@ -770,7 +770,7 @@ dimension: tempo_status {
           sql: ${status_2_37_integracao_neo_xbo_fora};;
           label: "Status 2.37 - SLA Fora"
           group_label: "ANALISE DE RISCO E CREDITO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
         }
 
@@ -781,7 +781,7 @@ dimension: tempo_status {
           sql: ${status_25_1_confirmacao_dados_fora};;
           label: "Status 25.1 - SLA Fora"
           group_label: "CONFIRMAÇÃO DE DADOS"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
         }
@@ -796,7 +796,7 @@ dimension: tempo_status {
           sql: ${status_25_2_confirmacao_dados_bv_fora};;
           label: "Status 25.2 - SLA Fora"
           group_label: "CONFIRMAÇÃO DE DADOS"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -808,7 +808,7 @@ dimension: tempo_status {
           sql: ${status_25_4_escolha_produto_fora};;
           label: "Status 25.4 - SLA Fora"
           group_label: "CONFIRMAÇÃO DE DADOS"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -820,14 +820,14 @@ dimension: tempo_status {
           sql: ${status_26_1_restritivo_bv_fora};;
           label: "Status 26.1 - SLA Fora"
           group_label: "CONFIRMAÇÃO DE DADOS"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
         measure: status8_33_erro_bv {
           type: sum
           sql: ${status_8_33_erro_bv_score};;
           label: "Status 8.33"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -839,7 +839,7 @@ dimension: tempo_status {
           sql:${status_41_formalizado_fora};;
           label: "Status 41 - SLA Fora"
           group_label: "CESSÃO/CONTRATAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
         }
 
@@ -850,7 +850,7 @@ dimension: tempo_status {
           sql: ${status_50_credito_cedido_fora};;
           label: "Status 50.0 - SLA Fora"
           group_label: "CRÉDITO CEDIDO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -861,7 +861,7 @@ dimension: tempo_status {
           sql: ${status_46_contrato_nao_concedido_fora};;
           label: "Status 46 - SLA Fora"
           group_label: "CONTRATO NÃO CONCEDIDO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -871,7 +871,7 @@ dimension: tempo_status {
           sql: ${status_84_1_exclusivo_cessao_aluno_formalizado_fora};;
           label: "Status 84.1 - SLA Fora"
           group_label: "EXCLUSIVO DA CESSÃO - ALUNO FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -881,7 +881,7 @@ dimension: tempo_status {
           sql: ${status_99_1_erros_cessao_fora};;
           label: "Status -99 SLA Fora"
           group_label: "EXCLUSIVO PARA ERROS DA CESSÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
         }
 
@@ -892,7 +892,7 @@ dimension: tempo_status {
           sql: ${status_31_1_aprovado_pela_ies_fora};;
           label: "Número - Status 31.1  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -901,7 +901,7 @@ dimension: tempo_status {
           sql: ${status_31_4_aguardando_geracao_contrato_fora};;
           label: "Número - Status 31.4  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -910,7 +910,7 @@ dimension: tempo_status {
           sql: ${status_33_0_mesa_geracao_contratos_fora};;
           label: "Número - Status 33.0  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -919,7 +919,7 @@ dimension: tempo_status {
     sql: ${status_33_2_erro_geracao_contrato_fora};;
     label: "Número - Status 32.0  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
   }
 
 
@@ -932,7 +932,7 @@ dimension: tempo_status {
           sql: ${status_34_0_processo_emissao_contrato_fora};;
           label: "Número - Status 34.0  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALICAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
         }
 
 
@@ -942,7 +942,7 @@ dimension: tempo_status {
           sql: ${status_34_1_aluno_aprovado_resumo_contrato_fora};;
           label: "Número - Status 34.1  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
         }
 
 
@@ -952,7 +952,7 @@ dimension: tempo_status {
           sql: ${status_35_0_aprovado_para_gerar_contrato_fora};;
           label: "Número - Status 35.0  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
         }
 
 
@@ -963,7 +963,7 @@ dimension: tempo_status {
           sql: ${status_40_5_aguardando_assinatura_contrato_fora};;
           label: "Número - Status 40.5  - SLA Fora"
           group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
@@ -973,7 +973,7 @@ dimension: tempo_status {
     sql: ${status_81_fora};;
     label: "Número - Status 81 SEM FIADOR  - SLA Fora"
     group_label: "GERAÇÃO DE CONTRATO E FORMALIZAÇÃO"
-    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
   }
 
 
@@ -982,7 +982,7 @@ dimension: tempo_status {
     sql: ${status_82_fora};;
     label: "Número - Status 82 SEM FIADOR  - SLA Fora"
     group_label: "CRÉDITO CEDIDO"
-    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
   }
 
     measure: porc_status11_0 {
@@ -1794,7 +1794,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.0 -  Consulta aos restritivos internos BV"
             sql: ${status_2006_0_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1805,7 +1805,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.1 Fora - Erro ao consultar restrição - Banco Votorantim"
             sql: ${status_2006_1} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1814,7 +1814,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2006.2 Fora - Erro ao consultar restrição na confirmação de dados - Banco Votorantim"
             sql: ${status_2006_2} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1823,7 +1823,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.2 Fora -  Processo de troca de IES invalidado"
             sql: ${status_2007_2_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1835,7 +1835,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.5  - Recontratação erro consulta garantidor bureaux"
             sql: ${status_2007_5} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1844,7 +1844,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2007.6 Fora -  Troca de Garantidor: erro consulta aluno bureaux"
             sql: ${status_2007_6_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1852,7 +1852,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             type: sum
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2010.1 -  Elegível ao Processo de Recontratação"
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
             sql: ${status_2010_1} ;;
           }
 
@@ -1861,7 +1861,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2012.13 Fora -  Aguardando Pagamento em Atraso(behaviour)"
             sql: ${status_2012_13_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1869,7 +1869,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             type: sum
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2000.0 -  Recontratação Iniciada"
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
             sql: ${status_2000_0} ;;
 
           }
@@ -1879,7 +1879,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "ELEGIBILIDADE - RISCO"
             label: "Status 2012.3 Fora - 1º Processo - Mesa 1 - Tabela A"
             sql: ${status_2012_3_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1889,7 +1889,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2002.0 Fora - Aluno em Processo de Transferência de IES"
             sql: ${status_2002_0_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
 
@@ -1898,7 +1898,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2009.0 - Ciclo de Recontratação Encerrado - Aluno Não avaliado pela IES"
             sql: ${status_2009_0} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2011_1 {
@@ -1906,7 +1906,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2011.1 Fora - Aluno no portal da IES"
             sql: ${status_2011_1_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure:sum_status_2011_5 {
@@ -1914,7 +1914,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2011.5 Fora - 2º Processo Iniciado na Tabela A"
             sql: ${status_2011_5_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure:sum_status_2011_9 {
@@ -1922,7 +1922,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2011.9 Fora - 3º Processo Iniciado na Tabela A"
             sql: ${status_2011_9_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
           }
@@ -1931,7 +1931,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2013.1 Fora - Pendente de Matrícula sem Promessa"
             sql: ${status_2013_1_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure:sum_status_2014_1  {
@@ -1939,7 +1939,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2014.1 Fora - Pendente de Dívida sem Promessa"
             sql: ${status_2014_1_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2015_0 {
@@ -1947,7 +1947,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2015.0 Fora - Aluno Revertido para Nova Avaliação da IES"
             sql: ${status_2015_0_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure:sum_status_2039 {
@@ -1955,7 +1955,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "IES"
             label: "Status 2039 Fora - Recontratação Reprovada na IES (Aluno Formado)"
             sql: ${status_2039_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2031{
@@ -1963,7 +1963,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031 Fora Fora - Confirmado IES sem Promessa"
             sql: ${status_2031_1_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure:sum_status_2033_2 {
@@ -1971,7 +1971,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2033 Fora - Geração de Contratos - Erro na Geração"
             sql: ${status_2033_2} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
           }
@@ -1981,7 +1981,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2033.0 Fora - Mesa - Geração de contratos "
             sql: ${status_2033_0_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
 
 
@@ -1990,15 +1990,14 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031_4 Fora - Mesa - Limite de Comprometimento Satisfeito sem Promessa "
             sql: ${status_2031_4_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
-
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
           measure: sum_status_2031_5 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2031_5 Fora - Análise do Comitê de Parcelas "
             sql: ${status_2031_5_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2040_0 {
@@ -2006,7 +2005,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2040.0 - Aguardando Confirmação de Dados  "
             sql: ${status_2040_0} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2042_1 {
@@ -2014,7 +2013,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.1 - Documento(s) de Renda Pendente   "
             sql: ${status_2042_1} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
 
           }
@@ -2023,7 +2022,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.2 - Documento(s) de Renda e Outro(s) Documento(s) Pendente(s) "
             sql: ${status_2042_2} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2042_3 {
@@ -2031,7 +2030,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.3 - Documento(s) Pendente(s) e Boleto em atraso"
             sql: ${status_2042_3} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
 
           measure: sum_status_2042_4 {
@@ -2039,7 +2038,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2042.4 - Documento(s) Pendentes"
             sql: ${status_2042_4} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2044_1 {
@@ -2047,7 +2046,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.1 - Contrato Disponibilizado Sem Troca de Garantidor"
             sql: ${status_2044_1} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
 
           measure: sum_status_2044_2 {
@@ -2055,15 +2054,14 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.2 - Contrato Disponibilizado Com Troca de Garantidor Aprovado na Mesa 4"
             sql: ${status_2044_2} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
-
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
           measure: sum_status_2044_3 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2044.3 - Contrato Disponibilizado Com Garantidor Original na Mesa 3"
             sql: ${status_2044_3} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2043_0 {
@@ -2071,7 +2069,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2043.0 - Contrato Disponibilizado Com Garantidor Original na Mesa 3"
             sql: ${status_2043_0} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
 
           }
           measure: sum_status_2035_0 {
@@ -2079,7 +2077,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2035.0 Fora - Aprovado na Pós-Validação de Emissão de Contrato"
             sql: ${status_2035_0_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
 
           measure: sum_status_2034_1 {
@@ -2087,7 +2085,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
             label: "Status 2034.1 Fora - Aprovado das Políticas de Renovação"
             sql: ${status_2034_1_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
           }
 
         measure: sum_status_2034_0 {
@@ -2095,7 +2093,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
           group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
           label: "Status 2034.0 Fora - Aprovado para resumo de contrato"
           sql: ${status_2034_0_fora} ;;
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
         measure: sum_status_2046_1 {
@@ -2103,14 +2101,14 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
           group_label: "CESSÃO"
           label: "Status 2046.1 Fora - Recontratação reprovada - aluno não confirmou os dados do contrato"
           sql: ${status_2046_1_fora} ;;
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
         measure: sum_status_2046_2 {
           type: sum
           group_label: "CESSÃO"
           label: "Status 2046.2 Fora - Recontratação reprovada - aluno não entregou o contrato"
           sql: ${status_2046_2_fora} ;;
-          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
+          drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_time,tempo_status]
         }
 
 
