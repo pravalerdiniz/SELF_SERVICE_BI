@@ -440,12 +440,19 @@ view: jornada {
   }
 
 
+
+
+
+
+
+
+
   dimension: etapa_ultimo_status_renovacao {
     type: string
     case: {
       when: {
         sql: ${ultimo_status_geral} in (2000,2001,2002) ;;
-        label: "Pré Elegibilidade"
+        label: "Pré Elegibilidade/Iniciado"
       }
       when: {
         sql: ${ultimo_status_geral} = 2010 ;;
@@ -458,34 +465,82 @@ view: jornada {
       }
       when: {
         sql: ${ultimo_status_geral} in (2031,2036) ;;
-        label: "Aguardando Confirmação dos Dados"
+        label: "Aprovados pela Instituição"
       }
       when: {
         sql: ${ultimo_status_geral} in (2040) ;;
-        label: "Aprovação para geração de Contrato"
+        label: "Aguardando Confirmação de Dados"
       }
       when: {
-        sql: ${ultimo_status_geral} in (2042,2044) ;;
-        label: "Formalização"
+        sql: ${ultimo_status_geral} in (2044);;
+        label: "Contratos Gerados"
       }
+
       when: {
         sql: ${ultimo_status_geral} in (2041) ;;
         label: "Formalizado"
       }
       when: {
-        sql: ${ultimo_status_geral} in (46,47,49) ;;
+        sql: ${ultimo_status_geral} in (2046) ;;
         label: "Não Aprovado pela Formalização"
       }
       when: {
         sql: ${ultimo_status_geral} in (2050) ;;
         label: "Cedido"
       }
+      when: {
+        sql: ${ultimo_status_geral} in (2058) ;;
+        label: "Cancelado"
+      }
+
 
       else: "Outros"
     }
     group_label: "Telemetria"
     group_item_label: "Etapa Atual - Renovação"
     description: "Etapa do último status do aluno de renovação"
+  }
+
+
+  dimension: ordem_ultima_etapa_rnv {
+    type: string
+    case: {
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Pré Elegibilidade/Iniciado' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Aguardando Análise Behavior'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Tela da Instituição'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Aprovados pela Instituição' ;;
+        label: "4"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Aguardando Confirmação de Dados' ;;
+        label: "5"
+      }
+
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Contratos Gerados' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Formalizado' ;;
+        label: "5"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Cedido';;
+        label: "6"
+      }
+      else: "0"
+    }
+    hidden: yes
   }
 
 
