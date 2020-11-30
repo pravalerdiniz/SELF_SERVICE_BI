@@ -540,7 +540,8 @@ view: jornada {
       }
       else: "0"
     }
-    hidden: yes
+  group_label: "Telemetria"
+  label: "Ordem - Última Etapa (Renovação)"
   }
 
 
