@@ -532,11 +532,11 @@ view: jornada {
       }
       when: {
         sql: ${etapa_ultimo_status_renovacao} = 'Formalizado' ;;
-        label: "5"
+        label: "7"
       }
       when: {
         sql: ${etapa_ultimo_status_renovacao} = 'Cedido';;
-        label: "6"
+        label: "8"
       }
       else: "0"
     }
