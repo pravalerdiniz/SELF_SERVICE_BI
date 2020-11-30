@@ -124,7 +124,165 @@ view: proposta_metas_gc {
 
     }
 
+  measure: min_gerados {
+    type: min
+    label: "Minimo"
+    group_label: "Gerados"
+    sql: ${gerados} ;;
 
+  }
+
+  measure: max_gerados {
+    type: max
+    label: "Máximo"
+    group_label: "Gerados"
+    sql: ${gerados} ;;
+
+  }
+
+
+  measure: avg_gerados {
+    type: average
+    label: "Média"
+    group_label: "Gerados"
+    sql: ${gerados} ;;
+
+  }
+
+
+  measure: sum_finalizados {
+    type: sum
+    label: "Soma"
+    group_label: "Finalizados"
+    sql: ${finalizados} ;;
+
+  }
+
+  measure: min_finalizados {
+    type: min
+    label: "Minimo"
+    group_label: "Finalizados"
+    sql: ${finalizados} ;;
+
+  }
+
+  measure: max_finalizados {
+    type: max
+    label: "Máximo"
+    group_label: "Finalizados"
+    sql: ${finalizados} ;;
+
+  }
+
+
+  measure: avg_finalizados {
+    type: average
+    label: "Média"
+    group_label: "finalizados"
+    sql: ${finalizados} ;;
+
+  }
+
+
+  measure: sum_aprovados_risco {
+    type: sum
+    label: "Soma"
+    group_label: "Aprovados Risco"
+    sql: ${aprovados_risco} ;;
+
+  }
+
+  measure: min_aprovados_risco {
+    type: min
+    label: "Minimo"
+    group_label: "Aprovados Risco"
+    sql: ${aprovados_risco} ;;
+
+  }
+
+  measure: max_aprovados_risco {
+    type: max
+    label: "Máximo"
+    group_label: "Aprovados Risco"
+    sql: ${aprovados_risco} ;;
+
+  }
+
+
+  measure: avg_aprovados_risco {
+    type: average
+    label: "Média"
+    group_label: "Aprovados Risco"
+    sql: ${aprovados_risco} ;;
+
+  }
+
+
+  measure: sum_aprovados_ies {
+    type: sum
+    label: "Soma"
+    group_label: "Aprovados Instituição"
+    sql: ${aprovados_ies} ;;
+
+  }
+
+  measure: min_aprovados_ies {
+    type: min
+    label: "Minimo"
+    group_label: "Aprovados Instituição"
+    sql: ${aprovados_ies} ;;
+
+  }
+
+  measure: max_aprovados_ies {
+    type: max
+    label: "Máximo"
+    group_label: "Aprovados Instituição"
+    sql: ${aprovados_ies} ;;
+
+  }
+
+
+  measure: avg_aprovados_ies {
+    type: average
+    label: "Média"
+    group_label: "Aprovados Instituição"
+    sql: ${aprovados_ies} ;;
+
+  }
+
+  measure: sum_iniciados {
+    type: sum
+    label: "Soma"
+    group_label: "Iniciados"
+    sql: ${iniciados} ;;
+
+  }
+
+  measure: min_iniciados {
+    type: min
+    label: "Minimo"
+    group_label: "Iniciados"
+    sql: ${iniciados} ;;
+
+  }
+
+  measure: max_iniciados {
+    type: max
+    label: "Máximo"
+    group_label: "Iniciados"
+    sql: ${iniciados} ;;
+
+  }
+
+
+  measure: avg_iniciados {
+    type: average
+    label: "Média"
+    group_label: "Iniciados"
+    sql: ${iniciados} ;;
+
+  }
 
 
 
