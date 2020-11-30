@@ -178,7 +178,7 @@ view: proposta_metas_gc {
   measure: avg_finalizados {
     type: average
     label: "Média"
-    group_label: "finalizados"
+    group_label: "Finalizados"
     sql: ${finalizados} ;;
 
   }
