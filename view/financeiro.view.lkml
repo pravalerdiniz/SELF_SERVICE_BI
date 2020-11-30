@@ -1036,7 +1036,7 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
   dimension: gh_collection {
-    type: number
+    type: string
     group_label: "Collection"
     label: "GH do Collection"
     description: "Indica o GH do Collection"
