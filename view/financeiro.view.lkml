@@ -1017,10 +1017,31 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
   }
 
+  dimension_group: data_avaliacao_collection {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
 
+    label: "Data Avaliacao Collection"
+    description: "Indica a Data de Avaliação do Collection"
+    sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
+  }
 
-
-
+  dimension: gh_collection {
+    type: number
+    group_label: "Collection"
+    label: "GH do Collection"
+    description: "Indica o GH do Collection"
+    sql: ${TABLE}."GH_COLLECTION" ;;
+  }
 
 
 
