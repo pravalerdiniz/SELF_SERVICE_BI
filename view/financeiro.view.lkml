@@ -1029,7 +1029,7 @@ foi gerado por um pagamento menor do boleto anterior."
     ]
     convert_tz: no
     datatype: date
-
+    group_label: "Collection"
     label: "Data Avaliacao Collection"
     description: "Indica a Data de Avaliação do Collection"
     sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
