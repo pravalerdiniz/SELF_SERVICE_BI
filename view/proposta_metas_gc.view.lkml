@@ -23,6 +23,7 @@ view: proposta_metas_gc {
 
     dimension: grupo_ies {
       type: string
+      primary_key: yes
       label: "Grupo da Instituição"
       sql: ${TABLE}."GRUPO_IES" ;;
     }
