@@ -116,9 +116,9 @@ view: proposta_metas_gc {
 
 
 
-    measure: sum_cedidos {
-     type: sum
-     label: "Soma"
+    measure:sum_cedidos {
+    type: sum
+    label: "Soma"
     group_label: "Cedidos"
     sql: ${cedidos} ;;
 
@@ -150,7 +150,7 @@ view: proposta_metas_gc {
   }
 
 
-  measure: sum_finalizados {
+  measure:soma_finalizados {
     type: sum
     label: "Soma"
     group_label: "Finalizados"
@@ -176,7 +176,7 @@ view: proposta_metas_gc {
 
 
   measure: avg_finalizados {
-    type: average
+    type:average
     label: "Média"
     group_label: "Finalizados"
     sql: ${finalizados} ;;
@@ -184,8 +184,8 @@ view: proposta_metas_gc {
   }
 
 
-  measure: sum_aprovados_risco {
-    type: sum
+  measure:sum_aprovados_risco {
+    type:sum
     label: "Soma"
     group_label: "Aprovados Risco"
     sql: ${aprovados_risco} ;;
@@ -193,7 +193,7 @@ view: proposta_metas_gc {
   }
 
   measure: min_aprovados_risco {
-    type: min
+    type:min
     label: "Minimo"
     group_label: "Aprovados Risco"
     sql: ${aprovados_risco} ;;
@@ -201,7 +201,7 @@ view: proposta_metas_gc {
   }
 
   measure: max_aprovados_risco {
-    type: max
+    type:max
     label: "Máximo"
     group_label: "Aprovados Risco"
     sql: ${aprovados_risco} ;;
@@ -209,7 +209,7 @@ view: proposta_metas_gc {
   }
 
 
-  measure: avg_aprovados_risco {
+  measure:avg_aprovados_risco {
     type: average
     label: "Média"
     group_label: "Aprovados Risco"
@@ -218,8 +218,8 @@ view: proposta_metas_gc {
   }
 
 
-  measure: sum_aprovados_ies {
-    type: sum
+  measure:sum_aprovados_ies {
+    type:sum
     label: "Soma"
     group_label: "Aprovados Instituição"
     sql: ${aprovados_ies} ;;
@@ -251,8 +251,8 @@ view: proposta_metas_gc {
 
   }
 
-  measure: sum_iniciados {
-    type: sum
+  measure:sum_iniciados {
+    type:sum
     label: "Soma"
     group_label: "Iniciados"
     sql: ${iniciados} ;;
@@ -276,8 +276,8 @@ view: proposta_metas_gc {
   }
 
 
-  measure: avg_iniciados {
-    type: average
+  measure:avg_iniciados {
+    type:average
     label: "Média"
     group_label: "Iniciados"
     sql: ${iniciados} ;;
