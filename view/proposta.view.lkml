@@ -1259,6 +1259,28 @@ view: proposta {
     sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
   }
 
+  dimension: faixa_tempo_atraso_boleto {
+    type: string
+    case: {
+      when: {
+        sql: ${max_boleto_atrasado} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${max_boleto_atrasado} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${max_boleto_atrasado} <= 30 ;;
+        label: "15 - 30"
+      }
+      else: "30 >"
+    }
+    group_label: "Dados do Contrato"
+    group_item_label: "Faixa de Tempo de atraso - Boleto do Aluno"
+    description: "Indica a faixa de tempo, em dias de atraso - Boleto do Aluno"
+  }
+
   dimension: midia_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
