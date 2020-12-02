@@ -12,6 +12,8 @@ view: alunos {
   }
 
 
+
+
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -901,6 +903,29 @@ view: alunos {
     label: "Primeira Cessão"
     description: "Indica a data da primeira cessão do aluno dentro do PRAVALER"
   }
+
+
+  dimension: safra_primeira_cessao {
+    type: string
+    group_label: "Evasão"
+    label: "Primeira Cessão - Safra"
+    description: "Safras em semestres da primeira cessão do aluno no pravaler. Ex: 2020-01."
+    sql:
+    CONCAT(DATE_PART(year, ${data_primeira_cessao_raw}), '-',
+    CASE WHEN DATE_PART(quarter, ${data_primeira_cessao_raw}) = 1 OR
+    DATE_PART(quarter, ${data_primeira_cessao_raw}) = 2 THEN '01' ELSE
+    '02' END);;
+
+
+
+  }
+
+
+
+
+
+
+
 
   dimension_group: data_ultima_cessao {
     type: time

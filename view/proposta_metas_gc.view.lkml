@@ -23,10 +23,18 @@ view: proposta_metas_gc {
 
     dimension: grupo_ies {
       type: string
-      primary_key: yes
       label: "Grupo da Instituição"
       sql: ${TABLE}."GRUPO_IES" ;;
     }
+
+
+  dimension: grupo_ies_ano_mes {
+    type: string
+    label: "Grupo da Instituição"
+    primary_key: yes
+    hidden: yes
+    sql:CONCAT(${ano},${mes},${grupo_ies},${regional}) ;;
+  }
 
     dimension: iniciados {
       type: number
