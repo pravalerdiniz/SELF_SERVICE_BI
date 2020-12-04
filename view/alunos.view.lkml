@@ -1210,7 +1210,7 @@ dimension: faixa_tempo_meses_evasao {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
-    drill_fields: [id_cpf]
+    drill_fields: [id_cpf,cpf_aluno,id_proposta_atual,ds_curso,grupo_instituicao,ds_instituicao,ds_fundo_investimento,ds_campus]
   }
 
   measure: perc_cpf {

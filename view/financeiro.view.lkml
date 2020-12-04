@@ -510,7 +510,75 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
+  dimension: cpf_aluno {
+    sql: ${proposta.cpf_aluno};;
+    hidden: yes
 
+  }
+
+  dimension: aluno_email {
+    sql: ${proposta.aluno_email};;
+    hidden: yes
+
+  }
+
+
+  dimension: aluno_celular {
+    sql: ${proposta.aluno_celular};;
+    hidden: yes
+
+  }
+
+
+  dimension: grupo_instituicao {
+    sql: ${proposta.grupo_instituicao};;
+    hidden: yes
+
+  }
+
+
+  dimension: ds_instituicao {
+    sql: ${proposta.ds_instituicao};;
+    hidden: yes
+
+  }
+
+
+
+  dimension: ds_campus {
+    sql: ${proposta.ds_campus};;
+    hidden: yes
+
+  }
+
+
+
+
+
+  dimension: nm_modalidade_produto{
+    sql: ${proposta.nm_modalidade_produto};;
+    hidden: yes
+
+  }
+
+
+  dimension: nm_produto{
+    sql: ${proposta.nm_produto};;
+    hidden: yes
+
+  }
+
+  dimension: ds_curso{
+    sql: ${proposta.ds_curso};;
+    hidden: yes
+
+  }
+
+  dimension: aluno_nome {
+    sql: ${proposta.aluno_nome};;
+    hidden: yes
+
+  }
 
 
 
@@ -531,11 +599,22 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Valor"
     description: "Contagem de ID_CPFs únicos"
     drill_fields: [
-      id_cpf,
-      id_contrato,
+      cpf_aluno, aluno_nome,id_contrato,
+      aluno_email,
+      aluno_celular,
+      ds_curso,
+      grupo_instituicao,
+      ds_instituicao,
+      ds_campus,
+      nm_modalidade_produto,
+      nm_produto,
       id_boleto,
+      dias_atraso,
       vl_boleto,
-      data_pagamento_date
+      data_pagamento_date,
+      data_vencimento_date,
+
+
       ]
   }
 
@@ -654,6 +733,24 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor do Boleto"
     group_item_label: "Soma"
     description: "Soma do valor do boleto."
+    drill_fields: [
+      cpf_aluno, aluno_nome,id_contrato,
+      aluno_email,
+      aluno_celular,
+      ds_curso,
+      grupo_instituicao,
+      ds_instituicao,
+      ds_campus,
+      nm_modalidade_produto,
+      nm_produto,
+      id_boleto,
+      dias_atraso,
+      vl_boleto,
+      data_pagamento_date,
+      data_vencimento_date,
+
+
+      ]
   }
 
 
