@@ -183,7 +183,7 @@ view: fato_dre {
 
   dimension: resultado_operacional{
     type: number
-    sql:  sum(${lucro_bruto_total}+${despesa_com_pessoal}+${g_a});;
+    sql:  sum(${lucro_bruto_total})+sum(${despesa_com_pessoal})+sum(${g_a});;
     value_format: ""
     group_label: ""
     group_item_label: "Resultado Operacional"
