@@ -201,7 +201,7 @@ view: fato_dre {
 
   dimension: ebt{
     type: number
-    sql:  ${resultado_operacional}+${resultado_financeiro})+${plano_incentivos_longo_prazo};;
+    sql:  ${resultado_operacional}+${resultado_financeiro}+${plano_incentivos_longo_prazo};;
     value_format: ""
     group_label: ""
     group_item_label: "EBT"
