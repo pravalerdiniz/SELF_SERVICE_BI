@@ -1,6 +1,7 @@
 view: proposta_metas_gc {
     derived_table: {
       sql: select
+            id_cpf,
             f.key as grupo_ies,
             f.value:INICIADOS::float as INICIADOS,
              f.value:APROVADOS_RISCO::float as APROVADOS_RISCO,
@@ -27,14 +28,16 @@ view: proposta_metas_gc {
       sql: ${TABLE}."GRUPO_IES" ;;
     }
 
-
-  dimension: grupo_ies_ano_mes {
-    type: string
-    label: "Grupo da Instituição"
-    primary_key: yes
+  dimension: id_cpf {
+    type: number
+    label: "ID CPF"
     hidden: yes
-    sql:CONCAT(${ano},${mes},${grupo_ies},${regional}) ;;
+    primary_key: yes
+    sql: ${TABLE}."ID_CPF" ;;
   }
+
+
+
 
     dimension: iniciados {
       type: number
