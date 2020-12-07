@@ -127,6 +127,95 @@ view: fato_dre {
     description: "Indica se a métrica é proveniente do orçamento ou realizado."
   }
 
+  dimension: lucro_financeiro_bruto {
+    type: number
+    sql: ${receita_juros_liquida}+${custo_captacao} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Lucro Financeiro Bruto"
+    description: "Indica o Lucro Financeiro Bruto."
+  }
+
+  dimension: margem_financeira_bruta {
+    type: number
+    sql: ${lucro_financeiro_bruto}/(${receita_juros_liquida}+${pdd}) ;;
+    value_format: "0.00%"
+    group_label: ""
+    group_item_label: "Margem Financeira Bruta"
+    description: "Margem Financeira Bruta."
+  }
+
+  dimension: lucros_servicos_bruto {
+    type: number
+    sql: ${receita_servicos_liquida}+${custo_com_pessoal}+${custo_servicos_prestados} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Lucros com Serviços Bruto"
+    description: "Lucros com Serviços Bruto."
+  }
+
+  dimension: margem_servicos_bruta {
+    type: number
+    sql: ${lucros_servicos_bruto}/${receita_servicos_liquida} ;;
+    value_format: "0.00%"
+    group_label: ""
+    group_item_label: "Margem de Serviços Bruta"
+    description: "Margem de Serviços Bruta."
+  }
+
+  dimension: lucro_bruto_total {
+    type: number
+    sql: ${lucro_financeiro_bruto}+${lucros_servicos_bruto} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Lucro Bruto Total"
+    description: "Lucro Bruto Total."
+  }
+
+  dimension: margem_bruta_total {
+    type: number
+    sql: ${lucro_bruto_total}/(${receita_juros_liquida}+${pdd}+${receita_servicos_liquida}) ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Margem Bruta Total"
+    description: "Margem Bruta Total."
+  }
+
+  dimension: resultado_operacional{
+    type: number
+    sql:  ${lucro_bruto_total}+${despesa_com_pessoal}+${g_a};;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Resultado Operacional"
+    description: "Resultado Operacional."
+  }
+
+  dimension: margem_operacional{
+    type: number
+    sql:  ${resultado_operacional}/(${receita_juros_liquida}+${pdd}+${receita_juros_liquida});;
+    value_format: "0.00%"
+    group_label: ""
+    group_item_label: "Margem Operacional"
+    description: "Margem Operacional."
+  }
+
+  dimension: ebt{
+    type: number
+    sql:  ${resultado_operacional}+${resultado_financeiro}+${plano_incentivos_longo_prazo};;
+    value_format: ""
+    group_label: ""
+    group_item_label: "EBT"
+    description: "EBT."
+  }
+
+  dimension: lucro_liquido_ajustado{
+    type: number
+    sql: ${ebt}+${irpj_csll} ;;
+    value_format: ""
+    group_label: ""
+    group_item_label: "Lucro Líquido Ajustado"
+    description: "Lucro Líquido Ajustado."
+  }
 
   measure: count {
     type: count
