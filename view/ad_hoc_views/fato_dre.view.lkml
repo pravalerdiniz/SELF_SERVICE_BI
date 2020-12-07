@@ -183,7 +183,7 @@ view: fato_dre {
 
   dimension: resultado_operacional{
     type: number
-    sql:  sum(${lucro_bruto_total})+sum(${despesa_com_pessoal})+sum(${g_a});;
+    sql:  ${lucro_bruto_total}+${despesa_com_pessoal}+${g_a};;
     value_format: ""
     group_label: ""
     group_item_label: "Resultado Operacional"
@@ -192,7 +192,7 @@ view: fato_dre {
 
   dimension: margem_operacional{
     type: number
-    sql:  ${resultado_operacional}/(sum(${receita_juros_liquida})+sum(${pdd})+${receita_juros_liquida});;
+    sql:  ${resultado_operacional}/(${receita_juros_liquida}+${pdd}+${receita_juros_liquida});;
     value_format: "0.00%"
     group_label: ""
     group_item_label: "Margem Operacional"
@@ -201,7 +201,7 @@ view: fato_dre {
 
   dimension: ebt{
     type: number
-    sql:  ${resultado_operacional}+${resultado_financeiro})+${plano_incentivos_longo_prazo};;
+    sql:  ${resultado_operacional}+${resultado_financeiro}+${plano_incentivos_longo_prazo};;
     value_format: ""
     group_label: ""
     group_item_label: "EBT"
