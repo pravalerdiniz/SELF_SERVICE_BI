@@ -24,7 +24,7 @@ view: proposta_metas_gc {
 
     dimension: grupo_ies {
       type: string
-      label: "Grupo da Instituição"
+      label: "Grupo da Instituição - Meta"
       sql: ${TABLE}."GRUPO_IES" ;;
     }
 

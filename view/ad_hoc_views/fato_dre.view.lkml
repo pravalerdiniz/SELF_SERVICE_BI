@@ -201,7 +201,7 @@ view: fato_dre {
 
   dimension: ebt{
     type: number
-    sql:  ${resultado_operacional}+${resultado_financeiro}+${plano_incentivos_longo_prazo};;
+    sql:  ${resultado_operacional}+(${resultado_financeiro}+${depreciacao_amortizacao}+${plano_incentivos_longo_prazo});;
     value_format: ""
     group_label: ""
     group_item_label: "EBT"
@@ -217,6 +217,8 @@ view: fato_dre {
     description: "Lucro Líquido Ajustado."
   }
 
+
+
   measure: count {
     type: count
     drill_fields: []
@@ -226,7 +228,7 @@ view: fato_dre {
     type: sum
     sql: ${custo_captacao} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Custo"
     group_item_label: ""
     description: ""
   }
@@ -235,7 +237,7 @@ view: fato_dre {
     type: sum
     sql: ${custo_com_pessoal} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Custo"
     group_item_label: ""
     description: ""
   }
@@ -244,7 +246,7 @@ view: fato_dre {
     type: sum
     sql: ${custo_servicos_prestados} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Custo"
     group_item_label: ""
     description: ""
   }
@@ -254,7 +256,7 @@ view: fato_dre {
     type: sum
     sql: ${depreciacao_amortizacao} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Depreciação Amortização"
     group_item_label: ""
     description: ""
   }
@@ -263,8 +265,8 @@ view: fato_dre {
     type: number
     sql: ${despesa_com_pessoal} ;;
     value_format: ""
-    group_label: ""
-    group_item_label: ""
+    group_label: "Despesa"
+    group_item_label: "Com Pessoal - Soma"
     description: ""
   }
 
@@ -274,8 +276,8 @@ view: fato_dre {
     type: sum
     sql: ${pdd} ;;
     value_format: ""
-    group_label: ""
-    group_item_label: ""
+    group_label: "PDD"
+    group_item_label: "Soma"
     description: ""
   }
 
@@ -285,7 +287,7 @@ view: fato_dre {
     type: sum
     sql: ${receita_juros_liquida} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Receita"
     group_item_label: ""
     description: ""
   }
@@ -294,7 +296,7 @@ view: fato_dre {
     type: sum
     sql: ${receita_servicos_liquida} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Receita"
     group_item_label: ""
     description: ""
   }
@@ -303,9 +305,116 @@ view: fato_dre {
     type: sum
     sql: ${receita_servicos_liquida} ;;
     value_format: ""
-    group_label: ""
+    group_label: "Resultado"
+    group_item_label: "Financeiro - Soma"
+    description: ""
+  }
+
+  measure: sum_lucro_financeiro_bruto{
+    type: sum
+    sql: ${lucro_financeiro_bruto} ;;
+    value_format: ""
+    group_label: "Lucro"
     group_item_label: ""
     description: ""
   }
+
+  measure: sum_margem_financeira_bruto{
+    type: sum
+    sql: ${margem_financeira_bruta} ;;
+    value_format: "0.00%"
+    group_label: "Margem"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_margem_servicos_bruto{
+    type: sum
+    sql: ${margem_servicos_bruta} ;;
+    value_format: "0.00%"
+    group_label: "Margem"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_margem_bruta_total{
+    type: sum
+    sql: ${margem_bruta_total} ;;
+    value_format: "0.00%"
+    group_label: "Margem"
+    group_item_label: ""
+    description: ""
+
+  }
+
+
+  measure: sum_lucro_servicos_bruto{
+    type: sum
+    sql: ${lucros_servicos_bruto} ;;
+    group_label: "Lucro"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_lucro_bruto_total{
+    type: sum
+    sql: ${lucro_bruto_total} ;;
+    group_label: "Lucro"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_resultado_operacional{
+    type: sum
+    sql: ${lucro_bruto_total} ;;
+    group_label: "Lucro"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_ebt{
+    type: sum
+    sql: ${ebt} ;;
+    group_label: "Lucro"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_irpj_cll{
+    type: sum
+    sql: ${irpj_csll} ;;
+    group_label: "IRPJ/CLL"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_lucro_liquido_ajustado{
+    type: sum
+    sql: ${lucro_liquido_ajustado} ;;
+    group_label: "Lucro"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_g_a{
+    type: sum
+    sql: ${g_a} ;;
+    group_label: ""
+    group_item_label: "G&A"
+    description: ""
+
+  }
+
+
+
+
 
 }
