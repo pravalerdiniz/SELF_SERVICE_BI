@@ -262,7 +262,7 @@ view: fato_dre {
   }
 
   measure: sum_despesa_com_pessoal {
-    type: number
+    type: sum
     sql: ${despesa_com_pessoal} ;;
     value_format: ""
     group_label: "Despesa"
