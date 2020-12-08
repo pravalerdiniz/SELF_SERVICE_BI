@@ -403,14 +403,7 @@ view: fato_dre {
 
   }
 
-  measure: sum_resultado_operacional{
-    type: sum
-    sql: ${lucro_bruto_total} ;;
-    group_label: "Lucro"
-    group_item_label: ""
-    description: ""
 
-  }
 
   measure: sum_ebt{
     type: sum
@@ -447,6 +440,36 @@ view: fato_dre {
     description: ""
 
   }
+
+  measure: sum_margem_operacional{
+    type: sum
+    sql: ${margem_operacional} ;;
+    group_label: "Margem"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_resultado_operacional{
+    type: sum
+    sql: ${resultado_operacional} ;;
+    group_label: "Resultado"
+    group_item_label: ""
+    description: ""
+
+  }
+
+  measure: sum_plano_incentivo_longo_prazo{
+    type: sum
+    sql: ${plano_incentivos_longo_prazo} ;;
+    group_label: ""
+    group_item_label: ""
+    description: ""
+
+  }
+
+
+
 
 
 
