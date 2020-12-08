@@ -37,6 +37,24 @@ view: fato_dre {
     description: "Ano-mês de fechamento."
   }
 
+  dimension_group: data_ {
+    type: time
+    timeframes: [
+      raw,
+      week,
+      month,
+      quarter,
+      month_name,
+      month_num,
+      year
+    ]
+    convert_tz: no
+    label: "Fechamento"
+    description: "Indica a data do fechamento"
+    datatype: date
+    sql: ${TABLE}."DATA" ;;
+  }
+
   dimension: depreciacao_amortizacao {
     type: number
     sql: ${TABLE}."DEPRECIACAO_AMORTIZACAO" ;;
@@ -129,7 +147,7 @@ view: fato_dre {
 
   dimension: lucro_financeiro_bruto {
     type: number
-    sql: ${receita_juros_liquida}+${custo_captacao} ;;
+    sql:${TABLE}."LUCRO_FINANCEIRO_BRUTO" ;;
     value_format: ""
     group_label: ""
     group_item_label: "Lucro Financeiro Bruto"
@@ -138,7 +156,7 @@ view: fato_dre {
 
   dimension: margem_financeira_bruta {
     type: number
-    sql: ${lucro_financeiro_bruto}/(${receita_juros_liquida}+${pdd}) ;;
+    sql:${TABLE}."MARGEM_FINANCEIRA_BRUTA" ;;
     value_format: "0.00%"
     group_label: ""
     group_item_label: "Margem Financeira Bruta"
@@ -147,7 +165,7 @@ view: fato_dre {
 
   dimension: lucros_servicos_bruto {
     type: number
-    sql: ${receita_servicos_liquida}+${custo_com_pessoal}+${custo_servicos_prestados} ;;
+    sql:${TABLE}."LUCROS_SERVICO_BRUTO";;
     value_format: ""
     group_label: ""
     group_item_label: "Lucros com Serviços Bruto"
@@ -156,7 +174,7 @@ view: fato_dre {
 
   dimension: margem_servicos_bruta {
     type: number
-    sql: ${lucros_servicos_bruto}/${receita_servicos_liquida} ;;
+    sql:${TABLE}."MARGEM_SERVICOS_BRUTA";;
     value_format: "0.00%"
     group_label: ""
     group_item_label: "Margem de Serviços Bruta"
@@ -165,7 +183,7 @@ view: fato_dre {
 
   dimension: lucro_bruto_total {
     type: number
-    sql: ${lucro_financeiro_bruto}+${lucros_servicos_bruto} ;;
+    sql:${TABLE}."LUCRO_BRUTO_TOTAL";;
     value_format: ""
     group_label: ""
     group_item_label: "Lucro Bruto Total"
@@ -174,7 +192,7 @@ view: fato_dre {
 
   dimension: margem_bruta_total {
     type: number
-    sql: ${lucro_bruto_total}/(${receita_juros_liquida}+${pdd}+${receita_servicos_liquida}) ;;
+    sql:${TABLE}."MARGEM_BRUTA_TOTAL";;
     value_format: ""
     group_label: ""
     group_item_label: "Margem Bruta Total"
@@ -183,7 +201,7 @@ view: fato_dre {
 
   dimension: resultado_operacional{
     type: number
-    sql:  ${lucro_bruto_total}+${despesa_com_pessoal}+${g_a};;
+     sql:${TABLE}."RESULTADO_OPERACIONAL";;
     value_format: ""
     group_label: ""
     group_item_label: "Resultado Operacional"
@@ -192,7 +210,7 @@ view: fato_dre {
 
   dimension: margem_operacional{
     type: number
-    sql:  ${resultado_operacional}/(${receita_juros_liquida}+${pdd}+${receita_juros_liquida});;
+    sql:${TABLE}."MARGEM_OPERACIONAL";;
     value_format: "0.00%"
     group_label: ""
     group_item_label: "Margem Operacional"
@@ -201,7 +219,7 @@ view: fato_dre {
 
   dimension: ebt{
     type: number
-    sql:  ${resultado_operacional}+(${resultado_financeiro}+${depreciacao_amortizacao}+${plano_incentivos_longo_prazo});;
+    sql:${TABLE}."EBT";;
     value_format: ""
     group_label: ""
     group_item_label: "EBT"
@@ -210,7 +228,7 @@ view: fato_dre {
 
   dimension: lucro_liquido_ajustado{
     type: number
-    sql: ${ebt}+${irpj_csll} ;;
+    sql:${TABLE}."LUCRO_LIQUIDO_AJUSTADO";;
     value_format: ""
     group_label: ""
     group_item_label: "Lucro Líquido Ajustado"
