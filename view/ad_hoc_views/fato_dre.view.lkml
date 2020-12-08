@@ -174,7 +174,7 @@ view: fato_dre {
 
   dimension: lucros_servicos_bruto {
     type: number
-    sql:${TABLE}."LUCROS_SERVICO_BRUTO";;
+    sql:${TABLE}."LUCROS_SERVICOS_BRUTOS";;
     value_format: ""
     group_label: ""
     hidden: yes
@@ -182,9 +182,9 @@ view: fato_dre {
     description: "Lucros com Serviços Bruto."
   }
 
-  dimension: margem_servicos_bruta {
+  dimension: margem_servicos_bruto {
     type: number
-    sql:${TABLE}."MARGEM_SERVICOS_BRUTA";;
+    sql:${TABLE}."MARGEM_SERVICOS_BRUTAS";;
     value_format: "0.00%"
     group_label: ""
     hidden: yes
@@ -366,7 +366,7 @@ view: fato_dre {
 
   measure: sum_margem_servicos_bruto{
     type: sum
-    sql: ${margem_servicos_bruta} ;;
+    sql: ${margem_servicos_bruto} ;;
     value_format: "0.00%"
     group_label: "Margem"
     group_item_label: ""
