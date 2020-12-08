@@ -309,7 +309,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
   join: proposta_metas_gc {
     view_label: "2.2 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${proposta_metas_gc.grupo_ies} ;;
+    sql_on: ${proposta.grupo_instituicao} = ${proposta_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -487,7 +487,7 @@ join: proposta_docs_pendentes {
 
   join: proposta_metas_gc {
     view_label: "1.4 Metas - GC"
-    sql_on: ${proposta_metas_gc.grupo_ies}=${proposta.grupo_instituicao} ;;
+    sql_on: ${proposta_metas_gc.grupo_instituicao}=${proposta.grupo_instituicao} ;;
     relationship: many_to_one
     type: left_outer
   }
