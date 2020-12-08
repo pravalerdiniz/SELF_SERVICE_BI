@@ -8,6 +8,7 @@ view: fato_dre {
     value_format: "\"R$ \"#,##0.00"
     group_label: ""
     group_item_label: "Custo de Captação"
+    hidden: yes
     description: "O custo de captação refere-se à remuneração paga aos cotistas dos fundos."
   }
 
@@ -16,6 +17,7 @@ view: fato_dre {
     sql: ${TABLE}."CUSTO_COM_PESSOAL" ;;
     value_format: "\"R$ \"#,##0.00"
     group_label: ""
+    hidden: yes
     group_item_label: "Custo com Pessoal"
     description: "O custo com pessoal refere-se aos gastos com salários e benefícios."
   }
@@ -25,6 +27,7 @@ view: fato_dre {
     sql: ${TABLE}."CUSTO_SERVICOS_PRESTADOS" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Custo de Serviços Prestados"
     description: "O custo de serviços prestados refere-se aos gastos operacionais."
   }
@@ -33,6 +36,7 @@ view: fato_dre {
     type: string
     sql: ${TABLE}."DATA" ;;
     group_label: ""
+    hidden: yes
     group_item_label:"Data"
     description: "Ano-mês de fechamento."
   }
@@ -60,6 +64,7 @@ view: fato_dre {
     sql: ${TABLE}."DEPRECIACAO_AMORTIZACAO" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Depreciação e Amortização"
     description: "Refere-se às despesas com depreciação. Exemplo: mobiliário e equipamentos de tecnologia."
   }
@@ -69,6 +74,7 @@ view: fato_dre {
     sql: ${TABLE}."DESPESA_COM_PESSOAL" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Despesa com Pessoal"
     description: "Refere-se ao total de gastos com salários e benefícios."
   }
@@ -78,6 +84,7 @@ view: fato_dre {
     sql: ${TABLE}."G_A" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "G&A"
     description: "Refere-se às despesas gerais e administrativas."
   }
@@ -87,6 +94,7 @@ view: fato_dre {
     sql: ${TABLE}."IRPJ_CSLL" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "IRPJ/CSLL"
     description: "Refere-se às despesas com Imposto de Renda e Contribuição Social."
   }
@@ -96,6 +104,7 @@ view: fato_dre {
     sql: ${TABLE}."PDD" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "PDD"
     description: "Refere-se às despesas com a Provisão de Devedores Duvidosos."
   }
@@ -105,6 +114,7 @@ view: fato_dre {
     sql: ${TABLE}."PLANO_INCENTIVOS_LONGO_PRAZO" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Plano de Incentivos de Longo Prazo"
     description: "Provisão para recompra de ações."
   }
@@ -114,6 +124,7 @@ view: fato_dre {
     sql: ${TABLE}."RECEITA_JUROS_LIQUIDA" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Receita de Juros Líquida"
     description: "Refere-se às receitas de juros das carteiras de crédito dos FIDCs."
   }
@@ -123,6 +134,7 @@ view: fato_dre {
     sql: ${TABLE}."RECEITA_SERVICOS_LIQUIDA" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Receita de Serviços Líquida"
     description: "Refere-se às receitas de comissão."
   }
@@ -132,6 +144,7 @@ view: fato_dre {
     sql: ${TABLE}."RESULTADO_FINANCEIRO" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Resultado financeiro"
     description: "Refere-se aos rendimentos das aplicações financeiras."
   }
@@ -141,6 +154,7 @@ view: fato_dre {
     sql: ${TABLE}."TIPO" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Real/Orçado"
     description: "Indica se a métrica é proveniente do orçamento ou realizado."
   }
@@ -150,6 +164,7 @@ view: fato_dre {
     sql:${TABLE}."LUCRO_FINANCEIRO_BRUTO" ;;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Lucro Financeiro Bruto"
     description: "Indica o Lucro Financeiro Bruto."
   }
@@ -159,6 +174,7 @@ view: fato_dre {
     sql:${TABLE}."MARGEM_FINANCEIRA_BRUTA" ;;
     value_format: "0.00%"
     group_label: ""
+    hidden: yes
     group_item_label: "Margem Financeira Bruta"
     description: "Margem Financeira Bruta."
   }
@@ -168,6 +184,7 @@ view: fato_dre {
     sql:${TABLE}."LUCROS_SERVICO_BRUTO";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Lucros com Serviços Bruto"
     description: "Lucros com Serviços Bruto."
   }
@@ -177,6 +194,7 @@ view: fato_dre {
     sql:${TABLE}."MARGEM_SERVICOS_BRUTA";;
     value_format: "0.00%"
     group_label: ""
+    hidden: yes
     group_item_label: "Margem de Serviços Bruta"
     description: "Margem de Serviços Bruta."
   }
@@ -186,6 +204,7 @@ view: fato_dre {
     sql:${TABLE}."LUCRO_BRUTO_TOTAL";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Lucro Bruto Total"
     description: "Lucro Bruto Total."
   }
@@ -195,15 +214,17 @@ view: fato_dre {
     sql:${TABLE}."MARGEM_BRUTA_TOTAL";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Margem Bruta Total"
     description: "Margem Bruta Total."
   }
 
   dimension: resultado_operacional{
     type: number
-     sql:${TABLE}."RESULTADO_OPERACIONAL";;
+    sql:${TABLE}."RESULTADO_OPERACIONAL";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Resultado Operacional"
     description: "Resultado Operacional."
   }
@@ -213,6 +234,7 @@ view: fato_dre {
     sql:${TABLE}."MARGEM_OPERACIONAL";;
     value_format: "0.00%"
     group_label: ""
+    hidden: yes
     group_item_label: "Margem Operacional"
     description: "Margem Operacional."
   }
@@ -222,6 +244,7 @@ view: fato_dre {
     sql:${TABLE}."EBT";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "EBT"
     description: "EBT."
   }
@@ -231,6 +254,7 @@ view: fato_dre {
     sql:${TABLE}."LUCRO_LIQUIDO_AJUSTADO";;
     value_format: ""
     group_label: ""
+    hidden: yes
     group_item_label: "Lucro Líquido Ajustado"
     description: "Lucro Líquido Ajustado."
   }
