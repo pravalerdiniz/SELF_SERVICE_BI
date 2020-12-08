@@ -32,16 +32,9 @@ view: fato_dre {
     description: "O custo de serviços prestados refere-se aos gastos operacionais."
   }
 
-  dimension: data {
-    type: string
-    sql: ${TABLE}."DATA" ;;
-    group_label: ""
-    hidden: yes
-    group_item_label:"Data"
-    description: "Ano-mês de fechamento."
-  }
 
-  dimension_group: data_ {
+
+  dimension_group: data {
     type: time
     timeframes: [
       raw,
