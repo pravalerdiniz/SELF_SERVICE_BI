@@ -147,7 +147,7 @@ view: fato_dre {
     sql: ${TABLE}."TIPO" ;;
     value_format: ""
     group_label: ""
-    hidden: yes
+
     group_item_label: "Real/Orçado"
     description: "Indica se a métrica é proveniente do orçamento ou realizado."
   }
