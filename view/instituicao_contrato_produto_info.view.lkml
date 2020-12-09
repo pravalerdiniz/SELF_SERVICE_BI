@@ -19,7 +19,7 @@ view: instituicao_contrato_produto_info {
       ,f.value:ID_PRODUTO::varchar as ID_PRODUTO
       ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
       ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
-      ,f.value:FLG_CORTE::INT as FLG_CORTE
+      ,f.value:FLG_CORTE::boolean as FLG_CORTE
       from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
       lateral flatten (input => ies_contrato) f
        ;;
