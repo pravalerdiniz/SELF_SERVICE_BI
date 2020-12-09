@@ -19,6 +19,7 @@ view: instituicao_contrato_produto_info {
       ,f.value:ID_PRODUTO::varchar as ID_PRODUTO
       ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
       ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
+      ,f.value:FLG_CORTE::INT as FLG_CORTE
       from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
       lateral flatten (input => ies_contrato) f
        ;;
@@ -139,6 +140,13 @@ view: instituicao_contrato_produto_info {
     label: "Está em W.O?"
     description: "Indica se o contrato da instituição está em W.O"
     sql: ${TABLE}."FLG_WO" ;;
+  }
+
+  dimension: flg_corte {
+    type: yesno
+    label: "Nota de Corte?"
+    description: "Indica se o contrato da instituição com determinado produto possui Nota de Corte para SCORE,"
+    sql: ${TABLE}."FLG_CORTE" ;;
   }
 
   dimension: id_produto {
