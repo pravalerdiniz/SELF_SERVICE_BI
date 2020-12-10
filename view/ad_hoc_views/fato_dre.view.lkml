@@ -32,6 +32,19 @@ view: fato_dre {
     description: "O custo de serviços prestados refere-se aos gastos operacionais."
   }
 
+  dimension: custo_servicos_prestados_e_pessoal {
+    type: number
+    sql: ${custo_com_pessoal}+${custo_servicos_prestados} ;;
+    value_format: ""
+    group_label: ""
+    hidden: yes
+    group_item_label: "Custo de Serviços Prestados e Pessoal"
+    description: "O custo de serviços prestados refere-se aos gastos operacionais."
+  }
+
+
+
+
 
 
   dimension_group: data {
@@ -285,6 +298,17 @@ view: fato_dre {
     group_item_label: ""
     description: ""
   }
+
+
+  measure: sum_custo_servicos_prestados_e_pessoal{
+    type: sum
+    sql: ${custo_servicos_prestados_e_pessoal} ;;
+    value_format: ""
+    group_label: "Custo"
+    group_item_label: ""
+    description: ""
+  }
+
 
 
   measure: sum_depreciacao_amortizacao {
