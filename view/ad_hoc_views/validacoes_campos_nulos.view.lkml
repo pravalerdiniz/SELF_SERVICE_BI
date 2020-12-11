@@ -54,4 +54,13 @@ view: validacoes_campos_nulos {
     group_label: ""
     sql: ${TABLE}."SNAPSHOT" ;;
   }
+
+  measure: soma_qtd {
+    type: sum
+    sql: ${qte} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
 }

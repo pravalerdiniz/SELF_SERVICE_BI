@@ -54,4 +54,13 @@ view: validacoes_duplicidade {
     group_label: "Duplicidades"
     sql: ${TABLE}."SNAPSHOT" ;;
   }
+
+  measure: soma_qtd {
+    type: sum
+    sql: ${qte} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
 }
