@@ -615,7 +615,7 @@ view: farol {
 
 dimension: tempo_status {
   type: number
-  sql: datediff(hour, ${TABLE}."DATA" ,current_date());;
+  sql: datediff(hour, ${TABLE}."DATA" ,current_timestamp());;
   label: "Tempo no Status"
   description: "Tempo do Aluno parado no Status"
 
@@ -685,6 +685,19 @@ dimension: tempo_status {
 
 
     }
+
+  measure: status11_sla_dentro {
+    type: sum
+    sql: ${status_11_0_aluno_no_portal_da_ies_dentro_sla};;
+    label: "Status 11.0 - SLA Dentro "
+    group_label: "APROVAÇÃO IES"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+
+  }
+
+
+
 
 
     measure: status11_2_sla_fora {
@@ -774,6 +787,19 @@ dimension: tempo_status {
       drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
     }
+
+
+
+  measure: status2_37_sla_dentro {
+    type: sum
+    sql: ${status_2_37_integracao_neo_xbo_dentro};;
+    label: "Status 2.37 - SLA Dentro"
+    group_label: "ANALISE DE RISCO E CREDITO"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+  }
+
+
 
 
 
@@ -2018,6 +2044,8 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
 
+
+
           }
           measure: sum_status_2042_2 {
             type: sum
@@ -2435,6 +2463,9 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
     sql: ${status_2046_3_fora} ;;
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_raw,tempo_status]
         }
+
+
+
 
 
   measure: sum_status_2046_4 {
