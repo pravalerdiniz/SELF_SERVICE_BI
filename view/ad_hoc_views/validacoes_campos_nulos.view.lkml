@@ -30,7 +30,7 @@ view: validacoes_campos_nulos {
     description: "Campo Validado"
   }
 
-  dimension: qte {
+  dimension: qtd {
     type: number
     sql: ${TABLE}."QTD" ;;
     value_format:  ""
@@ -57,7 +57,7 @@ view: validacoes_campos_nulos {
 
   measure: soma_qtd {
     type: sum
-    sql: ${qte} ;;
+    sql: ${qtd} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""

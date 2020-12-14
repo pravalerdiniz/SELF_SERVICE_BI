@@ -21,7 +21,7 @@ view: validacoes_tipo_proposta {
     description: "Tipo de validação"
   }
 
-  dimension: qte {
+  dimension: qtd {
     type: string
     sql: ${TABLE}."QTD" ;;
     value_format:  ""
@@ -44,5 +44,14 @@ view: validacoes_tipo_proposta {
     datatype: date
     group_label: "Validações Tipo Proposta"
     sql: ${TABLE}."SNAPSHOT" ;;
+  }
+
+  measure: soma_qtd {
+    type: sum
+    sql: ${qtd} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
   }
 }

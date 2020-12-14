@@ -30,7 +30,7 @@ view: validacoes_duplicidade {
     description: "Campo Chave Validado"
   }
 
-  dimension: qte {
+  dimension: qtd {
     type: string
     sql: ${TABLE}."QTD" ;;
     value_format:  ""
@@ -57,7 +57,7 @@ view: validacoes_duplicidade {
 
   measure: soma_qtd {
     type: sum
-    sql: ${qte} ;;
+    sql: ${qtd} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""

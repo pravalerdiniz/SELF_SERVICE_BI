@@ -21,7 +21,7 @@ view: validacoes_parcelas_boletos {
     description: "Tipo de validação"
   }
 
-  dimension: qte_prestacoes {
+  dimension: qtd_prestacoes {
     type: number
     sql: ${TABLE}."QTD_PRESTACOES" ;;
     value_format:  ""
@@ -30,7 +30,7 @@ view: validacoes_parcelas_boletos {
     description: "Quantidade Prestações"
   }
 
-  dimension: qte_divergencia {
+  dimension: qtd_divergencia {
     type: number
     sql: ${TABLE}."QTD_DIVERGENCIA" ;;
     value_format:  ""
@@ -48,7 +48,7 @@ view: validacoes_parcelas_boletos {
     description: "ID da Proposta"
   }
 
-  dimension: qte_boleto_gerado {
+  dimension: qtd_boleto_gerado {
     type: number
     sql: ${TABLE}."QTD_BOLETO_GERADO" ;;
     value_format:  ""
@@ -75,7 +75,7 @@ view: validacoes_parcelas_boletos {
 
   measure: soma_qte_prestacoes {
     type: sum
-    sql: ${qte_prestacoes} ;;
+    sql: ${qtd_prestacoes} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""
@@ -84,7 +84,7 @@ view: validacoes_parcelas_boletos {
 
   measure: soma_qte_divergencia {
     type: sum
-    sql: ${qte_divergencia} ;;
+    sql: ${qtd_divergencia} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""
@@ -93,7 +93,7 @@ view: validacoes_parcelas_boletos {
 
   measure: soma_qte_boleto_gerado {
     type: sum
-    sql: ${qte_boleto_gerado} ;;
+    sql: ${qtd_boleto_gerado} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""

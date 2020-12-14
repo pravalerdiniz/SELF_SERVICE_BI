@@ -21,7 +21,7 @@ view: validacoes_entre_camadas {
     description: "Tipo de validação"
   }
 
-  dimension: qte {
+  dimension: qtd {
     type: string
     sql: ${TABLE}."QTD" ;;
     value_format:  ""
@@ -48,7 +48,7 @@ view: validacoes_entre_camadas {
 
   measure: soma_qtd {
     type: sum
-    sql: ${qte} ;;
+    sql: ${qtd} ;;
     value_format:  "0"
     group_label: ""
     group_item_label: ""
