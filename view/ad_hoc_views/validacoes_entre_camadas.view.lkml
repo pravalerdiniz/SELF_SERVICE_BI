@@ -45,4 +45,13 @@ view: validacoes_entre_camadas {
     group_label: "Validação Entre Camadas"
     sql: ${TABLE}."SNAPSHOT" ;;
   }
+
+  measure: soma_qtd {
+    type: sum
+    sql: ${qte} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
 }
