@@ -72,4 +72,31 @@ view: validacoes_parcelas_boletos {
     group_label: "Parcelas Divergente de Qtde. Boletos"
     sql: ${TABLE}."SNAPSHOT" ;;
   }
+
+  measure: soma_qte_prestacoes {
+    type: sum
+    sql: ${qte_prestacoes} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: soma_qte_divergencia {
+    type: sum
+    sql: ${qte_divergencia} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
+
+  measure: soma_qte_boleto_gerado {
+    type: sum
+    sql: ${qte_boleto_gerado} ;;
+    value_format:  "0"
+    group_label: ""
+    group_item_label: ""
+    description: ""
+  }
 }
