@@ -98,7 +98,7 @@ view: proposta {
     value_format: "0"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
-    sql: ${TABLE}."ALUNO_RENDA" ;;
+    sql:IFNULL(${TABLE}."ALUNO_RENDA",0) ;;
     drill_fields: [id_cpf, cpf_aluno,id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     required_access_grants: [grupo_renda]
   }
@@ -282,6 +282,55 @@ view: proposta {
     description: "Indica o nome do representante comercial responsável pela conversão original na instituição de ensino"
     sql: ${TABLE}."CONVERSAO_ORIGINAL" ;;
   }
+
+
+  dimension:comprometimento_renda {
+    type: number
+    group_label: "Dados da Proposta"
+    label: "Comprometimento de Renda"
+    value_format: "0.00%"
+    description: "Indica qual a porcentagem da renda comprometida do aluno em relação ao valor da mensalidade do curso."
+    sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
+  }
+
+  dimension: faixa_comprometimento_renda {
+    type: string
+    group_label: "Dados da Proposta"
+    label: "Faixa de Comprometimento de Renda"
+    value_format: "0.00%"
+    description: "Indica qual a faixa de porcentagem da renda que é comprometida do aluno em relação ao valor da mensalidade do curso."
+    case: {
+      when: {
+        sql: ${comprometimento_renda} <= 0.1 ;;
+        label: "< 10%"
+      }
+      when: {
+        sql:  ${comprometimento_renda} <= 0.2 ;;
+        label: "10% - 20%"
+      }
+      when: {
+        sql:  ${comprometimento_renda}<= 0.3 ;;
+        label: "20% - 30%"
+      }
+      when: {
+        sql:  ${comprometimento_renda}<= 0.4 ;;
+        label: "30% - 40%"
+      }
+      when: {
+        sql:  ${comprometimento_renda}<= 0.5 ;;
+        label: "40% - 50%"
+      }
+      else: "50% >"
+    }
+
+
+
+
+
+  }
+
+
+
 
   dimension: cp_atual {
     type: string
@@ -806,7 +855,7 @@ view: proposta {
     label: "Renda do Fiador"
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do Fiador do aluno."
-    sql: ${TABLE}."FIA_RENDA" ;;
+    sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
   }
@@ -1708,7 +1757,7 @@ view: proposta {
     label: "Valor Mensalidade"
     value_format: "$ #,###.00"
     description: "Indica o valor da mensalidade descrita no contrato"
-    sql: ${TABLE}."VL_MENSALIDADE" ;;
+    sql: IFNULL(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
   dimension: vl_parcela {
@@ -2288,6 +2337,10 @@ view: proposta {
     sql:${vl_mensalidade};;
     description: "Soma do valor da mensalidade descrita no contrato"
   }
+
+
+
+
 
   measure: avg_mensalidade_contrato  {
     type: average
@@ -3025,6 +3078,12 @@ view: proposta {
     group_item_label: "Valor comissão PRV Futuro"
     description: "Indica o valor previsto da comissão PRV do contrato a ser cedido"
   }
+
+
+
+
+
+
 
   measure: count_linhas {
     type: count

@@ -471,7 +471,7 @@ view: fato_dre {
     group_label: "Margem"
     group_item_label: ""
     description: ""
-
+    value_format: "0.00%"
   }
 
   measure: sum_resultado_operacional{
