@@ -121,6 +121,11 @@ explore: beneficiados {
 
 
 explore: instituicao {
+  #access_filter: {
+  #  field: grupo
+ #   user_attribute: grupo_ies
+ # }
+
   label: "Instituição"
   view_label: "1. Instituição"
   description: "Apresenta os dados das Instituições de Ensino com contrado com PRAVALER"
@@ -219,6 +224,10 @@ join: instituicao_taxas_antecipacao {
 }
 
 explore: status {
+ # access_filter: {
+  #  field: grupo_instituicao
+  #  user_attribute: grupo_ies
+ # }
   label: "Status"
   view_label: "1. Status "
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
@@ -264,6 +273,10 @@ explore: status {
 
 
 explore: jornada {
+#  access_filter: {
+ #   field: grupo_instituicao
+#    user_attribute: grupo_ies
+#  }
   view_label: "1. Jornada"
   description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
 fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
@@ -332,6 +345,10 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
 
 explore: financeiro {
+ # access_filter: {
+ #   field: grupo_instituicao
+ #   user_attribute: grupo_ies
+ # }
   label: "Financeiro"
   view_label: "1. Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
@@ -365,6 +382,10 @@ explore: financeiro {
 
 
 explore: proposta {
+  access_filter: {
+    field: grupo_instituicao
+    user_attribute: grupo_ies
+  }
   label: "Proposta"
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
@@ -527,6 +548,10 @@ join: proposta_docs_pendentes {
 }
 
 explore: alunos {
+ # access_filter: {
+ #   field: grupo_instituicao
+ #   user_attribute: grupo_ies
+ # }
   view_label: "1. Alunos"
   description: "Apresenta os dados de todos os alunos do PRAVALER"
   fields: [ALL_FIELDS *,
