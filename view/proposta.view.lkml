@@ -289,7 +289,7 @@ view: proposta {
     group_label: "Dados da Proposta"
     label: "Comprometimento de Renda"
     value_format: "0.00%"
-    description: "Indica qual a porcentagem da renda comprometida do aluno em relação ao valor da mensalidade do curso."
+    description: "Indica qual a porcentagem da renda comprometida do (aluno+fiador) em relação ao valor da mensalidade do curso."
     sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
   }
 
