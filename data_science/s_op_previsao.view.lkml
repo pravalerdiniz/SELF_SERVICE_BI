@@ -6,12 +6,14 @@ view: s_op_previsao {
     type: string
     sql: ${TABLE}."CANAL_URL" ;;
     label: "Canal da URL"
+    description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
   }
 
   dimension: classe_modelo_iniciado {
     type: string
     sql: ${TABLE}."CLASSE_MODELO_INICIADO" ;;
     label: "Classe do Modelo de Propensão de Iniciados"
+    description: "Classificação do aluno de acordo com o seu potencial de conversão."
   }
 
   dimension: distribuicao_media {
@@ -36,6 +38,7 @@ view: s_op_previsao {
     type: string
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
     label: "Grupo da Instituição"
+    description: "Indica o nome do grupo da instituição."
   }
 
   dimension_group: mes_inicio_proposta {
@@ -52,6 +55,7 @@ view: s_op_previsao {
     datatype: date
     sql: ${TABLE}."MES_INICIO_PROPOSTA" ;;
     label: "Mês de Início da Proposta"
+    description: "Mês de início da proposta do aluno."
   }
 
   dimension: qtd_iniciado {
@@ -89,6 +93,7 @@ view: s_op_previsao {
     type: string
     sql: ${TABLE}."REGIAO_CAMPUS" ;;
     label: "Região do Campus"
+    description: "Região geográfica do campus do aluno."
   }
 
   dimension: pk {
@@ -102,6 +107,33 @@ view: s_op_previsao {
     hidden: yes
   }
 
+  dimension_group: mes_base {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."MES_BASE" ;;
+    label: "Mês Base da Previsão"
+    description: "Último mês fechado na análise de conversão em até 90 dias, contado a partir da data de análise do modelo."
+  }
+
+  dimension: previsao_atual {
+    type: yesno
+    sql: case when ${mes_base_raw} = (select max(mes_base) from veterano.data_science.s_op_previsao)
+              then True
+              else False
+         end;;
+    label: "Previsão Vigente?"
+    description: "Indica a previsão mais recente realizada pelo modelo."
+  }
+
   measure: count {
     type: count
     drill_fields: []
@@ -112,12 +144,14 @@ view: s_op_previsao {
     type: sum_distinct
     sql: ${qtd_iniciado} ;;
     label: "Volume Iniciados"
+    description: "Volume geral de iniciadoss. Não pode ser quebrado por data de formalização."
   }
 
   measure: sum_projecao_base {
     type: sum_distinct
     sql: ${qtd_prevista_cedido} ;;
     label: "Volume Cedidos - Base"
+    description: "Volume geral da projeção de cedidos. Não pode ser quebrado por data de formalização."
   }
 
   measure: sum_projecao_otimista {

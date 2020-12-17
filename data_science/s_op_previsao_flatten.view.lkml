@@ -124,6 +124,8 @@ view: s_op_previsao_flatten {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."DATA_PREVISTA_FORMALIZACAO" ;;
+    label: "Previsão de Formalização"
+    description: "Data prevista para formalização do aluno."
   }
 
   dimension: valor_previsto_base {
@@ -147,6 +149,8 @@ view: s_op_previsao_flatten {
   measure: sum_valor_previsto_base {
     type: sum
     sql: ${valor_previsto_base} ;;
+    label: "Projeção Volume Cedidos - Base"
+    description: "Volume geral da projeção de cedidos. Esse campo deve ser usado para projeção por data de formalização."
   }
 
   measure: sum_valor_previsto_otimista {
