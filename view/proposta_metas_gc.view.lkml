@@ -1,7 +1,8 @@
 view: proposta_metas_gc {
     derived_table: {
       sql: select
-            f.key as grupo_ies,
+          DISTINCT(f.key) as grupo_ies_ano_mes,
+           grupo_instituicao,
             f.value:INICIADOS::float as INICIADOS,
              f.value:APROVADOS_RISCO::float as APROVADOS_RISCO,
               f.value:FINALIZADOS::float as FINALIZADOS,
@@ -21,20 +22,29 @@ view: proposta_metas_gc {
       drill_fields: [detail*]
     }
 
-    dimension: grupo_ies {
+    dimension: grupo_ies_ano_mes {
       type: string
-      label: "Grupo da Instituição"
-      sql: ${TABLE}."GRUPO_IES" ;;
+      label: "Grupo da Instituição - Meta"
+      primary_key: yes
+      hidden: yes
+      sql: ${TABLE}."GRUPO_IES_ANO_MES" ;;
     }
 
 
-  dimension: grupo_ies_ano_mes {
+
+
+
+
+  dimension: grupo_instituicao {
     type: string
-    label: "Grupo da Instituição"
-    primary_key: yes
+    label: "Grupo da Instituição - Meta"
     hidden: yes
-    sql:CONCAT(${ano},${mes},${grupo_ies},${regional}) ;;
+    sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
+
+
+
+
 
     dimension: iniciados {
       type: number
@@ -301,7 +311,8 @@ view: proposta_metas_gc {
 
     set: detail {
       fields: [
-        grupo_ies,
+        grupo_instituicao,
+        grupo_ies_ano_mes,
         iniciados,
         aprovados_risco,
         finalizados,

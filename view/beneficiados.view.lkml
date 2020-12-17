@@ -353,6 +353,7 @@ view: beneficiados {
       group_label: "Quantidade de Alunos"
       group_item_label: "Valor"
       description: "Contagem de CPFs únicos"
+      drill_fields:[id_cpf,id_proposta,grupo_da_ie,nome_da_ie,produto,data_concessao_date]
     }
 
     measure: perc_cpf {
