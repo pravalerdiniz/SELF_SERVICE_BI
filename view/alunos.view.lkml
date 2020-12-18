@@ -1500,6 +1500,18 @@ dimension: faixa_tempo_meses_evasao {
 
 
 
+  dimension: primeiro_semestre_financiado {
+    type: number
+    sql: ${TABLE}."PRIMEIRO_SEMESTRE_FINANCIADO" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Primeiro Semestre Financiado"
+    description: "Indica o primeiro semestre financiado pelo aluno dentro do PRAVALER."
+  }
+
+
+
+
+
 
 
 
