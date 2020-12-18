@@ -1,31 +1,53 @@
 view: unpivot_dre {
   derived_table: {
     sql:  select * from "VETERANO"."FATO"."FATO_DRE"
-unpivot(valor for metrica in (RECEITA_JUROS_LIQUIDA ,
-PDD ,
-CUSTO_CAPTACAO  ,
-RECEITA_SERVICOS_LIQUIDA  ,
-CUSTO_COM_PESSOAL ,
-CUSTO_SERVICOS_PRESTADOS  ,
-DESPESA_COM_PESSOAL ,
-G_A ,
-RESULTADO_FINANCEIRO  ,
-DEPRECIACAO_AMORTIZACAO ,
-PLANO_INCENTIVOS_LONGO_PRAZO  ,
-IRPJ_CSLL ))
+      unpivot(valor for metrica in (
+      RECEITA_JUROS_LIQUIDA ,
+      RECEITA_JUROS_LIQUIDA  ,
+      PDD  ,
+      CUSTO_CAPTACAO  ,
+      LUCRO_FINANCEIRO_BRUTO  ,
+      MARGEM_FINANCEIRA_BRUTA  ,
+      RECEITA_SERVICOS_LIQUIDA  ,
+      CUSTO_COM_PESSOAL  ,
+      CUSTO_SERVICOS_PRESTADOS  ,
+      LUCROS_SERVICOS_BRUTOS  ,
+      MARGEM_SERVICOS_BRUTAS  ,
+      LUCRO_BRUTO_TOTAL  ,
+      MARGEM_BRUTA_TOTAL  ,
+      DESPESA_COM_PESSOAL  ,
+      G_A  ,
+      RESULTADO_OPERACIONAL  ,
+      MARGEM_OPERACIONAL  ,
+      RESULTADO_FINANCEIRO  ,
+      DEPRECIACAO_AMORTIZACAO  ,
+      PLANO_INCENTIVOS_LONGO_PRAZO  ,
+      EBT  ,
+      IRPJ_CSLL  ,
+      LUCRO_LIQUIDO_AJUSTADO
+       ))
     order by data;;
   }
 
 
 
-dimension: data {
-  type: string
-  sql: ${TABLE}."DATA" ;;
-  group_label: ""
-  group_item_label:"Data"
-  description: "Ano-mês de fechamento."
-}
-
+  dimension_group: data {
+    type: time
+    timeframes: [
+      raw,
+      week,
+      month,
+      quarter,
+      month_name,
+      month_num,
+      year
+    ]
+    convert_tz: no
+    label: "Fechamento"
+    description: "Indica a data do fechamento"
+    datatype: date
+    sql: ${TABLE}."DATA" ;;
+  }
 
 
 dimension: tipo {
