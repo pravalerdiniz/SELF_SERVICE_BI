@@ -911,7 +911,7 @@ view: alunos {
     label: "Primeira Cessão - Safra"
     description: "Safras em semestres da primeira cessão do aluno no pravaler. Ex: 2020-01."
     sql:
-    CONCAT(DATE_PART(year, ${data_primeira_cessao_raw}), '-',
+    CONCAT(DATE_PART(year, ${data_primeira_cessao_raw}),
     CASE WHEN DATE_PART(quarter, ${data_primeira_cessao_raw}) = 1 OR
     DATE_PART(quarter, ${data_primeira_cessao_raw}) = 2 THEN '01' ELSE
     '02' END);;
