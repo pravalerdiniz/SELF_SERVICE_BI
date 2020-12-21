@@ -73,3 +73,7 @@ explore: fato_dre {
 }
 
 explore: unpivot_dre {}
+
+explore: itau {
+  label: "ITAU"
+}
