@@ -90,4 +90,22 @@ dimension: tipo {
     description: ""
 
   }
+
+
+  measure: avg_valor {
+    type: average
+    sql: ${valor} ;;
+    value_format: ""
+    group_label: "Valor"
+    group_item_label: "Média"
+    description: ""
+
+  }
+
+
+
+
+
+
+
 }

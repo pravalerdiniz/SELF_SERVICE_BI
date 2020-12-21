@@ -14,6 +14,7 @@ view: alunos {
 
 
 
+
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -1504,6 +1505,7 @@ dimension: faixa_tempo_meses_evasao {
     type: number
     sql: ${TABLE}."PRIMEIRO_SEMESTRE_FINANCIADO" ;;
     group_label: "Dados do Aluno"
+    value_format: "0"
     group_item_label: "Primeiro Semestre Financiado"
     description: "Indica o primeiro semestre financiado pelo aluno dentro do PRAVALER."
   }
