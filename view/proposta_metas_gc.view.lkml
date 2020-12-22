@@ -11,7 +11,9 @@ view: proposta_metas_gc {
                  f.value:CEDIDOS::float as CEDIDOS,
                   f.value:REGIONAL::varchar as REGIONAL,
                    f.value:ANO::int as ANO,
-                   f.value:MES::varchar as MES
+                   f.value:MES::varchar as MES,
+                   f.value:DIA::int as DIA,
+                   f.value:DATA::date as DATA
             from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
             lateral flatten (input => metas_gc) f
  ;;
@@ -42,6 +44,31 @@ view: proposta_metas_gc {
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
 
+
+  dimension_group: data_meta {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Meta"
+    description: "Indica a data da meta."
+    sql: ${TABLE}."DATA" ;;
+  }
+
+  dimension: dia{
+    type: number
+    label: "DIa"
+    sql: ${TABLE}."DIA" ;;
+  }
 
 
 
