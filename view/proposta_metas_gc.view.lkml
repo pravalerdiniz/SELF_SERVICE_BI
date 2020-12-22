@@ -66,7 +66,7 @@ view: proposta_metas_gc {
 
   dimension: dia{
     type: number
-    label: "DIa"
+    label: "Dia"
     sql: ${TABLE}."DIA" ;;
   }
 
