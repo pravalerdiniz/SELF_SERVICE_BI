@@ -907,7 +907,8 @@ view: alunos {
 
 
   dimension: safra_primeira_cessao {
-    type: string
+    type: number
+    value_format: "0"
     label: "Primeira Cessão - Safra"
     description: "Safras em semestres da primeira cessão do aluno no pravaler. Ex: 2020-01."
     sql:
