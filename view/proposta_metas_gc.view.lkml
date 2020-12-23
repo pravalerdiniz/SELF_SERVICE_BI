@@ -1,7 +1,7 @@
 view: proposta_metas_gc {
     derived_table: {
       sql: select
-          DISTINCT(f.key) as grupo_ies_ano_mes,
+          f.key as grupo_ies_ano_mes,
            grupo_instituicao,
             f.value:INICIADOS::float as INICIADOS,
              f.value:APROVADOS_RISCO::float as APROVADOS_RISCO,
@@ -14,8 +14,9 @@ view: proposta_metas_gc {
                    f.value:MES::varchar as MES,
                    f.value:DIA::int as DIA,
                    f.value:DATA::date as DATA
-            from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
-            lateral flatten (input => metas_gc) f
+                   from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
+            lateral flatten (input => metas_gc)f
+            qualify row_number() over(partition by f.key order by f.key)=1
  ;;
     }
 
@@ -40,7 +41,6 @@ view: proposta_metas_gc {
   dimension: grupo_instituicao {
     type: string
     label: "Grupo da Instituição - Meta"
-    hidden: yes
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
 
