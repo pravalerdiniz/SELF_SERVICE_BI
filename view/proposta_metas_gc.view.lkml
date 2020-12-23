@@ -82,24 +82,28 @@ view: proposta_metas_gc {
     dimension: aprovados_risco {
       type: number
       label: "Aprovados Risco"
+      value_format: "0.00%"
       sql: ${TABLE}."APROVADOS_RISCO" ;;
     }
 
     dimension: finalizados {
       type: number
       label: "Finalizados"
+      value_format: "0.00%"
       sql: ${TABLE}."FINALIZADOS" ;;
     }
 
     dimension: aprovados_ies {
       type: number
       label: "Aprovados IES"
+      value_format: "0.00%"
       sql: ${TABLE}."APROVADOS_IES" ;;
     }
 
     dimension: gerados {
       type: number
       label: "Gerados"
+      value_format: "0.00%"
       sql: ${TABLE}."GERADOS" ;;
     }
 
@@ -173,6 +177,7 @@ view: proposta_metas_gc {
   measure: min_gerados {
     type: min
     label: "Minimo"
+    value_format: "0.00%"
     group_label: "Gerados"
     sql: ${gerados} ;;
 
@@ -182,6 +187,7 @@ view: proposta_metas_gc {
     type: max
     label: "Máximo"
     group_label: "Gerados"
+    value_format: "0.00%"
     sql: ${gerados} ;;
 
   }
@@ -191,6 +197,7 @@ view: proposta_metas_gc {
     type: average
     label: "Média"
     group_label: "Gerados"
+    value_format: "0.00%"
     sql: ${gerados} ;;
 
   }
@@ -200,6 +207,7 @@ view: proposta_metas_gc {
     type: sum
     label: "Soma"
     group_label: "Finalizados"
+    value_format: "0.00%"
     sql: ${finalizados} ;;
 
   }
@@ -208,6 +216,7 @@ view: proposta_metas_gc {
     type: min
     label: "Minimo"
     group_label: "Finalizados"
+    value_format: "0.00%"
     sql: ${finalizados} ;;
 
   }
@@ -216,6 +225,7 @@ view: proposta_metas_gc {
     type: max
     label: "Máximo"
     group_label: "Finalizados"
+    value_format: "0.00%"
     sql: ${finalizados} ;;
 
   }
@@ -225,6 +235,7 @@ view: proposta_metas_gc {
     type:average
     label: "Média"
     group_label: "Finalizados"
+    value_format: "0.00%"
     sql: ${finalizados} ;;
 
   }
@@ -234,6 +245,7 @@ view: proposta_metas_gc {
     type:sum
     label: "Soma"
     group_label: "Aprovados Risco"
+    value_format: "0.00%"
     sql: ${aprovados_risco} ;;
 
   }
@@ -242,6 +254,7 @@ view: proposta_metas_gc {
     type:min
     label: "Minimo"
     group_label: "Aprovados Risco"
+    value_format: "0.00%"
     sql: ${aprovados_risco} ;;
 
   }
@@ -250,6 +263,7 @@ view: proposta_metas_gc {
     type:max
     label: "Máximo"
     group_label: "Aprovados Risco"
+    value_format: "0.00%"
     sql: ${aprovados_risco} ;;
 
   }
@@ -259,6 +273,7 @@ view: proposta_metas_gc {
     type: average
     label: "Média"
     group_label: "Aprovados Risco"
+    value_format: "0.00%"
     sql: ${aprovados_risco} ;;
 
   }
@@ -268,6 +283,7 @@ view: proposta_metas_gc {
     type:sum
     label: "Soma"
     group_label: "Aprovados Instituição"
+    value_format: "0.00%"
     sql: ${aprovados_ies} ;;
 
   }
@@ -276,6 +292,7 @@ view: proposta_metas_gc {
     type: min
     label: "Minimo"
     group_label: "Aprovados Instituição"
+    value_format: "0.00%"
     sql: ${aprovados_ies} ;;
 
   }
@@ -284,6 +301,7 @@ view: proposta_metas_gc {
     type: max
     label: "Máximo"
     group_label: "Aprovados Instituição"
+    value_format: "0.00%"
     sql: ${aprovados_ies} ;;
 
   }
@@ -293,6 +311,7 @@ view: proposta_metas_gc {
     type: average
     label: "Média"
     group_label: "Aprovados Instituição"
+    value_format: "0.00%"
     sql: ${aprovados_ies} ;;
 
   }
