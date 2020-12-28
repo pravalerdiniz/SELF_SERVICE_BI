@@ -191,6 +191,13 @@ join: instituicao_taxas_antecipacao {
 
   }
 
+  join: instituicao_metas_gc {
+    view_label: "1.4 Metas - GC"
+    sql_on: ${instituicao_metas_gc.grupo_instituicao}=${instituicao.grupo} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
@@ -320,9 +327,9 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     type: left_outer
   }
 
-  join: proposta_metas_gc {
+  join: instituicao_metas_gc {
     view_label: "2.2 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${proposta_metas_gc.grupo_instituicao}  ;;
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -504,14 +511,14 @@ join: proposta_docs_pendentes {
     relationship: one_to_many
     type: left_outer
   }
-
-
-  join: proposta_metas_gc {
-    view_label: "1.4 Metas - GC"
-    sql_on: ${proposta_metas_gc.grupo_instituicao}=${proposta.grupo_instituicao} ;;
-    relationship: many_to_one
+  join: instituicao_metas_gc {
+    view_label: "1.4 Metas GC"
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
+    relationship: one_to_many
     type: left_outer
   }
+
+
 
 
 

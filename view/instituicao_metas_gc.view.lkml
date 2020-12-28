@@ -1,4 +1,4 @@
-view: proposta_metas_gc {
+view: instituicao_metas_gc {
     derived_table: {
       sql: select
            concat(grupo,data) grupo_ies_ano_mes,
