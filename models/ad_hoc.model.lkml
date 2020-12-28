@@ -77,3 +77,5 @@ explore: unpivot_dre {}
 explore: itau {
   label: "ITAU"
 }
+
+explore: documentacao {}
