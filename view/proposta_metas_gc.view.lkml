@@ -1,22 +1,20 @@
 view: proposta_metas_gc {
     derived_table: {
       sql: select
-          f.key as grupo_ies_ano_mes,
-           grupo_instituicao,
-            f.value:INICIADOS::float as INICIADOS,
-             f.value:APROVADOS_RISCO::float as APROVADOS_RISCO,
-              f.value:FINALIZADOS::float as FINALIZADOS,
-               f.value:APROVADOS_IES::float as APROVADOS_IES,
-                f.value:GERADOS::float as GERADOS,
-                 f.value:CEDIDOS::float as CEDIDOS,
-                  f.value:REGIONAL::varchar as REGIONAL,
-                   f.value:ANO::int as ANO,
-                   f.value:MES::varchar as MES,
-                   f.value:DIA::int as DIA,
-                   f.value:DATA::date as DATA
-                   from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
-            lateral flatten (input => metas_gc)f
-            qualify row_number() over(partition by f.key order by f.key)=1
+           concat(grupo,data) grupo_ies_ano_mes,
+           grupo grupo_instituicao,
+             INICIADOS,
+            APROVADOS_RISCO,
+             FINALIZADOS,
+                APROVADOS_IES,
+                 GERADOS,
+                  CEDIDOS,
+                  REGIONAL,
+                   ANO,
+                    MES,
+                   DIA,
+                    DATA
+                   from VETERANO.DIMENSAO.DIM_META_GC
  ;;
     }
 
