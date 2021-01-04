@@ -822,3 +822,5 @@ explore: crx_agentes_detalhes_pausas{
     relationship: many_to_one
   }
 }
+
+explore: instituicao_metas_gc {}
