@@ -194,7 +194,7 @@ view: instituicao_metas_gc {
 
   measure: sum_gerados {
     type: sum
-    label: "Máximo"
+    label: "Soma"
     group_label: "Gerados"
     value_format: "0.00%"
     sql: ${gerados} ;;
