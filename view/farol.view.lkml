@@ -1322,7 +1322,6 @@ CASE WHEN sum(${TABLE}."STATUS_2011_5_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2011_9_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2013_1_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2015_0_FORA") = 0 THEN 1 ELSE 0 END+
-CASE WHEN sum(${TABLE}."STATUS_2039_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2031_1_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2031_4_FORA") = 0 THEN 1 ELSE 0 END+
 CASE WHEN sum(${TABLE}."STATUS_2033_0_FORA") = 0 THEN 1 ELSE 0 END+
@@ -1352,7 +1351,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
           measure: perc_okr_diario_renovacao {
             type: number
             value_format: "0.0%"
-            sql: ${total_status_fora_renovacao}/28 ;;
+            sql: ${total_status_fora_renovacao}/27 ;;
             label: "OKR Diário - Renovação"
 
 

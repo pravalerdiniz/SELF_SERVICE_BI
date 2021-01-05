@@ -84,9 +84,9 @@ dimension: tipo {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format: ""
     group_label: "Valor"
     group_item_label: "Soma"
+    value_format:"[>=10000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
     description: ""
 
   }
