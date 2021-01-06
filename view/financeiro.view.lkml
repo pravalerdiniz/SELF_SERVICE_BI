@@ -1132,6 +1132,15 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
   }
 
+
+measure: max_data_avaliacao_collection {
+  type: date
+  sql: MAX(${data_avaliacao_collection_date}) ;;
+
+
+}
+
+
   dimension: gh_collection {
     type: string
     group_label: "Collection"

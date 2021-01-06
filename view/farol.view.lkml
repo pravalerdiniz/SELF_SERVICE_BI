@@ -1926,6 +1926,19 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
           }
+
+  measure: sum_status_2011_1_dentro {
+    type: sum
+    group_label: "IES"
+    label: "Status 2011.1 Dentro - Aluno no portal da IES"
+    sql: ${status_2011_1_dentro} ;;
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+  }
+
+
+
+
           measure:sum_status_2011_5 {
             type: sum
             group_label: "IES"
