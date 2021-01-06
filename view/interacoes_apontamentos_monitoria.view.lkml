@@ -20,36 +20,49 @@ view: interacoes_apontamentos {
 
   dimension: id_ticket {
     type: number
+    hidden: yes
     sql: ${TABLE}."ID_TICKET" ;;
   }
 
   dimension_group: data_atualizacao {
     type: time
+    label: "Data de Atualização"
+    description: "Indica a data de atualização do apontamento da monitoria"
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
   dimension: nome_procedimento {
     type: string
+    label: "Checklist Monitoria"
+    description: "Indica checklist da monitoria por ticket"
     sql: ${TABLE}."NOME_PROCEDIMENTO" ;;
   }
 
   dimension: procedimento {
     type: string
+    label: "Checklist - Detalhamento"
+    description: "Indica o detalhamento do checklist da monitoria"
     sql: ${TABLE}."PROCEDIMENTO" ;;
   }
 
   dimension: nota {
     type: number
+    label: "Nota"
+    description: "Indica a nota da monitoria"
     sql: ${TABLE}."NOTA" ;;
   }
 
   dimension: nome_agente {
     type: string
+    label: "Atendente"
+    description: "Indica a nome do atendente"
     sql: ${TABLE}."NOME_AGENTE" ;;
   }
 
   dimension: nome_avaliador {
     type: string
+    label: "Avaliador"
+    description: "Indica a nome do avaliador da monitoria"
     sql: ${TABLE}."NOME_AVALIADOR" ;;
   }
 

@@ -777,7 +777,7 @@ explore: interacoes {
     view_label: "Apontamentos de Monitoria"
     type: full_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos.id_ticket};;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 
 
