@@ -28,26 +28,30 @@ view: interacoes_apontamentos_monitoria {
     type: time
     label: "Atualização"
     description: "Indica a data de atualização do apontamento da monitoria"
+    hidden: yes
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
   dimension: nome_procedimento {
     type: string
-    label: "Checklist Monitoria"
+    label: "Checklist"
+    group_label: "Dados de Monitoria"
     description: "Indica checklist da monitoria por ticket"
     sql: ${TABLE}."NOME_PROCEDIMENTO" ;;
   }
 
   dimension: procedimento {
     type: string
-    label: "Checklist - Detalhamento"
+    label: "Checklist Detalhado"
+    group_label: "Dados de Monitoria"
     description: "Indica o detalhamento do checklist da monitoria"
     sql: ${TABLE}."PROCEDIMENTO" ;;
   }
 
   dimension: nota {
     type: number
-    label: "Nota"
+    label: "Nota por Checklist"
+    group_label: "Dados de Monitoria"
     description: "Indica a nota da monitoria"
     sql: ${TABLE}."NOTA" ;;
   }
@@ -56,6 +60,7 @@ view: interacoes_apontamentos_monitoria {
     type: string
     label: "Atendente"
     description: "Indica a nome do atendente"
+    hidden: yes
     sql: ${TABLE}."NOME_AGENTE" ;;
   }
 
@@ -63,6 +68,7 @@ view: interacoes_apontamentos_monitoria {
     type: string
     label: "Avaliador"
     description: "Indica a nome do avaliador da monitoria"
+    hidden: yes
     sql: ${TABLE}."NOME_AVALIADOR" ;;
   }
 
