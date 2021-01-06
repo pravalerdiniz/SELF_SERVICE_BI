@@ -2144,7 +2144,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
   measure: sum_status_2044_13 {
     type: sum
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
-    label: "Status 2044.3 - Aguardando Assinatura"
+    label: "Status 2044.13 - Aguardando Assinatura"
     sql: ${status_2044_13_fora} ;;
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
