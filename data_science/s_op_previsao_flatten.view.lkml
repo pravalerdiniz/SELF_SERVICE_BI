@@ -67,7 +67,6 @@ view: s_op_previsao_flatten {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
     hidden: yes
   }
 
@@ -151,6 +150,7 @@ view: s_op_previsao_flatten {
     sql: ${valor_previsto_base} ;;
     label: "Projeção Volume Cedidos - Base"
     description: "Volume geral da projeção de cedidos. Esse campo deve ser usado para projeção por data de formalização."
+    drill_fields: [drill*]
   }
 
   measure: sum_valor_previsto_otimista {
@@ -165,17 +165,10 @@ view: s_op_previsao_flatten {
     hidden: yes
   }
 
-  set: detail {
-    fields: [
-      mes_inicio_proposta_raw,
-      classe_modelo_iniciado,
-      grupo_instituicao,
-      regiao_campus,
-      canal_url,
-      data_prevista_formalizacao_raw,
-      valor_previsto_base,
-      valor_previsto_pessimista,
-      valor_previsto_otimista
-    ]
+  set: drill {
+    fields: [proposta.id_proposta,
+      proposta.id_cpf,
+      proposta.cpf_aluno,
+      proposta.data_formalizacao_prevista_raw]
   }
 }

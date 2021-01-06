@@ -152,6 +152,7 @@ view: s_op_previsao {
     sql: ${qtd_prevista_cedido} ;;
     label: "Volume Cedidos - Base"
     description: "Volume geral da projeção de cedidos. Não pode ser quebrado por data de formalização."
+    drill_fields: [drill*]
   }
 
   measure: sum_projecao_otimista {
@@ -167,5 +168,12 @@ view: s_op_previsao {
     sql_distinct_key: ${pk} ;;
     label: "Volume Cedidos - Pessimista"
     hidden: yes
+  }
+
+  set: drill {
+    fields: [proposta.id_proposta,
+             proposta.id_cpf,
+             proposta.cpf_aluno,
+             proposta.data_formalizacao_prevista_raw]
   }
 }
