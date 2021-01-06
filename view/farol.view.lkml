@@ -246,6 +246,16 @@ view: farol {
       sql: ${TABLE}."Status_40_5_Aguardando_Assinatura_Contrato_Dentro" ;;
     }
 
+  dimension: status_40_13_dentro {
+    type: number
+    sql: ${TABLE}."Status_40_13_Dentro" ;;
+  }
+
+  dimension: status_40_13_fora {
+    type: number
+    sql: ${TABLE}."Status_40_13_Fora" ;;
+  }
+
     dimension: status_40_5_aguardando_assinatura_contrato_fora {
       type: number
       sql: ${TABLE}."Status_40_5_Aguardando_Assinatura_Contrato_Fora" ;;
@@ -536,6 +546,13 @@ view: farol {
     hidden: yes
     sql: ${TABLE}."PORC9" ;;
   }
+
+  dimension: porc40_13 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."PORC40_13" ;;
+  }
+
 
   dimension: id_cpf {
     type: number
@@ -869,6 +886,15 @@ dimension: tempo_status {
       drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
     }
+
+  measure:status40_13_sla_fora {
+    type: sum
+    sql:${status_40_13_fora};;
+    label: "Status 40.13 - SLA Fora"
+    group_label:"CONFIRMAÇÃO DE DADOS"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+  }
 
 
 
@@ -1228,7 +1254,13 @@ dimension: tempo_status {
       value_format: "0.0%"
     }
 
-
+  measure: porc_status40_13 {
+    type: max
+    sql: ${porc40_13};;
+    label: "Porcentagem - Status 40.13 - SLA Fora"
+    group_label: "CONFIRMAÇÃO DE DADOS"
+    value_format: "0.0%"
+  }
 
 
 
@@ -1727,6 +1759,24 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             sql: ${TABLE}."STATUS_2044_3" ;;
           }
 
+  dimension: status_2044_13_dentro {
+    type: number
+    group_label: "Renovação"
+    sql: ${TABLE}."Status_2044_13_Dentro" ;;
+  }
+
+  dimension: status_2044_13_fora {
+    type: number
+    group_label: "Renovação"
+    sql: ${TABLE}."Status_2044_13_Fora" ;;
+  }
+
+
+
+
+
+
+
           dimension: status_2046_1_dentro {
             type: number
             group_label: "Renovação"
@@ -2089,6 +2139,16 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
           }
+
+
+  measure: sum_status_2044_13 {
+    type: sum
+    group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
+    label: "Status 2044.3 - Aguardando Assinatura"
+    sql: ${status_2044_13_fora} ;;
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+  }
           measure: sum_status_2043_0 {
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
@@ -2442,6 +2502,13 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
   }
 
 
+  dimension: porc2044_13 {
+    type: number
+    group_label: "Renovação"
+    hidden: yes
+    sql: ${TABLE}."PORC2044_13" ;;
+  }
+
 
 
 
@@ -2670,6 +2737,14 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
     label: "Porcentagem  status 2031 1  - Confirmado IES sem Promessa"
     sql:${porc2031_1};;
   }
+  measure: perc_status_2044_13_fora{
+    type: max
+    value_format: "0.0%"
+    group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
+    label: "Porcentagem  Status 2043 13  - Aguardando Assinatura"
+    sql:${porc2044_13};;
+  }
+
 
   measure: perc_status_2006_0_fora{
     type: max

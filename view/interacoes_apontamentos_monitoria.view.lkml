@@ -1,4 +1,4 @@
-view: interacoes_apontamentos {
+view: interacoes_apontamentos_monitoria {
   derived_table: {
     sql: SELECT
       A.ID_TICKET,
@@ -26,7 +26,7 @@ view: interacoes_apontamentos {
 
   dimension_group: data_atualizacao {
     type: time
-    label: "Data de Atualização"
+    label: "Atualização"
     description: "Indica a data de atualização do apontamento da monitoria"
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
