@@ -1679,6 +1679,19 @@ view: proposta {
     sql: ${TABLE}."UF_CAMPUS" ;;
   }
 
+  dimension: regiao_campus {
+    type: string
+    group_label: "Dados do Campus"
+    label: "Região - Campus"
+    description: "Indica a região geográfica do campus da faculdade"
+    sql: case when ${uf_campus} in ('SP', 'RJ', 'MG', 'ES') THEN 'SUDESTE'
+         when ${uf_campus} in ('DF', 'GO', 'MT', 'MS') THEN 'CENTRO-OESTE'
+         WHEN ${uf_campus} IN ('AC', 'AM', 'RO', 'RR', 'PA', 'AP', 'TO') then 'NORTE'
+         WHEN ${uf_campus} IN ('MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA') then 'NORDESTE'
+         WHEN ${uf_campus} IN ('PR', 'SC', 'RS') then 'SUL'
+         ELSE 'NÃO PREENCHIDO' END ;;
+  }
+
   dimension: uf_instituicao {
     type: string
     group_label: "Dados da Instituição"
@@ -2013,7 +2026,21 @@ view: proposta {
     sql: ${TABLE}."PROJETO" ;;
   }
 
-
+  dimension_group: data_formalizacao_prevista {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Formalização Prevista"
+    sql: ${TABLE}."DATA_FORMALIZACAO_PREVISTA" ;;
+  }
 
 
 
