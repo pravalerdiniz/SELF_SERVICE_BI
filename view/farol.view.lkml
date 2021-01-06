@@ -1659,17 +1659,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             sql: ${TABLE}."STATUS_2035_0_FORA" ;;
           }
 
-          dimension: status_2039_dentro {
-            type: number
-            group_label: "Renovação"
-            sql: ${TABLE}."STATUS_2039_DENTRO" ;;
-          }
 
-          dimension: status_2039_fora {
-            type: number
-            group_label: "Renovação"
-            sql: ${TABLE}."STATUS_2039_FORA" ;;
-          }
 
           dimension: status_2040_0 {
             type: number
@@ -1977,14 +1967,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
             drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
           }
-          measure:sum_status_2039 {
-            type: sum
-            group_label: "IES"
-            label: "Status 2039 Fora - Recontratação Reprovada na IES (Aluno Formado)"
-            sql: ${status_2039_fora} ;;
-            drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
 
-          }
           measure: sum_status_2031{
             type: sum
             group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
@@ -2323,12 +2306,6 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
     sql: ${TABLE}."PORC2035_0" ;;
   }
 
-  dimension: porc2039 {
-    type: number
-    group_label: "Renovação"
-    hidden: yes
-    sql: ${TABLE}."PORC2039" ;;
-  }
 
   dimension: porc2040_0 {
     type: number
@@ -2624,13 +2601,6 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
     sql: ${porc2015_0};;
   }
 
-  measure: perc_status_2039_fora{
-    type: max
-    value_format: "0.0%"
-    group_label: "IES"
-    label:  "Porcentagem  status 2039  - Recontratação Reprovada na IES (Aluno Formado)"
-    sql: ${porc2039};;
-  }
 
   measure: perc_status_2035_0_fora {
     type: max
