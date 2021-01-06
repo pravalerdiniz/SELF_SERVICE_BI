@@ -2741,7 +2741,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
     type: max
     value_format: "0.0%"
     group_label: "FORMALIZAÇÃO E CONTRATAÇÃO"
-    label: "Porcentagem  Status 2043 13  - Aguardando Assinatura"
+    label: "Porcentagem  Status 2044 13  - Aguardando Assinatura"
     sql:${porc2044_13};;
   }
 
