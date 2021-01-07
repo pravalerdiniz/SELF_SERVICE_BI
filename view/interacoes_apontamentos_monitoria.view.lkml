@@ -38,6 +38,7 @@ view: interacoes_apontamentos_monitoria {
     label: "Checklist"
     group_label: "Dados de Monitoria"
     description: "Indica checklist da monitoria por ticket"
+    hidden: yes
     sql: ${TABLE}."NOME_PROCEDIMENTO" ;;
   }
 
@@ -46,6 +47,7 @@ view: interacoes_apontamentos_monitoria {
     label: "Checklist Detalhado"
     group_label: "Dados de Monitoria"
     description: "Indica o detalhamento do checklist da monitoria"
+    hidden: yes
     sql: ${TABLE}."PROCEDIMENTO" ;;
   }
 
@@ -54,6 +56,7 @@ view: interacoes_apontamentos_monitoria {
     label: "Nota por Checklist"
     group_label: "Dados de Monitoria"
     description: "Indica a nota da monitoria"
+    hidden: yes
     sql: ${TABLE}."NOTA" ;;
   }
 
