@@ -67,11 +67,6 @@ explore: fato_swap {
 
 }
 
-explore: fato_dre {
-  label: "DRE"
-
-}
-
 explore: unpivot_dre {}
 
 explore: itau {
