@@ -775,9 +775,10 @@ explore: interacoes {
 
   join: interacoes_apontamentos_monitoria {
     view_label: "Apontamentos de Monitoria"
-    type: full_outer
+    type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
     relationship: one_to_many
+
   }
 
 

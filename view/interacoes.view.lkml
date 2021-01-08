@@ -276,6 +276,32 @@ view: interacoes {
     sql: ${TABLE}."DATA_MONITORIA" ;;
   }
 
+
+  dimension: nome_procedimento {
+    type: string
+    label: "Checklist"
+    group_label: "Dados de Monitoria"
+    description: "Indica checklist da monitoria por ticket"
+    sql: ${interacoes_apontamentos_monitoria.nome_procedimento};;
+  }
+
+  dimension: procedimento {
+    type: string
+    label: "Checklist Detalhado"
+    group_label: "Dados de Monitoria"
+    description: "Indica o detalhamento do checklist da monitoria"
+    sql: ${interacoes_apontamentos_monitoria.procedimento} ;;
+  }
+
+  dimension: nota {
+    type: number
+    label: "Nota por Checklist"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota da monitoria"
+    sql: ${interacoes_apontamentos_monitoria.nota};;
+  }
+
+
   dimension: detalhes_ligacao {
     type: string
     group_label: "Dados de Ligação"
