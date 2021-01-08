@@ -771,6 +771,19 @@ explore: interacoes {
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
     relationship: many_to_one
   }
+
+
+  join: interacoes_apontamentos_monitoria {
+    view_label: "Apontamentos de Monitoria"
+    type: left_outer
+    sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
+    relationship: one_to_many
+
+  }
+
+
+
+
   }
 
  explore: crx_agentes{
