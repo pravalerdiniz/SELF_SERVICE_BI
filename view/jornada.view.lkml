@@ -359,7 +359,15 @@ view: jornada {
         label: "6"
       }
       when: {
+        sql: ${etapa} = 'Aguardando DOcumentos';;
+        label: "6"
+      }
+      when: {
         sql: ${etapa} = 'Contrato Gerado' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
         label: "7"
       }
       when: {
@@ -412,6 +420,17 @@ view: jornada {
         sql: ${ultimo_status_geral} in (31) ;;
         label: "Aprovado para Geração de Contrato"
       }
+
+      when: {
+        sql: ${ultimo_status_detalhado} in ('40.13') ;;
+        label: "Aguardando envio de documento"
+      }
+
+      when: {
+        sql: ${ultimo_status_detalhado} in ('40.5') ;;
+        label: "Aguardando assinatura"
+      }
+
       when: {
         sql: ${ultimo_status_geral} in (40,42) ;;
         label: "Formalização"
@@ -472,10 +491,17 @@ view: jornada {
         label: "Aguardando Confirmação de Dados"
       }
       when: {
+        sql: ${ultimo_status_detalhado} in ('2044.13') ;;
+        label: "Aguardando envio de documento"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2044.5') ;;
+        label: "Aguardando assinatura"
+      }
+      when: {
         sql: ${ultimo_status_geral} in (2044);;
         label: "Contratos Gerados"
       }
-
       when: {
         sql: ${ultimo_status_geral} in (2041) ;;
         label: "Formalizado"
@@ -527,7 +553,16 @@ view: jornada {
       }
 
       when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Aguardando documentos' ;;
+        label: "5"
+      }
+
+      when: {
         sql: ${etapa_ultimo_status_renovacao} = 'Contratos Gerados' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa_ultimo_status_renovacao} = 'Aguardando assinatura' ;;
         label: "6"
       }
       when: {
