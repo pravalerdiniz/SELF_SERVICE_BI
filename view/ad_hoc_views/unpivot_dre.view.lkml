@@ -43,7 +43,7 @@ view: unpivot_dre {
             ROLLING_CUSTO_COM_PESSOAL  ,
             ROLLING_CUSTO_SERVICOS_PRESTADOS  ,
             ROLLING_LUCROS_SERVICOS_BRUTOS  ,
-            ROLLING_MARGEM_SERVICOS_BRUTA  ,
+            ROLLING_MARGEM_SERVICOS_BRUTAS ,
             ROLLING_LUCRO_BRUTO_TOTAL  ,
             ROLLING_MARGEM_BRUTA_TOTAL  ,
             ROLLING_DESPESA_COM_PESSOAL  ,
@@ -104,22 +104,133 @@ view: unpivot_dre {
     sql: ${TABLE}."VALOR_ROLLING" ;;
   }
 
+  dimension: ordem_dre_tabela {
+    type: string
+    case: {
+      when: {
+        sql: ${metrica} = 'RECEITA_JUROS_LIQUIDA' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${metrica} = 'PDD'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${metrica} = 'CUSTO_CAPTACAO'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${metrica} = 'LUCRO_FINANCEIRO_BRUTO' ;;
+        label: "4"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_FINANCEIRA_BRUTA' ;;
+        label: "5"
+      }
+
+      when: {
+        sql: ${metrica} = 'RECEITA_SERVICOS_LIQUIDA' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${metrica} = 'CUSTO_COM_PESSOAL' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${metrica} = 'CUSTO_SERVICOS_PRESTADOS';;
+        label: "8"
+      }
+      when: {
+        sql: ${metrica} = 'LUCROS_SERVICOS_BRUTOS';;
+        label: "9"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_SERVICOS_BRUTAS';;
+        label: "10"
+      }
+      when: {
+        sql: ${metrica} = 'LUCRO_BRUTO_TOTAL' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_BRUTA_TOTAL' ;;
+        label: "12"
+      }
+      when: {
+        sql: ${metrica} = 'DESPESA_COM_PESSOAL' ;;
+        label: "13"
+      }
+
+      when: {
+        sql: ${metrica} = 'G_A' ;;
+        label: "14"
+      }
+      when: {
+        sql: ${metrica}} = 'RESULTADO_OPERACIONAL';;
+        label: "15"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_OPERACIONAL' ;;
+        label: "16"
+      }
+      when: {
+        sql: ${metrica}} = 'RESULTADO_FINANCEIRO';;
+        label: "17"
+      }
+
+      when: {
+        sql: ${metrica} = 'DEPRECIACAO_AMORTIZACAO' ;;
+        label: "18"
+      }
+      when: {
+        sql: ${metrica}} = 'PLANO_INCENTIVOS_LONGO_PRAZO';;
+        label: "19"
+      }
+      when: {
+        sql: ${metrica} = 'EBT' ;;
+        label: "20"
+      }
+
+      when: {
+        sql: ${metrica} = 'G_A' ;;
+        label: "21"
+      }
+      when: {
+        sql: ${metrica}} = 'IRPJ_CSLL';;
+        label: "22"
+      }
+      when: {
+        sql: ${metrica} = 'LUCRO_LIQUIDO_AJUSTADO' ;;
+        label: "23"
+      }
+
+    else: "0"
+    }
+    hidden: yes
+  }
+
+dimension: ordem_dre {
+  type: number
+  label: "Ordem - DRE"
+  sql: ${ordem_dre_tabela} ;;
+
+}
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=10000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
   }
 
   measure: sum_valor_rolling {
     type: sum
     sql: ${valor_rolling} ;;
-    value_format:"[>=10000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
   }
 
   measure: sum_variavel {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
-    value_format:"[>=10000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>0]0.00%;-$0.00,,\"M\""
   }
 
   parameter: tipo_analise {
