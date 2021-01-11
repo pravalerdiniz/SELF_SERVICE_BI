@@ -43,7 +43,7 @@ view: unpivot_dre {
             ROLLING_CUSTO_COM_PESSOAL  ,
             ROLLING_CUSTO_SERVICOS_PRESTADOS  ,
             ROLLING_LUCROS_SERVICOS_BRUTOS  ,
-            ROLLING_MARGEM_SERVICOS_BRUTAS ,
+            ROLLING_MARGEM_SERVICOS_BRUTA ,
             ROLLING_LUCRO_BRUTO_TOTAL  ,
             ROLLING_MARGEM_BRUTA_TOTAL  ,
             ROLLING_DESPESA_COM_PESSOAL  ,
@@ -166,7 +166,7 @@ view: unpivot_dre {
         label: "14"
       }
       when: {
-        sql: ${metrica}} = 'RESULTADO_OPERACIONAL';;
+        sql: ${metrica} = 'RESULTADO_OPERACIONAL';;
         label: "15"
       }
       when: {
@@ -174,7 +174,7 @@ view: unpivot_dre {
         label: "16"
       }
       when: {
-        sql: ${metrica}} = 'RESULTADO_FINANCEIRO';;
+        sql: ${metrica} = 'RESULTADO_FINANCEIRO';;
         label: "17"
       }
 
@@ -183,7 +183,7 @@ view: unpivot_dre {
         label: "18"
       }
       when: {
-        sql: ${metrica}} = 'PLANO_INCENTIVOS_LONGO_PRAZO';;
+        sql: ${metrica} = 'PLANO_INCENTIVOS_LONGO_PRAZO';;
         label: "19"
       }
       when: {
@@ -192,16 +192,12 @@ view: unpivot_dre {
       }
 
       when: {
-        sql: ${metrica} = 'G_A' ;;
+        sql: ${metrica} = 'IRPJ_CSLL';;
         label: "21"
       }
       when: {
-        sql: ${metrica}} = 'IRPJ_CSLL';;
-        label: "22"
-      }
-      when: {
         sql: ${metrica} = 'LUCRO_LIQUIDO_AJUSTADO' ;;
-        label: "23"
+        label: "22"
       }
 
     else: "0"
@@ -218,7 +214,7 @@ dimension: ordem_dre {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;[<=0]-$0.00,,\"M\""
   }
 
   measure: sum_valor_rolling {
