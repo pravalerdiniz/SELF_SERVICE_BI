@@ -313,6 +313,7 @@ view: beneficiados {
         week,
         month,
         month_name,
+        month_num,
         quarter,
         year
       ]
@@ -322,6 +323,13 @@ view: beneficiados {
       label: "Concessão"
       description: "Indica a data do repasse para as Instituições"
     }
+
+  dimension: ytd_only {
+    group_label: "Filtro To-Date"
+    label: "YTD"
+    type: yesno
+    sql:  ${data_concessao_month_num} <= extract(month from current_date)  ;;
+  }
 
    measure: count {
       type: count
