@@ -91,8 +91,46 @@ view: unpivot_dre {
 
   dimension: metrica {
     type: string
-    sql: ${TABLE}."METRICA" ;;
+    sql:${TABLE}."METRICA" ;;
+    hidden: yes
   }
+
+  dimension: metrica2 {
+    type: string
+    label: "Metrica"
+    sql:
+    CASE WHEN ${metrica} = 'G_A' THEN 'G&A' ELSE  REPLACE(${metrica},'_',' ')
+    END;;
+    order_by_field: ordem_dre
+    html:
+    {% if value == "LUCRO FINANCEIRO BRUTO" %}
+   <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+
+    {% else %}
+    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+    {% endif %};;
+  }
+
 
   dimension: valor {
     type: number
