@@ -1126,7 +1126,6 @@ foi gerado por um pagamento menor do boleto anterior."
     ]
     convert_tz: no
     datatype: date
-    group_label: "Collection"
     label: "Data Avaliacao Collection"
     description: "Indica a Data de Avaliação do Collection"
     sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
@@ -1148,7 +1147,7 @@ foi gerado por um pagamento menor do boleto anterior."
   dimension: ultimo_collection {
     type: string
     group_label: "Collection"
-    label: "Último Collection"
+    label: "Último - GH do Collection"
     description: "Indica o Último Collection do Aluno"
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
