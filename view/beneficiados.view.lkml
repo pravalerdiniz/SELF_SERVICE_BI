@@ -339,7 +339,7 @@ view: beneficiados {
 
     measure: count_cont {
       type: count
-      value_format: "0"
+      value_format: "#,###"
       group_label: "Quantidade de Contratos"
       group_item_label: "Valor"
       description: "Contagem de Contratos"
