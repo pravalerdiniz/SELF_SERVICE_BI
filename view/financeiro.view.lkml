@@ -1145,6 +1145,36 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
+  dimension: ultimo_collection {
+    type: string
+    group_label: "Collection"
+    label: "Último Collection"
+    description: "Indica o Último Collection do Aluno"
+    sql: ${TABLE}."ULTIMO_COLLECTION" ;;
+  }
+
+
+
+  dimension_group: data_ultimo_collection {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Último Collection"
+    description: "Indica a Última data de Avaliação do Collection"
+    sql: ${TABLE}."DATA_ULTIMO_COLLECTION" ;;
+  }
+
+
+
+
 
 
 
