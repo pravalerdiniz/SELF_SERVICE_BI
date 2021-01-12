@@ -43,7 +43,7 @@ view: unpivot_dre {
             ROLLING_CUSTO_COM_PESSOAL  ,
             ROLLING_CUSTO_SERVICOS_PRESTADOS  ,
             ROLLING_LUCROS_SERVICOS_BRUTOS  ,
-            ROLLING_MARGEM_SERVICOS_BRUTA ,
+            ROLLING_MARGEM_SERVICOS_BRUTAS ,
             ROLLING_LUCRO_BRUTO_TOTAL  ,
             ROLLING_MARGEM_BRUTA_TOTAL  ,
             ROLLING_DESPESA_COM_PESSOAL  ,
@@ -68,8 +68,16 @@ view: unpivot_dre {
        ;;
   }
 
-  measure: count {
-    type: count
+  parameter: tipo_analise {
+    type: unquoted
+    allowed_value: {
+      label: "YTD"
+      value: "VALOR_ROLLING"
+    }
+    allowed_value: {
+      label: "Mês"
+      value: "VALOR"
+    }
   }
 
   dimension: tipo {
@@ -104,30 +112,27 @@ view: unpivot_dre {
     order_by_field: ordem_dre
     html:
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
-   <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-  {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-   <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCROS SERVICOS BRUTOS" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM SERVICOS BRUTAS" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO BRUTO TOTAL" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM BRUTA TOTAL" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "RESULTADO OPERACIONAL" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM OPERACIONAL" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "EBT" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "LUCRO LIQUIDO AJUSTADO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% else %}
-    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %};;
   }
 
@@ -198,7 +203,6 @@ view: unpivot_dre {
         sql: ${metrica} = 'DESPESA_COM_PESSOAL' ;;
         label: "13"
       }
-
       when: {
         sql: ${metrica} = 'G_A' ;;
         label: "14"
@@ -215,7 +219,6 @@ view: unpivot_dre {
         sql: ${metrica} = 'RESULTADO_FINANCEIRO';;
         label: "17"
       }
-
       when: {
         sql: ${metrica} = 'DEPRECIACAO_AMORTIZACAO' ;;
         label: "18"
@@ -228,7 +231,6 @@ view: unpivot_dre {
         sql: ${metrica} = 'EBT' ;;
         label: "20"
       }
-
       when: {
         sql: ${metrica} = 'IRPJ_CSLL';;
         label: "21"
@@ -237,8 +239,7 @@ view: unpivot_dre {
         sql: ${metrica} = 'LUCRO_LIQUIDO_AJUSTADO' ;;
         label: "22"
       }
-
-    else: "0"
+      else: "0"
     }
     hidden: yes
   }
@@ -265,17 +266,29 @@ dimension: ordem_dre {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
     value_format:"[>=1000]$0.00,,\"M\";[>0]0.00%;-$0.00,,\"M\""
-  }
-
-  parameter: tipo_analise {
-    type: unquoted
-    allowed_value: {
-      label: "YTD"
-      value: "VALOR_ROLLING"
-    }
-    allowed_value: {
-      label: "Mês"
-      value: "VALOR"
-    }
+    html:
+    {% if unpivot_dre.metrica2._value == "LUCRO FINANCEIRO BRUTO" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif unpivot_dre.metrica2._value == "MARGEM FINANCEIRA BRUTA" %}
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif unpivot_dre.metrica2._value == "LUCROS SERVICOS BRUTOS" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif unpivot_dre.metrica2._value == "MARGEM SERVICOS BRUTAS" %}
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif unpivot_dre.metrica2._value == "LUCRO BRUTO TOTAL" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif unpivot_dre.metrica2._value == "MARGEM BRUTA TOTAL" %}
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif unpivot_dre.metrica2._value == "RESULTADO OPERACIONAL" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif unpivot_dre.metrica2._value == "MARGEM OPERACIONAL" %}
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif unpivot_dre.metrica2._value == "EBT" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif unpivot_dre.metrica2._value == "LUCRO LIQUIDO AJUSTADO" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% else %}
+    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+    {% endif %};;
   }
 }

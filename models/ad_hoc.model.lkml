@@ -67,7 +67,10 @@ explore: fato_swap {
 
 }
 
-explore: unpivot_dre {}
+explore: unpivot_dre {
+  label: "Demonstração do Resultado"
+  view_label: "Demonstração do Resultado"
+}
 
 explore: itau {
   label: "ITAU"
