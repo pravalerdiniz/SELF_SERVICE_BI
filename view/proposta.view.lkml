@@ -3125,7 +3125,13 @@ view: proposta {
     sql: ${id_cpf} ;;
   }
 
-
+dimension: produto_preaprovado {
+  type: string
+  group_label: "Dados da Proposta"
+  group_item_label: "Produtos Pré Aprovados"
+  description: "Informa os produtos pré aprovados por risco para envio da IES"
+  sql: ${TABLE}."PRODUTOS_PREAPROVADOS" ;;
+}
 
 
   set: detail {
