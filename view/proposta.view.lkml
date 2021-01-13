@@ -3133,6 +3133,14 @@ dimension: produto_preaprovado {
   sql: ${TABLE}."PRODUTOS_PREAPROVADOS" ;;
 }
 
+  dimension: ciclo {
+    type: string
+    group_label: "Dados de Renovação"
+    group_item_label: "Ciclo de Renovação"
+    description: "Informa o ciclo da proposta de renovação do aluno."
+    sql: ${TABLE}."CICLO" ;;
+  }
+
 
   set: detail {
     fields: [
