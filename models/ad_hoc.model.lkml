@@ -77,3 +77,5 @@ explore: itau {
 }
 
 explore: documentacao {}
+
+explore: iniciados_x_finalizados_lead {}
