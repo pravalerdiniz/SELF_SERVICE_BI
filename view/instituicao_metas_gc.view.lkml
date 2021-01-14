@@ -69,6 +69,16 @@ view: instituicao_metas_gc {
   }
 
 
+  dimension: gerente{
+    type: string
+    label: "Gerente"
+    sql: ${TABLE}."GERENTE" ;;
+  }
+
+
+
+
+
 
 
     dimension: iniciados {
