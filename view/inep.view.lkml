@@ -832,6 +832,9 @@ view: inep {
 
   }
 
+
+
+
   measure: curso_qtd_vaga_anual_ead {
     type: sum
     group_label:"Dados do Curso"

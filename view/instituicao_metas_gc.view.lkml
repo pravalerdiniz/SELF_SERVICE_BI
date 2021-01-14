@@ -13,6 +13,7 @@ view: instituicao_metas_gc {
                    ANO,
                     MES,
                    DIA,
+                  GERENTE,
                     DATA
                    from VETERANO.DIMENSAO.DIM_META_GC
  ;;
