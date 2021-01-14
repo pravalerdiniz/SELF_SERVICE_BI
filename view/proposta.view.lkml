@@ -3145,7 +3145,7 @@ dimension: produto_preaprovado {
     type: string
     group_label: "Dados do Contrato"
     group_item_label: "Método de Autenticação - Assinatura"
-    description: "Indica o método de autenticação do aluno no momento da assinatura do contrato."
+    description: "Indica o método de autenticação da proposta. Ex: WhatsApp, SMS ou e-mail."
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
 
