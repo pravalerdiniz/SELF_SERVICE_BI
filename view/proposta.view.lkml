@@ -3141,6 +3141,16 @@ dimension: produto_preaprovado {
     sql: ${TABLE}."CICLO" ;;
   }
 
+  dimension: metodo_autenticacao {
+    type: string
+    group_label: "Dados do Contrato"
+    group_item_label: "Método de Autenticação - Assinatura"
+    description: "Indica o método de autenticação do aluno no momento da assinatura do contrato."
+    sql: ${TABLE}."METODO_AUTENTICACAO" ;;
+  }
+
+
+
 
   set: detail {
     fields: [
