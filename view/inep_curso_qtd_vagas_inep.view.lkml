@@ -84,4 +84,5 @@ view: inep_curso_qtd_vagas_inep {
       med_vaga_anual_vespertino
     ]
   }
+
 }

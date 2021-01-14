@@ -822,11 +822,12 @@ view: inep {
 
 
   measure: curso_qtd_vaga_total {
-    type: sum
+    type: average
     group_label:"Dados do Curso"
     label: "Vagas por Curso TOTAL"
     sql: ${inep_curso_qtd_vagas_inep.med_vaga_total} ;;
     sql_distinct_key: ${id_curso} ;;
+    value_format: "0"
     drill_fields: [ano_censo,id_curso,ds_curso,curso_qtd_vaga_total]
 
   }
