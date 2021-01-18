@@ -519,8 +519,15 @@ join: proposta_docs_pendentes {
   }
 
 
+  join: instituicao {
+    view_label: "5. Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}  ;;
+    relationship: many_to_one
+    type:full_outer
 
-
+  }
 
 
 
