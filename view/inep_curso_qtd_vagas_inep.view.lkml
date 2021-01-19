@@ -2,6 +2,7 @@ view: inep_curso_qtd_vagas_inep {
   derived_table: {
     sql: SELECT
         ANO_CENSO,
+        ID_IES,
         ID_CURSO,
        DS_CURSO,
        AVG(QTD_VAGA_TOTAL) AS MED_VAGA_TOTAL,
@@ -14,7 +15,7 @@ view: inep_curso_qtd_vagas_inep {
 
 
 
-       FROM "SELF_SERVICE_BI"."INEP" group by 1,2,3
+       FROM "SELF_SERVICE_BI"."INEP" group by 1,2,3,4
  ;;
   }
 
@@ -30,11 +31,25 @@ view: inep_curso_qtd_vagas_inep {
     sql: ${TABLE}."ID_CURSO" ;;
   }
 
+  dimension: id_ies {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."ID_IES" ;;
+  }
+
 
   dimension: ano_censo {
     type: number
     hidden: yes
     sql: ${TABLE}."ANO_CENSO" ;;
+  }
+
+  dimension: primary_key {
+    type: string
+    hidden: yes
+    sql: CONCAT(${ano_censo},${id_ies},${id_curso},${ds_curso}) ;;
+    primary_key: yes
+
   }
 
   dimension: ds_curso {
@@ -48,6 +63,8 @@ view: inep_curso_qtd_vagas_inep {
     hidden: yes
     sql: ${TABLE}."MED_VAGA_TOTAL" ;;
   }
+
+
 
   dimension: med_vaga_anual_ead {
     type: number
@@ -73,10 +90,62 @@ view: inep_curso_qtd_vagas_inep {
     sql: ${TABLE}."MED_VAGA_ANUAL_VESPERTINO" ;;
   }
 
+measure: sum_vagas_total {
+  type: sum
+  sql: ${med_vaga_total} ;;
+  label: "Total"
+  group_label: "Vagas"
+  value_format: "0"
+
+
+}
+
+  measure: sum_vagas_anual_ead {
+    type: sum
+    sql: ${med_vaga_anual_ead} ;;
+    label: "EAD - Anual"
+    group_label: "Vagas"
+    value_format: "0"
+
+
+  }
+
+  measure: sum_vagas_anual_integral {
+    type: sum
+    sql: ${med_vaga_anual_integral} ;;
+    label: "Integral - Anual"
+    group_label: "Vagas"
+    value_format: "0"
+
+
+  }
+
+  measure: sum_vagas_anual_noturno {
+    type: sum
+    sql: ${med_vaga_anual_noturno} ;;
+    label: "Noturno - Anual"
+    group_label: "Vagas"
+    value_format: "0"
+
+
+  }
+
+  measure: sum_vagas_anual_vespertino {
+    type: sum
+    sql: ${med_vaga_anual_vespertino} ;;
+    label: "Vespertino - Anual"
+    group_label: "Vagas"
+    value_format: "0"
+
+
+  }
+
+
   set: detail {
     fields: [
       id_curso,
       ds_curso,
+      id_ies,
       med_vaga_total,
       med_vaga_anual_ead,
       med_vaga_anual_integral,
