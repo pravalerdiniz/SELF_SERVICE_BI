@@ -525,7 +525,7 @@ join: proposta_docs_pendentes {
           AND  ${instituicao.id_campus} = ${proposta.id_campus}
           AND    ${instituicao.id_curso} =  ${proposta.id_curso}  ;;
     relationship: many_to_one
-    type:full_outer
+    type:left_outer
 
   }
 
