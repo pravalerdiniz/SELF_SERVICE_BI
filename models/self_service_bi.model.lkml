@@ -757,11 +757,11 @@ explore: inep {
 
   join: inep_curso_qtd_vagas_inep {
   view_label: "Inep - Quantidade de Vagas Curso"
-
     type: left_outer
-    sql_on: ${inep.id_curso} = ${inep_curso_qtd_vagas_inep.id_curso} and ${inep.ano_censo} = ${inep_curso_qtd_vagas_inep.ano_censo};;
+    sql_on: ${inep.id_curso} = ${inep_curso_qtd_vagas_inep.id_curso} and
+    ${inep.ano_censo} = ${inep_curso_qtd_vagas_inep.ano_censo} and
+    ${inep.id_ies} = ${inep_curso_qtd_vagas_inep.id_ies};;
     relationship: many_to_one
-    fields: []
 
   }
   }
