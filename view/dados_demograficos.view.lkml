@@ -1,5 +1,5 @@
 view: dados_demograficos {
-    sql_table_name: "GRADUADO"."GENTE_GESTAO".DADOS_DEMOGRAFICOS
+    sql_table_name: "VETERANO"."FATO".DADOS_DEMOGRAFICOS
       ;;
 
     dimension_group: admissao {
