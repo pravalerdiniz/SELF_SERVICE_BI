@@ -442,11 +442,43 @@ view: proposta {
       month_name,
       quarter,
       year,
-      day_of_year
+      day_of_year,
+      day_of_week,
+      day_of_week_index
     ]
     label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
     sql: ${TABLE}."DATA_PREENCHIMENTO" ;;
+  }
+
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Week to Date"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_preenchimento_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_preenchimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_preenchimento_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_preenchimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Year to Date"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_preenchimento_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_preenchimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
   dimension_group: data_pri_vecto {

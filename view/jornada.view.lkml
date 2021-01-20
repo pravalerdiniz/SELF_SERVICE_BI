@@ -23,6 +23,36 @@ view: jornada {
     description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
   }
 
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Week to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${dt_status_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${dt_status_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${dt_status_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${dt_status_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Year to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${dt_status_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${dt_status_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+  }
+
   #dimension_group: dt_ultimo_status { -- dimensão duplicada
   #  type: time
   #  timeframes: [
@@ -156,6 +186,36 @@ view: jornada {
     sql: ${TABLE}."DATA_INICIO_PROPOSTA" ;;
     label: "Início da Proposta"
     description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
+  }
+
+  dimension: wtd_only_inicio {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Week to Date - Data de Início da Proposta"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_inicio_da_proposta_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_inicio_da_proposta_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Data de Início da Proposta, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only_inicio {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data de Início da Proposta"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_inicio_da_proposta_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_inicio_da_proposta_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Data de Início da Proposta, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only_inicio {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Year to Date - Data de Início da Proposta"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_inicio_da_proposta_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_inicio_da_proposta_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Data de Início da Proposta, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
   #dimension_group: data_status { -- dimensão duplicada
