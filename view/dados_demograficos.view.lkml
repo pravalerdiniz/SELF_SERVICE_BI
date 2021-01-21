@@ -291,14 +291,14 @@ view: dados_demograficos {
     }
 
     measure: count {
-      label: "CONTAGEM DE OCORÊNCIAS"
+      label: "CONTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
       #description: "Informa a situação atual do Pravalente"
       type: count
       drill_fields: []
     }
     measure: porcentagem {
-      label: "PROCENTAGEM DE OCORÊNCIAS"
+      label: "PORCENTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
       #description: "Informa a situação atual do Pravalente"
       type: percent_of_total
