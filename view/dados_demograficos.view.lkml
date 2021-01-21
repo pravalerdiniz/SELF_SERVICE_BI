@@ -85,13 +85,14 @@ view: dados_demograficos {
         date,
         week,
         month,
+        month_name,
         quarter,
         year
       ]
       convert_tz: no
       datatype: date
       sql: ${TABLE}."DATA_RESCISAO" ;;
-      hidden: yes
+      #hidden: yes
     }
 
     dimension: data_rescisao {
@@ -101,6 +102,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa a data da rescisão"
+      hidden: yes
     }
 
     dimension: mes_rescisao {
@@ -110,6 +112,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa o mês da rescisão"
+      hidden: yes
     }
 
     dimension: ano_rescisao {
@@ -119,6 +122,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa o ano da rescisão"
+      hidden: yes
     }
 
 
