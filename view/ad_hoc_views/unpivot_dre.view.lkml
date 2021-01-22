@@ -80,6 +80,17 @@ view: unpivot_dre {
     }
   }
 
+  dimension: data_variavel {
+    sql:
+    {% if tipo_analise._parameter_value == "VALOR_ROLLING" %}
+    ${data_month_name}
+    {% elsif tipo_analise._parameter_value == "VALOR" %}
+    ${data_month}
+    {% else %}
+    ${data_month}
+    {% endif %};;
+  }
+
   dimension: tipo {
     type: string
     sql: ${TABLE}."TIPO" ;;

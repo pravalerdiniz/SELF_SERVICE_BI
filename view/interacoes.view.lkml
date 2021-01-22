@@ -384,6 +384,22 @@ view: interacoes {
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
+  dimension: taxa_reclamacao {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Taxa de Reclamação"
+    description: "Classificação dos contatos de não conformidade."
+    sql: ${TABLE}."TAXA_RECLAMACAO" ;;
+  }
+
+  dimension: taxa_contato {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Taxa de Contato"
+    description: "Segmenta os motivos de contato entre contratação, renovação, utilização e outros."
+    sql: ${TABLE}."TAXA_CONTATO" ;;
+  }
+
   dimension: tipo_contato {
     type: string
     group_label: "Dados do Ticket"
