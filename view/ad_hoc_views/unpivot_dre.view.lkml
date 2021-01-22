@@ -253,19 +253,19 @@ dimension: ordem_dre {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;[<=0]-$0.00,,\"M\""
+    value_format:"[>=1000]0.0;[>=0]0.00%;[<=0]-0.0"
   }
 
   measure: sum_valor_rolling {
     type: sum
     sql: ${valor_rolling} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]0.0;[>=0]0.00%;[<=0]-0.0"
   }
 
   measure: sum_variavel {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]0.0;[>=0]0.00%;[<=0]-0.0"
     html:
     {% if unpivot_dre.metrica2._value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
