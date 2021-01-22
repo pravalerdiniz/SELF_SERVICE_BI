@@ -264,13 +264,13 @@ dimension: ordem_dre {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=1000]$0.0,,\"M\";[>=0]0.00%;[<=0]-$0.0,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;[<=0]-$0.00,,\"M\""
   }
 
   measure: sum_valor_rolling {
     type: sum
     sql: ${valor_rolling} ;;
-    value_format:"[>=1000]$0.0,,\"M\";[>=0]0.00%;[<=0]-$0.0,,\"M\""
+    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;[<=0]-$0.00,,\"M\""
   }
 
   measure: sum_variavel {
