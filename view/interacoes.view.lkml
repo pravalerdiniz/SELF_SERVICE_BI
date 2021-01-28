@@ -622,12 +622,37 @@ view: interacoes {
     sql: ${TABLE}."TIPO_CHECKLIST" ;;
   }
 
+  dimension: conformidade{
+    type: string
+    group_item_label: "Conformidade"
+    group_label: "Dados de Monitoria"
+    description: "Indica se a nota da monitoria é ou não conforme."
+    sql: ${TABLE}."CONFORMIDADE" ;;
+  }
+
+  dimension: erro_critico{
+    type: string
+    group_item_label: "Erro Crítico"
+    group_label: "Dados de Monitoria"
+    description: "Qualifica a monitoria em erro crítico ou não erro crítico."
+    sql: ${TABLE}."ERRO_CRITICO" ;;
+  }
+
   dimension: nota_monitoramento{
     type: number
     group_item_label: "Nota"
     group_label: "Dados de Monitoria"
     description: "Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
+  }
+
+  measure: nota_monitoramento_measure{
+    type: average
+    group_item_label: "Nota Média"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota média de monitoria."
+    sql: ${TABLE}."NOTA" ;;
+    value_format: "#.#,0"
   }
 
   dimension: agent_monitoria{
