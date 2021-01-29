@@ -333,7 +333,7 @@ dimension: ordem_dre {
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "LUCRO LIQUIDO " %}
+    {% elsif value == "LUCRO LIQUIDO" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
