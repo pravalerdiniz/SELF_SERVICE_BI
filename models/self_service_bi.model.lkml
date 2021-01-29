@@ -846,3 +846,5 @@ explore: crx_agentes_detalhes_pausas{
 explore: instituicao_metas_gc {}
 
 explore: dados_demograficos {}
+
+explore: historico_demograficos {}
