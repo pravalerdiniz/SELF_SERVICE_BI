@@ -847,4 +847,7 @@ explore: instituicao_metas_gc {}
 
 explore: dados_demograficos {}
 
-explore: historico_demograficos {}
+explore: historico_demograficos {
+  label: "Histórico demográficos"
+  view_label: "Histórico demográficos"
+}
