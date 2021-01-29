@@ -61,7 +61,7 @@ view: unpivot_dre {
             ROLLING_IRPJ_CSLL  ,
             ROLLING_LUCRO_LIQUIDO ,
             ROLLING_PDD_CARTEIRA ,
-            ROLLING_ALIQUOTA ,
+            ROLLING_ALIQUOTA_EFETIVA_IR_CS ,
             ROLLING_MARGEM_LIQUIDA
              ))
           order by data
