@@ -150,6 +150,7 @@ view: historico_demograficos {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -292,7 +293,7 @@ view: historico_demograficos {
     label: "PERCENTUAL DE TURNOVER VOLUNTÁRIOS"
     view_label: "MÉTRICAS"
     type: number
-    sql: ${desligados_voluntarios}/(${ativos})*100  ;;
+    sql: (${desligados_voluntarios}/${ativos})*100  ;;
     value_format: "0.00\%"
     drill_fields: []
   }
@@ -301,7 +302,7 @@ view: historico_demograficos {
     label: "PERCENTUAL DE TURNOVER INVOLUNTÁRIOS"
     view_label: "MÉTRICAS"
     type: number
-    sql: ${desligados_involuntarios}/(${ativos})*100  ;;
+    sql: (${desligados_involuntarios}/${ativos})*100  ;;
     value_format: "0.00\%"
     drill_fields: []
   }
