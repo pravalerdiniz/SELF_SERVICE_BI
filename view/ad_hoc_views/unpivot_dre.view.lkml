@@ -12,7 +12,7 @@ view: unpivot_dre {
             RECEITA_SERVICOS_LIQUIDA  ,
             CUSTO_COM_PESSOAL  ,
             CUSTO_SERVICOS_PRESTADOS  ,
-            LUCROS_SERVICOS_BRUTO  ,
+            LUCRO_SERVICOS_BRUTO  ,
             MARGEM_SERVICOS_BRUTA  ,
             LUCRO_BRUTO_TOTAL  ,
             MARGEM_BRUTA_TOTAL  ,
@@ -46,7 +46,7 @@ view: unpivot_dre {
             ROLLING_RECEITA_SERVICOS_LIQUIDA  ,
             ROLLING_CUSTO_COM_PESSOAL  ,
             ROLLING_CUSTO_SERVICOS_PRESTADOS  ,
-            ROLLING_LUCROS_SERVICOS_BRUTO  ,
+            ROLLING_LUCRO_SERVICOS_BRUTO  ,
             ROLLING_MARGEM_SERVICOS_BRUTA ,
             ROLLING_LUCRO_BRUTO_TOTAL  ,
             ROLLING_MARGEM_BRUTA_TOTAL  ,
@@ -315,7 +315,7 @@ dimension: ordem_dre {
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "PDD CARTEIRA" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "LUCROS SERVICOS BRUTO" %}
+    {% elsif value == "LUCRO SERVICOS BRUTO" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM SERVICOS BRUTA" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
