@@ -156,7 +156,6 @@ view: historico_demograficos {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."ANO_MES" ;;
-    hidden: yes
   }
 
   dimension: data_nascimento {
@@ -246,7 +245,8 @@ view: historico_demograficos {
     label: "CONTAGEM DE OCORRÊNCIAS"
     view_label: "MÉTRICAS"
     #description: "Informa a situação atual do Pravalente"
-    type: count
+    sql: ${nome};;
+    type: count_distinct
     drill_fields: []
   }
 
@@ -256,6 +256,53 @@ view: historico_demograficos {
     #description: "Informa a situação atual do Pravalente"
     type: percent_of_total
     sql: ${count} ;;
+    drill_fields: []
+  }
+
+  measure: ativos {
+    label: "TOTAL DE ATIVOS"
+    view_label: "MÉTRICAS"
+    filters: [situacao: "ATIVO"]
+    sql: ${nome};;
+    type: count_distinct
+    drill_fields: []
+  }
+
+  measure: desligados_voluntarios {
+    label: "TOTAL DE DESLIGADOS VOLUNTÁRIOS"
+    view_label: "MÉTRICAS"
+    filters: [situacao: "DESLIGADO",
+              tipo_rescisao: "Voluntário"]
+    sql: ${nome};;
+    type: count_distinct
+    drill_fields: []
+  }
+
+  measure: desligados_involuntarios {
+    label: "TOTAL DE DESLIGADOS INVOLUNTÁRIOS"
+    view_label: "MÉTRICAS"
+    filters: [situacao: "DESLIGADO",
+      tipo_rescisao: "Involuntária"]
+    sql: ${nome};;
+    type: count_distinct
+    drill_fields: []
+  }
+
+  measure: percentual_turnover_voluntario {
+    label: "PERCENTUAL DE TURNOVER VOLUNTÁRIOS"
+    view_label: "MÉTRICAS"
+    type: number
+    sql: ${desligados_voluntarios}/(${ativos})*100  ;;
+    value_format: "0.00\%"
+    drill_fields: []
+  }
+
+  measure: percentual_turnover_involuntario {
+    label: "PERCENTUAL DE TURNOVER INVOLUNTÁRIOS"
+    view_label: "MÉTRICAS"
+    type: number
+    sql: ${desligados_involuntarios}/(${ativos})*100  ;;
+    value_format: "0.00\%"
     drill_fields: []
   }
 
