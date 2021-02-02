@@ -24,33 +24,38 @@ view: atribuicao_rv_itau {
 
 select
     *,
-    case when id_cpf = lag(id_cpf, 1, null) over(order by id_cpf, data_concessao) and
-              to_char(data_concessao, 'YYYY') = lag(to_char(data_concessao, 'YYYY'), 1, null) over(order by id_cpf, data_concessao)
-           then 0
-           else 1
-    end as aluno_unico_ano
-
+    sum(aluno_unico_ano) over(partition by to_char(data_concessao, 'YYYY') order by data_concessao, id_cpf) as acumulado_ano
 from (
     select
-        cpfs.*
-    from cpfs
+        *,
+        case when id_cpf = lag(id_cpf, 1, null) over(order by id_cpf, data_concessao) and
+                  to_char(data_concessao, 'YYYY') = lag(to_char(data_concessao, 'YYYY'), 1, null) over(order by id_cpf, data_concessao)
+             then 0
+             else 1
+        end as aluno_unico_ano
 
-    union
+    from (
+        select
+            cpfs.*
+        from cpfs
 
-    select
-        p.id_cpf,
-        p.id_proposta,
-        p.nm_modalidade_produto,
-        p.data_concessao,
-        cpfs.atribuicao,
-        concat('R', row_number() over(partition by p.id_cpf order by p.data_concessao)) as tipo
-    from graduado.self_service_bi.proposta p
-    inner join cpfs on cpfs.id_cpf = p.id_cpf
-    where p.tipo_proposta = 'RENOVACAO'
-      and p.flg_contrato_cedido = true
-      and p.data_concessao > cpfs.data_concessao
-    order by id_cpf, data_concessao
-) a
+        union
+
+        select
+            p.id_cpf,
+            p.id_proposta,
+            p.nm_modalidade_produto,
+            p.data_concessao,
+            cpfs.atribuicao,
+            concat('R', row_number() over(partition by p.id_cpf order by p.data_concessao)) as tipo
+        from graduado.self_service_bi.proposta p
+        inner join cpfs on cpfs.id_cpf = p.id_cpf
+        where p.tipo_proposta = 'RENOVACAO'
+          and p.flg_contrato_cedido = true
+          and p.data_concessao > cpfs.data_concessao
+        order by id_cpf, data_concessao
+    ) a
+) b
        ;;
   }
 
@@ -92,13 +97,12 @@ from (
 
   dimension: acumulado_alunos_ano {
     type: number
-    sql: row_number() over(partition by ${data_concessao_year} order by ${data_concessao_date}, right(${id_proposta},4)) ;;
+    sql: ${TABLE}."ACUMULADO_ANO" ;;
   }
 
-  dimension: remuneracao_fixa {
+  dimension: remuneracao_fixa_rv {
     type: number
-    sql: case when ${atribuicao} = 'ITAU' then 0
-              when ${atribuicao} = 'RV' and ${data_concessao_year} = 2020 then 300000
+    sql: case when ${atribuicao} = 'RV' and ${data_concessao_year} = 2020 then 300000
               when ${atribuicao} = 'RV' and ${data_concessao_year} > 2020 and ${acumulado_alunos_ano} > 28000 then 0
               else 500000
               end ;;
@@ -144,7 +148,27 @@ from (
     sql: ${id_cpf} ;;
     label: "Quantidade de Alunos Total"
     description: "Contagem distinta de CPF, independente do ano."
+  }
 
+  measure: sum_remuneracao_variavel_itau {
+    type: sum
+    sql: ${remuneracao_variavel_itau} ;;
+    label: "Remuneração Variável Itaú"
+    value_format: "R$ #,###.##"
+  }
+
+  measure: sum_remuneracao_variavel_rv {
+    type: sum
+    sql: ${remuneracao_variavel_rv} ;;
+    label: "Remuneração Variável RV"
+    value_format: "$#,##0.00"
+  }
+
+  measure: min_remuneracao_fixa_rv {
+    type: min
+    sql: ${remuneracao_fixa_rv} ;;
+    label: "Remuneração Fixa RV"
+    value_format: "$#,##0.00"
   }
 
   set: detail {
