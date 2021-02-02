@@ -307,4 +307,39 @@ view: historico_demograficos {
     drill_fields: []
   }
 
+  dimension: ordem_tempo_casa_tabela {
+    type: string
+    case: {
+      when: {
+        sql: ${faixa_tempo} = '3 meses ou menos' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${faixa_tempo} = 'De 3 a 6 meses'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${faixa_tempo} = 'De 6 meses a 1 ano'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${faixa_tempo} = 'De 1 a 2 anos'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${faixa_tempo} = 'Mais de 2 anos' ;;
+        label: "5"
+      }
+      else: "0"
+    }
+    hidden: yes
+  }
+
+  dimension: ordem_tempo_casa {
+    type: number
+    label: "Ordem - Tempo de Casa"
+    sql: ${ordem_tempo_casa_tabela} ;;
+
+  }
+
 }
