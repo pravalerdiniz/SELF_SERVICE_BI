@@ -62,7 +62,7 @@ view: new_relic {
   }
 
   dimension: ocupacao {
-    label: "OCUPACAO DA QUERY"
+    label: "OCUPAÇÃO DA QUERY"
     description: "Tempo de ocupação da query"
     type: number
     sql: ${TABLE}."OCUPACAO" ;;
@@ -82,6 +82,22 @@ view: new_relic {
     #description: "Informa a situação atual do Pravalente"
     type: percent_of_total
     sql: ${count} ;;
+    drill_fields: []
+  }
+
+  measure: total_soma_chamadas {
+    label: "CONTAGEM DE OCORRÊNCIAS TOTAL"
+    view_label: "MÉTRICAS"
+    #description: "Informa a situação atual do Pravalente"
+    sql: ${soma_chamadas} ;;
+    drill_fields: []
+  }
+
+  measure: total_ocupacao {
+    label: "OCUPAÇÃO TOTAL"
+    view_label: "MÉTRICAS"
+    #description: "Informa a situação atual do Pravalente"
+    sql: ${ocupacao} ;;
     drill_fields: []
   }
 }
