@@ -86,7 +86,7 @@ view: new_relic {
   }
 
   measure: total_soma_chamadas {
-    label: "CONTAGEM DE OCORRÊNCIAS TOTAL"
+    label: "SOMA DE CHAMADAS TOTAL"
     view_label: "MÉTRICAS"
     #description: "Informa a situação atual do Pravalente"
     sql: ${soma_chamadas} ;;
