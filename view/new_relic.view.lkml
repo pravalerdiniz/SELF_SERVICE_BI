@@ -36,8 +36,28 @@ view: new_relic {
     datatype: date
     sql: ${TABLE}."DATA" ;;
     label: "DATA"
-    group_label: "DATA DE LOG"
+    group_label: "DATA QUE CAPTAMOS OS REGISTROS"
     description: "Informa a data em que a informação foi inserida no banco de dados"
+  }
+
+  dimension_group: data_log {
+    type: time
+    timeframes: [
+      date,
+      month,
+      month_name,
+      quarter,
+      year,
+      hour,
+      minute,
+      second
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_LOG" ;;
+    label: "DATA_LOG"
+    group_label: "DATA DE LOG"
+    description: "Informa a data em que a query foi executada"
   }
 
   dimension: soma_chamadas {
@@ -71,7 +91,6 @@ view: new_relic {
   measure: count {
     label: "CONTAGEM DE OCORRÊNCIAS"
     view_label: "MÉTRICAS"
-    #description: "Informa a situação atual do Pravalente"
     type: count
     drill_fields: []
   }
@@ -79,25 +98,24 @@ view: new_relic {
   measure: porcentagem {
     label: "PORCENTAGEM DE OCORRÊNCIAS"
     view_label: "MÉTRICAS"
-    #description: "Informa a situação atual do Pravalente"
     type: percent_of_total
     sql: ${count} ;;
     drill_fields: []
   }
 
   measure: total_soma_chamadas {
+    type: sum
     label: "SOMA DE CHAMADAS TOTAL"
     view_label: "MÉTRICAS"
-    #description: "Informa a situação atual do Pravalente"
     sql: ${soma_chamadas} ;;
     drill_fields: []
   }
 
   measure: total_ocupacao {
+    type: sum
     label: "OCUPAÇÃO TOTAL"
     view_label: "MÉTRICAS"
-    #description: "Informa a situação atual do Pravalente"
     sql: ${ocupacao} ;;
-    drill_fields: []
+    drill_fields: [id,query,ocupacao,soma_chamadas]
   }
 }
