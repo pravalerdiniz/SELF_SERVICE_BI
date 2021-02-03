@@ -12,7 +12,7 @@ view: new_relic {
   dimension: arquivo {
     label: "ARQUIVO"
     description: "Arquivo originador da execução da query"
-    type: number
+    type: string
     sql: ${TABLE}."ARQUIVO" ;;
   }
 
