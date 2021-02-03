@@ -124,7 +124,7 @@ from (
     type: number
 
 
-    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO','R1','R2','R3','R4') then
+    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO','R1','R2','R3') then
            (case when ${nm_modalidade_produto} <> 'FIDC' then 100
                 else (case when ${atribuicao} = 'ITAU' then
                               (case when ${data_concessao_year} = 2020 then 100
