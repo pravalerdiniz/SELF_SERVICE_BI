@@ -851,3 +851,5 @@ explore: historico_demograficos {
   label: "Histórico demográficos"
   view_label: "Histórico demográficos"
 }
+
+explore: new_relic {}
