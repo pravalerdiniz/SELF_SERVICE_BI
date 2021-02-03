@@ -18,6 +18,7 @@ view: atribuicao_rv_itau {
                qualify row_number() over(partition by fl.id_cpf order by fl.data_acesso desc) = 1) itau on itau.id_cpf = p.id_cpf
     where p.flg_contrato_cedido = true
       and p.data_preenchimento >= '2020-10-01'
+      and p.data_concessao >= '2020-10-01'
       and p.tipo_proposta = 'NOVO'
     qualify row_number() over(partition by p.id_cpf order by p.data_concessao desc) = 1
 )
