@@ -186,10 +186,7 @@ view: unpivot_dre {
         sql: ${metrica} = 'PDD'  ;;
         label: "2"
       }
-      when: {
-        sql: ${metrica} = 'PDD_CARTEIRA'  ;;
-        label: "3"
-      }
+
       when: {
         sql: ${metrica} = 'CUSTO_CAPTACAO'  ;;
         label: "4"
@@ -216,7 +213,7 @@ view: unpivot_dre {
         label: "9"
       }
       when: {
-        sql: ${metrica} = 'LUCROS_SERVICOS_BRUTO';;
+        sql: ${metrica} = 'LUCRO_SERVICOS_BRUTO';;
         label: "10"
       }
       when: {
@@ -267,10 +264,7 @@ view: unpivot_dre {
         sql: ${metrica} = 'IRPJ_CSLL';;
         label: "22"
       }
-      when: {
-        sql: ${metrica} = 'ALIQUOTA_EFETIVA_IR_CS';;
-        label: "23"
-      }
+
       when: {
         sql: ${metrica} = 'LUCRO_LIQUIDO' ;;
         label: "24"
@@ -278,6 +272,14 @@ view: unpivot_dre {
       when: {
         sql: ${metrica} = 'MARGEM_LIQUIDA' ;;
         label: "25"
+      }
+      when: {
+        sql: ${metrica} = 'PDD_CARTEIRA'  ;;
+        label: "26"
+      }
+      when: {
+        sql: ${metrica} = 'ALIQUOTA_EFETIVA_IR_CS';;
+        label: "27"
       }
       else: "0"
     }
