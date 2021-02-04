@@ -421,7 +421,7 @@ view: jornada {
         label: "6"
       }
       when: {
-        sql: ${etapa} = 'Aguardando DOcumentos';;
+        sql: ${etapa} = 'Aguardando Documentos';;
         label: "6"
       }
       when: {
