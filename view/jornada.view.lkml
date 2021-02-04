@@ -376,7 +376,7 @@ view: jornada {
     label: "Ordem - Etapa"
     description: "Indica a ordem correta por etapa do funil. "
     hidden: yes
-    sql: ${ordem_etapa_funil} ;;
+    sql: CAST(${ordem_etapa_funil} AS INT) ;;
 
   }
 
