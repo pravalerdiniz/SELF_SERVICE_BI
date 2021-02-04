@@ -406,44 +406,44 @@ view: jornada {
 
       when: {
         sql: ${etapa} = 'Aprovado Behavior' ;;
-        label: "4"
-      }
-      when: {
-        sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "5"
       }
       when: {
-        sql: ${etapa} = 'Dados Confirmados';;
+        sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "6"
       }
       when: {
-        sql: ${etapa} = 'Confirmacao De Dados';;
+        sql: ${etapa} = 'Dados Confirmados';;
         label: "7"
       }
       when: {
-        sql: ${etapa} = 'Aguardando Documentos';;
+        sql: ${etapa} = 'Confirmacao De Dados';;
         label: "8"
       }
       when: {
-        sql: ${etapa} = 'Contrato Gerado' ;;
+        sql: ${etapa} = 'Aguardando Documentos';;
         label: "9"
       }
       when: {
-        sql: ${etapa} = 'Aguardando Assinatura' ;;
+        sql: ${etapa} = 'Contrato Gerado' ;;
         label: "10"
       }
       when: {
-        sql: ${etapa} = 'Contrato Assinado' ;;
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
         label: "11"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "12"
       }
 
       when: {
         sql: ${etapa} = 'Formalizado' ;;
-        label: "12"
+        label: "13"
       }
       when: {
         sql: ${etapa} = 'Cedido';;
-        label: "13"
+        label: "14"
       }
       else: "0"
     }
