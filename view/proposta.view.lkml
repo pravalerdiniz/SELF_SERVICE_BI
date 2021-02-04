@@ -2074,6 +2074,14 @@ view: proposta {
     sql: ${TABLE}."DATA_FORMALIZACAO_PREVISTA" ;;
   }
 
+  dimension: flg_cancelado {
+    type: yesno
+    group_label: "Dados da Proposta"
+    label: "Proposta Cancelada?"
+    description: "Indica se a proposta está cancelada"
+    sql: ${TABLE}."FLG_CANCELADO" ;;
+  }
+
 
 
 
