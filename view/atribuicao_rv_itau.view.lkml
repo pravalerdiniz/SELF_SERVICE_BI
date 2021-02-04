@@ -119,16 +119,38 @@ from (
   #############################################
   ################## ATENÇÃO ##################
   #############################################
-  # Cálculo ainda não considerando casos com volume de alunos acima de 28k por ano
+  # Cálculo ainda não considerando casos com volume de alunos acima de 32k por ano
   dimension: remuneracao_variavel_rv {
     type: number
-    sql: case when ${nm_modalidade_produto} <> 'FIDC' then 100
+
+
+    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO','R1','R2','R3') then
+           (case when ${nm_modalidade_produto} <> 'FIDC' then 100
+                else (case when ${atribuicao} = 'ITAU' then
+                              (case when ${data_concessao_year} = 2020 then 100
+                                    else 70 end)
+                           when ${data_concessao_year} = 2020 then 125
+                           else 95 end)
+           end)
+         when  (${acumulado_alunos_ano} > 28000 and ${acumulado_alunos_ano} <= 32000) and ${tipo} in ('AQUISICAO','R1','R2','R3','R4','R5','R6','R7') then
+         (case when ${nm_modalidade_produto} <> 'FIDC' then 100
               else (case when ${atribuicao} = 'ITAU' then
-                            (case when ${data_concessao_year} = 2020 then 100
-                                  else 70 end)
-                         when ${data_concessao_year} = 2020 then 125
-                         else 95 end)
+                       (case when ${tipo} = 'AQUISICAO' then 129
+                             when ${tipo} = 'R1' then 37
+                             when ${tipo} = 'R2' then 52
+                             when ${tipo} in ('R3','R4','R5') then 67
+                             else 175 end)
+                    else (case when ${tipo} = 'AQUISICAO' then 154
+                             when ${tipo} = 'R1' then 62
+                             when ${tipo} = 'R2' then 77
+                             when ${tipo} in ('R3','R4','R5') then 92
+                             else 200 end)
+                    end)
+          end)
+          else 0
          end ;;
+
+
   }
 
   measure: count {
