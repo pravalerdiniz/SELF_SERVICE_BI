@@ -80,6 +80,7 @@ view: jornada {
     group_label: "Dados da Etapa"
     group_item_label: "Etapa"
     description: "Etapas da esteira de contratação do PRAVALER"
+    order_by_field: ordem_etapa
   }
 
 
@@ -374,6 +375,7 @@ view: jornada {
     group_label: "Dados da Etapa"
     label: "Ordem - Etapa"
     description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
     sql: ${ordem_etapa_funil} ;;
 
   }
@@ -665,7 +667,7 @@ view: jornada {
     label: "SLA de Finalizado - Faixa de Tempo"
     case: {
       when: {
-        sql: ${jornada_pivot.sla_fin_novos} = 0 ;;
+        sql: ${jornada_pivot.sla_fin_novos} = '0' ;;
         label: "0"
       }
       else: "0 >"
