@@ -1409,10 +1409,21 @@ dimension: tempo_status {
               CASE WHEN sum(${TABLE}."Status_9_Confirmacao_CPF_RF") = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."Status_2_90_Problemas_Integracao_Produtos_NeoXBo")  = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."Status_9090_Dado_Inconsistente")  = 0 THEN 1 ELSE 0 END
+              CASE WHEN sum(${TABLE}."etapa_3_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_35_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_36_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_37_clicksign_fora")  = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_40_clicksign_fora")  = 0 THEN 1 ELSE 0 END
 
               ;;
             hidden: yes
           }
+
+
+
+
+
+
 
 
   dimension: total_status_fora_renovacao {
@@ -1485,7 +1496,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
   measure: perc_okr_diario_novos {
     type: number
     value_format: "0.0%"
-    sql: ${total_status_fora_novos}/25 ;;
+    sql: ${total_status_fora_novos}/30 ;;
     label: "OKR Diário - Novos"
 
 
