@@ -357,27 +357,27 @@ view: farol {
 
   dimension: etapa_3_clicksign_fora {
     type: number
-    sql: ${TABLE}."ETAPA_3_CLICKSIGN_FORA" ;;
+    sql: ${TABLE}."etapa_3_clicksign_fora" ;;
   }
 
   dimension: etapa_35_clicksign_fora {
     type: number
-    sql: ${TABLE}."ETAPA_35_CLICKSIGN_FORA" ;;
+    sql: ${TABLE}."etapa_35_clicksign_fora" ;;
   }
 
   dimension: etapa_36_clicksign_fora {
     type: number
-    sql: ${TABLE}."ETAPA_36_CLICKSIGN_FORA" ;;
+    sql: ${TABLE}."etapa_36_clicksign_fora" ;;
   }
 
   dimension: etapa_37_clicksign_fora {
     type: number
-    sql: ${TABLE}."ETAPA_37_CLICKSIGN_FORA" ;;
+    sql: ${TABLE}."etapa_37_clicksign_fora" ;;
   }
 
   dimension: etapa_40_clicksign_fora {
     type: number
-    sql: ${TABLE}."ETAPA_40_CLICKSIGN_FORA" ;;
+    sql: ${TABLE}."etapa_40_clicksign_fora" ;;
   }
 
 
