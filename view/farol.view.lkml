@@ -354,6 +354,35 @@ view: farol {
     sql: ${TABLE}."STATUS_82_DENTRO" ;;
   }
 
+
+  dimension: etapa_3_clicksign_fora {
+    type: number
+    sql: ${TABLE}."ETAPA_3_CLICKSIGN_FORA" ;;
+  }
+
+  dimension: etapa_35_clicksign_fora {
+    type: number
+    sql: ${TABLE}."ETAPA_35_CLICKSIGN_FORA" ;;
+  }
+
+  dimension: etapa_36_clicksign_fora {
+    type: number
+    sql: ${TABLE}."ETAPA_36_CLICKSIGN_FORA" ;;
+  }
+
+  dimension: etapa_37_clicksign_fora {
+    type: number
+    sql: ${TABLE}."ETAPA_37_CLICKSIGN_FORA" ;;
+  }
+
+  dimension: etapa_40_clicksign_fora {
+    type: number
+    sql: ${TABLE}."ETAPA_40_CLICKSIGN_FORA" ;;
+  }
+
+
+
+
   dimension: porc34_0 {
     type: number
     hidden: yes
@@ -1037,6 +1066,48 @@ dimension: tempo_status {
     group_label: "CRÉDITO CEDIDO"
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
   }
+
+  measure: etapa_3_clicksign_sla_fora {
+    type: sum
+    sql: ${etapa_3_clicksign_fora};;
+    label: "Etapa 3 Erro - SLA FORA "
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_35_clicksign {
+    type: sum
+    sql: ${etapa_35_clicksign_fora};;
+    label: "Etapa 35 Sem Retorno"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_36_clicksign {
+    type: sum
+    sql: ${etapa_36_clicksign_fora};;
+    label: "Etapa 36 Pronto pra assinar"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_37_clicksign{
+    type: sum
+    sql: ${etapa_37_clicksign_fora};;
+    label: "Etapa 37 Dowload DOCS"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_40_clicksign{
+    type: sum
+    sql: ${etapa_40_clicksign_fora};;
+    label: "Etapa 40 Iniciando Geração de Lista"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+
 
     measure: porc_status11_0 {
       type: max
