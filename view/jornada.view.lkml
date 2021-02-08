@@ -80,6 +80,7 @@ view: jornada {
     group_label: "Dados da Etapa"
     group_item_label: "Etapa"
     description: "Etapas da esteira de contratação do PRAVALER"
+    order_by_field: ordem_etapa
   }
 
 
@@ -374,7 +375,8 @@ view: jornada {
     group_label: "Dados da Etapa"
     label: "Ordem - Etapa"
     description: "Indica a ordem correta por etapa do funil. "
-    sql: ${ordem_etapa_funil} ;;
+    hidden: yes
+    sql: CAST(${ordem_etapa_funil} AS INT) ;;
 
   }
 
@@ -404,44 +406,44 @@ view: jornada {
 
       when: {
         sql: ${etapa} = 'Aprovado Behavior' ;;
-        label: "4"
-      }
-      when: {
-        sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "5"
       }
       when: {
-        sql: ${etapa} = 'Dados Confirmados';;
+        sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Dados Confirmados';;
+        label: "7"
       }
       when: {
         sql: ${etapa} = 'Confirmacao De Dados';;
-        label: "6"
+        label: "8"
       }
       when: {
-        sql: ${etapa} = 'Aguardando DOcumentos';;
-        label: "6"
+        sql: ${etapa} = 'Aguardando Documentos';;
+        label: "9"
       }
       when: {
         sql: ${etapa} = 'Contrato Gerado' ;;
-        label: "7"
+        label: "10"
       }
       when: {
         sql: ${etapa} = 'Aguardando Assinatura' ;;
-        label: "7"
+        label: "11"
       }
       when: {
         sql: ${etapa} = 'Contrato Assinado' ;;
-        label: "8"
+        label: "12"
       }
 
       when: {
         sql: ${etapa} = 'Formalizado' ;;
-        label: "9"
+        label: "13"
       }
       when: {
         sql: ${etapa} = 'Cedido';;
-        label: "10"
+        label: "14"
       }
       else: "0"
     }
@@ -665,7 +667,7 @@ view: jornada {
     label: "SLA de Finalizado - Faixa de Tempo"
     case: {
       when: {
-        sql: ${jornada_pivot.sla_fin_novos} = 0 ;;
+        sql: ${jornada_pivot.sla_fin_novos} = '0' ;;
         label: "0"
       }
       else: "0 >"

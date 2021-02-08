@@ -354,6 +354,35 @@ view: farol {
     sql: ${TABLE}."STATUS_82_DENTRO" ;;
   }
 
+
+  dimension: etapa_3_clicksign_fora {
+    type: number
+    sql: ${TABLE}."etapa_3_clicksign_fora" ;;
+  }
+
+  dimension: etapa_35_clicksign_fora {
+    type: number
+    sql: ${TABLE}."etapa_35_clicksign_fora" ;;
+  }
+
+  dimension: etapa_36_clicksign_fora {
+    type: number
+    sql: ${TABLE}."etapa_36_clicksign_fora" ;;
+  }
+
+  dimension: etapa_37_clicksign_fora {
+    type: number
+    sql: ${TABLE}."etapa_37_clicksign_fora" ;;
+  }
+
+  dimension: etapa_40_clicksign_fora {
+    type: number
+    sql: ${TABLE}."etapa_40_clicksign_fora" ;;
+  }
+
+
+
+
   dimension: porc34_0 {
     type: number
     hidden: yes
@@ -1038,6 +1067,48 @@ dimension: tempo_status {
     drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
   }
 
+  measure: etapa_3_clicksign_sla_fora {
+    type: sum
+    sql: ${etapa_3_clicksign_fora};;
+    label: "Etapa 3 Erro - SLA FORA "
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_35_clicksign {
+    type: sum
+    sql: ${etapa_35_clicksign_fora};;
+    label: "Etapa 35 Sem Retorno"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_36_clicksign {
+    type: sum
+    sql: ${etapa_36_clicksign_fora};;
+    label: "Etapa 36 Pronto pra assinar"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_37_clicksign{
+    type: sum
+    sql: ${etapa_37_clicksign_fora};;
+    label: "Etapa 37 Dowload DOCS"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+  measure: etapa_40_clicksign{
+    type: sum
+    sql: ${etapa_40_clicksign_fora};;
+    label: "Etapa 40 Iniciando Geração de Lista"
+    group_label: "CLICK SIGN"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+  }
+
+
+
     measure: porc_status11_0 {
       type: max
       sql: ${porc11_0};;
@@ -1337,11 +1408,22 @@ dimension: tempo_status {
               CASE WHEN sum(${TABLE}."Status_8_33_Erro_BV_Score") = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."Status_9_Confirmacao_CPF_RF") = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."Status_2_90_Problemas_Integracao_Produtos_NeoXBo")  = 0 THEN 1 ELSE 0 END+
-              CASE WHEN sum(${TABLE}."Status_9090_Dado_Inconsistente")  = 0 THEN 1 ELSE 0 END
+              CASE WHEN sum(${TABLE}."Status_9090_Dado_Inconsistente")  = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_3_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_35_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_36_clicksign_fora") = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_37_clicksign_fora")  = 0 THEN 1 ELSE 0 END+
+              CASE WHEN sum(${TABLE}."etapa_40_clicksign_fora")  = 0 THEN 1 ELSE 0 END
 
               ;;
             hidden: yes
           }
+
+
+
+
+
+
 
 
   dimension: total_status_fora_renovacao {
@@ -1414,7 +1496,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
   measure: perc_okr_diario_novos {
     type: number
     value_format: "0.0%"
-    sql: ${total_status_fora_novos}/25 ;;
+    sql: ${total_status_fora_novos}/30 ;;
     label: "OKR Diário - Novos"
 
 

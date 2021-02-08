@@ -384,6 +384,22 @@ view: interacoes {
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
+  dimension: taxa_reclamacao {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Taxa de Reclamação"
+    description: "Classificação dos contatos de não conformidade."
+    sql: ${TABLE}."TAXA_RECLAMACAO" ;;
+  }
+
+  dimension: taxa_contato {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Taxa de Contato"
+    description: "Segmenta os motivos de contato entre contratação, renovação, utilização e outros."
+    sql: ${TABLE}."TAXA_CONTATO" ;;
+  }
+
   dimension: tipo_contato {
     type: string
     group_label: "Dados do Ticket"
@@ -606,12 +622,37 @@ view: interacoes {
     sql: ${TABLE}."TIPO_CHECKLIST" ;;
   }
 
+  dimension: conformidade{
+    type: string
+    group_item_label: "Conformidade"
+    group_label: "Dados de Monitoria"
+    description: "Indica se a nota da monitoria é ou não conforme."
+    sql: ${TABLE}."CONFORMIDADE" ;;
+  }
+
+  dimension: erro_critico{
+    type: string
+    group_item_label: "Erro Crítico"
+    group_label: "Dados de Monitoria"
+    description: "Qualifica a monitoria em erro crítico ou não erro crítico."
+    sql: ${TABLE}."ERRO_CRITICO" ;;
+  }
+
   dimension: nota_monitoramento{
     type: number
     group_item_label: "Nota"
     group_label: "Dados de Monitoria"
     description: "Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
+  }
+
+  measure: nota_monitoramento_measure{
+    type: average
+    group_item_label: "Nota Média"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota média de monitoria."
+    sql: ${TABLE}."NOTA" ;;
+    value_format: "#.#,0"
   }
 
   dimension: agent_monitoria{

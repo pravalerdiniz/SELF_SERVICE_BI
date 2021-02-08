@@ -12,8 +12,8 @@ view: unpivot_dre {
             RECEITA_SERVICOS_LIQUIDA  ,
             CUSTO_COM_PESSOAL  ,
             CUSTO_SERVICOS_PRESTADOS  ,
-            LUCROS_SERVICOS_BRUTOS  ,
-            MARGEM_SERVICOS_BRUTAS  ,
+            LUCRO_SERVICOS_BRUTO  ,
+            MARGEM_SERVICOS_BRUTA  ,
             LUCRO_BRUTO_TOTAL  ,
             MARGEM_BRUTA_TOTAL  ,
             DESPESA_COM_PESSOAL  ,
@@ -25,7 +25,11 @@ view: unpivot_dre {
             PLANO_INCENTIVOS_LONGO_PRAZO  ,
             EBT  ,
             IRPJ_CSLL  ,
-            LUCRO_LIQUIDO_AJUSTADO
+            LUCRO_LIQUIDO ,
+            PDD_CARTEIRA ,
+            ALIQUOTA_EFETIVA_IR_CS ,
+            MARGEM_LIQUIDA
+
              ))
           order by data
       )
@@ -42,8 +46,8 @@ view: unpivot_dre {
             ROLLING_RECEITA_SERVICOS_LIQUIDA  ,
             ROLLING_CUSTO_COM_PESSOAL  ,
             ROLLING_CUSTO_SERVICOS_PRESTADOS  ,
-            ROLLING_LUCROS_SERVICOS_BRUTOS  ,
-            ROLLING_MARGEM_SERVICOS_BRUTAS ,
+            ROLLING_LUCRO_SERVICOS_BRUTO  ,
+            ROLLING_MARGEM_SERVICOS_BRUTA ,
             ROLLING_LUCRO_BRUTO_TOTAL  ,
             ROLLING_MARGEM_BRUTA_TOTAL  ,
             ROLLING_DESPESA_COM_PESSOAL  ,
@@ -55,7 +59,10 @@ view: unpivot_dre {
             ROLLING_PLANO_INCENTIVOS_LONGO_PRAZO  ,
             ROLLING_EBT  ,
             ROLLING_IRPJ_CSLL  ,
-            ROLLING_LUCRO_LIQUIDO_AJUSTADO
+            ROLLING_LUCRO_LIQUIDO ,
+            ROLLING_PDD_CARTEIRA ,
+            ROLLING_ALIQUOTA_EFETIVA_IR_CS ,
+            ROLLING_MARGEM_LIQUIDA
              ))
           order by data
       )
@@ -78,6 +85,17 @@ view: unpivot_dre {
       label: "Mês"
       value: "VALOR"
     }
+  }
+
+  dimension: data_variavel {
+    sql:
+    {% if tipo_analise._parameter_value == "VALOR_ROLLING" %}
+    ${data_month_name}
+    {% elsif tipo_analise._parameter_value == "VALOR" %}
+    ${data_month}
+    {% else %}
+    ${data_month}
+    {% endif %};;
   }
 
   dimension: tipo {
@@ -115,9 +133,13 @@ view: unpivot_dre {
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "LUCROS SERVICOS BRUTOS" %}
+    {% elsif value == "PDD" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif value == "MARGEM SERVICOS BRUTAS" %}
+    {% elsif value == "PDD CARTEIRA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCROS SERVICOS BRUTO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM SERVICOS BRUTA" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO BRUTO TOTAL" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
@@ -129,8 +151,14 @@ view: unpivot_dre {
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "EBT" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif value == "LUCRO LIQUIDO AJUSTADO" %}
+    {% elsif value == "IRPJ CSLL" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO LIQUIDO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM LIQUIDA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% else %}
      <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %};;
@@ -158,86 +186,100 @@ view: unpivot_dre {
         sql: ${metrica} = 'PDD'  ;;
         label: "2"
       }
+
       when: {
         sql: ${metrica} = 'CUSTO_CAPTACAO'  ;;
-        label: "3"
-      }
-      when: {
-        sql: ${metrica} = 'LUCRO_FINANCEIRO_BRUTO' ;;
         label: "4"
       }
       when: {
-        sql: ${metrica} = 'MARGEM_FINANCEIRA_BRUTA' ;;
+        sql: ${metrica} = 'LUCRO_FINANCEIRO_BRUTO' ;;
         label: "5"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_FINANCEIRA_BRUTA' ;;
+        label: "6"
       }
 
       when: {
         sql: ${metrica} = 'RECEITA_SERVICOS_LIQUIDA' ;;
-        label: "6"
-      }
-      when: {
-        sql: ${metrica} = 'CUSTO_COM_PESSOAL' ;;
         label: "7"
       }
       when: {
-        sql: ${metrica} = 'CUSTO_SERVICOS_PRESTADOS';;
+        sql: ${metrica} = 'CUSTO_COM_PESSOAL' ;;
         label: "8"
       }
       when: {
-        sql: ${metrica} = 'LUCROS_SERVICOS_BRUTOS';;
+        sql: ${metrica} = 'CUSTO_SERVICOS_PRESTADOS';;
         label: "9"
       }
       when: {
-        sql: ${metrica} = 'MARGEM_SERVICOS_BRUTAS';;
+        sql: ${metrica} = 'LUCRO_SERVICOS_BRUTO';;
         label: "10"
       }
       when: {
-        sql: ${metrica} = 'LUCRO_BRUTO_TOTAL' ;;
+        sql: ${metrica} = 'MARGEM_SERVICOS_BRUTA';;
         label: "11"
       }
       when: {
-        sql: ${metrica} = 'MARGEM_BRUTA_TOTAL' ;;
+        sql: ${metrica} = 'LUCRO_BRUTO_TOTAL' ;;
         label: "12"
       }
       when: {
-        sql: ${metrica} = 'DESPESA_COM_PESSOAL' ;;
+        sql: ${metrica} = 'MARGEM_BRUTA_TOTAL' ;;
         label: "13"
       }
       when: {
-        sql: ${metrica} = 'G_A' ;;
+        sql: ${metrica} = 'DESPESA_COM_PESSOAL' ;;
         label: "14"
       }
       when: {
-        sql: ${metrica} = 'RESULTADO_OPERACIONAL';;
+        sql: ${metrica} = 'G_A' ;;
         label: "15"
       }
       when: {
-        sql: ${metrica} = 'MARGEM_OPERACIONAL' ;;
+        sql: ${metrica} = 'RESULTADO_OPERACIONAL';;
         label: "16"
       }
       when: {
-        sql: ${metrica} = 'RESULTADO_FINANCEIRO';;
+        sql: ${metrica} = 'MARGEM_OPERACIONAL' ;;
         label: "17"
       }
       when: {
-        sql: ${metrica} = 'DEPRECIACAO_AMORTIZACAO' ;;
+        sql: ${metrica} = 'RESULTADO_FINANCEIRO';;
         label: "18"
       }
       when: {
-        sql: ${metrica} = 'PLANO_INCENTIVOS_LONGO_PRAZO';;
+        sql: ${metrica} = 'DEPRECIACAO_AMORTIZACAO' ;;
         label: "19"
       }
       when: {
-        sql: ${metrica} = 'EBT' ;;
+        sql: ${metrica} = 'PLANO_INCENTIVOS_LONGO_PRAZO';;
         label: "20"
       }
       when: {
-        sql: ${metrica} = 'IRPJ_CSLL';;
+        sql: ${metrica} = 'EBT' ;;
         label: "21"
       }
       when: {
-        sql: ${metrica} = 'LUCRO_LIQUIDO_AJUSTADO' ;;
+        sql: ${metrica} = 'IRPJ_CSLL';;
         label: "22"
+      }
+
+      when: {
+        sql: ${metrica} = 'LUCRO_LIQUIDO' ;;
+        label: "24"
+      }
+      when: {
+        sql: ${metrica} = 'MARGEM_LIQUIDA' ;;
+        label: "25"
+      }
+      when: {
+        sql: ${metrica} = 'PDD_CARTEIRA'  ;;
+        label: "26"
+      }
+      when: {
+        sql: ${metrica} = 'ALIQUOTA_EFETIVA_IR_CS';;
+        label: "27"
       }
       else: "0"
     }
@@ -253,42 +295,52 @@ dimension: ordem_dre {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;[<=0]-$0.00,,\"M\""
+    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
   }
 
   measure: sum_valor_rolling {
     type: sum
     sql: ${valor_rolling} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>=0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
   }
 
   measure: sum_variavel {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
-    value_format:"[>=1000]$0.00,,\"M\";[>0]0.00%;-$0.00,,\"M\""
+    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
     html:
-    {% if unpivot_dre.metrica2._value == "LUCRO FINANCEIRO BRUTO" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif unpivot_dre.metrica2._value == "MARGEM FINANCEIRA BRUTA" %}
-    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif unpivot_dre.metrica2._value == "LUCROS SERVICOS BRUTOS" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif unpivot_dre.metrica2._value == "MARGEM SERVICOS BRUTAS" %}
-    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif unpivot_dre.metrica2._value == "LUCRO BRUTO TOTAL" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif unpivot_dre.metrica2._value == "MARGEM BRUTA TOTAL" %}
-    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif unpivot_dre.metrica2._value == "RESULTADO OPERACIONAL" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif unpivot_dre.metrica2._value == "MARGEM OPERACIONAL" %}
-    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif unpivot_dre.metrica2._value == "EBT" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif unpivot_dre.metrica2._value == "LUCRO LIQUIDO AJUSTADO" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+     {% if value == "LUCRO FINANCEIRO BRUTO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "PDD" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "PDD CARTEIRA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO SERVICOS BRUTO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM SERVICOS BRUTA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO BRUTO TOTAL" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM BRUTA TOTAL" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "RESULTADO OPERACIONAL" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM OPERACIONAL" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "EBT" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "IRPJ CSLL" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO LIQUIDO" %}
+     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% elsif value == "MARGEM LIQUIDA" %}
+     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% else %}
-    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %};;
   }
 }

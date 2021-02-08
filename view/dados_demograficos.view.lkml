@@ -85,13 +85,14 @@ view: dados_demograficos {
         date,
         week,
         month,
+        month_name,
         quarter,
         year
       ]
       convert_tz: no
       datatype: date
       sql: ${TABLE}."DATA_RESCISAO" ;;
-      hidden: yes
+      #hidden: yes
     }
 
     dimension: data_rescisao {
@@ -101,6 +102,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa a data da rescisão"
+      hidden: yes
     }
 
     dimension: mes_rescisao {
@@ -110,6 +112,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa o mês da rescisão"
+      hidden: yes
     }
 
     dimension: ano_rescisao {
@@ -119,6 +122,7 @@ view: dados_demograficos {
       group_label: "DATA DA RESCISÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa o ano da rescisão"
+      hidden: yes
     }
 
 
@@ -287,18 +291,58 @@ view: dados_demograficos {
     }
 
     measure: count {
-      label: "CONTAGEM DE OCORÊNCIAS"
+      label: "CONTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
       #description: "Informa a situação atual do Pravalente"
       type: count
       drill_fields: []
     }
     measure: porcentagem {
-      label: "PROCENTAGEM DE OCORÊNCIAS"
+      label: "PORCENTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
       #description: "Informa a situação atual do Pravalente"
       type: percent_of_total
       sql: ${count} ;;
       drill_fields: []
     }
+    measure: ativos {
+      label: "TOTAL DE ATIVOS"
+      view_label: "MÉTRICAS"
+      filters: [situacao: "Ativo"]
+      type: count
+      drill_fields: []
+    }
+    measure: desligados_voluntarios {
+      label: "TOTAL DE DESLIGADOS VOLUNTÁRIOS"
+      view_label: "MÉTRICAS"
+      filters: [situacao: "Desligado",
+                tipo_rescisao: "Voluntário"]
+      type: count
+      drill_fields: []
+    }
+    measure: desligados_involuntarios {
+      label: "TOTAL DE DESLIGADOS INVOLUNTÁRIOS"
+      view_label: "MÉTRICAS"
+      filters: [situacao: "Desligado",
+        tipo_rescisao: "Involuntária"]
+      type: count
+      drill_fields: []
+    }
+    measure: percentual_turnover_voluntario {
+      label: "PERCENTUAL DE TURNOVER VOLUNTÁRIOS"
+      view_label: "MÉTRICAS"
+      type: number
+      sql: (${desligados_voluntarios}/${ativos})*100  ;;
+      value_format: "0.00\%"
+      drill_fields: []
+    }
+    measure: percentual_turnover_involuntario {
+      label: "PERCENTUAL DE TURNOVER INVOLUNTÁRIOS"
+      view_label: "MÉTRICAS"
+      type: number
+      sql: (${desligados_involuntarios}/${ativos})*100  ;;
+      value_format: "0.00\%"
+      drill_fields: []
+    }
+
   }
