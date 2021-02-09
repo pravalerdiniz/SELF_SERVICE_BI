@@ -225,7 +225,20 @@ join: instituicao_taxas_antecipacao {
     type: left_outer
   }
 
+  join: instituicao_inep {
+    view_label: "4.1 Inep"
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_inep.id_instituicao} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
 
+  join: inep {
+    view_label: "4 Inep"
+    sql_on: ${instituicao_inep.ies_inep} = ${inep.id_ies}
+    AND ${instituicao_inep.cod_mantenedora} = ${inep.id_mantenedora};;
+    relationship: one_to_many
+    type: left_outer
+  }
 
 
 }

@@ -1050,6 +1050,12 @@ view: inep {
       }
     }
 
+  dimension:id_mantenedora {
+    type: number
+    group_label: "Id da Mantenedora"
+    sql: ${TABLE}."ID_MANTENEDORA";;
+  }
+
 
 
     measure: count_ies {
