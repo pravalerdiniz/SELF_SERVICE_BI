@@ -1411,7 +1411,6 @@ dimension: tempo_status {
               CASE WHEN sum(${TABLE}."Status_9090_Dado_Inconsistente")  = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."etapa_3_clicksign_fora") = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."etapa_35_clicksign_fora") = 0 THEN 1 ELSE 0 END+
-              CASE WHEN sum(${TABLE}."etapa_36_clicksign_fora") = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."etapa_37_clicksign_fora")  = 0 THEN 1 ELSE 0 END+
               CASE WHEN sum(${TABLE}."etapa_40_clicksign_fora")  = 0 THEN 1 ELSE 0 END
 
@@ -1496,7 +1495,7 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
   measure: perc_okr_diario_novos {
     type: number
     value_format: "0.0%"
-    sql: ${total_status_fora_novos}/30 ;;
+    sql: ${total_status_fora_novos}/29 ;;
     label: "OKR Diário - Novos"
 
 
