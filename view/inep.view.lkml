@@ -2,6 +2,13 @@ view: inep {
   sql_table_name: "SELF_SERVICE_BI"."INEP"
     ;;
 
+dimension: primary_key {
+  type: string
+  sql: CONCAT(${ano_censo},${id_aluno},${id_aluno_curso}) ;;
+  primary_key: yes
+  hidden: yes
+
+}
   dimension: ano_censo {
     type: number
     label: "Ano do Censo"

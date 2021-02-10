@@ -177,7 +177,7 @@ from (
     type: sum
     sql: ${remuneracao_variavel_itau} ;;
     label: "Remuneração Variável Itaú"
-    value_format: "R$ #,###.##"
+    value_format: "$ #,##0.00"
   }
 
   measure: sum_remuneracao_variavel_rv {
