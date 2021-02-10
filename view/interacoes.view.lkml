@@ -108,6 +108,14 @@ view: interacoes {
     sql: ${TABLE}."CHAT_NOME_VISITANTE" ;;
   }
 
+  dimension: avaliacao_chat {
+    type: string
+    group_label: "Dados de Chat"
+    group_item_label: "Avaliação Chat"
+    description: "Indica a avaliação feito para o atendimento do chat."
+    sql: ${TABLE}."AVALIACAO_CHAT" ;;
+  }
+
   dimension: chat_tempo_max_resposta {
     type: number
     group_label: "Dados de Chat"
@@ -716,17 +724,17 @@ view: interacoes {
   }
 
 
-measure: sum_total_abadono {
-  type: sum
-  group_label: "Dados de Ligação"
-  label: "Total de Abandono"
-  description: "Total ligações abandonadas"
-  sql: ${total_abandono};;
+  measure: sum_total_abadono {
+    type: sum
+    group_label: "Dados de Ligação"
+    label: "Total de Abandono"
+    description: "Total ligações abandonadas"
+    sql: ${total_abandono};;
 
 
 
 
-}
+  }
 
   measure: count {
     type: count
