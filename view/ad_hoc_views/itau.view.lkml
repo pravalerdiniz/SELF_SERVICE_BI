@@ -43,7 +43,12 @@ view: itau {
       BPROP."fia_email" EMAIL_FIADOR,
       CPFF.ESTADO_CIVIL ESTADO_CIVIL_FIADOR,
       cpfF.profissao OCUPACAO_FIADOR,
-      CPFF.NACIONALIDADE NACIONALIDADE_FIADOR
+      CPFF.NACIONALIDADE NACIONALIDADE_FIADOR,
+      duc.ds_url as URL,
+      duc.canal,
+      jor.ETAPA,
+      jor.dt_status
+
 
 
       from "VETERANO"."FATO"."FATO_PROPOSTA" prop
@@ -67,7 +72,11 @@ view: itau {
       on bprop."id"::varchar = substring(prop.id_proposta,5)
       LEFT JOIN "VETERANO"."DIMENSAO"."DIM_PARENTESCO" PAR
       ON PAR.ID_PARENTESCO = PROP.ID_FIA_PARENTESCO
-       ;;
+      inner join graduado.self_service_bi.jornada jor
+      on jor.id_proposta= prop.id_proposta
+      and status_etapa = 1
+      left join VETERANO.DIMENSAO.DIM_URL_CANAL duc on duc.id_url = prop.id_url_origem
+      where duc.ds_url ilike '%itau%' ;;
   }
 
   measure: count {
@@ -333,6 +342,31 @@ view: itau {
     label: "Nacionalidade do Fiador"
   }
 
+  dimension: url {
+    type: string
+    sql: ${TABLE}."URL" ;;
+    label: "URL de Descoberta"
+  }
+
+  dimension: canal {
+    type: string
+    sql: ${TABLE}."CANAL" ;;
+    label: "Canal de Descoberta"
+  }
+
+  dimension: etapa {
+    type: string
+    sql: ${TABLE}."ETAPA" ;;
+    label: "Etapa da Proposta"
+  }
+
+  dimension: dt_status {
+    type: string
+    sql: ${TABLE}."DT_STATUS" ;;
+    label: "Data que a proposta passou pela etapa"
+  }
+
+
   set: detail {
     fields: [
       nome_aluno,
@@ -377,7 +411,11 @@ view: itau {
       email_fiador,
       estado_civil_fiador,
       ocupacao_fiador,
-      nacionalidade_fiador
+      nacionalidade_fiador,
+      url,
+      canal,
+      etapa,
+      dt_status
     ]
   }
 }
