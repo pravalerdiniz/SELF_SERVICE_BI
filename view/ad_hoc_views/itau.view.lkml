@@ -72,7 +72,7 @@ view: itau {
       on bprop."id"::varchar = substring(prop.id_proposta,5)
       LEFT JOIN "VETERANO"."DIMENSAO"."DIM_PARENTESCO" PAR
       ON PAR.ID_PARENTESCO = PROP.ID_FIA_PARENTESCO
-      inner join graduado.self_service_bi.jornada jor
+      left join graduado.self_service_bi.jornada jor
       on jor.id_proposta= prop.id_proposta
       and status_etapa = 1
       left join VETERANO.DIMENSAO.DIM_URL_CANAL duc on duc.id_url = prop.id_url_origem
