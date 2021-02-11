@@ -59,7 +59,7 @@ view: itau {
       inner join "VETERANO"."FATO"."FATO_ALUNO_CONTRATO" ctt
       on ctt.id_contrato = prop.id_proposta
       and ctt.ativo = 1
-      and CONTRATO_CONCEDIDO = 1
+      --and CONTRATO_CONCEDIDO = 1
       LEFT join "VETERANO"."DIMENSAO"."DIM_INSTITUICAO"inst
       on inst.id_instituicao = prop.id_instituicao
       LEFT join "VETERANO"."DIMENSAO"."DIM_CURSO" cur
