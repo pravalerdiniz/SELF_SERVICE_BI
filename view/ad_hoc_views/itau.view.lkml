@@ -27,7 +27,7 @@ view: itau {
       PROP.VL_MENSALIDADE,
       PROD.NM_PRODUTO_COMERCIAL PLANO_CONTRATADO,
       PROP.TIPO_PROPOSTA,
-      DATA_CESSAO_ORIGINAL DATA_CONTRATACAO,
+      DATA_PREENCHIMENTO DATA_CONTRATACAO,
       cpff.nome NOME_FIADOR,
       CPFF.CPF CPF_FIADOR,
       BPROP."fia_endereco" endereco_fiador,
@@ -243,7 +243,7 @@ view: itau {
   dimension_group: data_contratacao {
     type: time
     sql: ${TABLE}."DATA_CONTRATACAO" ;;
-    label: "Data da Contratação"
+    label: "Data de preenchimento da proposta"
   }
 
   dimension: nome_fiador {
