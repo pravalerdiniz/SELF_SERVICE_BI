@@ -2,9 +2,16 @@ view: base_trade {
   sql_table_name: "AD_HOC"."BASE_TRADE"
     ;;
 
-  dimension: cedidos {
+  dimension: cedidos_d {
     type: string
     sql: ${TABLE}."CEDIDOS" ;;
+    hidden: yes
+  }
+
+  measure: cedidos {
+    type: count
+    drill_fields: [cedidos_d]
+
   }
 
   dimension: gerente {
