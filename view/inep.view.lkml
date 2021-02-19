@@ -2,17 +2,19 @@ view: inep {
   sql_table_name: "SELF_SERVICE_BI"."INEP"
     ;;
 
-dimension: primary_key {
-  type: string
-  sql: CONCAT(${ano_censo},${id_aluno},${id_aluno_curso}) ;;
-  primary_key: yes
-  hidden: yes
 
-}
   dimension: ano_censo {
     type: number
     label: "Ano do Censo"
     sql: ${TABLE}."ANO_CENSO" ;;
+  }
+
+
+  dimension: primary_key{
+    type: string
+    hidden: yes
+    sql: CONCAT(${id_aluno}) ;;
+    primary_key: yes
   }
 
   dimension: ano_ingresso {
@@ -1063,6 +1065,12 @@ dimension: primary_key {
     sql: ${TABLE}."ID_MANTENEDORA";;
   }
 
+
+  dimension:grupo {
+    type: number
+    group_label: "GRUPO DA INSTITUIÇÃO"
+    sql: ${TABLE}."GRUPO";;
+  }
 
 
     measure: count_ies {

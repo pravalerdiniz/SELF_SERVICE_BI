@@ -272,7 +272,7 @@ view: financeiro {
     label: "ID do Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
     sql: ${TABLE}."ID_CONTRATO" ;;
-    value_format: "#"
+
   }
 
   measure: array_contrato {

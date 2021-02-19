@@ -160,7 +160,7 @@ explore: instituicao {
     - proposta.tipo_original,
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
-    - proposta.perc_tx_subsidiado_ies,
+    - proposta.perc_tx_subsidiado_ies
 
     ]
 
@@ -225,20 +225,23 @@ join: instituicao_taxas_antecipacao {
     type: left_outer
   }
 
-  join: instituicao_inep {
-    view_label: "4.1 Inep"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_inep.id_instituicao} ;;
-    relationship: one_to_one
-    type: left_outer
-  }
-
-  join: inep {
-    view_label: "4 Inep"
-    sql_on: ${instituicao_inep.ies_inep} = ${inep.id_ies}
-    AND ${instituicao_inep.cod_mantenedora} = ${inep.id_mantenedora};;
+  join: inep_instituicao {
+    fields: []
+    sql_on: ${instituicao.grupo}=${inep_instituicao.grupo} and ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} ;;
     relationship: one_to_many
     type: left_outer
+
+
+
   }
+
+join: inep {
+  sql_on: ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} and ${instituicao.grupo} = ${inep.grupo}  ;;
+  relationship: one_to_many
+  type: left_outer
+
+}
+
 
 
 }
