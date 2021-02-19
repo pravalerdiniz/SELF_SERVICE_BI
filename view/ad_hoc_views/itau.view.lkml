@@ -1,6 +1,7 @@
 view: itau {
   derived_table: {
-    sql: select
+    sql:
+select
       cpfa.nome NOME_ALUNO,
       cpfa.cpf CPF_ALUNO,
       cpfa.CEP CEP_ALUNO,
@@ -27,7 +28,7 @@ view: itau {
       PROP.VL_MENSALIDADE,
       PROD.NM_PRODUTO_COMERCIAL PLANO_CONTRATADO,
       PROP.TIPO_PROPOSTA,
-      DATA_CESSAO_ORIGINAL DATA_CONTRATACAO,
+      prop.DATA_PREENCHIMENTO DATA_CONTRATACAO,
       cpff.nome NOME_FIADOR,
       CPFF.CPF CPF_FIADOR,
       BPROP."fia_endereco" endereco_fiador,
@@ -43,7 +44,12 @@ view: itau {
       BPROP."fia_email" EMAIL_FIADOR,
       CPFF.ESTADO_CIVIL ESTADO_CIVIL_FIADOR,
       cpfF.profissao OCUPACAO_FIADOR,
-      CPFF.NACIONALIDADE NACIONALIDADE_FIADOR
+      CPFF.NACIONALIDADE NACIONALIDADE_FIADOR,
+      duc.ds_url as URL,
+     -- duc.canal,
+      jor.ETAPA,
+      jor.dt_status
+
 
 
       from "VETERANO"."FATO"."FATO_PROPOSTA" prop
@@ -51,22 +57,33 @@ view: itau {
       on prop.id_cpf = cpfa.id_cpf
       left join "VETERANO"."DIMENSAO"."DIM_CPF" cpff
       on cpff.id_cpf = prop.id_fia_cpf
-      inner join "VETERANO"."FATO"."FATO_ALUNO_CONTRATO" ctt
-      on ctt.id_contrato = prop.id_proposta
-      and ctt.ativo = 1
-      and CONTRATO_CONCEDIDO = 1
+      inner join "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA" ctt
+      on ctt.id_proposta = prop.id_proposta
       LEFT join "VETERANO"."DIMENSAO"."DIM_INSTITUICAO"inst
       on inst.id_instituicao = prop.id_instituicao
       LEFT join "VETERANO"."DIMENSAO"."DIM_CURSO" cur
       on cur.id_curso = prop.id_curso
       LEFT JOIN "VETERANO"."DIMENSAO"."DIM_TIT_CURSO" TCUR
       ON TCUR.ID_TIT_CURSO = CUR.ID_TIT_CURSO
-      inner join "VETERANO"."DIMENSAO"."DIM_PRODUTO" prod
+      left join "VETERANO"."DIMENSAO"."DIM_PRODUTO" prod
       on prod.id_produto = prop.id_produto
       left join "BICHO"."BO"."PRV_PROPOSTA" bprop
       on bprop."id"::varchar = substring(prop.id_proposta,5)
       LEFT JOIN "VETERANO"."DIMENSAO"."DIM_PARENTESCO" PAR
       ON PAR.ID_PARENTESCO = PROP.ID_FIA_PARENTESCO
+      inner join graduado.self_service_bi.jornada jor
+      on jor.id_proposta= prop.id_proposta
+      and status_etapa = 1
+      left join VETERANO.DIMENSAO.DIM_URL_CANAL duc
+      on duc.id_url = prop.id_url_origem
+     left join(select FL.* from VETERANO.FATO.FATO_LEAD fl
+           inner join VETERANO.FATO.FATO_PROPOSTA fp
+          on fl.id_cpf = fp.id_cpf and date_trunc('day',fl.data_acesso) between date_trunc('day',fp.data_preenchimento) - interval '3 months' and date_trunc('day',fp.data_preenchimento)
+          QUALIFY ROW_NUMBER() OVER(PARTITION BY fl.id_cpf ORDER BY fl.data_acesso ASC)=1) fl
+          on fl.id_cpf = prop.id_cpf
+      left join VETERANO.DIMENSAO.DIM_URL_CANAL duc_ent on duc_ent.id_url = fl.id_url_origem
+      where duc.ds_url ilike '%itau%'
+      or (ifnull( case when fl.ds_fonte = 'LEADS FIES' THEN 'LEADS FIES' else duc_ent.canal end, duc.canal)) ilike 'itau'
        ;;
   }
 
@@ -234,7 +251,7 @@ view: itau {
   dimension_group: data_contratacao {
     type: time
     sql: ${TABLE}."DATA_CONTRATACAO" ;;
-    label: "Data da Contratação"
+    label: "Data de preenchimento da proposta"
   }
 
   dimension: nome_fiador {
@@ -333,6 +350,31 @@ view: itau {
     label: "Nacionalidade do Fiador"
   }
 
+  dimension: url {
+    type: string
+    sql: ${TABLE}."URL" ;;
+    label: "URL de Descoberta"
+  }
+
+  dimension: canal {
+    type: string
+    sql: ${TABLE}."CANAL" ;;
+    label: "Canal de Descoberta"
+  }
+
+  dimension: etapa {
+    type: string
+    sql: ${TABLE}."ETAPA" ;;
+    label: "Etapa da Proposta"
+  }
+
+  dimension: dt_status {
+    type: string
+    sql: ${TABLE}."DT_STATUS" ;;
+    label: "Data que a proposta passou pela etapa"
+  }
+
+
   set: detail {
     fields: [
       nome_aluno,
@@ -377,7 +419,11 @@ view: itau {
       email_fiador,
       estado_civil_fiador,
       ocupacao_fiador,
-      nacionalidade_fiador
+      nacionalidade_fiador,
+      url,
+      canal,
+      etapa,
+      dt_status
     ]
   }
 }
