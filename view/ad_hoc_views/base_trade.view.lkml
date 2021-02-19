@@ -8,6 +8,11 @@ view: base_trade {
     hidden: yes
   }
 
+  dimension: classificacao_ies {
+    type: string
+    sql: ${TABLE}."CLASSIFICACAO_IES" ;;
+  }
+
   measure: cedidos {
     type: count
     drill_fields: [cedidos_d]
