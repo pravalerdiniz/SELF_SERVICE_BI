@@ -10,7 +10,7 @@ view: base_trade {
 
   dimension: classificacao_ies {
     type: string
-    sql: ${TABLE}."CLASSIFICACAO_IES" ;;
+    sql: ${TABLE}."CLASSIFICAO_IES" ;;
   }
 
   measure: cedidos {
