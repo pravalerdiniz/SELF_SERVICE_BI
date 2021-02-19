@@ -1067,8 +1067,8 @@ view: inep {
 
 
   dimension:grupo {
-    type: number
-    group_label: "GRUPO DA INSTITUIÇÃO"
+    type: string
+    label: "Grupo da Instituição de Ensino"
     sql: ${TABLE}."GRUPO";;
   }
 
