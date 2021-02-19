@@ -2,9 +2,21 @@ view: base_trade {
   sql_table_name: "AD_HOC"."BASE_TRADE"
     ;;
 
-  dimension: cedidos {
+  dimension: cedidos_d {
     type: string
     sql: ${TABLE}."CEDIDOS" ;;
+    hidden: yes
+  }
+
+  dimension: classificacao_ies {
+    type: string
+    sql: ${TABLE}."CLASSIFICAO_IES" ;;
+  }
+
+  measure: cedidos {
+    type: count
+    drill_fields: [cedidos_d]
+
   }
 
   dimension: gerente {
