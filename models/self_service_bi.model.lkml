@@ -239,7 +239,7 @@ join: inep {
   sql_on: ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} and ${instituicao.grupo} = ${inep.grupo}  ;;
   relationship: one_to_many
   type: left_outer
-
+  view_label: "Inep - Instituição"
 }
 
 
