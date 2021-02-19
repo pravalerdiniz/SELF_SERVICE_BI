@@ -1093,6 +1093,34 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Soma do valor total em atraso. O valor considerado para este cálculo é o 'Valor Total' do boleto"
   }
 
+  measure: count_pagos {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    value_format: "0"
+    group_label: "Pagos"
+    group_item_label: "Valor"
+    description: "Quantidade de CPF por boleto pago"
+    filters: [flg_boleto_pago: "Yes"]
+    drill_fields: [
+      cpf_aluno, aluno_nome,id_contrato,
+      aluno_email,
+      aluno_celular,
+      ds_curso,
+      grupo_instituicao,
+      ds_instituicao,
+      ds_campus,
+      nm_modalidade_produto,
+      nm_produto,
+      id_boleto,
+      dias_atraso,
+      vl_boleto,
+      data_pagamento_date,
+      data_vencimento_date,
+
+
+    ]
+  }
+
 
 
 

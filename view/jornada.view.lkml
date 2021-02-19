@@ -316,7 +316,13 @@ view: jornada {
     description: "Indica a quantas horas o aluno está no mesmo status"
   }
 
-
+  dimension: grupo_status_renovacao {
+    type: string
+    sql: ${TABLE}."GRUPO" ;;
+    group_label: "Telemetria"
+    group_item_label: "Descrição Grupo do Status de Renovação"
+    description: "Descrição Grupo do Status de Renovação"
+  }
 
   dimension: faixa_tempo_no_status {
     type: string
@@ -760,10 +766,28 @@ view: jornada {
   dimension: ds_curso{
     sql: ${proposta.ds_curso};;
     hidden: yes
+  }
 
-}
-
-
+  dimension_group: dt_referencia {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CESSAO" ;;
+    label: "Data Prevista da Cessão"
+    description: "Data prevista da cessão quando o aluno passou pela determinada etapa, conforme calendário operacional"
+  }
 
 
 
