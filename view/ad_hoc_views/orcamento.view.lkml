@@ -188,6 +188,7 @@ TEMPORADA
   measure: soma_despesa {
     type: sum
     sql: ${montante};;
+    value_format: "$ #,###"
     description: "Soma dos valores das despesas"
     }
 
@@ -198,6 +199,7 @@ TEMPORADA
       value: "ORÇADO"
     }
     sql: ${montante};;
+    value_format: "$ #,###"
     description: "Soma das despesas orçadas"
   }
 
@@ -207,6 +209,7 @@ TEMPORADA
       field: visao
       value: "Realizado"
     }
+    value_format: "$ #,###"
     sql: ${montante};;
     description: "Soma das despesas realizadas"
   }
