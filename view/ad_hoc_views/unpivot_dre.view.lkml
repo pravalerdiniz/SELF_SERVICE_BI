@@ -130,37 +130,33 @@ view: unpivot_dre {
     order_by_field: ordem_dre
     html:
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "PDD" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #FAD8AD">{{ rendered_value }}</p>
     {% elsif value == "PDD CARTEIRA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "LUCROS SERVICOS BRUTO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "LUCRO SERVICOS BRUTO" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM SERVICOS BRUTA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO BRUTO TOTAL" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM BRUTA TOTAL" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "RESULTADO OPERACIONAL" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "EBT" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif value == "IRPJ CSLL" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO LIQUIDO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% else %}
-     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %};;
   }
 
@@ -309,34 +305,34 @@ dimension: ordem_dre {
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
     value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
     html:
-     {% if value == "LUCRO FINANCEIRO BRUTO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    {% if value == "LUCRO FINANCEIRO BRUTO" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #FAD8AD">{{ rendered_value }}</p>
     {% elsif value == "PDD CARTEIRA" %}
-     <i><p style="color: black; background-color: #F87433">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO SERVICOS BRUTO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM SERVICOS BRUTA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO BRUTO TOTAL" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM BRUTA TOTAL" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "RESULTADO OPERACIONAL" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "EBT" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO LIQUIDO" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% else %}
-     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
+    <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %};;
   }
 }
