@@ -132,7 +132,7 @@ view: unpivot_dre {
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-    <p style="color: black; font-weight: bold ; background-color: #FAD8AD">{{ rendered_value }}</p>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "PDD CARTEIRA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO SERVICOS BRUTO" %}
@@ -291,24 +291,24 @@ dimension: ordem_dre {
   measure: sum_valor {
     type: sum
     sql: ${valor} ;;
-    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
+    value_format:"[>=1000]0.0,,\;[>0]0.00%;[<0]-0.0,,\;"
   }
 
   measure: sum_valor_rolling {
     type: sum
     sql: ${valor_rolling} ;;
-    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
+    value_format:"[>=1000]0.0,,\;[>0]0.00%;[<0]-0.0,,\;"
   }
 
   measure: sum_variavel {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
-    value_format:"[>=1000]0.0,,\"\";[>0]0.00%;[<0]-0.0,,\"\""
+    value_format:"[>=1000]0.0,,\;[>0]0.00%;[<0]-0.0,,\;"
     html:
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-    <p style="color: black; font-weight: bold ; background-color: #FAD8AD">{{ rendered_value }}</p>
+    <i><p style="color: black;  background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "PDD CARTEIRA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO SERVICOS BRUTO" %}
