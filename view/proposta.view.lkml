@@ -1834,6 +1834,15 @@ view: proposta {
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
 
+  dimension: vl_principal_original {
+    type: number
+    group_label: "Dados da Cessão"
+    label: "Valor Principal Original"
+    value_format: "0"
+    description: "Indica o valor principal original do contrato."
+    sql: ${TABLE}."VALOR_PRINCIPAL_ORIGINAL" ;;
+  }
+
   dimension: vl_rematricula {
     type: number
     group_label: "Dados do Contrato"
