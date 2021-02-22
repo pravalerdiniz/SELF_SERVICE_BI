@@ -312,11 +312,9 @@ dimension: ordem_dre {
      {% if value == "LUCRO FINANCEIRO BRUTO" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "PDD" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "PDD CARTEIRA" %}
-     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+     <i><p style="color: black; background-color: #F87433">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO SERVICOS BRUTO" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM SERVICOS BRUTA" %}
@@ -330,8 +328,6 @@ dimension: ordem_dre {
     {% elsif value == "MARGEM OPERACIONAL" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "EBT" %}
-     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-    {% elsif value == "IRPJ CSLL" %}
      <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
      <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
