@@ -89,3 +89,4 @@ explore: base_trade {}
 
 explore: report_builder_cargas {}
 explore: report_builder_baixa {}
+explore: curta_duracao {}
