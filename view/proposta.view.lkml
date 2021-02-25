@@ -2443,10 +2443,6 @@ view: proposta {
     description: "Soma do valor da mensalidade descrita no contrato"
   }
 
-
-
-
-
   measure: avg_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
@@ -2473,6 +2469,15 @@ view: proposta {
     group_item_label: "Máximo"
     sql:${vl_mensalidade};;
     description: "Máximo do valor da mensalidade descrita no contrato"
+  }
+
+  measure: median_mensalidade_contrato  {
+    type: median
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Mediana"
+    sql:${vl_mensalidade};;
+    description: "Mediana do valor da mensalidade descrita no contrato"
   }
 
   measure: sum_qtd_mensalidade_contrato {
