@@ -2480,6 +2480,26 @@ view: proposta {
     description: "Mediana do valor da mensalidade descrita no contrato"
   }
 
+  measure: perc1_mensalidade_contrato  {
+    type: percentile
+    percentile: 25
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Primeiro quartil"
+    sql:${vl_mensalidade};;
+    description: "Primeiro quartil do valor da mensalidade descrita no contrato"
+  }
+
+  measure: perc3_mensalidade_contrato  {
+    type: percentile
+    percentile: 75
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Terceiro quartil"
+    sql:${vl_mensalidade};;
+    description: "Terceiro quartil do valor da mensalidade descrita no contrato"
+  }
+
   measure: sum_qtd_mensalidade_contrato {
     type: sum
     group_label: "Mensalidade"
