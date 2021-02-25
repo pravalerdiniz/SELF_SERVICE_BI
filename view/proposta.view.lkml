@@ -2288,7 +2288,40 @@ view: proposta {
     description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
   }
 
+  measure: median_vl_financiamento_aluno {
+    type: median
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Mediana"
+    sql:${vl_financiamento_aluno};;
 
+    description: "Mediana do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
+
+  measure: perc1_vl_financiamento_aluno {
+    type: percentile
+    percentile: 25
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Primeiro Quartil"
+    sql:${vl_financiamento_aluno};;
+
+    description: "Primeiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
+
+  measure: perc3_vl_financiamento_aluno {
+    type: percentile
+    percentile: 75
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Terceiro Quartil"
+    sql:${vl_financiamento_aluno};;
+
+    description: "Terceiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
 
 
 
