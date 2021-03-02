@@ -92,6 +92,14 @@ view: crx_agentes {
     sql: ${TABLE}."NUMERO_RAMAL" ;;
   }
 
+  dimension: EMPRESA_AGENTE{
+    type: string
+    group_label: "Dados do Atendente"
+    group_item_label: "Empresa"
+    description: "Indica a empresa do atendente do ticket."
+    sql: ${TABLE}."EMPRESA_AGENTE" ;;
+  }
+
   dimension: pausas {
     type: string
     sql: ${TABLE}."PAUSAS" ;;
