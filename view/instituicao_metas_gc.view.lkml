@@ -374,6 +374,9 @@ view: instituicao_metas_gc {
 
 
 
+
+
+
     set: detail {
       fields: [
         grupo_instituicao,

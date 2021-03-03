@@ -252,7 +252,7 @@ view: beneficiados {
       sql: ${TABLE}."TIPO_DE_CONTRATO" ;;
       group_label: "Dados do Contrato"
       group_item_label: "Tipo de Contrato"
-      description: "Indica o tipo de contrato"
+      description: "Indica o tipo de contrato do aluno"
     }
 
     dimension: valor_financiado {
@@ -285,7 +285,7 @@ view: beneficiados {
       sql: ${TABLE}."PRODUTO" ;;
       group_label: "Dados do Produto"
       group_item_label: "Produto"
-      description: "Indica o  financimento contratado"
+      description: "Indica o produto PRAVALER contratado do aluno."
     }
 
     dimension: tipo_de_produto {
