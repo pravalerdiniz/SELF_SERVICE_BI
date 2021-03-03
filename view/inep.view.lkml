@@ -822,7 +822,7 @@ view: inep {
     type: number
     group_label: "Dados do Aluno"
     label: "Idade do Aluno"
-    sql: ${TABLE}."IDADE_ALUNO" ;;
+    sql: datediff(year, ${ds_data_nascimento}, concat(${ano_censo}, '-12-31')::date) ;;
 
   }
 

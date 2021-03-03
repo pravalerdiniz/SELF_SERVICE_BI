@@ -14,10 +14,24 @@ view: instituicao_metas_gc {
                     MES,
                    DIA,
                   GERENTE,
-                    DATA
+                    DATA,
+                    INICIADOS_ORCAMENTO,
+                    CEDIDOS_ORCAMENTO
                    from VETERANO.DIMENSAO.DIM_META_GC
  ;;
     }
+
+  dimension: iniciados_orcamento{
+    type: number
+    label: "Iniciados Orçamento"
+    sql: ${TABLE}."INICIADOS_ORCAMENTO" ;;
+  }
+
+  dimension: cedidos_orcamento{
+    type: number
+    label: "Cedidos Orçamento"
+    sql: ${TABLE}."CEDIDOS_ORCAMENTO" ;;
+  }
 
     measure: count {
       type: count

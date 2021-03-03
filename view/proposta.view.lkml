@@ -2288,7 +2288,40 @@ view: proposta {
     description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
   }
 
+  measure: median_vl_financiamento_aluno {
+    type: median
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Mediana"
+    sql:${vl_financiamento_aluno};;
 
+    description: "Mediana do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
+
+  measure: perc1_vl_financiamento_aluno {
+    type: percentile
+    percentile: 25
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Primeiro Quartil"
+    sql:${vl_financiamento_aluno};;
+
+    description: "Primeiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
+
+  measure: perc3_vl_financiamento_aluno {
+    type: percentile
+    percentile: 75
+    group_label: "Financiamento"
+    value_format: "$ #,###.00"
+    group_item_label: "Aluno - Terceiro Quartil"
+    sql:${vl_financiamento_aluno};;
+
+    description: "Terceiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+
+  }
 
 
 
@@ -2410,10 +2443,6 @@ view: proposta {
     description: "Soma do valor da mensalidade descrita no contrato"
   }
 
-
-
-
-
   measure: avg_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
@@ -2440,6 +2469,35 @@ view: proposta {
     group_item_label: "Máximo"
     sql:${vl_mensalidade};;
     description: "Máximo do valor da mensalidade descrita no contrato"
+  }
+
+  measure: median_mensalidade_contrato  {
+    type: median
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Mediana"
+    sql:${vl_mensalidade};;
+    description: "Mediana do valor da mensalidade descrita no contrato"
+  }
+
+  measure: perc1_mensalidade_contrato  {
+    type: percentile
+    percentile: 25
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Primeiro quartil"
+    sql:${vl_mensalidade};;
+    description: "Primeiro quartil do valor da mensalidade descrita no contrato"
+  }
+
+  measure: perc3_mensalidade_contrato  {
+    type: percentile
+    percentile: 75
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Terceiro quartil"
+    sql:${vl_mensalidade};;
+    description: "Terceiro quartil do valor da mensalidade descrita no contrato"
   }
 
   measure: sum_qtd_mensalidade_contrato {
