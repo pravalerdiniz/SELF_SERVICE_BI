@@ -383,7 +383,79 @@ view: instituicao_metas_gc {
   }
 
 
+  measure:sum_iniciados_orcamento {
+    type:sum
+    label: "Soma - Orçamento"
+    group_label: "Iniciados"
+    sql: ${iniciados_orcamento} ;;
 
+  }
+
+  measure: min_iniciados_orcamento {
+    type: min
+    label: "Minimo - Orçamento"
+    group_label: "Iniciados"
+    sql: ${iniciados_orcamento} ;;
+
+  }
+
+  measure: max_iniciados_orcamento {
+    type: max
+    label: "Máximo - Orçamento"
+    group_label: "Iniciados"
+    sql: ${iniciados_orcamento} ;;
+
+  }
+
+
+  measure:avg_iniciados_orcamento {
+    type:average
+    label: "Média - Orçamento"
+    group_label: "Iniciados"
+    sql: ${iniciados_orcamento} ;;
+
+  }
+
+
+  measure: min_cedidos_orcamento {
+    type: min
+    label: "Minimo - Orçamento"
+    group_label: "Cedidos"
+    sql: ${cedidos_orcamento} ;;
+
+  }
+
+  measure: max_cedidos_orcamento {
+    type: max
+    label: "Máximo - Orçamento"
+    group_label: "Cedidos"
+    sql: ${cedidos_orcamento} ;;
+
+  }
+
+
+  measure: avg_cedidos_orcamento {
+    type: average
+    label: "Média - Orçamento"
+    group_label: "Cedidos"
+    sql: ${cedidos_orcamento} ;;
+
+  }
+
+
+
+
+
+
+
+
+  measure:sum_cedidos_orcamento {
+    type: sum
+    label: "Soma - Orçamento"
+    group_label: "Cedidos"
+    sql: ${cedidos_orcamento} ;;
+
+  }
 
 
 
