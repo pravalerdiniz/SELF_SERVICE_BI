@@ -170,7 +170,7 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "URL Conversão - Canal"
-    description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
+    description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
     sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
   }
 
@@ -178,7 +178,7 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "URL Descoberta - Canal"
-    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
+    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
     sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA";;
   }
 
