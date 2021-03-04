@@ -869,3 +869,7 @@ explore: historico_demograficos {
 }
 
 explore: new_relic {}
+
+explore: log_negativacao {
+  view_label: "Log de Negativação"
+}
