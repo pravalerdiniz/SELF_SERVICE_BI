@@ -53,6 +53,15 @@ where log_negativacao is not null;
     sql: ${TABLE}."PAPEL" ;;
   }
 
+  measure: count_log_negativacao {
+    type: count
+    group_label: "Logs"
+    group_item_label: "Quantidade de Logs"
+    description: "Contagem de Logs"
+    drill_fields: []
+    value_format: "0"
+  }
+
   set: detail {
     fields: [
       cpf,
