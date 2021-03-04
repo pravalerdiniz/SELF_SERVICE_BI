@@ -7,6 +7,7 @@ view: inep {
     type: number
     label: "Ano do Censo"
     sql: ${TABLE}."ANO_CENSO" ;;
+    value_format: "#"
   }
 
 
@@ -21,6 +22,7 @@ view: inep {
     type: number
     label: "Ano de Ingresso"
     sql: ${TABLE}."ANO_INGRESSO" ;;
+    value_format: "#"
   }
 
   dimension: carga_horaria_curso {
@@ -826,15 +828,12 @@ view: inep {
 
   }
 
-
-
-
-
-
-
-
-
-
+  dimension: faixa_etaria_aluno {
+    type: tier
+    tiers: [0, 18, 25, 35, 50, 60]
+    style: integer
+    sql: ${idade_aluno} ;;
+  }
 
 
 
@@ -1072,6 +1071,11 @@ view: inep {
     sql: ${TABLE}."GRUPO";;
   }
 
+  dimension: evadiu {
+    type: number
+    sql: case when ${flg_matricula} = false and ${flg_concluinte} = false then 1 else 0 end ;;
+  }
+
 
     measure: count_ies {
       type: count_distinct
@@ -1191,4 +1195,22 @@ view: inep {
         type: count
         drill_fields: []
       }
+
+      measure: evasao {
+        type: sum
+        sql: ${evadiu} ;;
+      }
+
+      measure: taxa_evasao_teste {
+        type: number
+        sql: ${evasao} / nullif(${evasao} + ${SOMA_MATRICULA} - ${SOMA_CONCLUINTE}, 0) ;;
+        value_format: "0.00%"
+      }
+
+      measure: avg_idade {
+        type: average
+        sql: ${idade_aluno} ;;
+        value_format: "#"
+      }
+
     }
