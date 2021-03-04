@@ -9,7 +9,7 @@ view: log_negativacao {
        v.value:PAPEL::varchar "PAPEL"
 from "GRADUADO"."SELF_SERVICE_BI"."FINANCEIRO" f,
 lateral flatten(input => f.log_negativacao) v
-where log_negativacao is not null;
+where log_negativacao is not null
  ;;
   }
 
@@ -30,36 +30,32 @@ where log_negativacao is not null;
 
   dimension: flag_negativado {
     type: string
+    suggestable: yes
     sql: ${TABLE}."FLAG_NEGATIVADO" ;;
   }
 
   dimension: id_etapa_processamento {
     type: number
+    suggestable: yes
     sql: ${TABLE}."ID_ETAPA_PROCESSAMENTO" ;;
   }
 
   dimension: id_fundo_investimento {
     type: number
+    suggestable: yes
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: id_provedor {
     type: number
+    suggestable: yes
     sql: ${TABLE}."ID_PROVEDOR" ;;
   }
 
   dimension: papel {
     type: string
+    suggestable: yes
     sql: ${TABLE}."PAPEL" ;;
-  }
-
-  measure: count_log_negativacao {
-    type: count
-    group_label: "Logs"
-    group_item_label: "Quantidade de Logs"
-    description: "Contagem de Logs"
-    drill_fields: []
-    value_format: "0"
   }
 
   set: detail {
