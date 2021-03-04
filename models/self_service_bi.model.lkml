@@ -83,14 +83,13 @@ explore: beneficiados {
              proposta.id_fundo_investimento,
              proposta.ds_fundo_investimento,
              proposta.nm_originador,
-             proposta.midia_acesso_conversao,
-             proposta.midia_acesso_descoberta,
+             proposta.canal_detalhado_conversao,
+             proposta.canal_detalhado_descoberta,
              proposta.canal_acesso_conversao,
              proposta.canal_acesso_descoberta,
              proposta.ds_url_conversao,
              proposta.ds_url_descoberta,
-             proposta.campanha_acesso_conversao,
-             proposta.campanha_acesso_descoberta,
+
              proposta.cpf_aluno
 
 
