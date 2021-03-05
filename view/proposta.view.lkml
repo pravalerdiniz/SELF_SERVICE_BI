@@ -150,38 +150,53 @@ view: proposta {
     sql: ${TABLE}."AREA_CONHECIMENTO_CURSO" ;;
   }
 
-  dimension: campanha_acesso_conversao {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Conversão - Campanha"
-    description: "Indica qual a campanha de acesso para conversão do aluno. EX: Orgânico, Paid Social, Core Business."
-    sql: ${TABLE}."CAMPANHA_ACESSO_CONVERSAO" ;;
-  }
+  #dimension: campanha_acesso_conversao {
+    #type: string
+    #group_label: "Dados de Marketing"
+    #label: "URL Conversão - Campanha"
+    #description: "Indica qual a campanha de acesso para conversão do aluno. EX: Orgânico, Paid Social, Core Business."
+    #sql: ${TABLE}."CAMPANHA_ACESSO_CONVERSAO" ;;
+  #}
 
-  dimension: campanha_acesso_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Descoberta - Campanha"
-    description: "Indica qual a campanha de acesso do aluno para preenchimento da proposta. EX: Orgânico, Paid Social, Core Business."
-    sql: ${TABLE}."CAMPANHA_ACESSO_DESCOBERTA" ;;
-  }
+ # dimension: campanha_acesso_descoberta {
+  #  type: string
+   # group_label: "Dados de Marketing"
+    #label: "URL Descoberta - Campanha"
+    #description: "Indica qual a campanha de acesso do aluno para preenchimento da proposta. EX: Orgânico, Paid Social, Core Business."
+    #sql: ${TABLE}."CAMPANHA_ACESSO_DESCOBERTA" ;;
+  #}
 
   dimension: canal_acesso_conversao {
     type: string
     group_label: "Dados de Marketing"
     label: "URL Conversão - Canal"
-    description: "Indica qual o canal online de acesso do aluno para conversão. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
-    sql: coalesce(${TABLE}."CANAL_ACESSO_CONVERSAO",'ORGANICO') ;;
+    description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
+    sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
   }
 
   dimension: canal_acesso_descoberta {
     type: string
     group_label: "Dados de Marketing"
     label: "URL Descoberta - Canal"
-    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. EX: Orgânico, Facebook, Google, Facebook/Instagram, Faculdade."
-    sql: coalesce(${TABLE}."CANAL_ACESSO_DESCOBERTA", 'ORGANICO');;
+    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
+    sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA";;
   }
 
+  dimension: canal_detalhado_conversao {
+    type: string
+    group_label: "Dados de Marketing"
+    label: "URL Conversão - Canal Detalhado"
+    description: "Indica qual o detalhamento do canal de acesso para conversão do aluno no PRAVALER."
+    sql: ${TABLE}."CANAL_DETALHADO_CONVERSAO" ;;
+  }
+
+  dimension: canal_detalhado_descoberta {
+    type: string
+    group_label: "Dados de Marketing"
+    label:  "URL Descoberta - Canal Detalhado"
+    description: "Indica qual o detalhamento do canal de acesso do aluno no PRAVALER."
+    sql: ${TABLE}."CANAL_DETALHADO_DESCOBERTA" ;;
+  }
 
 
   dimension: carencia {
@@ -532,37 +547,37 @@ view: proposta {
     sql: ${TABLE}."DATA_VALIDADE" ;;
   }
 
-  dimension_group: data_inicio_url {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    label: "URL - Validade Inicial"
-    description: "Indica a data de validade da URL"
-    sql: ${TABLE}."DATA_INICIO_URL" ;;
-  }
+  #dimension_group: data_inicio_url {
+   # type: time
+    #timeframes: [
+     # raw,
+      #time,
+      #date,
+      #week,
+      #month,
+      #quarter,
+      #year
+    #]
+    #label: "URL - Validade Inicial"
+    #description: "Indica a data de validade da URL"
+    #sql: ${TABLE}."DATA_INICIO_URL" ;;
+  #}
 
-  dimension_group: data_fim_url {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    label: "URL - Validade Final"
-    description: "Indica a data de validade da URL"
-    sql: ${TABLE}."DATA_FIM_URL" ;;
-  }
+  #dimension_group: data_fim_url {
+   # type: time
+    #timeframes: [
+     # raw,
+    #  time,
+     # date,
+    #  week,
+     # month,
+    #  quarter,
+     # year
+    #]
+    #label: "URL - Validade Final"
+    #description: "Indica a data de validade da URL"
+    #sql: ${TABLE}."DATA_FIM_URL" ;;
+  #}
 
   dimension: digito_verificador {
     type: number
@@ -1360,22 +1375,6 @@ view: proposta {
     group_label: "Dados do Contrato"
     group_item_label: "Faixa de Tempo de atraso - Boleto do Aluno"
     description: "Indica a faixa de tempo, em dias de atraso - Boleto do Aluno"
-  }
-
-  dimension: midia_acesso_conversao {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Conversão - Midia"
-    description: "Indica qual midia de acesso para conversão do aluno no PRAVALER."
-    sql: ${TABLE}."MIDIA_ACESSO_CONVERSAO" ;;
-  }
-
-  dimension: midia_acesso_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label:  "URL Descoberta - Midia"
-    description: "Indica qual midia de acesso do aluno no PRAVALER."
-    sql: ${TABLE}."MIDIA_ACESSO_DESCOBERTA" ;;
   }
 
   dimension: nivel_curso {
