@@ -413,6 +413,15 @@ view: financeiro {
           ELSE 0 END;;
   }
 
+  dimension: ativo_boleto {
+    type: number
+    group_label: "Gestão de Portifólio (Dados do Boleto)"
+    label: "Ativo do Boleto"
+    description: "Indica qual o ativo do boleto"
+    sql: CASE WHEN ${id_fundo_investimento} = 6 THEN ${id_titulo_status} = 2
+      ELSE ${id_titulo_status} IN (2,4,14) END;;
+      hidden: yes
+  }
 
   dimension: vl_despesa {
     type: number
