@@ -301,7 +301,7 @@ view: proposta {
 
   dimension:comprometimento_renda {
     type: number
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Curso"
     label: "Comprometimento de Renda"
     value_format: "0.00%"
     description: "Indica qual a porcentagem da renda comprometida do (aluno+fiador) em relação ao valor da mensalidade do curso."
@@ -310,7 +310,7 @@ view: proposta {
 
   dimension: faixa_comprometimento_renda {
     type: string
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Curso"
     label: "Faixa de Comprometimento de Renda"
     value_format: "0.00%"
     description: "Indica qual a faixa de porcentagem da renda que é comprometida do aluno em relação ao valor da mensalidade do curso."
