@@ -8,6 +8,7 @@ view: inep {
     label: "Ano do Censo"
     sql: ${TABLE}."ANO_CENSO" ;;
     value_format: "#"
+    description: "Ano de referência do Censo Superior"
   }
 
 
@@ -23,6 +24,7 @@ view: inep {
     label: "Ano de Ingresso"
     sql: ${TABLE}."ANO_INGRESSO" ;;
     value_format: "#"
+    description: "Ano de ingresso do aluno no curso"
   }
 
   dimension: carga_horaria_curso {
@@ -31,6 +33,7 @@ view: inep {
     label: "Carga Horária do Curso"
     hidden: yes
     sql: ${TABLE}."CARGA_HORARIA_CURSO" ;;
+    description: "Carga horária mínima do curso"
   }
 
   dimension: ds_categoria_administrativa {
@@ -186,7 +189,7 @@ view: inep {
   dimension: ds_referente_ies {
     type: string
     group_label:"Dados da IES"
-    description: "Ex: Mantenedora, Instituição"
+    description: "Tipo de entidade à qual é referente o dado financeiro (Ex: Mantenedora, Instituição)"
     label: "Tipo - Entidade Financeira"
     sql: ${TABLE}."DS_REFERENTE_IES" ;;
   }
@@ -202,6 +205,7 @@ view: inep {
     type: string
     group_label:"Dados do Aluno"
     label: "Semestre de Referência"
+    description: "Semestre de referência do preenchimento do vínculo do curso"
     sql: ${TABLE}."DS_SEMESTRE_REFERENCIA" ;;
   }
 
@@ -261,6 +265,7 @@ view: inep {
     group_label: "Apoio"
     label: "Material Didático?"
     sql: ${TABLE}."FLG_APOIO_MATERIAL_DIDATICO" ;;
+    description: "Informa se o aluno recebe apoio para aquisição de material didático"
   }
 
   dimension: flg_apoio_moradia {
@@ -277,7 +282,7 @@ view: inep {
     hidden: yes
     group_label: "Apoio"
     label: "Apoio Social?"
-    description: "Informa se o aluno recebe apoio para transporte até a IES"
+    description: "Informa se o aluno recebe algum tipo de apoio social na forma de moradia, transporte, alimentação, material didático e bolsas (trabalho/permanência)"
     sql: ${TABLE}."FLG_APOIO_SOCIAL" ;;
   }
 
@@ -362,6 +367,7 @@ view: inep {
     group_label: "Complementar"
     label: "Monitoria"
     sql: ${TABLE}."FLG_COMPLEMENTAR_MONITORIA" ;;
+    description: "Informa se o aluno participa de atividade extracurricular de monitoria"
   }
 
   dimension: flg_complementar_pesquisa {
@@ -370,13 +376,14 @@ view: inep {
     group_label: "Complementar"
     label: "Pesquisa"
     sql: ${TABLE}."FLG_COMPLEMENTAR_PESQUISA" ;;
+    description: "Informa se o aluno participa de atividade extracurricular de pesquisa"
   }
 
   dimension: flg_concluinte {
     type: yesno
     group_label:"Dados do Aluno"
     label: "Concluinte?"
-
+    description: "Informa se o aluno é concluinte"
     sql: ${TABLE}."FLG_CONCLUINTE" ;;
   }
 
@@ -385,6 +392,7 @@ view: inep {
     group_label:"Dados do Aluno"
     label: "Deficiência?"
     sql: ${TABLE}."FLG_DEFICIENCIA" ;;
+    description: "Informa se o aluno é uma pessoa com deficiência, transtorno global do desenvolvimento ou altas habilidades/superdotação"
   }
 
   dimension: flg_fin_naoreemb_ent_externa {
@@ -441,6 +449,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento Privado"
     sql: ${TABLE}."FLG_FIN_REEMB_ENT_EXTERNA" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil reembolsável administrado por entidades externas à IES"
   }
 
   dimension: flg_fin_reemb_estadual {
@@ -448,6 +457,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento Estadual"
     sql: ${TABLE}."FLG_FIN_REEMB_ESTADUAL" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil reembolsável do governo estadual"
   }
 
   dimension: flg_fin_reemb_fies {
@@ -455,6 +465,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "FIES"
     sql: ${TABLE}."FLG_FIN_REEMB_FIES" ;;
+    description: "Informa se o aluno utiliza o Fundo de Financiamento Estudantil (Fies) como forma de financimanto estudantil reembolsável"
   }
 
   dimension: flg_fin_reemb_municipal {
@@ -462,6 +473,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento Municipal"
     sql: ${TABLE}."FLG_FIN_REEMB_MUNICIPAL" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil reembolsável do governo municipal"
   }
 
   dimension: flg_fin_reemb_outra {
@@ -469,6 +481,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento - Outros"
     sql: ${TABLE}."FLG_FIN_REEMB_OUTRA" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil reembolsável administrado por outras entidades"
   }
 
   dimension: flg_fin_reemb_prog_ies {
@@ -476,6 +489,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento IES"
     sql: ${TABLE}."FLG_FIN_REEMB_PROG_IES" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil reembolsável administrado pela IES"
   }
 
   dimension: flg_financiamento_estudantil {
@@ -483,6 +497,7 @@ view: inep {
     group_label: "Financiamento Estudantil"
     label: "Financiamento Estudantil?"
     sql: ${TABLE}."FLG_FINANCIAMENTO_ESTUDANTIL" ;;
+    description: "Informa se o aluno utiliza financiamento estudantil"
   }
 
   dimension: flg_ingresso_avaliacao_seriada {
@@ -491,6 +506,7 @@ view: inep {
     label: "Avaliação Seriada?"
     hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_AVALIACAO_SERIADA" ;;
+    description: "Informa se o aluno ingressou no curso por meio da Avaliação Seriada"
   }
 
   dimension: flg_ingresso_convenio_pecg {
@@ -499,6 +515,7 @@ view: inep {
     label: "Convênio PECG"
     hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_CONVENIO_PECG" ;;
+    description: "Informa se o aluno ingressou no curso por programa de convênio para estudantes estrangeiros"
   }
 
   dimension: flg_ingresso_decisao_judicial {
@@ -555,6 +572,7 @@ view: inep {
     label: "Seleção Simplificada"
     hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_SELECAO_SIMPLIFICA" ;;
+    description: "Informa se o aluno ingressou no curso por meio de seleção simplificada"
   }
 
   dimension: flg_ingresso_total {
@@ -562,12 +580,14 @@ view: inep {
     group_label: "Ingresso"
     label: "Ingressou? (TOTAL)"
     sql: ${TABLE}."FLG_INGRESSO_TOTAL" ;;
+    description: "Informa se o aluno é ingressante no curso, não importando a forma de ingresso utilizada."
   }
 
   dimension: flg_ingresso_transf_exofficio {
     type: yesno
     hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_TRANSF_EXOFFICIO" ;;
+    description: "Informa se o aluno ingressou no curso  por meio de Transferência Ex-officio"
   }
 
   dimension: flg_ingresso_vaga_nova {
@@ -582,6 +602,7 @@ view: inep {
     type: yesno
     hidden: yes
     sql: ${TABLE}."FLG_INGRESSO_VAGA_PROG_ESPECIAL" ;;
+    description: "Informa se  o aluno ingressou no curso por meio de vagas para programas especiais"
   }
 
   dimension: flg_ingresso_vaga_remanesc {
@@ -605,6 +626,7 @@ view: inep {
     group_label: "Turno"
     label: "Integral"
     sql: ${TABLE}."FLG_INTEGRAL" ;;
+    description: "Informa se o curso presencial funciona no turno integral"
   }
 
   dimension: flg_matricula {
@@ -612,6 +634,7 @@ view: inep {
     group_label:"Dados do Aluno"
     label: "Matriculado?"
     sql: ${TABLE}."FLG_MATRICULA" ;;
+    description: "Informa se o aluno é matriculado no curso"
   }
 
   dimension: flg_mobilidade_academica {
@@ -627,6 +650,7 @@ view: inep {
     group_label: "Turno"
     label: "Noturno"
     sql: ${TABLE}."FLG_NOTURNO" ;;
+    description: "Informa se o curso presencial funciona no turno noturno"
   }
 
   dimension: flg_participa_rede_social {
@@ -641,6 +665,7 @@ view: inep {
     group_label: "Reserva de Vagas"
     label: "Deficiência?"
     sql: ${TABLE}."FLG_RESERVA_DEFICIENCIA" ;;
+    description: "informa se o aluno ingressou por meio de programa de reserva de vagas para pessoas com deficiência"
   }
 
   dimension: flg_reserva_ensino_publico {
@@ -648,6 +673,7 @@ view: inep {
     group_label: "Reserva de Vagas"
     label: "Ensino Público?"
     sql: ${TABLE}."FLG_RESERVA_ENSINO_PUBLICO" ;;
+    description: " Informa se o aluno ingressou por meio de programa de reserva de vagas para egressos da escola pública"
   }
 
   dimension: flg_reserva_etnico {
@@ -655,6 +681,7 @@ view: inep {
     group_label: "Reserva de Vagas"
     label: "Cota Racial - Reserva Étnica?"
     sql: ${TABLE}."FLG_RESERVA_ETNICO" ;;
+    description: "Informa se o aluno ingressou por meio de programa de reserva de vagas de cunho etnico"
   }
 
   dimension: flg_reserva_outra {
@@ -662,6 +689,7 @@ view: inep {
     group_label: "Reserva de Vagas"
     label: "Outras?"
     sql: ${TABLE}."FLG_RESERVA_OUTRA" ;;
+    description: "Informa se o aluno ingressou por meio de programas de reserva de vagas diferentes dos seguintes tipos : étnico, pessoa com deficiência, estudante procedente de escola pública, social/renda familiar"
   }
 
   dimension: flg_reserva_renda_familiar {
@@ -669,6 +697,7 @@ view: inep {
     group_label: "Reserva de Vagas"
     label: "Cota Social - Renda Familiar?"
     sql: ${TABLE}."FLG_RESERVA_RENDA_FAMILIAR" ;;
+    description: "Informa se o aluno ingressou por meio de programa de reserva de vagas de cunho social/renda familiar"
   }
 
   dimension: flg_reserva_vagas {
@@ -692,6 +721,7 @@ view: inep {
     group_label: "Turno"
     label: "Vespertino?"
     sql: ${TABLE}."FLG_VESPERTINO" ;;
+    description: "Informa se o curso presencial funciona no turno vespertino"
   }
 
   dimension: id_aluno {
