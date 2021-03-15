@@ -17,34 +17,7 @@ view: dados_demograficos {
       group_label: "DATA DE ADMISSÃO"
       view_label:  "DADOS PROFISSIONAIS"
       description: "Informa a data em que o Pravalente foi admitido"
-      hidden: yes
-    }
-
-    dimension: data_adimissao {
-      type: date
-      sql: ${admissao_date} ;;
-      label: "DATA DE ADMISSÃO"
-      group_label: "DATA DE ADMISSÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa a data em que o Pravalente foi admitido"
-    }
-
-    dimension: mes_adimissao {
-      type: date
-      sql: ${admissao_month} ;;
-      label: "MÊS DE ADMISSÃO"
-      group_label: "DATA DE ADMISSÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa o mês em que o Pravalente foi admitido"
-    }
-
-    dimension: ano_adimissao {
-      type: date
-      sql: ${admissao_year} ;;
-      label: "ANO DE ADMISSÃO"
-      group_label: "DATA DE ADMISSÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa o ano em que o Pravalente foi admitido"
+      hidden: no
     }
 
     dimension: cargo {
@@ -92,40 +65,8 @@ view: dados_demograficos {
       convert_tz: no
       datatype: date
       sql: ${TABLE}."DATA_RESCISAO" ;;
-      #hidden: yes
+      hidden: no
     }
-
-    dimension: data_rescisao {
-      type: date
-      sql: ${rescisao_date} ;;
-      label: "DATA DA RESCISÃO"
-      group_label: "DATA DA RESCISÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa a data da rescisão"
-      hidden: yes
-    }
-
-    dimension: mes_rescisao {
-      type: date
-      sql: ${rescisao_month} ;;
-      label: "MÊS DA RESCISÃO"
-      group_label: "DATA DA RESCISÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa o mês da rescisão"
-      hidden: yes
-    }
-
-    dimension: ano_rescisao {
-      type: date
-      sql: ${rescisao_year} ;;
-      label: "ANO DA RESCISÃO"
-      group_label: "DATA DA RESCISÃO"
-      view_label:  "DADOS PROFISSIONAIS"
-      description: "Informa o ano da rescisão"
-      hidden: yes
-    }
-
-
 
     dimension: faixa_etaria {
       label: "FAIXA ETÁRIA"
