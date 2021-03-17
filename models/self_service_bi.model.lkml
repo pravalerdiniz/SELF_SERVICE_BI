@@ -872,3 +872,7 @@ explore: new_relic {}
 explore: log_negativacao {
   view_label: "Log de Negativação"
 }
+
+explore: documentos_solicitados {
+  view_label: "Documentos Solicitados"
+}
