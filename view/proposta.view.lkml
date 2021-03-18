@@ -1663,7 +1663,7 @@ view: proposta {
     type: string
     group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
-    description: "Indica se a proposta do aluno é Renovação, Renegociação, Segundo Repasse ou Reempactado"
+    description: "Indica se a proposta do aluno é Nova,Renovação, Renegociação, Segundo Repasse ou Reempactado"
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
