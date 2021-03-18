@@ -11,7 +11,6 @@ access_grant: grupo_telefone {
   allowed_values: ["grupo_telefone"]
 }
 
-
 access_grant: grupo_endereco {
   user_attribute: grupo_endereco
   allowed_values: ["grupo_endereco"]
@@ -41,20 +40,15 @@ map_layer: MAPA_CIDADE_ALUNO {
 }
 include: "/**/*.view.lkml"
 
-
-
-
-
-
 datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  max_cache_age: "5 hour"
 }
 
 persist_with: self_service_bi_default_datagroup
 
 explore: beneficiados {
-  persist_for: "2 hours"
+  persist_for: "24 hours"
   label: "Histórico de Beneficiados"
   view_label: "Histórico de Beneficiados"
   description: "Mostra os dados de todos os contratos cedidos pelo PRAVALER"
@@ -119,9 +113,8 @@ explore: beneficiados {
 
 }
 
-
 explore: instituicao {
-  persist_for: "2 hours"
+  persist_for: "24 hours"
   access_filter: {
     field: grupo
     user_attribute: grupo_ies
@@ -248,7 +241,7 @@ join: inep {
 }
 
 explore: status {
-  persist_for: "1 hours"
+  persist_for: "5 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -296,9 +289,8 @@ explore: status {
 
 }
 
-
 explore: jornada {
-  persist_for: "1 hours"
+  persist_for: "5 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -368,10 +360,8 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
 }
 
-
-
 explore: financeiro {
-  persist_for: "1 hours"
+  persist_for: "5 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -407,9 +397,8 @@ explore: financeiro {
 
 }
 
-
 explore: proposta {
-  persist_for: "1 hours"
+  persist_for: "5 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -583,7 +572,7 @@ join: proposta_docs_pendentes {
 }
 
 explore: alunos {
-  persist_for: "1 hours"
+  persist_for: "5 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -820,7 +809,6 @@ explore: interacoes {
   view_label: "Interações - Métricas do agente"
   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
 }
-
 
 explore: crx_agentes_detalhes_pausas{
   label: "Interações - Métricas de pausa"
