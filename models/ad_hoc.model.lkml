@@ -37,9 +37,9 @@ explore: comunicacao_conversao {
 
 
 
-explore: orcamento {
-  label: "Orçamento"
-  view_label: "Orçamento"
+explore: orcamento_old {
+  label: "Orçamento - 2020"
+  view_label: "Orçamento - 2020"
 
   access_filter: {
     field: descricao_centro_de_custo
@@ -50,7 +50,7 @@ explore: orcamento {
     from: centro_de_custo
     fields: [diretoria.diretoria]
     relationship: many_to_one
-    sql_on: ${orcamento.centro_de_custo} = ${diretoria.centro_de_custo} ;;
+    sql_on: ${orcamento_old.centro_de_custo} = ${diretoria.centro_de_custo} ;;
   }
 }
 
