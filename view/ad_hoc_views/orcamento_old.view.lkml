@@ -64,62 +64,90 @@ TEMPORADA
 
   dimension: visao {
     type: string
+    label: "Visão"
+    description: "Indica a visão do orçamento.Ex: Orçado ou Realizado."
     sql: ${TABLE}."VISAO" ;;
   }
 
 
   dimension: unidade_de_negocio_iniciativa {
     type: string
+    label: "Iniciativa"
+    description: "Indica a iniciativa em relação ao orçamento"
     sql: ${TABLE}."UNIDADE_DE_NEGOCIO_INICIATIVA" ;;
   }
 
   dimension: tipo_orcamento {
     type: string
+    label: "Tipo de Orçamento"
+    description: "Indica o tipo de orçamento. Ex: Folha ou Operacional"
     sql: ${TABLE}."TIPO_ORCAMENTO" ;;
   }
 
   dimension: tipo_de_despesa {
     type: string
+    group_label: "Despesa"
+    label: "Tipo de Despesa"
+    description: "Indica o tipo de despesa. Ex: 13º Salário,  Assist. Médica,   Auxílio academia, Call Center, e etc."
     sql: ${TABLE}."TIPO_DE_DESPESA" ;;
   }
 
   dimension: temporada {
     type: string
+    label: "Temporada"
+    description: "Indica a temporada do orçamento. Ex: Verão, Inverno."
     sql: ${TABLE}."TEMPORADA" ;;
   }
 
   dimension: projeto_ies {
     type: string
+    label: "Projeto IES"
+    description: "Indica qual é o projeto em relação as Instituiições de Ensino no orçamento."
     sql: ${TABLE}."PROJETO_IES" ;;
   }
 
   dimension: observacao {
     type: string
+    label: "Observação"
+    description: "Indica qual é o projeto em relação as Instituiições de Ensino no orçamento."
     sql: ${TABLE}."OBSERVACAO" ;;
   }
 
   dimension: montante {
     type: number
+    label: "Montante"
+    description: "Indica o montante disponivel dentro do orçamento."
     sql: ${TABLE}."MONTANTE" ;;
   }
 
   dimension: descricao_despesa {
     type: string
+    group_label: "Despesa"
+    label: "Descrição da Despesa"
+    description: "Indica a descrição da despesa do orçamento."
     sql: ${TABLE}."DESCRICAO_DESPESA" ;;
   }
 
   dimension: descricao_centro_de_custo {
     type: string
+    group_label: "Centro de Custo"
+    label: "Descrição do Centro de Custo"
+    description: "Indica a descrição do centro de custo no orçamento."
     sql: ${TABLE}."DESCRICAO_CENTRO_DE_CUSTO" ;;
   }
 
   dimension: diretoria {
     type: string
+    label: "Diretoria"
+    description: "Indica a diretoria responsável pelo orçamento. Ex: Diretoria Financeira,Diretoria Produtos,Institucional."
     sql: ${TABLE}."DIRETORIA";;
   }
 
   dimension: desc_fornecedor {
     type: string
+    group_label: "Despesa"
+    label: "Fornecedor"
+    description: "Indica qual o fornecedor em relação a despesa no orçamento."
     sql: ${TABLE}."DESC_FORNECEDOR" ;;
   }
 
@@ -143,6 +171,7 @@ TEMPORADA
     ]
     convert_tz: no
     datatype: date
+    label: "Orçamento"
     sql: ${TABLE}."DATA" ;;
   }
 
@@ -151,6 +180,8 @@ TEMPORADA
 
   dimension: Tri {
     type: string
+    label: "Trimestre"
+    description: "Indica o trimestre do orçamento."
     case: {
       when: {
         sql: ${data_month_num} < '4'  ;;
@@ -171,6 +202,9 @@ TEMPORADA
 
   dimension: conta_contabil {
     type: number
+    group_label: "Contabilidade"
+    label: "Conta Contabil"
+    description: "Indica o número da conta contábil do orçamento"
     sql: ${TABLE}."CONTA_CONTABIL" ;;
   }
 
