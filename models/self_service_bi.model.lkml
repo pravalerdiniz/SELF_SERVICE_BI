@@ -54,6 +54,7 @@ datagroup: self_service_bi_default_datagroup {
 persist_with: self_service_bi_default_datagroup
 
 explore: beneficiados {
+  persist_for: "2 hours"
   label: "Histórico de Beneficiados"
   view_label: "Histórico de Beneficiados"
   description: "Mostra os dados de todos os contratos cedidos pelo PRAVALER"
@@ -120,6 +121,7 @@ explore: beneficiados {
 
 
 explore: instituicao {
+  persist_for: "2 hours"
   access_filter: {
     field: grupo
     user_attribute: grupo_ies
@@ -246,6 +248,7 @@ join: inep {
 }
 
 explore: status {
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -295,6 +298,7 @@ explore: status {
 
 
 explore: jornada {
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -367,6 +371,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
 
 explore: financeiro {
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -404,6 +409,7 @@ explore: financeiro {
 
 
 explore: proposta {
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -577,6 +583,7 @@ join: proposta_docs_pendentes {
 }
 
 explore: alunos {
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -871,4 +878,8 @@ explore: new_relic {}
 
 explore: log_negativacao {
   view_label: "Log de Negativação"
+}
+
+explore: documentos_solicitados {
+  view_label: "Documentos Solicitados"
 }
