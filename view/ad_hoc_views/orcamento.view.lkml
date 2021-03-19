@@ -58,7 +58,7 @@ view: orcamento {
   dimension: descricao_despesa {
     type: string
     group_label: "Despesa"
-    label: "Descrição - Desésa"
+    label: "Descrição - Despesa"
     description: "Indica a descrição da despesa no orçamento"
     sql: ${TABLE}."DESCRICAO_DESPESA" ;;
   }
