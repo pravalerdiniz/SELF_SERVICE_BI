@@ -38,8 +38,8 @@ explore: comunicacao_conversao {
 
 
 explore: orcamento_old {
-  label: "Orçamento - 2020"
-  view_label: "Orçamento - 2020"
+  label: "Orçamento - Histórico"
+  view_label: "Orçamento - Histórico"
 
   access_filter: {
     field: descricao_centro_de_custo
