@@ -54,6 +54,10 @@ explore: orcamento_old {
   }
 }
 
+explore: orcamento {
+  label: "Orçamento"
+
+}
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"
