@@ -140,6 +140,7 @@ TEMPORADA
     type: string
     label: "Diretoria"
     description: "Indica a diretoria responsável pelo orçamento. Ex: Diretoria Financeira,Diretoria Produtos,Institucional."
+ hidden: yes
     sql: ${TABLE}."DIRETORIA";;
   }
 
