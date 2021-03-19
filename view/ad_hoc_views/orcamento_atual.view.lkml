@@ -1,4 +1,4 @@
-view: orcamento {
+view: orcamento_atual {
   sql_table_name: "AD_HOC"."ORCAMENTO"
     ;;
 

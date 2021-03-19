@@ -37,7 +37,7 @@ explore: comunicacao_conversao {
 
 
 
-explore: orcamento_old {
+explore: orcamento {
   label: "Orçamento - Histórico"
   view_label: "Orçamento - Histórico"
 
@@ -50,11 +50,11 @@ explore: orcamento_old {
     from: centro_de_custo
     fields: [diretoria.diretoria]
     relationship: many_to_one
-    sql_on: ${orcamento_old.centro_de_custo} = ${diretoria.centro_de_custo} ;;
+    sql_on: ${orcamento.centro_de_custo} = ${diretoria.centro_de_custo} ;;
   }
 }
 
-explore: orcamento {
+explore: orcamento_atual {
   label: "Orçamento"
 
 }

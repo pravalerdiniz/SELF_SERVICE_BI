@@ -1,4 +1,4 @@
-view: orcamento_old {
+view: orcamento {
   view_label: "Orçamento"
   derived_table: {
     sql: select
