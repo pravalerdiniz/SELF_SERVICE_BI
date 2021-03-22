@@ -726,13 +726,15 @@ view: inep {
 
   dimension: id_aluno {
     type: string
-
+    group_label: "Dados do Aluno"
+    label: "ID do Aluno"
     sql: ${TABLE}."ID_ALUNO" ;;
   }
 
   dimension: id_aluno_curso {
     type: number
-
+    group_label: "Dados do Aluno"
+    label: "ID do Aluno por Curso"
     sql: ${TABLE}."ID_ALUNO_CURSO" ;;
   }
 
@@ -1090,19 +1092,23 @@ view: inep {
 
   dimension:id_mantenedora {
     type: number
-    group_label: "Id da Mantenedora"
+    group_label: "Dados da IES"
+    label: "ID da Mantenedora"
     sql: ${TABLE}."ID_MANTENEDORA";;
   }
 
 
   dimension:grupo {
     type: string
+    group_label: "Dados da IES"
     label: "Grupo da Instituição de Ensino"
     sql: ${TABLE}."GRUPO";;
   }
 
   dimension: evadiu {
     type: number
+    group_label: "Dados do Aluno"
+    label: "Evadiu?"
     sql: case when ${flg_matricula} = false and ${flg_concluinte} = false then 1 else 0 end ;;
   }
 
