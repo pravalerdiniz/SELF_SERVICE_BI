@@ -36,6 +36,7 @@ view: proposta_projeto_decola {
 
   dimension: id_acordo {
     type: string
+    primary_key: yes
     label: "ID do Acordo"
     description: "Indica o ID do acordo do aluno"
     sql: ${TABLE}."ID_ACORDO" ;;

@@ -528,6 +528,16 @@ join: proposta_docs_pendentes {
     type: left_outer
   }
 
+  join: proposta_projeto_decola {
+    view_label: "1.5 Acordos - Projeto Decola"
+    sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
+    ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
+    ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+
 
   join: instituicao {
     view_label: "5. Instituicao"
