@@ -44,6 +44,7 @@ view: proposta_projeto_decola {
 
   dimension: data_criacao {
     type: date
+    hidden: yes
     sql: ${TABLE}."DATA_CRIACAO" ;;
   }
 
