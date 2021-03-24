@@ -166,6 +166,14 @@ view: interacoes_detalhes_ligacao {
       sql: ${TABLE}."PERGUNTA_1" ;;
     }
 
+    measure: pergunta_1_nota_4_5 {
+      type: sum
+      group_label: "Pesquisa de Satisfação"
+      group_item_label: "Primeira Pergunta - Notas 4 e 5"
+      description: "Indica a quantidade de notas 4 e 5 na pergunta 1."
+      sql:  case when ${pergunta_1}=4 or ${pergunta_1}=5 then 1 else 0 end ;;
+    }
+
     dimension: pergunta_2 {
       type: number
       group_label: "Pesquisa de Satisfação"
@@ -173,6 +181,14 @@ view: interacoes_detalhes_ligacao {
       description: "Indica a questão que está sendo avaliada"
       sql: ${TABLE}."PERGUNTA_2" ;;
     }
+
+  measure: pergunta_2_nota_4_5 {
+    type: sum
+    group_label: "Pesquisa de Satisfação"
+    group_item_label: "Segunda Pergunta - Notas 4 e 5"
+    description: "Indica a quantidade de notas 4 e 5 na pergunta 2."
+    sql:  case when ${pergunta_2}=4 or ${pergunta_2}=5 then 1 else 0 end ;;
+  }
 
     dimension: pergunta_3 {
       type: number
@@ -270,4 +286,3 @@ view: interacoes_detalhes_ligacao {
 
 
   }
-
