@@ -64,7 +64,7 @@ view: unpivot_dre {
             ROLLING_PDD_CARTEIRA ,
             ROLLING_ALIQUOTA_EFETIVA_IR_CS ,
             ROLLING_MARGEM_LIQUIDA,
-            ROLLING_SALDO_CARTEIRA
+
              ))
           order by data
       )
