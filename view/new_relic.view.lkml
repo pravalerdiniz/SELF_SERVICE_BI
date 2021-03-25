@@ -86,6 +86,7 @@ view: new_relic {
     description: "Tempo de ocupação da query"
     type: number
     sql: ${TABLE}."OCUPACAO" ;;
+    value_format: "#.00"
   }
 
   measure: count {

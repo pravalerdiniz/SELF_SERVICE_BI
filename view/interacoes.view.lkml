@@ -489,6 +489,23 @@ view: interacoes {
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
+  dimension: grupo_instituicao {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Grupo Instituição"
+    description: "Indica o nome do grupo da IES referente a última proposta do aluno"
+    sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
+  }
+
+  dimension: instituicao {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome da Instituição"
+    description: "Indica o nome da IES referente a última proposta do aluno"
+    sql: ${TABLE}."INSTITUICAO" ;;
+  }
+
+
 
   dimension: nome_produto {
     type: string
