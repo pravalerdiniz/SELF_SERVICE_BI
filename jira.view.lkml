@@ -381,6 +381,14 @@ view: jira {
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
 
+  measure: sum_ticket_medio {
+    type: sum
+    sql: ${ticket_medio};;
+    #value_format: "$ #,###.00"
+    group_label: "Soma Ticket Médio"
+    group_item_label: "Soma"
+  }
+
   dimension: tipo {
     type: string
     sql: ${TABLE}."TIPO" ;;
