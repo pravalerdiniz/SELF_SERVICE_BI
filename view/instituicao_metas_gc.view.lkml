@@ -63,6 +63,7 @@ view: instituicao_metas_gc {
     timeframes: [
       raw,
       date,
+      day_of_week,
       week,
       month,
       month_name,
