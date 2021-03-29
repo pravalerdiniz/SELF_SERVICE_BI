@@ -29,7 +29,7 @@ view: jira {
       on Site.ik = jr."Key"
       left join (select max("IssueUpdatedDate"), "IssueKey" ik, "ItemFromString" ds from stage.public.jIRA_fields where "ItemFieldType" ilike 'custom' and "ItemField" ilike 'Telefone' group by 2,3) Telefone
       on Telefone.ik = jr."Key"
-      left join (select max("IssueUpdatedDate"), "IssueKey" ik, "ItemFromString" ds from stage.public.jIRA_fields where "ItemFieldType" ilike 'custom' and "ItemField" ilike 'Ticket Médio' group by 2,3) tk
+      left join (select max("IssueUpdatedDate"), "IssueKey" ik, "ItemToString" ds from stage.public.jIRA_fields where "ItemFieldType" ilike 'custom' and "ItemField" ilike 'Ticket Médio' group by 2,3) tk
       on tk.ik = jr."Key"
       left join (select max("IssueUpdatedDate"), "IssueKey" ik, "ItemFromString" ds from stage.public.jIRA_fields where "ItemFieldType" ilike 'custom' and "ItemField" ilike 'Tipo' group by 2,3) Tipo
       on Tipo.ik = jr."Key"
@@ -379,6 +379,14 @@ view: jira {
   dimension: ticket_medio {
     type: string
     sql: ${TABLE}."TICKET_MEDIO" ;;
+  }
+
+  measure: sum_ticket_medio {
+    type: sum
+    sql: ${ticket_medio};;
+    #value_format: "$ #,###.00"
+    group_label: "Soma Ticket Médio"
+    group_item_label: "Soma"
   }
 
   dimension: tipo {
