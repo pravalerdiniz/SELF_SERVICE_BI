@@ -355,6 +355,15 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
 }
 
+  join: proposta_projeto_decola {
+    view_label: "2.3 Projeto Decola"
+    sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
+    relationship: many_to_one
+    type: left_outer
+
+
+  }
+
 
 
 
