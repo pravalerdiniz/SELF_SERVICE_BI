@@ -109,9 +109,9 @@ from (
               end ;;
   }
 
-  dimension: remuneracao_variavel_itau {
+   dimension: remuneracao_variavel_itau {
     type: number
-    sql: case when ${atribuicao} = 'ITAU' then 50
+    sql: case when ${atribuicao} = 'ITAU' and ${tipo} in ('AQUISICAO') then 50
               else 0
          end;;
   }
@@ -124,15 +124,15 @@ from (
     type: number
 
 
-    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO','R1','R2','R3') then
+    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO') then --,'R1','R2','R3') then
            (case when ${nm_modalidade_produto} <> 'FIDC' then 100
                 else (case when ${atribuicao} = 'ITAU' then
-                              (case when ${data_concessao_year} = 2020 then 100
+                              (case when ${data_concessao_year} >= 2021 then 100
                                     else 70 end)
                            when ${data_concessao_year} = 2020 then 125
                            else 95 end)
            end)
-         when  (${acumulado_alunos_ano} > 28000 and ${acumulado_alunos_ano} <= 32000) and ${tipo} in ('AQUISICAO','R1','R2','R3','R4','R5','R6','R7') then
+         when  (${acumulado_alunos_ano} > 28000 and ${acumulado_alunos_ano} <= 32000) and ${tipo} in ('AQUISICAO') then --,'R1','R2','R3','R4','R5','R6','R7') then
          (case when ${nm_modalidade_produto} <> 'FIDC' then 100
               else (case when ${atribuicao} = 'ITAU' then
                        (case when ${tipo} = 'AQUISICAO' then 129
@@ -151,7 +151,8 @@ from (
          end ;;
 
 
-  }
+    }
+
 
   measure: count {
     type: count
