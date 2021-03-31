@@ -1,7 +1,7 @@
 view: unpivot_dre {
   derived_table: {
     sql: with unpivot_dre_tbl as (
-      select tipo, data, metrica, valor from "VETERANO"."FATO"."FATO_DRE"
+      select tipo, data, metrica, produto, valor from "VETERANO"."FATO"."FATO_DRE"
             unpivot(valor for metrica in (
             RECEITA_JUROS_LIQUIDA ,
             RECEITA_JUROS_LIQUIDA  ,
@@ -29,7 +29,9 @@ view: unpivot_dre {
             PDD_CARTEIRA ,
             ALIQUOTA_EFETIVA_IR_CS ,
             MARGEM_LIQUIDA,
-            SALDO_CARTEIRA
+            SALDO_CARTEIRA,
+            PIS_COFINS_ISS
+
 
              ))
           order by data
@@ -64,7 +66,8 @@ view: unpivot_dre {
             ROLLING_PDD_CARTEIRA ,
             ROLLING_ALIQUOTA_EFETIVA_IR_CS ,
             ROLLING_MARGEM_LIQUIDA,
-            SALDO_CARTEIRA
+            SALDO_CARTEIRA,
+            PIS_COFINS_ISS
 
              ))
           order by data
@@ -104,6 +107,11 @@ view: unpivot_dre {
   dimension: tipo {
     type: string
     sql: ${TABLE}."TIPO" ;;
+  }
+
+  dimension: produto {
+    type: string
+    sql: ${TABLE}."PRODUTO" ;;
   }
 
   dimension_group: data {

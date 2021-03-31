@@ -1,5 +1,5 @@
 view: alunos {
-  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."ALUNOS"
+  sql_table_name:"GRADUADO"."SELF_SERVICE_BI"."ALUNOS"
     ;;
 
 
