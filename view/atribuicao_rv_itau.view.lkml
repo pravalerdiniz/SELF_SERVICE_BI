@@ -13,7 +13,7 @@ view: atribuicao_rv_itau {
     from graduado.self_service_bi.proposta p
     left join (select fl.id_cpf
                from veterano.fato.fato_lead fl
-               inner join veterano.dimensao.dim_url_canal url on url.id_url = fl.id_url_origem
+               inner join veterano.dimensao.dim_url url on url.id_url = fl.id_url_origem
                where url.canal ilike 'itau'
                qualify row_number() over(partition by fl.id_cpf order by fl.data_acesso desc) = 1) itau on itau.id_cpf = p.id_cpf
     where p.flg_contrato_cedido = true
