@@ -828,6 +828,20 @@ view: inep {
     sql: ${TABLE}."SIGLA_UF" ;;
   }
 
+  dimension: sigla_ies {
+    type: string
+    group_label:"Dados da IES"
+    label: "Sigla da IES"
+    sql: ${TABLE}."SIGLA_IES" ;;
+  }
+
+  dimension: sigla_ies_destino {
+    type: string
+    group_label:"Dados da IES"
+    label: "Sigla da IES destino (em caso de transferência)"
+    sql: ${TABLE}."SIGLA_IES_DESTINO" ;;
+  }
+
   dimension: uf_ies {
     type: string
     group_label: "UF"
