@@ -38,7 +38,7 @@ view: unpivot_dre {
       )
 
       , unpivot_dre_rolling as (
-        select tipo, data, metrica, valor from "VETERANO"."FATO"."FATO_DRE"
+        select tipo, data, metrica, produto, valor from "VETERANO"."FATO"."FATO_DRE"
             unpivot(valor for metrica in (
             ROLLING_RECEITA_JUROS_LIQUIDA ,
             ROLLING_RECEITA_JUROS_LIQUIDA  ,
