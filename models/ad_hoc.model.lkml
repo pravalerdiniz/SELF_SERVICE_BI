@@ -88,6 +88,9 @@ explore: iniciados_x_finalizados_lead {}
 
 explore: atribuicao_rv_itau {}
 
+explore: orquestra_compra_carteira {
+  label: "Orquestra - Compra de Carteira"
+}
 
 explore: base_trade {}
 
