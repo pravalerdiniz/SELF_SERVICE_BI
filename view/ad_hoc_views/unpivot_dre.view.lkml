@@ -158,6 +158,8 @@ view: unpivot_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+      {% elsif value == "PIS COFINS ISS" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "EBT" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
@@ -166,9 +168,12 @@ view: unpivot_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% else %}
+        {% elsif value == "SALDO CARTEIRA" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
+      {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
-    {% endif %};;
+    {% endif %}
+    ;;
   }
 
 
@@ -315,11 +320,11 @@ dimension: ordem_dre {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
     value_format:"[>1000]0.0,,;[>0]0.00%;[<0]-0.0,,"
-    html:
+      html:
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
-    <i><p style="color: black;  background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "PDD CARTEIRA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% elsif value == "LUCRO SERVICOS BRUTO" %}
@@ -334,6 +339,8 @@ dimension: ordem_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "PIS COFINS ISS" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "EBT" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
@@ -342,8 +349,11 @@ dimension: ordem_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% elsif value == "SALDO CARTEIRA" %}
+    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
-    {% endif %};;
+    {% endif %}
+    ;;
   }
 }
