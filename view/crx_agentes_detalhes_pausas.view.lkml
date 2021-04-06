@@ -41,18 +41,30 @@ view: crx_agentes_detalhes_pausas {
     sql: ${TABLE}."MOTIVO_PAUSA" ;;
   }
 
-  dimension: data_evento_ini {
-    type: date
-    group_label: "Dados da Pausa"
-    group_item_label: "Data da Pausa"
+
+
+  dimension_group: data_evento_ini {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_EVENTO_INI" ;;
+    label: "Pausa"
     description: "Indica a data em que a pausa foi realizada"
-        sql: ${TABLE}."DATA_EVENTO_INI" ;;
   }
 
 
-
 dimension: nome_data {
-  sql: CONCAT(${nome},${data_evento_ini});;
+  sql: CONCAT(${nome},${data_evento_ini_raw});;
   primary_key: yes
   hidden: yes
 
@@ -69,6 +81,6 @@ dimension: nome_data {
   }
 
   set: detail {
-    fields: [duracao_pausa, motivo_pausa, data_evento_ini, nome]
+    fields: [duracao_pausa, motivo_pausa, data_evento_ini_raw, nome]
   }
 }
