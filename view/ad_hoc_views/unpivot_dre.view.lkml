@@ -140,6 +140,7 @@ view: unpivot_dre {
     END;;
     order_by_field: ordem_dre
     html:
+
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
@@ -166,9 +167,9 @@ view: unpivot_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
+    {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
-    {% endif %}
-    ;;
+    {% endif %};;
   }
 
 
@@ -264,7 +265,7 @@ view: unpivot_dre {
         label: "20"
       }
       when: {
-        sql: ${metrica} = 'PIS COFINS ISS' ;;
+        sql: ${metrica} = 'PIS_COFINS_ISS' ;;
         label: "21"
       }
       when: {
@@ -293,7 +294,7 @@ view: unpivot_dre {
         label: "27"
       }
       when: {
-        sql: ${metrica} = 'SALDO CARTEIRA';;
+        sql: ${metrica} = 'SALDO_CARTEIRA';;
         label: "28"
       }
       else: "0"
@@ -323,7 +324,8 @@ dimension: ordem_dre {
     type: sum
     sql: ${TABLE}.{% parameter tipo_analise %} ;;
     value_format:"[>1000]0.0,,;[>0]0.00%;[<0]-0.0,,"
-      html:
+       html:
+
     {% if value == "LUCRO FINANCEIRO BRUTO" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM FINANCEIRA BRUTA" %}
@@ -352,7 +354,6 @@ dimension: ordem_dre {
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
     {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
-    {% endif %}
-    ;;
+    {% endif %};;
   }
 }
