@@ -158,8 +158,6 @@ view: unpivot_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-      {% elsif value == "PIS COFINS ISS" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "EBT" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
@@ -168,9 +166,6 @@ view: unpivot_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-        {% elsif value == "SALDO CARTEIRA" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
-      {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %}
     ;;
@@ -269,12 +264,16 @@ view: unpivot_dre {
         label: "20"
       }
       when: {
-        sql: ${metrica} = 'EBT' ;;
+        sql: ${metrica} = 'PIS COFINS ISS' ;;
         label: "21"
       }
       when: {
-        sql: ${metrica} = 'IRPJ_CSLL';;
+        sql: ${metrica} = 'EBT' ;;
         label: "22"
+      }
+      when: {
+        sql: ${metrica} = 'IRPJ_CSLL';;
+        label: "23"
       }
 
       when: {
@@ -292,6 +291,10 @@ view: unpivot_dre {
       when: {
         sql: ${metrica} = 'ALIQUOTA_EFETIVA_IR_CS';;
         label: "27"
+      }
+      when: {
+        sql: ${metrica} = 'SALDO CARTEIRA';;
+        label: "28"
       }
       else: "0"
     }
@@ -339,8 +342,6 @@ dimension: ordem_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM OPERACIONAL" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "PIS COFINS ISS" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "EBT" %}
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "ALIQUOTA EFETIVA IR CS" %}
@@ -349,8 +350,6 @@ dimension: ordem_dre {
     <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% elsif value == "MARGEM LIQUIDA" %}
     <i><p style="color: black; background-color: #FAD8AD">{{ rendered_value }}</p></i>
-    {% elsif value == "SALDO CARTEIRA" %}
-    <p style="color: black; font-weight: bold ; background-color: #F87433">{{ rendered_value }}</p>
     {% else %}
     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
     {% endif %}
