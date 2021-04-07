@@ -858,7 +858,6 @@ explore: crx_agentes_detalhes_pausas{
           - crx_agentes.tempo_total_falado ,
           - crx_agentes.tempo_total_logado ,
           - crx_agentes.tempo_total_pausado ,
-          - crx_agentes.data_registro,
           - crx_agentes.media_sla_atendimento
 
 

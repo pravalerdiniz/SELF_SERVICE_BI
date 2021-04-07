@@ -4,7 +4,7 @@ view: crx_agentes {
 
   dimension: nome_data {
     type: string
-    sql: CONCAT(${nome},${data_registro}) ;;
+    sql: CONCAT(${nome},${data_registro_raw}) ;;
     primary_key: yes
     hidden: yes
 
@@ -27,12 +27,24 @@ view: crx_agentes {
     sql: ${TABLE}."DIAS_LOGADOS" ;;
   }
 
-  dimension: data_registro {
-    type: date
-    group_label: "Dados de Atendimento"
-    group_item_label: "Data de registro"
-    description: "Indica a data em que o registro da ação do atendente foi realizada."
+
+  dimension_group: data_registro {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}."DATA_REGISTRO" ;;
+    label: "Registro"
+    description: "Indica a data em que o registro da ação do atendente foi realizada."
   }
 
   measure: sum_dias_logados {
