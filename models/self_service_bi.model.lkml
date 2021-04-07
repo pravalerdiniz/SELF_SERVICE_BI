@@ -42,7 +42,7 @@ include: "/**/*.view.lkml"
 
 datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "5 hour"
+  max_cache_age: "1 hour"
 }
 
 persist_with: self_service_bi_default_datagroup
@@ -241,7 +241,7 @@ join: inep {
 }
 
 explore: status {
-  persist_for: "5 hours"
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -290,7 +290,7 @@ explore: status {
 }
 
 explore: jornada {
-  persist_for: "5 hours"
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -370,7 +370,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 }
 
 explore: financeiro {
-  persist_for: "5 hours"
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -407,7 +407,7 @@ explore: financeiro {
 }
 
 explore: proposta {
-  persist_for: "5 hours"
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
@@ -591,7 +591,7 @@ join: proposta_docs_pendentes {
 }
 
 explore: alunos {
-  persist_for: "5 hours"
+  persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
     user_attribute: grupo_ies
