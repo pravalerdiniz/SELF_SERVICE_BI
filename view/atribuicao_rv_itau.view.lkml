@@ -1,26 +1,22 @@
 view: atribuicao_rv_itau {
   derived_table: {
     sql: with cpfs as (
-    select
-        p.id_cpf,
-        p.id_proposta,
-        p.nm_modalidade_produto,
-        p.data_concessao,
-        case when itau.id_cpf is not null then 'ITAU'
-             else 'RV'
-        end as atribuicao,
-        'AQUISICAO' as tipo
-    from graduado.self_service_bi.proposta p
-    left join (select fl.id_cpf
-               from veterano.fato.fato_lead fl
-               inner join veterano.dimensao.dim_url url on url.id_url = fl.id_url_origem
-               where url.canal ilike 'itau'
-               qualify row_number() over(partition by fl.id_cpf order by fl.data_acesso desc) = 1) itau on itau.id_cpf = p.id_cpf
-    where p.flg_contrato_cedido = true
-      and p.data_preenchimento >= '2020-10-01'
-      and p.data_concessao >= '2020-10-01'
-      and p.tipo_proposta = 'NOVO'
-    qualify row_number() over(partition by p.id_cpf order by p.data_concessao desc) = 1
+    select p.id_cpf,
+            p.id_proposta,
+            p.nm_modalidade_produto,
+            p.data_concessao,
+            case when CANAL_ACESSO_DESCOBERTA ilike 'itau' then 'ITAU'
+                 else 'RV'
+            end as atribuicao,
+            'AQUISICAO' as tipo
+     from graduado.self_service_bi.proposta p
+     where p.flg_contrato_cedido = true
+        and p.data_preenchimento >= '2020-10-01'
+        and p.data_concessao >= '2020-10-01'
+        and p.tipo_proposta = 'NOVO'
+        and p.tipo_produto <> 'COMPRA DE CARTEIRA'
+        and p.tipo_produto <> 'INTERCAMBIO'
+        qualify row_number() over(partition by p.id_cpf order by p.data_concessao desc) = 1
 )
 
 select
