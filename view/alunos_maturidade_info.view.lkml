@@ -9,7 +9,8 @@ view: alunos_maturidade_info {
             f.value:maturidade::int as maturidade,
             f.value:"OVER 15"::boolean as over15,
             f.value:"OVER 30"::boolean as over30,
-            f.value:"OVER 60"::boolean as over60
+            f.value:"OVER 60"::boolean as over60,
+            f.value:"PDD"::varchar as pdd_produto
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => maturidade_info) f
  ;;
@@ -48,6 +49,13 @@ view: alunos_maturidade_info {
     type: number
     sql: ${TABLE}."MOB" ;;
     description: "Mês de observação relativo à data de cessão"
+  }
+
+  dimension: pdd_produto {
+    type: string
+    sql: ${TABLE}."PDD_PRODUTO" ;;
+    label: "Produto"
+    description: "Indica o produto do aluno dentro da PDD."
   }
 
   dimension: dias_atraso_cpf {
