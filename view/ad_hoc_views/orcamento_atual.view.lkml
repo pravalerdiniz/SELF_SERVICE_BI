@@ -109,6 +109,7 @@ view: orcamento_atual {
     type: sum
     group_label: "Montante"
     label: "Soma"
+    value_format: "$ #,###.00"
     sql: ${montante} ;;
     drill_fields: []
   }
@@ -117,6 +118,7 @@ view: orcamento_atual {
     type: average
     group_label: "Montante"
     label: "Média"
+    value_format: "$ #,###.00"
     sql: ${montante} ;;
     drill_fields: []
   }
@@ -126,6 +128,7 @@ view: orcamento_atual {
     type: min
     group_label: "Montante"
     label: "Mínimo"
+    value_format: "$ #,###.00"
     sql: ${montante} ;;
     drill_fields: []
   }
@@ -135,6 +138,7 @@ view: orcamento_atual {
     type: max
     group_label: "Montante"
     label: "Máximo"
+    value_format: "$ #,###.00"
     sql: ${montante} ;;
     drill_fields: []
   }
