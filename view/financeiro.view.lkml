@@ -596,7 +596,28 @@ foi gerado por um pagamento menor do boleto anterior."
     type: count
     value_format: "0"
     group_item_label: "Quantidade de titulos"
-    drill_fields: []
+    drill_fields: [
+
+      cpf_aluno, aluno_nome,id_contrato,
+      aluno_email,
+      aluno_celular,
+      ds_curso,
+      grupo_instituicao,
+      ds_instituicao,
+      ds_campus,
+      nm_modalidade_produto,
+      nm_produto,
+      id_boleto,
+      dias_atraso,
+      vl_boleto,
+      data_pagamento_date,
+      data_vencimento_date,
+
+
+
+
+
+    ]
   }
 
 
