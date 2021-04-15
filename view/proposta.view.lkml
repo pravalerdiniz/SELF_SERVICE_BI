@@ -2045,7 +2045,7 @@ view: proposta {
     type: yesno
     group_label: "Dados de Renovação"
     group_item_label: "Primeira Recontratação?"
-    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado. (Renovação + Ciclo)"
+    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado. "
     sql: ${TABLE}."FLG_PRIMEIRA_CONTRATACAO" ;;
   }
 
