@@ -797,8 +797,8 @@ explore: inep {
   }
 
 explore: interacoes {
-  label: "Interações"
-  view_label: "Interações"
+  label: "Interações - Tickets"
+  view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
 
   join: interacoes_detalhes_ligacao {
