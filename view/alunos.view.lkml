@@ -1227,8 +1227,18 @@ dimension: faixa_tempo_meses_evasao {
     type: average
     sql: ${aluno_idade} ;;
     group_label: "Idade"
-    group_item_label: "Aluno"
+    group_item_label: "Aluno - Média"
+    value_format: "0"
     description: "Média de idade do aluno"
+  }
+
+  measure: med_idade_aluno {
+    type: median
+    sql: ${aluno_idade} ;;
+    group_label: "Idade"
+    group_item_label: "Aluno - Mediana"
+    value_format: "0"
+    description: "Mediana de idade do aluno"
   }
 
   measure: sum_renda_alu {
