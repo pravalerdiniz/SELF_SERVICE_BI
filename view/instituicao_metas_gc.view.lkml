@@ -16,10 +16,24 @@ view: instituicao_metas_gc {
                   GERENTE,
                     DATA,
                     INICIADOS_ORCAMENTO,
-                    CEDIDOS_ORCAMENTO
+                    CEDIDOS_ORCAMENTO,
+                    META_INICIADOS_HISTORICO,
+                    META_CEDIDOS_HISTORICO
                    from VETERANO.DIMENSAO.DIM_META_GC
  ;;
     }
+
+  dimension: meta_iniciado_historico{
+    type: number
+    label: "Metas Iniciados -  Histórico"
+    sql: ${TABLE}."META_INICIADOS_HISTORICO" ;;
+  }
+
+  dimension: meta_cedido_historico{
+    type: number
+    label: "Metas Cedidos -  Histórico"
+    sql: ${TABLE}."META_CEDIDOS_HISTORICO" ;;
+  }
 
   dimension: iniciados_orcamento{
     type: number
@@ -392,6 +406,15 @@ view: instituicao_metas_gc {
 
   }
 
+  measure:sum_meta_iniciados {
+    type:sum
+    label: "Soma - Histórico"
+    group_label: "Iniciados"
+    sql: ${meta_iniciado_historico} ;;
+
+  }
+
+
   measure: min_iniciados_orcamento {
     type: min
     label: "Minimo - Orçamento"
@@ -455,6 +478,16 @@ view: instituicao_metas_gc {
     label: "Soma - Orçamento"
     group_label: "Cedidos"
     sql: ${cedidos_orcamento} ;;
+
+  }
+
+
+
+  measure:sum_cedidos_historico {
+    type: sum
+    label: "Soma - Histórico"
+    group_label: "Cedidos"
+    sql: ${meta_cedido_historico} ;;
 
   }
 
