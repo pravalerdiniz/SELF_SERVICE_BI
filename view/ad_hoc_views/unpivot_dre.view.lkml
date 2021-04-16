@@ -4,7 +4,6 @@ view: unpivot_dre {
       select tipo, data, metrica, produto, valor from "VETERANO"."FATO"."FATO_DRE"
             unpivot(valor for metrica in (
             RECEITA_JUROS_LIQUIDA ,
-            RECEITA_JUROS_LIQUIDA  ,
             PDD  ,
             CUSTO_CAPTACAO  ,
             LUCRO_FINANCEIRO_BRUTO  ,
@@ -41,7 +40,6 @@ view: unpivot_dre {
         select tipo, data, metrica, produto, valor from "VETERANO"."FATO"."FATO_DRE"
             unpivot(valor for metrica in (
             ROLLING_RECEITA_JUROS_LIQUIDA ,
-            ROLLING_RECEITA_JUROS_LIQUIDA  ,
             ROLLING_PDD  ,
             ROLLING_CUSTO_CAPTACAO  ,
             ROLLING_LUCRO_FINANCEIRO_BRUTO  ,
