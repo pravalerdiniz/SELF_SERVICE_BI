@@ -75,7 +75,7 @@ view: unpivot_dre {
       a.*,
       b.valor as valor_rolling
       from unpivot_dre_tbl a
-      inner join unpivot_dre_rolling b on a.data = b.data and a.tipo = b.tipo and a.metrica = replace(b.metrica, 'ROLLING_', '')
+      inner join unpivot_dre_rolling b on a.data = b.data and a.tipo = b.tipo and a.produto = b.produto and a.metrica = replace(b.metrica, 'ROLLING_', '')
        ;;
   }
 
