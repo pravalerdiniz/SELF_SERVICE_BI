@@ -1986,6 +1986,15 @@ view: proposta {
     sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
   }
 
+
+  dimension: profissao_garantidor {
+    type: string
+    group_label: "Dados do Fiador"
+    group_item_label: "Ocupação"
+    description: "Indica a ocupação/profissão do fiador"
+    sql: ${TABLE}."PROFISSAO_GARANTIDOR" ;;
+  }
+
   dimension: reside_qtd_pessoas_fia {
     type: number
     group_label: "Dados do Fiador"
