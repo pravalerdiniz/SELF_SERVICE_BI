@@ -3107,7 +3107,7 @@ view: proposta {
 
   measure: avg_renda_aluno {
     type: average
-    sql: ${fia_renda} ;;
+    sql: ${aluno_renda} ;;
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Média"
@@ -3245,7 +3245,7 @@ dimension: produto_preaprovado {
 }
 
   dimension: ciclo {
-    type: string
+    type: number
     group_label: "Dados de Renovação"
     group_item_label: "Ciclo de Renovação"
     description: "Informa o ciclo da proposta de renovação do aluno."

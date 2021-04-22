@@ -197,6 +197,9 @@ view: status {
 
 
 
+
+
+
   dimension_group: dt_status {
     type: time
     timeframes: [
@@ -350,11 +353,11 @@ nm_produto
   }
 
 
-  measure: count_cpf_ciclo {
+  measure: count_ciclo {
     type: count_distinct
-    sql: ${cpf_semestre_financiado} ;;
+    sql: ${ciclo} ;;
     value_format: "0"
-    label: "Quantidade de CPF+Ciclo"
+    label: "Quantidade de Ciclo"
     drill_fields: [cpf_aluno, ciclo, id_proposta, tipo_proposta,
       aluno_email,
 aluno_celular,
@@ -365,7 +368,7 @@ ds_campus,
 nm_modalidade_produto,
 nm_produto
 ]
-    description: "Contagem de CPFs únicos + Ciclo (Semestre Financiado)"
+    description: "Contagem de Ciclo por proposta"
   }
 
   measure: cont_proposta {
