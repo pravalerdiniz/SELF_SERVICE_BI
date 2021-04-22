@@ -3070,8 +3070,8 @@ view: proposta {
   }
 
   measure: med_renda_fam {
-    type: median
-    sql: ${renda_familiar} ;;
+    type: number
+    sql: median(${renda_familiar}) ;;
     value_format: "$ #,###.00"
     group_label: "Renda Familiar"
     group_item_label: "Mediana"
@@ -3104,8 +3104,8 @@ view: proposta {
 
 
   measure: medi_renda_fiador {
-    type: median
-    sql: ${fia_renda} ;;
+    type: number
+    sql: median(${fia_renda}) ;;
     drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email, fia_parentesco ]
     value_format: "$ #,###.00"
     group_label: "Renda Fiador"
@@ -3146,8 +3146,8 @@ view: proposta {
   }
 
   measure: med_renda_aluno {
-    type: median
-    sql: ${aluno_renda} ;;
+    type: number
+    sql: median(${aluno_renda}) ;;
     value_format: "$ #,###.00"
     group_label: "Renda Aluno"
     group_item_label: "Mediana"
