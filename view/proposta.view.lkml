@@ -1591,6 +1591,7 @@ view: proposta {
     description: "Indica a faixa de renda familiar do aluno"
   }
 
+
   dimension: representante_atual {
     type: string
     group_label: "Dados da Regional"
@@ -2141,7 +2142,7 @@ view: proposta {
 
   measure: perc_cpf {
     type: percent_of_total
-    sql: ${cont_cpf} ;;
+    sql: ${id_cpf} ;;
     direction: "column"
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
@@ -3068,6 +3069,17 @@ view: proposta {
     required_access_grants: [grupo_renda]
   }
 
+  measure: med_renda_fam {
+    type: median
+    sql: ${renda_familiar} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Familiar"
+    group_item_label: "Mediana"
+    description: "Mediana da renda familiar"
+    required_access_grants: [grupo_renda]
+  }
+
+
   measure: sum_renda_fiador {
     type: sum
     sql: ${fia_renda} ;;
@@ -3089,6 +3101,19 @@ view: proposta {
     description: "Média da renda do Fiador"
     required_access_grants: [grupo_renda]
   }
+
+
+  measure: medi_renda_fiador {
+    type: median
+    sql: ${fia_renda} ;;
+    drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email, fia_parentesco ]
+    value_format: "$ #,###.00"
+    group_label: "Renda Fiador"
+    group_item_label: "Mediana"
+    description: "Mediana da renda do Fiador"
+    required_access_grants: [grupo_renda]
+  }
+
 
   measure: sum_renda_aluno {
     type: sum
@@ -3112,6 +3137,21 @@ view: proposta {
     group_label: "Renda Aluno"
     group_item_label: "Média"
     description: "Média da renda do aluno"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
+  measure: med_renda_aluno {
+    type: median
+    sql: ${aluno_renda} ;;
+    value_format: "$ #,###.00"
+    group_label: "Renda Aluno"
+    group_item_label: "Mediana"
+    description: "Médiana da renda do aluno"
     required_access_grants: [grupo_renda]
     drill_fields: [id_proposta,
       id_cpf,

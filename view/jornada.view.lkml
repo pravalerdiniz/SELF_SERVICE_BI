@@ -1248,7 +1248,7 @@ view: jornada {
 
   measure: perc_cpf {
     type: percent_of_total
-    sql: ${id_cpf} ;;
+    sql: ${count_cpf} ;;
     drill_fields: [detail*]
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
