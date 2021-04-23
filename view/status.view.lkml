@@ -79,7 +79,8 @@ view: status {
       sql: ${TABLE}."FLG_STATUS_ATUAL" ;;
       group_label: "Dados do Status"
       group_item_label: "Status Atual"
-      description: "Indica se esse é o status atual da proposta (Sim ou Não)"
+      hidden: yes
+      description: "Indica se esse é o status atual da proposta (Sim ou Não)- AVALIAR REGRA"
     }
 
     dimension: motivo_alteracao {
