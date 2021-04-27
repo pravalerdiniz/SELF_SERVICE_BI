@@ -31,6 +31,7 @@ view: orcamento_atual {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
