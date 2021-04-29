@@ -9,8 +9,23 @@ view: pulse {
     sql: ${TABLE}."ID" ;;
   }
 
-  dimension: data_pesquisa {
-    type: string
+
+
+
+  dimension_group: data_pesquisa {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    description: "Indica a data de realização da pesquisa"
     sql: ${TABLE}."DATA_PESQUISA" ;;
   }
 
