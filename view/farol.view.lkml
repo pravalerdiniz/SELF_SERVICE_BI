@@ -1415,7 +1415,7 @@ dimension: tempo_status {
               CASE WHEN sum(${TABLE}."etapa_40_clicksign_fora")  = 0 THEN 1 ELSE 0 END
 
               ;;
-            hidden: yes
+
           }
 
 
@@ -1494,8 +1494,8 @@ CASE WHEN sum(${TABLE}."STATUS_2099") = 0 THEN 1 ELSE 0 END
 
   measure: perc_okr_diario_novos {
     type: number
-    value_format: "0.0%"
-    sql: ${total_status_fora_novos}/29 ;;
+   value_format:"0.0%"
+    sql:(${total_status_fora_novos})/29;;
     label: "OKR Diário - Novos"
 
 
