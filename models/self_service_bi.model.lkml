@@ -331,14 +331,14 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 }
 
   join: instituicao {
-    view_label: "2.1 Instituição "
+    view_label: "3. Instituição "
     sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
     relationship: many_to_many
     type: left_outer
   }
 
   join: instituicao_contrato_produto_info {
-    view_label: "2.2 Instituição - Contrato por Produto"
+    view_label: "3.1 Instituição - Contrato por Produto"
     sql_on: ${proposta.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
     relationship: many_to_many
     type: left_outer
@@ -355,7 +355,7 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
 
   join: status {
-    view_label: "3. Status"
+    view_label: "4. Status"
     sql_on: ${jornada.id_cpf} = ${status.id_cpf} and ${jornada.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
