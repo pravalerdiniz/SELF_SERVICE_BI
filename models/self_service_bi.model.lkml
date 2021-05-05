@@ -332,8 +332,8 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
 
   join: instituicao {
     view_label: "2.1 Instituição "
-    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} ;;
-    relationship: many_to_one
+    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
+    relationship: many_to_many
     type: left_outer
   }
 
