@@ -887,3 +887,5 @@ explore: log_negativacao {
 explore: documentos_solicitados {
   view_label: "Documentos Solicitados"
 }
+
+explore: atribuicao {}
