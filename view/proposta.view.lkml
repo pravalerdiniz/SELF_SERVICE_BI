@@ -1145,7 +1145,7 @@ view: proposta {
     type: string
     group_label: "Dados da Instituição"
     label: "Grupo"
-    description: "Indica o nome do grupo da instituição."
+    description: "Indica o nome do grupo da instituição no momento do preenchimento da proposta."
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
 

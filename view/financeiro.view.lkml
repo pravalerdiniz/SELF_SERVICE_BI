@@ -607,7 +607,7 @@ foi gerado por um pagamento menor do boleto anterior."
       ds_campus,
       nm_modalidade_produto,
       nm_produto,
-      id_boleto,
+      id_titulo,
       dias_atraso,
       vl_boleto,
       data_pagamento_date,

@@ -330,15 +330,24 @@ fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     type: left_outer
 }
 
+  join: instituicao {
+    view_label: "2.1 Instituição "
+    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: instituicao_contrato_produto_info {
-    view_label: "2.1 Instituição - Contrato por Produto"
+    view_label: "2.2 Instituição - Contrato por Produto"
     sql_on: ${proposta.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
     relationship: many_to_many
     type: left_outer
   }
 
+
+
   join: instituicao_metas_gc {
-    view_label: "2.2 Metas GC"
+    view_label: "2.3 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer

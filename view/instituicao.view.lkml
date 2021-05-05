@@ -312,7 +312,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Grupo da Instituição"
-    description: "Indica o nome do Grupo responsável pela instituição."
+    description: "Indica o nome do Grupo responsável pela instituição cadastrado no Backoffice."
     sql: ${TABLE}."GRUPO";;
   }
 
@@ -320,7 +320,7 @@ view: instituicao {
     type: string
     group_label: "Dados do Campus - IE"
     label:"ID do Campus"
-    description:"Indica o  ID do Campus"
+    description:"Indica o  ID do Campus cadastrado no Backoffice."
     sql: ${TABLE}."ID_CAMPUS";;
   }
 
@@ -328,7 +328,7 @@ view: instituicao {
     type: string
     group_label:"Dados do Curso - IE"
     label:"ID do Curso"
-    description:"Indica o ID do Curso"
+    description:"Indica o ID do Curso cadastrado no Backoffice."
     sql: ${TABLE}."ID_CURSO";;
   }
 
@@ -336,7 +336,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "ID da Instituição"
-    description:"Indica o ID da Instituição de Ensino"
+    description:"Indica o ID da Instituição de Ensino cadastrado no Backoffice."
     sql: ${TABLE}."ID_INSTITUICAO";;
   }
 
