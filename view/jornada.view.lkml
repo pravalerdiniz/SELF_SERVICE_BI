@@ -128,6 +128,7 @@ view: jornada {
     type: string
     sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
     group_label: "Dados da Proposta"
+    hidden: yes
     group_item_label: "Proposta Atual?"
     description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
   }
