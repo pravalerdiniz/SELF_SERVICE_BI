@@ -28,6 +28,7 @@ view: alunos_ativos_carteira {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
