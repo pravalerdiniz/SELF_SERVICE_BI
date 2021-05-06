@@ -112,6 +112,12 @@ view: alunos_painel_risco {
     hidden: yes
   }
 
+  dimension: profissao_fiador {
+    type: string
+    sql: ${proposta.profissao_garantidor} ;;
+    group_item_label: "Profissao -  Fiador"
+    hidden: yes
+  }
 
 
   set: detail {
@@ -124,6 +130,7 @@ view: alunos_painel_risco {
       cpf_fiador,
       fia_parentesco,
       fia_estado_civil,
+      profissao_fiador,
       ano_mes,
       classificacao,
       ultimo_status
