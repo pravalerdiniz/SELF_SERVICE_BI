@@ -60,13 +60,72 @@ view: alunos_painel_risco {
     sql: ${TABLE}."ULTIMO_STATUS" ;;
   }
 
+  dimension: cpf_aluno {
+    type: number
+    sql: ${proposta.cpf_aluno} ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "ID CPF do Aluno"
+    hidden: yes
+    description: "Indica o ID do CPF correspondente ao CPF do aluno"
+  }
+
+  dimension: nome_aluno {
+    type: string
+    sql: ${proposta.aluno_nome} ;;
+    group_item_label: "Nome do Aluno"
+    hidden: yes
+  }
+
+  dimension: aluno_uf {
+    type: string
+    sql: ${proposta.aluno_uf} ;;
+    group_item_label: "UF"
+    hidden: yes
+  }
+
+  dimension: aluno_idade {
+    type: number
+    sql: ${proposta.aluno_idade} ;;
+    group_item_label: "Idade do Aluno"
+    hidden: yes
+  }
+
+
+  dimension: cpf_fiador {
+    type: number
+    sql: ${proposta.cpf_fiador} ;;
+    group_item_label: "CPF Fiador"
+    hidden: yes
+  }
+
+  dimension: fia_parentesco {
+    type: string
+    sql: ${proposta.fia_parentesco} ;;
+    group_item_label: "Parentesco"
+    hidden: yes
+  }
+
+  dimension: fia_estado_civil {
+    type: string
+    sql: ${proposta.estado_civil_fia} ;;
+    group_item_label: "Estado Civil - Fiador"
+    hidden: yes
+  }
+
+
+
   set: detail {
     fields: [
-      id_cpf,
-      id_cpf_ano_mes,
+      cpf_aluno,
+      nome_aluno,
+      proposta,
+      aluno_idade,
+      aluno_uf,
+      cpf_fiador,
+      fia_parentesco,
+      fia_estado_civil,
       ano_mes,
       classificacao,
-      proposta,
       ultimo_status
     ]
   }
