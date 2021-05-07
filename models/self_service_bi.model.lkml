@@ -898,3 +898,5 @@ explore: documentos_solicitados {
 }
 
 explore: atribuicao {}
+
+explore: alunos_ativos_carteira {}
