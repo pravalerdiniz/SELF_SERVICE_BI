@@ -114,7 +114,7 @@ view: alunos_painel_risco {
 
   dimension: ocupacao_fiador {
     type: string
-    sql: ${alunos.natureza_ocupacao} ;;
+    sql: ${alunos.fia_natureza_ocupacao} ;;
     group_item_label: "Natureza de Ocupação -  Fiador"
     hidden: yes
   }
