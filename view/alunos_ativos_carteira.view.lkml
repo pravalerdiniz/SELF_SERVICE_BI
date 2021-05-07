@@ -2,6 +2,7 @@ view: alunos_ativos_carteira {
   derived_table: {
     sql: select
           id_cpf,
+          cpf,
           f.value:DATA::DATE as DATA_SNAPSHOT,
           f.value:MODALIDADE::varchar as MODALIDADE
       from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
@@ -44,6 +45,17 @@ view: alunos_ativos_carteira {
     label: "Modalidade"
     description: "Indica qual a modalidade do produto do aluno (Antecipação, Gestão..."
     sql: ${TABLE}."MODALIDADE" ;;
+  }
+
+  dimension: cpf_aluno {
+    type: number
+    group_label: "Dados do Aluno"
+    label: "CPF do Aluno"
+    description: "Indica o CPF do Aluno"
+    value_format: "0"
+    sql: ${TABLE}."CPF" ;;
+    required_access_grants: [grupo_cpf]
+
   }
 
   set: detail {
