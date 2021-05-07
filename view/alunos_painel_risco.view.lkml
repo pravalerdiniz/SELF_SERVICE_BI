@@ -112,10 +112,10 @@ view: alunos_painel_risco {
     hidden: yes
   }
 
-  dimension: profissao_fiador {
+  dimension: ocupacao_fiador {
     type: string
-    sql: ${proposta.profissao_garantidor} ;;
-    group_item_label: "Profissao -  Fiador"
+    sql: ${alunos.natureza_ocupacao} ;;
+    group_item_label: "Natureza de Ocupação -  Fiador"
     hidden: yes
   }
 
@@ -130,7 +130,7 @@ view: alunos_painel_risco {
       cpf_fiador,
       fia_parentesco,
       fia_estado_civil,
-      profissao_fiador,
+      ocupacao_fiador,
       ano_mes,
       classificacao,
       ultimo_status
