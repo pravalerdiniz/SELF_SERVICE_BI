@@ -1991,7 +1991,7 @@ view: proposta {
   dimension: profissao_garantidor {
     type: string
     group_label: "Dados do Fiador"
-    group_item_label: "Ocupação"
+    group_item_label: "Profissão"
     description: "Indica a ocupação/profissão do fiador"
     sql: ${TABLE}."PROFISSAO_GARANTIDOR" ;;
   }
