@@ -315,19 +315,19 @@ view: historico_demograficos {
         label: "1"
       }
       when: {
-        sql: ${faixa_tempo} = 'De 3 a 6 meses'  ;;
+        sql: ${faixa_tempo} = 'Entre 4 e 6 meses'  ;;
         label: "2"
       }
       when: {
-        sql: ${faixa_tempo} = 'De 6 meses a 1 ano'  ;;
+        sql: ${faixa_tempo} = 'Entre 7 e 11 meses'  ;;
         label: "3"
       }
       when: {
-        sql: ${faixa_tempo} = 'De 1 a 2 anos'  ;;
+        sql: ${faixa_tempo} = 'Entre 1 ano e 1 ano e 11 meses'  ;;
         label: "4"
       }
       when: {
-        sql: ${faixa_tempo} = 'Mais de 2 anos' ;;
+        sql: ${faixa_tempo} = '2 anos ou mais' ;;
         label: "5"
       }
       else: "0"
