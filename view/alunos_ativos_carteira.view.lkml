@@ -17,6 +17,7 @@ view: alunos_ativos_carteira {
 
   dimension: id_cpf {
     type: number
+    primary_key: yes
     label: "ID CPF"
     description: "Indica o ID do CPF do Aluno"
     sql: ${TABLE}."ID_CPF" ;;

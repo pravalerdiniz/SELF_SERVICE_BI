@@ -725,7 +725,6 @@ join: alunos_produtos_aprovados {
 
   }
 
-
   join: alunos_painel_risco {
     view_label: "1.7 Análise de Risco e Crédito - Decisão"
     sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
@@ -782,6 +781,13 @@ join: financeiro {
     sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
+  }
+
+  join: alunos_ativos_carteira {
+    view_label: "6 Alunos Ativos na Carteira"
+    sql_on: ${alunos.id_cpf} = ${alunos_ativos_carteira.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
   }
 
 
