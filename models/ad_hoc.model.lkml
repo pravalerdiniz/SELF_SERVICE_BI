@@ -99,3 +99,49 @@ explore: report_builder_baixa {}
 explore: curta_duracao {}
 
 explore: jira {}
+
+explore: pesquisa_perfil_aluno {
+
+ join: pesquisa_perfil_aluno_banco {
+
+  type:left_outer
+  sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_banco.key_} ;;
+  relationship: many_to_one
+  }
+
+  join: pesquisa_aluno_perfil_faz_com_frequencia {
+
+    type:left_outer
+    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_faz_com_frequencia.key_} ;;
+    relationship: many_to_one
+  }
+
+  join: pesquisa_aluno_perfil_servico_streaming {
+
+    type:left_outer
+    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_servico_streaming.key_} ;;
+    relationship: many_to_one
+  }
+
+  join: pesquisa_perfil_aluno_forma_pagamento {
+
+    type:left_outer
+    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_forma_pagamento.key_} ;;
+    relationship: many_to_one
+  }
+
+  join: pesquisa_perfil_aluno_jogos_online {
+
+    type:left_outer
+    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_jogos_online.key_} ;;
+    relationship: many_to_one
+  }
+
+  join: pesquisa_perfil_aluno_rede_social {
+
+    type:left_outer
+    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_rede_social.key_} ;;
+    relationship: many_to_one
+  }
+
+}
