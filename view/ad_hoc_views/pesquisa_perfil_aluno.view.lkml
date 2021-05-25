@@ -222,6 +222,7 @@ view: pesquisa_perfil_aluno {
 
   measure: pesquisa_unica {
     type: count_distinct
+    sql: ${key_} ;;
 
   }
 }
