@@ -21,6 +21,8 @@ view: pesquisa_perfil_aluno_forma_pagamento {
   dimension: key_ {
     type: string
     sql: ${TABLE}."key_" ;;
+
+    hidden: yes
   }
 
   set: detail {

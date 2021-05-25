@@ -21,6 +21,7 @@ view: pesquisa_perfil_aluno_banco {
   dimension: key_ {
     type: string
     sql: ${TABLE}."key_" ;;
+    hidden: yes
   }
 
   set: detail {

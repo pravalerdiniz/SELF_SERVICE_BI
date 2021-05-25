@@ -21,6 +21,7 @@ view: pesquisa_aluno_perfil_servico_streaming {
   dimension: key_ {
     type: string
     sql: ${TABLE}."key_" ;;
+    hidden: yes
   }
 
   set: detail {

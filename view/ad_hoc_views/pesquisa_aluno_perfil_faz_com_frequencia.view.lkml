@@ -21,6 +21,7 @@ view: pesquisa_aluno_perfil_faz_com_frequencia {
   dimension: key_ {
     type: string
     sql: ${TABLE}."key_" ;;
+    hidden: yes
   }
 
   set: detail {
