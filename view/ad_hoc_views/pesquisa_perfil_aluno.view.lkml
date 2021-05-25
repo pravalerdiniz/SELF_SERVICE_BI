@@ -219,4 +219,9 @@ view: pesquisa_perfil_aluno {
     type: count
     drill_fields: [first_name, last_name]
   }
+
+  measure: pesquisa_unica {
+    type: count_distinct
+
+  }
 }
