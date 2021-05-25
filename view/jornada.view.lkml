@@ -149,6 +149,7 @@ view: jornada {
     sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Semestre Financiado"
+    hidden: yes
     description: "Indica o semestre financiado"
   }
 
