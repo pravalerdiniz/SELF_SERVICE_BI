@@ -72,6 +72,25 @@ view: proposta {
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
 
+  dimension: aluno_estado_civil{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Estado Civil"
+    description: "Indica o estado civil do aluno"
+    sql: ${TABLE}."ESTADO_CIVIL_ALUNO_PROPOSTA" ;;
+  }
+
+
+  dimension: aluno_ocupacao{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Ocupação"
+    description: "Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc"
+    sql: ${TABLE}."OCUPACAO_ALUNO_PROPOSTA" ;;
+  }
+
+
+
   dimension: faixa_etaria_aluno {
     type: tier
     tiers: [16,18,25,30,35,40,50]
@@ -1992,9 +2011,30 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     group_item_label: "Profissão"
-    description: "Indica a ocupação/profissão do fiador"
+    description: "Indica a profissão do fiador"
     sql: ${TABLE}."PROFISSAO_GARANTIDOR" ;;
   }
+
+
+  dimension: estado_civil_garantidor {
+    type: string
+    group_label: "Dados do Fiador"
+    group_item_label: "Estado Civil"
+    description: "Indica o estado civil do fiador"
+    sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR_PROPOSTA" ;;
+  }
+
+  dimension: ocupacao_garantidor {
+    type: string
+    group_label: "Dados do Fiador"
+    group_item_label: "Ocupação"
+    description: "Indica a ocupação do fiador. Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc."
+    sql: ${TABLE}."OCUPACAO_GARANTIDOR_PROPOSTA" ;;
+  }
+
+
+
+
 
   dimension: reside_qtd_pessoas_fia {
     type: number
