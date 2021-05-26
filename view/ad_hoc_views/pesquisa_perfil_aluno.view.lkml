@@ -225,4 +225,10 @@ view: pesquisa_perfil_aluno {
     sql: ${key_} ;;
 
   }
+
+  measure: percentual_pesquisa_unica {
+    type: percent_of_total
+    sql: ${pesquisa_unica} ;;
+
+  }
 }
