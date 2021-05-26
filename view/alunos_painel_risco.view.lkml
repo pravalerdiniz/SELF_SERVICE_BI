@@ -107,14 +107,14 @@ view: alunos_painel_risco {
 
   dimension: fia_estado_civil {
     type: string
-    sql: ${proposta.estado_civil_fia} ;;
+    sql: ${proposta.estado_civil_garantidor} ;;
     group_item_label: "Estado Civil - Fiador"
     hidden: yes
   }
 
   dimension: ocupacao_fiador {
     type: string
-    sql: ${alunos.fia_natureza_ocupacao} ;;
+    sql: ${proposta.ocupacao_garantidor} ;;
     group_item_label: "Natureza de Ocupação -  Fiador"
     hidden: yes
   }

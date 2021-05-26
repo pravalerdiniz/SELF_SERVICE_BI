@@ -2003,6 +2003,7 @@ view: proposta {
     group_label: "Dados do Fiador"
     group_item_label: "Estado Civil"
     description: "Indica o estado civil do fiador"
+    hidden: yes
     sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
   }
 
@@ -2027,7 +2028,7 @@ view: proposta {
   dimension: ocupacao_garantidor {
     type: string
     group_label: "Dados do Fiador"
-    group_item_label: "Ocupação"
+    group_item_label: "Natureza de Ocupação"
     description: "Indica a ocupação do fiador. Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc."
     sql: ${TABLE}."OCUPACAO_GARANTIDOR_PROPOSTA" ;;
   }
