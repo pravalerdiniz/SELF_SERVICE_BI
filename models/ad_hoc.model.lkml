@@ -56,6 +56,10 @@ explore: orcamento {
 
 explore: orcamento_atual {
   label: "Orçamento"
+  access_filter: {
+    field: descricao_cc
+    user_attribute: acesso_orcamento
+  }
 
 }
 explore: fato_swap {
