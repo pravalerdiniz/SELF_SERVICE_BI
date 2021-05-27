@@ -101,6 +101,13 @@ view: orcamento_atual {
     sql: ${TABLE}."VISAO" ;;
   }
 
+  dimension: linha_df {
+    type: string
+    label: "DF"
+    description: "Indica a classificação daquela despesa na DRE da DF"
+    sql: ${TABLE}."LINHA_DF" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []

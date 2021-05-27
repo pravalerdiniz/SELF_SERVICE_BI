@@ -56,8 +56,24 @@ explore: orcamento {
 
 explore: orcamento_atual {
   label: "Orçamento"
+  access_filter: {
+    field: descricao_cc
+    user_attribute: acesso_orcamento
+  }
 
 }
+
+
+explore: orcamento_frente {
+  from: orcamento_atual
+  label: "Orçamento Frente"
+  access_filter: {
+    field: frente
+    user_attribute: orcamento_frente
+  }
+
+}
+
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"
