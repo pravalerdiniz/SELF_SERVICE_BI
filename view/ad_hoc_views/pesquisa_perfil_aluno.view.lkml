@@ -4,7 +4,7 @@ view: pesquisa_perfil_aluno {
 
   dimension: aplicativo_mobilidade_preferido {
     type: string
-    sql: case when ${TABLE}."APLICATIVO_MOBILIDADE_PREFERIDO" ;;
+    sql: ${TABLE}."APLICATIVO_MOBILIDADE_PREFERIDO" ;;
   }
 
   dimension: aplicativo_musica_preferido {
