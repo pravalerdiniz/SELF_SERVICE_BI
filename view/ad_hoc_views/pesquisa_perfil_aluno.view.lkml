@@ -4,7 +4,7 @@ view: pesquisa_perfil_aluno {
 
   dimension: aplicativo_mobilidade_preferido {
     type: string
-    sql: ${TABLE}."APLICATIVO_MOBILIDADE_PREFERIDO" ;;
+    sql: case when ${TABLE}."APLICATIVO_MOBILIDADE_PREFERIDO" ;;
   }
 
   dimension: aplicativo_musica_preferido {
@@ -14,7 +14,11 @@ view: pesquisa_perfil_aluno {
 
   dimension: canais_tv_aberta {
     type: string
-    sql: ${TABLE}."CANAIS_TV_ABERTA" ;;
+    sql: case when ${TABLE}."CANAIS_TV_ABERTA" ilike '%Globo%'
+    and ${TABLE}."CANAIS_TV_ABERTA" ilike '%globo%'
+    THEN 'Globo'
+    else ${TABLE}."CANAIS_TV_ABERTA"
+    end;;
   }
 
   dimension: canais_tv_fechada {
@@ -147,7 +151,13 @@ view: pesquisa_perfil_aluno {
 
   dimension: momento_profissional_atual {
     type: string
-    sql: ${TABLE}."MOMENTO_PROFISSIONAL_ATUAL" ;;
+    sql: case when ${TABLE}."MOMENTO_PROFISSIONAL_ATUAL"ilike'%esta%'
+    and ${TABLE}."MOMENTO_PROFISSIONAL_ATUAL"ilike '%Esta%'
+    THEN'Estagiário'
+    when ${TABLE}."MOMENTO_PROFISSIONAL_ATUAL"ilike'%Está%'
+    THEN'Estagiário'
+    else ${TABLE}."MOMENTO_PROFISSIONAL_ATUAL"
+    end;;
   }
 
   dimension: mora_com_quantas_pessoas {

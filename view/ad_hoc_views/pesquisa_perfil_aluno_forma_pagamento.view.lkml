@@ -15,7 +15,10 @@ view: pesquisa_perfil_aluno_forma_pagamento {
 
   dimension: forma_pagamento {
     type: string
-    sql: ${TABLE}."FORMA_PAGAMENTO" ;;
+    sql: case when ${TABLE}."FORMA_PAGAMENTO" ilike '%pix%'
+    THEN'Pix'
+    else ${TABLE}."FORMA_PAGAMENTO"
+    end;;
   }
 
   dimension: key_ {
