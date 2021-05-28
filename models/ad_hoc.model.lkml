@@ -161,3 +161,5 @@ explore: pesquisa_perfil_aluno {
   }
 
 }
+
+explore: indicadores_comunicacao {}
