@@ -165,6 +165,25 @@ view: pesquisa_perfil_aluno {
     sql: ${TABLE}."MORA_COM_QUANTAS_PESSOAS" ;;
   }
 
+  dimension: mora_com {
+    type: number
+    hidden: yes
+    sql: case when ${TABLE}."MORA_COM_QUANTAS_PESSOAS" = 'acima de 5'
+    THEN 6
+    else ${TABLE}."MORA_COM_QUANTAS_PESSOAS"
+    end;;
+  }
+
+  dimension: mora {
+    type: string
+    sql: case when ${mora_com} in (1,2,3)
+    THEN 'até 3 pessoas'
+    else 'acima de 3 pessoas'
+    end ;;
+  }
+
+
+
   dimension: onde_pede_comida {
     type: string
     sql: ${TABLE}."ONDE_PEDE_COMIDA" ;;
