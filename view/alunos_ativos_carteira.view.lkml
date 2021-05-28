@@ -51,8 +51,8 @@ view: alunos_ativos_carteira {
 
   dimension: fundo_investimento {
     type: string
-    label: "Fundo de Investimento"
-    description: "Indica qual o fundo de investimento da proposta do aluno"
+    label: "Fundo de Investimento Histórico"
+    description: "Indica qual o fundo de investimento da proposta do aluno, trazendo dados históricos"
     sql: ${TABLE}."FUNDO_INVESTIMENTO" ;;
   }
 
