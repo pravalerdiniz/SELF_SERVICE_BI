@@ -4,7 +4,8 @@ view: alunos_ativos_carteira {
           id_cpf,
           cpf,
           f.value:DATA::DATE as DATA_SNAPSHOT,
-          f.value:MODALIDADE::varchar as MODALIDADE
+          f.value:MODALIDADE::varchar as MODALIDADE,
+          f.value:DS_FUNDO_INVESTIMENTO::varchar as FUNDO_INVESTIMENTO
       from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
           lateral flatten (input => ALUNO_ATIVO_OBJETO) f
        ;;
@@ -48,6 +49,13 @@ view: alunos_ativos_carteira {
     sql: ${TABLE}."MODALIDADE" ;;
   }
 
+  dimension: fundo_investimento {
+    type: string
+    label: "Fundo de Investimento"
+    description: "Indica qual o fundo de investimento da proposta do aluno"
+    sql: ${TABLE}."FUNDO_INVESTIMENTO" ;;
+  }
+
   dimension: cpf_aluno {
     type: number
     group_label: "Dados do Aluno"
@@ -60,6 +68,6 @@ view: alunos_ativos_carteira {
   }
 
   set: detail {
-    fields: [id_cpf, modalidade]
+    fields: [id_cpf, modalidade,fundo_investimento]
   }
 }
