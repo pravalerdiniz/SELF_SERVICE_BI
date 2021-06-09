@@ -8,6 +8,7 @@ view: atribuicao_rv_itau {
             case when CANAL_ACESSO_DESCOBERTA ilike 'itau' then 'ITAU'
                  else 'RV'
             end as atribuicao,
+            p.tipo_proposta,
             'AQUISICAO' as tipo
      from graduado.self_service_bi.proposta p
      where p.flg_contrato_cedido = true
@@ -44,6 +45,7 @@ from (
             p.nm_modalidade_produto,
             p.data_concessao,
             cpfs.atribuicao,
+            p.tipo_proposta,
             concat('R', row_number() over(partition by p.id_cpf order by p.data_concessao)) as tipo
         from graduado.self_service_bi.proposta p
         inner join cpfs on cpfs.id_cpf = p.id_cpf
@@ -59,6 +61,11 @@ from (
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  dimension: tipo_proposta {
+    type: string
+    sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
   dimension: id_proposta {
