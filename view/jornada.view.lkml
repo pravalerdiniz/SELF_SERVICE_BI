@@ -1391,8 +1391,8 @@ view: jornada {
     type: average
     sql_distinct_key: ${id_proposta} ;;
     sql: ${jornada_pivot.sla_apr_ies_novos} ;;
-    group_label: "Tempo de Jornada - Novos | Média "
-    group_item_label: "4. Aprovação da Instituição"
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "4. Aprovação da Instituição - Média"
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Media do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
