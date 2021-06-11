@@ -163,3 +163,7 @@ explore: pesquisa_perfil_aluno {
 }
 
 explore: indicadores_comunicacao {}
+
+explore: acompanhamento_fluxo_proposta {}
+
+explore: distribuicao_finalizados_iniciados {}
