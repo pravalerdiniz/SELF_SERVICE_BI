@@ -1295,6 +1295,16 @@ view: jornada {
     description: "Media de tempo no status"
   }
 
+  measure: tempo_status_median {
+    type: median
+    sql: ${tempo_no_status} ;;
+    group_label: "Tempo no Status Atual - Mediana"
+    group_item_label: "Dias"
+    value_format: "0"
+    drill_fields: [detail*]
+    description: "Media de tempo no status"
+  }
+
   measure: tempo_status_hora {
     type: average
     sql: ${tempo_no_status_hora} ;;
