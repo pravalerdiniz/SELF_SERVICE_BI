@@ -422,28 +422,32 @@ view: jornada {
         label: "6"
       }
 
+      when: {
+        sql: ${etapa} = 'Aguardando Documentos';;
+        label: "8"
+      }
 
       when: {
         sql: ${etapa} = 'Aguardando Documentos';;
-        label: "7"
-      }
-
-      when: {
-        sql: ${etapa} = 'Aguardando Assinatura' ;;
-        label: "8"
-      }
-      when: {
-        sql: ${etapa} = 'Contrato Assinado' ;;
         label: "9"
       }
 
       when: {
-        sql: ${etapa} = 'Formalizado' ;;
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
         label: "10"
       }
       when: {
-        sql: ${etapa} = 'Cedido';;
+        sql: ${etapa} = 'Contrato Assinado' ;;
         label: "11"
+      }
+
+      when: {
+        sql: ${etapa} = 'Formalizado' ;;
+        label: "12"
+      }
+      when: {
+        sql: ${etapa} = 'Cedido';;
+        label: "13"
       }
       else: "0"
     }
