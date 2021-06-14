@@ -1512,6 +1512,18 @@ view: jornada {
     value_format: "0"
     description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
   }
+
+
+  measure: sla_apr_ies_renov_media {
+    type: average
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+    drill_fields: [detail*]
+    group_label: "Tempo de Jornada - Renovação | Média"
+    group_item_label: "3. Aprovação da Instituição"
+    value_format: "0"
+    description: "Media do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+  }
   measure: sla_dados_conf_renov {
     type: median
     sql_distinct_key: ${id_proposta};;
