@@ -1419,7 +1419,7 @@ view: proposta {
     label: "Modalidade - Risco"
     description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros."
     suggestable: yes
-    sql: ${TABLE}."NM_MODALIDADE_PRODUTO" ;;
+    sql: ${TABLE}."MODALIDADE_RISCO" ;;
   }
 
   dimension: nm_originador {
