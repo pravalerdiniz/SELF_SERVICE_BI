@@ -423,7 +423,7 @@ view: jornada {
       }
 
       when: {
-        sql: ${etapa} = 'Aguardando Documentos';;
+        sql: ${etapa} = 'Contrato Gerado';;
         label: "8"
       }
 
