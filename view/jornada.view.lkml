@@ -311,6 +311,14 @@ view: jornada {
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
+  dimension: ultimo_dia_mes{
+    type: date
+    sql: EOMONTH(${data_ultimo_status_raw}) ;;
+    group_label: "Ùltimo data"
+    description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
   dimension: tempo_no_status_hora {
     type: number
     sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
@@ -1613,6 +1621,8 @@ view: jornada {
     hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
+
+
 
 
   set: detail {
