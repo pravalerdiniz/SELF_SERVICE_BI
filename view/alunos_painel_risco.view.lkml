@@ -7,7 +7,7 @@ view: alunos_painel_risco {
             f.value:CLASSIFICACAO::varchar as CLASSIFICACAO,
             f.value:PROPOSTA::varchar as PROPOSTA,
             f.value:MODALIDADE::varchar as MODALIDADE,
-            f.value:ORDEM::varchar as MODALIDADE,
+            f.value:ORDEM::varchar as ORDEM,
             f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
