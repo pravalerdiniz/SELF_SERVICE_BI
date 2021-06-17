@@ -856,6 +856,14 @@ view: alunos {
     description: "Descrição da modalidade do produto (ex.: FIDC, Compartilhado)"
   }
 
+  dimension: modalidade_ensino {
+    type: string
+    sql: ${TABLE}."MODALIDADE_ENSINO" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Modalidade de Ensino"
+    description: "Descrição da modalidade de ensino do aluno (ex.: EAD, Presencial)"
+  }
+
   dimension: nm_produto {
     type: string
     sql: ${TABLE}."NM_PRODUTO" ;;
