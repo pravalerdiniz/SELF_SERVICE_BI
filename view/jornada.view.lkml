@@ -311,6 +311,14 @@ view: jornada {
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
+  dimension: ultimo_dia_mes{
+    type: date
+    sql: EOMONTH(${data_ultimo_status_raw}) ;;
+    group_label: "Ùltimo data"
+    description: "Indica a quantos dias o aluno está no mesmo status"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
   dimension: tempo_no_status_hora {
     type: number
     sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
@@ -421,38 +429,33 @@ view: jornada {
         sql: ${etapa} = 'Aprovado Instituicao' ;;
         label: "6"
       }
+
       when: {
-        sql: ${etapa} = 'Dados Confirmados';;
-        label: "7"
-      }
-      when: {
-        sql: ${etapa} = 'Confirmacao De Dados';;
+        sql: ${etapa} = 'Contrato Gerado';;
         label: "8"
       }
+
       when: {
         sql: ${etapa} = 'Aguardando Documentos';;
         label: "9"
       }
+
       when: {
-        sql: ${etapa} = 'Contrato Gerado' ;;
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
         label: "10"
       }
       when: {
-        sql: ${etapa} = 'Aguardando Assinatura' ;;
-        label: "11"
-      }
-      when: {
         sql: ${etapa} = 'Contrato Assinado' ;;
-        label: "12"
+        label: "11"
       }
 
       when: {
         sql: ${etapa} = 'Formalizado' ;;
-        label: "13"
+        label: "12"
       }
       when: {
         sql: ${etapa} = 'Cedido';;
-        label: "14"
+        label: "13"
       }
       else: "0"
     }
@@ -1300,6 +1303,16 @@ view: jornada {
     description: "Media de tempo no status"
   }
 
+  measure: tempo_status_median {
+    type: median
+    sql: ${tempo_no_status} ;;
+    group_label: "Tempo no Status Atual - Mediana"
+    group_item_label: "Dias"
+    value_format: "0"
+    drill_fields: [detail*]
+    description: "Media de tempo no status"
+  }
+
   measure: tempo_status_hora {
     type: average
     sql: ${tempo_no_status_hora} ;;
@@ -1384,6 +1397,18 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
     description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
+
+
+  measure: aprovacao_instituicao_novos_media {
+    type: average
+    sql_distinct_key: ${id_proposta} ;;
+    sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    group_label: "Tempo de Jornada - Novos"
+    group_item_label: "4. Aprovação da Instituição - Média"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
+    description: "Media do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
   measure: confirmacao_dados_novos {
@@ -1505,6 +1530,18 @@ view: jornada {
     value_format: "0"
     description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
   }
+
+
+  measure: sla_apr_ies_renov_media {
+    type: average
+    sql_distinct_key: ${id_proposta};;
+    sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+    drill_fields: [detail*]
+    group_label: "Tempo de Jornada - Renovação | Média"
+    group_item_label: "3. Aprovação da Instituição"
+    value_format: "0"
+    description: "Media do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+  }
   measure: sla_dados_conf_renov {
     type: median
     sql_distinct_key: ${id_proposta};;
@@ -1584,6 +1621,8 @@ view: jornada {
     hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
+
+
 
 
   set: detail {

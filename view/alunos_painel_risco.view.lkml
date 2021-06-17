@@ -6,6 +6,8 @@ view: alunos_painel_risco {
             f.value:"ANO/MES"::varchar as ANO_MES,
             f.value:CLASSIFICACAO::varchar as CLASSIFICACAO,
             f.value:PROPOSTA::varchar as PROPOSTA,
+            f.value:MODALIDADE::varchar as MODALIDADE,
+            f.value:ORDEM::varchar as ORDEM,
             f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
@@ -44,6 +46,13 @@ view: alunos_painel_risco {
     label: "Classificação"
     description: "Indica a classificação da decisão de análise de risco e crédito do Aluno."
     sql: ${TABLE}."CLASSIFICACAO" ;;
+  }
+
+  dimension: modalidade {
+    type: string
+    label: "Modalidade -  Risco"
+    description: "Indica a modalidade que o aluno foi aprovado."
+    sql: ${TABLE}."MODALIDADE" ;;
   }
 
   dimension: proposta {
@@ -125,6 +134,7 @@ view: alunos_painel_risco {
       cpf_aluno,
       nome_aluno,
       proposta,
+      modalidade,
       aluno_idade,
       aluno_uf,
       cpf_fiador,

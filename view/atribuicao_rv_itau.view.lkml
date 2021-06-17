@@ -8,6 +8,7 @@ view: atribuicao_rv_itau {
             case when CANAL_ACESSO_DESCOBERTA ilike 'itau' then 'ITAU'
                  else 'RV'
             end as atribuicao,
+            p.tipo_proposta,
             'AQUISICAO' as tipo
      from graduado.self_service_bi.proposta p
      where p.flg_contrato_cedido = true
@@ -44,6 +45,7 @@ from (
             p.nm_modalidade_produto,
             p.data_concessao,
             cpfs.atribuicao,
+            p.tipo_proposta,
             concat('R', row_number() over(partition by p.id_cpf order by p.data_concessao)) as tipo
         from graduado.self_service_bi.proposta p
         inner join cpfs on cpfs.id_cpf = p.id_cpf
@@ -59,6 +61,11 @@ from (
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  dimension: tipo_proposta {
+    type: string
+    sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
   dimension: id_proposta {
@@ -120,7 +127,7 @@ from (
     type: number
 
 
-    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO') then --,'R1','R2','R3') then
+    sql: case when  ${acumulado_alunos_ano} <= 28000 and ${tipo} in ('AQUISICAO') and ${tipo_proposta} = 'NOVO' then --,'R1','R2','R3') then
            (case when ${nm_modalidade_produto} <> 'FIDC' then 100
                 else (case when ${atribuicao} = 'ITAU' then
                               (case when ${data_concessao_year} >= 2021 then 100
@@ -128,7 +135,7 @@ from (
                            when ${data_concessao_year} = 2020 then 125
                            else 95 end)
            end)
-         when  (${acumulado_alunos_ano} > 28000 and ${acumulado_alunos_ano} <= 32000) and ${tipo} in ('AQUISICAO') then --,'R1','R2','R3','R4','R5','R6','R7') then
+         when  (${acumulado_alunos_ano} > 28000 and ${acumulado_alunos_ano} <= 32000) and ${tipo} in ('AQUISICAO') and ${tipo_proposta} = 'NOVO'then --,'R1','R2','R3','R4','R5','R6','R7') then
          (case when ${nm_modalidade_produto} <> 'FIDC' then 100
               else (case when ${atribuicao} = 'ITAU' then
                        (case when ${tipo} = 'AQUISICAO' then 129
@@ -154,6 +161,7 @@ from (
     type: count
     label: "Quantidade de Contratos"
     description: "Contagem dos contratos cedidos."
+
   }
 
   measure: sum_alunos_ano {
@@ -166,6 +174,7 @@ from (
   measure: count_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
+    drill_fields: [detail*]
     label: "Quantidade de Alunos Total"
     description: "Contagem distinta de CPF, independente do ano."
   }
@@ -174,6 +183,7 @@ from (
     type: sum
     sql: ${remuneracao_variavel_itau} ;;
     label: "Remuneração Variável Itaú"
+    filters: [tipo_proposta: "NOVO"]
     value_format: "$ #,##0.00"
   }
 
