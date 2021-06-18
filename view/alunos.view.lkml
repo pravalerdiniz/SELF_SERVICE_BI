@@ -1405,7 +1405,6 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${TABLE}."FLG_PROMESSA" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "Promessa Ativa?"
-    hidden: yes
     description: "Indica se o aluno possui promessa ativo (Yes/No)"
   }
 
