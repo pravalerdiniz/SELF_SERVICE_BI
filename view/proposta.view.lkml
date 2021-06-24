@@ -2150,6 +2150,7 @@ view: proposta {
     sql: ${TABLE}."FLG_CANCELADO" ;;
   }
 
+
   measure: count_proposta {
     type: count
     group_label: "Proposta"
@@ -2928,12 +2929,15 @@ view: proposta {
   }
 
   measure: sum_perc_desagio {
-    type: sum
+    type: number
     group_label: "Valores Cessão"
     group_item_label: "Desagio % - Soma"
-    sql: ${vl_repasse_ies} / ${vl_financiamento};;
+    sql: ${perc_desagio};;
     description: "Soma de valor do Desagio % "
+
   }
+
+
 
   measure: avg_perc_comissao {
     type: average
