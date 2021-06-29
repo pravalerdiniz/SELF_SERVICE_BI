@@ -8,6 +8,7 @@ view: payment {
       description:"OBJETO CONTENDO OS BOLETOS A SEREM PAGOS"
       hidden: yes
   }
+
   dimension: cep {
     type: string
     sql: ${TABLE}."CEP";;
@@ -100,6 +101,25 @@ view: payment {
     group_label: "Dados Responsável Financeiro"
   }
 
+measure: count_cpf_distinct {
+  type: count_distinct
+  sql: ${cpf} ;;
+  group_label: "Quantidade de CPF"
+  group_item_label: "Valor"
+  description: "Indica a quantidade de CPF dos alunos do Curta Duração"
+  drill_fields: []
+
+}
+
+  measure: perc_cpf_distinct {
+    type: percent_of_total
+    sql: ${count_cpf_distinct} ;;
+    group_label: "Quantidade de CPF"
+    group_item_label: "Porcentagem"
+    description: "Indica a porcentagem da quantidade de CPF dos alunos do Curta Duração"
+    drill_fields: []
+
+  }
 
   measure: count {
     type: count

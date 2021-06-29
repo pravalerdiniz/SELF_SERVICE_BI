@@ -299,4 +299,44 @@ view: institution {
     drill_fields: []
     group_item_label: "Total de Cursos"
   }
+
+  measure: sum_vl_curso {
+    type: sum
+    group_label: "Valor do Curso"
+    group_item_label: "Soma"
+    sql: ${vl_curso} ;;
+
+
+  }
+
+  measure: avg_vl_curso {
+    type: average
+    group_label: "Valor do Curso"
+    group_item_label: "Média"
+    sql: ${vl_curso} ;;
+
+
+  }
+
+  measure: min_vl_curso {
+    type: min
+    group_label: "Valor do Curso"
+    group_item_label: "Mínimo"
+    sql: ${vl_curso} ;;
+
+
+  }
+
+  measure: max_vl_curso {
+    type: max
+    group_label: "Valor do Curso"
+    group_item_label: "Máximo"
+    sql: ${vl_curso} ;;
+  }
+
+
+
+
+
+
 }
