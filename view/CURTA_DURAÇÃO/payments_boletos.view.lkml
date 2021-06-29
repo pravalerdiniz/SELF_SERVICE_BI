@@ -55,6 +55,7 @@ lateral flatten (input=>boletos) f
     type: sum
     group_item_label: "Valor da Parcela"
     sql: ${TABLE}."VL_BOLETO" ;;
+    value_format: "$ #,##0.00"
     description: "VALOR DO BOLETO"
   }
 
