@@ -264,6 +264,27 @@ view: jornada {
     description: "Indica a data da última alteração de status que a proposta teve"
   }
 
+  dimension_group: data_ultimo_dia_mes {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql:last_day(${TABLE}."DT_ULTIMO_STATUS", 'month') ;;
+    label: "Último dia do Mês"
+    description: "Indica o último dia de cada mês referente ao último status da proposta"
+  }
+
 
   #Telemetria
 
@@ -311,13 +332,30 @@ view: jornada {
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
-  dimension: ultimo_dia_mes{
-    type: date
-    sql: EOMONTH(${data_ultimo_status_raw}) ;;
-    group_label: "Ùltimo data"
-    description: "Indica a quantos dias o aluno está no mesmo status"
+  dimension: tempo_no_status_mes{
+    type: number
+    sql: datediff('day',${data_ultimo_status_raw},${data_ultimo_dia_mes_raw}) ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo no Status - Mês"
+    hidden: yes
+    description: "Indica o tempo em dias do último status do aluno até o final do mês"
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
+
+  dimension: tempo_no_status_mes_correto{
+    type: number
+    sql: CASE WHEN ${tempo_no_status_mes} < 0 THEN NULL ELSE ${tempo_no_status_mes} END ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo no Status - Mês - Correto"
+    hidden: yes
+    description: "Indica o tempo em dias do último status do aluno até o final do mês"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
+
+
+
+
 
   dimension: tempo_no_status_hora {
     type: number
@@ -1301,6 +1339,16 @@ view: jornada {
     value_format: "0"
     drill_fields: [detail*]
     description: "Media de tempo no status"
+  }
+
+  measure: tempo_status_mes {
+    type: average
+    sql: ${tempo_no_status_mes_correto} ;;
+    group_label: "Tempo no Status Atual "
+    group_item_label: "Dias - Mês a Mês"
+    value_format: "0"
+    drill_fields: [detail*]
+    description: "Media de tempo no status mês a mês"
   }
 
   measure: tempo_status_median {
