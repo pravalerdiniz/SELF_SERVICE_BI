@@ -254,8 +254,8 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tipo_conexao {
       type: string
-      label: "Tipo de Conexão"
-      description: "Indica o tipo de conexão da chamada. Ex: Interno ou Externo."
+      label: "Tipo de Desconexão"
+      description: "Indica se a ligação foi desconectada internamente pelo atendente ou externamente pelo aluno."
       sql: ${TABLE}."TIPO_CONEXAO" ;;
     }
 

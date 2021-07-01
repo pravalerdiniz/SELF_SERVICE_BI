@@ -1,6 +1,7 @@
 view: payments_boletos {
   derived_table: {
-    sql: select py.chave_contrato,
+    sql: select key KEY,
+        py.chave_contrato,
        f.value:COUNT_OVERDUE_NOTIFICATION::int as DIAS_VENCIDO,
        F.VALUE:DUE_DATE::DATE AS DATA_VENCIMENTO,
        F.VALUE:INSTALLMENT_NUMBER::INT AS NUM_PARCELA,
@@ -15,6 +16,13 @@ lateral flatten (input=>boletos) f
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  dimension: key {
+    type: string
+    group_item_label: "Linha Digitável"
+    sql: ${TABLE}."KEY" ;;
+    description: "CODIGO DO BOLETO, LINHA DIGITÁVEL"
   }
 
   dimension: chave_contrato {
