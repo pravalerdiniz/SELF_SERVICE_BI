@@ -293,6 +293,18 @@ view: interacoes {
     sql: ${interacoes_apontamentos_monitoria.nome_procedimento};;
   }
 
+  dimension: conformidade_checklist {
+    type: string
+    label: "Conformidade - Apontamento"
+    group_label: "Dados de Monitoria"
+    description: "Indica a conformidade ou não do apontamento. Ex: Conforme, Não Conforme."
+    sql: ${interacoes_apontamentos_monitoria.conformidade_checklist};;
+  }
+
+
+
+
+
   dimension: procedimento {
     type: string
     label: "Checklist Detalhado"
