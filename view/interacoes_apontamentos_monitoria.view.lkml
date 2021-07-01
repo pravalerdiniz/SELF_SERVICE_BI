@@ -82,7 +82,7 @@ view: interacoes_apontamentos_monitoria {
     label: "Conformidade por apontamento"
     description: "Indica a conformidade ou não conformidade por apontamento de monitoria"
     hidden: yes
-    sql: ${TABLE}." FLG_AVALIACAO" ;;
+    sql: ${TABLE}."FLG_AVALIACAO" ;;
   }
 
 
