@@ -295,7 +295,7 @@ view: interacoes {
 
   dimension: conformidade_checklist {
     type: string
-    label: "Conformidade - Apontamento"
+    label: "Conformidade - Apontamento Checklist"
     group_label: "Dados de Monitoria"
     description: "Indica a conformidade ou não do apontamento. Ex: Conforme, Não Conforme."
     sql: ${interacoes_apontamentos_monitoria.conformidade_checklist};;
@@ -661,7 +661,7 @@ view: interacoes {
 
   dimension: conformidade{
     type: string
-    group_item_label: "Conformidade"
+    group_item_label: "Conformidade - Nota Geral"
     group_label: "Dados de Monitoria"
     description: "Indica se a nota da monitoria é ou não conforme."
     sql: ${TABLE}."CONFORMIDADE" ;;
