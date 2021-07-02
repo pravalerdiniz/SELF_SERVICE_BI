@@ -42,6 +42,7 @@ view: payment {
       description:"CPF DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "CPF"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_cpf]
   }
   dimension: email {
     type: string
@@ -49,6 +50,7 @@ view: payment {
       description:"EMAIL DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "E-mail"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_email]
   }
   dimension: estado {
     type: string
@@ -70,6 +72,7 @@ view: payment {
       description:"NOME DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "Nome"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_nome]
   }
   dimension: numero {
     type: string
@@ -91,6 +94,7 @@ view: payment {
       description:"TELEFONE DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "Telefone"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_telefone]
   }
   dimension_group: ultima_atualizacao {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
