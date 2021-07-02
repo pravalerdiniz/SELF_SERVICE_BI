@@ -8,7 +8,7 @@ view: interacoes_apontamentos_monitoria {
       T.VALUE:NOTA::INT NOTA,
       T.VALUE:NOME_AGENTE::VARCHAR NOME_AGENTE,
       T.VALUE:NOME_AVALIADOR::VARCHAR NOME_AVALIADOR,
-      T.VALUE:FLG_AVALIACAO::VARCHAR
+      T.VALUE:FLG_AVALIACAO::VARCHAR FLG_AVALIACAO
       FROM GRADUADO.SELF_SERVICE_BI.INTERACOES A,
       LATERAL FLATTEN (INpUT => APONTAMENTOS) T
        ;;
@@ -82,7 +82,7 @@ view: interacoes_apontamentos_monitoria {
     label: "Conformidade por apontamento"
     description: "Indica a conformidade ou não conformidade por apontamento de monitoria"
     hidden: yes
-    sql: ${TABLE}." FLG_AVALIACAO" ;;
+    sql: ${TABLE}."FLG_AVALIACAO" ;;
   }
 
 
