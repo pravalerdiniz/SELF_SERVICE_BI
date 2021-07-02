@@ -142,21 +142,41 @@ view: contracts {
   }
 
   dimension_group: data_emissao {
-    type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
-    datatype: date
+    type: time
+    convert_tz: no
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."DATA_EMISSAO";;
     description: "DATA DE EMISSÃO DO CONTRATO"
-    group_label: "Dados do Contrato"
-    group_item_label: "Data de Criação do Contrato"
+    label: "Criação do Contrato"
   }
 
   dimension_group: data_pagamento {
-    type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
-    datatype: date
+    type: time
+    convert_tz: no
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."DATA_PAGAMENTO";;
     description: "DATA DE PAGAMENTO DO CONTRATO"
-    group_item_label: "Data de Pagamento do Contrato"
-    group_label: "Dados do Contrato"
+    label: "Pagamento do Contrato"
   }
 
   dimension: ddd_resp_fin {

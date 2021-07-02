@@ -73,11 +73,22 @@ view: institution {
     group_label: "Dados da Instituição"
   }
   dimension_group: contrato_data_atualizacao {
-    type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."CONTRATO_DATA_ATUALIZACAO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DO CONTRATO"
-    group_item_label: "Data Atualização do Contrato"
-    group_label: "Dados da Instituição"
+    label: "Atualização do Contrato"
+
   }
   dimension: contrato_data_reembolso {
     type: number
@@ -95,19 +106,41 @@ view: institution {
   }
 
   dimension_group: curso_data_atualizacao {
-    type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."CURSO_DATA_ATUALIZACAO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DO CURSO"
-    group_item_label: "Data de Atualização do Curso"
-    group_label: "Dados do Curso"
+    label: "Curso Atualização"
+
   }
 
   dimension_group: data_atualizacao_endereco {
-    type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ENDERECO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DO ENDEREÇO"
-    group_item_label: "Data de Atualização do Endereço"
-    group_label: "Dados da Instituição"
+    label: "Endereço Atualização"
+
   }
 
   dimension: data_emissao_contrato {
@@ -189,11 +222,22 @@ view: institution {
     group_label: "Dados da Instituição"
   }
   dimension_group: instituicao_data_atualizacao {
-    type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."INSTITUICAO_DATA_ATUALIZACAO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DA INSTITUIÇÃO"
-    group_item_label: "Data da Ultima Atualização"
-    group_label: "Dados da Instituição"
+    label: "Ultima Atualização - Instituição"
+
   }
   dimension: logo_instituicao {
     type: string

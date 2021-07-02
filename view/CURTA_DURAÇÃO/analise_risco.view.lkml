@@ -40,17 +40,41 @@ view: analise_risco {
   }
 
   dimension_group: dt_atualizacao {
-    type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
     datatype: date
-    group_item_label: "Data de Atualização"
+    label: "Atualização"
     sql: ${TABLE}."DT_ATUALIZACAO" ;;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
   }
 
   dimension_group: data_insercao {
-    type: time timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
     sql: ${TABLE}."DATA_INSERCAO" ;;
-    group_item_label: "Data de Criação"
+    label: "Criação"
     description: "DATA DE CRIAÇÃO DO REGISTRO"
   }
 
