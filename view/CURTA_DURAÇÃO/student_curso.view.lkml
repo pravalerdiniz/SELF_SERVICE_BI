@@ -27,6 +27,7 @@ view: student_curso {
   dimension: id_curso {
     type: string
     sql: ${TABLE}."ID_CURSO" ;;
+    primary_key: yes
     hidden: yes
   }
 

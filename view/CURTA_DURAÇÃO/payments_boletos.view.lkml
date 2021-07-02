@@ -23,6 +23,7 @@ lateral flatten (input=>boletos) f
     group_item_label: "Linha Digitável"
     sql: ${TABLE}."KEY" ;;
     description: "CODIGO DO BOLETO, LINHA DIGITÁVEL"
+    primary_key: yes
   }
 
   dimension: chave_contrato {

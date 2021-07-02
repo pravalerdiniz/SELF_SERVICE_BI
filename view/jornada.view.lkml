@@ -337,7 +337,7 @@ view: jornada {
     sql: datediff('day',${data_ultimo_status_raw},${data_ultimo_dia_mes_raw}) ;;
     group_label: "Telemetria"
     group_item_label: "Tempo no Status - Mês"
-    hidden: yes
+
     description: "Indica o tempo em dias do último status do aluno até o final do mês"
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }

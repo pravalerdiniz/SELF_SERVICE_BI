@@ -188,6 +188,7 @@ view: student {
     sql: ${TABLE}."ID_ALUNO";;
     description:"IDENTIFICAR ÚNICO DO ALUNO"
     group_item_label: "Id Aluno"
+    primary_key: yes
     group_label: "Dados do Aluno"
   }
   dimension: id_fiador {

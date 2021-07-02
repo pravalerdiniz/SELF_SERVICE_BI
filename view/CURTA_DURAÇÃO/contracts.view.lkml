@@ -276,6 +276,7 @@ view: contracts {
     sql: ${TABLE}."ID_CONTRATO";;
     description: "IDENTIFICADOR DO CONTRATO"
     group_item_label: "Id do Contrato"
+    primary_key: yes
     group_label: "Dados do Contrato"
   }
 

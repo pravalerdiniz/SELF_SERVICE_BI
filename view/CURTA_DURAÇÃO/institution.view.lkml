@@ -212,6 +212,7 @@ view: institution {
     sql: ${TABLE}."ID_CURSO";;
     description:"IDENTIFICADOR DO CURSO"
     group_item_label: "Id Curso"
+    primary_key: yes
     group_label: "Dados do Curso"
   }
   dimension: id_instituicao {

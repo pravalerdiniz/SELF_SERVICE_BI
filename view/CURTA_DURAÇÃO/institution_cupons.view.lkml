@@ -31,6 +31,7 @@ view: institution_cupons {
     group_item_label: "ID do Cupom"
     description: "Indica o ID do cupom"
     hidden: yes
+    primary_key: yes
     sql: ${TABLE}."ID_CUPOM" ;;
   }
 

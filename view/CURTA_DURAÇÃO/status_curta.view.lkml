@@ -56,7 +56,8 @@ view: status_curta {
   dimension: id_status {
     type: string
     sql: ${TABLE}."ID_STATUS" ;;
-    description: "IDENTIFICADOR DO REGISTRO NA TABELA DE STAUTS"
+    description: "IDENTIFICADOR DO REGISTRO NA TABELA DE STATUS"
+    primary_key: yes
     group_item_label: "Id do Status"
   }
 

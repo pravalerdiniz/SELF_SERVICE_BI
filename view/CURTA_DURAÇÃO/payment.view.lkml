@@ -64,6 +64,7 @@ view: payment {
     sql: ${TABLE}."ID_RESPONSAVEL_PAGAMENTO";;
       description:"IDENTIFICADOR UNICO DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "Id do Responsável"
+      primary_key: yes
     group_label: "Dados Responsável Financeiro"
   }
   dimension: nome {

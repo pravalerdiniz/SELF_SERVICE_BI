@@ -29,6 +29,7 @@ view: risk {
     type: string
     sql: ${TABLE}."ID_ALUNO" ;;
     description: "IDENTIFICAR ÚNICO DO ALUNO"
+    primary_key: yes
     hidden: yes
   }
 
