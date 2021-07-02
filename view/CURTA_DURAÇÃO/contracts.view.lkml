@@ -123,6 +123,7 @@ view: contracts {
     description: "NUMERO DO CPF DO ALUNO"
     group_item_label: "CPF"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_cpf]
   }
 
   dimension: cpf_resp_fin {
@@ -131,6 +132,7 @@ view: contracts {
     description: "CPF DO RESPONSÁVEL FINANCEIRO DO CONTRATO"
     group_item_label: "CPF"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_cpf]
   }
 
   dimension: curso {
@@ -250,6 +252,7 @@ view: contracts {
     description: "EMAIL DO RESPONSÁVEL FINANCEIRO DO CONTRATO"
     group_item_label: "E-mail"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_email]
   }
 
   dimension: estado_resp_fin {
@@ -306,6 +309,7 @@ view: contracts {
     description: "NOME COMPLETO DO ALUNO"
     group_item_label: "Nome"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_nome]
   }
 
   dimension: nome_banco {
@@ -330,6 +334,7 @@ view: contracts {
     description: "NOME DA MÃE DO RESPONSÁVEL FINANCEIRO PELO CONTRATO"
     group_item_label: "Nome da Mãe"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_nome]
   }
 
   dimension: nome_resp_fin {
@@ -338,6 +343,7 @@ view: contracts {
     description: "NOME DO RESPONSÁVEL FINANCEIRO DO CONTRATO"
     group_item_label: "Nome"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_nome]
   }
 
   dimension: num_agencia {
@@ -523,6 +529,7 @@ view: contracts {
     description: "NUMERO DO TELEFONE DO RESPONSAVEL FINANCEIRO"
     group_item_label: "Telefone"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_telefone]
   }
 
   dimension: tipo_interesse {

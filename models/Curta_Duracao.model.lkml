@@ -1,5 +1,44 @@
 connection: "veeterano"
 
+access_grant: grupo_nome {
+  user_attribute: grupo_nome
+  allowed_values: ["grupo_nome"]
+
+}
+
+access_grant: grupo_telefone {
+  user_attribute: grupo_telefone
+  allowed_values: ["grupo_telefone"]
+}
+
+access_grant: grupo_endereco {
+  user_attribute: grupo_endereco
+  allowed_values: ["grupo_endereco"]
+}
+
+access_grant: grupo_email {
+  user_attribute: grupo_email
+  allowed_values: ["grupo_email"]
+}
+
+access_grant: grupo_renda {
+  user_attribute: grupo_renda
+  allowed_values: ["grupo_renda"]
+}
+
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
+
+map_layer: MAPA_ESTADO_ALUNO {
+  file: "/MAPAS/uf.json"
+}
+
+map_layer: MAPA_CIDADE_ALUNO {
+  file: "/MAPAS/municipio.json"
+}
+
  include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 

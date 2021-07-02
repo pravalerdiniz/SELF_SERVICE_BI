@@ -65,6 +65,7 @@ view: student {
     description:"NUMERO DO CPF DO ALUNO"
     group_item_label: "CPF"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_cpf]
   }
   dimension: cpf_fiador {
     type: number
@@ -72,6 +73,7 @@ view: student {
     description:"CPF DO FIADOR"
     group_item_label: "CPF"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_cpf]
   }
   dimension: cpf_garantidor {
     type: number
@@ -79,6 +81,7 @@ view: student {
     description:"CPF DO GARANTIDOR"
     group_item_label: "CPF"
     group_label: "Dados do Garantidor"
+    required_access_grants: [grupo_cpf]
   }
   dimension: cursos {
     type: string
@@ -149,6 +152,7 @@ view: student {
     description:"E-MAIL DO ALUNO"
     group_item_label: "E-mail"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_email]
   }
   dimension: email_fiador {
     type: string
@@ -156,6 +160,7 @@ view: student {
     description:"EMAIL DO FIADOR"
     group_item_label: "E-mail"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_email]
   }
   dimension: estado {
     type: string
@@ -205,6 +210,7 @@ view: student {
     description:"NOME DO ALUNO"
     group_item_label: "Nome"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_nome]
   }
   dimension: nome_fiador {
     type: string
@@ -212,6 +218,7 @@ view: student {
     description:"NOME DO FIADOR"
     group_item_label: "Nome"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_nome]
   }
   dimension: nome_garantidor {
     type: string
@@ -219,6 +226,7 @@ view: student {
     description:"NOME DO GARANTIDOR"
     group_item_label: "Nome"
     group_label: "Dados do Garantidor"
+    required_access_grants: [grupo_nome]
   }
   dimension: numero_endereco {
     type: string
@@ -282,6 +290,7 @@ view: student {
     description:"TELEFONE PRINCIPAL DO ALUNO"
     group_item_label: "Telefone Principal"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_telefone]
   }
   dimension: telefone_aluno_2 {
     type: string
@@ -289,6 +298,7 @@ view: student {
     description:"TELEFONE SECUNDÁRIO DO ALUNO"
     group_item_label: "Telefone Secundario"
     group_label: "Dados do Aluno"
+    required_access_grants: [grupo_telefone]
   }
   dimension: telefone_primario_fiador {
     type: string
@@ -296,6 +306,7 @@ view: student {
     description:"TELEFONE PRIMARIO DO FIADOR"
     group_item_label: "Telefone Principal"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_telefone]
   }
   dimension: telefone_secundario_fiador {
     type: string
@@ -303,6 +314,7 @@ view: student {
     description:"TELEFONE SECUNDARIO DO FIADOR"
     group_item_label: "Telefone Secundario"
     group_label: "Dados Responsável Financeiro"
+    required_access_grants: [grupo_telefone]
   }
 
   measure: count {
