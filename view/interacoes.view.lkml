@@ -287,9 +287,9 @@ view: interacoes {
 
   dimension: nome_procedimento {
     type: string
-    label: "Checklist"
+    label: "Apontamentos - Checklist"
     group_label: "Dados de Monitoria"
-    description: "Indica checklist da monitoria por ticket"
+    description: "Indica o checklist completo com todos os apontamentos da monitoria por ticket"
     sql: ${interacoes_apontamentos_monitoria.nome_procedimento};;
   }
 
@@ -315,9 +315,9 @@ view: interacoes {
 
   dimension: nota {
     type: number
-    label: "Nota por Checklist"
+    label: "Peso - Nota por Apontamento - Checklist"
     group_label: "Dados de Monitoria"
-    description: "Indica a nota da monitoria"
+    description: "Indica o peso da nota para cada apontamento da monitoria"
     sql: ${interacoes_apontamentos_monitoria.nota};;
   }
 
