@@ -138,8 +138,8 @@ view: risk {
   measure: sum_renda_fiador {
     type: sum
     sql: ${renda_fiador} ;;
-    group_label: "Renda_Fiador"
-    group_item_label: "Fiador_Soma"
+    group_label: "Renda Fiador"
+    group_item_label: "Fiador Soma"
     value_format: "$ #,###"
     description: "Indica a soma do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
@@ -149,8 +149,8 @@ view: risk {
   measure: avg_renda_fiador {
     type: average
     sql: ${renda_fiador} ;;
-    group_label: "Renda_Fiador"
-    group_item_label: "Fiador_Média"
+    group_label: "Renda Fiador"
+    group_item_label: "Fiador Média"
     value_format: "$ #,###"
     description: "Indica a média do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
@@ -161,8 +161,8 @@ view: risk {
   measure: med_renda_fiador {
     type: median
     sql: ${renda_fiador} ;;
-    group_label: "Renda_Fiador"
-    group_item_label: "Fiador_Mediana"
+    group_label: "Renda Fiador"
+    group_item_label: "Fiador Mediana"
     value_format: "$ #,###"
     description: "Indica a mediana do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
@@ -172,8 +172,8 @@ view: risk {
   measure: min_renda_fiador {
     type: min
     sql: ${renda_fiador} ;;
-    group_label: "Renda_Fiador"
-    group_item_label: "Fiador_Mínimo"
+    group_label: "Renda Fiador"
+    group_item_label: "Fiador Mínimo"
     value_format: "$ #,###"
     description: "Indica o mínimo do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
@@ -183,8 +183,8 @@ view: risk {
   measure: max_renda_fiadorr {
     type: max
     sql: ${renda_fiador} ;;
-    group_label: "Renda_Fiador"
-    group_item_label: "Fiador_Máximo"
+    group_label: "Renda Fiador"
+    group_item_label: "Fiador Máximo"
     value_format: "$ #,###"
     description: "Indica o máximo do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
