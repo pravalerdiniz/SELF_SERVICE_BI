@@ -9,6 +9,13 @@ view: risk {
     hidden: yes
   }
 
+  dimension: score {
+    type: string
+    sql: ${TABLE}."SCORE" ;;
+    description: "SCORE ATRIBUIDO AO ALUNO (CPF)"
+    group_item_label: "Score"
+  }
+
   dimension_group: dt_insecao {
     type: time
     timeframes: [
