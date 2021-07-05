@@ -318,6 +318,7 @@ view: student {
     required_access_grants: [grupo_telefone]
   }
 
+
   measure: count {
     type: count
     drill_fields: []

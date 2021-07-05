@@ -47,10 +47,12 @@ view: risk {
     hidden: yes
   }
 
+
   dimension: renda {
     type: string
     sql: ${TABLE}."RENDA" ;;
     description: "RENDA DO ALUNO"
+    value_format: "$ #,###"
     group_item_label: "Renda do Aluno"
   }
 
@@ -58,6 +60,7 @@ view: risk {
     type: string
     sql: ${TABLE}."RENDA_FIADOR" ;;
     description: "RENDA DO FIADOR"
+    value_format: "$ #,###"
     group_item_label: "Renda do Fiador"
   }
 
@@ -75,6 +78,63 @@ view: risk {
     sql: ${TABLE}."ULTIMA_ATUALIZACAO" ;;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DA ANALISE DE RISCO DO ALUNO"
   }
+
+  measure: sum_renda_aluno {
+    type: sum
+    sql: ${renda} ;;
+    group_label: "Renda"
+    group_item_label: "Soma"
+    value_format: "$ #,###"
+    description: "Indica a soma do valor da renda do aluno da última vez que ele passou pela análise de crédito"
+    drill_fields: []
+
+  }
+
+  measure: avg_renda_aluno {
+    type: average
+    sql: ${renda} ;;
+    group_label: "Renda"
+    group_item_label: "Média"
+    value_format: "$ #,###"
+    description: "Indica a média do valor da renda do aluno da última vez que ele passou pela análise de crédito"
+    drill_fields: []
+
+  }
+
+
+  measure: med_renda_aluno {
+    type: median
+    sql: ${renda} ;;
+    group_label: "Renda"
+    group_item_label: "Médiana"
+    value_format: "$ #,###"
+    description: "Indica a mediana do valor da renda do aluno da última vez que ele passou pela análise de crédito"
+    drill_fields: []
+
+  }
+
+  measure: min_renda_aluno {
+    type: min
+    sql: ${renda} ;;
+    group_label: "Renda"
+    group_item_label: "Mínimo"
+    value_format: "$ #,###"
+    description: "Indica o minimo do valor da renda do aluno da última vez que ele passou pela análise de crédito"
+    drill_fields: []
+
+  }
+
+  measure: max_renda_aluno {
+    type: max
+    sql: ${renda} ;;
+    group_label: "Renda"
+    group_item_label: "Máximo"
+    value_format: "$ #,###"
+    description: "Indica o máximo do valor da renda do aluno da última vez que ele passou pela análise de crédito"
+    drill_fields: []
+
+  }
+
 
   measure: count {
     type: count
