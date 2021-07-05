@@ -45,7 +45,7 @@ view: instituicao_metas_gc {
 
   dimension: meta_finalizado{
     type: number
-    label: "Metas Finalizado -  Histórico"
+    label: "Metas Finalizado -  Orçamento"
     sql: ${TABLE}."META_FINALIZADOS" ;;
   }
 
@@ -508,16 +508,18 @@ view: instituicao_metas_gc {
 
   measure:sum_finalizado_historico {
     type: sum
-    label: "Meta | Soma - Histórico"
+    label: "Soma - Histórico"
     group_label: "Finalizados"
+    description: "Indica a soma da meta da quantidade de finalizados histórico."
     sql: ${meta_finalizado_historico} ;;
 
   }
 
   measure:sum_finalizado {
     type: sum
-    label: "Meta - Soma"
+    label: "Soma - Orçamento"
     group_label: "Finalizados"
+    description: "Indica a soma da meta da quantidade de finalizados"
     sql: ${meta_finalizado} ;;
 
   }
