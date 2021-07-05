@@ -8,7 +8,8 @@ view: analise_risco {
           f.value:DATA_INSERCAO_RISCO::DATETIME AS DATA_INSERCAO,
           f.value:ESCOLA_ID::VARCHAR AS ID_INSTITUICAO,
           f.value:EVENTO_ID::VARCHAR AS ID_EVENTO,
-          f.value:POLITICA_RISCO::VARCHAR AS POLITICA_RISCO
+          f.value:POLITICA_RISCO::VARCHAR AS POLITICA_RISCO,
+          f.value:SCORE::FLOAT AS SCORE
              from "VETERANO"."CURTA"."RISK" py,
       lateral flatten (input=>ANALISE_RISCO) f
        ;;
@@ -31,6 +32,13 @@ view: analise_risco {
     sql: ${TABLE}."FLG_APROVADO" ;;
     group_item_label: "Aprovado na Politica de Risco"
     description: "INDICA SE O ALUNO PASSOU NA POLÍTICA DE RISCO ESPECÍFICA"
+  }
+
+  dimension: score {
+    type: number
+    sql: ${TABLE}."SCORE" ;;
+    group_item_label: "Score"
+    description: "INDICA O SCORE DO ALUNO"
   }
 
   dimension: id_curso {
