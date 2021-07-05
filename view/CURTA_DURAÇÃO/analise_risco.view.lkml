@@ -1,6 +1,7 @@
 view: analise_risco {
   derived_table: {
     sql: select
+          f.key as ID_ANALISE,
           f.value:ALUNO_ID::varchar as id_aluno,
           f.value:APROVADO::boolean as FLG_APROVADO,
           f.value:CURSO_ID::varchar as ID_CURSO,
@@ -14,6 +15,16 @@ view: analise_risco {
       lateral flatten (input=>ANALISE_RISCO) f
        ;;
   }
+
+
+  dimension: id_analise {
+    type: string
+    sql: ${TABLE}."ID_ANALISE" ;;
+    hidden: yes
+    primary_key: yes
+  }
+
+
 
   measure: count {
     type: count

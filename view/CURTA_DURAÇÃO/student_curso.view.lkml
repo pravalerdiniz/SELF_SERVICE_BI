@@ -1,6 +1,7 @@
 view: student_curso {
   derived_table: {
     sql: select    py.id_aluno,
+           f.key as ID_ALUNO_CURSO,
            F.VALUE:COURSE_ID::VARCHAR ID_CURSO,
           F.VALUE:DISCOUNT_PERCENTAGE::FLOAT AS PORC_DESC,
           F.VALUE:DOWN_PAYMENT::FLOAT AS PAGAMENTO_INICIAL,
@@ -24,10 +25,16 @@ view: student_curso {
     hidden: yes
   }
 
+  dimension: id_aluno_curso {
+    type: string
+    sql: ${TABLE}."ID_ALUNO_CURSO" ;;
+    hidden: yes
+    primary_key: yes
+  }
+
   dimension: id_curso {
     type: string
     sql: ${TABLE}."ID_CURSO" ;;
-    primary_key: yes
     hidden: yes
   }
 

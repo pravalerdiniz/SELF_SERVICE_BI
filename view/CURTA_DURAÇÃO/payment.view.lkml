@@ -20,6 +20,7 @@ view: payment {
     type: string
     sql: ${TABLE}."CHAVE_CONTRATO";;
       description:"CHAVE DE LIGAÇÃO COM O CONTRATO"
+      primary_key: yes
       hidden: yes
   }
   dimension: cidade {
@@ -64,7 +65,6 @@ view: payment {
     sql: ${TABLE}."ID_RESPONSAVEL_PAGAMENTO";;
       description:"IDENTIFICADOR UNICO DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "Id do Responsável"
-      primary_key: yes
     group_label: "Dados Responsável Financeiro"
   }
   dimension: nome {

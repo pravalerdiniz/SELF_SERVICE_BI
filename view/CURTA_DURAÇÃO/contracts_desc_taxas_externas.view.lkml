@@ -20,6 +20,7 @@ view: contracts_desc_taxas_externas {
     type: string
     group_item_label: "Código do Contrato"
     description: "Indica o código do contrato do aluno"
+    primary_key: yes
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
