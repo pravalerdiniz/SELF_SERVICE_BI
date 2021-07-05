@@ -18,7 +18,9 @@ view: instituicao_metas_gc {
                     INICIADOS_ORCAMENTO,
                     CEDIDOS_ORCAMENTO,
                     META_INICIADOS_HISTORICO,
-                    META_CEDIDOS_HISTORICO
+                    META_CEDIDOS_HISTORICO,
+                    META_FINALIZADOS,
+                    HISTORICO_FINALIZADOS
                    from VETERANO.DIMENSAO.DIM_META_GC
  ;;
     }
@@ -33,6 +35,18 @@ view: instituicao_metas_gc {
     type: number
     label: "Metas Cedidos -  Histórico"
     sql: ${TABLE}."META_CEDIDOS_HISTORICO" ;;
+  }
+
+  dimension: meta_finalizado_historico{
+    type: number
+    label: "Metas Finalizado -  Histórico"
+    sql: ${TABLE}."HISTORICO_FINALIZADOS" ;;
+  }
+
+  dimension: meta_finalizado{
+    type: number
+    label: "Metas Finalizado -  Histórico"
+    sql: ${TABLE}."META_FINALIZADOS" ;;
   }
 
   dimension: iniciados_orcamento{
@@ -491,6 +505,22 @@ view: instituicao_metas_gc {
 
   }
 
+
+  measure:sum_finalizado_historico {
+    type: sum
+    label: "Meta | Soma - Histórico"
+    group_label: "Finalizados"
+    sql: ${meta_finalizado_historico} ;;
+
+  }
+
+  measure:sum_finalizado {
+    type: sum
+    label: "Meta - Soma"
+    group_label: "Finalizados"
+    sql: ${meta_finalizado} ;;
+
+  }
 
 
 
