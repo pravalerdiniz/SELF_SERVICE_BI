@@ -17,7 +17,8 @@ view: jornada {
       month_name,
       day_of_year,
       hour_of_day,
-      month_num
+      month_num,
+      day_of_month
     ]
     sql: ${TABLE}."DT_STATUS" ;;
     label: "Etapa"
