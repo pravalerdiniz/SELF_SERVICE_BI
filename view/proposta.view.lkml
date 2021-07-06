@@ -1326,6 +1326,16 @@ view: proposta {
     value_format: "0"
   }
 
+
+  dimension: pontuacao_interna {
+    type: number
+    group_label: "Dados da Proposta"
+    label: "Score Interno"
+    description: "Indica o pontuação de score interno da proposta do aluno."
+    sql: ${TABLE}."PONTUACAO_INTERNA" ;;
+    value_format: "0"
+  }
+
   dimension: id_status_detalhado {
     type: string
     group_label: "Jornada"
@@ -1899,6 +1909,16 @@ view: proposta {
     value_format: "0"
   }
 
+
+  dimension: score_externo {
+    type: number
+    group_label: "Dados do Aluno"
+    label: "Score -  Externo"
+    description: "Indica a pontuação do score externo do aluno. "
+    sql: ${TABLE}."PONTUACAO_EXTERNA" ;;
+    value_format: "0"
+  }
+
   dimension: vl_subsidiado {
     type: number
     group_label: "Dados da Cessão"
@@ -2023,6 +2043,16 @@ view: proposta {
     group_item_label: "Profissão"
     description: "Indica a profissão do fiador"
     sql: ${TABLE}."PROFISSAO_GARANTIDOR" ;;
+  }
+
+
+  dimension: pontuacao_externa_fiador{
+    type: number
+    group_label: "Dados do Fiador"
+    group_item_label: "Score - Externo"
+    description: "Indica a pontuação do score externo do fiador"
+    value_format: "0"
+    sql: ${TABLE}."FIA_PONTUACAO_EXTERNA" ;;
   }
 
 
