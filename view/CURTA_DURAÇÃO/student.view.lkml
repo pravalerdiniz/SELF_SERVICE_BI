@@ -318,9 +318,13 @@ view: student {
     required_access_grants: [grupo_telefone]
   }
 
-
-  measure: count {
-    type: count
+  measure: count_cpf_aluno {
+    type: count_distinct
+    sql: ${cpf_aluno} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID CPFs únicos"
     drill_fields: []
   }
+
 }
