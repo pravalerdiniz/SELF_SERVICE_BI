@@ -61,6 +61,7 @@ view: risk {
     sql: ${TABLE}."RENDA_FIADOR" ;;
     description: "RENDA DO FIADOR"
     value_format: "$ #,###"
+    hidden: yes
     group_item_label: "Renda do Fiador"
   }
 
