@@ -33,13 +33,15 @@ view: contracts_desc_taxas_externas {
 
   dimension: tipo_taxa {
     type: string
+    group_item_label: "Tipo de Taxa"
+    description: "Indica o tipo de taxa atribuida ao contrato do aluno"
     sql: ${TABLE}."TIPO_TAXA" ;;
   }
 
   dimension: perc_taxa_net {
     type: number
-    group_item_label: "Tipo de Taxa"
-    description: "Indica o tipo de taxa atribuido ao contrato do aluno"
+    group_item_label: "Percentual de Taxa NET"
+    description: "Indica o percentual de taxa NET atribuido ao contrato do aluno"
     sql: ${TABLE}."PERC_TAXA_NET" ;;
   }
 
