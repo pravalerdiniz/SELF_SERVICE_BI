@@ -94,22 +94,19 @@ view: student {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ACEITE";;
     description:"DATA EM QUE O ALUNO FOI ACEITO NO CURSO"
-    group_item_label: "Data de Aceite"
-    group_label: "Dados de Cursos"
+    group_item_label: "Aceite no curso"
   }
   dimension_group: data_atualizacao_aluno {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ALUNO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DOS DADOS DO ALUNO"
-    group_item_label: "Data de atualização"
-    group_label: "Dados do Aluno"
+    group_item_label: "Atualização dos Dados"
   }
   dimension_group: data_atualizacao_endereco {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ENDERECO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DO ENDEREÇO DO ALUNO"
-    group_item_label: "Data Atualização do Endereço"
-    group_label: "Dados do Aluno"
+    group_item_label: "Atualização do Endereço"
   }
   dimension_group: data_atualizacao_endereco_fiador {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
@@ -143,8 +140,7 @@ view: student {
     type: time    timeframes: [ raw, date, week, month, quarter, year    ]    convert_tz: no    datatype: date
     sql: ${TABLE}."DATA_NASCIMENTO_FIADOR";;
     description:"DATA DE NASCIMENTO DO FIADOR"
-    group_item_label: "Data Nascimento"
-    group_label: "Dados Responsável Financeiro"
+    group_item_label: "Nascimento - Resp. Financeiro"
   }
   dimension: email_aluno {
     type: string

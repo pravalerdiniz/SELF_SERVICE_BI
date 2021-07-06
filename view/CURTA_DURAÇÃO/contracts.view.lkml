@@ -242,8 +242,7 @@ view: contracts {
     datatype: date
     sql: ${TABLE}."DT_CRIACAO_TX_JUROS_PREFIXADA";;
     description: "DATA DE CRIAÇÃO DA TAXA DE JUROS PRE-FIXADA"
-    group_item_label: "Data de Criação da Taxa de Juros Pre-fixada"
-    group_label: "Taxas do Contrato"
+    group_item_label: "Criação da Taxa de Juros Pre-fixada"
   }
 
   dimension: email_resp_fin {
@@ -408,8 +407,7 @@ view: contracts {
     datatype: date
     sql: ${TABLE}."PRIMEIRA_DATA_VENCIMENTO";;
     description: "DATA DO VENCIMENTO DA PRIMEIRA PARCELA"
-    group_item_label: "Primeira Data de Vencimento"
-    group_label: "Dados do Contrato"
+    group_item_label: "Primeiro Vencimento"
   }
 
   dimension: procentagem_pagamento {
@@ -577,8 +575,7 @@ view: contracts {
     type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
     sql: ${TABLE}."ULTIMA_ATUALIZACAO";;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
-    group_item_label: "Data da Ultima Atualização"
-    group_label: "Dados do Contrato"
+    group_item_label: "Ultima Atualização do Contrato"
   }
 
   dimension: urls_contrato {
