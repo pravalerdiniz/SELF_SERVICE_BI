@@ -1333,7 +1333,7 @@ view: proposta {
     label: "Score Interno"
     description: "Indica o pontuação de score interno da proposta do aluno."
     sql: ${TABLE}."PONTUACAO_INTERNA" ;;
-    value_format: "0"
+
   }
 
   dimension: id_status_detalhado {
