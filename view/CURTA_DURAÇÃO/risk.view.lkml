@@ -43,10 +43,9 @@ view: risk {
   dimension: id_fiador {
     type: string
     sql: ${TABLE}."ID_FIADOR" ;;
-    description: "IDENTIFICAR ÚNICO DO FIADOR"
+    description: "IDENTIFICAR ID ÚNICO DO RESPONSÁVEL FINANCEIRO "
     hidden: yes
   }
-
 
   dimension: renda {
     type: string
@@ -62,7 +61,7 @@ view: risk {
     description: "RENDA DO FIADOR"
     value_format: "$ #,###"
     hidden: yes
-    group_item_label: "Renda do Fiador"
+    group_item_label: "Renda do Responsável Financeiro"
   }
 
   dimension_group: ultima_atualizacao {
@@ -143,7 +142,7 @@ view: risk {
     group_item_label: "Fiador Soma"
     value_format: "$ #,###"
     hidden: yes
-    description: "Indica a soma do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
+    description: "Indica a soma do valor da renda do Responsável Financeiro, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
 
   }
@@ -155,7 +154,7 @@ view: risk {
     group_item_label: "Fiador Média"
     value_format: "$ #,###"
     hidden: yes
-    description: "Indica a média do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
+    description: "Indica a média do valor da renda do Responsável Financeiro, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
 
   }
@@ -168,7 +167,7 @@ view: risk {
     group_item_label: "Fiador Mediana"
     value_format: "$ #,###"
     hidden: yes
-    description: "Indica a mediana do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
+    description: "Indica a mediana do valor da renda do Responsável Financeiro, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
 
   }
@@ -180,7 +179,7 @@ view: risk {
     group_item_label: "Fiador Mínimo"
     value_format: "$ #,###"
     hidden: yes
-    description: "Indica o mínimo do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
+    description: "Indica o mínimo do valor da renda do Responsável Financeiro, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
 
   }
@@ -192,7 +191,7 @@ view: risk {
     group_item_label: "Fiador Máximo"
     value_format: "$ #,###"
     hidden: yes
-    description: "Indica o máximo do valor da renda do fiador, da última vez que o aluno passou pela análise de crédito"
+    description: "Indica o máximo do valor da renda do Responsável Financeiro, da última vez que o aluno passou pela análise de crédito"
     drill_fields: []
 
   }
