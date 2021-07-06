@@ -602,6 +602,47 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
+  measure: sum_vl_curso {
+    type: sum
+    sql: ${vl_curso} ;;
+    group_label: "Valor Curso"
+    group_item_label: "Soma"
+    value_format: "$ #,###"
+    description: "Indica a soma do valor do curso do aluno"
+    drill_fields: []
+  }
+
+  measure: avg_vl_curso {
+    type: average
+    sql: ${vl_curso} ;;
+    group_label: "Valor Curso"
+    group_item_label: "Média"
+    value_format: "$ #,###"
+    description: "Indica a média do valor do curso do aluno"
+    drill_fields: []
+  }
+
+  measure: min_vl_curso {
+    type: min
+    sql: ${vl_curso} ;;
+    group_label: "Valor Curso"
+    group_item_label: "Mínimo"
+    value_format: "$ #,###"
+    description: "Indica o mínimo do valor do curso do aluno"
+    drill_fields: []
+  }
+
+  measure: max_vl_curso {
+    type: max
+    sql: ${vl_curso} ;;
+    group_label: "Valor Curso"
+    group_item_label: "Máximo"
+    value_format: "$ #,###"
+    description: "Indica o máximo do valor do curso do aluno"
+    drill_fields: []
+  }
+
+
   dimension: vl_mensalidade {
     type: string
     sql: ${TABLE}."VL_MENSALIDADE";;
