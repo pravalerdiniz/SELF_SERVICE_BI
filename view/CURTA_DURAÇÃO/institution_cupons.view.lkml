@@ -37,7 +37,7 @@ view: institution_cupons {
 
   dimension: flg_cupom_ativo {
     type: yesno
-    group_item_label: "FLG Cupom Ativo"
+    group_item_label: "Cupom Ativo?"
     description: "Indica se o cupom está ativo"
     sql: ${TABLE}."FLG_CUPOM_ATIVO" ;;
   }

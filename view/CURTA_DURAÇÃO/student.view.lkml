@@ -78,9 +78,10 @@ view: student {
   dimension: cpf_garantidor {
     type: number
     sql: ${TABLE}."CPF_GARANTIDOR";;
-    description:"CPF DO GARANTIDOR"
+    description:"CPF DO RESPONSÁVEL FINANCEIRO"
     group_item_label: "CPF"
     group_label: "Dados do Garantidor"
+    hidden: yes
     required_access_grants: [grupo_cpf]
   }
   dimension: cursos {
@@ -94,53 +95,50 @@ view: student {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ACEITE";;
     description:"DATA EM QUE O ALUNO FOI ACEITO NO CURSO"
-    group_item_label: "Aceite no curso"
+    label: "Aceite no curso"
   }
   dimension_group: data_atualizacao_aluno {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ALUNO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DOS DADOS DO ALUNO"
-    group_item_label: "Atualização dos Dados"
+    label: "Atualização dos Dados"
   }
   dimension_group: data_atualizacao_endereco {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ENDERECO";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DO ENDEREÇO DO ALUNO"
-    group_item_label: "Atualização do Endereço"
+    label: "Atualização do Endereço"
   }
   dimension_group: data_atualizacao_endereco_fiador {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_ENDERECO_FIADOR";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DOS DADOS DE ENDEREÇO DO FIADOR"
-    group_item_label: "Data Atualização Endereço"
-    group_label: "Dados Responsável Financeiro"
+    label: "Resp. Financeiro - Atualização Endereço"
   }
   dimension_group: data_atualizacao_fiador {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_FIADOR";;
     description:"DATA DE ATUALIZACAO DOS DADOS DO FIADOR"
-    group_item_label: "Data Atualização"
-    group_label: "Dados Responsável Financeiro"
+    label: "Resp. Financeiro - Atualização de Dados"
   }
   dimension_group: data_atualizacao_garantidor {
     type: time    timeframes: [ raw, time, date, week, month, quarter, year    ]
     sql: ${TABLE}."DATA_ATUALIZACAO_GARANTIDOR";;
     description:"DATA DA ULTIMA ATUALIZAÇÃO DOS DADOS DO GARANTIDOR"
-    group_item_label: "Data Atualização"
-    group_label: "Dados do Garantidor"
+    hidden: yes
+    group_item_label: "Resp. Financeiro - Última Atualização"
   }
   dimension_group: data_nascimento_aluno {
     type: time    timeframes: [ raw, date, week, month, quarter, year    ]    convert_tz: no    datatype: date
     sql: ${TABLE}."DATA_NASCIMENTO_ALUNO";;
     description:"DATA DE NASCIMENTO DO ALUNO"
-    group_item_label: "Data Nascimento"
-    group_label: "Dados do Aluno"
+     label: "Aluno - Nascimento"
   }
   dimension_group: data_nascimento_fiador {
     type: time    timeframes: [ raw, date, week, month, quarter, year    ]    convert_tz: no    datatype: date
     sql: ${TABLE}."DATA_NASCIMENTO_FIADOR";;
     description:"DATA DE NASCIMENTO DO FIADOR"
-    group_item_label: "Nascimento - Resp. Financeiro"
+    group_item_label: "Resp. Financeiro - Nascimento"
   }
   dimension: email_aluno {
     type: string
@@ -168,9 +166,10 @@ view: student {
   dimension: estado_civil_garantidor {
     type: string
     sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR";;
-    description:"ESTADO CIVIL DO GARANTIDOR"
+    description:"ESTADO CIVIL DO RESPONSAVEL FINANCEIRO"
     group_item_label: "Estado Civil"
-    group_label: "Dados do Garantidor"
+    hidden: yes
+    group_label: "Dados Responsável Financeiro"
   }
   dimension: estado_fiador {
     type: string
@@ -191,13 +190,14 @@ view: student {
     type: string
     sql: ${TABLE}."ID_FIADOR";;
     description:"IDENTIFICADOR UNICO DO FIADOR"
-    group_item_label: "Id FIador"
+    group_item_label: "ID Resp. Financeiro"
     group_label: "Dados Responsável Financeiro"
   }
   dimension: id_ocupacao {
     type: string
     sql: ${TABLE}."ID_OCUPACAO";;
     description:"IDENTIFICARDO DA OCUPAÇÃO DO GARANTIDOR"
+    hidden: yes
     group_item_label: "Ocupação"
     group_label: "Dados do Garantidor"
   }
@@ -220,9 +220,10 @@ view: student {
   dimension: nome_garantidor {
     type: string
     sql: ${TABLE}."NOME_GARANTIDOR";;
-    description:"NOME DO GARANTIDOR"
+    description:"NOME DO RESPONSAVEL FINANCEIRO"
     group_item_label: "Nome"
-    group_label: "Dados do Garantidor"
+    hidden: yes
+    group_label: "Dados Responsável Financeiro"
     required_access_grants: [grupo_nome]
   }
   dimension: numero_endereco {
@@ -236,15 +237,15 @@ view: student {
     type: string
     sql: ${TABLE}."NUMERO_ENDERECO_FIADOR";;
     description:"NUMERO DO ENDEREÇO DO FIADOR"
-    group_item_label: "Numero ENdereço"
+    group_item_label: "Nº endereço"
     group_label: "Dados Responsável Financeiro"
   }
   dimension: parentesco {
     type: string
     sql: ${TABLE}."PARENTESCO";;
-    description:"PARENTESCO ENTRE GARANTIDOR E ALUNO"
+    description:"PARENTESCO ENTRE RESPONSAVEL FINANCEIRO E ALUNO"
     group_item_label: "Parentesco"
-    group_label: "Dados do Garantidor"
+    group_label: "Dados Responsável Financeiro"
   }
   dimension: renda_aluno {
     type: number
@@ -256,16 +257,17 @@ view: student {
   dimension: renda_fiador {
     type: number
     sql: ${TABLE}."RENDA_FIADOR";;
-    description:"RENDA INFORMADA PELO FIADOR"
+    description:"RENDA INFORMADA PELO RESPONSÁVEL FINANCEIRO"
     group_item_label: "Renda"
     group_label: "Dados Responsável Financeiro"
   }
   dimension: renda_garantidor {
     type: number
     sql: ${TABLE}."RENDA_GARANTIDOR";;
-    description:"RENDA INFORMADA PELO GARANTIDOR"
+    description:"RENDA INFORMADA PELO RESPONSÁVEL FINANCEIRO"
     group_item_label: "Renda"
-    group_label: "Dados do Garantidor"
+    hidden: yes
+    group_label: "Dados Responsável Financeiro"
   }
   dimension: rua {
     type: string
