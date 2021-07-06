@@ -325,4 +325,11 @@ view: student {
     drill_fields: []
   }
 
+  measure: perc_cpf_aluno {
+    type: percent_of_total
+    sql: ${count_cpf_aluno} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+    description: "Porcentagem do total de CPFs únicos"
+  }
 }
