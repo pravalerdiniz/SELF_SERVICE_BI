@@ -97,7 +97,8 @@ view: instituicao_metas_gc {
       month_name,
       quarter,
       year,
-      day_of_year
+      day_of_year,
+      day_of_month,
     ]
     convert_tz: no
     datatype: date
