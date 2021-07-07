@@ -644,7 +644,7 @@ view: contracts {
 
 
   dimension: vl_mensalidade {
-    type: string
+    type: number
     sql: ${TABLE}."VL_MENSALIDADE";;
     description: "VALOR DA MENSALIDADE DO CURSO"
     group_item_label: "Valor da Mensalidade"
