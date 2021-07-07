@@ -65,8 +65,33 @@ lateral flatten (input=>boletos) f
     group_item_label: "Valor da Parcela"
     sql: ${TABLE}."VL_BOLETO" ;;
     value_format: "$ #,##0.00"
-    description: "VALOR DO BOLETO"
+    description: "SOMA DOS VALORES DOS BOLETOS"
   }
+
+  measure: avg_vl_boleto {
+    type: average
+    group_item_label: "Valor da Parcela"
+    sql: ${TABLE}."VL_BOLETO" ;;
+    value_format: "$ #,##0.00"
+    description: "MÉDIA DOS VALORES DOS BOLETOS"
+  }
+
+  measure: max_vl_boleto {
+    type: max
+    group_item_label: "Valor da Parcela"
+    sql: ${TABLE}."VL_BOLETO" ;;
+    value_format: "$ #,##0.00"
+    description: "MÁXIMO DOS VALORES DOS BOLETOS"
+  }
+
+  measure: min_vl_boleto {
+    type: min
+    group_item_label: "Valor da Parcela"
+    sql: ${TABLE}."VL_BOLETO" ;;
+    value_format: "$ #,##0.00"
+    description: "MÍNIMO DOS VALORES DOS BOLETOS"
+  }
+
 
   dimension_group: data_atualizacao {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no

@@ -647,6 +647,7 @@ view: contracts {
     type: number
     sql: ${TABLE}."VL_MENSALIDADE";;
     description: "VALOR DA MENSALIDADE DO CURSO"
+    hidden: yes
     group_item_label: "Valor da Mensalidade"
     group_label: "Dados do Contrato"
   }
