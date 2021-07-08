@@ -48,6 +48,7 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 explore: student {
   label: "Alunos"
+  view_label: "Alunos"
 
   join: student_curso {
     view_label: "Cursos Alunos"
