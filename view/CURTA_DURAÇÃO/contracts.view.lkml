@@ -644,51 +644,12 @@ view: contracts {
 
 
   dimension: vl_mensalidade {
-    type: string
+    type: number
     sql: ${TABLE}."VL_MENSALIDADE";;
     description: "VALOR DA MENSALIDADE DO CURSO"
+    hidden: yes
     group_item_label: "Valor da Mensalidade"
     group_label: "Dados do Contrato"
-  }
-
-  measure: sum_vl_mensalidade {
-    type: sum
-    sql: ${vl_mensalidade} ;;
-    group_label: "Valor Mensalidade"
-    group_item_label: "Soma"
-    value_format: "$ #,###"
-    description: "Indica a soma do valor da mensalidade do aluno"
-    drill_fields: []
-  }
-
-  measure: avg_vl_mensalidade {
-    type: average
-    sql: ${vl_mensalidade} ;;
-    group_label: "Valor Mensalidade"
-    group_item_label: "Média"
-    value_format: "$ #,###"
-    description: "Indica a média do valor da mensalidade do aluno"
-    drill_fields: []
-  }
-
-  measure: min_vl_mensalidade {
-    type: min
-    sql: ${vl_mensalidade} ;;
-    group_label: "Valor Mensalidade"
-    group_item_label: "Mínimo"
-    value_format: "$ #,###"
-    description: "Indica o mínimo do valor da mensalidade do aluno"
-    drill_fields: []
-  }
-
-  measure: max_vl_mensalidade {
-    type: max
-    sql: ${vl_mensalidade} ;;
-    group_label: "Valor Mensalidade"
-    group_item_label: "Máximo"
-    value_format: "$ #,###"
-    description: "Indica o máximo do valor da mensalidade do aluno"
-    drill_fields: []
   }
 
   dimension: vl_net_taxa_externa {
