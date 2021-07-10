@@ -1,5 +1,7 @@
 connection: "graduado"
 
+
+
 access_grant: grupo_nome {
   user_attribute: grupo_nome
   allowed_values: ["grupo_nome"]
@@ -113,6 +115,159 @@ explore: beneficiados {
 
 }
 
+explore: inep {
+  label: "Inep"
+  view_label: "Inep"
+  description: "Censo da Educacional Superior de 2014 a 2018"
+
+  join: inep_curso_qtd_vagas_inep {
+    view_label: "Inep - Quantidade de Vagas Curso"
+    type: left_outer
+    sql_on: ${inep.id_curso} = ${inep_curso_qtd_vagas_inep.id_curso} and
+          ${inep.ano_censo} = ${inep_curso_qtd_vagas_inep.ano_censo} and
+          ${inep.id_ies} = ${inep_curso_qtd_vagas_inep.id_ies};;
+    relationship: many_to_one
+
+  }
+}
+explore: instituicao_metas_gc {}
+explore: status {
+  persist_for: "1 hours"
+  access_filter: {
+    field: grupo_instituicao
+    user_attribute: grupo_ies
+  }
+  label: "Status"
+  view_label: "1. Status "
+  description: "Apresenta os dados de todos status que a proposta do aluno esteve."
+  fields: [ALL_FIELDS *,
+    - proposta.id_cpf,
+    - proposta.id_elegivel,
+    - proposta.id_proposta,
+    - proposta.tipo_proposta,
+    - financeiro.id_cpf,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes
+
+  ]
+
+  join: proposta
+  {
+    view_label: "2. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${status.id_proposta};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+
+  join: alunos {
+    view_label: "3. Alunos"
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
+  join: financeiro {
+    view_label: "4. Financeiro"
+    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} and ${status.id_proposta} = ${financeiro.id_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+
+
+}
+
+explore: jornada {
+  view_name: jornada
+  persist_for: "1 hours"
+  access_filter: {
+    field: grupo_instituicao
+    user_attribute: grupo_ies
+  }
+  view_label: "1. Jornada"
+  description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
+  fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
+    - proposta.ds_ult_status,
+    - proposta.id_status_detalhado,
+    - proposta.tipo_proposta,
+    - proposta.id_proposta,
+    - proposta.id_elegivel,
+    - proposta.etapa_ult_status,
+    - proposta.count_tipo_proposta_novo,
+    - proposta.count_tipo_proposta_reempacotado,
+    - proposta.count_tipo_proposta_renegociacao,
+    - proposta.count_tipo_proposta_renovacao,
+    - proposta.count_tipo_proposta_seg_repasse,
+    - status.id_cpf,
+    - status.flg_proposta_atual,
+    - status.tipo_proposta
+
+
+  ]
+
+  join: proposta {
+    view_label: "2. Proposta"
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: instituicao {
+    view_label: "3. Instituição "
+    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: instituicao_contrato_produto_info {
+    view_label: "3.1 Instituição - Contrato por Produto"
+    sql_on: ${proposta.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+
+
+  join: instituicao_metas_gc {
+    view_label: "2.3 Metas GC"
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+
+  join: status {
+    view_label: "4. Status"
+    sql_on: ${jornada.id_cpf} = ${status.id_cpf} and ${jornada.id_proposta} = ${status.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
+  }
+
+  join: proposta_projeto_decola {
+    view_label: "2.3 Projeto Decola"
+    sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
+    relationship: many_to_one
+    type: left_outer
+
+
+  }
+
+
+
+
+}
+
 explore: instituicao {
   persist_for: "24 hours"
   access_filter: {
@@ -156,30 +311,30 @@ explore: instituicao {
     - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies
 
-    ]
+  ]
 
 
-join: instituicao_contrato_produto_info {
-  view_label: "1.1. Contrato da Instituição por Produto"
-  sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
-  relationship: one_to_many
-  type: left_outer
+  join: instituicao_contrato_produto_info {
+    view_label: "1.1. Contrato da Instituição por Produto"
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
 
-}
+  }
 
-join: instituicao_taxas_antecipacao {
-  view_label: "1.2. Taxas da Instituição por Produto Antecipação"
-  sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-  AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
-;;
-  relationship: one_to_many
-  type: left_outer
-}
+  join: instituicao_taxas_antecipacao {
+    view_label: "1.2. Taxas da Instituição por Produto Antecipação"
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+        AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+      ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: instituicao_taxas_gestao {
     view_label: "1.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-    and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+      and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
     relationship: one_to_many
     type: left_outer
 
@@ -195,8 +350,8 @@ join: instituicao_taxas_antecipacao {
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
-    AND ${proposta.id_campus} = ${instituicao.id_campus}
-    AND    ${proposta.id_curso} = ${instituicao.id_curso} and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto};;
+          AND ${proposta.id_campus} = ${instituicao.id_campus}
+          AND    ${proposta.id_curso} = ${instituicao.id_curso} and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto};;
     relationship: one_to_many
     type: left_outer
 
@@ -229,152 +384,17 @@ join: instituicao_taxas_antecipacao {
 
   }
 
-join: inep {
-  sql_on: ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} and ${instituicao.grupo} = ${inep.grupo}  ;;
-  relationship: one_to_many
-  type: left_outer
-  view_label: "Inep - Instituição"
-}
-
-
-
-}
-
-explore: status {
-  persist_for: "1 hours"
-  access_filter: {
-    field: grupo_instituicao
-    user_attribute: grupo_ies
-  }
-  label: "Status"
-  view_label: "1. Status "
-  description: "Apresenta os dados de todos status que a proposta do aluno esteve."
-  fields: [ALL_FIELDS *,
-    - proposta.id_cpf,
-    - proposta.id_elegivel,
-    - proposta.id_proposta,
-    - proposta.tipo_proposta,
-    - financeiro.id_cpf,
-    - alunos.id_cpf,
-    - alunos.ativo_ano_mes
-
-    ]
-
-  join: proposta
-  {
-    view_label: "2. Proposta"
-    sql_on:  ${proposta.id_proposta} = ${status.id_proposta};;
-    type: left_outer
-    relationship: many_to_one
-  }
-
-
-  join: alunos {
-    view_label: "3. Alunos"
-    sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-
-  join: financeiro {
-    view_label: "4. Financeiro"
-    sql_on: ${status.id_cpf} = ${financeiro.id_cpf} and ${status.id_proposta} = ${financeiro.id_contrato} ;;
+  join: inep {
+    sql_on: ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} and ${instituicao.grupo} = ${inep.grupo}  ;;
     relationship: one_to_many
     type: left_outer
+    view_label: "Inep - Instituição"
   }
 
 
 
 }
 
-explore: jornada {
-  persist_for: "1 hours"
-  access_filter: {
-    field: grupo_instituicao
-    user_attribute: grupo_ies
-  }
-  view_label: "1. Jornada"
-  description: "Apresenta toda a jornada do aluno dentro da esteira de contração do PRAVALER"
-fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
-  - proposta.ds_ult_status,
-  - proposta.id_status_detalhado,
-  - proposta.tipo_proposta,
-  - proposta.id_proposta,
-  - proposta.id_elegivel,
-  - proposta.etapa_ult_status,
-  - proposta.count_tipo_proposta_novo,
-  - proposta.count_tipo_proposta_reempacotado,
-  - proposta.count_tipo_proposta_renegociacao,
-  - proposta.count_tipo_proposta_renovacao,
-  - proposta.count_tipo_proposta_seg_repasse,
-  - status.id_cpf,
-  - status.flg_proposta_atual,
-  - status.tipo_proposta
-
-
-  ]
-
-  join: proposta {
-    view_label: "2. Proposta"
-    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-  join: jornada_pivot {
-    view_label: "1.2 Jornada Pivot "
-    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
-    relationship: many_to_one
-    type: left_outer
-}
-
-  join: instituicao {
-    view_label: "3. Instituição "
-    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-  join: instituicao_contrato_produto_info {
-    view_label: "3.1 Instituição - Contrato por Produto"
-    sql_on: ${proposta.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-
-
-  join: instituicao_metas_gc {
-    view_label: "2.3 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-
-  join: status {
-    view_label: "4. Status"
-    sql_on: ${jornada.id_cpf} = ${status.id_cpf} and ${jornada.id_proposta} = ${status.id_proposta} ;;
-    relationship: one_to_many
-    type: left_outer
-
-
-}
-
-  join: proposta_projeto_decola {
-    view_label: "2.3 Projeto Decola"
-    sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
-    relationship: many_to_one
-    type: left_outer
-
-
-  }
-
-
-
-
-}
 
 explore: financeiro {
   persist_for: "1 hours"
@@ -414,6 +434,7 @@ explore: financeiro {
 }
 
 explore: proposta {
+
   persist_for: "1 hours"
   access_filter: {
     field: grupo_instituicao
@@ -792,21 +813,7 @@ join: financeiro {
 
 }
 
-explore: inep {
-  label: "Inep"
-  view_label: "Inep"
-  description: "Censo da Educacional Superior de 2014 a 2018"
 
-  join: inep_curso_qtd_vagas_inep {
-  view_label: "Inep - Quantidade de Vagas Curso"
-    type: left_outer
-    sql_on: ${inep.id_curso} = ${inep_curso_qtd_vagas_inep.id_curso} and
-    ${inep.ano_censo} = ${inep_curso_qtd_vagas_inep.ano_censo} and
-    ${inep.id_ies} = ${inep_curso_qtd_vagas_inep.id_ies};;
-    relationship: many_to_one
-
-  }
-  }
 
 explore: interacoes {
   label: "Interações - Tickets"
@@ -883,7 +890,7 @@ explore: crx_agentes_detalhes_pausas{
   }
 }
 
-explore: instituicao_metas_gc {}
+
 
 explore: dados_demograficos {}
 

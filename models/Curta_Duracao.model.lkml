@@ -1,4 +1,4 @@
-connection: "veeterano"
+connection: "jornada"
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
