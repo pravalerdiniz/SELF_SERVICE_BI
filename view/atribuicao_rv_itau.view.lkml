@@ -1,5 +1,6 @@
 view: atribuicao_rv_itau {
   derived_table: {
+    persist_for: "1 hour"
     sql: with cpfs as (
     select p.id_cpf,
             p.id_proposta,

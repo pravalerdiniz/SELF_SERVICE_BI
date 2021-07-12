@@ -1,5 +1,6 @@
 view: interacoes_detalhes_ligacao {
   derived_table: {
+    persist_for: "1 hour"
     sql: select a.id_ticket,
       (f.value:"DATA_LIGACAO"::timestamp)  as DATA_LIGACAO,
       f.value:"DURACAO_CHAMADA"::varchar as DURACAO_CHAMADA,

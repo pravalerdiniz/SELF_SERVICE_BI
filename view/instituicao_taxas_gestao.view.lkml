@@ -1,5 +1,6 @@
 view: instituicao_taxas_gestao {
   derived_table: {
+    persist_for: "24 hours"
       sql:
       select
         b.id_instituicao,

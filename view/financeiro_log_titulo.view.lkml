@@ -1,5 +1,6 @@
 view: financeiro_log_titulo {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
       id_titulo,
       f.key as id_log_titulo,

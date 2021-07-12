@@ -1,5 +1,6 @@
 view: alunos_log_negativacao {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
       LN.key AS ID,
       LN.value:SEUNUM AS SEUNUM,

@@ -3,6 +3,7 @@
 
 view: ano_mes_carteira_ativa {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
             id_cpf,
             LEFT(f.value,4)||'-'||RIGHT(f.value,2)||'-'||'01'::varchar as ano_mes

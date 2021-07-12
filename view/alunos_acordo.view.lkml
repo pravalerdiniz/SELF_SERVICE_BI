@@ -1,5 +1,6 @@
 view: alunos_acordo {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
             id_cpf,
             f.key as id_acordo,

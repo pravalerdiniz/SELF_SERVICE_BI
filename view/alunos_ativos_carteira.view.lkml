@@ -1,5 +1,6 @@
 view: alunos_ativos_carteira {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
           id_cpf,
           cpf,

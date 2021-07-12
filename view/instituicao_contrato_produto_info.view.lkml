@@ -1,5 +1,6 @@
 view: instituicao_contrato_produto_info {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
         id_instituicao
           ,f.key as ID_IES_CONTRATO

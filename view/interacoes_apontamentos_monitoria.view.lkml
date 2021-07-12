@@ -1,5 +1,6 @@
 view: interacoes_apontamentos_monitoria {
   derived_table: {
+    persist_for: "1 hour"
     sql: SELECT
       A.ID_TICKET,
       t.value:DATA_ATUALIZACAO::timestamp DATA_ATUALIZACAO,

@@ -1,5 +1,6 @@
 view: proposta_motivo_rejeicao_docs {
     derived_table: {
+      persist_for: "1 hour"
       sql: select
               id_proposta,
               f.value::varchar as motivo_rejeicao_documento

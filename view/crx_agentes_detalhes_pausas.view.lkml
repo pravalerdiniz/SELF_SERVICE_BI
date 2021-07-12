@@ -1,5 +1,6 @@
 view: crx_agentes_detalhes_pausas {
   derived_table: {
+    persist_for: "1 hour"
     sql: select f.value:"DURACAO"::varchar as DURACAO_PAUSA,
       f.value:"MOTIVO_PAUSA"::varchar as MOTIVO_PAUSA,
       f.value:"DATA_EVENTO_INI"::date as DATA_EVENTO_INI,

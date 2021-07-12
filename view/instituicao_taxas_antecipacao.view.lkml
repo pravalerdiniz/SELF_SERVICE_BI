@@ -1,5 +1,6 @@
 view: instituicao_taxas_antecipacao {
   derived_table: {
+    persist_for: "24 hours"
       sql:select
       a.id_instituicao,
       f.value:ID_CONTRATO_INSTITUICAO::int as id_contrato_instituicao,

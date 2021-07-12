@@ -1,5 +1,6 @@
 view: log_negativacao {
   derived_table: {
+    persist_for: "1 hour"
     sql: select v.value:CPF::int "CPF",
        v.value:DATA_UPDATE::datetime "DATA",
        v.value:FLAG_NEGATIVADO::boolean "FLAG_NEGATIVADO",

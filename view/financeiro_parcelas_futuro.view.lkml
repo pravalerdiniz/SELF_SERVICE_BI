@@ -1,6 +1,7 @@
 # Se utilizar esta view, o resultado duplicará com a quantidade de titulos que o aluno tem a ser gerado
 view: financeiro_parcelas_futuro {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
           p.value:CONTRATO::varchar as contrato,
           p.value:CONTRATO_RELEASE::int as contrato_release,

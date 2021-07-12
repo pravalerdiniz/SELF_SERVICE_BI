@@ -1,5 +1,6 @@
 view: proposta_docs_entregues {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
       id_proposta,
       f.value::varchar as docs_entregues

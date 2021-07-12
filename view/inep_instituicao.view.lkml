@@ -1,5 +1,6 @@
 view: inep_instituicao {
   derived_table: {
+    persist_for: "48 hours"
     sql: select
         GRUPO
           ,f.key as ID_IES

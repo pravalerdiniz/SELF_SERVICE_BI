@@ -1,5 +1,6 @@
 view: proposta_projeto_decola {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
       id_cpf,
       id_proposta,

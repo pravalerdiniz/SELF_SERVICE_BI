@@ -1,5 +1,6 @@
 view: jornada_pivot {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
           id_proposta,
           ULT_STATUS_DETALHADO,

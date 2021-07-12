@@ -1,5 +1,6 @@
 view: instituicao_metas_gc {
     derived_table: {
+      persist_for: "24 hours"
       sql: select
            concat(grupo,data) grupo_ies_ano_mes,
            grupo grupo_instituicao,

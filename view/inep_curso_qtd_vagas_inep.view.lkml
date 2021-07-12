@@ -1,5 +1,6 @@
 view: inep_curso_qtd_vagas_inep {
   derived_table: {
+    persist_for: "48 hours"
     sql: SELECT
         ANO_CENSO,
         ID_IES,

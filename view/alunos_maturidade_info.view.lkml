@@ -1,5 +1,6 @@
 view: alunos_maturidade_info {
   derived_table: {
+    persist_for: "1 hour"
     sql: select
             id_cpf,
             LEFT(f.key,4)||'-'||RIGHT(f.key,2)||'-'||'01'::varchar as ano_mes,
