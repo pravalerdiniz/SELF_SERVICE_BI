@@ -161,6 +161,14 @@ explore: pesquisa_perfil_aluno {
   }
 
 }
+map_layer: MAPA_ESTADO_ALUNO {
+  file: "/MAPAS/uf.json"
+}
+
+map_layer: MAPA_CIDADE_ALUNO {
+  file: "/MAPAS/municipio.json"
+}
+include: "/**/*.view.lkml"
 
 explore: indicadores_comunicacao {}
 

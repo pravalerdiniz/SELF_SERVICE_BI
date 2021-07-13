@@ -145,6 +145,17 @@ view: student {
     label: "Aluno - Idade"
   }
 
+  dimension: faixa_etaria_aluno {
+    type: tier
+    tiers: [16,18,25,30,35,40,50]
+    style: integer
+    sql: ${idade_aluno} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Faixa Etária"
+    description: "INDICA A FAIXA ETARIA DO ALUNO"
+  }
+
+
 
   dimension_group: data_nascimento_fiador {
     type: time    timeframes: [ raw, date, week, month, quarter, year    ]    convert_tz: no    datatype: date
@@ -172,9 +183,23 @@ view: student {
     type: string
     sql: ${TABLE}."ESTADO";;
     description:"ESTADO DO ENDEREÇO DO ALUNO"
-    group_item_label: "Estado"
+    group_item_label: "Estado - UF"
     group_label: "Dados do Aluno"
   }
+
+
+  dimension: estado_mapa {
+    type: string
+    sql: ${estado};;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    description:"UF DO ESTADO DO ENDEREÇO DO ALUNO. UTILIZAR ESSA DIMENSÃO COM GRÁFICO DE MAPA"
+    group_item_label: "Estado - UF (Mapa)"
+    group_label: "Dados do Aluno"
+  }
+
+
+
+
   dimension: estado_civil_garantidor {
     type: string
     sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR";;
@@ -190,6 +215,21 @@ view: student {
     group_item_label: "Estado"
     group_label: "Dados Responsável Financeiro"
   }
+
+  dimension: estado_fiador_mapa {
+    type: string
+    sql: ${estado_fiador};;
+    map_layer_name: MAPA_ESTADO_ALUNO
+    description:"UF DO ESTADO DO ENDEREÇO DO FIADOR. UTILIZAR ESSA DIMENSÃO COM GRÁFICO DE MAPA"
+    group_item_label: "Estado - UF (Mapa)"
+    group_label: "Dados Responsável Financeiro"
+  }
+
+
+
+
+
+
   dimension: id_aluno {
     type: string
     sql: ${TABLE}."ID_ALUNO";;

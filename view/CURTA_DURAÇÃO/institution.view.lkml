@@ -176,9 +176,22 @@ view: institution {
     type: string
     sql: ${TABLE}."ESTADO_INSTITUICAO";;
     description:"ESTADO ONDE A INSTITUIÇÃO SE ENCONTRA"
-    group_item_label: "Estado"
+    group_item_label: "Estado - UF"
     group_label: "Dados da Instituição"
   }
+
+
+  dimension: estado_instituicao_mapa {
+    type: string
+    sql: ${estado_instituicao};;
+    description:"UF DO ESTADO ONDE A INSTITUIÇÃO SE ENCONTRA"
+    group_item_label: "Estado - UF (Mapa)"
+    group_label: "Dados da Instituição"
+  }
+
+
+
+
   dimension: flg_curso_antecipacao {
     type: yesno
     sql: ${TABLE}."FLG_CURSO_ANTECIPACAO";;
