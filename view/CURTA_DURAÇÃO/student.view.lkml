@@ -65,6 +65,7 @@ view: student {
     description:"NUMERO DO CPF DO ALUNO"
     group_item_label: "CPF"
     group_label: "Dados do Aluno"
+    value_format: "0"
     required_access_grants: [grupo_cpf]
   }
   dimension: cpf_fiador {
@@ -73,6 +74,7 @@ view: student {
     description:"CPF DO FIADOR"
     group_item_label: "CPF"
     group_label: "Dados Responsável Financeiro"
+    value_format: "0"
     required_access_grants: [grupo_cpf]
   }
   dimension: cpf_garantidor {
