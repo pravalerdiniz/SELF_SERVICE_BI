@@ -136,6 +136,16 @@ view: student {
     description:"DATA DE NASCIMENTO DO ALUNO"
      label: "Aluno - Nascimento"
   }
+
+  dimension: idade_aluno {
+    type: number
+    sql:datediff('year',${data_nascimento_aluno_date},current_date) ;;
+    description:"IDADE DO ALUNO"
+    group_label: "Dados do Aluno"
+    label: "Aluno - Idade"
+  }
+
+
   dimension_group: data_nascimento_fiador {
     type: time    timeframes: [ raw, date, week, month, quarter, year    ]    convert_tz: no    datatype: date
     sql: ${TABLE}."DATA_NASCIMENTO_FIADOR";;
@@ -256,6 +266,19 @@ view: student {
     group_item_label: "Renda"
     group_label: "Dados do Aluno"
   }
+
+  dimension: faixa_renda_aluno {
+    type: tier
+    tiers: [1000,2000,3000,4000,6000,8000,10000]
+    style: integer
+    sql: ${renda_aluno} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Faixa de Renda"
+    description: "Indica a faixa de renda do aluno"
+  }
+
+
+
   dimension: renda_fiador {
     type: number
     sql: ${TABLE}."RENDA_FIADOR";;
