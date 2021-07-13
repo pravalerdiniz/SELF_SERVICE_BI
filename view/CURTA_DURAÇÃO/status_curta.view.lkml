@@ -1,5 +1,5 @@
 view: status_curta {
-  sql_table_name: "CURTA"."STATUS"
+  sql_table_name: "VETERANO"."CURTA"."STATUS"
     ;;
 
   dimension_group: data_evento {

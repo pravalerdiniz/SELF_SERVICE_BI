@@ -1,5 +1,5 @@
 view: student {
-  sql_table_name: "CURTA"."STUDENT"
+  sql_table_name: "VETERANO"."CURTA"."STUDENT"
     ;;
 
   dimension: bairro {

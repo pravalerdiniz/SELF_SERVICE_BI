@@ -4,7 +4,7 @@ view: contracts_desc_taxas {
             id_contrato,
             f.value:fee_amount::float as PERC_TAXA,
             f.value:fee_type::varchar as TIPO_TAXA
-            from "CURTA"."CONTRACTS" a,
+            from "VETERANO"."CURTA"."CONTRACTS" a,
             lateral flatten (input => DESC_TAXAS) f
  ;;
   }

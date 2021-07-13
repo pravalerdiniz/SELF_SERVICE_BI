@@ -1,5 +1,5 @@
 view: contracts {
-  sql_table_name: "CURTA"."CONTRACTS"
+  sql_table_name: "VETERANO"."CURTA"."CONTRACTS"
     ;;
 
    dimension: anual_cet {

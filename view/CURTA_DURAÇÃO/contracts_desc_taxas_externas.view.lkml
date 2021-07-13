@@ -6,7 +6,7 @@ view: contracts_desc_taxas_externas {
             f.value:fee_type::varchar as TIPO_TAXA,
             f.value:net_fee_amoun::float as PERC_TAXA_NET,
             f.value:tax_amount::float as PERC_IMPOSTO
-            from "CURTA"."CONTRACTS" a,
+            from "VETERANO"."CURTA"."CONTRACTS" a,
             lateral flatten (input => DESC_TAXAS_EXTERNAS) f
  ;;
   }

@@ -1,5 +1,5 @@
 view: payment {
-  sql_table_name: "CURTA"."PAYMENT"
+  sql_table_name: "VETERANO"."CURTA"."PAYMENT"
     ;;
 
   dimension: boletos {

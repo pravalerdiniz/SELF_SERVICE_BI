@@ -8,7 +8,7 @@ view: institution_cupons {
             f.value:DISCOUNT::float as DESCONTO,
             f.value:INSERTED_AT::datetime as INSERIDO_EM,
             f.value:UPDATED_AT::datetime as ATUALIZADO_EM
-            from "CURTA"."INSTITUTION" a,
+            from "VETERANO"."CURTA"."INSTITUTION" a,
             lateral flatten (input => CUPONS) f
  ;;
   }

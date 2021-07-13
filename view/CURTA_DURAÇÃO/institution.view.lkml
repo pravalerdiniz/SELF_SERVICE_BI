@@ -1,5 +1,5 @@
 view: institution {
-  sql_table_name: "CURTA"."INSTITUTION"
+  sql_table_name: "VETERANO"."CURTA"."INSTITUTION"
     ;;
 
   dimension: agencia_banco {

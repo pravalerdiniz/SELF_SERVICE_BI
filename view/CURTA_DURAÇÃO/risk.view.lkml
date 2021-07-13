@@ -1,5 +1,5 @@
 view: risk {
-  sql_table_name: "CURTA"."RISK"
+  sql_table_name: "VETERANO"."CURTA"."RISK"
     ;;
 
   dimension: analise_risco {
