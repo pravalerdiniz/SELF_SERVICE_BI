@@ -697,7 +697,7 @@ view: contracts {
 
 
   measure: sum_vl_total_contrato {
-    type: average
+    type: sum
     sql: ${TABLE}."VL_TOTAL_CONTRATO";;
     description: "VALOR TOTAL DO CONTRATO COM AS TAXAS"
     group_item_label: "Valor Total do Contrato"
