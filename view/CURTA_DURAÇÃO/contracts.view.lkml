@@ -695,6 +695,15 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
+
+  measure: sum_vl_total_contrato {
+    type: average
+    sql: ${TABLE}."VL_TOTAL_CONTRATO";;
+    description: "VALOR TOTAL DO CONTRATO COM AS TAXAS"
+    group_item_label: "Valor Total do Contrato"
+    group_label: "Dados do Contrato"
+  }
+
   dimension: vl_total_prefixado {
     type: number
     sql: ${TABLE}."VL_TOTAL_PREFIXADO";;
