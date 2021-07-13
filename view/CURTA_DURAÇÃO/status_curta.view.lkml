@@ -15,7 +15,7 @@ view: status_curta {
     ]
     sql: ${TABLE}."DATA_EVENTO" ;;
     description: "DATA DE ACONTECIMENTO DO EVENTO"
-    group_item_label: "Data do Evento"
+    label: "Evento"
   }
 
   dimension: flg_ultimo_status {
@@ -95,7 +95,7 @@ view: status_curta {
     ]
     sql: ${TABLE}."ULTIMA_ATUALIZACAO" ;;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
-    group_item_label: "Data da Ultima Atualização"
+    label: "Ultima Atualização"
   }
 
   measure: count {
