@@ -190,6 +190,20 @@ view: institution {
   }
 
 
+  dimension: regiao_instituicao {
+    type: string
+    group_label: "Dados da Instituição"
+    label: "Região da Instituição"
+    description: "INDICA A REGIÃO GEOGRÁFICA DA INSTITUIÇÃO"
+    sql: case when ${estado_instituicao} in ('SP', 'RJ', 'MG', 'ES') THEN 'SUDESTE'
+         when ${estado_instituicao} in ('DF', 'GO', 'MT', 'MS') THEN 'CENTRO-OESTE'
+         WHEN ${estado_instituicao} IN ('AC', 'AM', 'RO', 'RR', 'PA', 'AP', 'TO') then 'NORTE'
+         WHEN ${estado_instituicao} IN ('MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA') then 'NORDESTE'
+         WHEN ${estado_instituicao} IN ('PR', 'SC', 'RS') then 'SUL'
+         ELSE 'NÃO PREENCHIDO' END ;;
+  }
+
+
 
 
   dimension: flg_curso_antecipacao {

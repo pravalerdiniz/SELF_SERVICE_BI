@@ -197,6 +197,19 @@ view: student {
     group_label: "Dados do Aluno"
   }
 
+  dimension: regiao_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Região do Aluno"
+    description: "INDICA A REGIÃO GEOGRÁFICA DO ALUNO"
+    sql: case when ${estado} in ('SP', 'RJ', 'MG', 'ES') THEN 'SUDESTE'
+         when ${estado} in ('DF', 'GO', 'MT', 'MS') THEN 'CENTRO-OESTE'
+         WHEN ${estado} IN ('AC', 'AM', 'RO', 'RR', 'PA', 'AP', 'TO') then 'NORTE'
+         WHEN ${estado} IN ('MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA') then 'NORDESTE'
+         WHEN ${estado} IN ('PR', 'SC', 'RS') then 'SUL'
+         ELSE 'NÃO PREENCHIDO' END ;;
+  }
+
 
 
 
@@ -216,6 +229,7 @@ view: student {
     group_label: "Dados Responsável Financeiro"
   }
 
+
   dimension: estado_fiador_mapa {
     type: string
     sql: ${estado_fiador};;
@@ -225,6 +239,19 @@ view: student {
     group_label: "Dados Responsável Financeiro"
   }
 
+
+  dimension: regiao_fiador {
+    type: string
+    group_label: "Dados do Responsável Financeiro"
+    label: "Região do Fiador"
+    description: "INDICA A REGIÃO GEOGRÁFICA DO RESPONSÁVEL FINANCEIRO"
+    sql: case when ${estado_fiador} in ('SP', 'RJ', 'MG', 'ES') THEN 'SUDESTE'
+         when ${estado_fiador} in ('DF', 'GO', 'MT', 'MS') THEN 'CENTRO-OESTE'
+         WHEN ${estado_fiador} IN ('AC', 'AM', 'RO', 'RR', 'PA', 'AP', 'TO') then 'NORTE'
+         WHEN ${estado_fiador} IN ('MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA') then 'NORDESTE'
+         WHEN ${estado_fiador} IN ('PR', 'SC', 'RS') then 'SUL'
+         ELSE 'NÃO PREENCHIDO' END ;;
+  }
 
 
 
