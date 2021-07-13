@@ -590,7 +590,7 @@ view: contracts {
     type: sum
     sql: ${TABLE}."VALOR_ASSINATURA";;
     description: "VALOR DO CONTRATO SEM AS TAXAS"
-    group_item_label: "Valor do Contrato sem Taxas"
+    group_item_label: "Valor do Contrato sem os Juros"
     group_label: "Dados do Contrato"
   }
 
