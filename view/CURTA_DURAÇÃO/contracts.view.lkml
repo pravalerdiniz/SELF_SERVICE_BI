@@ -594,6 +594,16 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
+
+
+  measure: avg_valor_assinatura {
+    type: average
+    sql: ${TABLE}."VALOR_ASSINATURA";;
+    description: "VALOR DO CONTRATO SEM OS JUROS"
+    group_item_label: "Valor do Contrato Sem juros - Média"
+    group_label: "Dados do Contrato"
+  }
+
   dimension: vl_curso {
     type: number
     sql: ${TABLE}."VL_CURSO";;
@@ -668,11 +678,20 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
-  measure: vl_total_contrato {
-    type: sum
+
+  measure: avg_vl_subsidio {
+    type: average
+    sql: ${TABLE}."VL_SUBSIDIO";;
+    description: "INDICA O VALOR TOTAL DO SUBSIDIO APLICADO AO CONTRATO"
+    group_item_label: "Valor do Subsidio - Média"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: avg_vl_total_contrato {
+    type: average
     sql: ${TABLE}."VL_TOTAL_CONTRATO";;
     description: "VALOR TOTAL DO CONTRATO COM AS TAXAS"
-    group_item_label: "Valor Total do Contrato"
+    group_item_label: "Valor Total do Contrato - Média"
     group_label: "Dados do Contrato"
   }
 
