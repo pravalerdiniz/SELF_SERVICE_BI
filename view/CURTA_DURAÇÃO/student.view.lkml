@@ -424,4 +424,41 @@ view: student {
     group_item_label: "Porcentagem"
     description: "Porcentagem do total de CPFs únicos"
   }
+
+
+  measure: avg_renda_aluno {
+    type: average
+    sql: ${renda_aluno};;
+    description:"MÉDIA DA RENDA INFORMADA PELO ALUNO"
+    label: "Média - Aluno"
+    group_label: "Renda"
+  }
+
+  measure: med_renda_aluno {
+    type: median
+    sql: ${renda_aluno};;
+    description:"MEDIANA DA RENDA INFORMADA PELO ALUNO"
+    label: "Mediana - Aluno"
+    group_label: "Renda"
+  }
+
+
+  measure: avg_renda_fiador {
+    type: average
+    sql: ${renda_fiador};;
+    description:"MÉDIA DA RENDA INFORMADA PELO RESPONSÁVEL FINANCEIRO"
+    label: "Média - Fiador"
+    group_label: "Renda"
+  }
+
+  measure: med_renda_fiador {
+    type: median
+    sql: ${renda_aluno};;
+    description:"MEDIANA DA RENDA INFORMADA PELO RESPONSÁVEL FINANCEIRO"
+    label: "Mediana - Fiador"
+    group_label: "Renda"
+  }
+
+
+
 }
