@@ -10,8 +10,8 @@ view: financeiro_extrato_titulo {
       f.value:ds_extrato_transacao::varchar as ds_extrato_transacao,
       f.value:ds_extrato_transacao_tipo::varchar as ds_extrato_transacao_tipo,
       f.value:vl_extrato::float(2) as vl_extrato,
-      f.value:id_instituicao::varchar,
-      f.value:id_produto::varchar
+      f.value:id_instituicao::varchar id_instituicao,
+      f.value:id_produto::varchar id_produto
       from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
       lateral flatten (input => id_extrato_titulo_info) f
        ;;
