@@ -718,7 +718,7 @@ view: contracts {
 
 
   measure: count {
-    type: count_distinct
+    type: count
     drill_fields: []
     group_item_label: "Total de contratos"
 
