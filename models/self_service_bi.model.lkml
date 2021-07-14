@@ -254,6 +254,16 @@ explore: jornada {
 
   }
 
+
+  join: alunos_hotlead {
+    view_label: "5. Hotlead"
+    sql_on: ${jornada.id_cpf} = ${alunos_hotlead.id_cpf};;
+    relationship: many_to_one
+    type: left_outer
+
+
+  }
+
   join: proposta_projeto_decola {
     view_label: "2.3 Projeto Decola"
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
@@ -752,6 +762,15 @@ join: alunos_produtos_aprovados {
     relationship: one_to_many
 
   }
+
+  join: alunos_hotlead {
+    view_label: "1.8 Hotlead"
+    sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_one
+
+  }
+
 
 
 
