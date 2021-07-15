@@ -2957,7 +2957,7 @@ view: proposta {
     type: sum
     group_label: "Valores Cessão"
     group_item_label: "Desagio - Soma"
-    sql:${vl_financiamento} - ${vl_repasse_ies};;
+    sql:${vl_financiamento} - ${vl_repasse_ies}-${vl_comissao_ideal};;
     description: "Soma de valor do Desagio (Comissão + Juros)"
     value_format: "0"
   }
