@@ -94,6 +94,7 @@ view: status_curta {
               ;;
     description: "Indica a etapa da jornada que o aluno do curta se encontra"
     group_item_label: "Etapa"
+    order_by_field: ordem_etapa
   }
 
   dimension: ordem_etapa {
