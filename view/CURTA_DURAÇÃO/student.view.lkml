@@ -438,14 +438,6 @@ view: student {
     hidden: yes
   }
 
-  dimension: vl_mensalidade {
-    type: number
-    sql:${contracts.vl_mensalidade};;
-    description: "VALOR DA MENSALIDADE DO CURSO"
-    hidden: yes
-    group_item_label: "Valor da Mensalidade"
-    group_label: "Dados do Contrato"
-  }
 
   dimension: qtd_parcelas {
     type: number
@@ -472,7 +464,7 @@ view: student {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
-    drill_fields: [id_contrato,cpf_aluno,nome_aluno,email_aluno,nome_fantasia_instituicao,nome_curso,qtd_parcelas,vl_mensalidade,vl_total_contrato]
+    drill_fields: [id_contrato,cpf_aluno,nome_aluno,email_aluno,nome_fantasia_instituicao,nome_curso,qtd_parcelas,vl_total_contrato]
   }
 
   measure: perc_cpf_aluno {
