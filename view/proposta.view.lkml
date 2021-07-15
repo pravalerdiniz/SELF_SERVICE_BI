@@ -2941,7 +2941,7 @@ view: proposta {
     group_item_label: "Comissão - Soma"
     sql:${vl_comissao_ideal};;
     description:  "Indica o valor de comissão paga ao Pravaler por produto contratado"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: avg_comissao {
@@ -2950,7 +2950,7 @@ view: proposta {
     group_item_label: "Comissão - Média"
     sql:${vl_comissao_ideal};;
     description:  "Indica o valor médio de comissão paga ao Pravaler por produto contratado"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_desagio {
@@ -2959,7 +2959,7 @@ view: proposta {
     group_item_label: "Desagio - Soma"
     sql:${vl_financiamento} - ${vl_repasse_ies}-${vl_comissao_ideal};;
     description: "Soma de valor do Desagio (Comissão + Juros)"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_perc_desagio {
