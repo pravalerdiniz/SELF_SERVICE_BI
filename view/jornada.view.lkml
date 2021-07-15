@@ -1657,7 +1657,21 @@ view: jornada {
     value_format: "0"
     description: "Soma da mediana do tempo de todas as etapas do aluno de renovação durante o processo de contratação no PRAVALER"
   }
+dimension: url {
+  type: string
+  group_label: "Atribuição"
+  group_item_label: "URL"
+  description: "Primeira URL da proposta/lead"
+  sql: ${TABLE}."URL" ;;
+}
 
+  dimension: canal {
+    type: string
+    group_label: "Atribuição"
+    group_item_label: "Canal"
+    description: "Primeiro Canal da proposta/lead"
+    sql: ${TABLE}."CANAL" ;;
+  }
 
   measure: total_renov {
     type: median
