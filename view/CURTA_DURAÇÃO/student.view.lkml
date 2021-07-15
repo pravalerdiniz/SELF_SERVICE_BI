@@ -346,6 +346,9 @@ view: student {
 
 
 
+
+
+
   dimension: renda_fiador {
     type: number
     sql: ${TABLE}."RENDA_FIADOR";;
@@ -408,13 +411,68 @@ view: student {
     required_access_grants: [grupo_telefone]
   }
 
+  dimension: nome_curso {
+    type: string
+    sql: ${institution.nome_curso};;
+    description:"DESCRICAO DO CURSO"
+    group_item_label: "Nome do Curso"
+    group_label: "Dados do Curso"
+    hidden: yes
+  }
+
+  dimension: nome_fantasia_instituicao {
+    type: string
+    sql: ${institution.nome_fantasia_instituicao};;
+    description:"NOME FANTASIA DA INSTITUIÇÃO"
+    group_item_label: "Nome Fantasia"
+    group_label: "Dados da Instituição"
+    hidden: yes
+  }
+
+  dimension: id_contrato {
+    type: string
+    sql: ${contracts.id_contrato};;
+    description: "IDENTIFICADOR DO CONTRATO"
+    group_item_label: "Id do Contrato"
+    group_label: "Dados do Contrato"
+    hidden: yes
+  }
+
+  dimension: vl_mensalidade {
+    type: number
+    sql:${contracts.vl_mensalidade};;
+    description: "VALOR DA MENSALIDADE DO CURSO"
+    hidden: yes
+    group_item_label: "Valor da Mensalidade"
+    group_label: "Dados do Contrato"
+  }
+
+  dimension: qtd_parcelas {
+    type: number
+    sql: ${contracts.qtd_parcelas};;
+    description: "TOTAL DE PARCELAS QUE O CONTRATO FOI FEITO"
+    group_item_label: "QTD de Parcelas"
+    group_label: "Dados do Contrato"
+    hidden: yes
+  }
+
+
+  dimension: vl_total_contrato {
+    type: number
+    sql: ${contracts.vl_total_contrato};;
+    description: "VALOR TOTAL DO CONTRATO COM AS TAXAS"
+    group_item_label: "Valor Total do Contrato"
+    group_label: "Dados do Contrato"
+    hidden: yes
+  }
+
   measure: count_cpf_aluno {
     type: count_distinct
     sql: ${cpf_aluno} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
-    drill_fields: []
+    drill_fields: [id_contrato,cpf_aluno,nome_aluno,email_aluno,nome_fantasia_instituicao,nome_curso,qtd_parcelas,vl_mensalidade,vl_total_contrato]
   }
 
   measure: perc_cpf_aluno {
