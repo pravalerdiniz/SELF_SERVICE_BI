@@ -175,3 +175,9 @@ explore: indicadores_comunicacao {}
 explore: acompanhamento_fluxo_proposta {}
 
 explore: distribuicao_finalizados_iniciados {}
+
+explore: base_score
+
+{
+  label: "Base - Treino Score"
+}
