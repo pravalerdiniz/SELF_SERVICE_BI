@@ -9,6 +9,8 @@ view: status_curta {
       time,
       date,
       week,
+      day_of_week,
+      day_of_month,
       month,
       quarter,
       year
@@ -16,6 +18,24 @@ view: status_curta {
     sql: ${TABLE}."DATA_EVENTO" ;;
     description: "DATA DE ACONTECIMENTO DO EVENTO"
     label: "Evento"
+  }
+
+  dimension_group: data_inicio {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      day_of_month,
+      day_of_week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DT_INICIO" ;;
+    description: "DATA DE INICIO DO PROCESSO DE CONTRATAÇÃO DO ALUNO"
+    label: "Inicio do Processo de Contratação"
   }
 
   dimension: flg_ultimo_status {
@@ -83,6 +103,7 @@ view: status_curta {
   }
 
 
+
   dimension: etapa {
     type: string
     sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
@@ -106,6 +127,9 @@ view: status_curta {
     sql: CAST(${ordem_etapa_funil} AS INT) ;;
 
   }
+
+
+
 
   dimension: ordem_etapa_funil {
     type: string
