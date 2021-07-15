@@ -66,4 +66,16 @@ view: base_score {
     type: count
     drill_fields: []
   }
+
+  measure: count_id_cpf {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID CPFs únicos"
+   drill_fields: []
+
+}
+
+
 }
