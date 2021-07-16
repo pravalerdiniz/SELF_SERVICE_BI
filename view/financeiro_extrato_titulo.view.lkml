@@ -281,6 +281,7 @@ view: financeiro_extrato_titulo {
   measure: sum_repasse{
     type: number
     sql: ${sum_vl_credito} - ${sum_comissao};;
+    label: "Repasse - Soma"
     value_format:  "\"R$ \"#,##0.00"
   }
 
@@ -295,6 +296,7 @@ view: financeiro_extrato_titulo {
   measure: sum_repasse_gestao{
     type: number
     sql: ${sum_vl_credito} - ${sum_comissao_gestao};;
+    label: "Repasse Gestão - Soma"
     value_format:  "\"R$ \"#,##0.00"
   }
 
