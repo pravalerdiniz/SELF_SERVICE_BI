@@ -36,8 +36,10 @@ lateral flatten (input=>boletos) f
     type: number
     group_item_label: "Dias Apos o Vencimento"
     sql: ${TABLE}."DIAS_VENCIDO" ;;
+    hidden: yes
     description: "QUANTIDADE DE DIAS FORA DA VALIDADE"
   }
+
 
   dimension: data_vencimento {
     type: date
@@ -45,6 +47,70 @@ lateral flatten (input=>boletos) f
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
+
+  dimension: dias_atraso_regra {
+    type: number
+    group_item_label: "Dias de após vencimento"
+    sql: datediff('day',${data_vencimento}, current_date);;
+    hidden: yes
+    description: "QUANTIDADE DE DIAS FORA DA VALIDADE"
+  }
+
+  dimension: dias_atraso {
+    type: number
+    group_item_label: "Dias de após vencimento"
+    sql: CASE WHEN ${dias_atraso_regra} < 0 then 0 ELSE ${dias_atraso_regra} END ;;
+    description: "QUANTIDADE DE DIAS FORA DA VALIDADE"
+  }
+
+
+
+  dimension: faixa_de_atraso {
+    type: string
+    case: {
+      when: {
+        sql: ${dias_atraso} = 0 ;;
+        label: "Em dia"
+      }
+      when: {
+        sql: ${dias_atraso} <= 15  ;;
+        label: "1 - 14"
+      }
+      when: {
+        sql: ${dias_atraso} <= 30  ;;
+        label: "15 - 30"
+      }
+      when: {
+        sql: ${dias_atraso} <= 60 ;;
+        label: "31 - 60"
+      }
+      when: {
+        sql: ${dias_atraso} <= 90 ;;
+        label: "61 - 90"
+      }
+      when: {
+        sql: ${dias_atraso} <= 120 ;;
+        label: "91 - 120"
+      }
+      when: {
+        sql: ${dias_atraso} <= 150 ;;
+        label: "121 - 150"
+      }
+      when: {
+        sql: ${dias_atraso} <= 180 ;;
+        label: "151 - 180"
+      }
+      when: {
+        sql: ${dias_atraso} <= 360 ;;
+        label: "181 - 360"
+      }
+      else: "W.O"
+    }
+    group_item_label: "Faixa de Atraso"
+    description: "Indica a faixa de atraso do boleto do aluno"
+  }
+
+
 
   dimension: num_parcela {
     type: number
