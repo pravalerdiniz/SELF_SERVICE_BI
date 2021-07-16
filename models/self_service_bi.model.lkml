@@ -797,7 +797,7 @@ join: alunos_produtos_aprovados {
 
 join: financeiro {
   view_label: "3. Financeiro"
-  sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} ;;
+  sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
   type: left_outer
   relationship: one_to_many
 }
