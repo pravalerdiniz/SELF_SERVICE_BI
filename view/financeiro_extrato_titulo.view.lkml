@@ -310,7 +310,7 @@ view: financeiro_extrato_titulo {
   }
 
   measure: sum_repasse_gestao{
-    type: sum
+    type: number
     sql: ${sum_repasse_gestao_calculo};;
     label: "Repasse Gestão - Soma"
     value_format:  "\"R$ \"#,##0.00"
