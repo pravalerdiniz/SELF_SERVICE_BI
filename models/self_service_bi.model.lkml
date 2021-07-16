@@ -802,6 +802,13 @@ join: financeiro {
   relationship: one_to_many
 }
 
+  join: financeiro_extrato_titulo {
+    view_label: "3.1. Extrato Titulo - Gestão"
+    sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} = ${financeiro_extrato_titulo.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta} = ${financeiro_extrato_titulo.id_contrato};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: jornada {
     view_label: "4. Jornada"
