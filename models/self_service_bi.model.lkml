@@ -256,7 +256,7 @@ explore: jornada {
 
 
   join: alunos_hotlead {
-    view_label: "5. Hotlead"
+    view_label: "5. Campanhas DBM"
     sql_on: ${jornada.id_cpf} = ${alunos_hotlead.id_cpf};;
     relationship: many_to_one
     type: left_outer
@@ -759,7 +759,7 @@ join: alunos_produtos_aprovados {
   }
 
   join: alunos_hotlead {
-    view_label: "1.8 Hotlead"
+    view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
     type: left_outer
     relationship: one_to_one
