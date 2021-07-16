@@ -5,6 +5,7 @@ view: base_score {
   dimension: anomes_status {
     type: number
     label: "Ano mês"
+    value_format: "0"
     sql: ${TABLE}."ANOMES_STATUS" ;;
   }
 
