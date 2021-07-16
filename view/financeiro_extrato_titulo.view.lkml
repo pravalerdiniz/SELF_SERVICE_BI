@@ -278,9 +278,17 @@ view: financeiro_extrato_titulo {
   }
 
 
-  measure: sum_repasse{
+  measure: sum_repasse_calculo{
     type: number
     sql: ${sum_vl_credito} - ${sum_comissao};;
+    label: "Repasse - Soma"
+    hidden: yes
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: sum_repasse{
+    type: number
+    sql: ${sum_repasse_calculo};;
     label: "Repasse - Soma"
     value_format:  "\"R$ \"#,##0.00"
   }
@@ -293,9 +301,17 @@ view: financeiro_extrato_titulo {
     description: "Comissão de Pagamentos Gestão (valor - seguros)."
   }
 
-  measure: sum_repasse_gestao{
+  measure: sum_repasse_gestao_calculo{
     type: number
     sql: ${sum_vl_credito} - ${sum_comissao_gestao};;
+    label: "Repasse Gestão - Soma"
+    hidden: yes
+    value_format:  "\"R$ \"#,##0.00"
+  }
+
+  measure: sum_repasse_gestao{
+    type: sum
+    sql: ${sum_repasse_gestao_calculo};;
     label: "Repasse Gestão - Soma"
     value_format:  "\"R$ \"#,##0.00"
   }
