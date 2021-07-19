@@ -1140,6 +1140,30 @@ view: proposta {
     sql: ${TABLE}."FLG_WO_IES" ;;
   }
 
+  dimension: flg_decola {
+    type: yesno
+    group_label: "Dados da Proposta"
+    label: "Aluno provem da Base do Decola?"
+    description: "Indica se o aluno é proveniente da Base do Decola."
+    sql: ${TABLE}."FLG_DECOLA" ;;
+  }
+
+  dimension: flg_jornada_integrada {
+    type: yesno
+    group_label: "Dados da Proposta"
+    label: "Aluno provem da Base de Jornada Integrada com IES?"
+    description: "Indica se o aluno é proveniente da Base de Jornada Integrada com Instituição de Ensino."
+    sql: ${TABLE}."FLG_JORNADA_INTEGRADA" ;;
+  }
+
+  dimension: flg_jornada_integrada_consentimento {
+    type: yesno
+    group_label: "Dados da Proposta"
+    label: "Aluno concordou em participar do processo de Jornada Integrada com IES?"
+    description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com Instituição de Ensino."
+    sql: ${TABLE}."FLG_JORNADA_INTEGRADA_CONSENTIMENTO" ;;
+  }
+
   dimension: gerente_atual {
     type: string
     group_label: "Dados da Regional"
