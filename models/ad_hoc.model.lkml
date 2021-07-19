@@ -116,6 +116,8 @@ explore: curta_duracao {}
 
 explore: jira {}
 
+explore: bv_export_boletos{}
+
 explore: pesquisa_perfil_aluno {
 
  join: pesquisa_perfil_aluno_banco {
