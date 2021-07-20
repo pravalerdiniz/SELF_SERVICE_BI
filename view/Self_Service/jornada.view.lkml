@@ -441,6 +441,11 @@ view: jornada {
     case: {
       when: {
         sql: ${etapa} = 'Lead' ;;
+        label: "0"
+      }
+
+      when: {
+        sql: ${etapa} = 'Simulado' ;;
         label: "1"
       }
       when: {
@@ -496,7 +501,7 @@ view: jornada {
         sql: ${etapa} = 'Cedido';;
         label: "13"
       }
-      else: "0"
+      else: "14"
     }
     hidden: yes
   }
