@@ -32,6 +32,13 @@ view: risk {
     group_item_label: "Data de Criação"
   }
 
+  dimension: modelo_score {
+    type: string
+    sql: ${TABLE}."MODELO_SCORE" ;;
+    description: "INDICA O MODELO DE CLASSIFICAÇÃO DO SCORE"
+    group_item_label: "Score_Model"
+  }
+
   dimension: id_aluno {
     type: string
     sql: ${TABLE}."ID_ALUNO" ;;
