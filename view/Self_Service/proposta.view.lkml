@@ -1153,7 +1153,7 @@ view: proposta {
     group_label: "Dados da Proposta"
     label: "Aluno provem da Base de Jornada Integrada com IES?"
     description: "Indica se o aluno é proveniente da Base de Jornada Integrada com Instituição de Ensino."
-    sql: ${TABLE}."FLG_JORNADA_INTEGRADA" ;;
+    sql: ${TABLE}."FLG_JND_INTEGRADA" ;;
   }
 
   dimension: flg_jornada_integrada_consentimento {
@@ -1161,7 +1161,7 @@ view: proposta {
     group_label: "Dados da Proposta"
     label: "Aluno concordou em participar do processo de Jornada Integrada com IES?"
     description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com Instituição de Ensino."
-    sql: ${TABLE}."FLG_JORNADA_INTEGRADA_CONSENTIMENTO" ;;
+    sql: ${TABLE}."FLG_JND_INTEGRADA_CONSENTIMENTO" ;;
   }
 
   dimension: gerente_atual {
