@@ -139,21 +139,21 @@ view: base_score {
     sql: ${TABLE}."GP_ESTADO" ;;
   }
 
-  dimension: gp_fia_parentesco {
+  dimension: gp_garantidor_parentesco {
     type: string
-    label: "GP Parentesco Fiador"
+    label: "GP Parentesco Garantidor"
     sql: ${TABLE}."GP_FIA_PARENTESCO" ;;
   }
 
-  dimension: gp_fia_estado_civil {
+  dimension: gp_garantidor_estado_civil {
     type: string
-    label: "GP Estado Civil Fiador"
+    label: "GP Estado Civil Garantidor"
     sql: ${TABLE}."GP_FIA_ESTADO_CIVIL" ;;
   }
 
-  dimension: gp_fia_natureza_ocup {
+  dimension: gp_garantidor_natureza_ocup {
     type: string
-    label: "GP Ocupação Fiador"
+    label: "GP Ocupação Garantidor"
     sql: ${TABLE}."GP_FIA_NATUREZA_OCUP" ;;
   }
 
