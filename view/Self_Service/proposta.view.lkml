@@ -1143,7 +1143,7 @@ view: proposta {
   dimension: flg_decola {
     type: yesno
     group_label: "Dados da Proposta"
-    label: "Aluno provem da Base do Decola?"
+    label: "flg_decola"
     description: "Indica se o aluno é proveniente da Base do Decola."
     sql: ${TABLE}."FLG_DECOLA" ;;
   }
@@ -1151,7 +1151,7 @@ view: proposta {
   dimension: flg_jornada_integrada {
     type: yesno
     group_label: "Dados da Proposta"
-    label: "Aluno provem da Base de Jornada Integrada com IES?"
+    label: "flg_jornada_integrada"
     description: "Indica se o aluno é proveniente da Base de Jornada Integrada com Instituição de Ensino."
     sql: ${TABLE}."FLG_JND_INTEGRADA" ;;
   }
@@ -1159,7 +1159,7 @@ view: proposta {
   dimension: flg_jornada_integrada_consentimento {
     type: yesno
     group_label: "Dados da Proposta"
-    label: "Aluno concordou em participar do processo de Jornada Integrada com IES?"
+    label: "flg_jornada_integrada_consentimento"
     description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com Instituição de Ensino."
     sql: ${TABLE}."FLG_JND_INTEGRADA_CONSENTIMENTO" ;;
   }
