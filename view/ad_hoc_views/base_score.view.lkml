@@ -133,6 +133,37 @@ view: base_score {
     sql: ${TABLE}."TARGET" ;;
   }
 
+  dimension: gp_estado {
+    type: string
+    label: "GP Estado"
+    sql: ${TABLE}."GP_ESTADO" ;;
+  }
+
+  dimension: gp_fia_parentesco {
+    type: string
+    label: "GP Parentesco Fiador"
+    sql: ${TABLE}."GP_FIA_PARENTESCO" ;;
+  }
+
+  dimension: gp_fia_estado_civil {
+    type: string
+    label: "GP Estado Civil Fiador"
+    sql: ${TABLE}."GP_FIA_ESTADO_CIVIL" ;;
+  }
+
+  dimension: gp_fia_natureza_ocup {
+    type: string
+    label: "GP Ocupação Fiador"
+    sql: ${TABLE}."GP_FIA_NATUREZA_OCUP" ;;
+  }
+
+  dimension: gp_idade {
+    type: string
+    label: "GP Idade"
+    sql: ${TABLE}."GP_IDADE" ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: []
