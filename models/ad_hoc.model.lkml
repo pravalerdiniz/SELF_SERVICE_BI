@@ -118,6 +118,8 @@ explore: jira {}
 
 explore: bv_export_boletos{}
 
+explore: one_page_trade {}
+
 explore: pesquisa_perfil_aluno {
 
  join: pesquisa_perfil_aluno_banco {
