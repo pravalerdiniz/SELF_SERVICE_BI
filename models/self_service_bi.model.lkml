@@ -273,7 +273,13 @@ explore: jornada {
 
   }
 
-
+  join: instituicao_jornada {
+    from: instituicao
+    view_label: "6. Instituição Jornada"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
 
 
 }

@@ -35,6 +35,12 @@ view: jornada {
     description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
   }
 
+  dimension: id_instituicao {
+    type: string
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+    hidden: yes
+  }
+
   dimension: mtd_only {
     group_label: "Filtros para Análise de Períodos"
     label: "Month to Date - Data da Etapa"
