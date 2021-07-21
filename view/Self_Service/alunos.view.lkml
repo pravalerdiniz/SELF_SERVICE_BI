@@ -24,6 +24,7 @@ view: alunos {
     hidden: yes
   }
 
+
   dimension: faixa_atraso {
     type: string
     group_label: "Dados Financeiros"
