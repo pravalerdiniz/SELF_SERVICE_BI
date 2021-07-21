@@ -1,5 +1,5 @@
 view: bv_export_boletos {
-  sql_table_name: "PUBLIC"."BV_EXPORT_BOLETOS"
+  sql_table_name: "VETERANO"."PUBLIC"."BV_EXPORT_BOLETOS"
     ;;
 
   dimension: baixa_boleto {
