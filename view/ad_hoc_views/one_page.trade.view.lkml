@@ -15,7 +15,7 @@ view: one_page_trade {
   }
 
   dimension: valor {
-    type: string
+    type: number
     label: "Valor"
     sql: ${TABLE}."VALOR" ;;
   }
