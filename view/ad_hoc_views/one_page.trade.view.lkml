@@ -16,8 +16,8 @@ view: one_page_trade {
 
   dimension: valor {
     type: string
-    label: "Indicador"
-    sql: ${TABLE}."INDICADOR" ;;
+    label: "Valor"
+    sql: ${TABLE}."VALOR" ;;
   }
 
   }
