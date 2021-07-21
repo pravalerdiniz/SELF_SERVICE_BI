@@ -221,12 +221,13 @@ explore: jornada {
     type: left_outer
   }
 
-  join: instituicao {
-    view_label: "3. Instituição "
-    sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
-    relationship: many_to_many
-    type: left_outer
-  }
+ # join: instituicao {
+#    view_label: "3. Instituição "
+  #  sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
+  #  relationship: many_to_many
+  #  type: left_outer
+
+  #}
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
@@ -273,9 +274,9 @@ explore: jornada {
 
   }
 
-  join: instituicao_jornada {
+  join: instituicao {
     from: instituicao
-    view_label: "6. Instituição Jornada"
+    view_label: "3. Instituição"
     sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao} ;;
     relationship: many_to_many
     type: left_outer
