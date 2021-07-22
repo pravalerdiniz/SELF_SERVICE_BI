@@ -1,5 +1,5 @@
 view: bv_export_boletos {
-  sql_table_name: "PUBLIC"."BV_EXPORT_BOLETOS"
+  sql_table_name: "VETERANO"."PUBLIC"."BV_EXPORT_BOLETOS"
     ;;
 
   dimension: baixa_boleto {
@@ -220,6 +220,15 @@ view: bv_export_boletos {
     type: number
     sql: ${TABLE}."VLR_MENOR" ;;
   }
+
+
+  measure: count_cpf {
+    type: count_distinct
+    sql: ${TABLE}."CPF_ALUNO" ;;
+    label: "Contagem CPF"
+  }
+
+
 
   measure: count {
     type: count
