@@ -40,16 +40,42 @@ view: artigo_tendencia {
     sql: ${TABLE}."ARTIGO_TEXTO" ;;
   }
 
+  dimension: artigo_texto1 {
+    group_item_label: "Texto Artigo_F"
+    group_label: "Filtros de Texto"
+    description: "Texto do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TEXTO" ;;
+  }
+
   dimension: artigo_texto2 {
-    group_item_label: "Texto Artigo2"
-    description: "Texto do Artigo"
+    group_item_label: "Texto Artigo_F2"
+    group_label: "Filtros de Texto"
+    description: "Texto do Artigo apenas para filtro"
     type: string
     sql: ${TABLE}."ARTIGO_TEXTO" ;;
   }
 
   dimension: artigo_texto3 {
-    group_item_label: "Texto Artigo3"
-    description: "Texto do Artigo"
+    group_item_label: "Texto Artigo_F3"
+    group_label: "Filtros de Texto"
+    description: "Texto do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TEXTO" ;;
+  }
+
+  dimension: artigo_texto4 {
+    group_item_label: "Texto Artigo_F4"
+    group_label: "Filtros de Texto"
+    description: "Texto do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TEXTO" ;;
+  }
+
+  dimension: artigo_texto5 {
+    group_item_label: "Texto Artigo_F5"
+    group_label: "Filtros de Texto"
+    description: "Texto do Artigo apenas para filtro"
     type: string
     sql: ${TABLE}."ARTIGO_TEXTO" ;;
   }
@@ -57,6 +83,46 @@ view: artigo_tendencia {
   dimension: artigo_titulo {
     group_item_label: "Título Artigo"
     description: "Título do Artigo"
+    type: string
+    sql: ${TABLE}."ARTIGO_TITULO" ;;
+  }
+
+  dimension: artigo_titulo1 {
+    group_item_label: "Título Artigo_F"
+    group_label: "Filtros de Texto"
+    description: "Título do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TITULO" ;;
+  }
+
+  dimension: artigo_titulo2 {
+    group_item_label: "Título Artigo_F2"
+    group_label: "Filtros de Texto"
+    description: "Título do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TITULO" ;;
+  }
+
+  dimension: artigo_titulo3 {
+    group_item_label: "Título Artigo_F3"
+    group_label: "Filtros de Texto"
+    description: "Título do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TITULO" ;;
+  }
+
+  dimension: artigo_titulo4 {
+    group_item_label: "Título Artigo_F4"
+    group_label: "Filtros de Texto"
+    description: "Título do Artigo apenas para filtro"
+    type: string
+    sql: ${TABLE}."ARTIGO_TITULO" ;;
+  }
+
+  dimension: artigo_titulo5 {
+    group_item_label: "Título Artigo_F5"
+    group_label: "Filtros de Texto"
+    description: "Título do Artigo apenas para filtro"
     type: string
     sql: ${TABLE}."ARTIGO_TITULO" ;;
   }
