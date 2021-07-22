@@ -86,3 +86,13 @@ explore: s_op_previsao {
     fields: [proposta.id_proposta, proposta.id_cpf, proposta.cpf_aluno, proposta.data_formalizacao_prevista_raw]
   }
 }
+
+explore: artigo_tendencia {
+  view_label: "Tendência dos Artigos"
+  label: "SEO Artigos"
+}
+
+explore: topico_tendencia {
+  view_label: "Tendência dos Tópicos"
+  label: "SEO Tópicos"
+}
