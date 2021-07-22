@@ -40,6 +40,20 @@ view: artigo_tendencia {
     sql: ${TABLE}."ARTIGO_TEXTO" ;;
   }
 
+  dimension: artigo_texto2 {
+    group_item_label: "Texto Artigo2"
+    description: "Texto do Artigo"
+    type: string
+    sql: ${TABLE}."ARTIGO_TEXTO" ;;
+  }
+
+  dimension: artigo_texto3 {
+    group_item_label: "Texto Artigo3"
+    description: "Texto do Artigo"
+    type: string
+    sql: ${TABLE}."ARTIGO_TEXTO" ;;
+  }
+
   dimension: artigo_titulo {
     group_item_label: "Título Artigo"
     description: "Título do Artigo"
