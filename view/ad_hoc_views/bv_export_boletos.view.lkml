@@ -221,6 +221,15 @@ view: bv_export_boletos {
     sql: ${TABLE}."VLR_MENOR" ;;
   }
 
+
+  measure: count_cpf {
+    type: count_distinct
+    sql: ${TABLE}."CPF_ALUNO" ;;
+    label: "Contagem CPF"
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: []
