@@ -480,7 +480,6 @@ view: student {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs"
-    drill_fields: [id_contrato,cpf_aluno,nome_aluno,email_aluno,nome_fantasia_instituicao,nome_curso,qtd_parcelas,vl_total_contrato]
   }
 
 
