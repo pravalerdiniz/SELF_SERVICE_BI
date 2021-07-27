@@ -458,7 +458,7 @@ view: student {
     hidden: yes
   }
 
-  measure: count_cpf_aluno {
+  measure: count_cpf_aluno_distinct {
     type: count_distinct
     sql: ${cpf_aluno} ;;
     group_label: "Quantidade de Alunos"
@@ -473,6 +473,14 @@ view: student {
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     description: "Porcentagem do total de CPFs únicos"
+  }
+
+  measure: count_cpf_aluno {
+    type: count
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID CPFs"
+    drill_fields: [id_contrato,cpf_aluno,nome_aluno,email_aluno,nome_fantasia_instituicao,nome_curso,qtd_parcelas,vl_total_contrato]
   }
 
 
