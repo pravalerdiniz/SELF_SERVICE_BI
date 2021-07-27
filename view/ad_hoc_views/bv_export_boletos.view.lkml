@@ -221,6 +221,11 @@ view: bv_export_boletos {
     sql: ${TABLE}."VLR_MENOR" ;;
   }
 
+  dimension: qtd_prestacoes{
+    type: number
+    sql: ${TABLE}."QTD_PRESTACOES" ;;
+  }
+
 
   measure: count_cpf {
     type: count_distinct
