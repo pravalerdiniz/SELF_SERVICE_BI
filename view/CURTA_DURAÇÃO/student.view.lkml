@@ -477,9 +477,10 @@ view: student {
 
   measure: count_cpf_aluno {
     type: count
-    group_label: "Quantidade de Alunos"
+    #sql: ${cpf_aluno} ;;
+    group_label: "Quantidade de Propostas"
     group_item_label: "Valor"
-    description: "Contagem de ID CPFs"
+    description: "Contagem de ID CPFs não distintos"
   }
 
 
