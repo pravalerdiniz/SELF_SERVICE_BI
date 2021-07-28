@@ -75,7 +75,7 @@ view: risk {
     type: string
     sql: ${TABLE}."MOTIVO_RECUSA" ;;
     description: "Motivo da Recusa da Analise de Credito"
-    group_item_label: "Politica de Risco"
+    group_item_label: "Motivo de Recusa"
   }
 
   dimension_group: ultima_atualizacao {
