@@ -50,6 +50,8 @@ view: topico_tendencia {
   }
 
   dimension: semana_ano {
+    group_item_label: "Semana Ano Corrente"
+    description: "Semana do Ano Corrente"
     type: number
     sql: ${TABLE}.`WEEKOFYEAR(CURRENT_DATE())` ;;
   }
