@@ -53,7 +53,7 @@ view: topico_tendencia {
     group_item_label: "Semana Ano Corrente"
     description: "Semana do Ano Corrente"
     type: number
-    sql: ${TABLE}.`WEEKOFYEAR(CURRENT_DATE())` ;;
+    sql: WEEKOFYEAR(CURRENT_DATE()) ;;
   }
 
   measure: valor {
