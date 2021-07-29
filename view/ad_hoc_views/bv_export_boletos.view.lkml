@@ -226,6 +226,11 @@ view: bv_export_boletos {
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
+  dimension: prod_pre_pos{
+    type: string
+    label: "Taxa Pré/Pós Fixada"
+    sql: ${TABLE}."PROD_PRE_POS" ;;
+  }
 
   measure: count_cpf {
     type: count_distinct
