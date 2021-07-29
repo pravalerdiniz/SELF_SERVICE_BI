@@ -49,6 +49,11 @@ view: topico_tendencia {
     sql: ${TABLE}."TOPICO" ;;
   }
 
+  dimension: semana_ano {
+    type: number
+    sql: ${TABLE}.`WEEKOFYEAR(CURRENT_DATE())` ;;
+  }
+
   measure: valor {
     group_item_label: "Valor Tendência"
     description: "Valor da Tendência"
