@@ -10,7 +10,8 @@ view: analise_risco {
           f.value:ESCOLA_ID::VARCHAR AS ID_INSTITUICAO,
           f.value:EVENTO_ID::VARCHAR AS ID_EVENTO,
           f.value:POLITICA_RISCO::VARCHAR AS POLITICA_RISCO,
-          f.value:SCORE::FLOAT AS SCORE
+          f.value:SCORE::FLOAT AS SCORE,
+          f.value:MOTIVO_RECUSA::varchar as MOTIVO_RECUSA
              from "VETERANO"."CURTA"."RISK" py,
       lateral flatten (input=>ANALISE_RISCO) f
        ;;
@@ -24,7 +25,12 @@ view: analise_risco {
     primary_key: yes
   }
 
-
+  dimension: motivo_recusa {
+    type: string
+    sql: ${TABLE}."MOTIVO_RECUSA" ;;
+    description: "Motivo da Recusa da Analise de Credito"
+    group_item_label: "Motivo de Recusa"
+  }
 
   measure: count {
     type: count
