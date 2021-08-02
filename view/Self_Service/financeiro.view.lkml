@@ -19,7 +19,11 @@ view: financeiro {
     sql: ${TABLE}."DATA_BAIXA" ;;
   }
 
-
+dimension: data_trunc  {
+  type: date
+  sql:date_trunc('MONTH', DATA_VENCIMENTO );;
+  hidden: yes
+}
 
 
 

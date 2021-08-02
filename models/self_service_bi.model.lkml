@@ -795,7 +795,7 @@ join: alunos_produtos_aprovados {
 
   join: ano_mes_carteira_ativa {
     fields: []
-    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} AND ${ano_mes_carteira_ativa.ano_mes} = ${financeiro.data_trunc};;
     relationship: many_to_one
     type: left_outer
   }
