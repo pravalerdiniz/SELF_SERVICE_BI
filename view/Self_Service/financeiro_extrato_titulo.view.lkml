@@ -298,7 +298,7 @@ view: financeiro_extrato_titulo {
     sql: ${sum_vl_debito} - ${sum_seguros};;
     value_format:  "\"R$ \"#,##0.00"
     group_label: "Comissão Gestão"
-    description: "Comissão de Pagamentos Gestão (valor - seguros)."
+    description: "Comissão de Pagamentos Gestão (valor - seguros) com a tarifa de cadastro de cada boleto incluso."
   }
 
   measure: sum_repasse_gestao_calculo{
