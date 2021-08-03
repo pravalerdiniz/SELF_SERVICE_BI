@@ -161,6 +161,14 @@ lateral flatten (input=>boletos) f
     description: "INDICA SE O BOLETO ESTÁ PAGO, ABERTO, VENCIDO, PAGO EM ATRASO, ETC"
   }
 
+  dimension: taxa_juros_mensal_prefixada {
+    type:  number
+    group_item_label: "Taxa Mensal Prefixada"
+    sql: ${contracts.taxa_juros_mensal_prefixada} ;;
+    description: "TAXA MENSAL PREFIXADA"
+    hidden: yes
+  }
+
   measure: vl_boleto {
     type: sum
     group_item_label: "Soma Valor da Parcela"
@@ -222,6 +230,18 @@ lateral flatten (input=>boletos) f
     sql: min(${data_vencimento}) ;;
     description: "MENOR DATA DE VENCIMENTO DO BOLETO DO ALUNO"
   }
+
+  measure: sum_vl_presente {
+    type:  number
+    group_item_label: "Valor Presente"
+    value_format: "$ #,##0.00"
+    sql: ${vl_boleto}/(power((1+ ${taxa_juros_mensal_prefixada}),(datediff('day',${data_vencimento},current_date)/30))) ;;
+    description: "Valor Presente"
+  }
+
+
+#Valor presente é: VP = Valor da Parcela /
+#(1 + taxa de juros mensal) ^ ((data de vencimento - data atual)/30)
 
   set: detail {
     fields: [
