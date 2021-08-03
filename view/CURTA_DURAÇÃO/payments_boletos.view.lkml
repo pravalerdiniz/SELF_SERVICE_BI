@@ -48,6 +48,13 @@ lateral flatten (input=>boletos) f
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
 
+  dimension: menor_data_vencimento {
+    type: date
+    group_item_label: "Menor Data de Vencimento"
+    sql: min(${data_vencimento}) ;;
+    description: "MENOR DATA DE VENCIMENTO DO BOLETO"
+  }
+
   dimension: dias_atraso_regra {
     type: number
     group_item_label: "Dias de após vencimento"
@@ -73,7 +80,7 @@ lateral flatten (input=>boletos) f
         label: "Em dia"
       }
       when: {
-        sql: ${dias_atraso} <= 15  ;;
+        sql: ${dias_atraso} < 15  ;;
         label: "1 - 14"
       }
       when: {
@@ -108,6 +115,25 @@ lateral flatten (input=>boletos) f
     }
     group_item_label: "Faixa de Atraso"
     description: "Indica a faixa de atraso do boleto do aluno"
+  }
+
+
+  dimension:perc_provisao{
+    type: number
+    group_item_label: "Percentual de Provisão"
+    description: "Indica o porcentual de provisão de cada boleto de acordo com a faixa de atraso. Informação gerada pela equipe de Risco e Portfólio"
+    sql: CASE WHEN ${faixa_de_atraso} = 'Em dia' THEN 0.008
+              WHEN ${faixa_de_atraso} = '1 - 14' THEN  0.072
+              WHEN ${faixa_de_atraso} = '15 - 30' THEN  0.17
+              WHEN ${faixa_de_atraso} = '31 - 60' THEN  0.44
+              WHEN ${faixa_de_atraso} = '61 - 90' THEN  0.60
+              WHEN ${faixa_de_atraso} = '91 - 120' THEN  0.75
+              WHEN ${faixa_de_atraso} = '121 - 150' THEN  0.84
+              WHEN ${faixa_de_atraso} = '151 - 180' THEN  0.89
+              WHEN ${faixa_de_atraso} = '181 - 360' THEN  1.00
+              ELSE 0 END
+    ;;
+    value_format: "0.00%"
   }
 
 
@@ -172,6 +198,13 @@ lateral flatten (input=>boletos) f
     group_item_label: "Média de dias Fora da Validade"
     sql: ${dias_vencido} ;;
     description: "MÉDIA DE DIAS FORA DA VALIDADE"
+  }
+
+  measure: menor_data_vencimento_atrasado {
+    type: date
+    group_item_label: "Menor Data de Vencimento"
+    sql: min(${data_vencimento}) ;;
+    description: "MENOR DATA DE VENCIMENTO DO BOLETO DO ALUNO"
   }
 
   set: detail {

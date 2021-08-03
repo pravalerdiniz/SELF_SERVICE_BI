@@ -603,7 +603,7 @@ view: jornada {
       }
 
       when: {
-        sql: ${ultimo_status_geral} in (2011) ;;
+        sql: ${ultimo_status_geral} in (2011,2013,2014,2015) ;;
         label: "Tela da Instituição"
       }
       when: {
