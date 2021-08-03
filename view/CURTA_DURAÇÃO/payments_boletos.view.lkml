@@ -230,7 +230,7 @@ lateral flatten (input=>boletos) f
     type:  number
     group_item_label: "Valor Presente"
     value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/(power((1+ ${taxa_juros_mensal_prefixada}),(datediff('day',${data_vencimento},current_date)/30))) ;;
+    sql: power(${vl_boleto}/(1+ ${taxa_juros_mensal_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
     description: "Valor Presente"
   }
 
