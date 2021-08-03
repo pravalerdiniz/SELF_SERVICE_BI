@@ -57,12 +57,7 @@ lateral flatten (input=>boletos) f
     description: "DATA DE PAGAMENTO DO BOLETO"
   }
 
-  dimension: menor_data_vencimento {
-    type: date
-    group_item_label: "Menor Data de Vencimento"
-    sql: min(${data_vencimento}) ;;
-    description: "MENOR DATA DE VENCIMENTO DO BOLETO"
-  }
+
 
   dimension: dias_atraso_regra {
     type: number
