@@ -239,7 +239,6 @@ lateral flatten (input=>boletos) f
     description: "Valor Presente"
   }
 
-
 #Valor presente é: VP = Valor da Parcela /
 #(1 + taxa de juros mensal) ^ ((data de vencimento - data atual)/30)
 
