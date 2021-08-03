@@ -422,9 +422,13 @@ explore: financeiro {
   label: "Financeiro"
   view_label: "1. Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
-  fields: [ALL_FIELDS * ,
-          proposta.id_cpf,
-          proposta.id_proposta,
+  fields: [ ALL_FIELDS *,
+          - proposta.id_cpf,
+          - proposta.id_proposta,
+          - financeiro_extrato_titulo.id_contrato,
+          - financeiro_extrato_titulo.id_cpf,
+          - financeiro_extrato_titulo.id_titulo,
+          - proposta.max_boleto_atrasado,
           ]
 
   join: financeiro_extrato_titulo {

@@ -76,7 +76,7 @@ dimension: data_trunc  {
     datatype: date
 
     label: "Entrada"
-    description: "Indica a data de Entrada do Título do Sistema"
+    description: "Indica a data de Entrada do Título no Sistema"
     sql: ${TABLE}."DATA_ENTRADA" ;;
   }
 
@@ -232,7 +232,7 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Título"
     label: "Entrou em WriteOff?"
-    description: "Indica se o título entrou no W.O"
+    description: "Indica se o título entrou no W.O. Ou seja, caso o boleto ultrapasse o prazo de 180 dias após o vencimento e ainda não foi pago ele está em Write Off."
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
 
@@ -1196,7 +1196,7 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "GH do Collection"
-    description: "Indica o GH do Collection"
+    description: "Indica o GH do Collection. Collection é o Modelo de cobrança criado pela equipe de Risco que tem como objetivo entender o comportamento dos alunos por boleto."
     sql: ${TABLE}."GH_COLLECTION" ;;
   }
 
@@ -1205,7 +1205,7 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "Último - GH do Collection"
-    description: "Indica o Último Collection do Aluno"
+    description: "Indica o Último Collection do Aluno. Collection é o Modelo de cobrança criado pela equipe de Risco que tem como objetivo entender o comportamento dos alunos por boleto"
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
 
