@@ -7,7 +7,9 @@ view: payments_boletos {
        F.VALUE:INSTALLMENT_NUMBER::INT AS NUM_PARCELA,
        F.VALUE:STATUS::VARCHAR AS SITUACAO,
        F.VALUE:VALUE::FLOAT AS VL_BOLETO,
-       F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO
+       F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO,
+       F.VALUE:PAID_AT::DATE AS DATA_PAGAMENTO,
+       F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
  ;;
@@ -46,6 +48,13 @@ lateral flatten (input=>boletos) f
     group_item_label: "Data de Vencimento"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
     description: "DATA DE VENCIMENTO DO BOLETO"
+  }
+
+  dimension: data_pagamento {
+    type: date
+    group_item_label: "Data de Pagamento"
+    sql: ${TABLE}."DATA_PAGAMENTO" ;;
+    description: "DATA DE PAGAMENTO DO BOLETO"
   }
 
   dimension: menor_data_vencimento {
@@ -184,6 +193,13 @@ lateral flatten (input=>boletos) f
     description: "MÍNIMO DOS VALORES DOS BOLETOS"
   }
 
+  measure: sum_vl_pago {
+    type: sum
+    group_item_label: "Soma do Valor Pago"
+    sql: ${TABLE}."VL_PAGO" ;;
+    value_format: "$ #,##0.00"
+    description: "SOMA DO VALOR PAGO"
+  }
 
   dimension_group: data_atualizacao {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
