@@ -66,7 +66,7 @@ view: financeiro_extrato_titulo {
   dimension: ds_extrato_transacao {
     type: string
     sql: ${TABLE}."DS_EXTRATO_TRANSACAO" ;;
-    description: "Indica oual a transação correspondente ao extrato. Ex: Parcela, Comissão, Boleto, Taxas Adicionais."
+    description: "Indica qual a transação correspondente ao extrato. Ex: Parcela, Comissão, Boleto, Taxas Adicionais."
     label: "Extrato da Transação"
   }
 
