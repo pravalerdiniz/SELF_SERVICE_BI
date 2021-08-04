@@ -150,7 +150,7 @@ dimension: data_trunc  {
     type: number
     group_label: "Dados do Boleto"
     label: "Número de dias de atraso"
-    description: "Indica o número de dias de atraso após vencimento do boleto."
+    description: "Este campo é uma regra de negócio.* Indica o número de dias de atraso após vencimento do boleto."
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
@@ -217,7 +217,11 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto Atrasado?"
-    description: "Indica se o boleto passou da data de vencimento"
+    description: "Este campo é uma regra de negócio*. Indica se o boleto passou da data de vencimento."
+    link: {
+      label: "Documentação - Boleto Atrasado"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976093197/BOLETO+ATRASADO"
+    }
     sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
   }
 
@@ -225,7 +229,7 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto Pago?"
-    description: "Indica se o boleto já foi pago pelo aluno"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto já foi pago pelo aluno"
     sql: ${TABLE}."FLG_BOLETO_PAGO" ;;
   }
 
@@ -233,7 +237,7 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Título"
     label: "Entrou em WriteOff?"
-    description: "Indica se o título entrou no W.O. Ou seja, caso o boleto ultrapasse o prazo de 180 dias após o vencimento e ainda não foi pago ele está em Write Off."
+    description: "Este campo é uma regra de negócio*.Indica se o título entrou no W.O. Ou seja, caso o boleto ultrapasse o prazo de 180 dias após o vencimento e ainda não foi pago ele está em Write Off."
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
 
@@ -524,7 +528,7 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto de Diferença?"
-    description: "Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
+    description: "Esta campo é uma regra de negócio.* Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
 foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."FLG_TITULO_DIFERENCA" ;;
   }
@@ -1245,7 +1249,7 @@ foi gerado por um pagamento menor do boleto anterior."
     convert_tz: no
     datatype: date
     label: "Data Avaliacao Collection"
-    description: "Indica a Data de Avaliação do Collection"
+    description: "Indica a Data de Avaliação do GH - Collection."
     sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
   }
 
@@ -1257,7 +1261,7 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "GH do Collection"
-    description: "Indica o GH do Collection. Collection é o Modelo de cobrança criado pela equipe de Risco que tem como objetivo entender o comportamento dos alunos por boleto."
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento do aluno inadimplente por boleto.A classificação dos GHs estão da seguinte forma: A - B - C - D "
     sql: ${TABLE}."GH_COLLECTION" ;;
   }
 
@@ -1266,7 +1270,7 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "Último - GH do Collection"
-    description: "Indica o Último Collection do Aluno. Collection é o Modelo de cobrança criado pela equipe de Risco que tem como objetivo entender o comportamento dos alunos por boleto"
+    description: "Este campo é uma regra de negócio*. Indica o Último Grupo Homogêneo do comportamento de pagamento do aluno inadimplente."
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
 
@@ -1285,7 +1289,7 @@ foi gerado por um pagamento menor do boleto anterior."
     convert_tz: no
     datatype: date
     label: "Último Collection"
-    description: "Indica a Última data de Avaliação do Collection"
+    description: "Indica a Última data de Avaliação do GH - Collection do Aluno"
     sql: ${TABLE}."DATA_ULTIMO_COLLECTION" ;;
   }
 
