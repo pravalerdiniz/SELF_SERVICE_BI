@@ -378,7 +378,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
     value_format: "0.00\%"
-    description: "Indica o valor em percentual da taxa de IPCA do boleto"
+    description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
 
@@ -388,6 +388,7 @@ dimension: data_trunc  {
     value_format: "$ #,###"
     label: "Valor de Aquisição"
     description: "Indica o valor de aquisiçao do título"
+    hidden: yes
     sql: ${TABLE}."VL_AQUISICAO" ;;
   }
 
@@ -396,6 +397,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor de Boleto"
+    hidden: yes
     description: "Indica o valor do boleto"
     sql: ${TABLE}."VL_BOLETO" ;;
   }
@@ -428,6 +430,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor de Despesa"
     description: "Indica o valor de cobrança de despesa do título."
+    hidden: yes
     sql: ${TABLE}."VL_DESPESA" ;;
   }
 
@@ -437,6 +440,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor do IPCA"
     description: "Indica o valor do IPCA sobre o título."
+    hidden: yes
     sql: ${TABLE}."VL_IPCA" ;;
   }
 
@@ -445,6 +449,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Valor de Juros"
     description: "Indica o valor de juros aplicado sobre o boleto"
+    hidden: yes
     sql: ${TABLE}."VL_JUROS" ;;
   }
 
@@ -454,6 +459,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor da Multa"
     description: "Indica o valor da multa aplicada sobre o boleto"
+    hidden: yes
     sql: ${TABLE}."VL_MULTA" ;;
   }
 
@@ -462,6 +468,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento"
+    hidden: yes
     description: "Indica o valor de pagamento do boleto gerado"
     sql: ${TABLE}."VL_PAGO" ;;
   }
@@ -471,6 +478,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento - Crédito"
+    hidden: yes
     description: "Indica o valor de pagamento por crédito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_CREDITO" ;;
   }
@@ -480,6 +488,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento - Débito"
+    hidden: yes
     description: "Indica o valor de pagamento por débito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_DEBITO" ;;
   }
@@ -489,6 +498,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Seguro"
+    hidden: yes
     description: "Indica o valor do seguro do boleto gerado"
     sql: ${TABLE}."VL_SEGURO" ;;
   }
@@ -498,6 +508,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor da Taxa Bancária"
+    hidden: yes
     description: "Indica o valor da taxa bancária"
     sql: ${TABLE}."VL_TAXA" ;;
   }
@@ -1111,6 +1122,46 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Máximo"
     description: "Valor máximo da taxa bancária"
   }
+
+
+  measure: avg_vl_ipca {
+    type: average
+    sql: ${vl_ipca} ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Médio"
+    description: "Valor médio de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+  measure: sum_vl_ipca {
+    type: sum
+    sql: ${vl_ipca} ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Soma"
+    description: "Valor da soma de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+
+  measure: min_vl_ipca {
+    type: min
+    sql: ${vl_ipca}  ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Mínimo"
+    description: "Valor minimo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+
+  measure: max_vl_ipca {
+    type: max
+    sql: ${vl_ipca}  ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Máximo"
+    description: "Valor máximo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
 
   measure: vl_atraso {
     type: sum

@@ -246,7 +246,7 @@ view: status {
     sql: ${TABLE}."VL_VEZES_PROPOSTA_NO_STATUS" ;;
     group_label: "Dados do Status"
     label: "Número de Vezes no Status"
-    description: "Indica o número de vezes em que a proposta passou por determinado status"
+    description: "Indica o número de vezes em que a proposta passou pelos status"
   }
 
 
