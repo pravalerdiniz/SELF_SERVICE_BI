@@ -123,6 +123,7 @@ dimension: data_trunc  {
         WHEN ${TABLE}."DATA_PAGAMENTO" > ${TABLE}."DATA_VENCIMENTO"  THEN 'Atrasado'
         ELSE 'No Prazo'
         END ;;
+      group_label: "Dados do Boleto"
     label: "Pagou no prazo"
     description: "Indica se boleto foi pago no prazo ou em atraso"
   }
@@ -141,7 +142,7 @@ dimension: data_trunc  {
     datatype: date
 
     label: "WriteOff"
-    description: "Indica a data de entrada do título no W.O"
+    description: "Indica a data de entrada do título no W.O, ou seja, é a data que o titulo completou 180 dias após a data de vencimento e ainda não foi pago."
     sql: ${TABLE}."DATA_WRITEOFF" ;;
   }
 
@@ -811,6 +812,15 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor do Boleto"
     group_item_label: "Máximo"
     description: "Valor máximo de aquisição do titulo"
+  }
+
+  measure: vl_total__boleto {
+    type: sum
+    sql: ${vl_total} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor do Boleto"
+    group_item_label: "Total"
+    description: "Soma do valor total do boleto considerando: Valor de Boleto + Juros + Multa + Despesa de Cobrança "
   }
 
 
