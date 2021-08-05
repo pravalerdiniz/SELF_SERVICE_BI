@@ -71,12 +71,7 @@ view: risk {
     group_item_label: "Renda do Responsável Financeiro"
   }
 
-  dimension: motivo_recusa {
-    type: string
-    sql: ${TABLE}."MOTIVO_RECUSA" ;;
-    description: "Motivo da Recusa da Analise de Credito"
-    group_item_label: "Motivo de Recusa"
-  }
+
 
   dimension_group: ultima_atualizacao {
     type: time

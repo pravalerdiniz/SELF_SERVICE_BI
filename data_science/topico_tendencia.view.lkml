@@ -49,6 +49,21 @@ view: topico_tendencia {
     sql: ${TABLE}."TOPICO" ;;
   }
 
+  dimension: semana_ano {
+    group_item_label: "Semana Ano Corrente"
+    description: "Semana do Ano Corrente"
+    type: number
+    sql: WEEKOFYEAR(CURRENT_DATE()) ;;
+  }
+
+  measure: valor_calculado {
+    group_item_label: "Valor de Tendência Calculada"
+    description: "Valor da Tendência Histórica Calculada"
+    type: sum
+    sql: ${TABLE}."VALOR_CALCULADO" ;;
+  }
+
+
   measure: valor {
     group_item_label: "Valor Tendência"
     description: "Valor da Tendência"

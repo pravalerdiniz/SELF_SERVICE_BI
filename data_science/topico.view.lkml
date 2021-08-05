@@ -14,6 +14,11 @@ view: topico {
     sql: ${TABLE}."TOPICO" ;;
   }
 
+  dimension: probabilidade_periodicidade {
+    type: number
+    sql: ${TABLE}."PROBABILIDADE_PERIODICIDADE" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id]

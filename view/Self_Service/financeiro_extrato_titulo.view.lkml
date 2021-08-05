@@ -66,7 +66,7 @@ view: financeiro_extrato_titulo {
   dimension: ds_extrato_transacao {
     type: string
     sql: ${TABLE}."DS_EXTRATO_TRANSACAO" ;;
-    description: "Indica oual a transação correspondente ao extrato. Ex: Parcela, Comissão, Boleto, Taxas Adicionais."
+    description: "Indica qual a transação correspondente ao extrato. Ex: Parcela, Comissão, Boleto, Taxas Adicionais."
     label: "Extrato da Transação"
   }
 
@@ -298,7 +298,7 @@ view: financeiro_extrato_titulo {
     sql: ${sum_vl_debito} - ${sum_seguros};;
     value_format:  "\"R$ \"#,##0.00"
     group_label: "Comissão Gestão"
-    description: "Comissão de Pagamentos Gestão (valor - seguros)."
+    description: "Comissão de Pagamentos Gestão (valor - seguros) com a tarifa de cadastro de cada boleto incluso."
   }
 
   measure: sum_repasse_gestao_calculo{

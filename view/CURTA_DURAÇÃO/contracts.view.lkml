@@ -472,6 +472,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_ANUAL_PREFIXADA";;
     description: "TAAX DE JUROS ANUAL PRE-FIXADA PARA O CONTRATO"
     group_item_label: "Taxa de Juros Anual Pré-fixada"
+    value_format: "0.00\%"
     group_label: "Taxas do Contrato"
   }
 
@@ -480,6 +481,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_DIARIA_PREFIXADA";;
     description: "TAXA DE JUROS DIÁRIA PRE-FIXADA"
     group_item_label: "Taxa de Juros Diária Pré-fixada"
+    value_format: "0.00\%"
     group_label: "Taxas do Contrato"
   }
 
@@ -488,6 +490,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_MENSAL_PREFIXADA";;
     description: "TAXA DE JUROS MENSAL PRE-FIXADA"
     group_item_label: "Taxa de Juros Mensal Pré-fixada"
+    value_format: "0.00\%"
     group_label: "Taxas do Contrato"
   }
 
