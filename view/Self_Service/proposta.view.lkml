@@ -7,7 +7,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "Calouro/Veterano?"
     hidden: no
-    description: "Indica se o aluno é calouro ou veterano"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno é calouro ou veterano"
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
@@ -25,7 +25,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Celular do Aluno"
-    description: "Indica o número de celular do aluno"
+    description: "Indica o número do celular do aluno"
     sql: ${TABLE}."ALUNO_CELULAR" ;;
     required_access_grants: [grupo_telefone]
   }
@@ -85,7 +85,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Ocupação"
-    description: "Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc"
+    description: "Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autônomo e etc"
     sql: ${TABLE}."OCUPACAO_ALUNO_PROPOSTA" ;;
   }
 
@@ -148,7 +148,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH - Behavior"
-    description: "Indica a classificação do Behavior do Aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do Aluno."
+    description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
   }
 
@@ -225,7 +225,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Dias de Carência"
-    description: "Indica o número em dias da carência do contrato do aluno"
+    description: "Este campo é uma regra de negócio*. Indica o número em dias da carência do contrato do aluno"
     sql: ${TABLE}."CARENCIA" ;;
     value_format: "0"
   }
@@ -266,7 +266,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AA"
-    description: "Indica o valor do Custo Efetivo Total ao ano do contrato."
+    description: "Indica o valor do Custo Efetivo Total (CET) ao ano (AA) do contrato."
     sql: ${TABLE}."CET_AA" ;;
   }
 
@@ -274,7 +274,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AM"
-    description: "Indica o valor do Custo Efetivo Total ao mês do contrato."
+    description: "Indica o valor do Custo Efetivo Total(CET) ao mês (AM) do contrato."
     sql: ${TABLE}."CET_AM" ;;
   }
 
@@ -326,7 +326,7 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Comprometimento de Renda"
     value_format: "0.00%"
-    description: "Indica qual a porcentagem da renda comprometida do (aluno+fiador) em relação ao valor da mensalidade do curso."
+    description: "Indica qual a porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
   }
 
@@ -335,7 +335,7 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Faixa de Comprometimento de Renda"
     value_format: "0.00%"
-    description: "Indica qual a faixa de porcentagem da renda que é comprometida do aluno em relação ao valor da mensalidade do curso."
+    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
         sql: ${comprometimento_renda} <= 0.1 ;;
@@ -495,7 +495,7 @@ view: proposta {
     sql:  (EXTRACT(DOW FROM ${data_preenchimento_raw}) < EXTRACT(DOW FROM GETDATE())
                 OR
           (EXTRACT(DOW FROM ${data_preenchimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+    description: "Ou WTD. Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
   }
 
   dimension: mtd_only {
@@ -505,7 +505,7 @@ view: proposta {
     sql:  (EXTRACT(DAY FROM ${data_preenchimento_raw}) < EXTRACT(DAY FROM GETDATE())
                 OR
           (EXTRACT(DAY FROM ${data_preenchimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+    description: "Ou MTD. Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
   }
 
   dimension: ytd_only {
@@ -515,7 +515,7 @@ view: proposta {
     sql:  (EXTRACT(DOY FROM ${data_preenchimento_raw}) < EXTRACT(DOY FROM GETDATE())
                 OR
             (EXTRACT(DOY FROM ${data_preenchimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+    description: "Ou YTD. Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
   dimension_group: data_pri_vecto {
@@ -604,8 +604,8 @@ view: proposta {
   dimension: digito_verificador {
     type: number
     group_label: "Dados do Contrato"
-    label: "Digito Verificador"
-    description: "Indica o número do digito verificado do contrato"
+    label: "Dígito Verificador"
+    description: "Indica o número do dígito verificado do contrato"
     sql: ${TABLE}."DIGITO_VERIFICADOR" ;;
   }
 
@@ -655,7 +655,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Vínculo Empregatício"
-    description: "Indica qual o vinculo empregáticio do aluno. Ex: Trabalha, Desempregado, Desempregado com renda."
+    description: "Indica qual o vinculo empregatício do aluno. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_ALUNO_TRABALHA" ;;
   }
 
@@ -703,7 +703,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Vínculo Empregatício"
-    description: "Indica qual o vinculo empregáticio do Fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
+    description: "Indica qual o vinculo empregatício do Fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_FIA_TRABALHA" ;;
   }
 
@@ -823,7 +823,7 @@ view: proposta {
     type: string
     group_label: "Dados do Curso"
     label: "Ênfase do Curso"
-    description: "Indica qual é a Enfâse de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
+    description: "Indica qual é a ênfase de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
     sql: ${TABLE}."ENFASE_CURSO" ;;
   }
 
@@ -831,7 +831,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign"
-    description: "Identificador da etapa de processamento da clicksign"
+    description: "Identificador da etapa de processamento da Clicksign"
     sql: ${TABLE}."ETAPA_CLICKSIGN" ;;
   }
 
@@ -847,7 +847,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Celular do Fiador"
-    description: "Indica o número do celular do Fiador do aluno."
+    description: "Indica o número do celular do fiador do aluno."
     sql: ${TABLE}."FIA_CELULAR" ;;
     required_access_grants: [grupo_telefone]
   }
@@ -856,7 +856,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Cidade do Fiador"
-    description: "Indica a cidade de origem do Fiador do aluno."
+    description: "Indica a cidade de origem do fiador do aluno."
     sql: ${TABLE}."FIA_CIDADE" ;;
   }
 
@@ -864,7 +864,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "E-mail do Fiador"
-    description: "Indica o e-mail do Fiador do aluno."
+    description: "Indica o e-mail do fiador do aluno."
     sql: ${TABLE}."FIA_EMAIL" ;;
     required_access_grants: [grupo_email]
   }
@@ -873,19 +873,15 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Escolaridade do Fiador"
-    description: "Indica a escolaridade do Fiador do aluno."
+    description: "Indica a escolaridade do fiador do aluno."
     sql: ${TABLE}."FIA_ESCOLARIDADE" ;;
   }
-
-
-
-
 
   dimension: fia_genero {
     type: string
     group_label: "Dados do Fiador"
     label: "Gênero do Fiador"
-    description: "Indica o sexo do Fiador do aluno."
+    description: "Indica o sexo do fiador do aluno."
     drill_fields: [detail*]
     sql: IFNULL(${TABLE}."FIA_GENERO",'NÃO INFORMADO') ;;
   }
@@ -894,7 +890,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fiador"
     label: "Idade do Fiador"
-    description: "Indica a idade do Fiador do aluno."
+    description: "Indica a idade do fiador do aluno."
     value_format_name: id
     sql: ${TABLE}."FIA_IDADE" ;;
   }
@@ -907,14 +903,14 @@ view: proposta {
     drill_fields: [detail*]
     group_label: "Dados do Fiador"
     group_item_label: "Faixa Etária do Fiador"
-    description: "Indica a faixa etária do Fiador"
+    description: "Indica a faixa etária do fiador"
   }
 
   dimension: fia_nome {
     type: string
     group_label: "Dados do Fiador"
     label: "Nome do Fiador"
-    description: "Indica o nome do Fiador do aluno."
+    description: "Indica o nome do fiador do aluno."
     sql: ${TABLE}."FIA_NOME" ;;
     required_access_grants: [grupo_nome]
   }
@@ -924,7 +920,7 @@ view: proposta {
     group_label: "Dados do Fiador"
     label: "Renda do Fiador"
     value_format: "$ #,##0.00"
-    description: "Indica o valor da renda do Fiador do aluno."
+    description: "Indica o valor da renda do fiador do aluno."
     sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
@@ -937,15 +933,16 @@ view: proposta {
     sql: ${fia_renda} ;;
     group_label: "Dados do Fiador"
     group_item_label: "Faixa de Renda do Fiador"
-    description: "Indica a faixa de renda do Fiador"
+    description: "Indica a faixa de renda do fiador"
   }
 
 
   dimension: fia_uf {
     type: string
     group_label: "Dados do Fiador"
-    label: "UF do Fiador"
+    group_item_label: "UF do Fiador"
     sql: ${TABLE}."FIA_UF" ;;
+    description: "Indica a UF do fiador"
 
   }
 
@@ -954,17 +951,15 @@ view: proposta {
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados do Fiador"
     group_item_label: "UF do Fiador - Mapa"
-    description: "Indica a UF do Fiador, pode ser usado em gráficos de mapa"
+    description: "Indica a UF do fiador, pode ser usado em gráficos de mapa"
   }
-
-
 
 
   dimension: flg_aceita_termo {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign - Aceita Termo?"
-    description: "Indica se o aluno aceitou o termo de contração digital"
+    description: "Indica se o aluno aceitou o termo de contratação digital"
     sql: ${TABLE}."FLG_ACEITA_TERMO" ;;
   }
 
@@ -972,7 +967,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign - Aceita Termo Fiador?"
-    description: "Indica se o Fiador aceitou o termo de contração digital"
+    description: "Indica se o Fiador aceitou o termo de contratação digital"
     sql: ${TABLE}."FLG_ACEITA_TERMO_GARANTIDOR" ;;
   }
 
@@ -980,7 +975,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato?"
-    description: "Indica se o aluno assinou contrato com PRAVALER"
+    description: "Indica se o aluno assinou contrato com o Pravaler"
     sql: ${TABLE}."FLG_ALUNO_ASSINOU" ;;
   }
 
@@ -988,7 +983,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Boleto Atrasado?"
-    description: "Indica se o aluno têm algum boleto atrasado"
+    description: "Indica se o aluno tem algum boleto em atraso"
     sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
   }
 
@@ -996,7 +991,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Campus"
     label: "Ativo?"
-    description: "Indica se o campus está ativo no sistema do PRAVALER"
+    description: "Indica se o campus está ativo no sistema do Praveler"
     sql: ${TABLE}."FLG_CAMPUS_ATIVO" ;;
   }
 
@@ -1028,7 +1023,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Contrato Ativo?"
-    description: "Indica se o contrato do instituição com o PRAVALER está ativo"
+    description: "Indica se o contrato do instituição com o Pravaler está ativo"
     sql: ${TABLE}."FLG_CONTRATO_IES_ATIVO" ;;
   }
 
@@ -1036,7 +1031,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Regerado?"
-    description: "Indica se o contrato do aluno foi regerado."
+    description: "Indica se o contrato do aluno foi regerado"
     sql: ${TABLE}."FLG_CONTRATO_REGERADO" ;;
   }
 
@@ -1044,7 +1039,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Único?"
-    description: "Indica se o contrato do aluno é único."
+    description: "Indica se o contrato do aluno é único"
     sql: ${TABLE}."FLG_CONTRATO_UNICO" ;;
   }
 
@@ -1052,7 +1047,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Curso"
     label: "Ativo?"
-    description: "Indica se o curso está ativo no sistema do PRAVALER."
+    description: "Indica se o curso está ativo no sistema do Pravaler"
     sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
   }
 
@@ -1060,7 +1055,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Sem concessão"
-    description: "Indica os contratos gerados sem data de concessão."
+    description: "Indica os contratos gerados sem data de concessão"
     sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
   }
 
@@ -1070,15 +1065,15 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato - Fiador?"
-    description: "Indica se o fiador assinou o contrato."
+    description: "Indica se o fiador assinou o contrato"
     sql: ${TABLE}."FLG_FIA_ASSINOU" ;;
   }
 
   dimension: flg_financia_matricula_rnv {
     type: yesno
     group_label: "Dados do Contrato"
-    label: "Financiou Matricula?"
-    description: "Indica se o aluno financiou a primeira matricula."
+    label: "Financiou Matrícula?"
+    description: "Indica se o aluno financiou a primeira matrícula"
     sql: ${TABLE}."FLG_FINANCIA_MATRICULA_RNV" ;;
   }
 
@@ -1086,7 +1081,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
-    description: "Indica se a instituição está ativa no PRAVALER."
+    description: "Indica se a instituição está ativa no Pravaler"
     sql: ${TABLE}."FLG_INSTITUICAO_ATIVA" ;;
   }
 
@@ -1094,7 +1089,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "IPCA?"
-    description: "Indica se a instituição possui IPCA no contrato com o PRAVALER."
+    description: "Indica se a instituição possui IPCA no contrato com o Pravaler"
     sql: ${TABLE}."FLG_IPCA_IES" ;;
   }
 
@@ -1102,7 +1097,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Produto"
     label: "Ativo?"
-    description: "Indica se o produto está ativo no PRAVALER."
+    description: "Indica se o produto está ativo no Pravaler"
     sql: ${TABLE}."FLG_PRODUTO_ATIVO" ;;
   }
 
@@ -1110,7 +1105,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Proposta Atual?"
-    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+    description: "Indica se é a proposta é a atual do aluno; ou seja, a última com alteração de status"
     sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
   }
 
@@ -1120,7 +1115,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Proposta Renovação Inativa?"
-    description: "Indica se a proposta de renovação está inativa no fluxo de Renovação do Aluno."
+    description: "Indica se a proposta de renovação está inativa no fluxo de renovação do aluno"
     sql: ${TABLE}."FLG_PROPOSTA_NAO_SEGUIU" ;;
   }
 
@@ -1128,7 +1123,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato - Testemunhas?"
-    description: "Indica se as testemunhas assinaram o contrato."
+    description: "Indica se as testemunhas assinaram o contrato"
     sql: ${TABLE}."FLG_TESTEMUNHAS_ASSINARAM" ;;
   }
 
@@ -1136,7 +1131,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Tem WriteOff?"
-    description: "Indica se a instituição entrou no W.O."
+    description: "Indica se a instituição entrou em WriteOff (WO)"
     sql: ${TABLE}."FLG_WO_IES" ;;
   }
 
@@ -1144,7 +1139,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Decola"
-    description: "Indica se o aluno é proveniente da Base do Decola."
+    description: "Indica se o aluno é proveniente da base do Decola"
     sql: ${TABLE}."FLG_DECOLA" ;;
   }
 
@@ -1152,7 +1147,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Jornada Integrada"
-    description: "Indica se o aluno é proveniente da Base de Jornada Integrada com Instituição de Ensino."
+    description: "Indica se o aluno é proveniente da base de Jornada Integrada com a IES"
     sql: ${TABLE}."FLG_JND_INTEGRADA" ;;
   }
 
@@ -1160,7 +1155,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Jornada Integrada Consentimento"
-    description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com Instituição de Ensino."
+    description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com a IES"
     sql: ${TABLE}."FLG_JND_INTEGRADA_CONSENTIMENTO" ;;
   }
 
@@ -1168,7 +1163,7 @@ view: proposta {
     type: string
     group_label: "Dados da Regional"
     label: "Gerente - Atual"
-    description: "Indica o nome do gerente comercial atual responsável pela regional."
+    description: "Indica o nome do gerente comercial atual responsável pela regional"
     sql: ${TABLE}."GERENTE_ATUAL" ;;
   }
 
@@ -1176,7 +1171,7 @@ view: proposta {
     type: string
     group_label: "Dados da Regional"
     label: "Gerente - Original"
-    description: "Indica o nome do gerente comercial original responsável pela regional."
+    description: "Indica o nome do gerente comercial original responsável pela regional"
     sql: ${TABLE}."GERENTE_ORIGINAL" ;;
   }
 
@@ -1184,7 +1179,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH "
-    description: "Indica qual GH o aluno está de acordo com a classificação de score do aluno."
+    description: "Indica qual Grupo Homogêneo (GH) o aluno se encontra de acordo com o score"
     sql: ${TABLE}."GH" ;;
   }
 
