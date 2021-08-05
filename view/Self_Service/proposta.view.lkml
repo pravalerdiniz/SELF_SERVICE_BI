@@ -235,6 +235,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Cargo - Atual"
     description: "Indica o cargo atual do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARGO_ATUAL" ;;
   }
 
@@ -243,6 +244,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Cargo - Original"
     description: "Indica o cargo original do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARGO_ORIGINAL" ;;
   }
 
@@ -251,6 +253,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Carteira - Atual"
     description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARTEIRA_ATUAL" ;;
   }
 
@@ -259,6 +262,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Carteira - Original"
     description: "Indica o tipo de carteira original do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARTEIRA_ORIGINAL" ;;
   }
 
@@ -309,6 +313,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Nome - Conversão Atual"
     description: "Indica o nome do representante comercial responsável pela conversão atual na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CONVERSAO_ATUAL" ;;
   }
 
@@ -317,6 +322,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Nome - Conversão Original"
     description: "Indica o nome do representante comercial responsável pela conversão original na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CONVERSAO_ORIGINAL" ;;
   }
 
@@ -374,6 +380,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Código do Representante - Atual"
     description: "Indica o código do representante comercial atual na instituição de ensino."
+    hidden: yes
     sql: ${TABLE}."CP_ATUAL" ;;
   }
 
@@ -382,6 +389,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Código do Representante - Original"
     description: "Indica o código do representante comercial original na instituição de ensino."
+    hidden: yes
     sql: ${TABLE}."CP_ORIGINAL" ;;
   }
 
@@ -1613,6 +1621,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Regional - Atual"
     description: "Indica a regional atribuida ao campus atualmente"
+    hidden: yes
     sql: ${TABLE}."REGIONAL_ATUAL" ;;
   }
 
@@ -1621,6 +1630,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Regional - Original"
     description: "Indica a regional atribuida ao campus na data de inicio da proposta"
+    hidden: yes
     sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
   }
 
@@ -1658,6 +1668,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Representante - Atual"
     description: "Indica o representante comercial atribuido ao campus atualmente"
+    hidden: yes
     sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
   }
 
@@ -1666,6 +1677,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Representante - Original"
     description: "Indica o representante comercial atribuido na data de inicio da proposta"
+    hidden: yes
     sql: ${TABLE}."REPRESENTANTE_ORIGINAL" ;;
   }
 
@@ -1701,6 +1713,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Tipo de Representante - Atual"
     description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
+    hidden: yes
     sql: ${TABLE}."TIPO_ATUAL" ;;
   }
 
@@ -1709,6 +1722,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Tipo de Representante - Original"
     description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
+    hidden: yes
     sql: ${TABLE}."TIPO_ORIGINAL" ;;
   }
 
