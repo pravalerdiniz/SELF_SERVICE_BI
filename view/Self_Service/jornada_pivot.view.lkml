@@ -13,9 +13,9 @@ view: jornada_pivot {
           "'Aprovado Risco'" as data_apr_risco,
           "'Aprovado Behavior'" as data_apr_behavior,
           "'Aprovado Instituicao'" as data_apr_ies,
-          "'Dados Confirmados'" as data_dados_confirmados,
+          "'Aguardando Documento'" as data_agu_doc,
+          "'Aguardando Assinatura'" as data_agu_ass,
           "'Contrato Gerado'" as data_cont_ger,
-          "'Contrato Assinado'" as data_cont_ass,
           "'Formalizado'" as data_form,
           "'Cedido'" as data_cedido
 
@@ -23,7 +23,7 @@ view: jornada_pivot {
 
 
       pivot(max(DT_STATUS) for ETAPA in ('Lead','Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
-                                         'Dados Confirmados','Contrato Gerado','Contrato Assinado','Formalizado','Cedido')) as p
+                                         'Contrato Gerado','Aguardando Documento','Aguardando Assinatura','Formalizado','Cedido')) as p
 
       where upper(tipo_proposta) in ('NOVO','RENOVACAO')
 
@@ -105,9 +105,9 @@ view: jornada_pivot {
     hidden: yes
   }
 
-  dimension_group: data_dados_confirmados {
+  dimension_group: data_agu_doc {
     type: time
-    sql: ${TABLE}."DATA_DADOS_CONFIRMADOS" ;;
+    sql: ${TABLE}."DATA_AGU_DOC" ;;
     hidden: yes
   }
 
@@ -117,9 +117,9 @@ view: jornada_pivot {
     hidden: yes
   }
 
-  dimension_group: data_cont_ass {
+  dimension_group: data_agu_ass {
     type: time
-    sql: ${TABLE}."DATA_CONT_ASS" ;;
+    sql: ${TABLE}."DATA_AGU_ASS" ;;
     hidden: yes
   }
 
@@ -180,12 +180,12 @@ view: jornada_pivot {
     hidden: yes
   }
 
-  dimension: sla_conf_dados_novos {
+  dimension: sla_agu_doc_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
-                   or ${data_apr_ies_raw} is null or ${data_dados_confirmados_raw} is null)
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_apr_ies_raw},${data_agu_ass_raw}) < 0
+                   or ${data_apr_ies_raw} is null or ${data_agu_ass_raw} is null)
               then null
-              else datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw})
+              else datediff(day,${data_apr_ies_raw},${data_agu_ass_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -193,32 +193,36 @@ view: jornada_pivot {
 
   dimension: sla_cont_ger_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
-                   or ${data_dados_confirmados_raw} is null or ${data_cont_ger_raw} is null)
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_agu_doc_raw},${data_cont_ger_raw}) < 0
+                   or ${data_agu_doc_raw} is null or ${data_cont_ger_raw} is null)
               then null
-              else datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw})
+              else datediff(day,${data_agu_doc_raw},${data_cont_ger_raw})
          end ;;
     value_format: "0"
     hidden: yes
   }
 
-  dimension: sla_cont_ass_novos {
+
+  dimension: sla_agu_ass_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
-                   or ${data_cont_ger_raw} is null or ${data_cont_ass_raw} is null)
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_cont_ger_raw},${data_agu_ass_raw}) < 0
+                   or ${data_cont_ger_raw} is null or ${data_agu_ass_raw} is null)
               then null
-              else datediff(day,${data_cont_ger_raw},${data_cont_ass_raw})
+              else datediff(day,${data_cont_ger_raw},${data_agu_ass_raw})
          end ;;
     value_format: "0"
     hidden: yes
   }
+
+
+
 
   dimension: sla_form_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
-                   or ${data_cont_ass_raw} is null or ${data_form_raw} is null)
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_agu_ass_raw},${data_form_raw}) < 0
+                   or ${data_agu_ass_raw} is null or ${data_form_raw} is null)
               then null
-              else datediff(day,${data_cont_ass_raw},${data_form_raw})
+              else datediff(day,${data_agu_ass_raw},${data_form_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -280,12 +284,12 @@ view: jornada_pivot {
     hidden: yes
   }
 
-  dimension: sla_dados_conf_renov {
+  dimension: sla_agu_doc_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw}) < 0
-                   or ${data_apr_ies_raw} is null or ${data_dados_confirmados_raw} is null)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_apr_ies_raw},${data_agu_doc_raw}) < 0
+                   or ${data_apr_ies_raw} is null or ${data_agu_doc_raw} is null)
               then null
-              else datediff(day,${data_apr_ies_raw},${data_dados_confirmados_raw})
+              else datediff(day,${data_apr_ies_raw},${data_agu_doc_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -293,21 +297,21 @@ view: jornada_pivot {
 
   dimension: sla_cont_ger_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw}) < 0
-                   or ${data_dados_confirmados_raw} is null or ${data_cont_ger_raw} is null)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_agu_doc_raw},${data_cont_ger_raw}) < 0
+                   or ${data_agu_doc_raw} is null or ${data_cont_ger_raw} is null)
               then null
-              else datediff(day,${data_dados_confirmados_raw},${data_cont_ger_raw})
+              else datediff(day,${data_agu_doc_raw},${data_cont_ger_raw})
          end ;;
     value_format: "0"
     hidden: yes
   }
 
-  dimension: sla_cont_ass_renov {
+  dimension: sla_agu_ass_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_cont_ger_raw},${data_cont_ass_raw}) < 0
-                   or ${data_cont_ger_raw} is null or ${data_cont_ass_raw} is null)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_cont_ger_raw},${data_agu_ass_raw}) < 0
+                   or ${data_cont_ger_raw} is null or ${data_agu_ass_raw} is null)
               then null
-              else datediff(day,${data_cont_ger_raw},${data_cont_ass_raw})
+              else datediff(day,${data_cont_ger_raw},${data_agu_ass_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -315,10 +319,10 @@ view: jornada_pivot {
 
   dimension: sla_form_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_cont_ass_raw},${data_form_raw}) < 0
-                   or ${data_cont_ass_raw} is null or ${data_form_raw} is null)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${data_agu_ass_raw},${data_form_raw}) < 0
+                   or ${data_agu_ass_raw} is null or ${data_form_raw} is null)
               then null
-              else datediff(day,${data_cont_ass_raw},${data_form_raw})
+              else datediff(day,${data_agu_ass_raw},${data_form_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -359,9 +363,9 @@ view: jornada_pivot {
       data_apr_risco_time,
       data_apr_behavior_time,
       data_apr_ies_time,
-      data_dados_confirmados_time,
+      data_agu_ass_time,
       data_cont_ger_time,
-      data_cont_ass_time,
+      data_agu_ass_time,
       data_form_time,
       data_cedido_time
     ]
