@@ -151,6 +151,10 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Número de dias de atraso"
     description: "Este campo é uma regra de negócio.* Indica o número de dias de atraso após vencimento do boleto."
+    link: {
+      label: "Documentação - Dias de Atraso"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/975732737/DIAS+DE+ATRASO"
+    }
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
@@ -230,6 +234,10 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Boleto Pago?"
     description: "Este campo é uma regra de negócio*.Indica se o boleto já foi pago pelo aluno"
+    link: {
+      label: "Documentação - Boleto Pago"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/971112540/BOLETO+PAGO"
+    }
     sql: ${TABLE}."FLG_BOLETO_PAGO" ;;
   }
 
@@ -238,6 +246,10 @@ dimension: data_trunc  {
     group_label: "Dados do Título"
     label: "Entrou em WriteOff?"
     description: "Este campo é uma regra de negócio*.Indica se o título entrou no W.O. Ou seja, caso o boleto ultrapasse o prazo de 180 dias após o vencimento e ainda não foi pago ele está em Write Off."
+    link: {
+      label: "Documentação - Write Off"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/975732813/WRITE-OFF"
+    }
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
 
@@ -530,6 +542,10 @@ dimension: data_trunc  {
     label: "Boleto de Diferença?"
     description: "Esta campo é uma regra de negócio.* Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
 foi gerado por um pagamento menor do boleto anterior."
+    link: {
+      label: "Documentação - Titulo Diferença"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060487/T+TULO+DIFEREN+A"
+    }
     sql: ${TABLE}."FLG_TITULO_DIFERENCA" ;;
   }
 
@@ -1262,6 +1278,10 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Collection"
     label: "GH do Collection"
     description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento do aluno inadimplente por boleto.A classificação dos GHs estão da seguinte forma: A - B - C - D "
+    link: {
+      label: "Documentação - Dias de Atraso"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060579/GH+-+Collection"
+    }
     sql: ${TABLE}."GH_COLLECTION" ;;
   }
 
