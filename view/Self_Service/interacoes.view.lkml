@@ -48,7 +48,7 @@ view: interacoes {
       year
     ]
     sql: ${TABLE}."CHAT_DATA_FIM" ;;
-    description: "Indica a data Fim do Chat"
+    description: "Esse campo é uma regra de negócio*.Indica a data Fim do Chat"
   }
 
   dimension_group: chat_data_inicio {
@@ -343,7 +343,11 @@ view: interacoes {
     type: yesno
     group_label: "Dados de Pesquisa de Satisfação"
     group_item_label: "Pesquisa disparada?"
-    description: "Indica se a pesquisa foi disparada ou não."
+    description: "Este campo é uma regra de negócio*.Indica se a pesquisa foi disparada ou não."
+    link: {
+      label: "Documentação - Pesquisa Disparada? "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064566827/FLG+PESQUISA+DISPARADA"
+    }
     sql: ${TABLE}."FLG_PESQUISA_DISPARADA" ;;
   }
 
@@ -400,7 +404,11 @@ view: interacoes {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Motivo de Contato"
-    description: "Indica o motivo de contato realizado no ticket."
+    description: "Este campo é uma regra de negócio*.Indica o motivo de contato realizado no ticket."
+    link: {
+      label: "Documentação - Motivo de Contato "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813196/MOTIVO+DE+CONTATO"
+    }
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
@@ -408,7 +416,11 @@ view: interacoes {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Taxa de Reclamação"
-    description: "Classificação dos contatos de não conformidade."
+    description: "Este campo é uma regra de negócio*.Classificação dos contatos de não conformidade."
+    link: {
+      label: "Documentação - Taxa de Reclamação "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813508/TAXA+DE+RECLAMA+O"
+    }
     sql: ${TABLE}."TAXA_RECLAMACAO" ;;
   }
 
@@ -416,7 +428,11 @@ view: interacoes {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Taxa de Contato"
-    description: "Segmenta os motivos de contato entre contratação, renovação, utilização e outros."
+    description: "Este campo é uma regra de negócio*.Segmenta os motivos de contato entre contratação, renovação, utilização e outros."
+    link: {
+      label: "Documentação - Taxa de Contato "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064567182/TAXA+DE+CONTATO"
+    }
     sql: ${TABLE}."TAXA_CONTATO" ;;
   }
 
@@ -425,6 +441,10 @@ view: interacoes {
     group_label: "Dados do Ticket"
     group_item_label: "Tipo de Contato"
     description: "Indica o tipo de contato realizado no ticket.Ex: Ativo, Receptivo, Não qualificado."
+    link: {
+      label: "Documentação - Tipo de Contato "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064370185/TIPO+DE+CONTATO"
+    }
     sql: ${TABLE}."TIPO_CONTATO" ;;
   }
 
@@ -547,7 +567,11 @@ view: interacoes {
     type: string
     group_label: "Dados do Atendente"
     group_item_label: "E-mail"
-    description: "Indica o e-mail do atendente do ticket."
+    description: "Este campo é uma regra de negócio*.Indica o e-mail do atendente do ticket."
+    link: {
+      label: "Documentação - E-mail Agente "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813264/E-MAIL+AGENTE"
+    }
     sql: ${TABLE}."EMAIL_AGENTE" ;;
   }
 
@@ -663,7 +687,11 @@ view: interacoes {
     type: string
     group_item_label: "Conformidade - Nota Geral"
     group_label: "Dados de Monitoria"
-    description: "Indica se a nota da monitoria é ou não conforme."
+    description: "Esse campo é uma regra de negócio.* Indica se a nota da monitoria é ou não conforme."
+    link: {
+      label: "Documentação - Nota Geral"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064567021/CONFORMIDADE+-+NOTA+GERAL"
+    }
     sql: ${TABLE}."CONFORMIDADE" ;;
   }
 
@@ -671,7 +699,11 @@ view: interacoes {
     type: string
     group_item_label: "Erro Crítico"
     group_label: "Dados de Monitoria"
-    description: "Qualifica a monitoria em erro crítico ou não erro crítico."
+    description: "Este campo é uma regra de negócio*.Qualifica a monitoria em erro crítico ou não erro crítico."
+    link: {
+      label: "Documentação - Erro Critico "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064567070/ERRO+CR+TICO"
+    }
     sql: ${TABLE}."ERRO_CRITICO" ;;
   }
 
@@ -679,7 +711,11 @@ view: interacoes {
     type: number
     group_item_label: "Nota"
     group_label: "Dados de Monitoria"
-    description: "Indica a nota de monitoria."
+    link: {
+      label: "Documentação - Nota de Monitoramento "
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813345/NOTA"
+    }
+    description: "Este campo é uma regra de negócio*.Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
   }
 
