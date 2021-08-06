@@ -286,6 +286,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: cpf {
+    from: cpf
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 
 }
 
