@@ -62,7 +62,7 @@ lateral flatten (input=>boletos) f
   dimension: dias_atraso_regra {
     type: number
     group_item_label: "Dias de após vencimento"
-    sql: datediff('day',${data_vencimento}, current_date);;
+    sql: datediff('day',${data_vencimento}, '2021-07-30');;
     hidden: yes
     description: "QUANTIDADE DE DIAS FORA DA VALIDADE"
   }
@@ -160,10 +160,10 @@ lateral flatten (input=>boletos) f
     description: "INDICA SE O BOLETO ESTÁ PAGO, ABERTO, VENCIDO, PAGO EM ATRASO, ETC"
   }
 
-  dimension: taxa_juros_mensal_prefixada {
+  dimension: taxa_juros_diaria_prefixada {
     type:  number
     group_item_label: "Taxa Mensal Prefixada"
-    sql: ${contracts.taxa_juros_mensal_prefixada} ;;
+    sql: ${contracts.taxa_juros_diaria_prefixada} ;;
     description: "TAXA MENSAL PREFIXADA"
     hidden: yes
   }
@@ -232,11 +232,14 @@ lateral flatten (input=>boletos) f
 
   measure: sum_vl_presente {
     type:  number
-    group_item_label: "Valor Presente"
+    group_item_label: "Valor Presente - Anual"
     value_format: "$ #,##0.00"
-    sql: power(${vl_boleto}/(1+ ${taxa_juros_mensal_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
+    sql: ${vl_boleto}/power((1+ ${taxa_juros_diaria_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
     description: "Valor Presente"
   }
+
+
+  ##((1+Juros mensal)^(1/30))-1 - Juros mensal dia a dia
 
 #Valor presente é: VP = Valor da Parcela /
 #(1 + taxa de juros mensal) ^ ((data de vencimento - data atual)/30)
