@@ -189,8 +189,8 @@ view: jornada_pivot {
 
   dimension: sla_agu_ass_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_agu_doc_raw}),${data_agu_ass_raw}) < 0
-                   or ${data_agu_doc_raw}) is null or ${data_agu_ass_raw} is null)
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${data_agu_doc_raw},${data_agu_ass_raw}) < 0
+                   or ${data_agu_doc_raw} is null or ${data_agu_ass_raw} is null)
               then null
               else datediff(day,${data_agu_doc_raw},${data_agu_ass_raw})
          end ;;
@@ -337,7 +337,7 @@ view: jornada_pivot {
       data_apr_risco_time,
       data_apr_behavior_time,
       data_apr_ies_time,
-      data_agu_ass_time,
+      data_agu_doc_time,
       data_agu_ass_time,
       data_form_time,
       data_cedido_time
