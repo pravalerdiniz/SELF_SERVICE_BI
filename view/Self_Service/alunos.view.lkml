@@ -38,7 +38,11 @@ view: alunos {
     type: number
     group_label: "Dados do Aluno"
     group_item_label: "Idade do Aluno"
-    description: "Indica a idade atual do aluno"
+    description: "Este campo é uma regra de negócio*. Indica a idade atual do aluno no momento do preenchimento da proposta"
+    link: {
+      label: "Documentação - Idade Aluno"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/882540633/IDADE+DO+ALUNO"
+    }
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
 
@@ -135,7 +139,11 @@ view: alunos {
     sql: ${TABLE}."RENDA_MENSAL" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Renda Mensal do Aluno"
-    description: "Indica a renda mensal do aluno"
+    description: "Este campo é uma regra de negócio*. Indica a renda mensal do aluno"
+    link: {
+      label: "Documentação - Renda Mensal Aluno"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973771/RENDA+MENSAL+ALUNO"
+    }
     required_access_grants: [grupo_renda]
   }
 
@@ -264,7 +272,11 @@ view: alunos {
     type: number
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Idade do Garantidor"
-    description: "Indica a idade do garantidor"
+    description: "Este campo é uma regra de negócio*. Indica a idade do garantidor"
+    link: {
+      label: "Documentação - Idade do Fiador"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/882573436/IDADE+DO+FIADOR"
+    }
     sql: ${TABLE}."FIA_IDADE" ;;
   }
 
@@ -299,7 +311,7 @@ view: alunos {
     type: number
     group_label: "Dados Financeiros"
     group_item_label: "Valor do PDD"
-    description: "Indica o Valor do PDD"
+    description: "PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira, e melhor está a nossa política de crédito e cobrança."
     sql: ${TABLE}."VL_PDD" ;;
     value_format: "#.##"
   }
@@ -452,10 +464,14 @@ view: alunos {
 
   dimension: flg_formado {
     type: yesno
-    sql: ${TABLE}."FLG_FORMADO" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Aluno formado?"
-    description: "Indica se o aluno é formando (yes / no)"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno está formando (yes / no)"
+    link: {
+      label: "Documentação - Formado"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1018101765/FORMADO"
+    }
+    sql: ${TABLE}."FLG_FORMADO" ;;
   }
 
 
@@ -466,6 +482,10 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Mãe Falecida?"
     description: "Indica se a mãe do aluno é falecida (yes / no)"
+    link: {
+      label: "Documentação - Pai/Mãe Falecido"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973373/PAI+FALECIDO+M+E+FALECIDA"
+    }
   }
 
   dimension: flg_pai_falecido {
@@ -474,6 +494,10 @@ view: alunos {
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Pai Falecido?"
     description: "Indica se o pai do aluno é falecido (yes / no)"
+    link: {
+      label: "Documentação - Pai/Mãe Falecido"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973373/PAI+FALECIDO+M+E+FALECIDA"
+    }
   }
 
   dimension: id_fia_cpf_atual {
@@ -481,7 +505,11 @@ view: alunos {
     sql: ${TABLE}."ID_FIA_CPF_ATUAL" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "ID do CPF do Garantidor"
-    description: "Indica o ID do CPF do Garantidor"
+    description: "Este campo é uma regra de negócio*. Indica o CPF do Garantidor Atual"
+    link: {
+      label: "Documentação - CPF Fiador Atual"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973643/CPF+FIADOR+ATUAL"
+    }
   }
 
   dimension: renda_fam_mensal {
@@ -489,8 +517,12 @@ view: alunos {
     sql: ${TABLE}."RENDA_FAM_MENSAL" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Renda Mensal da Família"
-    description: "Indica a renda mensal da família"
-    required_access_grants: [grupo_renda]
+    description: "Este campo é uma regra de negócio*. Indica a renda mensal da família do aluno"
+       link: {
+      label: "Documentação - Renda Familiar Mensal"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973731/RENDA+FAMILIAR+MENSAL"
+    }
+   required_access_grants: [grupo_renda]
   }
 
   dimension: qtd_semestre_curso {
@@ -498,7 +530,7 @@ view: alunos {
     sql: ${TABLE}."QTD_SEMESTRE_CURSO" ;;
     group_label: "Dados do Curso"
     group_item_label: "Quantidade de Semestres do Curso"
-    description: "Indica a quantidade de semestres do curso"
+    description: "Indica a quantidade de semestres do curso contratado pelo aluno"
   }
 
   dimension: area_conhecimento_curso {
@@ -514,7 +546,11 @@ view: alunos {
     sql: ${TABLE}."DS_CAL_VET" ;;
     group_label: "Dados do Aluno"
     label: "Calouro/Veterano?"
-    description: "Descreve se o aluno é calouro, veterano ou outros"
+    description: "Indica se o aluno é calouro, veterano ou outros"
+    link: {
+      label: "Documentação - Calouro ou Veterano"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/883130478/CALOURO+OU+VETERANO"
+    }
   }
 
   dimension: ds_curso {
@@ -522,7 +558,7 @@ view: alunos {
     sql: ${TABLE}."DS_CURSO" ;;
     group_item_label: "Curso"
     group_label: "Dados do Curso"
-    description: "Indica qual o curso do aluno"
+    description: "Indica qual o nome do curso do aluno"
   }
 
   dimension: enfase_curso {
@@ -530,7 +566,7 @@ view: alunos {
     sql: ${TABLE}."ENFASE_CURSO" ;;
     group_label: "Dados do Curso"
     group_item_label: "Ênfase"
-    description: "Indica o curso de aprofuncamento se houver"
+    description: "Indica o curso de aprofuncamento, se houver"
   }
 
   dimension: flg_curso_ativo {
@@ -627,7 +663,7 @@ view: alunos {
     sql: ${TABLE}."ID_GRUPO" ;;
     group_label:  "Dados da Instituição"
     group_item_label: "ID do Grupo da Instituição de Ensino"
-    description: "Indica a qual é o ID do grupo da IE"
+    description: "Indica a qual é o ID do grupo da IES"
   }
 
   dimension: id_campus {
@@ -659,7 +695,7 @@ view: alunos {
     sql: ${TABLE}."DS_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
     group_item_label: "Nome da Instituição de Ensino"
-    description: "Indica o nome da IE"
+    description: "Indica o nome da IES"
   }
 
   dimension: uf_campus {
@@ -709,7 +745,7 @@ view: alunos {
     sql: ${TABLE}."GERENTE_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Gerente Atual"
-    description: "Indica gerente atual"
+    description: "Indica quem é o gerente atual"
   }
 
   dimension: representante_atual {
@@ -717,7 +753,7 @@ view: alunos {
     sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Representante Atual"
-    description: "Indica o representante atual"
+    description: "Indica quem é o representante atual"
   }
 
   dimension: regional_atual {
@@ -725,7 +761,7 @@ view: alunos {
     sql: ${TABLE}."REGIONAL_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Regional Atual"
-    description: "Indica a regional atual"
+    description: "Indica a regional atual. Ex: Minas, RJ, ES, CO..."
   }
 
   dimension: tipo_atual {
@@ -733,7 +769,7 @@ view: alunos {
     sql: ${TABLE}."TIPO_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Tipo de Representante Atual"
-    description: "Indica o tipo de representante atual"
+    description: "Indica o tipo de representante atual. Ex: Fixo, Volante."
   }
 
   dimension: carteira_atual {
@@ -741,7 +777,7 @@ view: alunos {
     sql: ${TABLE}."CARTEIRA_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Carteira - Atual"
-    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
+    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
   }
 
   dimension: conversao_atual {
@@ -749,7 +785,7 @@ view: alunos {
     sql: ${TABLE}."CONVERSAO_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "Conversão - Atual"
-    description: "Agente de conversão atribuído ao campus atualmente"
+    description: "Indica qual o nome do agente de conversão atribuído ao campus atualmente"
   }
 
   dimension: cp_atual {
@@ -757,7 +793,7 @@ view: alunos {
     sql: ${TABLE}."CP_ATUAL" ;;
     group_label: "Dados Comerciais"
     group_item_label: "CP - Atual"
-    description: "CP do representante atribuído ao campus atualmente"
+    description: " Indica o código do representante comercial atual na IES"
   }
 
 
@@ -766,7 +802,7 @@ view: alunos {
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
     group_label: "Dados do Fundo de Investimento"
     group_item_label: "Nome do Fundo de Investimento"
-    description: "Indica o fundo responsável pelo financiamento"
+    description: "Indica o fundo de investimento responsável pelo financiamento do aluno"
 
   }
 
@@ -775,7 +811,11 @@ view: alunos {
     sql: ${TABLE}."FLG_ALUNO_ATIVO" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Aluno ativo?"
-    description: "Indica se o aluno está financeiramente ativo (yes/no)"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno está financeiramente ativo (yes/no)"
+    link: {
+      label: "Documentação - Aluno Ativo"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1018527764/ALUNO+ATIVO"
+    }
   }
 
 
@@ -800,7 +840,7 @@ view: alunos {
     sql: ${TABLE}."QTD_PROPOSTAS_ENVIADAS" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Propostas Enviadas"
-    description: "Indica a quantidade de propostas enviadas"
+    description: "Indica a quantidade de propostas enviadas pelo aluno"
   }
 
 
@@ -838,7 +878,11 @@ view: alunos {
     sql: ${TABLE}."ID_PRODUTO" ;;
     group_label: "Dados do Produto"
     group_item_label: "ID do Produto"
-    description: "Número de identificação do produto"
+    description: "Este campo é uma regra de negócio*. Indica o código do produto contratado pelo aluno. "
+    link: {
+      label: "Documentação - ID Produto"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/987267365/ID+PRODUTO"
+    }
   }
 
   dimension: flg_produto_ativo {
@@ -862,15 +906,20 @@ view: alunos {
     sql: ${TABLE}."MODALIDADE_ENSINO" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Modalidade de Ensino"
-    description: "Descrição da modalidade de ensino do aluno (ex.: EAD, Presencial)"
+    description: "Este campo é uma regra de negócio*. Indica a descrição da modalidade de ensino contratada pelo aluno. (Ex.: EAD, Presencial)"
+    link: {
+      label: "Documentação - Modalidade de Ensino"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1004929039/MODALIDADE+DE+ENSINO"
+    }
   }
+
 
   dimension: nm_produto {
     type: string
     sql: ${TABLE}."NM_PRODUTO" ;;
     group_label: "Dados do Produto"
     group_item_label: "Descrição do Produto"
-    description: "Indica o nome do produto"
+    description: "Indica o nome do produto contratado pelo aluno."
   }
 
   dimension: tipo_produto {
@@ -878,8 +927,14 @@ view: alunos {
     sql: ${TABLE}."TIPO_PRODUTO" ;;
     group_label:  "Dados do Produto"
     group_item_label: "Tipo de Produto"
-    description: "Indica o tipo de Produto (ex.: EAD, Emergencial, Core Business)"
+    description: "Indica qual é o tipo de Produto do aluno dentro do Pravaler (ex.: EAD, Emergencial, Core Business)"
+  link: {
+    label: "Documentação - Tipo Produto"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/884244481/TIPO+DE+PRODUTO"
   }
+  }
+
+
 
   dimension_group: data_matricula {
     type: time
@@ -993,15 +1048,20 @@ view: alunos {
     sql: ${TABLE}."NUM_DA_RENOVACAO" ;;
     group_label: "Dados de Renovação"
     group_item_label: "Número da Renovação"
-    description: "Indica o número da renovação"
+    description: "Este campo é uma regra de negócio*. indica qual é o número de renovação que o aluno está atualmente"
+    link: {
+      label: "Documentação - Número da Renovação"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/999292966/NUMERO+DA+RENOVA+O"
+    }
   }
+
 
   dimension: qtd_contratos_cedidos {
     type: number
     sql: ${TABLE}."QTD_CONTRATOS_CEDIDOS" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Contratos Cedidos"
-    description: "Indica a quantidade de contratos cedidos"
+    description: "Indica a quantidade de contratos cedidos do aluno"
   }
 
   dimension: qtd_garantidores_diferentes {
@@ -1009,7 +1069,7 @@ view: alunos {
     sql: ${TABLE}."QTD_GARANTIDORES_DIFERENTES" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Garantidores Diferentes"
-    description: "Indica a quantidade de garantidores diferentes"
+    description: "Indica a quantidade de garantidores diferentes que o aluno indicou"
   }
 
   dimension: qtd_mensalidade_total {
@@ -1017,7 +1077,11 @@ view: alunos {
     sql: ${TABLE}."QTD_MENSALIDADE_TOTAL" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Mensalidade"
-    description: "Indica a quantidade de mensalidade"
+    description: "Este campo é uma regra de negócio. Indica a quantidade de mensalidade total do aluno"
+  link: {
+    label: "Documentação - Quantidade Mensalidade"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941129755/QUANTIDADE+DE+MENSALIDADES"
+  }
   }
 
   dimension: qtd_parcelas_semestre {
@@ -1025,7 +1089,7 @@ view: alunos {
     sql: ${TABLE}."QTD_PARCELAS_SEMESTRE" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Parcelas"
-    description: "Indica a quantidade de parcelas"
+    description: "Indica a quantidade de parcelas contratadas pelo aluno"
   }
 
   dimension: qtd_renovacao {
@@ -1033,7 +1097,7 @@ view: alunos {
     sql: ${TABLE}."QTD_RENOVACAO" ;;
     group_label: "Dados de Renovação"
     group_item_label: "Quantidade de Propostas de Renovação"
-    description: "Indica a quantidade de propostas de renovação"
+    description: "Indica a quantidade de propostas de renovação do aluno"
   }
 
   dimension: safra_cessao_semestre {
@@ -1049,7 +1113,7 @@ view: alunos {
     sql: ${TABLE}."TIPO_RENOVACAO" ;;
     group_label: "Dados de Renovação"
     group_item_label: "Tipo de Renovação"
-    description: "Indica o tipo de renovação (par/ímpar)"
+    description: "Indica o tipo de renovação. Ex: Primeiro semestre = ímpar, Segundo semestre = par, Terceiro semestre = ímpar, e assim por diante. (par/ímpar)"
   }
 
   dimension: vl_score {
@@ -1075,7 +1139,11 @@ view: alunos {
     sql: ${TABLE}."FLG_RENEGOCIACAO" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Renegociação?"
-    description: "Indica se é proposta de renegociação (yes/no)"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno possui proposta de renegociação. (yes/no)"
+  link: {
+    label: "Documentação - Renegociação"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1004929107/FLG+RENEGOCIA+O"
+    }
   }
 
   dimension: gh {
@@ -1083,15 +1151,20 @@ view: alunos {
     sql: ${TABLE}."GH" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Grupo Homogêneo"
-    description: "Indica o grupo homogêneo"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do aluno após passar pela avaliação de análise de crédito baseado no Score de Crédito durante o processo de contratação do Aluno, ou seja, o grupo homogêneo é uma classificação dos scores, por exemplo, os alunos que possuem score maior que 9063 será classificado como GH A, GH B<=9063, GH C<=8845, GH D<=8328, GH E<=5197, GH F<=1728, GH G<=843"
+    link: {
+      label: "Documentação - GH"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969408513/GH"
+    }
   }
+
 
   dimension: data_visao_diaria {
     type: date
     sql: ${TABLE}."DT_VISAO_DIARIA" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Data da Visão Diária - PDD "
-    description: "Informa a data referente ao calculo diário do pdd do aluno"
+    description: "Informa a data referente ao calculo diário do pdd do aluno*.PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira e melhor está a nossa política de crédito e cobrança."
   }
 
   dimension: flg_inadimplente {
@@ -1115,7 +1188,11 @@ view: alunos {
     sql: ${TABLE}."VL_MENSALIDADE_ATUAL" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor da Mensalidade Atual"
-    description: "Indica o valor da mensalidade atual"
+    description: "Indica qual o valor da mensalidade atual do aluno"
+    link: {
+      label: "Documentação - Mensalidade Atual"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973578/MENSALIDADE+ATUAL"
+    }
   }
 
   dimension: val_presente {
@@ -1124,6 +1201,7 @@ view: alunos {
     group_label: "Dados Financeiros"
     group_item_label: "Valor Presente"
     description: "Indica o valor presente"
+    hidden: yes
   }
 
 
@@ -1140,7 +1218,11 @@ view: alunos {
     sql: ${TABLE}."VL_TOTAL_FINANCIADO" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor Total do Financiamento"
-    description: "Indica o valor total do financiamento"
+    description: "Este campo é uma regra de negócio*. Indica o valor total do financiamento do contrato do aluno"
+    link: {
+      label: "Documentação - Valor de Financiamento"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"
+    }
   }
 
   dimension: vl_total_financiamento_aluno {
@@ -1148,7 +1230,11 @@ view: alunos {
     sql: ${TABLE}."VL_TOTAL_FINANCIAMENTO_ALUNO" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor Total do Financiamento do Aluno"
-    description: "Indica o valor total do financiamento do Aluno"
+    description: "Este campo é uma regra de negócio*. Indica o valor de financiamento pago pelo aluno referente ao contrato"
+    link: {
+      label: "Documentação - Valor de Financiamento - Aluno"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"
+    }
   }
 
   dimension: produto_inicial {
@@ -1156,7 +1242,11 @@ view: alunos {
     sql: ${TABLE}."PRODUTO_INICIAL" ;;
     group_label: "Dados do Produto"
     group_item_label: "Projeto de entrada"
-    description: "Indica se o aluno entrou no PRAVALER por meio de algum projeto, como FIES, Compra de carteira, entre outros"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno entrou no PRAVALER por meio de algum projeto, como FIES, Compra de carteira, entre outros"
+  link: {
+    label: "Documentação - Produto Inicial"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1013645497/PRODUTO+INICIAL"
+  }
   }
 
 
@@ -1175,7 +1265,7 @@ dimension: meses_evasao {
   type: number
   group_label: "Evasão"
   label: "Evasão - Quantidade de Meses"
-  description: "Indica a quantidade de meses que o foi cedido até ele evadir do pravaler. Deve-se utilizar essa dimensão com as medidas relacionadas a evasão do pravaler."
+  description: "Indica a quantidade de meses que o aluno foi cedido até ele evadir do pravaler. Deve-se utilizar essa dimensão com as medidas relacionadas a evasão do pravaler."
   sql: datediff('month',${data_primeira_cessao_date},${data_ultimo_status_proposta_date}) ;;
 
 }
@@ -1221,6 +1311,7 @@ dimension: faixa_tempo_meses_evasao {
     group_label: "Quantidade de Alunos"
     group_item_label: "Valor"
     description: "Contagem de ID CPFs únicos"
+    value_format: "0"
     drill_fields: [id_cpf,cpf_aluno,id_proposta_atual,ds_curso,produto_inicial,nm_produto,grupo_instituicao,ds_instituicao,ds_fundo_investimento,ds_campus]
   }
 
@@ -1230,6 +1321,7 @@ dimension: faixa_tempo_meses_evasao {
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     description: "Porcentagem do total de ID CPFs únicos"
+    value_format: "0%"
   }
 
   measure: avg_idade_aluno {
@@ -1390,7 +1482,7 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${TABLE}."GH_FINAL" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "GH PPP"
-    description: "GH de propensão à pagamento de promessa"
+    description: "Indica o Grupo Homogêneo (GH) de propensão à pagamento da promessa do comportamento de pagamento dos alunos inadimplentes"
   }
 
   dimension: gh_collection {
@@ -1398,7 +1490,11 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${TABLE}."GH_COLLECTION" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "Collection"
-    description: "Indica o grupo homogêneo do modelo de collection"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento dos alunos inadimplentes. A classificação dos GHs estão da seguinte forma: GH A>0.967, GH B<=0.967, GH C<=0.277, GH D<=0,023. Para a classificação deste campo, é realizado o calculo da probabilidade do aluno pagar o boleto atrasado em até 30 dias. Sendo assim, quanto maior a probabilidade, maior a chance do aluno pagar o boleto em atraso dentro do prazo de 30 dias."
+    link: {
+      label: "Documentação - GH Collection"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060579/GH+-+Collection"
+    }
   }
 
   dimension: flg_promessa {
@@ -1406,7 +1502,11 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${TABLE}."FLG_PROMESSA" ;;
     group_label: "1.5 Acordo Informações"
     group_item_label: "Promessa Ativa?"
-    description: "Indica se o aluno possui promessa ativo (Yes/No)"
+    description: "Indica se o aluno possui promessa de pagamentos atrasados (Yes/No)"
+    link: {
+      label: "Documentação - Promessa Ativa"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1013612684/FLG+PROMESSA"
+    }
   }
 
 
@@ -1457,17 +1557,24 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${TABLE}."FLG_WO" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Teve writeoff"
-    description: "Indica se o aluno já teve algum titulo em writeoff."
+    description: "Este campo é uma regra de negócio*. Indica se o boleto do aluno entrou no write-off, ou seja, o aluno não paga o boleto a mais de 180 dias."
+  link: {
+    label: "Documentação - Write-Off"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/975732813/WRITE-OFF"
   }
+ }
 
   dimension: ds_ultimo_status_proposta {
     type: string
     sql: ${TABLE}."DESC_ST_ULT_PROPOSTA" ;;
     group_label: "Dados de Status"
     group_item_label: "Descrição - Último Status Detalhado Aluno"
-    description: "Indica o nome do último status detalhado da proposta mais atual do aluno"
+    description: "Este campo é uma regra de negócio*. Indica o nome do último status detalhado da proposta mais atual do aluno"
+  link: {
+    label: "Documentação - Último Status Proposta"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/756514819/LTIMO+STATUS+DA+PROPOSTA"
   }
-
+  }
 
 
 
@@ -1477,6 +1584,10 @@ dimension: faixa_tempo_meses_evasao {
     group_label: "Dados de Status"
     group_item_label: "Último Status Detalhado do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
+    link: {
+      label: "Documentação - Último Status Proposta"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/756514819/LTIMO+STATUS+DA+PROPOSTA"
+    }
   }
 
   dimension: id_status_geral {
@@ -1528,11 +1639,6 @@ dimension: faixa_tempo_meses_evasao {
     group_item_label: "Primeiro Semestre Financiado"
     description: "Indica o primeiro semestre financiado pelo aluno dentro do PRAVALER."
   }
-
-
-
-
-
 
 
 

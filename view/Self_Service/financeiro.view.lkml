@@ -76,7 +76,7 @@ dimension: data_trunc  {
     datatype: date
 
     label: "Entrada"
-    description: "Indica a data de Entrada do Título do Sistema"
+    description: "Indica a data de Entrada do Título no Sistema"
     sql: ${TABLE}."DATA_ENTRADA" ;;
   }
 
@@ -116,18 +116,14 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
-  measure: min_data_vencimento {
-    type:  date
-    label: "Menor Data Vencimento"
-    description: "Indica a menor data de vencimento do boleto"
-    sql: min(${data_vencimento_date}) ;;
-  }
+
 
   dimension: pagamento_prazo {
     sql: CASE
         WHEN ${TABLE}."DATA_PAGAMENTO" > ${TABLE}."DATA_VENCIMENTO"  THEN 'Atrasado'
         ELSE 'No Prazo'
         END ;;
+      group_label: "Dados do Boleto"
     label: "Pagou no prazo"
     description: "Indica se boleto foi pago no prazo ou em atraso"
   }
@@ -146,7 +142,7 @@ dimension: data_trunc  {
     datatype: date
 
     label: "WriteOff"
-    description: "Indica a data de entrada do título no W.O"
+    description: "Indica a data de entrada do título no W.O, ou seja, é a data que o titulo completou 180 dias após a data de vencimento e ainda não foi pago."
     sql: ${TABLE}."DATA_WRITEOFF" ;;
   }
 
@@ -154,7 +150,11 @@ dimension: data_trunc  {
     type: number
     group_label: "Dados do Boleto"
     label: "Número de dias de atraso"
-    description: "Indica o número de dias de atraso após vencimento do boleto."
+    description: "Este campo é uma regra de negócio.* Indica o número de dias de atraso após vencimento do boleto."
+    link: {
+      label: "Documentação - Dias de Atraso"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/975732737/DIAS+DE+ATRASO"
+    }
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
@@ -221,7 +221,11 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto Atrasado?"
-    description: "Indica se o boleto passou da data de vencimento"
+    description: "Este campo é uma regra de negócio*. Indica se o boleto passou da data de vencimento."
+    link: {
+      label: "Documentação - Boleto Atrasado"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976093197/BOLETO+ATRASADO"
+    }
     sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
   }
 
@@ -229,7 +233,11 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto Pago?"
-    description: "Indica se o boleto já foi pago pelo aluno"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto já foi pago pelo aluno"
+    link: {
+      label: "Documentação - Boleto Pago"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/971112540/BOLETO+PAGO"
+    }
     sql: ${TABLE}."FLG_BOLETO_PAGO" ;;
   }
 
@@ -237,7 +245,11 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Título"
     label: "Entrou em WriteOff?"
-    description: "Indica se o título entrou no W.O"
+    description: "Este campo é uma regra de negócio*.Indica se o título entrou no W.O. Ou seja, caso o boleto ultrapasse o prazo de 180 dias após o vencimento e ainda não foi pago ele está em Write Off."
+    link: {
+      label: "Documentação - Write Off"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/975732813/WRITE-OFF"
+    }
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
 
@@ -383,7 +395,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
     value_format: "0.00\%"
-    description: "Indica o valor em percentual da taxa de IPCA do boleto"
+    description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
 
@@ -393,6 +405,7 @@ dimension: data_trunc  {
     value_format: "$ #,###"
     label: "Valor de Aquisição"
     description: "Indica o valor de aquisiçao do título"
+    hidden: yes
     sql: ${TABLE}."VL_AQUISICAO" ;;
   }
 
@@ -401,6 +414,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor de Boleto"
+    hidden: yes
     description: "Indica o valor do boleto"
     sql: ${TABLE}."VL_BOLETO" ;;
   }
@@ -433,6 +447,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor de Despesa"
     description: "Indica o valor de cobrança de despesa do título."
+    hidden: yes
     sql: ${TABLE}."VL_DESPESA" ;;
   }
 
@@ -442,6 +457,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor do IPCA"
     description: "Indica o valor do IPCA sobre o título."
+    hidden: yes
     sql: ${TABLE}."VL_IPCA" ;;
   }
 
@@ -450,6 +466,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     label: "Valor de Juros"
     description: "Indica o valor de juros aplicado sobre o boleto"
+    hidden: yes
     sql: ${TABLE}."VL_JUROS" ;;
   }
 
@@ -459,6 +476,7 @@ dimension: data_trunc  {
     value_format: "$ #,##0.00"
     label: "Valor da Multa"
     description: "Indica o valor da multa aplicada sobre o boleto"
+    hidden: yes
     sql: ${TABLE}."VL_MULTA" ;;
   }
 
@@ -467,6 +485,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento"
+    hidden: yes
     description: "Indica o valor de pagamento do boleto gerado"
     sql: ${TABLE}."VL_PAGO" ;;
   }
@@ -476,6 +495,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento - Crédito"
+    hidden: yes
     description: "Indica o valor de pagamento por crédito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_CREDITO" ;;
   }
@@ -485,6 +505,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Pagamento - Débito"
+    hidden: yes
     description: "Indica o valor de pagamento por débito do boleto gerado"
     sql: ${TABLE}."VL_PAGO_DEBITO" ;;
   }
@@ -494,6 +515,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor do Seguro"
+    hidden: yes
     description: "Indica o valor do seguro do boleto gerado"
     sql: ${TABLE}."VL_SEGURO" ;;
   }
@@ -503,6 +525,7 @@ dimension: data_trunc  {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor da Taxa Bancária"
+    hidden: yes
     description: "Indica o valor da taxa bancária"
     sql: ${TABLE}."VL_TAXA" ;;
   }
@@ -517,8 +540,12 @@ dimension: data_trunc  {
     type: yesno
     group_label: "Dados do Boleto"
     label: "Boleto de Diferença?"
-    description: "Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
+    description: "Esta campo é uma regra de negócio.* Indica se o boleto é um titulo de diferença. Diferença: Valores de diferença a serem repassados do título que
 foi gerado por um pagamento menor do boleto anterior."
+    link: {
+      label: "Documentação - Titulo Diferença"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060487/T+TULO+DIFEREN+A"
+    }
     sql: ${TABLE}."FLG_TITULO_DIFERENCA" ;;
   }
 
@@ -805,6 +832,15 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor do Boleto"
     group_item_label: "Máximo"
     description: "Valor máximo de aquisição do titulo"
+  }
+
+  measure: vl_total__boleto {
+    type: sum
+    sql: ${vl_total} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor do Boleto"
+    group_item_label: "Total"
+    description: "Soma do valor total do boleto considerando: Valor de Boleto + Juros + Multa + Despesa de Cobrança "
   }
 
 
@@ -1117,6 +1153,46 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Valor máximo da taxa bancária"
   }
 
+
+  measure: avg_vl_ipca {
+    type: average
+    sql: ${vl_ipca} ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Médio"
+    description: "Valor médio de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+  measure: sum_vl_ipca {
+    type: sum
+    sql: ${vl_ipca} ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Soma"
+    description: "Valor da soma de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+
+  measure: min_vl_ipca {
+    type: min
+    sql: ${vl_ipca}  ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Mínimo"
+    description: "Valor minimo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+
+  measure: max_vl_ipca {
+    type: max
+    sql: ${vl_ipca}  ;;
+    value_format: "$ #,###"
+    group_label: "IPCA"
+    group_item_label: "Máximo"
+    description: "Valor máximo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
+  }
+
+
   measure: vl_atraso {
     type: sum
     sql: ${vl_total};;
@@ -1189,7 +1265,7 @@ foi gerado por um pagamento menor do boleto anterior."
     convert_tz: no
     datatype: date
     label: "Data Avaliacao Collection"
-    description: "Indica a Data de Avaliação do Collection"
+    description: "Indica a Data de Avaliação do GH - Collection."
     sql: ${TABLE}."DATA_AVALIACAO_COLLECTION" ;;
   }
 
@@ -1201,7 +1277,11 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "GH do Collection"
-    description: "Indica o GH do Collection"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento do aluno inadimplente por boleto.A classificação dos GHs estão da seguinte forma: A - B - C - D "
+    link: {
+      label: "Documentação - Dias de Atraso"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060579/GH+-+Collection"
+    }
     sql: ${TABLE}."GH_COLLECTION" ;;
   }
 
@@ -1210,7 +1290,7 @@ foi gerado por um pagamento menor do boleto anterior."
     type: string
     group_label: "Collection"
     label: "Último - GH do Collection"
-    description: "Indica o Último Collection do Aluno"
+    description: "Este campo é uma regra de negócio*. Indica o Último Grupo Homogêneo do comportamento de pagamento do aluno inadimplente."
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
 
@@ -1229,7 +1309,7 @@ foi gerado por um pagamento menor do boleto anterior."
     convert_tz: no
     datatype: date
     label: "Último Collection"
-    description: "Indica a Última data de Avaliação do Collection"
+    description: "Indica a Última data de Avaliação do GH - Collection do Aluno"
     sql: ${TABLE}."DATA_ULTIMO_COLLECTION" ;;
   }
 

@@ -94,5 +94,10 @@ explore: artigo_tendencia {
 
 explore: topico_tendencia {
   view_label: "Tendência dos Tópicos"
+  label: "SEO Tendência dos Tópicos"
+}
+
+explore: topico {
+  view_label: "Tópicos"
   label: "SEO Tópicos"
 }

@@ -7,7 +7,9 @@ view: payments_boletos {
        F.VALUE:INSTALLMENT_NUMBER::INT AS NUM_PARCELA,
        F.VALUE:STATUS::VARCHAR AS SITUACAO,
        F.VALUE:VALUE::FLOAT AS VL_BOLETO,
-       F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO
+       F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO,
+       F.VALUE:PAID_AT::DATE AS DATA_PAGAMENTO,
+       F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
  ;;
@@ -48,10 +50,19 @@ lateral flatten (input=>boletos) f
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
 
+  dimension: data_pagamento {
+    type: date
+    group_item_label: "Data de Pagamento"
+    sql: ${TABLE}."DATA_PAGAMENTO" ;;
+    description: "DATA DE PAGAMENTO DO BOLETO"
+  }
+
+
+
   dimension: dias_atraso_regra {
     type: number
     group_item_label: "Dias de após vencimento"
-    sql: datediff('day',${data_vencimento}, current_date);;
+    sql: datediff('day',${data_vencimento}, '2021-07-30');;
     hidden: yes
     description: "QUANTIDADE DE DIAS FORA DA VALIDADE"
   }
@@ -73,7 +84,7 @@ lateral flatten (input=>boletos) f
         label: "Em dia"
       }
       when: {
-        sql: ${dias_atraso} <= 15  ;;
+        sql: ${dias_atraso} < 15  ;;
         label: "1 - 14"
       }
       when: {
@@ -104,10 +115,33 @@ lateral flatten (input=>boletos) f
         sql: ${dias_atraso} <= 360 ;;
         label: "181 - 360"
       }
-      else: "W.O"
+      when: {
+        sql: ${dias_atraso} > 360 ;;
+        label: "W.O"
+      }
+      else: "Não Atribuido"
     }
     group_item_label: "Faixa de Atraso"
     description: "Indica a faixa de atraso do boleto do aluno"
+  }
+
+
+  dimension:perc_provisao{
+    type: number
+    group_item_label: "Percentual de Provisão"
+    description: "Indica o porcentual de provisão de cada boleto de acordo com a faixa de atraso. Informação gerada pela equipe de Risco e Portfólio"
+    sql: CASE WHEN ${faixa_de_atraso} = 'Em dia' THEN 0.008
+              WHEN ${faixa_de_atraso} = '1 - 14' THEN  0.072
+              WHEN ${faixa_de_atraso} = '15 - 30' THEN  0.17
+              WHEN ${faixa_de_atraso} = '31 - 60' THEN  0.44
+              WHEN ${faixa_de_atraso} = '61 - 90' THEN  0.60
+              WHEN ${faixa_de_atraso} = '91 - 120' THEN  0.75
+              WHEN ${faixa_de_atraso} = '121 - 150' THEN  0.84
+              WHEN ${faixa_de_atraso} = '151 - 180' THEN  0.89
+              WHEN ${faixa_de_atraso} = '181 - 360' THEN  1.00
+              ELSE 0 END
+    ;;
+    value_format: "0.00%"
   }
 
 
@@ -124,6 +158,14 @@ lateral flatten (input=>boletos) f
     group_item_label: "Situacao do Boleto"
     sql: ${TABLE}."SITUACAO" ;;
     description: "INDICA SE O BOLETO ESTÁ PAGO, ABERTO, VENCIDO, PAGO EM ATRASO, ETC"
+  }
+
+  dimension: taxa_juros_diaria_prefixada {
+    type:  number
+    group_item_label: "Taxa Mensal Prefixada"
+    sql: ${contracts.taxa_juros_diaria_prefixada} ;;
+    description: "TAXA MENSAL PREFIXADA"
+    hidden: yes
   }
 
   measure: vl_boleto {
@@ -158,6 +200,13 @@ lateral flatten (input=>boletos) f
     description: "MÍNIMO DOS VALORES DOS BOLETOS"
   }
 
+  measure: sum_vl_pago {
+    type: sum
+    group_item_label: "Soma do Valor Pago"
+    sql: ${TABLE}."VL_PAGO" ;;
+    value_format: "$ #,##0.00"
+    description: "SOMA DO VALOR PAGO"
+  }
 
   dimension_group: data_atualizacao {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
@@ -173,6 +222,27 @@ lateral flatten (input=>boletos) f
     sql: ${dias_vencido} ;;
     description: "MÉDIA DE DIAS FORA DA VALIDADE"
   }
+
+  measure: menor_data_vencimento_atrasado {
+    type: date
+    group_item_label: "Menor Data de Vencimento"
+    sql: min(${data_vencimento}) ;;
+    description: "MENOR DATA DE VENCIMENTO DO BOLETO DO ALUNO"
+  }
+
+  measure: sum_vl_presente {
+    type:  number
+    group_item_label: "Valor Presente - Anual"
+    value_format: "$ #,##0.00"
+    sql: ${vl_boleto}/power((1+ ${taxa_juros_diaria_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
+    description: "Valor Presente"
+  }
+
+
+  ##((1+Juros mensal)^(1/30))-1 - Juros mensal dia a dia
+
+#Valor presente é: VP = Valor da Parcela /
+#(1 + taxa de juros mensal) ^ ((data de vencimento - data atual)/30)
 
   set: detail {
     fields: [

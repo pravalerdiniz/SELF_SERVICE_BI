@@ -246,7 +246,7 @@ view: status {
     sql: ${TABLE}."VL_VEZES_PROPOSTA_NO_STATUS" ;;
     group_label: "Dados do Status"
     label: "Número de Vezes no Status"
-    description: "Indica o número de vezes em que a proposta passou por determinado status"
+    description: "Indica o número de vezes em que a proposta passou pelos status"
   }
 
 
@@ -331,7 +331,7 @@ view: status {
 
   measure: count {
     type: count
-    drill_fields: [id]
+    drill_fields: [id, id_proposta, status_origem_geral,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
   }
 
   measure: cont_cpf {

@@ -7,7 +7,7 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "Calouro/Veterano?"
     hidden: no
-    description: "Indica se o aluno é calouro ou veterano"
+    description: "Este campo é uma regra de negócio*. Indica se o aluno é calouro ou veterano"
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
@@ -25,7 +25,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Celular do Aluno"
-    description: "Indica o número de celular do aluno"
+    description: "Indica o número do celular do aluno"
     sql: ${TABLE}."ALUNO_CELULAR" ;;
     required_access_grants: [grupo_telefone]
   }
@@ -85,7 +85,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Ocupação"
-    description: "Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc"
+    description: "Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autônomo e etc"
     sql: ${TABLE}."OCUPACAO_ALUNO_PROPOSTA" ;;
   }
 
@@ -148,7 +148,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH - Behavior"
-    description: "Indica a classificação do Behavior do Aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do Aluno."
+    description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
   }
 
@@ -225,7 +225,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Dias de Carência"
-    description: "Indica o número em dias da carência do contrato do aluno"
+    description: "Este campo é uma regra de negócio*. Indica o número em dias da carência do contrato do aluno"
     sql: ${TABLE}."CARENCIA" ;;
     value_format: "0"
   }
@@ -235,6 +235,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Cargo - Atual"
     description: "Indica o cargo atual do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARGO_ATUAL" ;;
   }
 
@@ -243,6 +244,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Cargo - Original"
     description: "Indica o cargo original do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARGO_ORIGINAL" ;;
   }
 
@@ -251,6 +253,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Carteira - Atual"
     description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARTEIRA_ATUAL" ;;
   }
 
@@ -259,6 +262,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Carteira - Original"
     description: "Indica o tipo de carteira original do responsável comercial na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CARTEIRA_ORIGINAL" ;;
   }
 
@@ -266,7 +270,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AA"
-    description: "Indica o valor do Custo Efetivo Total ao ano do contrato."
+    description: "Indica o valor do Custo Efetivo Total (CET) ao ano (AA) do contrato."
     sql: ${TABLE}."CET_AA" ;;
   }
 
@@ -274,7 +278,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor - CET_AM"
-    description: "Indica o valor do Custo Efetivo Total ao mês do contrato."
+    description: "Indica o valor do Custo Efetivo Total(CET) ao mês (AM) do contrato."
     sql: ${TABLE}."CET_AM" ;;
   }
 
@@ -309,6 +313,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Nome - Conversão Atual"
     description: "Indica o nome do representante comercial responsável pela conversão atual na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CONVERSAO_ATUAL" ;;
   }
 
@@ -317,6 +322,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Nome - Conversão Original"
     description: "Indica o nome do representante comercial responsável pela conversão original na instituição de ensino"
+    hidden: yes
     sql: ${TABLE}."CONVERSAO_ORIGINAL" ;;
   }
 
@@ -326,7 +332,7 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Comprometimento de Renda"
     value_format: "0.00%"
-    description: "Indica qual a porcentagem da renda comprometida do (aluno+fiador) em relação ao valor da mensalidade do curso."
+    description: "Indica qual a porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
   }
 
@@ -335,7 +341,7 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Faixa de Comprometimento de Renda"
     value_format: "0.00%"
-    description: "Indica qual a faixa de porcentagem da renda que é comprometida do aluno em relação ao valor da mensalidade do curso."
+    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
         sql: ${comprometimento_renda} <= 0.1 ;;
@@ -374,6 +380,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Código do Representante - Atual"
     description: "Indica o código do representante comercial atual na instituição de ensino."
+    hidden: yes
     sql: ${TABLE}."CP_ATUAL" ;;
   }
 
@@ -382,6 +389,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Código do Representante - Original"
     description: "Indica o código do representante comercial original na instituição de ensino."
+    hidden: yes
     sql: ${TABLE}."CP_ORIGINAL" ;;
   }
 
@@ -495,7 +503,7 @@ view: proposta {
     sql:  (EXTRACT(DOW FROM ${data_preenchimento_raw}) < EXTRACT(DOW FROM GETDATE())
                 OR
           (EXTRACT(DOW FROM ${data_preenchimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+    description: "Ou WTD. Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
   }
 
   dimension: mtd_only {
@@ -505,7 +513,7 @@ view: proposta {
     sql:  (EXTRACT(DAY FROM ${data_preenchimento_raw}) < EXTRACT(DAY FROM GETDATE())
                 OR
           (EXTRACT(DAY FROM ${data_preenchimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+    description: "Ou MTD. Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
   }
 
   dimension: ytd_only {
@@ -515,7 +523,7 @@ view: proposta {
     sql:  (EXTRACT(DOY FROM ${data_preenchimento_raw}) < EXTRACT(DOY FROM GETDATE())
                 OR
             (EXTRACT(DOY FROM ${data_preenchimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
-    description: "Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+    description: "Ou YTD. Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
   dimension_group: data_pri_vecto {
@@ -604,8 +612,8 @@ view: proposta {
   dimension: digito_verificador {
     type: number
     group_label: "Dados do Contrato"
-    label: "Digito Verificador"
-    description: "Indica o número do digito verificado do contrato"
+    label: "Dígito Verificador"
+    description: "Indica o número do dígito verificado do contrato"
     sql: ${TABLE}."DIGITO_VERIFICADOR" ;;
   }
 
@@ -655,7 +663,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "Vínculo Empregatício"
-    description: "Indica qual o vinculo empregáticio do aluno. Ex: Trabalha, Desempregado, Desempregado com renda."
+    description: "Indica qual o vinculo empregatício do aluno. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_ALUNO_TRABALHA" ;;
   }
 
@@ -703,7 +711,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Vínculo Empregatício"
-    description: "Indica qual o vinculo empregáticio do Fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
+    description: "Indica qual o vinculo empregatício do Fiador. Ex: Trabalha, Desempregado, Desempregado com renda."
     sql: ${TABLE}."DS_FIA_TRABALHA" ;;
   }
 
@@ -823,7 +831,7 @@ view: proposta {
     type: string
     group_label: "Dados do Curso"
     label: "Ênfase do Curso"
-    description: "Indica qual é a Enfâse de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
+    description: "Indica qual é a ênfase de determinado curso. Ou seja, qual o núcleo de conhecimento especializado."
     sql: ${TABLE}."ENFASE_CURSO" ;;
   }
 
@@ -831,7 +839,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign"
-    description: "Identificador da etapa de processamento da clicksign"
+    description: "Identificador da etapa de processamento da Clicksign"
     sql: ${TABLE}."ETAPA_CLICKSIGN" ;;
   }
 
@@ -847,7 +855,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Celular do Fiador"
-    description: "Indica o número do celular do Fiador do aluno."
+    description: "Indica o número do celular do fiador do aluno."
     sql: ${TABLE}."FIA_CELULAR" ;;
     required_access_grants: [grupo_telefone]
   }
@@ -856,7 +864,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Cidade do Fiador"
-    description: "Indica a cidade de origem do Fiador do aluno."
+    description: "Indica a cidade de origem do fiador do aluno."
     sql: ${TABLE}."FIA_CIDADE" ;;
   }
 
@@ -864,7 +872,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "E-mail do Fiador"
-    description: "Indica o e-mail do Fiador do aluno."
+    description: "Indica o e-mail do fiador do aluno."
     sql: ${TABLE}."FIA_EMAIL" ;;
     required_access_grants: [grupo_email]
   }
@@ -873,19 +881,15 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     label: "Escolaridade do Fiador"
-    description: "Indica a escolaridade do Fiador do aluno."
+    description: "Indica a escolaridade do fiador do aluno."
     sql: ${TABLE}."FIA_ESCOLARIDADE" ;;
   }
-
-
-
-
 
   dimension: fia_genero {
     type: string
     group_label: "Dados do Fiador"
     label: "Gênero do Fiador"
-    description: "Indica o sexo do Fiador do aluno."
+    description: "Indica o sexo do fiador do aluno."
     drill_fields: [detail*]
     sql: IFNULL(${TABLE}."FIA_GENERO",'NÃO INFORMADO') ;;
   }
@@ -894,7 +898,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fiador"
     label: "Idade do Fiador"
-    description: "Indica a idade do Fiador do aluno."
+    description: "Indica a idade do fiador do aluno."
     value_format_name: id
     sql: ${TABLE}."FIA_IDADE" ;;
   }
@@ -907,14 +911,14 @@ view: proposta {
     drill_fields: [detail*]
     group_label: "Dados do Fiador"
     group_item_label: "Faixa Etária do Fiador"
-    description: "Indica a faixa etária do Fiador"
+    description: "Indica a faixa etária do fiador"
   }
 
   dimension: fia_nome {
     type: string
     group_label: "Dados do Fiador"
     label: "Nome do Fiador"
-    description: "Indica o nome do Fiador do aluno."
+    description: "Indica o nome do fiador do aluno."
     sql: ${TABLE}."FIA_NOME" ;;
     required_access_grants: [grupo_nome]
   }
@@ -924,7 +928,8 @@ view: proposta {
     group_label: "Dados do Fiador"
     label: "Renda do Fiador"
     value_format: "$ #,##0.00"
-    description: "Indica o valor da renda do Fiador do aluno."
+    description: "Indica o valor da renda do fiador do aluno."
+    hidden:  yes
     sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
@@ -937,15 +942,16 @@ view: proposta {
     sql: ${fia_renda} ;;
     group_label: "Dados do Fiador"
     group_item_label: "Faixa de Renda do Fiador"
-    description: "Indica a faixa de renda do Fiador"
+    description: "Indica a faixa de renda do fiador"
   }
 
 
   dimension: fia_uf {
     type: string
     group_label: "Dados do Fiador"
-    label: "UF do Fiador"
+    group_item_label: "UF do Fiador"
     sql: ${TABLE}."FIA_UF" ;;
+    description: "Indica a UF do fiador"
 
   }
 
@@ -954,17 +960,15 @@ view: proposta {
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "Dados do Fiador"
     group_item_label: "UF do Fiador - Mapa"
-    description: "Indica a UF do Fiador, pode ser usado em gráficos de mapa"
+    description: "Indica a UF do fiador, pode ser usado em gráficos de mapa"
   }
-
-
 
 
   dimension: flg_aceita_termo {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign - Aceita Termo?"
-    description: "Indica se o aluno aceitou o termo de contração digital"
+    description: "Indica se o aluno aceitou o termo de contratação digital"
     sql: ${TABLE}."FLG_ACEITA_TERMO" ;;
   }
 
@@ -972,7 +976,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Etapa Clicksign - Aceita Termo Fiador?"
-    description: "Indica se o Fiador aceitou o termo de contração digital"
+    description: "Indica se o Fiador aceitou o termo de contratação digital"
     sql: ${TABLE}."FLG_ACEITA_TERMO_GARANTIDOR" ;;
   }
 
@@ -980,7 +984,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato?"
-    description: "Indica se o aluno assinou contrato com PRAVALER"
+    description: "Indica se o aluno assinou contrato com o Pravaler"
     sql: ${TABLE}."FLG_ALUNO_ASSINOU" ;;
   }
 
@@ -988,7 +992,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Boleto Atrasado?"
-    description: "Indica se o aluno têm algum boleto atrasado"
+    description: "Indica se o aluno tem algum boleto em atraso"
     sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
   }
 
@@ -996,7 +1000,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Campus"
     label: "Ativo?"
-    description: "Indica se o campus está ativo no sistema do PRAVALER"
+    description: "Indica se o campus está ativo no sistema do Praveler"
     sql: ${TABLE}."FLG_CAMPUS_ATIVO" ;;
   }
 
@@ -1028,7 +1032,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Contrato Ativo?"
-    description: "Indica se o contrato do instituição com o PRAVALER está ativo"
+    description: "Indica se o contrato do instituição com o Pravaler está ativo"
     sql: ${TABLE}."FLG_CONTRATO_IES_ATIVO" ;;
   }
 
@@ -1036,7 +1040,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Regerado?"
-    description: "Indica se o contrato do aluno foi regerado."
+    description: "Indica se o contrato do aluno foi regerado"
     sql: ${TABLE}."FLG_CONTRATO_REGERADO" ;;
   }
 
@@ -1044,7 +1048,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Único?"
-    description: "Indica se o contrato do aluno é único."
+    description: "Indica se o contrato do aluno é único"
     sql: ${TABLE}."FLG_CONTRATO_UNICO" ;;
   }
 
@@ -1052,7 +1056,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Curso"
     label: "Ativo?"
-    description: "Indica se o curso está ativo no sistema do PRAVALER."
+    description: "Indica se o curso está ativo no sistema do Pravaler"
     sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
   }
 
@@ -1060,7 +1064,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Sem concessão"
-    description: "Indica os contratos gerados sem data de concessão."
+    description: "Indica os contratos gerados sem data de concessão"
     sql: ${TABLE}."FLG_CURSO_ATIVO" ;;
   }
 
@@ -1070,15 +1074,15 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato - Fiador?"
-    description: "Indica se o fiador assinou o contrato."
+    description: "Indica se o fiador assinou o contrato"
     sql: ${TABLE}."FLG_FIA_ASSINOU" ;;
   }
 
   dimension: flg_financia_matricula_rnv {
     type: yesno
     group_label: "Dados do Contrato"
-    label: "Financiou Matricula?"
-    description: "Indica se o aluno financiou a primeira matricula."
+    label: "Financiou Matrícula?"
+    description: "Indica se o aluno financiou a primeira matrícula"
     sql: ${TABLE}."FLG_FINANCIA_MATRICULA_RNV" ;;
   }
 
@@ -1086,7 +1090,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
-    description: "Indica se a instituição está ativa no PRAVALER."
+    description: "Indica se a instituição está ativa no Pravaler"
     sql: ${TABLE}."FLG_INSTITUICAO_ATIVA" ;;
   }
 
@@ -1094,7 +1098,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "IPCA?"
-    description: "Indica se a instituição possui IPCA no contrato com o PRAVALER."
+    description: "Indica se a instituição possui IPCA no contrato com o Pravaler"
     sql: ${TABLE}."FLG_IPCA_IES" ;;
   }
 
@@ -1102,7 +1106,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Produto"
     label: "Ativo?"
-    description: "Indica se o produto está ativo no PRAVALER."
+    description: "Indica se o produto está ativo no Pravaler"
     sql: ${TABLE}."FLG_PRODUTO_ATIVO" ;;
   }
 
@@ -1110,7 +1114,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Proposta Atual?"
-    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+    description: "Indica se é a proposta é a atual do aluno; ou seja, a última com alteração de status"
     sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
   }
 
@@ -1120,7 +1124,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Proposta Renovação Inativa?"
-    description: "Indica se a proposta de renovação está inativa no fluxo de Renovação do Aluno."
+    description: "Indica se a proposta de renovação está inativa no fluxo de renovação do aluno"
     sql: ${TABLE}."FLG_PROPOSTA_NAO_SEGUIU" ;;
   }
 
@@ -1128,7 +1132,7 @@ view: proposta {
     type: yesno
     group_label: "Dados do Contrato"
     label: "Assinou Contrato - Testemunhas?"
-    description: "Indica se as testemunhas assinaram o contrato."
+    description: "Indica se as testemunhas assinaram o contrato"
     sql: ${TABLE}."FLG_TESTEMUNHAS_ASSINARAM" ;;
   }
 
@@ -1136,7 +1140,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Tem WriteOff?"
-    description: "Indica se a instituição entrou no W.O."
+    description: "Indica se a instituição entrou em WriteOff (WO)"
     sql: ${TABLE}."FLG_WO_IES" ;;
   }
 
@@ -1144,7 +1148,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Decola"
-    description: "Indica se o aluno é proveniente da Base do Decola."
+    description: "Indica se o aluno é proveniente da base do Decola"
     sql: ${TABLE}."FLG_DECOLA" ;;
   }
 
@@ -1152,7 +1156,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Jornada Integrada"
-    description: "Indica se o aluno é proveniente da Base de Jornada Integrada com Instituição de Ensino."
+    description: "Indica se o aluno é proveniente da base de Jornada Integrada com a IES"
     sql: ${TABLE}."FLG_JND_INTEGRADA" ;;
   }
 
@@ -1160,7 +1164,7 @@ view: proposta {
     type: yesno
     group_label: "Dados da Proposta"
     label: "Flag Jornada Integrada Consentimento"
-    description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com Instituição de Ensino."
+    description: "Indica se o aluno concordou em participar do processo de Jornada Integrada com a IES"
     sql: ${TABLE}."FLG_JND_INTEGRADA_CONSENTIMENTO" ;;
   }
 
@@ -1168,7 +1172,7 @@ view: proposta {
     type: string
     group_label: "Dados da Regional"
     label: "Gerente - Atual"
-    description: "Indica o nome do gerente comercial atual responsável pela regional."
+    description: "Indica o nome do gerente comercial atual responsável pela regional"
     sql: ${TABLE}."GERENTE_ATUAL" ;;
   }
 
@@ -1176,7 +1180,7 @@ view: proposta {
     type: string
     group_label: "Dados da Regional"
     label: "Gerente - Original"
-    description: "Indica o nome do gerente comercial original responsável pela regional."
+    description: "Indica o nome do gerente comercial original responsável pela regional"
     sql: ${TABLE}."GERENTE_ORIGINAL" ;;
   }
 
@@ -1184,7 +1188,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH "
-    description: "Indica qual GH o aluno está de acordo com a classificação de score do aluno."
+    description: "Indica qual Grupo Homogêneo (GH) o aluno se encontra de acordo com o score"
     sql: ${TABLE}."GH" ;;
   }
 
@@ -1192,7 +1196,7 @@ view: proposta {
     type: string
     group_label: "Dados da Instituição"
     label: "Grupo"
-    description: "Indica o nome do grupo da instituição no momento do preenchimento da proposta."
+    description: "Indica o nome do grupo da instituição no momento do preenchimento da proposta"
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
 
@@ -1200,7 +1204,7 @@ view: proposta {
     type: string
     group_label: "Dados do Campus"
     label: "ID Campus"
-    description: "Indica o ID do campus."
+    description: "Indica o ID do campus"
     sql: ${TABLE}."ID_CAMPUS" ;;
   }
 
@@ -1208,18 +1212,16 @@ view: proposta {
     type: string
     group_label: "Dados da Proposta"
     label: "Código do Representante"
-    description: "Indica o código do representante comercial que finalizou a proposta."
+    description: "Indica o código do representante comercial que finalizou a proposta"
     sql: ${TABLE}."ID_CONSULTOR_FINALIZOU" ;;
   }
-
-
 
 
   dimension: id_contrato_conjunto {
     type: string
     group_label: "Dados do Contrato"
     label: "ID Contrato Conjunto"
-    description: "Indica o ID do Contrato Conjunto do Aluno. Segunda Etapa do contrato do aluno novo."
+    description: "Indica o ID do contrato conjunto do aluno. Segunda etapa do contrato do aluno novo."
     sql: ${TABLE}."ID_CONTRATO_CONJUNTO" ;;
   }
 
@@ -1227,7 +1229,7 @@ view: proposta {
     type: string
     group_label: "Dados do Contrato"
     label: "ID Contrato"
-    description: "Indica o ID do Contrato, se vier do BO é o mesmo número da proposta, se for Intercâmbio o número é diferente."
+    description: "Indica o ID do Contrato. Se vier do BackOffice é o mesmo número da proposta; se for intercâmbio o número é diferente."
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
@@ -1236,7 +1238,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "ID CPF"
-    description: "Indica o código de referência do CPF do aluno."
+    description: "Indica o código de referência do CPF do aluno. Não é a mesma coisa que CPF."
     value_format: "0"
     sql: ${TABLE}."ID_CPF" ;;
   }
@@ -1257,7 +1259,7 @@ view: proposta {
     type: string
     group_label: "Dados do Curso"
     label: "ID Curso"
-    description: "Indica o ID do Curso do aluno."
+    description: "Indica o ID do curso do aluno"
     sql: ${TABLE}."ID_CURSO" ;;
   }
 
@@ -1265,7 +1267,7 @@ view: proposta {
     type: number
     group_label: "Dados de Renovação"
     label: "ID Elegível"
-    description: "Indica código de elegibilidade na proposta de renovação."
+    description: "Indica o código de elegibilidade na proposta de renovação"
     sql: ${TABLE}."ID_ELEGIVEL" ;;
   }
 
@@ -1273,7 +1275,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fiador"
     label: "ID Fiador"
-    description: "Indica o ID de referência do CPF do Fiador do aluno."
+    description: "Indica o ID de referência do CPF do fiador do aluno. Não é a mesma coisa que CPF"
     sql: ${TABLE}."ID_FIA_CPF" ;;
     value_format: "0"
   }
@@ -1293,7 +1295,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fundo de Investimento"
     label: "ID Fundo de Investimento"
-    description: "Indica o ID do Fundo de Investimento."
+    description: "Indica o ID do Fundo de Investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
@@ -1301,7 +1303,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label: "Contrato Instituição"
-    description: "Indica o número do contrato da instituição com o PRAVALER."
+    description: "Indica o número do contrato da instituição com o Pravaler"
     sql: ${TABLE}."ID_IES_CONTRATO" ;;
     value_format: "0"
   }
@@ -1310,7 +1312,7 @@ view: proposta {
     type: string
     group_label: "Dados da Instituição"
     label: "ID Instituição"
-    description: "Indica o ID da instituição."
+    description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
@@ -1318,7 +1320,7 @@ view: proposta {
     type: string
     group_label: "Dados da Instituição"
     label: "ID Originadores"
-    description: "Indica o ID dos Originadores Ativos para determinada instituição."
+    description: "Indica o ID dos originadores ativos para determinada instituição."
     sql: ${TABLE}."ID_ORIGINADORES_ATIVOS_IES" ;;
   }
 
@@ -1326,7 +1328,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "ID Produto"
-    description: "Indica o ID Produto PRAVALER."
+    description: "Indica o ID do produto Pravaler"
     sql: ${TABLE}."ID_PRODUTO" ;;
   }
 
@@ -1334,7 +1336,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "ID Produtos Aprovados"
-    description: "Indica o ID dos Produtos Aprovados pela instituição ao aluno."
+    description: "Indica o ID dos produtos aprovados pela instituição ao aluno"
     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
     html:
     {% assign words = value | split: ',' %}
@@ -1348,7 +1350,7 @@ view: proposta {
     type: string
     group_label: "Dados da Proposta"
     label: "ID Proposta"
-    description: "Indica o ID da proposta do aluno."
+    description: "Indica o ID da proposta do aluno"
     primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
     value_format: "0"
@@ -1359,7 +1361,7 @@ view: proposta {
     type: number
     group_label: "Dados da Proposta"
     label: "Score Interno"
-    description: "Indica o pontuação de score interno da proposta do aluno."
+    description: "Indica o pontuação de score interno da proposta do aluno"
     sql: ${TABLE}."PONTUACAO_INTERNA" ;;
 
   }
@@ -1367,24 +1369,24 @@ view: proposta {
   dimension: id_status_detalhado {
     type: string
     group_label: "Jornada"
-    label: "Status Detalhado"
-    description: "Indica lista dos códigos de Status Detalhado da proposta."
+    label: "Status Detalhado - Lista"
+    description: "Indica lista dos códigos de status detalhado da proposta"
     sql: ${TABLE}."ID_STATUS_DETALHADO" ;;
   }
 
   dimension: id_status_geral {
     type: string
     group_label: "Jornada"
-    label: "Status Geral"
-    description: "Indica lista dos códigos dos Status da proposta."
+    label: "Status Geral - Lista"
+    description: "Indica lista dos códigos dos status da proposta"
     sql: ${TABLE}."ID_STATUS_GERAL" ;;
   }
 
   dimension: id_usuario_finalizou {
     type: string
     group_label: "Dados da Proposta"
-    label: "ID Usuario"
-    description: "Indica o ID do Usuario do Sistema PRAVALER que finalizou a proposta."
+    label: "ID Usuário"
+    description: "Indica o ID do usuário do sistema Pravaler que finalizou a proposta"
     sql: ${TABLE}."ID_USUARIO_FINALIZOU" ;;
   }
 
@@ -1392,7 +1394,7 @@ view: proposta {
     type: string
     group_label: "Dados do Contrato"
     label: "URL - Assinatura Aluno"
-    description: "Indica o link da assinatura do contrato pelo aluno."
+    description: "Indica o link da assinatura do contrato pelo aluno"
     sql: ${TABLE}."LINK_ASSINATURA_ALUNO" ;;
   }
 
@@ -1400,7 +1402,7 @@ view: proposta {
     type: string
     group_label: "Dados do Contrato"
     label: "URL - Assinatura Fiador"
-    description: "Indica o link da assinatura do contrato pelo fiador."
+    description: "Indica o link da assinatura do contrato pelo fiador"
     sql: ${TABLE}."LINK_ASSINATURA_GARANTIDOR" ;;
   }
 
@@ -1408,7 +1410,7 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Dias de atraso - Boleto"
-    description: "Indica o número de dias de atraso de pagamento de determinado boleto."
+    description: "Indica o número de dias de atraso de pagamento de determinado boleto"
     sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
   }
 
@@ -1431,7 +1433,7 @@ view: proposta {
     }
     group_label: "Dados do Contrato"
     group_item_label: "Faixa de Tempo de atraso - Boleto do Aluno"
-    description: "Indica a faixa de tempo, em dias de atraso - Boleto do Aluno"
+    description: "Indica a faixa de tempo, em dias de atraso de determinado boleto"
   }
 
   dimension: nivel_curso {
@@ -1446,7 +1448,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Modalidade"
-    description: "Indica a modalidade do produto. Ex: Compartilhado, Gestão e FIDC."
+    description: "Indica a modalidade do produto. Ex: Compartilhado, Gestão e FIDC"
     suggestable: yes
     sql: ${TABLE}."NM_MODALIDADE_PRODUTO" ;;
   }
@@ -1455,7 +1457,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Modalidade - Risco"
-    description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros."
+    description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros"
     suggestable: yes
     sql: ${TABLE}."MODALIDADE_RISCO" ;;
   }
@@ -1464,7 +1466,7 @@ view: proposta {
     type: string
     group_label: "Dados do Originador"
     label: "Originador"
-    description: "Indica o nome do banco originador do empréstimo/financiamento."
+    description: "Indica o nome do banco originador do empréstimo/financiamento"
     sql: ${TABLE}."NM_ORIGINADOR" ;;
   }
 
@@ -1472,7 +1474,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Produto"
-    description: "Indica o nome do produto."
+    description: "Indica o nome do produto"
     suggestable: yes
     sql: ${TABLE}."NM_PRODUTO" ;;
   }
@@ -1481,7 +1483,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Produto Agrupado"
-    description: "Indica o nome do produto com agrupamento pré-definido. Ex: Compra de Carteira, EAD, Controle, Sem Juros, Sem Fiador, Outros."
+    description: "Indica o nome do produto com agrupamento pré-definido. Ex: Compra de Carteira, EAD, Controle, Sem Juros, Sem Fiador, Outros"
     suggestable: yes
     sql: ${TABLE}."NM_PRODUTO_COMERCIAL" ;;
   }
@@ -1490,7 +1492,7 @@ view: proposta {
     type: number
     group_label: "Dados de Renovação"
     label: "Número de Renovação"
-    description: "Indica a quantidade de renovações realizadas do contrato."
+    description: "Indica a quantidade de renovações realizadas do contrato"
     sql: IFNULL(${TABLE}."NUM_DA_RENOVACAO",0) ;;
   }
 
@@ -1498,7 +1500,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label: "Porcentagem de Comissão da Instituição"
-    description: "Indica a porcentagem de comissão recebida da Instituição por produto contratado"
+    description: "Indica a porcentagem de comissão recebida da instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
 
   }
@@ -1507,7 +1509,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label:"Porcentagem de Deságio"
-    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o PRAVALER."
+    description:"Indica a porcentagem que a instituição deixa de receber por financiar o curso com o Pravaler"
     sql: ${TABLE}."PERC_DESAGIO" ;;
   }
 
@@ -1515,7 +1517,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label:"Porcentagem da Taxa Subsidiada"
-    description:"Indica a porcentagem da taxa subsidiada pela instituição por contrato."
+    description:"Indica a porcentagem da taxa subsidiada pela instituição por contrato"
     sql: ${TABLE}."PERC_TX_SUBSIDIADO_IES" ;;
     value_format: "0.00%"
   }
@@ -1524,19 +1526,17 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label:"Percentual Subsidiado da Taxa"
-    description:"Indica o percentual da taxa subsidiado pela instituição por contrato."
+    description:"Indica o percentual da taxa subsidiado pela instituição por contrato"
     sql: IFNULL(${perc_tx_subsidiado_ies} * ${tx_mensal_total},0) ;;
     value_format: "0.00"
   }
-
-
 
 
   dimension: periodo_curso {
     type: string
     group_label: "Dados do Curso"
     label:"Periodo"
-    description:"Indica o periodo do Curso. Ex: Manhã, EAD, Noite."
+    description:"Indica o periodo do Curso. Ex: Manhã, EAD, Noite"
     sql: ${TABLE}."PERIODO_CURSO" ;;
   }
 
@@ -1553,6 +1553,7 @@ view: proposta {
     convert_tz: no
     datatype: date
     label: "Previsão de Formatura"
+    description: "Data de previsão da formatura do aluno"
     sql: ${TABLE}."PREVISAO_FORMATURA" ;;
   }
 
@@ -1560,7 +1561,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label:"Quantidade de Contratos Anteriores"
-    description:"Indica a quantidade de contrato anteriores do aluno."
+    description:"Indica a quantidade de contrato anteriores do aluno"
+    hidden: yes
     sql: ${TABLE}."QTD_CONTRATOS_ANTERIORES" ;;
   }
 
@@ -1569,6 +1571,7 @@ view: proposta {
     group_label: "Dados da Formalização"
     label:"Quantidade de Documentos pendentes"
     description: "Indica a quantidade de documentos pendentes por proposta durante a formalização"
+    hidden: yes
     sql: ${TABLE}."QTD_DOCS_PENDENTES" ;;
   }
 
@@ -1576,7 +1579,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades - Semestre Atual"
-    description:"Indica a quantidade de mensalidades por contrato do semestre atual."
+    description:"Indica a quantidade de mensalidades por contrato do semestre atual"
+    hidden: yes
     sql: ${TABLE}."QTD_MEN_CORRENTE" ;;
   }
 
@@ -1584,7 +1588,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades"
-    description:"Indica a quantidade de mensalidades por contrato."
+    description:"Indica a quantidade de mensalidades por contrato"
+    hidden: yes
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
   }
 
@@ -1592,7 +1597,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label:"Quantidade de Prestações"
-    description:"Indica a quantidade de prestações por contrato."
+    description:"Indica a quantidade de prestações por contrato"
+    hidden: yes
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
@@ -1600,7 +1606,7 @@ view: proposta {
     type: number
     group_label: "Dados do Curso"
     label:"Quantidade de Semestres"
-    description:"Indica a quantidade de semestres por curso."
+    description:"Indica a quantidade de semestres por curso"
     sql: ${TABLE}."QTD_SEMESTRE_CURSO" ;;
   }
 
@@ -1618,6 +1624,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Regional - Atual"
     description: "Indica a regional atribuida ao campus atualmente"
+    hidden: yes
     sql: ${TABLE}."REGIONAL_ATUAL" ;;
   }
 
@@ -1626,6 +1633,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Regional - Original"
     description: "Indica a regional atribuida ao campus na data de inicio da proposta"
+    hidden: yes
     sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
   }
 
@@ -1643,6 +1651,7 @@ view: proposta {
     label: "Renda Familia"
     value_format: "0"
     description: "Indica o valor da renda familiar do aluno"
+    hidden: yes
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
     required_access_grants: [grupo_renda]
   }
@@ -1653,7 +1662,7 @@ view: proposta {
     style: integer
     sql: ${renda_familiar} ;;
     group_label: "Dados do Aluno"
-    group_item_label: "Faixa de Renda Familia"
+    group_item_label: "Faixa de Renda Família"
     description: "Indica a faixa de renda familiar do aluno"
   }
 
@@ -1663,6 +1672,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Representante - Atual"
     description: "Indica o representante comercial atribuido ao campus atualmente"
+    hidden: yes
     sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
   }
 
@@ -1671,6 +1681,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Representante - Original"
     description: "Indica o representante comercial atribuido na data de inicio da proposta"
+    hidden: yes
     sql: ${TABLE}."REPRESENTANTE_ORIGINAL" ;;
   }
 
@@ -1678,7 +1689,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Semestre - Atual"
-    description: "Indica o semestre atual do aluno"
+    description: "Indica o semestre atual que o aluno está cursando"
     sql: ${TABLE}."SEMESTRE_CURSANDO" ;;
   }
 
@@ -1696,9 +1707,9 @@ view: proposta {
     label: "Valor Ticket Médio"
     value_format: "$ #,##0.00"
     description: "Indica o valor da última mensalidade dividido pela quantidade de parcelas financiadas"
+    hidden:  yes
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
-
 
 
   dimension: tipo_atual {
@@ -1706,6 +1717,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Tipo de Representante - Atual"
     description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
+    hidden: yes
     sql: ${TABLE}."TIPO_ATUAL" ;;
   }
 
@@ -1714,6 +1726,7 @@ view: proposta {
     group_label: "Dados da Regional"
     label: "Tipo de Representante - Original"
     description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
+    hidden: yes
     sql: ${TABLE}."TIPO_ORIGINAL" ;;
   }
 
@@ -1730,7 +1743,7 @@ view: proposta {
     type: string
     group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
-    description: "Indica se a proposta do aluno é Nova,Renovação, Renegociação, Segundo Repasse ou Reempactado"
+    description: "Indica se a proposta do aluno é Nova, Renovação, Renegociação, Segundo Repasse ou Reempactado"
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
@@ -1738,7 +1751,7 @@ view: proposta {
     type: string
     group_label: "Dados de Renovação"
     label: "Tipo de Renovação"
-    description: "Indica se a renovação é Ímpar ou Par"
+    description: "Indica se a renovação é ímpar ou par"
     sql: ${TABLE}."TIPO_RENOVACAO" ;;
   }
 
@@ -1747,6 +1760,7 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Taxa Anual"
     description: "Indica o valor da taxa de juros anual do contrato"
+    hidden:  yes
     sql: ${TABLE}."TX_ANUAL_TOTAL" ;;
     value_format: "0.00"
   }
@@ -1755,7 +1769,8 @@ view: proposta {
     type: number
     group_label: "Dados do Contrato"
     label: "Taxa Mensal - Aluno"
-    description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição. "
+    description: "Indica o valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
+    hidden: yes
     sql: IFNULL(${TABLE}."TX_MENSAL_ALUNO",0) ;;
     value_format: "0.00"
   }
@@ -1765,6 +1780,7 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Taxa Mensal"
     description: "Indica o valor da taxa de juros mensal do contrato"
+    hidden:  yes
     sql: ${TABLE}."TX_MENSAL_TOTAL" ;;
     value_format: "0.00"
   }
@@ -1801,8 +1817,8 @@ view: proposta {
   dimension: vl_comissao_ideal {
     type: number
     group_label: "Dados da Cessão"
-    label: "Valor - Comissão PRAVALER"
-    description: "Indica o valor da comissão do pravaler por contrato."
+    label: "Valor - Comissão Pravaler"
+    description: "Indica o valor da comissão do Pravaler por contrato."
     value_format_name: id
     hidden: yes
     sql: ${TABLE}."VL_COMISSAO_IDEAL" ;;
@@ -1812,7 +1828,7 @@ view: proposta {
     type: number
     group_label: "Dados da Instituição"
     label: "Dias no W.O"
-    description: "Indica a quantidade de dias que a instituição entrou no WriteOff."
+    description: "Indica a quantidade de dias que a instituição entrou em WriteOff."
     sql: ${TABLE}."VL_DIAS_WO_IES" ;;
   }
 
@@ -1832,6 +1848,7 @@ view: proposta {
     label: "Valor do Financiamento"
     value_format: "$ #,###.00"
     description: "Indica o valor total do financiamento do contrato"
+    hidden:  yes
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
 
@@ -1840,7 +1857,8 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento - Aluno "
     value_format: "$ #,###.00"
-    description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno "
+    description: "Indica a quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    hidden: yes
     sql: ${TABLE}."VL_FINANCIAMENTO_ALUNO" ;;
   }
 
@@ -1850,6 +1868,7 @@ view: proposta {
     label: "Valor IOF "
     value_format: "0"
     description: "Indica o valor de IOF aplicado ao contrato "
+    hidden:  yes
     sql: ${TABLE}."VL_IOF" ;;
   }
 
@@ -1859,6 +1878,7 @@ view: proposta {
     label: "Valor Mensalidade Atual "
     value_format: "0"
     description: "Indica o valor da mensalidade atual do aluno"
+    hidden: yes
     sql: ${TABLE}."VL_MEN_CORRENTE" ;;
   }
 
@@ -1868,6 +1888,7 @@ view: proposta {
     label: "Valor Mensalidade"
     value_format: "$ #,###.00"
     description: "Indica o valor da mensalidade descrita no contrato"
+    hidden: yes
     sql: IFNULL(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
@@ -1887,6 +1908,7 @@ view: proposta {
     label: "Valor Prestação"
     value_format: "$ #,###.00"
     description: "Indica o valor da prestação do contrato"
+    hidden:  yes
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
 
@@ -1915,6 +1937,7 @@ view: proposta {
     label: "Valor Rematricula"
     value_format: "0"
     description: "Indica o valor da rematricula do aluno por contrato"
+    hidden:  yes
     sql: ${TABLE}."VL_REMATRICULA" ;;
   }
 
@@ -1942,7 +1965,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Score -  Externo"
-    description: "Indica a pontuação do score externo do aluno. "
+    description: "Indica a pontuação do score externo do aluno"
     sql: ${TABLE}."PONTUACAO_EXTERNA" ;;
     value_format: "0"
   }
@@ -1953,7 +1976,6 @@ view: proposta {
     label: "Valor Subsidiado"
     value_format: "0"
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
-
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
 
@@ -1963,6 +1985,7 @@ view: proposta {
     label: "Valor Tarifa de Cadastro"
     value_format: "0"
     description: "Indica o valor da tarifa de cadastro do contrato"
+    hidden:  yes
     sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
   }
 
@@ -1980,7 +2003,7 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Valor Financiado - BV "
     value_format: "0"
-    description: "Indica o valor total financiado + valor de IOF da BV. "
+    description: "Indica o valor total financiado + valor de IOF da BV"
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
 
@@ -2011,15 +2034,11 @@ view: proposta {
   }
 
 
-
-
-
-
   dimension: vl_ult_status {
     type: string
     group_label: "Jornada"
     label: "ID Último Status"
-    description: "Indica o ID do Último Status da Proposta ."
+    description: "Indica o ID do último status da proposta"
     sql: ${TABLE}."VL_ULT_STATUS" ;;
   }
 
@@ -2043,7 +2062,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     group_item_label: "Quantidade de Pessoas na Residência"
-    description: "Informa a quantidade de pessoas que mora na mesma residência que o aluno"
+    description: "Informa a quantidade de pessoas que residem com o aluno"
     sql: ${TABLE}."RESID_QTD_PESSOAS_ALUNO" ;;
   }
 
@@ -2051,7 +2070,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Tipo de Residência"
-    description: "Indica o tipo de residencia que o aluno mora (EX. Aluguel, Propria, Financiada, Quitada)"
+    description: "Indica o tipo de residência que o aluno mora (Ex. Aluguel, Propria, Financiada, Quitada)"
     sql: ${TABLE}."TIPO_RESIDENCIA_ALUNO" ;;
   }
 
@@ -2096,11 +2115,9 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     group_item_label: "Natureza de Ocupação"
-    description: "Indica a ocupação do fiador. Indica a ocupação do aluno. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo e etc."
+    description: "Indica a ocupação do fiador. Ex: Estagiário, Trabalhador Rural, Microempresário, Militar, Autonomo, etc"
     sql: ${TABLE}."OCUPACAO_GARANTIDOR_PROPOSTA" ;;
   }
-
-
 
 
 
@@ -2108,7 +2125,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fiador"
     group_item_label: "Quantidade de Pessoas na Residência"
-    description: "Informa a quantidade de pessoas que mora na mesma residência que o fiador"
+    description: "Informa a quantidade de pessoas que residem com o fiador"
     sql: ${TABLE}."RESID_QTD_PESSOAS_FIADOR" ;;
   }
 
@@ -2124,7 +2141,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fiador"
     group_item_label: "Parentesco"
-    description: "Indica o tipo de parentesco que o fiador tem com o aluno (EX Pai, Mae, Irmão, Conjuge)"
+    description: "Indica o tipo de parentesco que o fiador tem com o aluno (EX Pai, Mãe, Irmão, Cônjuge)"
     sql: ${TABLE}."FIA_PARENTESCO" ;;
   }
 
@@ -2140,7 +2157,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Reside com o Fiador"
-    description: "Indica se aluno e fiador moram na mesma residencia"
+    description: "Indica se aluno e fiador moram na mesma residência"
     sql: ${TABLE}."FLG_MORA_FIADOR" ;;
     hidden: yes
   }
@@ -2155,7 +2172,7 @@ view: proposta {
     }
     group_label: "Dados do Aluno"
     group_item_label: "Reside com o Fiador"
-    description: "Indica se aluno e fiador moram na mesma residencia"
+    description: "Indica se aluno e fiador moram na mesma residência"
   }
 
 
@@ -2163,7 +2180,7 @@ view: proposta {
     type: yesno
     group_label: "Dados de Renovação"
     group_item_label: "Primeira Recontratação?"
-    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado. "
+    description: "Indica se é a primeira recontratação de renovação do aluno dentro do semestre financiado"
     sql: ${TABLE}."FLG_PRIMEIRA_CONTRATACAO" ;;
   }
 
@@ -2172,7 +2189,7 @@ view: proposta {
     type: yesno
     group_label: "Dados de Renovação"
     group_item_label: "Primeira Recontratação Ciclo?"
-    description: "Indica se é a primeira recontratação de renovação do aluno dentro do CICLO.(Renovação + Ciclo)"
+    description: "Indica se é a primeira recontratação de renovação do aluno dentro do ciclo.(Renovação + Ciclo)"
     sql: ${TABLE}."FLG_PRIMEIRA_CONTRATACAO_STATUS" ;;
   }
 
@@ -2180,7 +2197,7 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     group_item_label: "Projeto"
-    description: "Indica o projeto que a proposta pertentece. EX: P-FIES, KROTON"
+    description: "Indica o projeto a qual a proposta pertence. EX: P-FIES, KROTON"
     sql: ${TABLE}."PROJETO" ;;
   }
 
@@ -2197,6 +2214,7 @@ view: proposta {
     convert_tz: no
     datatype: date
     label: "Formalização Prevista"
+    description: "Data prevista para a formalização"
     sql: ${TABLE}."DATA_FORMALIZACAO_PREVISTA" ;;
   }
 
@@ -2246,9 +2264,6 @@ view: proposta {
   }
 
 
-
-
-
   measure: perc_cpf {
     type: percent_of_total
     sql: ${id_cpf} ;;
@@ -2259,13 +2274,12 @@ view: proposta {
   }
 
 
-
   measure: sum_vl_cet_aa  {
     type: sum
     group_label: "Custo Efetivo Total"
     group_item_label: "Soma A.A"
     sql:${cet_aa};;
-    description: "Soma do valor do custo efetivo Total ao ano do contrato"
+    description: "Soma do valor do custo efetivo total ao ano do contrato"
   }
 
   measure: avg_vl_cet_aa  {
@@ -2273,7 +2287,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Média A.A"
     sql:${cet_aa};;
-    description: "Média do valor dp custo efetivo Total ao ano do contrato"
+    description: "Média do valor dp custo efetivo total ao ano do contrato"
   }
 
   measure: min_vl_cet_aa  {
@@ -2281,7 +2295,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Mínimo A.A"
     sql:${cet_aa};;
-    description: "Mínimo do valor do  custo efetivo Total ao ano do contrato"
+    description: "Mínimo do valor do  custo efetivo total ao ano do contrato"
   }
 
 
@@ -2290,7 +2304,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Máximo A.A"
     sql:${cet_aa};;
-    description: "Máximo do valor do custo efetivo Total ao ano do contrato"
+    description: "Máximo do valor do custo efetivo total ao ano do contrato"
   }
 
 
@@ -2299,7 +2313,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Soma A.M"
     sql:${cet_am};;
-    description: "Soma do valor do custo efetivo Total ao mês do contrato"
+    description: "Soma do valor do custo efetivo total ao mês do contrato"
   }
 
   measure: avg_vl_cet_am  {
@@ -2307,7 +2321,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Média A.M"
     sql:${cet_am};;
-    description: "Média do valor do custo efetivo Total ao mês do contrato"
+    description: "Média do valor do custo efetivo total ao mês do contrato"
   }
 
   measure: min_vl_cet_am  {
@@ -2315,7 +2329,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Mínimo A.M"
     sql:${cet_am};;
-    description: "Mínimo do valor do custo efetivo Total ao mês do contrato"
+    description: "Mínimo do valor do custo efetivo total ao mês do contrato"
   }
 
 
@@ -2324,7 +2338,7 @@ view: proposta {
     group_label: "Custo Efetivo Total"
     group_item_label: "Máximo A.M"
     sql:${cet_am};;
-    description: "Máximo do valor do custo efetivo Total ao mês do contrato"
+    description: "Máximo do valor do custo efetivo total ao mês do contrato"
   }
 
 
@@ -2374,7 +2388,7 @@ view: proposta {
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Soma"
     sql:${vl_financiamento_aluno};;
-    description: "Soma do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Soma do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
 
   measure: avg_vl_financiamento_aluno  {
@@ -2383,7 +2397,7 @@ view: proposta {
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Média"
     sql:${vl_financiamento_aluno};;
-    description: "Média do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Média do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
 
   measure: min_vl_financiamento_aluno {
@@ -2392,7 +2406,7 @@ view: proposta {
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Mínimo"
     sql:${vl_financiamento_aluno};;
-    description: "Mínimo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Mínimo do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
 
 
@@ -2403,7 +2417,7 @@ view: proposta {
     group_item_label: "Aluno - Máximo"
     sql:${vl_financiamento_aluno};;
 
-    description: "Máximo do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Máximo do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
 
   measure: median_vl_financiamento_aluno {
@@ -2413,7 +2427,7 @@ view: proposta {
     group_item_label: "Aluno - Mediana"
     sql:${vl_financiamento_aluno};;
 
-    description: "Mediana do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Mediana do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
 
@@ -2425,7 +2439,7 @@ view: proposta {
     group_item_label: "Aluno - Primeiro Quartil"
     sql:${vl_financiamento_aluno};;
 
-    description: "Primeiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Primeiro quartil do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
 
@@ -2437,7 +2451,7 @@ view: proposta {
     group_item_label: "Aluno - Terceiro Quartil"
     sql:${vl_financiamento_aluno};;
 
-    description: "Terceiro quartil do valor da quantidade de prestações multiplicada ao valor das parcelas do contrato do aluno"
+    description: "Terceiro quartil do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
 
@@ -2982,19 +2996,18 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Desagio - Soma"
     sql:${vl_financiamento} - ${vl_repasse_ies}-${vl_comissao_ideal};;
-    description: "Soma de valor do Desagio (Comissão + Juros)"
+    description: "Soma de valor do deságio (Comissão + Juros)"
     value_format: "$ #,###.00"
   }
 
   measure: sum_perc_desagio {
     type: number
     group_label: "Valores Cessão"
-    group_item_label: "Desagio % - Soma"
+    group_item_label: "Deságio % - Soma"
     sql: ${perc_desagio};;
-    description: "Soma de valor do Desagio % "
+    description: "Soma de valor do deságio % "
 
   }
-
 
 
   measure: avg_perc_comissao {
@@ -3009,9 +3022,9 @@ view: proposta {
   measure: avg_desagio {
     type: average
     group_label: "Valores Cessão"
-    group_item_label: "Desagio % - Média"
+    group_item_label: "Deságio % - Média"
     sql:${perc_desagio};;
-    description: "Valor percentual médio do Desagio (Comissão + Juros)"
+    description: "Valor percentual médio do Deságio (Comissão + Juros)"
     value_format: "0"
   }
 
@@ -3029,7 +3042,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Juros Ies - Soma"
     sql: ((${vl_financiamento} - ${vl_repasse_ies}) - ${vl_comissao_ideal}) * ${perc_tx_subsidiado_ies} ;;
-    description:  "Indica a soma dos juros pagos pela Instituição"
+    description:  "Indica a soma dos juros pagos pela instituição"
     hidden: yes
     value_format: "$ #,###.00"
   }
@@ -3042,13 +3055,6 @@ view: proposta {
     description:  "Indica a soma do valor do juros subsidiado pela IES do contrato"
     value_format: "$ #,###.00"
   }
-
-
-
-
-
-
-
 
 
   measure: sum_juros_total {
@@ -3072,16 +3078,6 @@ view: proposta {
     description:  "Indica a soma do valor do juros pago pelo aluno"
     value_format: "$ #,###.00"
   }
-
-
-
-
-
-
-
-
-
-
 
 
   measure: somarprodutocomissao {
@@ -3133,7 +3129,7 @@ view: proposta {
     type: sum
     group_label: "Valores Cessão"
     label:"Receita do Correspondente Bancário"
-    description:"Indica valor da taxa paga por originador para cada boleto gerado."
+    description:"Indica valor da taxa paga por originador para cada boleto gerado"
     sql: ${TABLE}."RECEITA_CORBAN" ;;
     value_format: "0"
   }
@@ -3143,7 +3139,7 @@ view: proposta {
     group_label: "Valores Cessão"
     group_item_label: "Custo Total Cessão - Soma"
     sql: ${sum_comissao} + ${sum_repasse} + ${sum_iof} + ${sum_tarifa_cadastro} + ${sum_custo_originacao} ;;
-    description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacao"
+    description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacão)"
     value_format: "0"
   }
 
@@ -3154,6 +3150,7 @@ view: proposta {
     sql_distinct_key: ${id_proposta} ;;
     group_item_label: "Quantidade de Contratos - Cedidos"
     sql:${id_proposta};;
+    hidden:  yes
     filters: [flg_contrato_cedido:"yes"
               ]
     drill_fields: [id_cpf, id_proposta,id_produto,qtd_prestacoes,semestre_financiado,nm_produto,nm_modalidade_produto,flg_produto_ativo,flg_contrato_ativo,flg_contrato_cedido,data_concessao_date,id_contrato_conjunto,tipo_proposta,perc_tx_subsidiado_ies,perc_desagio,tx_mensal_total,tx_mensal_aluno,tx_anual_total,vl_financiado,sum_vl_financiamento]
@@ -3276,7 +3273,7 @@ view: proposta {
     type: number
     label: "Quantidade de arquivos na fila"
     group_label: "Dados da Formalização"
-    description:"Indica a quantidade de arquivos na fila da Interfile."
+    description:"Indica a quantidade de arquivos na fila da Interfile"
     sql: ${TABLE}."QTD_ARQUIVOS_FILA_INTERFILE" ;;
   }
 
@@ -3285,14 +3282,14 @@ view: proposta {
     label: "Quantidade de arquivos na fila"
     group_label: "Dados da Formalização"
     sql:${qtd_arquivos_fila_interfile};;
-    description: "Soma da quantidade de arquivos na fila da Interfile."
+    description: "Soma da quantidade de arquivos na fila da Interfile"
   }
 
   dimension: qtd_arquivos_enviados {
     type: number
     label: "Quantidade de arquivos enviados"
     group_label: "Dados da Formalização"
-    description:"Indica a quantidade de arquivos enviados para Interfile."
+    description:"Indica a quantidade de arquivos enviados para Interfile"
     sql: ${TABLE}."QTD_ARQUIVOS_ENVIADOS" ;;
   }
 
@@ -3301,14 +3298,14 @@ view: proposta {
     label: "Quantidade de arquivos enviados"
     group_label: "Dados da Formalização"
     sql:${qtd_arquivos_enviados};;
-    description: "Soma da quantidade de arquivos enviados para Interfile."
+    description: "Soma da quantidade de arquivos enviados para Interfile"
   }
 
   dimension: renovou_proximo_ciclo {
     type: string
     label: "Renovou Proximo Ciclo"
     group_label: "Dados de Renovação"
-    description:"Indica se o aluno renovou o ciclo seguinte."
+    description:"Indica se o aluno renovou o ciclo seguinte"
     sql: ${TABLE}."FLG_RENOVOU_PROXIMO_CICLO" ;;
   }
 
@@ -3319,7 +3316,7 @@ view: proposta {
     filters: [renovou_proximo_ciclo: "SIM"]
     label: "Quantidade de Renovados Proximo Ciclo"
     group_label: "Contrato"
-    description: "Soma da quantidade de alunos que renovaram para o proximo ciclo."
+    description: "Soma da quantidade de alunos que renovaram para o proximo ciclo"
     drill_fields: [detail*]
   }
 
@@ -3331,7 +3328,7 @@ view: proposta {
     filters: [flg_primeira_contratacao: "yes"]
     label: "Quantidade de Renovados"
     group_label: "Contrato"
-    description: "Soma da quantidade de alunos que renovaram por ciclo."
+    description: "Soma da quantidade de alunos que renovaram por ciclo"
     drill_fields: [detail*]
   }
 
@@ -3368,11 +3365,6 @@ view: proposta {
     group_item_label: "Valor comissão PRV Futuro"
     description: "Indica o valor previsto da comissão PRV do contrato a ser cedido"
   }
-
-
-
-
-
 
 
   measure: count_linhas {
