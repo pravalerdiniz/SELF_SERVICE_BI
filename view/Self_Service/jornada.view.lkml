@@ -271,26 +271,7 @@ view: jornada {
     description: "Indica a data da última alteração de status que a proposta teve"
   }
 
-  dimension_group: data_ultimo_dia_mes {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql:last_day(${TABLE}."DT_ULTIMO_STATUS", 'month') ;;
-    label: "Último dia do Mês"
-    description: "Indica o último dia de cada mês referente ao último status da proposta"
-  }
+
 
 
   #Telemetria
@@ -339,25 +320,7 @@ view: jornada {
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
-  dimension: tempo_no_status_mes{
-    type: number
-    sql: datediff('day',${data_ultimo_status_raw},${data_ultimo_dia_mes_raw}) ;;
-    group_label: "Telemetria"
-    group_item_label: "Tempo no Status - Mês"
 
-    description: "Indica o tempo em dias do último status do aluno até o final do mês"
-    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
-  }
-
-  dimension: tempo_no_status_mes_correto{
-    type: number
-    sql: CASE WHEN ${tempo_no_status_mes} < 0 THEN NULL ELSE ${tempo_no_status_mes} END ;;
-    group_label: "Telemetria"
-    group_item_label: "Tempo no Status - Mês - Correto"
-    hidden: yes
-    description: "Indica o tempo em dias do último status do aluno até o final do mês"
-    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
-  }
 
 
 
@@ -745,6 +708,7 @@ view: jornada {
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
     hidden: yes
+
   }
 
 
@@ -938,38 +902,40 @@ view: jornada {
     description: "Soma de todos os alunos novos que passaram pela etapa Aprovado Instituição"
   }
 
-  measure: gerado {
+  measure: aguardando_documento_contrato {
     type: sum
     sql: ${status_etapa} ;;
     filters: {
       field: etapa
-      value: "Contrato Gerado"
-    }
-    filters: {
-        field: tipo_proposta
-      value: "NOVO"
-    }
-    group_label: "Etapa - Aluno Novo"
-    group_item_label: "Contrato Gerado"
-    drill_fields: [id_cpf, id_proposta]
-    description: "Soma de todos os alunos novos que passaram pela etapa Contrato Gerado"
-  }
-
-  measure: assinado {
-    type: sum
-    sql: ${status_etapa} ;;
-    filters: {
-      field: etapa
-      value: "Contrato Assinado"
+      value: "Aguardando Documento"
     }
     filters: {
       field: tipo_proposta
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Contrato Assinado"
+    group_item_label: "Aguardando Documento"
     drill_fields: [id_cpf, id_proposta]
-    description: "Soma de todos os alunos novos que passaram pela etapa Contrato Assinado"
+    description: "Soma de todos os alunos novos que passaram pela etapa Aguardando Documento"
+  }
+
+
+
+  measure: aguardando_assinatura_contrato {
+    type: sum
+    sql: ${status_etapa} ;;
+    filters: {
+      field: etapa
+      value: "Aguardando Assinatura"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "NOVO"
+    }
+    group_label: "Etapa - Aluno Novo"
+    group_item_label: "Aguardando Assinatura"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa Aguardando Assinatura"
   }
 
   measure: form {
@@ -1353,15 +1319,6 @@ view: jornada {
     description: "Media de tempo no status"
   }
 
-  measure: tempo_status_mes {
-    type: average
-    sql: ${tempo_no_status_mes_correto} ;;
-    group_label: "Tempo no Status Atual "
-    group_item_label: "Dias - Mês a Mês"
-    value_format: "0"
-    drill_fields: [detail*]
-    description: "Media de tempo no status mês a mês"
-  }
 
   measure: tempo_status_median {
     type: median
@@ -1370,7 +1327,7 @@ view: jornada {
     group_item_label: "Dias"
     value_format: "0"
     drill_fields: [detail*]
-    description: "Media de tempo no status"
+    description: "Mediana de tempo no status"
   }
 
   measure: tempo_status_hora {
@@ -1471,37 +1428,27 @@ view: jornada {
     description: "Media do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
-  measure: confirmacao_dados_novos {
+  measure: aguardando_documento_novos {
     type: median
     sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_conf_dados_novos} ;;
+    sql: ${jornada_pivot.sla_agu_doc_novos} ;;
     group_label: "Tempo de Jornada - Novos"
-    group_item_label: "5. Confirmação de Dados Adicionais"
+    group_item_label: "5. Aguardando Documento"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,confirmacao_dados_novos]
-    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,aguardando_documento_novos]
+    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
 
-  measure: geracao_contrato_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_cont_ger_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "6. Geração de Contrato"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,geracao_contrato_novos]
-    description: "Mediana do tempo entre o aluno ter seus dados confirmados e ter seu contrato gerado"
-  }
 
-  measure: assinatura_contrato_novos {
+  measure: agu_assinatura_contrato_novos {
     type: median
     sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_cont_ass_novos} ;;
+    sql: ${jornada_pivot.sla_agu_ass_novos} ;;
     group_label: "Tempo de Jornada - Novos"
-    group_item_label: "7. Assinatura de Contrato"
+    group_item_label: "7. Aguardando Assinatura de Contrato"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,assinatura_contrato_novos]
-    description: "Mediana do tempo entre o aluno ter o contrato gerado e assinar o contrato (tanto aluno quanto garantidor)"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,agu_assinatura_contrato_novos]
+    description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
 
   measure: formalizacao_novos {
@@ -1532,9 +1479,8 @@ view: jornada {
     sql: ${iniciar_proposta_novos}+
      ${finalizar_proposta_novos}+
     ${mesa_risco_novos}+${aprovacao_instituicao_novos}+
-    ${confirmacao_dados_novos}+
-    ${geracao_contrato_novos}+
-    ${assinatura_contrato_novos}+
+    ${aguardando_documento_novos}+
+    ${agu_assinatura_contrato_novos}+
     ${formalizacao_novos}+
     ${cessao_novos};;
 
@@ -1602,35 +1548,26 @@ view: jornada {
     value_format: "0"
     description: "Media do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
   }
-  measure: sla_dados_conf_renov {
+  measure: sla_agu_doc_renov {
     type: median
     sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_dados_conf_renov} ;;
+    sql: ${jornada_pivot.sla_agu_doc_renov} ;;
     drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "4. Confirmação de Dados"
+    group_item_label: "4. Aguardando Documento"
     value_format: "0"
-    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e ter seus dados confirmados"
+    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
   }
-  measure: sla_cont_ger_renov {
+
+  measure: sla_agu_ass_renov {
     type: median
     sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_cont_ger_renov} ;;
+    sql: ${jornada_pivot.sla_agu_ass_renov} ;;
     drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "5. Geração de Contrato"
+    group_item_label: "6. Aguardando Assinatura de Contrato"
     value_format: "0"
-    description: "Mediana do tempo entre o aluno ter seus dados confirmados e o contrato gerado"
-  }
-  measure: sla_cont_ass_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_cont_ass_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "6. Assinatura de Contrato"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ter o contrato gerado e ter o contrato assinado"
+    description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
   }
 
   measure: sla_form_renov {
@@ -1659,8 +1596,8 @@ view: jornada {
     type: number
     sql: ${sla_eleg_renov}+${sla_beha_renov}+
      ${sla_form_renov}+${sla_apr_ies_renov}+
-     ${sla_dados_conf_renov}+
-    ${sla_cont_ass_renov}
+     ${sla_agu_doc_renov}+
+    ${sla_agu_ass_renov}
     ${sla_form_renov}+${sla_ced_renov};;
     drill_fields: [detail*]
     group_label: "Tempo de Jornada - Renovação"

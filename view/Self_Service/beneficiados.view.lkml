@@ -5,7 +5,7 @@ view: beneficiados {
 
   dimension: id_cpf {
     type: number
-    sql: ${TABLE}."ID_CPF" ;;
+    sql: ${TABLE}."ID CPF" ;;
     value_format: "0"
     group_label: "Dados do Aluno"
     group_item_label: "ID_CPF do Aluno"
@@ -140,7 +140,7 @@ view: beneficiados {
       sql: ${TABLE}."GRUPO_DA_IE" ;;
       group_label: "Dados da Instituição"
       group_item_label: "Grupo"
-      description: "Indica a qual grupo a IE pertence"
+      description: "Indica a qual grupo a Instituição de Ensino pertence"
     }
 
     dimension: campus {
@@ -148,7 +148,7 @@ view: beneficiados {
       sql: ${TABLE}."CAMPUS" ;;
       group_label: "Dados da Instituição"
       group_item_label: "Campus"
-      description: "Indica o campus da IE"
+      description: "Indica o campus da Instituição de Ensino"
     }
 
     dimension: nome_da_ie {
@@ -156,7 +156,7 @@ view: beneficiados {
       sql: ${TABLE}."NOME_DA_IE" ;;
       group_label: "Dados da Instituição"
       group_item_label: "Instituição"
-      description: "Indica o nome da IE"
+      description: "Indica o nome da Instituição de Ensino"
     }
 
     dimension: uf_da_ie {
@@ -194,7 +194,7 @@ view: beneficiados {
       sql: ${TABLE}."CURSO" ;;
       group_label: "Dados do Curso"
       group_item_label: "Curso"
-      description: "Indica o nome do curso"
+      description: "Indica o nome do curso do aluno"
     }
 
     dimension: mensalidade {
@@ -202,6 +202,7 @@ view: beneficiados {
       sql: ${TABLE}."MENSALIDADE" ;;
       group_label: "Dados do Curso"
       group_item_label: "Valor da Mensalidade"
+      value_format: "$ #,##0.00"
       description: "Indica o valor da mensalidade do financiamento"
     }
 
@@ -226,7 +227,7 @@ view: beneficiados {
       sql: ${TABLE}."MODALIDADE_DE_ENSINO" ;;
       group_label: "Dados do Curso"
       group_item_label: "Modalidade de Ensino"
-      description: "Indica a modalidade de ensino (ex.: Presencial/ EAD )"
+      description: "Indica a modalidade de ensino do curso (ex.: Presencial/ EAD )"
     }
 
 
@@ -236,7 +237,7 @@ view: beneficiados {
       primary_key: yes
       group_label: "Dados do Contrato"
       group_item_label: "ID do Contrato"
-      description: "Indica o ID do Contrato"
+      description: "Indica o ID do Contrato - ID Proposta."
     }
 
     dimension: originador {
@@ -260,6 +261,7 @@ view: beneficiados {
       sql: ${TABLE}."VALOR_FINANCIADO" ;;
       group_label: "Dados do Contrato"
       group_item_label: "Valor Financiado"
+      value_format: "$ #,##0.00"
       description: "Valor do contrato do aluno"
     }
 
@@ -267,8 +269,9 @@ view: beneficiados {
       type: number
       sql: ${TABLE}."JUROS_MENSAIS" ;;
       group_label: "Dados do Contrato"
-      group_item_label: "Juros Mensais"
-      description: "Indica os juros totais do contrato do aluno"
+      group_item_label: "Percentual de Juros Mensais"
+      value_format: "0.00\%"
+      description: "Indica o percentual de juros mensal do contrato do aluno"
     }
 
     dimension: quantidade_de_mensalidades {
@@ -321,7 +324,7 @@ view: beneficiados {
       datatype: date
       sql: ${TABLE}."DATA_CONCESSAO" ;;
       label: "Concessão"
-      description: "Indica a data do repasse para as Instituições"
+      description: "Indica a data de repasse dos contratos cedidos"
     }
 
   dimension: ytd_only {
@@ -419,7 +422,7 @@ view: beneficiados {
     measure: avg_mensalidade {
       type: average
       sql: ${mensalidade} ;;
-      value_format: "$ #,###"
+      value_format: "$ #,##0.00"
       group_label: "Valor da Mensalidade"
       group_item_label: "Média"
       description: "Valor médio de mensalidade"
@@ -428,7 +431,7 @@ view: beneficiados {
     measure: max_mensalidade {
       type: max
       sql: ${mensalidade} ;;
-      value_format: "$ #,###"
+      value_format: "$ #,##0.00"
       group_label: "Valor da Mensalidade"
       group_item_label: "Máximo"
       description: "Valor máximo de mensalidade"
@@ -437,11 +440,20 @@ view: beneficiados {
     measure: min_mensalidade {
       type: min
       sql: ${mensalidade} ;;
-      value_format: "$ #,###"
+      value_format: "$ #,##0.00"
       group_label: "Valor da Mensalidade"
       group_item_label: "Mínimo"
       description: "Valor mínimo de mensalidade"
     }
+
+  measure: sum_mensalidade {
+    type: sum
+    sql: ${mensalidade} ;;
+    value_format: "$ #,##0.00"
+    group_label: "Valor da Mensalidade"
+    group_item_label: "Soma"
+    description: "Soma do valor da mensalidade"
+  }
 
     measure: sum_qtd_mensalidade {
       type: sum

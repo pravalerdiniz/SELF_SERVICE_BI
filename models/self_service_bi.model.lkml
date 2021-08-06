@@ -54,7 +54,11 @@ explore: beneficiados {
   label: "Histórico de Beneficiados"
   view_label: "Histórico de Beneficiados"
   description: "Mostra os dados de todos os contratos cedidos pelo PRAVALER"
+  fields: [ALL_FIELDS *,
+    - jornada.id_cpf,
+    - jornada.id_proposta,
 
+  ]
 
   join: proposta {
     view_label: "Proposta"

@@ -115,7 +115,11 @@ lateral flatten (input=>boletos) f
         sql: ${dias_atraso} <= 360 ;;
         label: "181 - 360"
       }
-      else: "W.O"
+      when: {
+        sql: ${dias_atraso} > 360 ;;
+        label: "W.O"
+      }
+      else: "Não Atribuido"
     }
     group_item_label: "Faixa de Atraso"
     description: "Indica a faixa de atraso do boleto do aluno"
