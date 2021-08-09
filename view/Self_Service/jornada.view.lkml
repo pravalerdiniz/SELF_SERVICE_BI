@@ -22,7 +22,7 @@ view: jornada {
     ]
     sql: ${TABLE}."DT_STATUS" ;;
     label: "Etapa"
-    description: "Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
+    description: "Este campo é uma regra de negócio*. Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
   }
 
   dimension: wtd_only {
@@ -32,7 +32,9 @@ view: jornada {
     sql:  (EXTRACT(DOW FROM ${dt_status_raw}) < EXTRACT(DOW FROM GETDATE())
                 OR
           (EXTRACT(DOW FROM ${dt_status_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
-    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+    link: {label: "Documentação - Data da Etapa"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/724533442/JORNADA+DT+STATUS"}
+    description: "Este campo é uma regra de negócio*. Use esse campo em conjunto com o campo de Etapa, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente"
   }
 
   dimension: id_instituicao {
@@ -48,7 +50,9 @@ view: jornada {
     sql:  (EXTRACT(DAY FROM ${dt_status_raw}) < EXTRACT(DAY FROM GETDATE())
                 OR
           (EXTRACT(DAY FROM ${dt_status_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
-    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+    link: {label: "Documentação - Data da Etapa"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/724533442/JORNADA+DT+STATUS"}
+    description: "Este campo é uma regra de negócio*. Use esse campo em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
   }
 
   dimension: ytd_only {
@@ -58,7 +62,9 @@ view: jornada {
     sql:  (EXTRACT(DOY FROM ${dt_status_raw}) < EXTRACT(DOY FROM GETDATE())
                 OR
             (EXTRACT(DOY FROM ${dt_status_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
-    description: "Use esse campo, em conjunto com o campo de Etapa, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+  link: {label: "Documentação - Data da Etapa"
+  url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/724533442/JORNADA+DT+STATUS"}
+  description: "Este campo é uma regra de negócio*. Use esse campo em conjunto com o campo de Etapa, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
   #dimension_group: dt_ultimo_status { -- dimensão duplicada
@@ -87,7 +93,9 @@ view: jornada {
     sql: ${TABLE}."ETAPA" ;;
     group_label: "Dados da Etapa"
     group_item_label: "Etapa"
-    description: "Etapas da esteira de contratação do PRAVALER"
+    description: "Etapas da esteira de contratação do Pravaler"
+    link: {label:"Documentação - Etapa"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/741638196/ETAPA"}
     order_by_field: ordem_etapa
   }
 
@@ -101,8 +109,8 @@ view: jornada {
     group_label: "Dados da Proposta"
     group_item_label: "ID CPF do Aluno"
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
+    hidden:  yes
   }
-
 
 
   dimension: cpf_aluno {
@@ -146,9 +154,10 @@ view: jornada {
     sql: ${TABLE}."FLG_CONTINUACAO" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Proposta de Continuação?"
-    description: "Indica se é a proposta é continuação de uma proposta anterior ou não"
+    description: "Este campo é uma regra de negócio*. Indica se é a proposta é continuação de uma proposta anterior ou não"
+    link: {label:"Documentação - Proposta de Continuação"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/720240983"}
   }
-
 
 
   dimension: semestre_financiamento {
@@ -169,13 +178,14 @@ view: jornada {
   }
 
 
-
   dimension: tipo_proposta {
     type: string
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Tipo de Proposta"
-    description: "Indica o tipo da proposta (ex. Novo, Renovação)"
+    description: "Este campo é uma regra de negócio*. Indica o tipo da proposta (ex. Novo, Renovação)"
+    link: {label:"Documentação - Tipo de Proposta"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789577836/TIPO+DE+PROPOSTA"}
   }
 
   dimension_group: data_inicio_da_proposta {
@@ -267,11 +277,9 @@ view: jornada {
       month_num
     ]
     sql: ${TABLE}."DT_ULTIMO_STATUS" ;;
-    label: "Último Status"
+    label: "Data do Último Status"
     description: "Indica a data da última alteração de status que a proposta teve"
   }
-
-
 
 
   #Telemetria
@@ -298,7 +306,9 @@ view: jornada {
     sql: ${TABLE}."ULT_STATUS_DETALHADO" ;;
     group_label: "Telemetria"
     group_item_label: "Último Status da Proposta - Detalhado"
-    description: "Indica a última alteração de status que a proposta teve"
+    link: { label:"Documentação - Último Status da Proposta"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/756514819/LTIMO+STATUS+DA+PROPOSTA"}
+    description: "Este campo é uma regra de negócio*. Indica a última alteração de status que a proposta teve"
 
   }
 
@@ -307,7 +317,9 @@ view: jornada {
     sql: ${TABLE}."ULT_STATUS_GERAL" ;;
     group_label: "Telemetria"
     group_item_label: "Último Status da Proposta - Geral"
-    description: "Indica a última alteração de status que a proposta teve, somente com o status pai"
+    link: { label:"Documentação - Último Status da Proposta"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/756514819/LTIMO+STATUS+DA+PROPOSTA"}
+    description: "Este campo é uma regra de negócio*. Indica a última alteração de status que a proposta teve, somente com o status pai"
 
   }
 
@@ -319,12 +331,6 @@ view: jornada {
     description: "Indica a quantos dias o aluno está no mesmo status"
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
-
-
-
-
-
-
 
 
   dimension: tempo_no_status_hora {
@@ -364,8 +370,6 @@ view: jornada {
     group_item_label: "Faixa de Tempo no Status"
     description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
   }
-
-
 
 
   dimension: ordem_faixa_tempo {
@@ -544,12 +548,6 @@ view: jornada {
     group_item_label: "Etapa Atual"
     description: "Etapa do último status do aluno"
   }
-
-
-
-
-
-
 
 
 
@@ -1264,9 +1262,6 @@ view: jornada {
 
 
 
-
-
-
   measure: perc_cpf {
     type: percent_of_total
     sql: ${count_cpf} ;;
@@ -1632,7 +1627,6 @@ dimension: url {
     hidden: yes
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
-
 
 
 
