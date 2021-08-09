@@ -22,4 +22,10 @@ view: cpf {
     sql: ${TABLE}."CELULAR" ;;
   }
 
+  dimension: cpf {
+    type: number
+    sql: ${TABLE}."CPF" ;;
+    required_access_grants: [grupo_cpf]
+  }
+
 }
