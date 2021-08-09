@@ -8,6 +8,8 @@ view: proposta {
     label: "Calouro/Veterano?"
     hidden: no
     description: "Este campo é uma regra de negócio*. Indica se o aluno é calouro ou veterano"
+    link: {label:"Documentação - Calouro ou Veterano"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/883130478"}
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
@@ -67,7 +69,9 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Idade do Aluno"
-    description: "Indica a idade do aluno"
+    description: "Este campo é uma regra de negócio*. Indica a idade do aluno"
+    link: {label:"Documentação - Idade do Aluno"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/882540633/IDADE+DO+ALUNO"}
     value_format_name: id
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
@@ -148,6 +152,8 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH - Behavior"
+    link: {label:"Documentação - GH Behavior"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969244677/GH+-+Behavior"}
     description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
   }
@@ -226,6 +232,8 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Dias de Carência"
     description: "Este campo é uma regra de negócio*. Indica o número em dias da carência do contrato do aluno"
+    link: {label:"Documentação - Dias de Carência"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941293785"}
     sql: ${TABLE}."CARENCIA" ;;
     value_format: "0"
   }
@@ -813,7 +821,9 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "URL"
-    description: "Indica o canal de URL associada conversão do aluno no site do PRAVALER."
+    description: "Este campo é uma regra de negócio*. Indica o canal de URL associada conversão do aluno no site do Pravaler"
+    link: {label:"Documentação - URL da Conversão"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/958169153"}
     sql: ${TABLE}."DS_URL_CONVERSAO" ;;
   }
 
@@ -821,7 +831,7 @@ view: proposta {
     type: string
     group_label: "Dados de Marketing"
     label: "URL Descoberta - Descrição"
-    description: "Indica o canal de URL associada ao primeiro acesso do aluno no site do PRAVALER."
+    description: "Este campo é uma regra de negócio*. Indica o canal de URL associada ao primeiro acesso do aluno no site do Pravaler"
     sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
     hidden: yes
   }
@@ -898,7 +908,9 @@ view: proposta {
     type: number
     group_label: "Dados do Fiador"
     label: "Idade do Fiador"
-    description: "Indica a idade do fiador do aluno."
+    description: "Este campo é uma regra de negócio*. Indica a idade do fiador"
+    link: {label:"Documentação - Idade do Fiador"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/882573436/IDADE+DO+FIADOR"}
     value_format_name: id
     sql: ${TABLE}."FIA_IDADE" ;;
   }
@@ -1025,6 +1037,8 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Gerado?"
     description: "Indica se o contrato do aluno foi gerado"
+    link: {label:"Documentação - Contrato Gerado"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/897384457"}
     sql: ${TABLE}."FLG_CONTRATO_GERADO" ;;
   }
 
@@ -1189,6 +1203,8 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "GH "
     description: "Indica qual Grupo Homogêneo (GH) o aluno se encontra de acordo com o score"
+    link: {label:"Documentação - Grupo Homogêneo"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969408513/GH"}
     sql: ${TABLE}."GH" ;;
   }
 
@@ -1553,7 +1569,7 @@ view: proposta {
     convert_tz: no
     datatype: date
     label: "Previsão de Formatura"
-    description: "Data de previsão da formatura do aluno"
+    description: "Este campo é uma regra de negócio*. Data de previsão da formatura do aluno"
     sql: ${TABLE}."PREVISAO_FORMATURA" ;;
   }
 
@@ -1689,7 +1705,9 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Semestre - Atual"
-    description: "Indica o semestre atual que o aluno está cursando"
+    description: "Este campo é uma regra de negócio*. Indica o semestre atual que o aluno está cursando"
+    link: {label:"Documentação - Semestre Cursando"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914179/SEMESTRE+CURSANDO"}
     sql: ${TABLE}."SEMESTRE_CURSANDO" ;;
   }
 
@@ -1697,7 +1715,9 @@ view: proposta {
     type: string
     group_label: "Dados do Contrato"
     label: "Semestre Financiado"
-    description: "Indica o semestre financiado pelo aluno por contrato"
+    description: "Este campo é uma regra de negócio*. Indica o semestre financiado pelo aluno por contrato"
+    link: {label:"Documentação - Semestre Financiado"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/910786583/SEMESTRE+FINANCIADO"}
     sql: ${TABLE}."SEMESTRE_FINANCIADO" ;;
   }
 
@@ -1734,7 +1754,9 @@ view: proposta {
     type: string
     group_label: "Dados do Produto"
     label: "Tipo de Produto"
-    description: "Indica se o produto do aluno é Core Business ou produto de Squad"
+    description: "Este campo é uma regra de negócio*. Indica se o produto do aluno é Core Business ou produto de Squad"
+    link: {label:"Documentação - Tipo de Produto"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/884244481/TIPO+DE+PRODUTO"}
     suggestable: yes
     sql: ${TABLE}."TIPO_PRODUTO" ;;
   }
@@ -1743,7 +1765,9 @@ view: proposta {
     type: string
     group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
-    description: "Indica se a proposta do aluno é Nova, Renovação, Renegociação, Segundo Repasse ou Reempactado"
+    description: "Este campo é uma regra de negócio*. Indica se a proposta do aluno é Nova, Renovação, Renegociação, Segundo Repasse ou Reempactado"
+    link: {label:"Documentação - Tipo de Proposta"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789577836/TIPO+DE+PROPOSTA"}
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
@@ -1888,7 +1912,9 @@ view: proposta {
     label: "Valor Mensalidade"
     value_format: "$ #,###.00"
     description: "Indica o valor da mensalidade descrita no contrato"
-    hidden: yes
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    hidden: no
     sql: IFNULL(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
@@ -1917,8 +1943,9 @@ view: proposta {
     group_label: "Dados da Cessão"
     label: "Valor Principal"
     value_format: "0"
-    description: "Indica o valor principal do contrato."
-
+    description: "Indica o valor principal do contrato"
+    link: {label:"Documentação - Valor Prncipal"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736905/VALOR+PRINCIPAL"}
     sql: ${TABLE}."VL_PRINCIPAL" ;;
   }
 
@@ -1955,8 +1982,10 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Score"
-    description: "Indica o valor de Score do aluno"
+    description: "Este campo é uma regra de negócio*. Indica o valor de Score do aluno"
     sql: ${TABLE}."VL_SCORE" ;;
+    link: {label:"Documentação - Score"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/915832852/SCORE"}
     value_format: "0"
   }
 
@@ -1975,6 +2004,8 @@ view: proposta {
     group_label: "Dados da Cessão"
     label: "Valor Subsidiado"
     value_format: "0"
+    link: {label:"Documentação - Valor Subsidiado"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736952/VALOR+SUBSIDIADO"}
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
     sql: ${TABLE}."VL_SUBSIDIADO" ;;
   }
@@ -2003,7 +2034,9 @@ view: proposta {
     group_label: "Dados do Contrato"
     label: "Valor Financiado - BV "
     value_format: "0"
-    description: "Indica o valor total financiado + valor de IOF da BV"
+    description: "Este campo é uma regra de negócio*. Indica o valor total financiado + valor de IOF da BV"
+    link: {label:"Documentação - Valor Total Financiado BV"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959250443/VALOR+TOTAL+FINANCIADO+BV"}
     sql: ${TABLE}."VL_TOTAL_FINANCIADO_BV" ;;
   }
 
@@ -2347,6 +2380,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Soma"
+    link: {label:"Documentação - Valor de Financiamento"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"}
     sql:${vl_financiamento};;
     description: "Soma do valor total do financiamento do contrato"
   }
@@ -2356,6 +2391,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Média"
+    link: {label:"Documentação - Valor de Financiamento"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"}
     sql:${vl_financiamento};;
     description: "Média do valor total do financiamento do contrato"
   }
@@ -2365,6 +2402,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Mínimo"
+    link: {label:"Documentação - Valor de Financiamento"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"}
     sql:${vl_financiamento};;
     description: "Mínimo do valor total do financiamento do contrato"
   }
@@ -2375,11 +2414,11 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Máximo"
+    link: {label:"Documentação - Valor de Financiamento"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"}
     sql:${vl_financiamento};;
     description: "Máximo do valor total do financiamento do contrato"
   }
-
-
 
 
   measure: sum_vl_financiamento_aluno {
@@ -2387,6 +2426,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Soma"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
     description: "Soma do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
@@ -2396,6 +2437,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Média"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
     description: "Média do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
@@ -2405,6 +2448,8 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Mínimo"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
     description: "Mínimo do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
@@ -2415,8 +2460,9 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Máximo"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
-
     description: "Máximo do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
   }
 
@@ -2425,8 +2471,9 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Mediana"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
-
     description: "Mediana do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
@@ -2437,8 +2484,9 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Primeiro Quartil"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
-
     description: "Primeiro quartil do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
@@ -2449,13 +2497,12 @@ view: proposta {
     group_label: "Financiamento"
     value_format: "$ #,###.00"
     group_item_label: "Aluno - Terceiro Quartil"
+    link: {label:"Documentação - Valor de Financiamento - Aluno"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"}
     sql:${vl_financiamento_aluno};;
-
     description: "Terceiro quartil do valor da quantidade de prestações multiplicada pelo valor das parcelas do contrato do aluno"
 
   }
-
-
 
   measure: sum_iof {
     type: sum
@@ -2535,6 +2582,8 @@ view: proposta {
     group_item_label: "Quantidade de Mensalidades"
     sql:${qtd_men_corrente};;
     value_format: "0"
+    link: {label:"Documentação - Quantidade de Mensalidades"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941129755/QUANTIDADE+DE+MENSALIDADES"}
     description: "Soma da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -2544,6 +2593,8 @@ view: proposta {
     group_item_label: "Quantidade de Mensalidades - Média"
     sql:${qtd_men_corrente};;
     value_format: "0"
+    link: {label:"Documentação - Quantidade de Mensalidades"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941129755/QUANTIDADE+DE+MENSALIDADES"}
     description: "Média da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -2553,6 +2604,8 @@ view: proposta {
     group_item_label: "Quantidade de Mensalidades - Mínimo"
     sql:${qtd_men_corrente};;
     value_format: "0"
+    link: {label:"Documentação - Quantidade de Mensalidades"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941129755/QUANTIDADE+DE+MENSALIDADES"}
     description: "Mínimo da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -2562,6 +2615,8 @@ view: proposta {
     group_item_label: "Quantidade de Mensalidades - Máximo"
     sql:${qtd_men_corrente};;
     value_format: "0"
+    link: {label:"Documentação - Quantidade de Mensalidades"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941129755/QUANTIDADE+DE+MENSALIDADES"}
     description: "Máximo da quantidade de mensalidades por contrato do semestre atual"
   }
 
@@ -2571,6 +2626,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Soma"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Soma do valor da mensalidade descrita no contrato"
   }
@@ -2580,6 +2637,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Média"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Média do valor da mensalidade descrita no contrato"
   }
@@ -2589,6 +2648,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Mínimo"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Mínimo do valor da mensalidade descrita no contrato"
   }
@@ -2599,6 +2660,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Máximo"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Máximo do valor da mensalidade descrita no contrato"
   }
@@ -2608,6 +2671,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Mediana"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Mediana do valor da mensalidade descrita no contrato"
   }
@@ -2618,6 +2683,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Primeiro quartil"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Primeiro quartil do valor da mensalidade descrita no contrato"
   }
@@ -2628,6 +2695,8 @@ view: proposta {
     group_label: "Mensalidade"
     value_format: "$ #,###.00"
     group_item_label: "Terceiro quartil"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
     description: "Terceiro quartil do valor da mensalidade descrita no contrato"
   }
@@ -2795,7 +2864,9 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Mensal - Aluno"
     sql:${tx_mensal_aluno};;
-    description: "Soma do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
+    description: "Este campo é uma regra de negócio*. Soma do valor do juros mensal do contrato, descontando o valor subsidiado pela instituição"
+    link: {label:"Documentação - Taxa Mensal - Aluno"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736779/TAXA+MENSAL+-+ALUNO"}
   }
 
 
@@ -2804,6 +2875,8 @@ view: proposta {
     group_label: "Taxa"
     group_item_label: "Taxa Mensal - Aluno | Média"
     sql:${tx_mensal_aluno};;
+    link: {label:"Documentação - Taxa Mensal - Aluno"
+    url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736779/TAXA+MENSAL+-+ALUNO"}
     description: "Média do valor do juros mensal do contrato, descontando o valor subsiado pela instituição"
   }
 
@@ -2822,6 +2895,8 @@ view: proposta {
     group_label: "Ticket Médio"
     group_item_label: "Soma"
     value_format: "0"
+    link: {label:"Documentação - Ticket Médio"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
     sql:${ticket_medio};;
     description: "Soma do ticket médio do contrato"
   }
@@ -2832,6 +2907,8 @@ view: proposta {
     group_label: "Ticket Médio"
     group_item_label: "Média"
     value_format: "0"
+    link: {label:"Documentação - Ticket Médio"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
     sql:${ticket_medio};;
     description: "Média do valor do ticket médio do contrato"
   }
@@ -2841,6 +2918,8 @@ view: proposta {
     group_label: "Ticket Médio"
     group_item_label: "Mínimo"
     value_format: "0"
+    link: {label:"Documentação - Ticket Médio"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
     sql:${ticket_medio};;
     description: "Mínimo do valor do ticket médio do contrato"
   }
@@ -2851,6 +2930,8 @@ view: proposta {
     group_label: "Ticket Médio"
     group_item_label: "Máximo"
     value_format: "0"
+    link: {label:"Documentação - Ticket Médio"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
     sql:${ticket_medio};;
     description: "Máximo do valor do ticket médio do contrato"
   }
@@ -2862,6 +2943,9 @@ view: proposta {
     group_item_label: "Quantidade de Contratos Anteriores"
     sql:${qtd_contratos_anteriores};;
     value_format: "0"
+    link: {label:"Documentação - Quantidade de Contratos Anteriores"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
+      }
     description: "Soma da quantidade contratos anteriores por proposta"
   }
 
