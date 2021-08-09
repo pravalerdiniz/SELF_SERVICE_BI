@@ -106,14 +106,49 @@ view: jornada {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     value_format: "0"
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Aluno"
     group_item_label: "ID CPF do Aluno"
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
-    hidden:  yes
+
   }
 
 
-  dimension: cpf_aluno {
+  dimension: aluno_cpf {
+    type: number
+    sql: ${dim_cpf.cpf} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF"
+    value_format: "0"
+    description: "Indica o CPF do aluno"
+  }
+
+
+  dimension: email_aluno{
+    type: string
+    sql: ${dim_cpf.email} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "E-mail "
+    description: "Indica o e-mail do aluno"
+  }
+
+  dimension: nome_aluno {
+    type: string
+    sql: ${dim_cpf.nome} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome"
+    description: "Indica o Nome do aluno"
+  }
+
+  dimension: celular_aluno {
+    type: number
+    sql: ${dim_cpf.celular} ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "Celular"
+    description: "Indica o celular do aluno"
+  }
+
+
+  dimension: cpf_aluno_proposta {
     type: number
     sql: ${proposta.cpf_aluno} ;;
     group_label: "Dados da Proposta"
@@ -1226,7 +1261,7 @@ view: jornada {
     type: sum
     sql: ${status_etapa} ;;
     value_format: "#,###"
-    drill_fields: [id_cpf, cpf_aluno,id_proposta,etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
+    drill_fields: [id_cpf, cpf_aluno_proposta,id_proposta,etapa,status_etapa,data_inicio_da_proposta_date,data_ultimo_status_date]
     filters: [status_etapa: "1"]
     group_label: "Quantidade de Status"
     group_item_label: "Valor"
@@ -1246,7 +1281,7 @@ view: jornada {
    measure: count_cpf {
      type: count_distinct
      sql: ${id_cpf} ;;
-    drill_fields: [cpf_aluno, aluno_nome, id_proposta,
+    drill_fields: [cpf_aluno_proposta, aluno_nome, id_proposta,
       aluno_email,
       aluno_celular,
       ds_curso,
@@ -1633,7 +1668,7 @@ dimension: url {
   set: detail {
     fields: [
       id_cpf,
-      cpf_aluno,
+      cpf_aluno_proposta,
       id_proposta,
       etapa,
       status_etapa,
