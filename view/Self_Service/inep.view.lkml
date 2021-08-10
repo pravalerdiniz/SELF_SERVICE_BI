@@ -1157,7 +1157,11 @@ view: inep {
     type: string
     group_label: "Dados da IES"
     label: "Grupo da Instituição de Ensino"
-    description: "Indica a qual grupo a IES pertence"
+    description: "Este campo é uma regra de negócio*. Indica a qual grupo a IES pertence"
+    link: {
+      label: "Documentação - Grupo INEP"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1036320921/GRUPO+INEP"
+    }
     sql: ${TABLE}."GRUPO";;
   }
 
