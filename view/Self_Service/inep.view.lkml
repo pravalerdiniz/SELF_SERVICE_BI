@@ -52,6 +52,7 @@ view: inep {
     type: string
     group_label:"Dados do Curso"
     label: "Nome do Curso"
+    description: "Nome do Curso"
     sql: ${TABLE}."DS_CURSO" ;;
   }
 
@@ -75,7 +76,7 @@ view: inep {
     type: string
     group_label:"Dados do Curso"
     label: "Data de Inicio do Funcionamento"
-    description: "Data de início de funcionamento do curso"
+    description: "Data de início do funcionamento do curso"
     sql: ${TABLE}."DS_DATA_INICIO_FUNC" ;;
   }
 
@@ -83,6 +84,7 @@ view: inep {
     type: string
     group_label:"Dados do Aluno"
     label: "Data de Nascimento"
+    description: "Data de nascimento do aluno"
     sql: ${TABLE}."DS_DATA_NASCIMENTO" ;;
   }
 
@@ -106,6 +108,7 @@ view: inep {
     type: string
     group_label:"Dados da IES"
     label: "Nome da IES"
+    description: "Nome da IES"
     sql: ${TABLE}."DS_IES" ;;
   }
 
@@ -122,6 +125,7 @@ view: inep {
     group_label:"Dados da IES"
     label: "Mantenedora"
     sql: ${TABLE}."DS_MANTENEDORA" ;;
+    description: "Nome da Mantenedora"
   }
 
   dimension: ds_mob_acad {
@@ -154,6 +158,7 @@ view: inep {
     group_label:"Dados do Aluno"
     label: "Nacionalidade"
     sql: ${TABLE}."DS_NACIONALIDADE" ;;
+    description: "Nacionalidade do aluno"
   }
 
   dimension: ds_nivel_academico {
@@ -176,6 +181,7 @@ view: inep {
     type: string
     group_label:"Dados do Aluno"
     label: "País de Nascimento do Aluno"
+    description: "País de Nascimento do Aluno"
     sql: ${TABLE}."DS_PAIS" ;;
   }
 
@@ -184,6 +190,7 @@ view: inep {
     group_label:"Dados do Aluno"
     label: "País de Destino do Aluno"
     sql: ${TABLE}."DS_PAIS_DESTINO" ;;
+    description: "País atual que o aluno está"
   }
 
   dimension: ds_referente_ies {
@@ -198,6 +205,7 @@ view: inep {
     type: string
     group_label:"Dados do Aluno"
     label: "Semestre de Conclusão do Aluno"
+    description: "Semestre de conclusão do aluno"
     sql: ${TABLE}."DS_SEMESTRE_CONCLUSAO" ;;
   }
 
@@ -212,6 +220,7 @@ view: inep {
   dimension: ds_sexo {
     type: string
     group_label:"Dados do Aluno"
+    description: "Sexo do aluno"
     label: "Sexo"
     sql: ${TABLE}."DS_SEXO" ;;
   }
@@ -358,6 +367,7 @@ view: inep {
     hidden: yes
     group_label: "Complementar"
     label: "Extensão"
+    description: "Informa se o aluno participa de atividade de extensão"
     sql: ${TABLE}."FLG_COMPLEMENTAR_EXTENSAO" ;;
   }
 
@@ -399,6 +409,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "Bolsa - Marketplace"
+    description: "Informa se o aluno utiliza financiamento estudantil não reembolsável administrado por entidades externas à IES"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_ENT_EXTERNA" ;;
   }
 
@@ -406,6 +417,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "Bolsa - Estadual"
+    description: "Informa se o aluno utiliza financiamento estudantil não reembolsável do governo estadual"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_ESTADUAL" ;;
   }
 
@@ -413,6 +425,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "Bolsa - Municipal"
+    description: "Informa se o aluno utiliza financiamento estudantil não reembolsável do governo municipal"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_MUNICIPAL" ;;
   }
 
@@ -420,6 +433,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "Bolsa - Outros"
+    description: "Informa se o aluno utiliza financiamento estudantil não reembolsável administrado por outras entidades"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_OUTRA" ;;
   }
 
@@ -427,6 +441,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "Bolsa - IES"
+    description: "Informa se o aluno utiliza financiamento estudantil não reembolsável administrado pela IES"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_PROG_IES" ;;
   }
 
@@ -434,6 +449,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "PROUNI - Integral"
+    description: "Indica se o aluno utiliza financiamento estudantil não reembolsável administrado integralmente pelo PROUNI"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_PROUNI_INTEGR" ;;
   }
 
@@ -441,6 +457,7 @@ view: inep {
     type: yesno
     group_label: "Bolsa de Estudo"
     label: "PROUNI - Parcial"
+    description: "Indica se o aluno utiliza financiamento estudantil não reembolsável administrado parcialmente pelo PROUNI"
     sql: ${TABLE}."FLG_FIN_NAOREEMB_PROUNI_PARCIAL" ;;
   }
 
@@ -657,6 +674,7 @@ view: inep {
     type: yesno
     group_label:"Dados da IES"
     label: "Rede Social?"
+    description: "Indica se a IES possui rede social"
     sql: ${TABLE}."FLG_PARTICIPA_REDE_SOCIAL" ;;
   }
 
@@ -758,6 +776,7 @@ view: inep {
     group_label:"Dados do Aluno"
     label: "Carga Horária"
     hidden: yes
+    description: "Carga horaria integral do curso"
     sql: ${TABLE}."QTD_CARGA_HORARIA_INTEG" ;;
   }
 
@@ -765,6 +784,7 @@ view: inep {
     type: number
     group_label:"Dados do Aluno"
     label: "Carga Horária TOTAL"
+    description: "Quantidade da carga horaria total do curso do aluno"
     sql: ${TABLE}."QTD_CARGA_HORARIA_TOTAL" ;;
   }
 
@@ -772,6 +792,7 @@ view: inep {
     type: number
     group_label:"Dados da IES"
     label: "Qtd de Funcionários IES"
+    description: "Quantidade de funcionários da IES"
     sql: ${TABLE}."QTD_FUNC_TOTAL" ;;
   }
 
@@ -780,6 +801,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Qtd de Vagas TOTAL"
     hidden: yes
+    description: "Quantidade total de vagas"
     sql: ${TABLE}."QTD_VAGA_TOTAL" ;;
   }
 
@@ -788,6 +810,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL EAD"
     hidden: yes
+    description: "Quantidade de vagas anuais EAD"
     sql: ${TABLE}."QTD_VAGAS_ANUAL_EAD" ;;
   }
 
@@ -796,12 +819,14 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL INTEGRAL"
     hidden: yes
+    description: "Quantidade de vagas anuais INTEGRAL"
     sql: ${TABLE}."QTD_VAGAS_ANUAL_INTEGRAL" ;;
   }
 
   dimension: qtd_vagas_anual_matutino {
     type: number
     hidden: yes
+    description: "Quantidade de vagas anuais MATUTINO"
     sql: ${TABLE}."QTD_VAGAS_ANUAL_MATUTINO" ;;
   }
 
@@ -810,6 +835,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL NOTURNO"
     hidden: yes
+    description: "Quantidade de vagas anuais NOTURNO"
     sql: ${TABLE}."QTD_VAGAS_ANUAL_NOTURNO" ;;
   }
 
@@ -818,6 +844,7 @@ view: inep {
     group_label:"Dados do Curso"
     label: "Qtd de Vagas - ANUAL VESPERTINO"
     hidden: yes
+    description: "Quantidade de vagas anuais VESPERTINO"
     sql: ${TABLE}."QTD_VAGAS_ANUAL_VESPERTINO" ;;
   }
 
@@ -825,6 +852,7 @@ view: inep {
     type: string
     group_label:"UF"
     label: "UF - Sigla"
+    description: "Sigla UF IES"
     sql: ${TABLE}."SIGLA_UF" ;;
   }
 
@@ -832,6 +860,7 @@ view: inep {
     type: string
     group_label:"Dados da IES"
     label: "Sigla da IES"
+    description: "Sigla IES"
     sql: ${TABLE}."SIGLA_IES" ;;
   }
 
@@ -839,6 +868,7 @@ view: inep {
     type: string
     group_label:"Dados da IES"
     label: "Sigla da IES destino (em caso de transferência)"
+    description: "Sigla da IES de destino do aluno"
     sql: ${TABLE}."SIGLA_IES_DESTINO" ;;
   }
 
@@ -846,6 +876,7 @@ view: inep {
     type: string
     group_label: "UF"
     label: "UF - Descrição"
+    description: "UF IES"
     sql: ${TABLE}."DS_UF_IES" ;;
   }
 
@@ -853,6 +884,7 @@ view: inep {
     type: string
     group_label: "Municipio"
     label: "Municipio"
+    description: "Municipio da IES"
     sql: ${TABLE}."DS_MUNICIPIO_IES" ;;
 
   }
@@ -861,6 +893,7 @@ view: inep {
     type: string
     group_label: "Dados do Aluno"
     label: "Cor/Raça"
+    description: "Informação da Cor/Raça aluno"
     sql: ${TABLE}."DS_COR_RACA" ;;
 
   }
@@ -870,6 +903,7 @@ view: inep {
     type: number
     group_label: "Dados do Aluno"
     label: "Idade do Aluno"
+    description: "Idade do Aluno"
     sql: datediff(year, ${ds_data_nascimento}, concat(${ano_censo}, '-12-31')::date) ;;
 
   }
@@ -878,6 +912,7 @@ view: inep {
     type: tier
     tiers: [0, 18, 25, 35, 50, 60]
     style: integer
+    description: "Faixa etaria do aluno"
     sql: ${idade_aluno} ;;
   }
 
@@ -889,6 +924,7 @@ view: inep {
     value_format: "0.00%"
     group_label: "Evasão"
     label: "Taxa de Evasão"
+    description: "Taxa de Evasão"
     sql: (${SOMA_INGRESSO_TOTAL}-${SOMA_MATRICULA})/nullif (${SOMA_INGRESSO_TOTAL},0);;
 
 
@@ -899,6 +935,7 @@ view: inep {
     sql: iff(${sgl_ies} = 'Não Preenchido', null, ${sgl_ies}) ;;
     map_layer_name: MAPA_ESTADO_ALUNO
     group_label: "UF"
+    description: "UF - MAPA (para utilizar o gráfico de mapas)"
     label: "UF - Mapa"
   }
 
@@ -906,6 +943,7 @@ view: inep {
     sql: iff(${ds_municipio_ies} = 'Não Preenchido', null, ${ds_municipio_ies}) ;;
     map_layer_name: MAPA_CIDADE_ALUNO
     group_label: "Municipio"
+    description: "Municipio - MAPA (para utilizar o gráfico de mapas)"
     label: "Municipio - Mapa"
   }
 
@@ -915,6 +953,7 @@ view: inep {
     type: sum
     group_label: "Ingressantes"
     label: "Ingresso Vestibular"
+    description: "Soma de ingressantes do vestibular"
     sql: ${flg_ingresso_vestibular};;
   }
 
@@ -1106,8 +1145,10 @@ view: inep {
 
   dimension:id_mantenedora {
     type: number
+    hidden: yes
     group_label: "Dados da IES"
     label: "ID da Mantenedora"
+    description: "ID Mantenedora"
     sql: ${TABLE}."ID_MANTENEDORA";;
   }
 
@@ -1116,6 +1157,7 @@ view: inep {
     type: string
     group_label: "Dados da IES"
     label: "Grupo da Instituição de Ensino"
+    description: "Indica a qual grupo a IES pertence"
     sql: ${TABLE}."GRUPO";;
   }
 
@@ -1123,6 +1165,7 @@ view: inep {
     type: number
     group_label: "Dados do Aluno"
     label: "Evadiu?"
+    description: "Informa se o aluno evadiu"
     sql: case when ${flg_matricula} = false and ${flg_concluinte} = false then 1 else 0 end ;;
   }
 
@@ -1132,6 +1175,7 @@ view: inep {
       sql: ${id_ies} ;;
       group_label:"Dados da IES"
       label: "Quantidade de IES"
+      description: "Contagem da quantidade de IES"
 
 
 
@@ -1144,6 +1188,7 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento FIES"
+      description: "Soma do financiamento estudantil reembolsável FIES"
       sql: ${FIN_REEMB_FIES};;
     }
 
@@ -1151,6 +1196,7 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento Estadual"
+      description: "Soma do financiamento estudantil reembolsável do governo estadual"
       sql: ${FIN_REEMB_ESTADUAL};;
     }
 
@@ -1158,6 +1204,7 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento Municipal"
+      description: "Soma do financiamento estudantil reembolsável do governo municipal"
       sql: ${FIN_REEMB_MUNICIPAL};;
     }
 
@@ -1165,6 +1212,7 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento Próprio"
+      description: "Soma do financiamento estudantil reembolsável administrado pela IES"
       sql: ${FIN_REEMB_PROG_IES};;
     }
 
@@ -1172,6 +1220,7 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento Privado"
+      description: "Soma do financiamento estudantil reembolsável administrado por outras entidades"
       sql: ${FIN_REEMB_ENT_EXTERNA}+${FIN_REEMB_OUTRA};;
     }
 
@@ -1188,12 +1237,14 @@ view: inep {
       type: sum
       group_label:"Financiamento Estudantil"
       label: "Financiamento Estudantil (Total)"
+      description: "Soma do financiamento estudantil"
       sql: ${FINANCIAMENTO_ESTUDANTIL};;
     }
 
     measure:SOMA_CONCLUINTE {
       type: sum
       group_label: "Concluinte (Total)"
+      description: "Total de concluintes"
       sql: ${CONCLUINTE};;
     }
 
@@ -1201,17 +1252,20 @@ view: inep {
       type: sum
       group_label: "Ingressantes"
       label: "Ingressantes (Total)"
+      description: "Total Ingressantes"
       sql: ${INGRESSO_TOTAL};;
     }
     measure:SOMA_MATRICULA {
       type: sum
       group_label: "Matricula (Total)"
+      description: "Total de matricula"
       sql: ${MATRICULA};;
     }
 
     measure:SOMA_DEFICIENTE {
       type: sum
       group_label: "Deficiência (Total)"
+      description: "Total de alunos com deficiência"
       sql: ${DEFICIENCIA};;
     }
 
@@ -1249,16 +1303,19 @@ view: inep {
       measure: evasao {
         type: sum
         sql: ${evadiu} ;;
+        hidden: yes
       }
 
       measure: taxa_evasao_teste {
         type: number
+        hidden: yes
         sql: ${evasao} / nullif(${evasao} + ${SOMA_MATRICULA} - ${SOMA_CONCLUINTE}, 0) ;;
         value_format: "0.00%"
       }
 
       measure: avg_idade {
         type: average
+        description: "média das idades dos alunos"
         sql: ${idade_aluno} ;;
         value_format: "#"
       }
