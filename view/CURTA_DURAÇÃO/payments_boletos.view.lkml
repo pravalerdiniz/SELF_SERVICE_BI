@@ -168,6 +168,28 @@ lateral flatten (input=>boletos) f
     hidden: yes
   }
 
+  dimension: taxa_juros_mensal_prefixada {
+    type:  number
+    group_item_label: "Taxa Mensal Prefixada"
+    sql: ${contracts.taxa_juros_mensal_prefixada} ;;
+    description: "TAXA MENSAL PREFIXADA"
+    hidden: yes
+  }
+
+
+  dimension: taxa_juros_mensal_dia_dia {
+    type:  number
+    group_item_label: "Taxa Mensal Prefixada - Dia a Dia"
+    sql: power((1+${taxa_juros_mensal_prefixada}),(1/30))-1;;
+    description: "TAXA MENSAL PREFIXADA"
+    value_format: "0.00%"
+    hidden: yes
+  }
+
+
+
+##((1+Juros mensal)^(1/30))-1 - Juros mensal dia a dia
+
   dimension: flag_menor_vencimento {
   type: yesno
   sql:${payment_boletos_menor_vencimento.data_vencimento}=${payments_boletos.data_vencimento};;
@@ -240,10 +262,21 @@ lateral flatten (input=>boletos) f
 
   measure: sum_vl_presente {
     type:  number
-    group_item_label: "Valor Presente - Anual"
+    group_label: "Valor Presente"
+    group_item_label: "Anual"
     value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/power((1+ ${taxa_juros_diaria_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
-    description: "Valor Presente"
+    sql: ${vl_boleto}/power((1+${taxa_juros_diaria_prefixada}),(datediff('day',${data_vencimento},current_date)/30)) ;;
+    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do ano"
+  }
+
+
+  measure: sum_vl_presente_mensal {
+    type:  number
+    group_label: "Valor Presente"
+    group_item_label: "Mensal"
+    value_format: "$ #,##0.00"
+    sql: ${vl_boleto}/power((1+${taxa_juros_mensal_dia_dia}),(datediff('day',${data_vencimento},current_date)/30)) ;;
+    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do mês"
   }
 
 

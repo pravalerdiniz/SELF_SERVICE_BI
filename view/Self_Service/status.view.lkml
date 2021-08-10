@@ -24,7 +24,7 @@ view: status {
     sql: ${TABLE}."PERFIL_USUARIO" ;;
     group_label: "Dados do Usuário"
     group_item_label: "Perfil do Usuário"
-    description: "Indica o perfil do usuário"
+    description: "Indica o perfil do usuário. Ex: Aprovado + atendimento, aprovação de alunos, atendimento, BO - Financeiro, etc."
   }
 
   dimension: tp_usuario {
@@ -32,7 +32,11 @@ view: status {
     sql: ${TABLE}."TP_USUARIO" ;;
     group_label: "Dados do Usuário"
     group_item_label: "Tipo de Usuário"
-    description: "Indica o Tipo de usuário (ex. Backoffice, Instituição)"
+    description: "Este campo é uma regra de negócio*. Indica o Tipo de usuário (ex. Backoffice, Instituição)"
+    link: {
+      label: "Documentação - Tipo de Usuário"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789610649/TIPO+DE+USU+RIO"
+    }
   }
 
   dimension: flg_usuario_bloqueado {
@@ -49,7 +53,6 @@ view: status {
       sql: ${TABLE}."ID" ;;
       group_label: "Dados do Status"
       group_item_label: "ID"
-
       description: "Número de identificação do status"
     }
 
@@ -79,7 +82,11 @@ view: status {
       sql: ${TABLE}."FLG_STATUS_ATUAL" ;;
       group_label: "Dados do Status"
       group_item_label: "Status Atual"
-      description: "Indica se esse é o status atual da proposta (Sim ou Não)- AVALIAR REGRA"
+      description: "Este campo é uma regra de negócio*. Indica se esse é o status atual da proposta do aluno(Sim ou Não)"
+      link: {
+        label: "Documentação - Status Atual"
+        url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789938179/STATUS+ATUAL"
+      }
     }
 
     dimension: motivo_alteracao {
@@ -87,7 +94,7 @@ view: status {
       sql: ${TABLE}."MOTIVO_ALTERACAO" ;;
       group_label: "Dados do Status"
       group_item_label: "Motivo de Alteração"
-      description: "Indica o motivo da alteração do status"
+      description: "Indica o motivo da alteração do status do aluno"
     }
 
     dimension: status_destino_detalhado {
@@ -159,7 +166,11 @@ view: status {
       sql: ${TABLE}."FONTE" ;;
       group_label: "Dados do Status"
       group_item_label: "Fonte"
-      description: "Indica a fonte do status (RNV, LOG)"
+      description: "Este campo é uma regra de negócio*. Indica a fonte do status (RNV, LOG)"
+      link: {
+        label: "Documentação - Fonte"
+        url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789741577/FONTE"
+      }
     }
 
   dimension: flg_proposta_atual {
@@ -191,13 +202,12 @@ view: status {
     type: yesno
     sql: ${TABLE}."FLG_STATUS_PERFORMANCE";;
     group_item_label: "Status - Performance (1º vez no Status)"
-    description: "Indica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
+    description: "Este campo é uma regra de negócio*. Indica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
+  link: {
+    label: "Documentação - Status Performance (1ª vez no status)"
+    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/786137215/STATUS+-+PERFORMANCE+1+VEZ+NO+STATUS"
   }
-
-
-
-
-
+ }
 
 
   dimension_group: dt_status {
@@ -238,7 +248,11 @@ view: status {
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
     group_label: "Dados da Proposta"
     label: "Tipo de Proposta"
-    description: "Indica o tipo da proposta"
+    description: "Indica o tipo da proposta do aluno. Exemplo: Reempacotado, Renegociação, Renovação, Segundo Repasse, Novo."
+    link: {
+      label: "Documentação - Tipo de Proposta"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789577836/TIPO+DE+PROPOSTA"
+    }
   }
 
   dimension: vl_vezes_proposta_no_status {
@@ -246,7 +260,11 @@ view: status {
     sql: ${TABLE}."VL_VEZES_PROPOSTA_NO_STATUS" ;;
     group_label: "Dados do Status"
     label: "Número de Vezes no Status"
-    description: "Indica o número de vezes em que a proposta passou pelos status"
+    description: "Este campo é uma regra de negócio*. Indica o número de vezes em que a proposta passou pelos status"
+    link: {
+      label: "Documentação - Número de vezes no status"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789741725/N+MERO+DE+VEZES+NO+STATUS"
+    }
   }
 
 
@@ -255,7 +273,11 @@ view: status {
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
     group_label: "Dados do Status"
     label: "Quantidade de Dias - Status Anterior"
-    description: "Indica a quantidade dias que o aluno ficou parado no status de origem"
+    description: "Este campo é uma regra de negócio*. Indica a quantidade dias que o aluno ficou parado no status de origem"
+    link: {
+      label: "Documentação - Quantidade de dias - Status Anterior"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789610674/QUANTIDADE+DE+DIAS+-+STATUS+ANTERIOR"
+    }
   }
 
 
