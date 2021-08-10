@@ -168,6 +168,14 @@ lateral flatten (input=>boletos) f
     hidden: yes
   }
 
+  dimension: flag_menor_vencimento {
+  type: yesno
+  sql:${payment_boletos_menor_vencimento.data_vencimento}=${payments_boletos.data_vencimento};;
+  group_item_label: "Menor Vencimento?"
+  description: "Indica se a data de vencimento é a menor do aluno"
+  }
+
+
   measure: vl_boleto {
     type: sum
     group_item_label: "Soma Valor da Parcela"
