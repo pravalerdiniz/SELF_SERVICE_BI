@@ -2,11 +2,13 @@ view: jornada_pivot {
   derived_table: {
     persist_for: "1 hour"
     sql: select
+          id_cpf,
           id_proposta,
           ULT_STATUS_DETALHADO,
           DT_ULTIMO_STATUS,
           upper(tipo_proposta) as tipo_proposta,
           "'Lead'" as data_lead,
+          "'Simulado'" as data_simulado,
           "'Iniciado'" as data_iniciado,
           "'Finalizado'" as data_finalizado,
           "'Elegivel'" as data_elegivel,
@@ -21,7 +23,7 @@ view: jornada_pivot {
       from "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
 
 
-      pivot(max(DT_STATUS) for ETAPA in ('Lead','Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
+      pivot(max(DT_STATUS) for ETAPA in ('Lead', 'Simulado',Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
                                          'Aguardando Documento','Aguardando Assinatura','Formalizado','Cedido')) as p
 
       where upper(tipo_proposta) in ('NOVO','RENOVACAO')
@@ -65,6 +67,12 @@ view: jornada_pivot {
   dimension_group: data_lead {
     type: time
     sql: ${TABLE}."DATA_LEAD" ;;
+    hidden: yes
+  }
+
+  dimension_group: data_simulado {
+    type: time
+    sql: ${TABLE}."DATA_SIMULADO" ;;
     hidden: yes
   }
 
@@ -130,12 +138,27 @@ view: jornada_pivot {
   }
 
   # Novos
+  dimension: sla_lead_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${data_lead_raw} , ${data_simulado_raw}) < 0
+                   or ${data_lead_raw} is null or ${data_simulado_raw} is null))
+              then null
+              else datediff(day,${data_lead_raw} , ${data_simulado_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+
+
+
+
   dimension: sla_ini_novos {
     type: number
-    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${data_lead_raw} , ${data_iniciado_raw}) < 0
-                   or ${data_lead_raw} is null or ${data_iniciado_raw} is null))
+    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${data_simulado_raw} , ${data_iniciado_raw}) < 0
+                   or ${data_simulado_raw} is null or ${data_iniciado_raw} is null))
               then null
-              else datediff(day,${data_lead_raw} , ${data_iniciado_raw})
+              else datediff(day,${data_simulado_raw} , ${data_iniciado_raw})
          end ;;
     value_format: "0"
     hidden: yes

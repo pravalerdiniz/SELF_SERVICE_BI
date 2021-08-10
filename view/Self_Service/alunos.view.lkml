@@ -1180,6 +1180,7 @@ view: alunos {
     sql: ${TABLE}."VL_BOLETO" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor do Boleto"
+    hidden: yes
     description: "Indica o valor do Boleto"
   }
 
