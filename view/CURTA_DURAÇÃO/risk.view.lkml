@@ -16,6 +16,14 @@ view: risk {
     group_item_label: "Score"
   }
 
+  dimension: score_fiador {
+    type: string
+    sql: ${TABLE}."SCORE_FIADOR" ;;
+    description: "SCORE ATRIBUIDO AO RESPONSÁVEL FINANCEIRO (CPF)"
+    group_item_label: "Score do Responsável Financeiro"
+  }
+
+
   dimension_group: dt_insecao {
     type: time
     timeframes: [
@@ -38,6 +46,21 @@ view: risk {
     description: "INDICA O MODELO DE CLASSIFICAÇÃO DO SCORE"
     group_item_label: "Score_Model"
   }
+
+  dimension: modelo_score_fiador {
+    type: string
+    sql: ${TABLE}."MODELO_SCORE_FIADOR" ;;
+    description: "INDICA O MODELO DE CLASSIFICAÇÃO DO SCORE DO RESPONSÁVEL FINANCEIRO"
+    group_item_label: "Score_Model_Fiador"
+  }
+
+  dimension: cpf_fiador {
+    type: string
+    sql: ${TABLE}."CPF_FIADOR" ;;
+    description: "CPF DO RESPONSÁVEL FINANCEIRO"
+    group_item_label: "CPF do Fiador"
+  }
+
 
   dimension: id_aluno {
     type: string
