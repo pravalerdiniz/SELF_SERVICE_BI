@@ -13,8 +13,8 @@ view: payment_boletos_menor_vencimento {
        --F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
-
-group by py.cpf,
+where F.VALUE:STATUS::VARCHAR  in ('opened','overdue','waiting_payment')
+group by py.cpf,py.chave_contrato,
 py.chave_contrato
  ;;
   }
