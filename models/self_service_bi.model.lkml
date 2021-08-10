@@ -109,6 +109,13 @@ explore: beneficiados {
 
   }
 
+  join: dim_cpf {
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
@@ -286,6 +293,12 @@ explore: jornada {
     type: left_outer
   }
 
+  join: dim_cpf {
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 
 }
 
@@ -737,6 +750,13 @@ join: alunos_produtos_aprovados {
     type: left_outer
     relationship: one_to_many
 
+  }
+
+  join: dim_cpf {
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
   }
 
   join: alunos_acordo {

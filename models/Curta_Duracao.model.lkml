@@ -72,6 +72,7 @@ explore: student {
       }
 
 
+
   join: risk {
     view_label: "Risco"
     sql_on: ${student.id_aluno} = ${risk.id_aluno} ;;
@@ -138,6 +139,14 @@ explore: student {
     sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
     type: left_outer
     relationship: one_to_many
+  }
+
+  join: payment_boletos_menor_vencimento {
+    view_label: "Boletos"
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: []
   }
 
 }
@@ -233,6 +242,13 @@ explore: contracts {
     relationship: one_to_many
   }
 
+  join: payment_boletos_menor_vencimento {
+    view_label: "Boletos"
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: []
+  }
 
 }
 
@@ -325,6 +341,13 @@ explore: risk {
     relationship: one_to_many
   }
 
+  join: payment_boletos_menor_vencimento {
+    view_label: "Boletos"
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: []
+  }
 }
 
 explore: payment {
@@ -417,8 +440,15 @@ explore: payment {
     type: left_outer
     relationship: one_to_many
   }
-}
 
+  join: payment_boletos_menor_vencimento {
+  view_label: "Boletos"
+  sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+  type: left_outer
+  relationship: one_to_many
+  fields: []
+}
+}
 explore: status_curta {
   label:"Status"
 
@@ -517,4 +547,10 @@ explore: status_curta {
     relationship: one_to_many
   }
 
-}
+  join: payment_boletos_menor_vencimento {
+    view_label: "Boletos"
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: []
+  }}
