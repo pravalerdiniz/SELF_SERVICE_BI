@@ -16,6 +16,7 @@ view: instituicao {
     type: number
     group_label: "ENADE"
     label: "Ano de Referência - Nota ENADE"
+    description: "Ano de Referência para nota ENADE"
     sql: ${TABLE}."ANO_NOTA_ENADE";;
   }
 
@@ -23,6 +24,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Sede - Bairro"
+    description: "Bairro da IES"
     sql: ${TABLE}."BAIRRO_SEDE_IE";;
   }
 
@@ -33,7 +35,7 @@ view: instituicao {
     sql: ${TABLE}."CAMPUS_ATIVO";;
     group_label: "Dados do Campus - IE"
     label: "Campus Ativo?"
-    description: "Indica se o campo está ativo."
+    description: "Indica se o campus está ativo."
   }
 
   dimension: campus_capacidade_alunos {
@@ -72,7 +74,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Cargo"
-    description: "Nome do cargo do representante Comercial na IE"
+    description: "Nome do cargo do representante Comercial na IES"
     sql: ${TABLE}."CARGO";;
   }
 
@@ -80,7 +82,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Carteira Regional"
-    description: "Ex: Varejo, DN e Outros"
+    description: "Indica o tipo de carteira regional do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
     sql: ${TABLE}."CARTEIRA_REGIONAL";;
   }
 
@@ -112,7 +114,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Sede - Cidade"
-    description: "Indica a cidade que está localizada a Sede da IE"
+    description: "Indica a cidade que está localizada a Sede da IES"
     sql: ${TABLE}."CIDADE_SEDE_IE";;
   }
 
@@ -120,7 +122,7 @@ view: instituicao {
     type: string
     group_label: "Dados do Curso - IE"
     label: "Nivel Acadêmico do Curso"
-    description: "Informação relacionada ao curso. Indica a classificação dp curso. Ex: Graduação, Pós-Graduação, Técnico "
+    description: "Informação relacionada ao curso. Indica a classificação do curso. Ex: Graduação, Pós-Graduação, Técnico "
     sql: ${TABLE}."CLASSIFICACAO_CURSO";;
   }
 
@@ -139,6 +141,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Nome - Responsável pela Conversão Regional"
+    description: "Nome do responsavél pela conversão regional da IES"
     sql: ${TABLE}."CONVERSAO_REGIONAL";;
   }
 
@@ -174,7 +177,7 @@ view: instituicao {
     type: string
     group_label: "Dados do Campus - IE"
     label: "Nome do Campus"
-    description: "Indica o nome do Campus da IE"
+    description: "Indica o nome do Campus da IES"
     sql: ${TABLE}."DS_CAMPUS";;
   }
 
@@ -182,7 +185,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Nome da Mantenedora"
-    description: "Indica o nome da Mantenedora da IE"
+    description: "Indica o nome da Mantenedora da IES"
     sql: ${TABLE}."DS_MANTENEDOR";;
   }
 
@@ -200,7 +203,7 @@ view: instituicao {
     datatype: date
     group_label: "Cadastro"
     label: "Data de Cadastro"
-    description: "Data de Cadastro da IE no Sistema"
+    description: "Data de Cadastro da IES no Sistema"
     sql: ${TABLE}."DT_CADASTRO";;
   }
 
@@ -208,6 +211,7 @@ view: instituicao {
     type: number
     group_label: "Dados do Curso - IE"
     label: "Duração do Curso - Meses"
+    description: "Quantidade de meses de duração do curso"
     sql: ${TABLE}."DURACAO_CURSO_MESES";;
   }
 
@@ -223,7 +227,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Sede - Endereço"
-    description: "Indica o Endereço da Sede da IE"
+    description: "Indica o Endereço da Sede da IES"
     sql: ${TABLE}."ENDERECO_SEDE_IE";;
   }
 
@@ -239,6 +243,7 @@ view: instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "Sede - Estado"
+    description: "UF SEDE IES"
     sql: ${TABLE}."ESTADO_SEDE_IE";;
   }
 
@@ -246,7 +251,7 @@ view: instituicao {
     type: yesno
     group_label: "Dados da Instituição"
     label: "Bolsa?"
-    description: "Indica se o IE possui o produto Bolsa"
+    description: "Indica se o IES possui o produto Bolsa"
     sql: ${TABLE}."FLG_BOLSA";;
   }
 
@@ -400,7 +405,7 @@ view: instituicao {
     type: number
     group_label: "ENADE"
     label: "Nota do ENADE"
-    description:"Indica a Nota da IE no ENAD (Exame Nacional de Desempenho dos Estudantes)"
+    description:"Indica a Nota da IES no ENAD (Exame Nacional de Desempenho dos Estudantes)"
     sql: ${TABLE}."NOTA_ENADE";;
   }
 

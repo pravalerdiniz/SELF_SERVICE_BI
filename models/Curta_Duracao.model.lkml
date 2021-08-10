@@ -80,23 +80,23 @@ explore: student {
     relationship: one_to_many
   }
 
-      join: fiador {
-        from:  student
-        view_label: "Fiador"
-        sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
-        type: left_outer
-        relationship: one_to_many
+ # join: fiador {
+#    from:  student
+#    view_label: "Fiador"
+#    sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
+#    type: left_outer
+#    relationship: one_to_many
 
-      }
+#      }
 
 
-  join: risk_fiador {
-    from: risk
-    view_label: "Risco Fiador"
-    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+ # join: risk_fiador {
+#    from: risk
+#    view_label: "Risco Fiador"
+#    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
+#    type: left_outer
+#    relationship: one_to_many
+#  }
 
 
       join: analise_risco {
@@ -204,22 +204,22 @@ explore: contracts {
     type: left_outer
     relationship: one_to_many
   }
-  join: fiador {
-    from:  student
-    view_label: "Fiador"
-    sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-  join: risk_fiador {
-    from: risk
-    view_label: "Risco Fiador"
-    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+ # join: fiador {
+ #   from:  student
+ #   view_label: "Fiador"
+ #   sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
+#
+#
+ # join: risk_fiador {
+ #   from: risk
+ #   view_label: "Risco Fiador"
+ #   sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
 
   join: analise_risco {
     view_label: "Análises de Risco"
@@ -318,22 +318,22 @@ explore: risk {
     type: left_outer
     relationship: one_to_many
   }
-  join: fiador {
-    from:  student
-    view_label: "Fiador"
-    sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-  join: risk_fiador {
-    from: risk
-    view_label: "Risco Fiador"
-    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+ # join: fiador {
+ #   from:  student
+ #   view_label: "Fiador"
+ #   sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
+#
+#
+ # join: risk_fiador {
+ #   from: risk
+ #   view_label: "Risco Fiador"
+ #   sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
   join: payments_boletos {
     view_label: "Boletos"
     sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
@@ -418,22 +418,22 @@ explore: payment {
     relationship: one_to_many
   }
 
-  join: fiador {
-    from:  student
-    view_label: "Fiador"
-    sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-  join: risk_fiador {
-    from: risk
-    view_label: "Risco Fiador"
-    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+ # join: fiador {
+ #   from:  student
+ #   view_label: "Fiador"
+ #   sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
+#
+#
+ # join: risk_fiador {
+ #   from: risk
+ #   view_label: "Risco Fiador"
+ #   sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
   join: analise_risco {
     view_label: "Análises de Risco"
     sql_on: ${analise_risco.id_aluno} = ${risk.id_aluno} ;;
@@ -489,22 +489,22 @@ explore: status_curta {
     relationship: one_to_many
   }
 
-  join: fiador {
-    from:  student
-    view_label: "Fiador"
-    sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-  join: risk_fiador {
-    from: risk
-    view_label: "Risco Fiador"
-    sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+ # join: fiador {
+ #   from:  student
+ #   view_label: "Fiador"
+ #   sql_on: ${fiador.cpf_aluno} = ${student.cpf_fiador} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
+#
+#
+ # join: risk_fiador {
+ #   from: risk
+ #   view_label: "Risco Fiador"
+ #   sql_on: ${fiador.id_aluno} = ${risk_fiador.id_aluno} ;;
+ #   type: left_outer
+ #   relationship: one_to_many
+ # }
   join: analise_risco {
     view_label: "Análises de Risco"
     sql_on: ${analise_risco.id_aluno} = ${risk.id_aluno} ;;
