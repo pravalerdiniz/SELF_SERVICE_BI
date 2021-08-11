@@ -16,6 +16,7 @@ view: crx_agentes_detalhes_pausas {
     type: count
     label: "Quantidade de Pausa"
     group_label: "Dados da Pausa"
+    description: "Quantidade de vezes que o atendente pausou"
     drill_fields: [detail*]
   }
 
