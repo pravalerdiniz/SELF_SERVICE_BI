@@ -121,7 +121,11 @@ view: base_score {
         sql: ${score_fiador} <= 0.521  ;;
         label: "0.431 - 0.521"
       }
-      else: "> 0.521"
+      when: {
+        sql: ${score_fiador} > 0.521  ;;
+        label: "> 0.5211"
+      }
+      else: "0"
     }
     group_item_label: "GH - Proposta"
   }
