@@ -16,6 +16,31 @@ view: risk {
     group_item_label: "Score"
   }
 
+  dimension: gh_aluno {
+    type: string
+    case: {
+      when: {
+        sql: ${score} <= 1938 ;;
+        label: "E"
+      }
+      when: {
+        sql:${score} <= 5929 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${score} <= 8762  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${score} <= 9192 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_item_label: "GH - Aluno"
+    description: "GRUPO HOMOGÊNEO ATRIBUÍDO AO ALUNO"
+  }
+
   dimension: score_fiador {
     type: string
     sql: ${TABLE}."SCORE_FIADOR" ;;
@@ -23,6 +48,31 @@ view: risk {
     group_item_label: "Score do Responsável Financeiro"
   }
 
+
+  dimension: gh_fiador {
+    type: string
+    case: {
+      when: {
+        sql: ${score_fiador} <= 1685 ;;
+        label: "E"
+      }
+      when: {
+        sql:${score_fiador} <= 6351 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${score_fiador} <= 8590  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${score_fiador} <= 9428 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_item_label: "GH - Responsável Financeiro"
+    description: "GRUPO HOMOGÊNEO ATRIBUÍDO AO RESPONSÁVEL FINANCEIRO"
+  }
 
   dimension_group: dt_insecao {
     type: time
