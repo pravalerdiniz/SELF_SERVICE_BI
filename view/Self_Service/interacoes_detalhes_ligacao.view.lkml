@@ -199,8 +199,13 @@ view: interacoes_detalhes_ligacao {
       sql: ${TABLE}."PERGUNTA_3" ;;
     }
 
-
-
+  measure: pergunta_3_nota_1 {
+    type: sum
+    group_label: "Pesquisa de Satisfação"
+    group_item_label: "Terceira Pergunta - Notas 1 - Sim"
+    description: "Indica a quantidade de notas 1, ou seja, respondentes Sim."
+    sql:  case when ${pergunta_3}=1 then 1 else 0 end ;;
+  }
 
     dimension: duracao_chamada {
       type: string
