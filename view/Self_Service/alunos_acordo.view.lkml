@@ -52,6 +52,7 @@ view: alunos_acordo {
       date,
       week,
       month,
+      day_of_month,
       month_name,
       quarter,
       year
