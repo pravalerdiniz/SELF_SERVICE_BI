@@ -46,7 +46,7 @@ view: alunos_ativos_carteira {
   dimension: modalidade {
     type: string
     label: "Modalidade"
-    description: "Indica qual a modalidade do produto do aluno (Antecipação, Gestão..."
+    description: "Indica qual a modalidade do produto do aluno (Antecipação, Gestão...)"
     sql: ${TABLE}."MODALIDADE" ;;
   }
 
