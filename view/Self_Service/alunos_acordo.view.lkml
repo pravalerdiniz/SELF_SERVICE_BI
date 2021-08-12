@@ -64,6 +64,21 @@ view: alunos_acordo {
     sql: ${TABLE}."DATA_ACORDO" ;;
   }
 
+
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data do Acordo"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_acordo_grupo_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_acordo_grupo_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+
+
+
   dimension: vl_divida_atual {
     type: number
     group_label: "Valores"
