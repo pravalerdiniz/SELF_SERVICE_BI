@@ -228,6 +228,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Soma"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -236,6 +237,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Média"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -244,6 +246,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Minimo"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -252,6 +255,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Máximo"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -259,6 +263,7 @@ view: alunos_acordo {
     type: sum
     sql: ${vl_promessa} ;;
     label: "Valor Promessa"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
