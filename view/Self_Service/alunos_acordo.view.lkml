@@ -102,6 +102,42 @@ view: alunos_acordo {
     sql: ${TABLE}."DATA_VENCIMENTO_PROMESSA" ;;
   }
 
+
+  dimension: dias_atraso_regra {
+    type: number
+    label: "Dias de atraso"
+    sql: datediff('day',${data_acordo},${data_vencimento_promessa}) ;;
+    hidden: yes
+    description: "Indica os dias de atraso em relação ao acordo realizado pelo aluno e a data de vencimento da promessa de pagamento"
+  }
+
+
+  dimension: dias_atraso {
+    type: number
+    group_item_label: "Dias de após vencimento"
+    sql: CASE WHEN ${dias_atraso_regra} < 0 then 0 ELSE ${dias_atraso_regra} END ;;
+    description: "Indica os dias de atraso em relação ao acordo realizado pelo aluno e a data de vencimento da promessa de pagamento"
+  }
+
+
+  dimension: faixa_atraso {
+    type: string
+    label: "Faixa de Atraso"
+    sql: CASE
+          WHEN ${dias_atraso} = 0 THEN "Em dia"
+          WHEN ${dias_atraso} BETWEEN 1 AND 14 THEN "01 a 14"
+          WHEN ${dias_atraso} BETWEEN 15 AND 30 THEN "15 a 30"
+          WHEN ${dias_atraso} BETWEEN 31 AND 60 THEN "31 a 60"
+          WHEN ${dias_atraso} BETWEEN 61 AND 90 THEN "61 a 90"
+          WHEN ${dias_atraso} BETWEEN 91 AND 120 THEN "91 a 120"
+          WHEN ${dias_atraso} BETWEEN 121 AND 150 THEN "121 a 150"
+          WHEN ${dias_atraso} BETWEEN 151 AND 180 THEN "151 a 180"
+          ELSE "Acima de 180" END
+          ;;
+    description: "Indica a faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
+  }
+
+
   dimension: data_pagamento {
     type: date
     label: "Data Pagamento Promessa"
