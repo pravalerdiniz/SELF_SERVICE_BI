@@ -113,6 +113,9 @@ view: alunos_acordo {
   }
 
 
+
+
+
   dimension: dias_atraso {
     type: number
     group_item_label: "Dias de após vencimento"
@@ -167,6 +170,13 @@ view: alunos_acordo {
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
+  dimension: flg_acordo_pago {
+    type: number
+    label: "Acordo Pago?"
+    sql: CASE WHEN ${data_pagamento} is null THEN 0
+    ELSE 1 END ;;
+  }
+
 
 
 
@@ -191,6 +201,16 @@ view: alunos_acordo {
     sql: ${id_acordo} ;;
     label: "Quantidade de Acordos"
     description: "Contagem de ID Acordos únicos"
+    drill_fields: [detail*]
+  }
+
+
+  measure: count_acordo_pagos {
+    type: count_distinct
+    sql: ${id_acordo} ;;
+    label: "Quantidade de acordos Pagos"
+    description: "Contagem de ID Acordos únicos"
+    filters: [flg_acordo_pago: "1"]
     drill_fields: [detail*]
   }
 
