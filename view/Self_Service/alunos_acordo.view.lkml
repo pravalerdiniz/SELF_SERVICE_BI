@@ -27,12 +27,14 @@ view: alunos_acordo {
  ;;
   }
 
- ##'HORA_ACORDO',
-##'DESCRICAO',
-##'FLG_PAGAMENTO',
-##'SALDO_SOLUCIONADO',
-##'FLG_VENCENDO',
-##'VL_VENCENDO'
+#'HORA_ACORDO',
+#'DESCRICAO',
+#'FLG_PAGAMENTO',
+#'SALDO_SOLUCIONADO',
+#'FLG_VENCENDO',
+#'VL_VENCENDO'
+#CLASSIFICACAO_FAIXA_ATRASO
+#VL_PAGO
 
   dimension: id_cpf {
     type: number
