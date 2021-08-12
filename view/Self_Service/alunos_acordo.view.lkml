@@ -14,15 +14,14 @@ view: alunos_acordo {
             f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
             f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
             f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO,
-            f:value:CANAL::varchar as CANAL,
-            f:value:TIPO_CANAL::varchar as TIPO_CANAL,
-            f:value:DIAS_ATRASO::int as DIAS_ATRASO,
-            f:value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
-            f:value:FAIXA_ATRASO::varchar as FAIXA_ATRASO,
-            f:value:CARTEIRA::varchar as CARTEIRA,
-            f:value:FUNDO::int as FUNDO,
-            f:value:TIPO_INVESTIMENTO::varchar as TIPO_INVESTIMENTO,
-            f:value
+            f.value:CANAL::varchar as CANAL,
+            f.value:TIPO_CANAL::varchar as TIPO_CANAL,
+            f.value:DIAS_ATRASO::int as DIAS_ATRASO,
+            f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
+            f.value:FAIXA_ATRASO::varchar as FAIXA_ATRASO,
+            f.value:CARTEIRA::varchar as CARTEIRA,
+            f.value:FUNDO::int as FUNDO,
+            f.value:TIPO_INVESTIMENTO::varchar as TIPO_INVESTIMENTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
