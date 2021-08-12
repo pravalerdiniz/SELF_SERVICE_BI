@@ -16,6 +16,7 @@ view: risk {
     group_item_label: "Score"
   }
 
+
   dimension: score_fiador {
     type: string
     sql: ${TABLE}."SCORE_FIADOR" ;;
