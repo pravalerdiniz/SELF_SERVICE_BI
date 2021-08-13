@@ -101,7 +101,7 @@ view: proposta {
       }
       when: {
         sql: ${aluno_idade} <= 19 ;;
-        label: "até 19 anos"
+        label: "Até 19 anos"
       }
       else: "Outros"
     }
