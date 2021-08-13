@@ -96,7 +96,7 @@ view: proposta {
         label: "21 anos"
       }
       when: {
-        sql: ${aluno_idade} = 21 ;;
+        sql: ${aluno_idade} = 20 ;;
         label: "20 anos"
       }
       when: {
