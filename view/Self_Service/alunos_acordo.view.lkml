@@ -22,9 +22,9 @@ view: alunos_acordo {
             f.value:CARTEIRA::varchar as CARTEIRA,
             f.value:FUNDO::int as FUNDO,
             f.value:TIPO_INVESTIMENTO::varchar as TIPO_INVESTIMENTO,
-            f.value:HORA_ACORDO as HORA_ACORDO,
+            f.value:HORA_ACORDO::int as HORA_ACORDO,
             f.value:DESCRICAO::varchar as DESCRICAO,
-            f.value:FLG_PAGAMENTO as FLG_PAGAMENTO,
+            f.value:FLG_PAGAMENTO::boolean as FLG_PAGAMENTO,
             f.value:SALDO_SOLUCIONADO::float as SALDO_SOLUCIONADO,
             f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
             f.value:VL_VENCENDO::float as VL_VENCENDO,
@@ -226,7 +226,7 @@ view: alunos_acordo {
   }
 
   dimension: flg_pagamento {
-    type: string
+    type: yesno
     label: "Acordo Pago?"
     sql: ${TABLE}."FLG_PAGAMENTO" ;;
   }
@@ -258,7 +258,7 @@ dimension: tipo_investimento {
   }
 
   dimension: hora_acordo {
-    type: date_hour_of_day
+    type: number
     label: "Hora do acordo"
     sql: ${TABLE}."HORA_ACORDO" ;;
   }
