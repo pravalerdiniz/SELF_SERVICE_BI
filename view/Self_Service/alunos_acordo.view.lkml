@@ -26,7 +26,7 @@ view: alunos_acordo {
             f.value:DESCRICAO::varchar as DESCRICAO,
             f.value:FLG_PAGAMENTO as FLG_PAGAMENTO,
             f.value:SALDO_SOLUCIONADO::float as SALDO_SOLUCIONADO,
-            f.value:FLG_VENCENDO as FLG_VENCENDO,
+            f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
             f.value:VL_VENCENDO::float as VL_VENCENDO,
             f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
             f.value:VL_PAGO::float as VL_PAGO
