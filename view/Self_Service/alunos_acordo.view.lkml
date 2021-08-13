@@ -232,7 +232,7 @@ view: alunos_acordo {
   }
 
   dimension: flg_vencendo {
-    type: string
+    type: yesno
     label: "Acordo Vencendo?"
     sql: ${TABLE}."FLG_VENCENDO" ;;
   }
