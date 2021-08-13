@@ -76,6 +76,41 @@ view: proposta {
     sql: ${TABLE}."ALUNO_IDADE" ;;
   }
 
+  dimension: grupo_aluno_idade {
+    type: string
+    case: {
+      when: {
+        sql: ${aluno_idade} in (NULL) ;;
+        label: "Missing"
+      }
+      when: {
+        sql: ${aluno_idade} > 22 ;;
+        label: "Acima de 22 anos"
+      }
+       when: {
+        sql: ${aluno_idade} = 22 ;;
+        label: "22 anos"
+      }
+      when: {
+        sql: ${aluno_idade} = 21 ;;
+        label: "21 anos"
+      }
+      when: {
+        sql: ${aluno_idade} = 21 ;;
+        label: "20 anos"
+      }
+      when: {
+        sql: ${aluno_idade} <= 19 ;;
+        label: "Até 19 anos"
+      }
+      else: "Outros"
+    }
+    group_label: "Dados do Aluno"
+    group_item_label: "Grupo Idade do Aluno"
+    description: "Indica o grupo da idade do aluno. Campo para análise de modelo de análise de risco e crédito"
+  }
+
+
   dimension: aluno_estado_civil{
     type: string
     group_label: "Dados do Aluno"
@@ -145,6 +180,45 @@ view: proposta {
     description: "Indica a UF de origem do aluno"
     sql: ${TABLE}."ALUNO_UF" ;;
   }
+
+
+  dimension: grupo_uf_aluno {
+    type: string
+    case: {
+      when: {
+        sql: ${aluno_uf} in ('AC','AL','AM','SE') ;;
+        label: "AC,AL,AM,SE"
+      }
+      when: {
+        sql: ${aluno_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
+        label: "AP,MS,MT,ND,RO,RR,TO"
+      }
+      when: {
+        sql: ${aluno_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
+        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+      }
+      when: {
+        sql:  ${aluno_uf} in ('DF','ES','GO') ;;
+        label: "DF,ES,GO"
+      }
+      when: {
+        sql:  ${aluno_uf} in ('MG','PR',NULL) ;;
+        label: "MG,PR,Missing"
+      }
+      when: {
+        sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
+        label: "PB,PI,RS,SC"
+      }
+
+
+      else: "Outros"
+    }
+    group_label: "Dados do Aluno"
+    group_item_label: "Grupo UF"
+    description: "Indica o grupo da uf do aluno. Campo para análise de modelo de análise de risco e crédito"
+  }
+
+
 
 
 
@@ -965,6 +1039,43 @@ view: proposta {
     sql: ${TABLE}."FIA_UF" ;;
     description: "Indica a UF do fiador"
 
+  }
+
+
+  dimension: grupo_uf_fia {
+    type: string
+    case: {
+      when: {
+        sql: ${fia_uf} in ('AC','AL','AM','SE') ;;
+        label: "AC,AL,AM,SE"
+      }
+      when: {
+        sql: ${fia_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
+        label: "AP,MS,MT,ND,RO,RR,TO"
+      }
+      when: {
+        sql: ${fia_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
+        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+      }
+      when: {
+        sql:  ${fia_uf} in ('DF','ES','GO') ;;
+        label: "DF,ES,GO"
+      }
+      when: {
+        sql:  ${fia_uf} in ('MG','PR',NULL) ;;
+        label: "MG,PR,Missing"
+      }
+      when: {
+        sql:  ${fia_uf} in ('PB','PI','RS','SC') ;;
+        label: "PB,PI,RS,SC"
+      }
+
+
+      else: "Outros"
+    }
+    group_label: "Dados do Fiador"
+    group_item_label: "Grupo UF"
+    description: "Indica o grupo da uf do fiador. Campo para análise de modelo de análise de risco e crédito"
   }
 
   dimension: mapa_uf_fiador {
@@ -2112,8 +2223,8 @@ view: proposta {
     group_label: "Dados do Fiador"
     group_item_label: "Estado Civil"
     description: "Indica o estado civil do fiador"
-    hidden: yes
     sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
+    hidden: yes
   }
 
 
@@ -2144,6 +2255,33 @@ view: proposta {
     sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR_PROPOSTA" ;;
   }
 
+  dimension: grupo_estado_civil_fia {
+    type: string
+    case: {
+      when: {
+        sql: ${estado_civil_garantidor} in (NULL) ;;
+        label: "Missing"
+      }
+      when: {
+        sql: ${estado_civil_garantidor} in ('VIUVO','VIVE MARITALMENTE') ;;
+        label: "Viúvo, Vive Maritalmente"
+      }
+      when: {
+        sql: ${estado_civil_garantidor} in ('SOLTEIRO','DIVORCIADO / DESQUITADO') ;;
+        label: "Solteiro, Divorciado / Desquitado"
+      }
+      when: {
+        sql:  ${estado_civil_garantidor} in ('CASADO','SEPARADO','NAO DECLARADO') ;;
+        label: "Casado, Separado, Não Declarado"
+      }
+      else: "Outros"
+    }
+    group_label: "Dados do Fiador"
+    group_item_label: "Grupo Estado Civil"
+    description: "Indica o grupo do estado civil do fiador. Campo para análise de modelo de análise de risco e crédito"
+  }
+
+
   dimension: ocupacao_garantidor {
     type: string
     group_label: "Dados do Fiador"
@@ -2152,7 +2290,36 @@ view: proposta {
     sql: ${TABLE}."OCUPACAO_GARANTIDOR_PROPOSTA" ;;
   }
 
+  dimension: grupo_ocupacao_fia {
+    type: string
+    case: {
+      when: {
+        sql: ${ocupacao_garantidor} in ('AUTONOMO') ;;
+        label: "Autônomo"
+      }
+      when: {
+        sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','ASSALARIADO','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
+        label: "Aposentado ou Pensionista, Profissional Liberal, Estagiário"
+      }
+      when: {
+        sql: ${ocupacao_garantidor} in ('FUNC. PUBLICO CONCURSADO','SOCIO PROPRIETARIO','DO LAR','TRABALHADOR RURAL') ;;
+        label: "Func. Público Concursado, Sócio Proprietário, Do Lar, Trabalhador Rural"
+      }
+      when: {
+        sql:  ${ocupacao_garantidor} in ('ASSALARIADO','FUNC. PUBLICO CONTRATADO','ESTUDANTE') ;;
+        label: "Assalariado, Func. Público Contratado, Estudante"
+      }
+      when: {
+        sql:  ${fia_uf} in ('MILITAR','MICROEMPRESARIO',NULL) ;;
+        label: "Militar, Microempresário Missing"
+      }
 
+      else: "Outros"
+    }
+    group_label: "Dados do Fiador"
+    group_item_label: "Grupo Natureza da Ocupação"
+    description: "Indica o grupo da natureza da ocupação do fiador. Campo para análise de modelo de análise de risco e crédito"
+  }
 
   dimension: reside_qtd_pessoas_fia {
     type: number
