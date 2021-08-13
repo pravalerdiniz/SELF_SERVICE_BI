@@ -31,12 +31,11 @@ view: dados_demograficos {
     dimension: cargoM {
       label: "NÍVEL DO CARGO"
       view_label: "DADOS PROFISSIONAIS"
-      description: "Informa o nível cargo que o Pravalete ocupa"
+      description: "Informa o nível do cargo que o Pravalete ocupa"
       type: string
       sql: left(ltrim(${TABLE}."CARGO"), charindex(' ', ${TABLE}."CARGO")) ;;
       drill_fields: [nome]
     }
-
 
 
     dimension: cbo {
@@ -201,7 +200,7 @@ view: dados_demograficos {
     dimension: situacao {
       label: "SITUAÇÃO"
       view_label: "DADOS PROFISSIONAIS"
-      description: "Informa a situação atual do Pravalente"
+      description: "Informa a situação atual do Pravalente (ativo/desligado)"
       type: string
       sql: ${TABLE}."SITUACAO" ;;
 
@@ -226,7 +225,7 @@ view: dados_demograficos {
     dimension: nivel {
       label: "NIVEL DE CARGO"
       view_label: "DADOS PROFISSIONAIS"
-      description: "Informa o nivel do cargo do Pravalente"
+      description: "Informa o nivel de cargo do Pravalente"
       type: string
       sql: ${TABLE}."NIVEL" ;;
     }
@@ -234,14 +233,12 @@ view: dados_demograficos {
     measure: count {
       label: "CONTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
-      #description: "Informa a situação atual do Pravalente"
       type: count
       drill_fields: []
     }
     measure: porcentagem {
       label: "PORCENTAGEM DE OCORRÊNCIAS"
       view_label: "MÉTRICAS"
-      #description: "Informa a situação atual do Pravalente"
       type: percent_of_total
       sql: ${count} ;;
       drill_fields: []
@@ -251,6 +248,7 @@ view: dados_demograficos {
       view_label: "MÉTRICAS"
       filters: [situacao: "Ativo"]
       type: count
+      description: "Quantidade de colaboradores ativos"
       drill_fields: []
     }
     measure: desligados_voluntarios {
@@ -260,6 +258,7 @@ view: dados_demograficos {
                 tipo_rescisao: "Voluntário"]
       type: count
       drill_fields: []
+      description: "Quantidade de Pravalentes que fizeram o pedido de desligamento"
     }
     measure: desligados_involuntarios {
       label: "TOTAL DE DESLIGADOS INVOLUNTÁRIOS"
@@ -268,6 +267,7 @@ view: dados_demograficos {
         tipo_rescisao: "Involuntária"]
       type: count
       drill_fields: []
+      description: "Quantidade de Pravalentes que foram desligados"
     }
     measure: percentual_turnover_voluntario {
       label: "PERCENTUAL DE TURNOVER VOLUNTÁRIOS"
@@ -276,6 +276,7 @@ view: dados_demograficos {
       sql: (${desligados_voluntarios}/${ativos})*100  ;;
       value_format: "0.00\%"
       drill_fields: []
+      description: "Percentual de Pravalentes que fizeram o pedido de desligamento (turnover voluntários)"
     }
     measure: percentual_turnover_involuntario {
       label: "PERCENTUAL DE TURNOVER INVOLUNTÁRIOS"
@@ -284,6 +285,7 @@ view: dados_demograficos {
       sql: (${desligados_involuntarios}/${ativos})*100  ;;
       value_format: "0.00\%"
       drill_fields: []
+      description: "Percentual de Pravalentes que foram desligados (turnover involuntários)"
     }
 
   }
