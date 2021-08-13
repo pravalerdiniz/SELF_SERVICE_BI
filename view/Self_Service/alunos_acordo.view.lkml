@@ -226,13 +226,13 @@ view: alunos_acordo {
   }
 
   dimension: flg_pagamento {
-    type: yesno
+    type: string
     label: "Acordo Pago?"
     sql: ${TABLE}."FLG_PAGAMENTO" ;;
   }
 
   dimension: flg_vencendo {
-    type: yesno
+    type: string
     label: "Acordo Vencendo?"
     sql: ${TABLE}."FLG_VENCENDO" ;;
   }
