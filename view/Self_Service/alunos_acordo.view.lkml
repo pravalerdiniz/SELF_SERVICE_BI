@@ -363,7 +363,7 @@ dimension: tipo_investimento {
   measure: vl_pago {
     type: sum
     sql: ${TABLE}."VL_PAGO" ;;
-    label: "Valor pago"
+    label: "Valor Pago"
     value_format: "$ #,##0.00"
     description: ""
   }
@@ -371,7 +371,7 @@ dimension: tipo_investimento {
   measure: vl_vencendo {
     type: sum
     sql: ${TABLE}."VL_VENCENDO" ;;
-    label: "Valor vencendo"
+    label: "Valor Vencendo"
     value_format: "$ #,##0.00"
     description: ""
   }
