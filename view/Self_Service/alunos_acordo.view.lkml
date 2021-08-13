@@ -13,12 +13,43 @@ view: alunos_acordo {
             f.value:DATA_PAGAMENTO::date as DATA_PAGAMENTO,
             f.value:COD_TIPO_USUARIO::int as COD_TIPO_USUARIO,
             f.value:DESCRICAO_ACORDO::varchar as DESCRICAO_ACORDO,
-            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO
+            f.value:ID_INSTITUICAO::varchar as ID_INSTITUICAO,
+            f.value:CANAL::varchar as CANAL,
+            f.value:TIPO_CANAL::varchar as TIPO_CANAL,
+            f.value:DIAS_ATRASO::int as DIAS_ATRASO,
+            f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
+            f.value:FAIXA_ATRASO::varchar as FAIXA_ATRASO,
+            f.value:CARTEIRA::varchar as CARTEIRA,
+            f.value:FUNDO::int as FUNDO,
+            f.value:TIPO_INVESTIMENTO::varchar as TIPO_INVESTIMENTO,
+            f.value:HORA_ACORDO::int as HORA_ACORDO,
+            f.value:DESCRICAO::varchar as DESCRICAO,
+            f.value:FLG_PAGAMENTO::boolean as FLG_PAGAMENTO,
+            f.value:SALDO_SOLUCIONADO::float as SALDO_SOLUCIONADO,
+            f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
+            f.value:VL_VENCENDO::float as VL_VENCENDO,
+            f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
+            f.value:VL_PAGO::float as VL_PAGO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
   }
-
+  ##f.value:CANAL::varchar as CANAL,
+  ##f.value:TIPO_CANAL::varchar as TIPO_CANAL,
+  ##f.value:DIAS_ATRASO::int as DIAS_ATRASO,
+  ##f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
+  ##f.value:FAIXA_ATRASO::varchar as FAIXA_ATRASO,
+  ##f.value:CARTEIRA::varchar as CARTEIRA,
+  ##f.value:FUNDO::int as FUNDO,
+  ##f.value:TIPO_INVESTIMENTO::varchar as TIPO_INVESTIMENTO,
+  ##f.value:HORA_ACORDO::time as HORA_ACORDO,
+  ##f.value:DESCRICAO::varchar as DESCRICAO,
+  ##f..value:FLG_PAGAMENTO::boolean as FLG_PAGAMENTO,
+  #f.value:SALDO_SOLUCIONADO::float as SALDO_SOLUCIONADO,
+  ##f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
+  #f.value:VL_VENCENDO::float as VL_VENCENDO,
+  ##f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
+  #f.value:VL_PAGO::float as VL_PAGO
 
   dimension: id_cpf {
     type: number
@@ -36,7 +67,6 @@ view: alunos_acordo {
   }
 
 
-
   dimension: data_acordo {
     type: date
     label: "Data do Acordo"
@@ -52,6 +82,7 @@ view: alunos_acordo {
       date,
       week,
       month,
+      day_of_month,
       month_name,
       quarter,
       year
@@ -62,6 +93,19 @@ view: alunos_acordo {
     description: "Indica a data que o acordo foi realizadO"
     sql: ${TABLE}."DATA_ACORDO" ;;
   }
+
+
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data do Acordo"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_acordo_grupo_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_acordo_grupo_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
 
   dimension: vl_divida_atual {
     type: number
@@ -95,6 +139,18 @@ view: alunos_acordo {
     sql: ${TABLE}."LOGIN" ;;
   }
 
+  dimension: canal {
+    type: string
+    label: "Canal"
+    sql: ${TABLE}."CANAL" ;;
+  }
+
+  dimension: tipo_canal {
+    type: string
+    label: "Tipo de Canal"
+    sql: ${TABLE}."TIPO_CANAL" ;;
+  }
+
   dimension: data_vencimento_promessa {
     type: date
     label: "Data Vencimento Promessa"
@@ -103,19 +159,10 @@ view: alunos_acordo {
   }
 
 
-  dimension: dias_atraso_regra {
-    type: number
-    label: "Dias de atraso"
-    sql: datediff('day',${data_acordo},${data_vencimento_promessa}) ;;
-    hidden: yes
-    description: "Indica os dias de atraso em relação ao acordo realizado pelo aluno e a data de vencimento da promessa de pagamento"
-  }
-
-
   dimension: dias_atraso {
     type: number
     group_item_label: "Dias de após vencimento"
-    sql: CASE WHEN ${dias_atraso_regra} < 0 then 0 ELSE ${dias_atraso_regra} END ;;
+    sql:${TABLE}."DIAS_ATRASO" ;;
     description: "Indica os dias de atraso em relação ao acordo realizado pelo aluno e a data de vencimento da promessa de pagamento"
   }
 
@@ -123,18 +170,23 @@ view: alunos_acordo {
   dimension: faixa_atraso {
     type: string
     label: "Faixa de Atraso"
-    sql: CASE
-          WHEN ${dias_atraso} = 0 THEN "Em dia"
-          WHEN ${dias_atraso} BETWEEN 1 AND 14 THEN "01 a 14"
-          WHEN ${dias_atraso} BETWEEN 15 AND 30 THEN "15 a 30"
-          WHEN ${dias_atraso} BETWEEN 31 AND 60 THEN "31 a 60"
-          WHEN ${dias_atraso} BETWEEN 61 AND 90 THEN "61 a 90"
-          WHEN ${dias_atraso} BETWEEN 91 AND 120 THEN "91 a 120"
-          WHEN ${dias_atraso} BETWEEN 121 AND 150 THEN "121 a 150"
-          WHEN ${dias_atraso} BETWEEN 151 AND 180 THEN "151 a 180"
-          ELSE "Acima de 180" END
-          ;;
+    sql:${TABLE}."FAIXA_ATRASO" ;;
     description: "Indica a faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
+  }
+
+  dimension: ordem_faixa_atraso {
+    type: string
+    label: "Ordem da faixa de atraso"
+    sql:${TABLE}."ORDEM_FAIXA_ATRASO" ;;
+    description: "Indica a ordem da faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
+  }
+
+
+  dimension: classificacao_faixa_atraso {
+    type: string
+    label: "Classificação da faixa de atraso"
+    sql:${TABLE}."CLASSIFICACAO_FAIXA_ATRASO" ;;
+    description: "Indica a classificação da faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
 
@@ -159,6 +211,13 @@ view: alunos_acordo {
     sql: ${TABLE}."DESCRICAO_ACORDO" ;;
   }
 
+  dimension: descricao {
+    type: string
+    label: "Status do Acordo - Título "
+    description: "Indica o status do título do acordo"
+    sql: ${TABLE}."DESCRICAO" ;;
+}
+
   dimension: id_instituicao {
     type: string
     label: "ID da Instituição"
@@ -166,6 +225,43 @@ view: alunos_acordo {
     sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
+  dimension: flg_pagamento {
+    type: yesno
+    label: "Acordo Pago?"
+    sql: ${TABLE}."FLG_PAGAMENTO" ;;
+  }
+
+  dimension: flg_vencendo {
+    type: yesno
+    label: "Acordo Vencendo?"
+    sql: ${TABLE}."FLG_VENCENDO" ;;
+  }
+
+
+
+dimension: tipo_investimento {
+  type: string
+  label: "Tipo de Investimento"
+  sql: ${TABLE}."TIPO_INVESTIMENTO" ;;
+}
+
+  dimension: carteira {
+    type: string
+    label: "Carteira"
+    sql: ${TABLE}."CARTEIRA" ;;
+  }
+
+  dimension: fundo {
+    type: number
+    label: "Fundo"
+    sql: ${TABLE}."FUNDO" ;;
+  }
+
+  dimension: hora_acordo {
+    type: number
+    label: "Hora do acordo"
+    sql: ${TABLE}."HORA_ACORDO" ;;
+  }
 
 
 
@@ -193,6 +289,16 @@ view: alunos_acordo {
     drill_fields: [detail*]
   }
 
+
+  measure: count_acordo_pagos {
+    type: count_distinct
+    sql: ${id_acordo} ;;
+    label: "Quantidade de acordos Pagos"
+    description: "Contagem de ID Acordos únicos"
+    filters: [flg_pagamento: "1"]
+    drill_fields: [detail*]
+  }
+
   measure: count_status_acordo{
     type: count_distinct
     sql: ${id_acordo} ;;
@@ -207,6 +313,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Soma"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -215,6 +322,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Média"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -223,6 +331,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Minimo"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -231,6 +340,7 @@ view: alunos_acordo {
     sql: ${vl_divida_atual} ;;
     group_label: "Valor Divida"
     label: "Máximo"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
@@ -238,9 +348,33 @@ view: alunos_acordo {
     type: sum
     sql: ${vl_promessa} ;;
     label: "Valor Promessa"
+    value_format: "$ #,##0.00"
     description: ""
   }
 
+  measure: saldo_solucionado {
+    type: sum
+    sql: ${TABLE}."SALDO_SOLUCIONADO" ;;
+    label: "Saldo Solucionado"
+    value_format: "$ #,##0.00"
+    description: ""
+  }
+
+  measure: vl_pago {
+    type: sum
+    sql: ${TABLE}."VL_PAGO" ;;
+    label: "Valor Pago"
+    value_format: "$ #,##0.00"
+    description: ""
+  }
+
+  measure: vl_vencendo {
+    type: sum
+    sql: ${TABLE}."VL_VENCENDO" ;;
+    label: "Valor Vencendo"
+    value_format: "$ #,##0.00"
+    description: ""
+  }
 
   set: detail {
     fields: [
@@ -258,4 +392,4 @@ view: alunos_acordo {
       id_instituicao,
     ]
   }
-}
+  }

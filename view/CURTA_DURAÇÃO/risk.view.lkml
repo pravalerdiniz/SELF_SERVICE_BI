@@ -16,6 +16,13 @@ view: risk {
     group_item_label: "Score"
   }
 
+  dimension: gh_aluno {
+    type:  string
+    sql: ${TABLE}."GH_ALUNO" ;;
+    description: "GRUPO HOMOGÊNEO ATRIBUÍDO AO ALUNO"
+    group_item_label: "GH do Aluno"
+  }
+
 
   dimension: score_fiador {
     type: string
@@ -24,6 +31,12 @@ view: risk {
     group_item_label: "Score do Responsável Financeiro"
   }
 
+  dimension: gh_fiador {
+    type:  string
+    sql: ${TABLE}."GH_FIADOR" ;;
+    description: "GRUPO HOMOGÊNEO ATRIBUÍDO AO RESPONSÁVEL FINANCEIRO"
+    group_item_label: "GH do Responsável Financeiro"
+  }
 
   dimension_group: dt_insecao {
     type: time
