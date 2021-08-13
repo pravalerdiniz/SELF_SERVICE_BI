@@ -80,7 +80,7 @@ view: proposta {
     type: string
     case: {
       when: {
-        sql: ${aluno_idade} in (NULL) ;;
+        sql: ${aluno_idade} is NULL;;
         label: "Missing"
       }
       when: {
@@ -202,8 +202,8 @@ view: proposta {
         label: "DF,ES,GO"
       }
       when: {
-        sql:  ${aluno_uf} in ('MG','PR',NULL) ;;
-        label: "MG,PR,Missing"
+        sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
+        label: "Outros"
       }
       when: {
         sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
@@ -211,7 +211,7 @@ view: proposta {
       }
 
 
-      else: "Outros"
+      else: "MG,PR,Missing"
     }
     group_label: "Dados do Aluno"
     group_item_label: "Grupo UF"
@@ -1062,16 +1062,16 @@ view: proposta {
         label: "DF,ES,GO"
       }
       when: {
-        sql:  ${fia_uf} in ('MG','PR',NULL) ;;
-        label: "MG,PR,Missing"
+        sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
+        label: "Outros"
       }
       when: {
-        sql:  ${fia_uf} in ('PB','PI','RS','SC') ;;
+        sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
         label: "PB,PI,RS,SC"
       }
 
 
-      else: "Outros"
+      else: "MG,PR,Missing"
     }
     group_label: "Dados do Fiador"
     group_item_label: "Grupo UF"
