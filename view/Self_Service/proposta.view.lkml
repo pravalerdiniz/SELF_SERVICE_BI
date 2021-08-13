@@ -2309,12 +2309,8 @@ view: proposta {
         sql:  ${ocupacao_garantidor} in ('ASSALARIADO','FUNC. PUBLICO CONTRATADO','ESTUDANTE') ;;
         label: "Assalariado, Func. Público Contratado, Estudante"
       }
-      when: {
-        sql:  ${fia_uf} in ('MILITAR','MICROEMPRESARIO',NULL) ;;
-        label: "Militar, Microempresário Missing"
-      }
 
-      else: "Outros"
+      else: "Militar, Microempresário,Missing"
     }
     group_label: "Dados do Fiador"
     group_item_label: "Grupo Natureza da Ocupação"
