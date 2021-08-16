@@ -816,7 +816,7 @@ join: alunos_produtos_aprovados {
 
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
-    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf} and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta} = ${proposta.id_proposta};;
+    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf} and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta};;
     relationship: many_to_one
     type: left_outer
 
