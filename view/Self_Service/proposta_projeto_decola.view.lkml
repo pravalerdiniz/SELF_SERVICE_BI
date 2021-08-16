@@ -117,26 +117,26 @@ view: proposta_projeto_decola {
     case: {
       when: {
         sql: ${vl_acordo} <= 1000 ;;
-        label: "Até 1k "
+        label: "Até R$ 1 mil"
       }
       when: {
         sql:  ${vl_acordo} <= 5000 ;;
-        label: "1k - 5k"
+        label: " De R$ 1 mil até R$ 5 mil"
       }
       when: {
         sql:  ${vl_acordo} <= 10000 ;;
-        label: "5k - 10k"
+        label: "De R$ 5 mil até R$ 10 mil"
       }
       when: {
         sql:  ${vl_acordo} <= 15000 ;;
-        label: "10k - 15k"
+        label: "De R$ 10 mil até R$ 15 mil"
       }
       when: {
         sql:  ${vl_acordo} <= 20000 ;;
-        label: "15k - 20k"
+        label: "De R$ 15 mil até R$ 20 mil"
       }
 
-      else: "20 >"
+      else: "Acima de R$ 20 mil"
     }
 }
 
