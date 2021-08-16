@@ -18,6 +18,7 @@ view: interacoes_detalhes_ligacao {
     f.value:"TEMPO_FALADO_SEG"::int as TEMPO_FALADO_SEG,
     f.value:"TEMPO_URA_SEG"::int as TEMPO_URA_SEG,
     f.value:"TIPO_LIGACAO"::varchar as TIPO_LIGACAO,
+    f.value:"TIPO_LIGACAO_PRV"::varchar as TIPO_LIGACAO_PRV,
     f.value:"TIPO_QUESTIONARIO"::string as TIPO_QUESTIONARIO,
     f.value:"PERGUNTA_1"::int as PERGUNTA_1,
     f.value:"PERGUNTA_2"::int as PERGUNTA_2,
@@ -268,10 +269,16 @@ view: interacoes_detalhes_ligacao {
     dimension: tipo_ligacao {
       type: string
       label: "Tipo de Ligação"
-      description: "Indica o tipo de ligação."
+      description: "Indica o tipo de ligação de acordo com a regra definida pela 55pbx."
       sql: ${TABLE}."TIPO_LIGACAO" ;;
     }
 
+  dimension: tipo_ligacao_prv {
+    type: string
+    label: "Tipo de Ligação"
+    description: "Indica o tipo de ligação de acordo com a regra definida pela área de negócio."
+    sql: ${TABLE}."TIPO_LIGACAO_PRV" ;;
+  }
 
 
     set: detail {
