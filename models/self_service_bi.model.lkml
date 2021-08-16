@@ -170,6 +170,15 @@ explore: status {
     relationship: many_to_one
   }
 
+  join: proposta_projeto_decola {
+    view_label: "2.1 Acordos - Projeto Decola"
+    sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
+          ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
+          ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 
   join: alunos {
     view_label: "3. Alunos"
@@ -224,6 +233,8 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+
 
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
@@ -391,6 +402,15 @@ explore: instituicao {
 
   }
 
+  join: proposta_projeto_decola {
+    view_label: "2.1 Acordos - Projeto Decola"
+    sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
+          ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
+          ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: alunos {
     view_label: "3. Alunos"
     sql_on: ${alunos.id_instituicao}  = ${instituicao.id_instituicao}
@@ -466,6 +486,15 @@ explore: financeiro {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta}=${financeiro.id_contrato} ;;
     relationship: many_to_one
+    type: left_outer
+  }
+
+  join: proposta_projeto_decola {
+    view_label: "2.1 Acordos - Projeto Decola"
+    sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
+          ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
+          ;;
+    relationship: one_to_many
     type: left_outer
   }
 
@@ -810,6 +839,15 @@ join: alunos_produtos_aprovados {
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
+
+
+  }
+
+  join: proposta_projeto_decola {
+    view_label: "2.1 Projeto Decola"
+    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf} and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta};;
+    relationship: many_to_one
+    type: left_outer
 
 
   }

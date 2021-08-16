@@ -110,10 +110,41 @@ view: proposta_projeto_decola {
     sql: ${TABLE}."VL_ACORDO" ;;
   }
 
+  dimension: faixa_acordo_divida {
+    type: string
+    label: "Faixa de Divida - Acordo"
+    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
+    case: {
+      when: {
+        sql: ${vl_acordo} <= 1000 ;;
+        label: "Até 1k "
+      }
+      when: {
+        sql:  ${vl_acordo} <= 5000 ;;
+        label: "1k - 5k"
+      }
+      when: {
+        sql:  ${vl_acordo} <= 10000 ;;
+        label: "5k - 10k"
+      }
+      when: {
+        sql:  ${vl_acordo} <= 15000 ;;
+        label: "10k - 15k"
+      }
+      when: {
+        sql:  ${vl_acordo} <= 20000 ;;
+        label: "15k - 20k"
+      }
+
+      else: "20 >"
+    }
+}
+
   dimension: vl_parcelas {
     type: number
     label: "Valor das Parcelas"
     description: "Indica o valor das parcelas do acordo."
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VL_PARCELAS" ;;
   }
 

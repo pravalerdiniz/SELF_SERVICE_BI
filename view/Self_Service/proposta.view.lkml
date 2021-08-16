@@ -422,7 +422,6 @@ view: proposta {
     type: string
     group_label: "Dados do Curso"
     label: "Faixa de Comprometimento de Renda"
-    value_format: "0.00%"
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
@@ -2422,6 +2421,22 @@ view: proposta {
     sql: ${TABLE}."FLG_CANCELADO" ;;
   }
 
+  dimension: vl_acordo {
+    type: number
+    label: "Valor do Acordo"
+    hidden: yes
+    sql: ${proposta_projeto_decola.vl_acordo} ;;
+  }
+
+  dimension: data_acordo {
+    type: number
+    label: "Data do Acordo"
+    hidden: yes
+    sql: ${proposta_projeto_decola.data_criacao} ;;
+  }
+
+
+
 
   measure: count_proposta {
     type: count
@@ -2455,7 +2470,9 @@ view: proposta {
       vl_subsidiado,
       sum_juros_pago_ies,
       sum_juros_subsidiado,
-      tipo_proposta
+      tipo_proposta,
+      vl_acordo,
+      data_acordo
     ]
   }
 
