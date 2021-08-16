@@ -114,7 +114,7 @@ view: dados_demograficos {
       view_label: "DADOS PESSOAIS"
       description: "Informa a idade do Pravalente"
       type: number
-      sql: DATEDIFF(year,${nascimento_date},now()) ;;
+      sql: DATEDIFF(year,coalesce(${nascimento_date},null),current_date()) ;;
     }
 
     dimension: matricula {
