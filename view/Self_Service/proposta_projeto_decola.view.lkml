@@ -113,7 +113,6 @@ view: proposta_projeto_decola {
   dimension: faixa_acordo_divida {
     type: string
     label: "Faixa de Divida - Acordo"
-    value_format: "0.00%"
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
@@ -145,6 +144,7 @@ view: proposta_projeto_decola {
     type: number
     label: "Valor das Parcelas"
     description: "Indica o valor das parcelas do acordo."
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VL_PARCELAS" ;;
   }
 

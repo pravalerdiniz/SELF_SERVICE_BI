@@ -422,7 +422,6 @@ view: proposta {
     type: string
     group_label: "Dados do Curso"
     label: "Faixa de Comprometimento de Renda"
-    value_format: "0.00%"
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
