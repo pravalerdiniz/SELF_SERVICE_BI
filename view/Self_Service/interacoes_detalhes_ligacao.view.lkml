@@ -268,14 +268,14 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tipo_ligacao {
       type: string
-      label: "Tipo de Ligação"
+      label: "Tipo de Ligação 55PBX"
       description: "Indica o tipo de ligação de acordo com a regra definida pela 55pbx."
       sql: ${TABLE}."TIPO_LIGACAO" ;;
     }
 
   dimension: tipo_ligacao_prv {
     type: string
-    label: "Tipo de Ligação"
+    label: "Tipo de Ligação Pravaler"
     description: "Indica o tipo de ligação de acordo com a regra definida pela área de negócio."
     sql: ${TABLE}."TIPO_LIGACAO_PRV" ;;
   }
