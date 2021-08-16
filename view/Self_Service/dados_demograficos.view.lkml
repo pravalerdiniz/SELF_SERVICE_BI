@@ -103,7 +103,7 @@ view: dados_demograficos {
     dimension: area_head {
       label: "AREA HEAD"
       view_label: "DADOS PROFISSIONAIS"
-      description: "Informa a área de atuação do Pravalente"
+      description: "Informa a diretoria de atuação do Pravalente"
       type: string
       sql: ${TABLE}."AREA_HEAD" ;;
     }
@@ -235,6 +235,7 @@ view: dados_demograficos {
       view_label: "MÉTRICAS"
       type: count
       drill_fields: []
+      description: "Contagem de ocorrências é a contagem da quantidade do que estamos filtrando, por exemplo, contar a ocorrência do gênero feminino dentro do Pravaler."
     }
     measure: porcentagem {
       label: "PORCENTAGEM DE OCORRÊNCIAS"
@@ -242,6 +243,7 @@ view: dados_demograficos {
       type: percent_of_total
       sql: ${count} ;;
       drill_fields: []
+      description: "Porcentagem de ocorrências é a porcentagem da quantidade do que estamos filtrando, por exemplo, porcentagem da ocorrência do gênero feminino dentro do Pravaler"
     }
     measure: ativos {
       label: "TOTAL DE ATIVOS"
