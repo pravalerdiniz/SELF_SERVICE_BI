@@ -6,6 +6,7 @@ access_grant: grupo_nome {
 
 }
 
+
 access_grant: grupo_telefone {
   user_attribute: grupo_telefone
   allowed_values: ["grupo_telefone"]
