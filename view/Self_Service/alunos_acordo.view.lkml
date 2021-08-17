@@ -189,6 +189,12 @@ view: alunos_acordo {
     description: "Indica a classificação da faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
+dimension: faixa_atraso_ordenada {
+  type:  string
+  label: "Faixa de Atraso Ordenada"
+  sql: concat(${ordem_faixa_atraso},".",${faixa_atraso} ;;
+  description: "Faixa de atraso ordenada"
+}
 
   dimension: data_pagamento {
     type: date
