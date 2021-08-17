@@ -31,7 +31,7 @@ view: historico_demograficos {
   dimension: cargoM {
     label: "NÍVEL DO CARGO"
     view_label: "DADOS PROFISSIONAIS"
-    description: "Informa o nível cargo que o Pravalete ocupa"
+    description: "Informa o nível do cargo que o Pravalete ocupa"
     type: string
     sql: left(ltrim(${TABLE}."CARGO"), charindex(' ', ${TABLE}."CARGO")) ;;
     drill_fields: [nome]
@@ -100,7 +100,7 @@ view: historico_demograficos {
   dimension: area_head {
     label: "AREA HEAD"
     view_label: "DADOS PROFISSIONAIS"
-    description: "Informa a área de atuação do Pravalente"
+    description: "Informa a diretoria de atuação do Pravalente"
     type: string
     sql: ${TABLE}."AREA_HEAD" ;;
   }
@@ -110,7 +110,7 @@ view: historico_demograficos {
     view_label: "DADOS PESSOAIS"
     description: "Informa a idade do Pravalente"
     type: number
-    sql: DATEDIFF(year,${nascimento_date},now()) ;;
+    sql: DATEDIFF(year,coalesce(${nascimento_date},null),current_date()) ;;
   }
 
   dimension: matricula {
@@ -213,7 +213,7 @@ view: historico_demograficos {
   dimension: situacao {
     label: "SITUAÇÃO"
     view_label: "DADOS PROFISSIONAIS"
-    description: "Informa a situação atual do Pravalente"
+    description: "Informa a situação atual do Pravalente (ativo/desligado)"
     type: string
     sql: ${TABLE}."SITUACAO" ;;
   }
@@ -237,7 +237,7 @@ view: historico_demograficos {
   dimension: nivel {
     label: "NIVEL DE CARGO"
     view_label: "DADOS PROFISSIONAIS"
-    description: "Informa o nivel do cargo do Pravalente"
+    description: "Informa o nivel de cargo do Pravalente"
     type: string
     sql: ${TABLE}."NIVEL" ;;
   }
@@ -249,6 +249,7 @@ view: historico_demograficos {
     sql: ${nome};;
     type: count_distinct
     drill_fields: []
+    description: "Contagem de ocorrências é a contagem da quantidade do que estamos filtrando, por exemplo, contar a ocorrência do gênero feminino dentro do Pravaler."
   }
 
   measure: porcentagem {
@@ -258,6 +259,7 @@ view: historico_demograficos {
     type: percent_of_total
     sql: ${count} ;;
     drill_fields: []
+    description: "Porcentagem de ocorrências é a porcentagem da quantidade do que estamos filtrando, por exemplo, porcentagem da ocorrência do gênero feminino dentro do Pravaler"
   }
 
   measure: ativos {
@@ -267,6 +269,7 @@ view: historico_demograficos {
     sql: ${nome};;
     type: count_distinct
     drill_fields: []
+    description: "Quantidade de colaboradores ativos"
   }
 
   measure: desligados_voluntarios {
@@ -277,6 +280,7 @@ view: historico_demograficos {
     sql: ${nome};;
     type: count_distinct
     drill_fields: []
+    description: "Quantidade de Pravalentes que fizeram o pedido de desligamento"
   }
 
   measure: desligados_involuntarios {
@@ -287,6 +291,7 @@ view: historico_demograficos {
     sql: ${nome};;
     type: count_distinct
     drill_fields: []
+    description: "Quantidade de Pravalentes que foram desligados"
   }
 
   measure: percentual_turnover_voluntario {
@@ -296,6 +301,7 @@ view: historico_demograficos {
     sql: case when ${ativos} =0 then null else (${desligados_voluntarios}/${ativos})*100 end  ;;
     value_format: "0.00\%"
     drill_fields: []
+    description: "Percentual de Pravalentes que fizeram o pedido de desligamento (turnover voluntários)"
   }
 
   measure: percentual_turnover_involuntario {
@@ -305,6 +311,7 @@ view: historico_demograficos {
     sql: case when ${ativos} =0 then null else (${desligados_involuntarios}/${ativos})*100 end  ;;
     value_format: "0.00\%"
     drill_fields: []
+    description: "Percentual de Pravalentes que foram desligados (turnover involuntários)"
   }
 
   dimension: ordem_tempo_casa_tabela {
@@ -332,6 +339,7 @@ view: historico_demograficos {
       }
       else: "0"
     }
+    description: "Este campo é uma regra de negócio*. Indica a ordenadação de 1 à 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
     hidden: yes
   }
 
@@ -339,7 +347,7 @@ view: historico_demograficos {
     type: number
     label: "Ordem - Tempo de Casa"
     sql: ${ordem_tempo_casa_tabela} ;;
-
+    description: "Este campo segue uma regra de negócio para ordenarmos de 1 a 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
   }
 
 }
