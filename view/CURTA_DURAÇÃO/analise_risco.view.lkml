@@ -25,11 +25,11 @@ view: analise_risco {
     primary_key: yes
   }
 
-  dimension: motivo_recusa {
+  dimension: decisao_risco {
     type: string
     sql: ${TABLE}."MOTIVO_RECUSA" ;;
-    description: "Motivo da Recusa da Analise de Credito"
-    group_item_label: "Motivo de Recusa"
+    description: "Indica a decisão de risco para o aluno dentro do mês"
+    group_item_label: "Decisão de Risco"
   }
 
   measure: count {
