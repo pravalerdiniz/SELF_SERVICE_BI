@@ -82,7 +82,7 @@ view: contracts {
     type: string
     sql: ${TABLE}."CHAVE_PAYMENT";;
     description: "CHAVE DE LIGAÇÃO ENTRE A TABELA DE CONTRATOS E PAYMENT"
-    hidden: yes
+  #  hidden: yes
   }
 
   dimension: cidade_resp_fin {
