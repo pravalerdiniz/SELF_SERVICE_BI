@@ -81,6 +81,7 @@ view: contracts {
   dimension: chave_payment {
     type: string
     sql: ${TABLE}."CHAVE_PAYMENT";;
+    label: "ID Contrato - Pagamento"
     description: "CHAVE DE LIGAÇÃO ENTRE A TABELA DE CONTRATOS E PAYMENT"
   #  hidden: yes
   }
@@ -579,7 +580,7 @@ view: contracts {
     type: time    timeframes: [      raw,      time,      date,      week,      month,      quarter,      year    ]
     sql: ${TABLE}."ULTIMA_ATUALIZACAO";;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
-    group_item_label: "Ultima Atualização do Contrato"
+    label: "Ultima Atualização do Contrato"
   }
 
   dimension: urls_contrato {
