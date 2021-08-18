@@ -192,7 +192,7 @@ view: alunos_acordo {
 dimension: faixa_atraso_ordenada {
   type:  string
   label: "Faixa de Atraso Ordenada"
-  sql: concat(${ordem_faixa_atraso},".",${faixa_atraso}) ;;
+  sql: CONCAT(${ordem_faixa_atraso},'. ',${faixa_atraso}) ;;
   description: "Faixa de atraso ordenada"
 }
 
