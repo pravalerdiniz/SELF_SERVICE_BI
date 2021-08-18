@@ -1014,7 +1014,6 @@ view: proposta {
     label: "Renda do Fiador"
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do fiador do aluno."
-    hidden:  yes
     sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
