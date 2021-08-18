@@ -151,10 +151,34 @@ view: alunos_acordo {
     sql: ${TABLE}."TIPO_CANAL" ;;
   }
 
+  dimension_group: data_vencimento_promessa_grupo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Vencimento do Acordo"
+    description: "Indica a data de vencimento da promessa"
+    sql: ${TABLE}."DATA_VENCIMENTO_PROMESSA" ;;
+  }
+
+
+
+
+
   dimension: data_vencimento_promessa {
     type: date
     label: "Data Vencimento Promessa"
     description: "Indica a data de vencimento da promessa"
+    hidden: yes
     sql: ${TABLE}."DATA_VENCIMENTO_PROMESSA" ;;
   }
 
@@ -202,6 +226,28 @@ dimension: faixa_atraso_ordenada {
     description: "Indica a data de pagamento da promessa"
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
   }
+
+  dimension_group: data_pagamento_grupo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Pagamento do Acordo"
+    description: "Indica a data de pagamento da promessa"
+    sql: ${TABLE}."DATA_PAGAMENTO" ;;
+  }
+
+
+
 
   dimension: cod_tipo_usuario {
     type: number
