@@ -29,7 +29,8 @@ view: alunos_acordo {
             f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
             f.value:VL_VENCENDO::float as VL_VENCENDO,
             f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
-            f.value:VL_PAGO::float as VL_PAGO
+            f.value:VL_PAGO::float as VL_PAGO,
+            f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -315,7 +316,11 @@ dimension: tipo_investimento {
     sql: ${TABLE}."HORA_ACORDO" ;;
   }
 
-
+  dimension: faixa_de_desconto {
+    type: number
+    label: "Desconto"
+    sql: ${TABLE}."FAIXA_DE_DESCONTO" ;;
+  }
 
   measure: count_id_cpf {
     type: count_distinct
