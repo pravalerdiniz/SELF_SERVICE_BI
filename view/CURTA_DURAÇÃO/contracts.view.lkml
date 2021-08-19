@@ -577,7 +577,7 @@ view: contracts {
   }
 
   dimension_group: ultima_atualizacao {
-    type: time    timeframes: [      raw,      time,      date, day_of_month,      week,      month,      quarter,      year    ]
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
     sql: ${TABLE}."ULTIMA_ATUALIZACAO";;
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
     label: "Ultima Atualização do Contrato"
