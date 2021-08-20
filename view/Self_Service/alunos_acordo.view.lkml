@@ -29,7 +29,8 @@ view: alunos_acordo {
             f.value:FLG_VENCENDO::boolean as FLG_VENCENDO,
             f.value:VL_VENCENDO::float as VL_VENCENDO,
             f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
-            f.value:VL_PAGO::float as VL_PAGO
+            f.value:VL_PAGO::float as VL_PAGO,
+            f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -195,13 +196,43 @@ view: alunos_acordo {
     type: string
     label: "Faixa de Atraso"
     sql:${TABLE}."FAIXA_ATRASO" ;;
+    order_by_field: ordem_faixa
     description: "Indica a faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
+  dimension: ordem_faixa {
+    type: number
+    sql: CASE
+  WHEN ${faixa_atraso} = '01 A 14'         then 1
+  WHEN ${faixa_atraso} = '15 A 30'         then 2
+  WHEN ${faixa_atraso} = '31 A 60'         then 3
+  WHEN ${faixa_atraso} = '61 A 90'         then 4
+  WHEN ${faixa_atraso} = '91 A 120'        then 5
+  WHEN ${faixa_atraso} = '121 A 150'       then 6
+  WHEN ${faixa_atraso} = '151 A 180'       then 7
+  WHEN ${faixa_atraso} = '181 A 210'       then 8
+  WHEN ${faixa_atraso} = '211 A 240'       then 9
+  WHEN ${faixa_atraso} = '241 A 270'       then 10
+  WHEN ${faixa_atraso} = '271 A 300'       then 11
+  WHEN ${faixa_atraso} = '301 A 330'       then 12
+  WHEN ${faixa_atraso} = '331 A 360'       then 13
+  WHEN ${faixa_atraso} = '361 A 539'       then 14
+  WHEN ${faixa_atraso} = '540 A 719'       then 15
+  WHEN ${faixa_atraso} = '720 A 1079'      then 16
+  WHEN ${faixa_atraso} = '1080 A 1439'     then 17
+  WHEN ${faixa_atraso} = '1440 A 1799'     then 18
+  WHEN ${faixa_atraso} = '1800 A 9999'     then 19
+  WHEN ${faixa_atraso} = 'Em Dia'          then 0
+  END ;;
+  hidden: yes
+  }
+
+
   dimension: ordem_faixa_atraso {
-    type: string
+    type: number
     label: "Ordem da faixa de atraso"
     sql:${TABLE}."ORDEM_FAIXA_ATRASO" ;;
+    hidden:  yes
     description: "Indica a ordem da faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
@@ -216,7 +247,9 @@ view: alunos_acordo {
 dimension: faixa_atraso_ordenada {
   type:  string
   label: "Faixa de Atraso Ordenada"
+  hidden:  yes
   sql: CONCAT(${ordem_faixa_atraso},'. ',${faixa_atraso}) ;;
+  order_by_field: ordem_faixa_atraso
   description: "Faixa de atraso ordenada"
 }
 
@@ -315,7 +348,11 @@ dimension: tipo_investimento {
     sql: ${TABLE}."HORA_ACORDO" ;;
   }
 
-
+  dimension: faixa_de_desconto {
+    type: number
+    label: "Desconto"
+    sql: ${TABLE}."FAIXA_DE_DESCONTO" ;;
+  }
 
   measure: count_id_cpf {
     type: count_distinct

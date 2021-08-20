@@ -1307,6 +1307,14 @@ view: proposta {
     sql: ${TABLE}."GERENTE_ORIGINAL" ;;
   }
 
+  dimension: aprovadores_tela_ies {
+    type: string
+    group_label: "Dados da Regional"
+    label: "Aprovador Tela IES"
+    description: "Indica o nome do aprovador da tela da IES"
+    sql: ${TABLE}."APROVADORES_TELA_IES" ;;
+  }
+
   dimension: gh {
     type: string
     group_label: "Dados do Aluno"
