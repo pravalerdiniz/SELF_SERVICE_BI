@@ -130,8 +130,13 @@ dimension: data_trunc  {
         sql: ${dias_atraso} <= 30 ;;
         label: "16 - 30"
       }
+      when: {
+        sql: ${dias_atraso} > 30 ;;
+        label: "Maior que 30"
+      }
 
-      else: "Maior que 30"
+
+      else: "A pagar"
     }
     group_label: "Dados do Boleto"
     group_item_label: "Faixa de Atraso - Pagamento"
