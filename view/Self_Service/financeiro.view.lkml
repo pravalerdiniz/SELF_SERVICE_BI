@@ -107,40 +107,23 @@ dimension: data_trunc  {
     sql: datediff('day',${data_vencimento_raw}, ${data_pagamento_raw}) ;;
   }
 
-  dimension: faixa_pagamento_vencido {
+  dimension: faixa_adimple {
     type: string
-    case: {
-      when: {
-        sql: ${dias_pagamento_vencido} < 0 ;;
-        label: "Antecipado"
-      }
-      when: {
-        sql: ${dias_pagamento_vencido} = 0 ;;
-        label: "Em dia"
-      }
-      when: {
-        sql: ${dias_pagamento_vencido} <= 5  ;;
-        label: "1 - 5"
-      }
-      when: {
-        sql: ${dias_atraso} <= 15  ;;
-        label: "6 - 15"
-      }
-      when: {
-        sql: ${dias_atraso} <= 30 ;;
-        label: "16 - 30"
-      }
-      when: {
-        sql: ${dias_atraso} > 30 ;;
-        label: "Maior que 30"
-      }
-
-
-      else: "A pagar"
-    }
+    sql:
+    CASE WHEN ${flg_boleto_pago} = FALSE AND ${data_vencimento_raw} >= current_date THEN
+     'A Vencer' ELSE
+    CASE WHEN ${flg_boleto_pago} = TRUE  THEN
+    CASE WHEN  ${dias_pagamento_vencido} < 0 THEN 'Antecipado'
+         WHEN  ${dias_pagamento_vencido} = 0 THEN 'Em dia'
+         WHEN  ${dias_pagamento_vencido} <= 5 THEN '1 - 5'
+         WHEN  ${dias_pagamento_vencido} <= 15 THEN '6 - 15'
+         WHEN  ${dias_pagamento_vencido} <= 30 THEN '16 - 30'
+         ELSE 'Maior que 30' END
+              ELSE 'A Pagar'END
+              END;;
     group_label: "Dados do Boleto"
-    group_item_label: "Faixa de Atraso - Pagamento"
-    description: "Indica a faixa de atraso do pagamento do aluno"
+    group_item_label: "Faixa de Adimplência"
+    description: "Indica a faixa de adimplência do aluno"
   }
 
 
