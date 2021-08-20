@@ -196,13 +196,15 @@ view: alunos_acordo {
     type: string
     label: "Faixa de Atraso"
     sql:${TABLE}."FAIXA_ATRASO" ;;
+    order_by_field: "ordem_faixa_atraso"
     description: "Indica a faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
   dimension: ordem_faixa_atraso {
-    type: string
+    type: number
     label: "Ordem da faixa de atraso"
     sql:${TABLE}."ORDEM_FAIXA_ATRASO" ;;
+    hidden:  yes
     description: "Indica a ordem da faixa de atraso do aluno em relação ao acordo realizado e a data de vencimento da promessa de pagamento"
   }
 
@@ -217,6 +219,7 @@ view: alunos_acordo {
 dimension: faixa_atraso_ordenada {
   type:  string
   label: "Faixa de Atraso Ordenada"
+  hidden:  yes
   sql: CONCAT(${ordem_faixa_atraso},'. ',${faixa_atraso}) ;;
   description: "Faixa de atraso ordenada"
 }
