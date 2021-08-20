@@ -98,6 +98,48 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
   }
 
+
+  dimension: dias_pagamento_vencido {
+    type: number
+    group_label: "Dados do Boleto"
+    label: "Dias do pagamento após vencimento"
+    description: "Indica a quantidade de dias do pagamento após vencimento"
+    sql: datediff('day',${data_vencimento_raw}, ${data_pagamento_raw}) ;;
+  }
+
+  dimension: faixa_pagamento_vencido {
+    type: string
+    case: {
+      when: {
+        sql: ${dias_pagamento_vencido} < 0 ;;
+        label: "Antecipado"
+      }
+      when: {
+        sql: ${dias_pagamento_vencido} = 0 ;;
+        label: "Em dia"
+      }
+      when: {
+        sql: ${dias_pagamento_vencido} <= 5  ;;
+        label: "1 - 5"
+      }
+      when: {
+        sql: ${dias_atraso} <= 15  ;;
+        label: "6 - 15"
+      }
+      when: {
+        sql: ${dias_atraso} <= 30 ;;
+        label: "16 - 30"
+      }
+
+      else: "Maior que 30"
+    }
+    group_label: "Dados do Boleto"
+    group_item_label: "Faixa de Atraso - Pagamento"
+    description: "Indica a faixa de atraso do pagamento do aluno"
+  }
+
+
+
   dimension_group: data_vencimento {
     type: time
     timeframes: [
