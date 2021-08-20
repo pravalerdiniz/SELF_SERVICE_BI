@@ -113,10 +113,12 @@ view: status_curta {
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
               ELSE NULL END
               ;;
-    description: "Indica a etapa da jornada que o aluno do curta se encontra"
+    description: "Indica as etapas da jornada de contratação do aluno do curta duração"
     group_item_label: "Etapa"
     order_by_field: ordem_etapa
   }
+
+
 
   dimension: ordem_etapa {
     type: number
@@ -163,7 +165,90 @@ view: status_curta {
 
 
 
+  dimension: funil_completo {
+    type: string
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCUMENTS.WRONG' THEN 'Documentos Reprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CREATED' THEN 'Contrato Criado'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 'Contrato Assinado'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CANCELED' THEN 'Contrato Cancelado'
+              ELSE NULL END
+              ;;
+    description: "Indica todas as etapas do funil de contratação do aluno. Seguindo a documentação 'Status Funil Completo' localizado no confluence."
+    group_item_label: "Funil - Completo"
+    order_by_field: ordem_funil_completo_regra
+  }
 
+  dimension: ordem_funil_completo_regra {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Ordem - Funil Completo"
+    description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
+    sql: CAST(${ordem_funil_completo} AS INT) ;;
+
+  }
+
+
+
+  dimension: ordem_funil_completo {
+    type: string
+    case: {
+      when: {
+        sql: ${funil_completo} = 'Lead' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${funil_completo} = 'Aprovado Risco' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${funil_completo} = 'Reprovado Risco' ;;
+        label: "3"
+      }
+      when: {
+        sql: ${funil_completo} = 'Documentos Recebidos' ;;
+        label: "4"
+      }
+      when: {
+        sql: ${funil_completo} = 'Documentos Aprovados' ;;
+        label: "5"
+      }
+      when: {
+        sql: ${funil_completo} = 'Documentos Reprovados' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Criado' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        label: "8"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Assinado' ;;
+        label: "9"
+      }
+
+      when: {
+        sql: ${funil_completo} = 'Cedido' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Cancelado' ;;
+        label: "11"
+      }
+      else: "0"
+    }
+    hidden: yes
+  }
 
 
 
