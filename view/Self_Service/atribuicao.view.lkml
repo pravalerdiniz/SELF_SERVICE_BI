@@ -27,6 +27,7 @@ view: atribuicao {
     type: string
     sql: ${TABLE}."EMAIL" ;;
     hidden: yes
+    description: "Indica o e-mail"
   }
 
   dimension: etapa {

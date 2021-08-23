@@ -127,7 +127,7 @@ view: alunos_negativacao_info {
   dimension: papel {
     type: string
     label: "Papel"
-    description: "Indica qual o papel do negativado. Ex: Aluno ou Fiador."
+    description: "Indica qual o papel do negativado. Ex: Aluno ou Garantidor."
     sql: ${TABLE}."PAPEL" ;;
   }
 

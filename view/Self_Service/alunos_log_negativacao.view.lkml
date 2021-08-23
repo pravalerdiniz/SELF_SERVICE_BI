@@ -86,7 +86,7 @@ view: alunos_log_negativacao {
   dimension: id_papel {
     type: number
     label: "Papel"
-    description: "Indica qual o papel do negativado. Ex: Aluno ou Fiador."
+    description: "Indica qual o papel do negativado. Ex: Aluno ou Garantidor."
     sql: ${TABLE}."ID_PAPEL" ;;
   }
 
