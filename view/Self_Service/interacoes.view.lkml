@@ -744,6 +744,57 @@ view: interacoes {
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
   }
 
+  dimension: mot_ctt_rel_ies {
+    type: string
+    label: "Motivo do Contato - Relacionamento IES"
+    description: "Indica o motivo do contato realizado no ticket"
+    sql: ${TABLE}."MOT_CTT_REL_IES" ;;
+  }
+
+  dimension: num_chamado_orquestra {
+    type: string
+    label: "Número do Chamado Orquestra"
+    description: "Indica o número do chamado aberto no Orquestra"
+    sql: ${TABLE}."NUM_CHAMADO_ORQUESTRA" ;;
+  }
+
+ dimension: area_resp_atuacao {
+   type: string
+  label: "Área Responsável para atuação"
+  description: "Indica qual a área do responsável para a atuação"
+  sql:  ${TABLE}."AREA_RESP_ATUACAO" ;;
+ }
+
+dimension: tipo_proposta {
+  type:  string
+  label: "Tipo da Proposta"
+  description: "Indica qual é o tipo da proposta"
+  sql: ${TABLE}. "TIPO_PROPOSTA" ;;
+}
+
+dimension: nome_ies {
+  type: string
+  label: "Nome da IES"
+  description: "Indica qual o nome da IES"
+  sql: ${TABLE}."NM_IES" ;;
+}
+
+  dimension: grupo_ies {
+    type: string
+    label: "Grupo IES"
+    description: "Indica qual o grupo que a IES pertence"
+    sql: ${TABLE}."GRUPO_IES" ;;
+  }
+
+  dimension: gerente_b2b {
+    type: string
+    label: "Gerente B2B"
+    description: "Indica qual é o gerente do B2B"
+    sql: ${TABLE}."GERENTE_B2B" ;;
+  }
+
+
+
   measure: media_primeiro_tempo_resposta {
     type: average
     group_label: "Dados de Chat"
