@@ -2463,6 +2463,10 @@ view: proposta {
         sql:  ${comprometimento_renda}<= 0.5 ;;
         label: "40% - 50%"
       }
+      when: {
+        sql:  ${comprometimento_renda} is NULL ;;
+        label: "Sem Comprometimento de Renda"
+      }
       else: "50% >"
     }
 
