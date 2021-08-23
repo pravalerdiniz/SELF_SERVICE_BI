@@ -444,10 +444,6 @@ view: proposta {
         sql:  ${comprometimento_renda_curso}<= 0.5 ;;
         label: "40% - 50%"
       }
-      when: {
-        sql:  ${comprometimento_renda_curso} is NULL ;;
-        label: "Sem Comprometimento de Renda"
-      }
       else: "50% >"
     }
 
@@ -2466,6 +2462,10 @@ view: proposta {
       when: {
         sql:  ${comprometimento_renda}<= 0.5 ;;
         label: "40% - 50%"
+      }
+      when: {
+        sql:  ${comprometimento_renda} is NULL ;;
+        label: "Sem Comprometimento de Renda"
       }
       else: "50% >"
     }
