@@ -513,28 +513,44 @@ view: interacoes {
     sql: ${TABLE}."STATUS_TICKET" ;;
   }
 
-  dimension: tipo_aluno {
-    type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Tipo de Aluno"
-    description: "Indica o tipo da última proposta cedida do Aluno.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
-    sql: ${TABLE}."TIPO_ALUNO" ;;
-  }
-
   dimension: grupo_instituicao {
     type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Grupo Instituição"
-    description: "Indica o nome do grupo da IES referente a última proposta do aluno"
+    group_label: "Dados da Instituição"
+    group_item_label: "Grupo Instituição - Backoffice"
+    description: "Indica o nome do grupo da IES referente a última proposta do aluno preencida no Backoffice."
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
 
   dimension: instituicao {
     type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Nome da Instituição"
-    description: "Indica o nome da IES referente a última proposta do aluno"
+    group_label: "Dados da Instituição"
+    group_item_label: "Nome da Instituição - Backoffice"
+    description: "Indica o nome da IES referente a última proposta do aluno preenchida no Backoffice."
     sql: ${TABLE}."INSTITUICAO" ;;
+  }
+
+    dimension: nome_ies {
+    type: string
+    label: "Nome da Insituição - Zendesk"
+    group_label: "Dados da Instituição"
+    description: "Indica o nome da IES preenchida na Zendesk."
+    sql: ${TABLE}."NM_IES" ;;
+  }
+
+  dimension: grupo_ies {
+    type: string
+    label: "Grupo Instituição - Zendesk"
+    group_label: "Dados da Instituição"
+    description: "Indica o nome do grupo da IES preenchida na Zendesk."
+    sql: ${TABLE}."GRUPO_IES" ;;
+  }
+
+  dimension: gerente_b2b {
+    type: string
+    label: "Gerente B2B"
+    group_label: "Dados da Instituição"
+    description: "Indica qual é o gerente do B2B preenchido na Zendesk."
+    sql: ${TABLE}."GERENTE_B2B" ;;
   }
 
 
@@ -610,13 +626,52 @@ view: interacoes {
     sql: ${TABLE}."REQUESTER_ROLE" ;;
   }
 
+  dimension: mot_ctt_rel_ies {
+    type: string
+    label: "Motivo do Contato - Relacionamento IES"
+    group_label: "Dados do Ticket"
+    description: "Indica o motivo do contato realizado no ticket"
+    sql: ${TABLE}."MOT_CTT_REL_IES" ;;
+  }
+
+  dimension: num_chamado_orquestra {
+    type: string
+    label: "Número do Chamado Orquestra"
+    group_label: "Dados do Ticket"
+    description: "Indica o número do chamado aberto no Orquestra (tier 2) após atendimento do ticket pela Zendesk."
+    sql: ${TABLE}."NUM_CHAMADO_ORQUESTRA" ;;
+  }
+
+  dimension: area_resp_atuacao {
+    type: string
+    label: "Área Responsável para atuação"
+    group_label: "Dados do Atendente"
+    description: "Indica qual a área do responsável para a atuação do ticket."
+    sql:  ${TABLE}."AREA_RESP_ATUACAO" ;;
+  }
+
+  dimension: tipo_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Tipo de Aluno - Backoffice"
+    description: "Indica o tipo da última proposta cedida do Aluno informada no Backoffice.Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio."
+    sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
 
   dimension: tipo_ultima_proposta{
     type: string
-    group_item_label: "Tipo Proposta - Atual"
+    group_item_label: "Tipo Proposta - Atual - Backoffice"
     group_label: "Dados do Aluno"
-    description: "Indica o tipo da proposta atual do aluno. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio"
+    description: "Indica o tipo da proposta atual do aluno informada no Backoffice. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio."
     sql: ${TABLE}."TIPO_ULTIMA_PROPOSTA" ;;
+  }
+
+  dimension: tipo_proposta {
+    type:  string
+    label: "Tipo da Proposta - Zendesk"
+    group_label: "Dados do Aluno"
+    description: "Indica o tipo da proposta do aluno informada na Zendesk. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio."
+    sql: ${TABLE}. "TIPO_PROPOSTA" ;;
   }
 
   dimension: descricao_status{
@@ -752,7 +807,6 @@ view: interacoes {
     sql: ${TABLE}."CHAT_TEMPO_PRIMEIRA_RESPOSTA"/ 86400.0;;
     value_format: "[hh]:mm:ss"
   }
-
 
 
   measure: duracao_chat {
