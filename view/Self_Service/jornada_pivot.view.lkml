@@ -23,7 +23,7 @@ view: jornada_pivot {
       from "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
 
 
-      pivot(max(DT_STATUS) for ETAPA in ('Lead', 'Simulado',Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
+      pivot(max(DT_STATUS) for ETAPA in ('Lead', 'Simulado','Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
                                          'Aguardando Documento','Aguardando Assinatura','Formalizado','Cedido')) as p
 
       where upper(tipo_proposta) in ('NOVO','RENOVACAO')
