@@ -24,7 +24,7 @@ view: alunos_painel_risco {
     type: number
     label: "ID CPF"
     hidden: yes
-    description: "Indica o ID CPF"
+    description: "Indica o ID CPF do aluno"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -32,6 +32,7 @@ view: alunos_painel_risco {
     type: string
     primary_key: yes
     hidden: yes
+    description: "Indica o ID CPF, Ano e o Mês"
     sql: ${TABLE}."ID_CPF_ANO_MES" ;;
   }
 
@@ -76,13 +77,14 @@ view: alunos_painel_risco {
     group_label: "Dados da Proposta"
     group_item_label: "ID CPF do Aluno"
     hidden: yes
-    description: "Indica o ID do CPF correspondente ao CPF do aluno"
+    description: "Indica o CPF do aluno"
   }
 
   dimension: nome_aluno {
     type: string
     sql: ${proposta.aluno_nome} ;;
     group_item_label: "Nome do Aluno"
+    description: "Indica o nome do Aluno"
     hidden: yes
   }
 
@@ -90,6 +92,7 @@ view: alunos_painel_risco {
     type: string
     sql: ${proposta.aluno_uf} ;;
     group_item_label: "UF"
+    description: "Indica o estado (uf) do aluno"
     hidden: yes
   }
 
@@ -97,6 +100,7 @@ view: alunos_painel_risco {
     type: number
     sql: ${proposta.aluno_idade} ;;
     group_item_label: "Idade do Aluno"
+    description: "Indica a idade do aluno"
     hidden: yes
   }
 
@@ -104,7 +108,8 @@ view: alunos_painel_risco {
   dimension: cpf_fiador {
     type: number
     sql: ${proposta.cpf_fiador} ;;
-    group_item_label: "CPF Fiador"
+    group_item_label: "CPF Garantidor"
+    description: "Indica o CPF do Garantidor"
     hidden: yes
   }
 
@@ -112,20 +117,23 @@ view: alunos_painel_risco {
     type: string
     sql: ${proposta.fia_parentesco} ;;
     group_item_label: "Parentesco"
+    description: "Indica qual o parentesco do Garantidor com o aluno"
     hidden: yes
   }
 
   dimension: fia_estado_civil {
     type: string
     sql: ${proposta.estado_civil_garantidor} ;;
-    group_item_label: "Estado Civil - Fiador"
+    group_item_label: "Estado Civil - Garantidor"
+    description: "Indica qual o estado civil do Garantidor"
     hidden: yes
   }
 
   dimension: ocupacao_fiador {
     type: string
     sql: ${proposta.ocupacao_garantidor} ;;
-    group_item_label: "Natureza de Ocupação -  Fiador"
+    group_item_label: "Natureza de Ocupação -  Garantidor"
+    description: "Indica qual a natureza de ocupação do Garantidor"
     hidden: yes
   }
 
