@@ -183,5 +183,14 @@ view: base_score {
 
 }
 
+  measure: percent_id_cpf {
+    type: percent_of_total
+    sql: ${count_id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Valor"
+    description: "Contagem de ID CPFs únicos"
+    drill_fields: []
+
+  }
 
 }
