@@ -110,7 +110,7 @@ view: base_score {
     type: string
     case: {
       when: {
-        sql: ${score_interno}= 0.349 ;;
+        sql: ${score_interno} <= 0.349 ;;
         label: "< 0.349"
       }
       when: {
