@@ -1,4 +1,4 @@
-view: jornada_pivot {
+view: jornada_pivot_lead {
   derived_table: {
     persist_for: "1 hour"
     sql: select
@@ -23,14 +23,13 @@ view: jornada_pivot {
       from "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
 
 
-      pivot(max(DT_STATUS) for ETAPA in ('Lead', 'Simulado','Iniciado','Elegivel','Finalizado','Aprovado Behavior','Aprovado Risco','Aprovado Instituicao',
-                                         'Aguardando Documento','Aguardando Assinatura','Formalizado','Cedido')) as p
+      pivot(max(DT_STATUS) for ETAPA in ('Lead', 'Simulado','Iniciado')) as p
 
-      where upper(tipo_proposta) in ('NOVO','RENOVACAO')
+      where upper(tipo_proposta) = 'NOVO' and data_lead < data_iniciado
 
-      qualify row_number() over(partition by id_proposta order by data_iniciado) = 1
+      qualify row_number() over(partition by id_cpf order by data_simulado) = 1
 
-      order by id_proposta
+      order by id_cpf
  ;;
   }
 

@@ -11,10 +11,6 @@ view: alunos {
 
   }
 
-
-
-
-
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -409,7 +405,7 @@ view: alunos {
     sql: ${TABLE}."FIA_NUMERO_DEPENDENTES" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Número de Dependentes do Garantidor"
-    description: "Indica o número de dependentes do Garantidor se houver"
+    description: "Indica o número de dependentes do Garantidor, se houver"
   }
 
   dimension: fia_profissao {
@@ -442,7 +438,7 @@ view: alunos {
     sql: ${TABLE}."FIA_TIPO_RESIDENCIA" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Tipo da Residência do Garantidor"
-    description: "Indica o tipo de residência do Garantidor (ex.: alugada / própria quitada)"
+    description: "Indica o tipo de residência do Garantidor (ex.: alugada/própria quitada)"
   }
 
   dimension: fia_uf {
