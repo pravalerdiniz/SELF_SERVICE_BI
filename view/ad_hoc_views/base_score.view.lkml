@@ -187,7 +187,7 @@ view: base_score {
     type: percent_of_total
     sql: ${count_id_cpf} ;;
     group_label: "Quantidade de Alunos"
-    group_item_label: "Valor"
+    group_item_label: "Porcentagem"
     description: "Contagem de ID CPFs únicos"
     drill_fields: []
 
