@@ -1668,6 +1668,7 @@ dimension: flg_d1 {
   sql: ${dt_status_date} < current_date;;
   description: "Flag de D-1"
   group_item_label: "Flag D-1"
+  hidden:  yes
 }
 
   set: detail {
