@@ -103,26 +103,26 @@ view: base_score {
   dimension: score_interno {
     type: number
     label: "Score -  Interno"
-    sql: ${TABLE}."SCORE_INTERNO" ;;
+    sql: ${TABLE}."SCONTE_INTERNOS";;
   }
 
   dimension: gh_proposta {
     type: string
     case: {
       when: {
-        sql: ${score_fiador} <= 0.349 ;;
+        sql: ${score_interno}= 0.349 ;;
         label: "< 0.349"
       }
       when: {
-        sql:${score_fiador} <= 0.431 ;;
+        sql:${score_interno} <= 0.431 ;;
         label: "0.349 - 0.431"
       }
       when: {
-        sql: ${score_fiador} <= 0.521  ;;
+        sql: ${score_interno} <= 0.521  ;;
         label: "0.431 - 0.521"
       }
       when: {
-        sql: ${score_fiador} > 0.521  ;;
+        sql: ${score_interno} > 0.521  ;;
         label: "> 0.5211"
       }
       else: "0"
