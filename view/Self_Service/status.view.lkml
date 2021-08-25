@@ -198,10 +198,10 @@ view: status {
   }
 
 
-  dimension: flg_status_performance {
+  dimension: primeira_vez_status_detalhe {
     type: yesno
     sql: ${TABLE}."FLG_STATUS_PERFORMANCE";;
-    group_item_label: "Status - Performance (1º vez no Status)"
+    group_item_label: "Primeira vez no Status Detalhado?"
     description: "Este campo é uma regra de negócio*. Indica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
   link: {
     label: "Documentação - Status Performance (1ª vez no status)"

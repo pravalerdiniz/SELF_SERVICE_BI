@@ -23,6 +23,7 @@ view: interacoes_apontamentos_monitoria {
 
   dimension: id_ticket {
     type: number
+    primary_key: yes
     hidden: yes
     sql: ${TABLE}."ID_TICKET" ;;
   }

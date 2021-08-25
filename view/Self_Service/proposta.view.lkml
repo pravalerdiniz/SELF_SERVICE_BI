@@ -271,6 +271,7 @@ view: proposta {
     label: "Canal"
     description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
     sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
+    hidden: yes
   }
 
   dimension: canal_acesso_descoberta {

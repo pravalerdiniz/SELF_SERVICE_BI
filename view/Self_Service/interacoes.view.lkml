@@ -386,6 +386,7 @@ view: interacoes {
 
   dimension: id_ticket {
     type: number
+    primary_key: yes
     group_label: "Dados do Ticket"
     group_item_label: "ID do Ticket"
     description: "Indica o ID do Ticket."
@@ -780,7 +781,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica a nota média de monitoria."
     sql: ${TABLE}."NOTA" ;;
-    value_format: "#.#,0"
+    #value_format: "#.#,0"
   }
 
   dimension: agent_monitoria{
