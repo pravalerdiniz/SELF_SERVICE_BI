@@ -103,7 +103,7 @@ view: base_score {
   dimension: score_interno {
     type: number
     label: "Score -  Interno"
-    sql: ${TABLE}."SCONTE_INTERNOS";;
+    sql: ${TABLE}."SCORE_INTERNOS";;
   }
 
   dimension: gh_proposta {
