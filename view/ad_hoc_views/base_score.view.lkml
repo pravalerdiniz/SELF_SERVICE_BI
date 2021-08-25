@@ -103,14 +103,14 @@ view: base_score {
   dimension: score_interno {
     type: number
     label: "Score -  Interno"
-    sql: ${TABLE}."SCONTE_INTERNOS";;
+    sql: ${TABLE}."SCORE_INTERNOS";;
   }
 
   dimension: gh_proposta {
     type: string
     case: {
       when: {
-        sql: ${score_interno}= 0.349 ;;
+        sql: ${score_interno} <= 0.349 ;;
         label: "< 0.349"
       }
       when: {
@@ -183,5 +183,14 @@ view: base_score {
 
 }
 
+  measure: percent_id_cpf {
+    type: percent_of_total
+    sql: ${count_id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+    description: "Contagem de ID CPFs únicos"
+    drill_fields: []
+
+  }
 
 }

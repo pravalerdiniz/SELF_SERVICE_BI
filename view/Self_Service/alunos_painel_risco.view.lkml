@@ -20,6 +20,13 @@ view: alunos_painel_risco {
     drill_fields: [detail*]
   }
 
+  measure: perc_of_total {
+    type: percent_of_total
+    sql: ${count}
+    ;;
+    label: "Porcentagem"
+  }
+
   dimension: id_cpf {
     type: number
     label: "ID CPF"
