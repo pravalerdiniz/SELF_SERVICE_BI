@@ -131,6 +131,7 @@ dimension: data_trunc  {
       date,
       week,
       month,
+      day_of_month,
       month_name,
       quarter,
       year
