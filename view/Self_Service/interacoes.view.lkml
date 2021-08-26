@@ -781,7 +781,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica a nota média de monitoria."
     sql: ${TABLE}."NOTA" ;;
-    #value_format: "#.#,0"
+    #value_format: "#.#,00"
   }
 
   dimension: agent_monitoria{
