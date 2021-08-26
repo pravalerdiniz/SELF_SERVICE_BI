@@ -209,6 +209,17 @@ view: status {
   }
  }
 
+  dimension: primeira_vez_status_geral {
+    type: yesno
+    sql: ${TABLE}."FLG_STATUS_PERFORMANCE_GERAL";;
+    group_item_label: "Primeira vez no Status Geral?"
+    description: "Este campo é uma regra de negócio*. Indica a 1ª vez que a proposta do aluno passou por determinado status, mesmo que depois ele retorne no fluxo por alteração manual ou sistêmica."
+    link: {
+      label: "Documentação - Status Performance (1ª vez no status)"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/786137215/STATUS+-+PERFORMANCE+1+VEZ+NO+STATUS"
+    }
+  }
+
 
   dimension_group: dt_status {
     type: time
