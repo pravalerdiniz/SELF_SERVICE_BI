@@ -1,6 +1,6 @@
-view: alunos_cobranca_pdd_boletos {
+view: alunos_mis_meritocracia {
   derived_table: {
-    sql: select * from stage.public.cobranca_pdd_boletos
+    sql: select * from stage.public.mis_meritocracia
       ;;
   }
 
@@ -9,10 +9,9 @@ view: alunos_cobranca_pdd_boletos {
     drill_fields: [detail*]
   }
 
-  dimension: datapg {
-    type: date
-    group_item_label: "Data de Pagamento"
-    sql: ${TABLE}."DATAPG" ;;
+  dimension: cpf {
+    type: string
+    sql: ${TABLE}."CPF" ;;
   }
 
   dimension: fundo {
@@ -21,22 +20,28 @@ view: alunos_cobranca_pdd_boletos {
     sql: ${TABLE}."FUNDO" ;;
   }
 
-  dimension: fx_atraso {
-    type: string
-    group_item_label: "Faixa de Atraso"
-    sql: ${TABLE}."FX_ATRASO" ;;
-  }
-
-  dimension: cpf {
-    type: number
-    hidden:  yes
-    sql: ${TABLE}."CPF" ;;
+  dimension: datapg {
+    type: date
+    group_item_label: "Data de Pagamento"
+    sql: ${TABLE}."DATAPG" ;;
   }
 
   measure: qtd_boletos_pagos {
     type: number
     group_item_label: "Quantidade de Boletos Pagos"
     sql: ${TABLE}."QTD_BOLETOS_PAGOS" ;;
+  }
+
+  measure: maior_atraso {
+    type: number
+    group_item_label: "Maior Atraso"
+    sql: ${TABLE}."MAIOR_ATRASO" ;;
+  }
+
+  dimension: tipo_baixa {
+    type: number
+    group_item_label: "Tipo de Baixa"
+    sql: ${TABLE}."TIPO_BAIXA" ;;
   }
 
   measure: valor_boletos {
@@ -75,33 +80,48 @@ view: alunos_cobranca_pdd_boletos {
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
 
-  dimension: flg_maior_atraso {
-    type: yesno
-    group_item_label: "Maior Atraso?"
-    sql: ${TABLE}."FLG_MAIOR_ATRASO" ;;
+  dimension: faixa_atraso {
+    type: string
+    group_item_label: "Faixa de Atraso"
+    sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
-  dimension: flg_maior_faixa_atraso {
-    type: yesno
-    group_item_label: "Maior Faixa de Atraso?"
-    sql: ${TABLE}."FLG_MAIOR_FAIXA_ATRASO" ;;
+  dimension: tipo_canal {
+    type: string
+    group_item_label: "Tipo de Canal"
+    sql: ${TABLE}."TIPO_CANAL" ;;
+  }
+
+  dimension: tipo_fundo {
+    type: string
+    group_item_label: "Tipo de Fundo"
+    sql: ${TABLE}."TIPO_FUNDO" ;;
+  }
+
+  dimension: carteira {
+    type: string
+    group_item_label: "Carteira"
+    sql: ${TABLE}."CARTEIRA" ;;
   }
 
   set: detail {
     fields: [
-      datapg,
-      fundo,
-      fx_atraso,
       cpf,
+      fundo,
+      datapg,
       qtd_boletos_pagos,
+      maior_atraso,
+      tipo_baixa,
       valor_boletos,
       valor_pago,
       valor_atualizado,
       desconto_cedido,
       juros_recebido,
       desconto_principal,
-      flg_maior_atraso,
-      flg_maior_faixa_atraso
+      faixa_atraso,
+      tipo_canal,
+      tipo_fundo,
+      carteira
     ]
   }
 }
