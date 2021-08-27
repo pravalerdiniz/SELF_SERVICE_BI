@@ -750,22 +750,22 @@ explore: alunos {
 
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
-  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
+  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
   type: left_outer
   relationship: one_to_many
   }
 
 
   join: alunos_inadimplencia_1 {
-    view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} ;;
+    view_label: "1.2 Maturidade Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} ;;
     type: left_outer
     relationship: one_to_many
 
  }
 
 join: alunos_inadimplencia_2 {
-  view_label: "1.2.1 Inadimplência (Outros Campos)"
+  view_label: "1.2.1 Inadimplência"
   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf};;
   type: left_outer
   relationship: one_to_many

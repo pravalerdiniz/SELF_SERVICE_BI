@@ -103,6 +103,8 @@ view: alunos_inadimplencia_1 {
 
   }
 
+
+
   measure: count_alunos {
     type: count_distinct
     sql_distinct_key:  ${ano_mes_month} ;;
