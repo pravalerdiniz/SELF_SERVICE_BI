@@ -861,14 +861,39 @@ join: alunos_inadimplencia_2 {
   }
 
   join: estrategia_operacional_cobranca {
-    view_label: "1.9 Cobrança"
+    view_label: "1.9 Cobrança - Estratégia Operacional"
     sql_on: ${alunos.cpf_aluno} = ${estrategia_operacional_cobranca.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
+  join: base_carteira_atrasado {
+    view_label: "1.9.2 Cobrança - Base Carteira Atrasado"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
+  join: base_carteira_atraso_produto {
+    view_label: "1.9.3 Cobrança - Base Carteira Atraso Produto"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
+  join: base_carteira_risco {
+    view_label: "1.9.4 Cobrança - Base Carteira Risco"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: base_caixa_projecao_carteira {
+    view_label: "1.9.5 Cobrança - Base Projeção"
+    sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: proposta {
     view_label: "2. Proposta"
