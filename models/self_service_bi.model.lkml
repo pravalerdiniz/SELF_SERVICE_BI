@@ -837,6 +837,12 @@ join: alunos_inadimplencia_2 {
 
   }
 
+  join: estrategia_operacional_cobranca {
+    view_label: "1.9 Cobrança"
+    sql_on: ${alunos.cpf_aluno} = ${estrategia_operacional_cobranca.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
 
