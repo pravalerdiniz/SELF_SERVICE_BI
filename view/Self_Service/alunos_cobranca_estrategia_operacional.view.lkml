@@ -1,4 +1,4 @@
-view: estrategia_operacional_cobranca {
+view: alunos_cobranca_estrategia_operacional {
   derived_table: {
     sql: select
 
