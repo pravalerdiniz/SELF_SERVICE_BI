@@ -11,6 +11,7 @@ view: base_caixa_projecao_carteira {
 
   dimension: cpf {
     type: number
+    hidden:  yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -21,51 +22,61 @@ view: base_caixa_projecao_carteira {
 
   dimension: dt_ref {
     type: date
+    group_item_label:"Data de Referência"
     sql: ${TABLE}."DT_REF" ;;
   }
 
   dimension: anomes_ref {
     type: string
+    group_item_label:"Ano e Mês de Referência"
     sql: ${TABLE}."ANOMES_REF" ;;
   }
 
   dimension: fx_atraso {
     type: string
+    group_item_label:"Faixa de Atraso"
     sql: ${TABLE}."FX_ATRASO" ;;
   }
 
   dimension: fundo {
-    type: number
+    type: string
+    group_item_label:"Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: dia {
     type: number
+    group_item_label: "Dia do Mês"
     sql: ${TABLE}."DIA" ;;
   }
 
-  dimension: qtde_cpf {
+  measure: qtde_cpf {
     type: number
+    group_item_label: "Quantidade de CPFs"
     sql: ${TABLE}."QTDE_CPF" ;;
   }
 
-  dimension: saldo_carteira {
+  measure: saldo_carteira {
     type: number
+    group_item_label: "Saldo da Carteira"
     sql: ${TABLE}."SALDO_CARTEIRA" ;;
   }
 
-  dimension: caixa_acum {
+  measure: caixa_acum {
     type: number
+    group_item_label: "Caixa Acumulado"
     sql: ${TABLE}."CAIXA_ACUM" ;;
   }
 
-  dimension: boleto_acum {
+  measure: boleto_acum {
     type: number
+    group_item_label: "Valor de Boleto Acumulado"
     sql: ${TABLE}."BOLETO_ACUM" ;;
   }
 
-  dimension: qtde_acum {
+  measure: qtde_acum {
     type: number
+    group_item_label: "Quantidade de Acumulados"
     sql: ${TABLE}."QTDE_ACUM" ;;
   }
 

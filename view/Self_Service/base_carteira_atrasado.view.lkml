@@ -11,6 +11,7 @@ view: base_carteira_atrasado {
 
   dimension: cpf {
     type: number
+    hidden:  yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -21,31 +22,37 @@ view: base_carteira_atrasado {
 
   dimension: tipo_contrato {
     type: string
+    group_item_label:"Tipo do Contrato"
     sql: ${TABLE}."TIPO_CONTRATO" ;;
   }
 
   dimension: fundo {
     type: string
+    group_item_label:"Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: faixa_atraso {
     type: string
+    group_item_label:"Faixa de Atraso"
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
   dimension: bkt {
     type: string
+    group_item_label:"Bucket"
     sql: ${TABLE}."BKT" ;;
   }
 
   dimension: qtd {
     type: number
+    hidden:  yes
     sql: ${TABLE}."QTD" ;;
   }
 
-  dimension: saldo {
+  measure: saldo {
     type: number
+    group_item_label:"Saldo"
     sql: ${TABLE}."SALDO" ;;
   }
 

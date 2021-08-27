@@ -11,6 +11,7 @@ view: base_carteira_atraso_produto {
 
   dimension: cpf {
     type: number
+    hidden: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -21,31 +22,37 @@ view: base_carteira_atraso_produto {
 
   dimension: produtos {
     type: string
+    group_item_label: "Tipo de Produto"
     sql: ${TABLE}."PRODUTOS" ;;
   }
 
   dimension: fundo {
-    type: number
+    type:  string
+    group_item_label:"Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
-  dimension: pdd_atual {
+  measure: pdd_atual {
     type: number
+    group_item_label:"PDD Atual"
     sql: ${TABLE}."PDD_ATUAL" ;;
   }
 
-  dimension: pdd_anterior {
+  measure: pdd_anterior {
     type: number
+    group_item_label:"PDD Anterior"
     sql: ${TABLE}."PDD_ANTERIOR" ;;
   }
 
-  dimension: soma_vp {
+  measure: soma_vp {
     type: number
+    group_item_label: "Soma do Valor Presente"
     sql: ${TABLE}."SOMA_VP" ;;
   }
 
   dimension: qtd {
     type: number
+    hidden:  yes
     sql: ${TABLE}."QTD" ;;
   }
 

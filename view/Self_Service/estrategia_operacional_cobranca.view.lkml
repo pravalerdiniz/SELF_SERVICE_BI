@@ -39,13 +39,13 @@ view: estrategia_operacional_cobranca {
     sql: ${TABLE}."ATRASO" ;;
   }
 
-  dimension: boletos_abertos {
+  measure: boletos_abertos {
     type: number
     hidden: no
     sql: ${TABLE}."BOLETOS_ABERTOS" ;;
   }
 
-  dimension: boletos_atraso {
+  measure: boletos_atraso {
     type: number
     hidden: no
     sql: ${TABLE}."BOLETOS_ATRASO" ;;
@@ -70,7 +70,7 @@ view: estrategia_operacional_cobranca {
   }
 
 
-  dimension: desconto {
+  measure: desconto {
     type: number
     value_format: "#.##%"
     sql: ${TABLE}."DESCONTO" ;;
