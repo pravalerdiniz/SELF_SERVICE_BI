@@ -40,16 +40,8 @@ view: risk {
 
   dimension: gh_aprovacao  {
     type: string
-    sql: case
-    when ${gh_aluno} = 'A' or ${gh_aluno} = 'B' or ${gh_aluno} = 'C' then 'Aluno'
-    when (${gh_aluno} = 'D' and ${gh_fiador} = 'A') or
-   (${gh_aluno} = 'D' and ${gh_fiador} = 'B') or
-   (${gh_aluno} = 'D' and ${gh_fiador} = 'C') or
-   (${gh_aluno} = 'E' and ${gh_fiador} = 'A') or
-   (${gh_aluno} = 'E' and ${gh_fiador} = 'B') or
-   (${gh_aluno} = 'E' and ${gh_fiador} = 'C') then 'Devedor Legal'
-    else NULL END;;
-    hidden:  yes
+    sql: ${TABLE}."GH_APROVACAO";;
+    hidden:  no
     group_item_label: "GH de Aprovação"
   }
 
@@ -122,7 +114,6 @@ view: risk {
     hidden: yes
     group_item_label: "Renda do Responsável Financeiro"
   }
-
 
 
   dimension_group: ultima_atualizacao {
