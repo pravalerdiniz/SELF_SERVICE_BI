@@ -26,12 +26,14 @@ view: alunos_inadimplencia_1 {
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
+    hidden: yes
     description: "Indica o ID do CPF do Aluno"
   }
 
   dimension: cpf {
     type: number
     sql: ${TABLE}."CPF" ;;
+    label: "CPF"
     description: "Indica o CPF do Aluno"
   }
 
@@ -51,6 +53,8 @@ view: alunos_inadimplencia_1 {
 
   dimension: fpd {
     type: yesno
+    label: "FPD15?"
+    description: "Indica se o aluno realizou o pagamento do primeiro boleto dentro de 15 dias após ser cedido."
     sql: ${TABLE}."FPD" ;;
 
   }
@@ -58,24 +62,27 @@ view: alunos_inadimplencia_1 {
   dimension: mob {
     type: number
     sql: ${TABLE}."MOB" ;;
+    label: "MOB"
     description: "Mês de observação relativo à data de cessão"
   }
 
   dimension: pdd_produto {
     type: string
     sql: ${TABLE}."PDD_PRODUTO" ;;
-    label: "Produto"
+    label: "Nome do Produto"
     description: "Indica o produto do aluno dentro da PDD."
   }
 
   dimension: dias_atraso_cpf {
     type: number
     sql: ${TABLE}."DIAS_ATRASO_CPF" ;;
+    label: "Dias de atraso"
     description: "Maior tempo de atraso no pagamento no mês de observação"
   }
 
   dimension: maturidade {
     type: number
+    label: "Maturidade"
     sql: ${TABLE}."MATURIDADE" ;;
     description: "Tempo que o aluno está ativo na carteira"
   }
@@ -83,14 +90,14 @@ view: alunos_inadimplencia_1 {
   dimension: over15 {
     type: yesno
     sql: ${TABLE}."OVER15" ;;
-    label: "Over 15 (Yes/No)"
+    label: "OVER 15?"
     description: "Indica se o aluno de uma safra específica ficou acima de 15 dias em atraso 2 meses depois de cedido"
   }
 
   dimension: over30 {
     type: yesno
     sql: ${TABLE}."OVER30" ;;
-    label: "Over 30 (Yes/No)"
+    label: "OVER 30?"
     description: "Indica se o aluno de uma safra específica ficou acima de 30 dias em atraso 3 meses depois de cedido"
 
   }
@@ -98,7 +105,7 @@ view: alunos_inadimplencia_1 {
   dimension: over60 {
     type: yesno
     sql: ${TABLE}."OVER60" ;;
-    label: "Over 60 (Yes/No)"
+    label: "OVER 60?"
     description: "Indica se o aluno de uma safra específica ficou acima de 60 dias em atraso 6 meses depois de cedido"
 
   }
