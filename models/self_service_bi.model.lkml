@@ -785,6 +785,14 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: alunos_inadimplencia_fyf {
+    view_label: "1.2.3 FYF - Inadimplência "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
 
 
   join: alunos_negativacao_info{
