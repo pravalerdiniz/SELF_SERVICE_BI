@@ -11,7 +11,7 @@ view: alunos_inadimplencia_2 {
 
   dimension: safra_cessao_cpf {
     type: string
-    label: "Safra da Cessão - CPF"
+    label: "Safra Cessão - CPF"
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
     sql: ${TABLE}."SAFRA_CESSAO_CPF" ;;
   }
@@ -19,6 +19,7 @@ view: alunos_inadimplencia_2 {
   dimension: cpf {
     type: number
     label: "Safra da Cessão - CPF"
+    hidden: yes
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
     sql: ${TABLE}."CPF" ;;
   }
@@ -26,6 +27,7 @@ view: alunos_inadimplencia_2 {
   dimension: ies_grupo {
     type: string
     label: "Grupo - IES"
+    hidden: yes
     description: "Indica o grupo da IES que aluno está"
     sql: ${TABLE}."IES_GRUPO" ;;
   }
@@ -76,11 +78,13 @@ view: alunos_inadimplencia_2 {
     type: number
     label: "FPD - 15"
     description: "Indica se o aluno realizou o pagamento do primeiro boleto dentro de 15 dias após ser cedido."
+    hidden: yes
     sql: ${TABLE}."FPD15" ;;
   }
 
   dimension: over15 {
     type: number
+    hidden: yes
     label: "OVER 15"
     description: "Indica se o aluno ficou acima de 15 dias de atraso. Pode ser usado para avaliações de safra e de carteira. Quando usamos na carteira, o Over15 mostra o percentual de alunos que está acima de 15 dias de atraso dentro de toda a carteira ativa, sem separa-la por safra de contratação."
     sql: ${TABLE}."OVER15" ;;
@@ -88,6 +92,7 @@ view: alunos_inadimplencia_2 {
 
   dimension: over30 {
     type: number
+    hidden: yes
     label: "OVER 30"
     description: "Indica se o aluno ficou acima de 15 dias de atraso. Pode ser usado para avaliações de safra e de carteira. Quando usamos na carteira, o Over30 mostra o percentual de alunos que está acima de 30 dias de atraso dentro de toda a carteira ativa, sem separa-la por safra de contratação."
     sql: ${TABLE}."OVER30" ;;
@@ -95,6 +100,7 @@ view: alunos_inadimplencia_2 {
 
   dimension: over60 {
     type: number
+    hidden: yes
     label: "OVER 30"
     description: "Indica se o aluno ficou acima de 15 dias de atraso. Pode ser usado para avaliações de safra e de carteira. Quando usamos na carteira, o Over60 mostra o percentual de alunos que está acima de 60 dias de atraso dentro de toda a carteira ativa, sem separa-la por safra de contratação."
     sql: ${TABLE}."OVER60" ;;
