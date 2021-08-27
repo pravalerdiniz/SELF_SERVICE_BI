@@ -965,6 +965,14 @@ join: financeiro {
     relationship: one_to_many
   }
 
+  join: alunos_carteira_ativa {
+    view_label: "6.1 Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_carteira_ativa.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
 
 }
 
