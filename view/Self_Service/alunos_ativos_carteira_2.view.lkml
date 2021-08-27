@@ -1,4 +1,4 @@
-view: alunos_carteira_ativa {
+view: alunos_ativos_carteira_2 {
   derived_table: {
     sql: select * from stage.public.aluno_ativo_risco AAR
       ;;

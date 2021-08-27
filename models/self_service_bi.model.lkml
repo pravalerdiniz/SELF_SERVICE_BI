@@ -965,9 +965,9 @@ join: financeiro {
     relationship: one_to_many
   }
 
-  join: alunos_carteira_ativa {
+  join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_carteira_ativa.tdt_cpf};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
     type: left_outer
     relationship: one_to_many
   }
