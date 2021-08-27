@@ -1,4 +1,4 @@
-view: alunos_inadimplencia {
+view: alunos_inadimplencia_2 {
   derived_table: {
     sql: select * from STAGE.PUBLIC.INADIMPLENCIA ina
       ;;
@@ -13,6 +13,7 @@ view: alunos_inadimplencia {
     type: string
     label: "Safra da Cessão - CPF"
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
+    hidden: yes
     sql: ${TABLE}."SAFRA_CESSAO_CPF" ;;
   }
 
@@ -28,6 +29,7 @@ view: alunos_inadimplencia {
     type: string
     label: "Grupo - IES"
     description: "Indica o grupo da IES que aluno está"
+    hidden: yes
     sql: ${TABLE}."IES_GRUPO" ;;
   }
 
@@ -35,6 +37,7 @@ view: alunos_inadimplencia {
     type: string
     label: "Modalidade"
     description: "Indica se o aluno é da modalidade de Antecipação ou Gestão"
+    hidden: yes
     sql: ${TABLE}."MODALIDADE" ;;
   }
 
@@ -42,6 +45,7 @@ view: alunos_inadimplencia {
     type: number
     label: "Projeto"
     description: "Indica o projeto que aluno foi cedido. Ex: SEM FIADOR"
+    hidden: yes
     sql: ${TABLE}."PROJETO" ;;
   }
 
@@ -49,6 +53,7 @@ view: alunos_inadimplencia {
     type: string
     label: "GH"
     description: "Indica o GH atual do aluno."
+    hidden: yes
     sql: ${TABLE}."GH" ;;
   }
 
@@ -56,6 +61,7 @@ view: alunos_inadimplencia {
     type: yesno
     label: "Carência?"
     description: "Indica se o aluno possui carência no contrato"
+    hidden: yes
     sql: ${TABLE}."FLG_CARENCIA" ;;
   }
 
@@ -63,6 +69,7 @@ view: alunos_inadimplencia {
     type: yesno
     label: "Boleto Cancelado?"
     description: "Indica se o aluno possui boleto cancelado"
+    hidden: yes
     sql: ${TABLE}."FLG_POLITICA" ;;
   }
 
@@ -70,6 +77,7 @@ view: alunos_inadimplencia {
     type: number
     label: "Score"
     description: "Indica o score"
+    hidden: yes
     sql: ${TABLE}."CREDIT_SCORE" ;;
   }
 

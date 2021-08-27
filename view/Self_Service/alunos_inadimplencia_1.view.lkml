@@ -1,8 +1,9 @@
-view: alunos_maturidade_info {
+view: alunos_inadimplencia_1 {
   derived_table: {
     persist_for: "1 hour"
     sql: select
             id_cpf,
+            cpf,
             LEFT(f.key,4)||'-'||RIGHT(f.key,2)||'-'||'01'::varchar as ano_mes,
             f.value:FPD::boolean as FPD,
             f.value:MOB::int as MOB,
@@ -27,6 +28,14 @@ view: alunos_maturidade_info {
     sql: ${TABLE}."ID_CPF" ;;
     description: "Indica o ID do CPF do Aluno"
   }
+
+  dimension: cpf {
+    type: number
+    sql: ${TABLE}."CPF" ;;
+    description: "Indica o CPF do Aluno"
+  }
+
+
 
   dimension_group: ano_mes {
     type: time
