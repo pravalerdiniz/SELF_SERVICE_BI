@@ -771,6 +771,21 @@ join: alunos_inadimplencia_2 {
   relationship: one_to_many
 }
 
+  join: alunos_inadimplencia_3_book {
+    view_label: "1.2.2 Book Inadimplência "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_inadimplencia_book_wo {
+    view_label: "1.2.3 Book Inadimplência - W.O "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
 
   join: alunos_negativacao_info{
     view_label: "1.3 Negativação Informações"
