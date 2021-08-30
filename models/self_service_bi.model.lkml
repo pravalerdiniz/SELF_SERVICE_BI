@@ -905,6 +905,20 @@ join: alunos_inadimplencia_2 {
 
 
 
+  join: alunos_cobranca_pdd_boletos {
+    view_label: "1.9.6 Cobrança - PDD Boletos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_mis_meritocracia {
+    view_label: "1.9.7 Cobrança - Meritocracia"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
