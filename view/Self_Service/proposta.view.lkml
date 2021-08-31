@@ -1046,19 +1046,19 @@ view: proposta {
     case: {
       when: {
         sql: ${fia_uf} in ('AC','AL','AM','SE') ;;
-        label: "AC,AL,AM,SE"
+        label: "AC-AL-AM-SE"
       }
       when: {
         sql: ${fia_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
-        label: "AP,MS,MT,ND,RO,RR,TO"
+        label: "AP-MS-MT-ND-RO-RR-TO"
       }
       when: {
         sql: ${fia_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
-        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+        label: "BA-CE-MA-PA-PE-RJ-RN-SP"
       }
       when: {
         sql:  ${fia_uf} in ('DF','ES','GO') ;;
-        label: "DF,ES,GO"
+        label: "DF-ES-GO"
       }
       when: {
         sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
@@ -1066,11 +1066,11 @@ view: proposta {
       }
       when: {
         sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
-        label: "PB,PI,RS,SC"
+        label: "PB-PI-RS-SC"
       }
 
 
-      else: "MG,PR,Missing"
+      else: "MG-PR-Missing"
     }
     group_label: "Dados do Garantidor"
     group_item_label: "Grupo UF"
@@ -2271,15 +2271,15 @@ view: proposta {
       }
       when: {
         sql: ${estado_civil_garantidor} in ('VIUVO','VIVE MARITALMENTE') ;;
-        label: "Viúvo, Vive Maritalmente"
+        label: "Viúvo-Vive Maritalmente"
       }
       when: {
         sql: ${estado_civil_garantidor} in ('SOLTEIRO','DIVORCIADO / DESQUITADO') ;;
-        label: "Solteiro, Divorciado / Desquitado"
+        label: "Solteiro-Divorciado-Desquitado"
       }
       when: {
         sql:  ${estado_civil_garantidor} in ('CASADO','SEPARADO','NAO DECLARADO') ;;
-        label: "Casado, Separado, Não Declarado"
+        label: "Casado-Separado-Não Declarado"
       }
       else: "Outros"
     }
@@ -2306,18 +2306,18 @@ view: proposta {
       }
       when: {
         sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','ASSALARIADO','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
-        label: "Aposentado ou Pensionista, Profissional Liberal, Estagiário"
+        label: "Aposentado-Pensionista-Profissional Liberal-Estagiário"
       }
       when: {
         sql: ${ocupacao_garantidor} in ('FUNC. PUBLICO CONCURSADO','SOCIO PROPRIETARIO','DO LAR','TRABALHADOR RURAL') ;;
-        label: "Func. Público Concursado, Sócio Proprietário, Do Lar, Trabalhador Rural"
+        label: "Func. Público Concursado-Sócio Proprietário-Do Lar-Trabalhador Rural"
       }
       when: {
         sql:  ${ocupacao_garantidor} in ('ASSALARIADO','FUNC. PUBLICO CONTRATADO','ESTUDANTE') ;;
-        label: "Assalariado, Func. Público Contratado, Estudante"
+        label: "Assalariado-Func. Público Contratado-Estudante"
       }
 
-      else: "Militar, Microempresário,Missing"
+      else: "Militar-Microempresário-Missing"
     }
     group_label: "Dados do Garantidor"
     group_item_label: "Grupo Natureza da Ocupação"
