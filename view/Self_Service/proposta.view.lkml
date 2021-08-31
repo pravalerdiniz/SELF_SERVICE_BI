@@ -2266,7 +2266,7 @@ view: proposta {
     type: string
     case: {
       when: {
-        sql: ${estado_civil_garantidor} in (NULL) ;;
+        sql: ${estado_civil_garantidor} is NULL ;;
         label: "Missing"
       }
       when: {
@@ -2275,7 +2275,7 @@ view: proposta {
       }
       when: {
         sql: ${estado_civil_garantidor} in ('SOLTEIRO','DIVORCIADO / DESQUITADO') ;;
-        label: "Solteiro-Divorciado-Desquitado"
+        label: "Solteiro-Divorciado / Desquitado"
       }
       when: {
         sql:  ${estado_civil_garantidor} in ('CASADO','SEPARADO','NAO DECLARADO') ;;
