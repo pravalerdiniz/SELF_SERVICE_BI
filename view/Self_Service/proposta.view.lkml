@@ -187,19 +187,19 @@ view: proposta {
     case: {
       when: {
         sql: ${aluno_uf} in ('AC','AL','AM','SE') ;;
-        label: "AC,AL,AM,SE"
+        label: "AC-AL-AM-SE"
       }
       when: {
         sql: ${aluno_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
-        label: "AP,MS,MT,ND,RO,RR,TO"
+        label: "AP-MS-MT-ND-RO-RR-TO"
       }
       when: {
         sql: ${aluno_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
-        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+        label: "BA-CE-MA-PA-PE-RJ-RN-SP"
       }
       when: {
         sql:  ${aluno_uf} in ('DF','ES','GO') ;;
-        label: "DF,ES,GO"
+        label: "DF-ES-GO"
       }
       when: {
         sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
@@ -207,11 +207,11 @@ view: proposta {
       }
       when: {
         sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
-        label: "PB,PI,RS,SC"
+        label: "PB-PI-RS-SC"
       }
 
 
-      else: "MG,PR,Missing"
+      else: "MG-PR-Missing"
     }
     group_label: "Dados do Aluno"
     group_item_label: "Grupo UF"
