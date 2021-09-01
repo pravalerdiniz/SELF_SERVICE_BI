@@ -2306,7 +2306,7 @@ view: proposta {
       }
       when: {
         sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','ASSALARIADO','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
-        label: "Aposentado-Pensionista-Profissional Liberal-Estagiário"
+        label: "Aposentado ou Pensionista-Profissional Liberal-Estagiário"
       }
       when: {
         sql: ${ocupacao_garantidor} in ('FUNC. PUBLICO CONCURSADO','SOCIO PROPRIETARIO','DO LAR','TRABALHADOR RURAL') ;;
