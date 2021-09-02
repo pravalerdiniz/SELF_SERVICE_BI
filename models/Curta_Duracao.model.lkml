@@ -59,15 +59,22 @@ explore: student {
 
   }
      join: institution {
-      view_label: "Cursos"
+      view_label: "Instituição de Ensino"
       sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
       type: left_outer
       relationship: one_to_many
       }
 
+  join: courses {
+    view_label: "Cursos"
+    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
       join: institution_cupons {
-        view_label: "Cupons"
-        sql_on: ${institution_cupons.id_curso} = ${institution.id_curso} ;;
+        view_label: "Cursos - Cupons"
+        sql_on: ${institution_cupons.id_curso} = ${courses.id_curso} ;;
         type: left_outer
         relationship: one_to_many
       }
@@ -186,19 +193,26 @@ explore: contracts {
   }
 
   join: institution {
-    view_label: "Cursos"
+    view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
 
-
-  join: institution_cupons {
-    view_label: "Cupons"
-    sql_on: ${institution_cupons.id_curso} = ${institution.id_curso} ;;
+  join: courses {
+    view_label: "Cursos"
+    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
     type: left_outer
     relationship: one_to_many
   }
+
+  join: institution_cupons {
+    view_label: "Cursos - Cupons"
+    sql_on: ${institution_cupons.id_curso} = ${courses.id_curso} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: risk {
     view_label: "Risco"
@@ -280,16 +294,22 @@ explore: risk {
   }
 
   join: institution {
-    view_label: "Cursos"
+    view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
 
+  join: courses {
+    view_label: "Cursos"
+    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: institution_cupons {
-    view_label: "Cupons"
-    sql_on: ${institution_cupons.id_curso} = ${institution.id_curso} ;;
+    view_label: "Cursos - Cupons"
+    sql_on: ${institution_cupons.id_curso} = ${courses.id_curso} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -399,21 +419,26 @@ explore: payment {
     relationship: one_to_many
 
   }
-
   join: institution {
-    view_label: "Cursos"
+    view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
 
-
-  join: institution_cupons {
-    view_label: "Cupons"
-    sql_on: ${institution_cupons.id_curso} = ${institution.id_curso} ;;
+  join: courses {
+    view_label: "Cursos"
+    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
     type: left_outer
     relationship: one_to_many
   }
+  join: institution_cupons {
+    view_label: "Curso - Cupons"
+    sql_on: ${institution_cupons.id_curso} = ${courses.id_curso} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: risk {
     view_label: "Risco"
@@ -473,19 +498,25 @@ explore: status_curta {
   }
 
   join: institution {
-    view_label: "Cursos"
+    view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
 
-
-  join: institution_cupons {
-    view_label: "Cupons"
-    sql_on: ${institution_cupons.id_curso} = ${institution.id_curso} ;;
+  join: courses {
+    view_label: "Cursos"
+    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
     type: left_outer
     relationship: one_to_many
   }
+  join: institution_cupons {
+    view_label: "Curso - Cupons"
+    sql_on: ${institution_cupons.id_curso} = ${courses.id_curso} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: risk {
     view_label: "Risco"

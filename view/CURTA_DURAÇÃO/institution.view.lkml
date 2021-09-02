@@ -211,12 +211,14 @@ view: institution {
     sql: ${TABLE}."FLG_CURSO_ANTECIPACAO";;
     description:"INDICA SE A MODADELIDADE DO PRODUTO DO CURSO É ANTECIPAÇÃO"
     group_item_label: "Curso é Antecipação?"
+    hidden: yes
     group_label: "Dados do Curso"
   }
   dimension: flg_curso_gestao {
     type: yesno
     sql: ${TABLE}."FLG_CURSO_GESTAO";;
     description:"INDICA SE A MODALIDADE DO PRODUTO DO CURSO É GESTÃO"
+    hidden: yes
     group_item_label: "Curso é Gestão?"
     group_label: "Dados do Curso"
   }
@@ -225,12 +227,14 @@ view: institution {
     sql: ${TABLE}."FLG_INTITUICAO_ATIVA";;
     description:"INDICA SE A INSTITUIÇÃO ESTÁ ATIVA"
     group_item_label: "Instituição Ativa?"
+    hidden: yes
     group_label: "Dados da Instituição"
   }
   dimension: id_contrato_instituicao {
     type: string
     sql: ${TABLE}."ID_CONTRATO_INSTITUICAO";;
     description:"ID DO CONTRATO FIRMADO COM A INSTITUIÇÃO"
+    hidden: yes
     group_item_label: "Id Contrato"
     group_label: "Dados da Instituição"
   }
@@ -239,7 +243,7 @@ view: institution {
     sql: ${TABLE}."ID_CURSO";;
     description:"IDENTIFICADOR DO CURSO"
     group_item_label: "Id Curso"
-    primary_key: yes
+    hidden: yes
     group_label: "Dados do Curso"
   }
 
@@ -251,6 +255,7 @@ view: institution {
     sql: ${TABLE}."ID_INSTITUICAO";;
     description:"IDENTIFICADOR DA INSTITUIÇÃO"
     group_item_label: "Id Instituição"
+    primary_key: yes
     group_label: "Dados da Instituição"
   }
   dimension_group: instituicao_data_atualizacao {
@@ -304,6 +309,7 @@ view: institution {
     sql: ${TABLE}."NOME_CURSO";;
     description:"NOME DO CURSO"
     group_item_label: "Nome"
+    hidden: yes
     group_label: "Dados do Curso"
   }
   dimension: nome_fantasia_instituicao {
@@ -367,47 +373,15 @@ view: institution {
     sql: ${TABLE}."VL_CURSO";;
     description:"VALOR DO CURSO"
     group_item_label: "Valor do Curso"
+    hidden: yes
     group_label: "Dados do Curso"
   }
 
   measure: count {
     type: count_distinct
     drill_fields: []
-    group_item_label: "Total de Cursos"
-  }
-
-  measure: sum_vl_curso {
-    type: sum
-    group_label: "Valor do Curso"
-    group_item_label: "Soma"
-    sql: ${vl_curso} ;;
-
-
-  }
-
-  measure: avg_vl_curso {
-    type: average
-    group_label: "Valor do Curso"
-    group_item_label: "Média"
-    sql: ${vl_curso} ;;
-
-
-  }
-
-  measure: min_vl_curso {
-    type: min
-    group_label: "Valor do Curso"
-    group_item_label: "Mínimo"
-    sql: ${vl_curso} ;;
-
-
-  }
-
-  measure: max_vl_curso {
-    type: max
-    group_label: "Valor do Curso"
-    group_item_label: "Máximo"
-    sql: ${vl_curso} ;;
+    sql: ${id_instituicao} ;;
+    group_item_label: "Total de Instituições"
   }
 
 
