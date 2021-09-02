@@ -60,7 +60,7 @@ explore: student {
   }
      join: institution {
       view_label: "Cursos"
-      sql_on: ${student_curso.id_curso} = ${institution.id_curso} ;;
+      sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
       type: left_outer
       relationship: one_to_many
       }
@@ -187,10 +187,11 @@ explore: contracts {
 
   join: institution {
     view_label: "Cursos"
-    sql_on: ${student_curso.id_curso} = ${institution.id_curso} ;;
+    sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: institution_cupons {
     view_label: "Cupons"
@@ -280,10 +281,11 @@ explore: risk {
 
   join: institution {
     view_label: "Cursos"
-    sql_on: ${student_curso.id_curso} = ${institution.id_curso} ;;
+    sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: institution_cupons {
     view_label: "Cupons"
@@ -400,10 +402,11 @@ explore: payment {
 
   join: institution {
     view_label: "Cursos"
-    sql_on: ${student_curso.id_curso} = ${institution.id_curso} ;;
+    sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: institution_cupons {
     view_label: "Cupons"
@@ -471,10 +474,11 @@ explore: status_curta {
 
   join: institution {
     view_label: "Cursos"
-    sql_on: ${student_curso.id_curso} = ${institution.id_curso} ;;
+    sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: institution_cupons {
     view_label: "Cupons"

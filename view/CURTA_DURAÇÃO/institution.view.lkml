@@ -242,6 +242,10 @@ view: institution {
     primary_key: yes
     group_label: "Dados do Curso"
   }
+
+
+
+
   dimension: id_instituicao {
     type: string
     sql: ${TABLE}."ID_INSTITUICAO";;

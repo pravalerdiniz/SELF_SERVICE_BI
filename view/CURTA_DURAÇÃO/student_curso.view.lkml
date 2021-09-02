@@ -3,6 +3,7 @@ view: student_curso {
     sql: select    py.id_aluno,
            f.key as ID_ALUNO_CURSO,
            F.VALUE:COURSE_ID::VARCHAR ID_CURSO,
+          F.VALUE:SCHOOL_ID::VARCHAR ID_INSTITUICAO,
           F.VALUE:DISCOUNT_PERCENTAGE::FLOAT AS PORC_DESC,
           F.VALUE:DOWN_PAYMENT::FLOAT AS PAGAMENTO_INICIAL,
           F.VALUE:INSTALLMENTS::INT AS PARCELAS,
@@ -19,10 +20,16 @@ view: student_curso {
     description: "INDICA O NUMERO TOTAL DE CURSOS POR ALUNO"
   }
 
+  dimension: id_instituicao {
+    type: string
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+    hidden: yes
+  }
+
   dimension: id_aluno {
     type: string
     sql: ${TABLE}."ID_ALUNO" ;;
-    hidden: yes
+
   }
 
   dimension: id_aluno_curso {
@@ -35,7 +42,7 @@ view: student_curso {
   dimension: id_curso {
     type: string
     sql: ${TABLE}."ID_CURSO" ;;
-    hidden: yes
+
   }
 
   dimension: porc_desc {
@@ -69,6 +76,7 @@ view: student_curso {
   set: detail {
     fields: [
       id_aluno,
+      id_instituicao,
       id_curso,
       porc_desc,
       pagamento_inicial,
