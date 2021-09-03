@@ -114,6 +114,7 @@ view: alunos_negativacao_info {
       type: number
       label: "Quantidade de Dias de Atraso"
       description: "Indica a quantidade de dias de atraso do pagamento referente a negativação"
+      hidden: yes
       sql: ${TABLE}."QTD_DIAS_ATRASO" ;;
     }
 
