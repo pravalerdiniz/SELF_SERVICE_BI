@@ -38,6 +38,13 @@ view: risk {
     group_item_label: "GH do Responsável Financeiro"
   }
 
+  dimension: gh_aprovacao  {
+    type: string
+    sql: ${TABLE}."GH_APROVACAO";;
+    hidden:  no
+    group_item_label: "GH de Aprovação"
+  }
+
   dimension_group: dt_insecao {
     type: time
     timeframes: [
@@ -107,7 +114,6 @@ view: risk {
     hidden: yes
     group_item_label: "Renda do Responsável Financeiro"
   }
-
 
 
   dimension_group: ultima_atualizacao {

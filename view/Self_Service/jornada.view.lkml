@@ -1663,7 +1663,13 @@ dimension: url {
     description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
 
-
+dimension: flg_d1 {
+  type:  yesno
+  sql: ${dt_status_date} < current_date;;
+  description: "Flag de D-1"
+  group_item_label: "Flag D-1"
+  hidden:  yes
+}
 
   set: detail {
     fields: [

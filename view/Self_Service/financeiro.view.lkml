@@ -112,14 +112,10 @@ dimension: data_trunc  {
     sql:
     CASE WHEN ${flg_boleto_pago} = FALSE AND ${data_vencimento_raw} >= current_date THEN
      'A Vencer' ELSE
-    CASE WHEN ${flg_boleto_pago} = TRUE  THEN
-    CASE WHEN  ${dias_pagamento_vencido} < 0 THEN 'Antecipado'
-         WHEN  ${dias_pagamento_vencido} = 0 THEN 'Em dia'
-         WHEN  ${dias_pagamento_vencido} <= 5 THEN '1 - 5'
-         WHEN  ${dias_pagamento_vencido} <= 15 THEN '6 - 15'
-         WHEN  ${dias_pagamento_vencido} <= 30 THEN '16 - 30'
-         ELSE 'Maior que 30' END
-              ELSE 'A Pagar'END
+    CASE WHEN ${flg_boleto_pago} = TRUE  THEN 'Pago'
+         WHEN ${dias_atraso} <= 5 THEN 'Vencidos <= 5'
+         ELSE 'Maior que 5'
+              END
               END;;
     group_label: "Dados do Boleto"
     group_item_label: "Faixa de Adimplência"
@@ -135,6 +131,7 @@ dimension: data_trunc  {
       date,
       week,
       month,
+      day_of_month,
       month_name,
       quarter,
       year

@@ -108,6 +108,10 @@ explore: orquestra_compra_carteira {
   label: "Orquestra - Compra de Carteira"
 }
 
+explore: orquestra {
+  label: "Orquestra"
+}
+
 explore: base_trade {}
 
 explore: report_builder_cargas {}

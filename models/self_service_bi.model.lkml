@@ -750,19 +750,77 @@ explore: alunos {
 
 join: alunos_produtos_aprovados {
   view_label: "1.1 Produtos Aprovados"
-  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf} ;;
+  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
   type: left_outer
   relationship: one_to_many
   }
 
 
-  join: alunos_maturidade_info {
-    view_label: "1.2 Maturidade Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_maturidade_info.id_cpf} ;;
+  join: alunos_inadimplencia_1 {
+    view_label: "1.2 Inadimplência"
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} ;;
     type: left_outer
     relationship: one_to_many
 
  }
+
+join: alunos_inadimplencia_2 {
+  view_label: "1.2.1 Inadimplência (Outras Informações)"
+  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf};;
+  type: left_outer
+  relationship: one_to_many
+}
+
+  join: alunos_inadimplencia_3_book {
+    view_label: "1.2.2 Book Inadimplência "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_inadimplencia_book_wo {
+    view_label: "1.2.3 Book Inadimplência - W.O "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_inadimplencia_fyf {
+    view_label: "1.2.3 FYF - Inadimplência "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: base_carteira_atrasado {
+    view_label: "1.2.4 Carteira - Atrasado"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: base_carteira_atraso_produto {
+    view_label: "1.2.4.1 Carteira - Atrasado (Produto)"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: base_carteira_risco {
+    view_label: "1.2.5 Carteira - Risco"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: base_caixa_projecao_carteira {
+    view_label: "1.2.6 Carteira - Base Projeção"
+    sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
 
 
   join: alunos_negativacao_info{
@@ -830,9 +888,36 @@ join: alunos_produtos_aprovados {
 
   }
 
+  join: alunos_cobranca_estrategia_operacional {
+    view_label: "1.9 Cobrança - Estratégia Operacional"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+  join: alunos_cobranca_pdd {
+    view_label: "1.9.1 Cobrança - PDD "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd .cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
 
+  join: alunos_cobranca_pdd_boletos {
+    view_label: "1.9.6 Cobrança - PDD Boletos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_mis_meritocracia {
+    view_label: "1.9.7 Cobrança - Meritocracia"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: proposta {
     view_label: "2. Proposta"
@@ -903,6 +988,14 @@ join: financeiro {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: alunos_ativos_carteira_2 {
+    view_label: "6.1 Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
 
 }

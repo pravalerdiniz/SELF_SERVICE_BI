@@ -85,7 +85,7 @@ view: proposta {
       }
       when: {
         sql: ${aluno_idade} > 22 ;;
-        label: "Acima de 22 anos"
+        label: "acima de 22 anos"
       }
        when: {
         sql: ${aluno_idade} = 22 ;;
@@ -101,7 +101,7 @@ view: proposta {
       }
       when: {
         sql: ${aluno_idade} <= 19 ;;
-        label: "Até 19 anos"
+        label: "até 19 anos"
       }
       else: "Outros"
     }
@@ -187,19 +187,19 @@ view: proposta {
     case: {
       when: {
         sql: ${aluno_uf} in ('AC','AL','AM','SE') ;;
-        label: "AC,AL,AM,SE"
+        label: "AC-AL-AM-SE"
       }
       when: {
         sql: ${aluno_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
-        label: "AP,MS,MT,ND,RO,RR,TO"
+        label: "AP-MS-MT-ND-RO-RR-TO"
       }
       when: {
         sql: ${aluno_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
-        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+        label: "BA-CE-MA-PA-PE-RJ-RN-SP"
       }
       when: {
         sql:  ${aluno_uf} in ('DF','ES','GO') ;;
-        label: "DF,ES,GO"
+        label: "DF-ES-GO"
       }
       when: {
         sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
@@ -207,11 +207,11 @@ view: proposta {
       }
       when: {
         sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
-        label: "PB,PI,RS,SC"
+        label: "PB-PI-RS-SC"
       }
 
 
-      else: "MG,PR,Missing"
+      else: "MG-PR-Missing"
     }
     group_label: "Dados do Aluno"
     group_item_label: "Grupo UF"
@@ -271,6 +271,7 @@ view: proposta {
     label: "Canal"
     description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
     sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
+    hidden: yes
   }
 
   dimension: canal_acesso_descoberta {
@@ -1045,19 +1046,19 @@ view: proposta {
     case: {
       when: {
         sql: ${fia_uf} in ('AC','AL','AM','SE') ;;
-        label: "AC,AL,AM,SE"
+        label: "AC-AL-AM-SE"
       }
       when: {
         sql: ${fia_uf} in ('AP','MS','MT','ND','RO','RR','TO') ;;
-        label: "AP,MS,MT,ND,RO,RR,TO"
+        label: "AP-MS-MT-ND-RO-RR-TO"
       }
       when: {
         sql: ${fia_uf} in ('BA','CE','MA','PA','PE','RJ','RN','SP') ;;
-        label: "BA,CE,MA,PA,PE,RJ,RN,SP"
+        label: "BA-CE-MA-PA-PE-RJ-RN-SP"
       }
       when: {
         sql:  ${fia_uf} in ('DF','ES','GO') ;;
-        label: "DF,ES,GO"
+        label: "DF-ES-GO"
       }
       when: {
         sql:  ${aluno_uf} in ('VT','BH', 'EX', 'SG')  ;;
@@ -1065,11 +1066,11 @@ view: proposta {
       }
       when: {
         sql:  ${aluno_uf} in ('PB','PI','RS','SC') ;;
-        label: "PB,PI,RS,SC"
+        label: "PB-PI-RS-SC"
       }
 
 
-      else: "MG,PR,Missing"
+      else: "MG-PR-Missing"
     }
     group_label: "Dados do Garantidor"
     group_item_label: "Grupo UF"
@@ -1497,6 +1498,31 @@ view: proposta {
     description: "Indica o pontuação de score interno da proposta do aluno"
     sql: ${TABLE}."PONTUACAO_INTERNA" ;;
 
+  }
+
+  dimension: gh_proposta {
+    type: string
+    case: {
+      when: {
+        sql: ${pontuacao_interna} <= 0.349 ;;
+        label: "< 0.349"
+      }
+      when: {
+        sql:${pontuacao_interna} <= 0.431 ;;
+        label: "0.349 - 0.431"
+      }
+      when: {
+        sql: ${pontuacao_interna} <= 0.521  ;;
+        label: "0.431 - 0.521"
+      }
+      when: {
+        sql: ${pontuacao_interna} > 0.521  ;;
+        label: "> 0.5211"
+      }
+      else: "0"
+    }
+    group_label: "Dados da Proposta"
+    group_item_label: "GH - Proposta"
   }
 
   dimension: id_status_detalhado {
@@ -2116,6 +2142,31 @@ view: proposta {
     value_format: "0"
   }
 
+  dimension: gh_aluno_externo {
+    type: string
+    case: {
+      when: {
+        sql: ${score_externo} <= 1685 ;;
+        label: "E"
+      }
+      when: {
+        sql:${score_externo} <= 6351 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${score_externo} <= 8590  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${score_externo} <= 9428 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_label: "Dados do Aluno"
+    group_item_label: "GH - Externo"
+  }
+
   dimension: vl_subsidiado {
     type: number
     group_label: "Dados da Cessão"
@@ -2252,6 +2303,31 @@ view: proposta {
     sql: ${TABLE}."FIA_PONTUACAO_EXTERNA" ;;
   }
 
+  dimension: gh_fiador_externo {
+    type: string
+    case: {
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 1685 ;;
+        label: "E"
+      }
+      when: {
+        sql:${pontuacao_externa_fiador} <= 6351 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 8590  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 9428 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_label: "Dados do Garantidor"
+    group_item_label: "GH - Externo"
+  }
+
 
   dimension: estado_civil_garantidor {
     type: string
@@ -2265,20 +2341,20 @@ view: proposta {
     type: string
     case: {
       when: {
-        sql: ${estado_civil_garantidor} in (NULL) ;;
+        sql: ${estado_civil_garantidor} is NULL ;;
         label: "Missing"
       }
       when: {
         sql: ${estado_civil_garantidor} in ('VIUVO','VIVE MARITALMENTE') ;;
-        label: "Viúvo, Vive Maritalmente"
+        label: "Viúvo-Vive Maritalmente"
       }
       when: {
         sql: ${estado_civil_garantidor} in ('SOLTEIRO','DIVORCIADO / DESQUITADO') ;;
-        label: "Solteiro, Divorciado / Desquitado"
+        label: "Solteiro-Divorciado / Desquitado"
       }
       when: {
         sql:  ${estado_civil_garantidor} in ('CASADO','SEPARADO','NAO DECLARADO') ;;
-        label: "Casado, Separado, Não Declarado"
+        label: "Casado-Separado-Não Declarado"
       }
       else: "Outros"
     }
@@ -2305,18 +2381,18 @@ view: proposta {
       }
       when: {
         sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','ASSALARIADO','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
-        label: "Aposentado ou Pensionista, Profissional Liberal, Estagiário"
+        label: "Aposentado ou Pensionista-Profissional Liberal-Estagiário"
       }
       when: {
         sql: ${ocupacao_garantidor} in ('FUNC. PUBLICO CONCURSADO','SOCIO PROPRIETARIO','DO LAR','TRABALHADOR RURAL') ;;
-        label: "Func. Público Concursado, Sócio Proprietário, Do Lar, Trabalhador Rural"
+        label: "Func. Público Concursado-Sócio Proprietário-Do Lar-Trabalhador Rural"
       }
       when: {
         sql:  ${ocupacao_garantidor} in ('ASSALARIADO','FUNC. PUBLICO CONTRATADO','ESTUDANTE') ;;
-        label: "Assalariado, Func. Público Contratado, Estudante"
+        label: "Assalariado-Func. Público Contratado-Estudante"
       }
 
-      else: "Militar, Microempresário,Missing"
+      else: "Militar-Microempresário-Missing"
     }
     group_label: "Dados do Garantidor"
     group_item_label: "Grupo Natureza da Ocupação"

@@ -20,6 +20,30 @@ view: status_curta {
     label: "Evento"
   }
 
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Week to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_evento_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_evento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description:"Use esse campo em conjunto com o campo de Etapa, para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente"
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_evento_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_evento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use esse campo em conjunto com o campo de Etapa, para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+
+
+
+
   dimension_group: data_inicio {
     type: time
     timeframes: [
