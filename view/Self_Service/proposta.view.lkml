@@ -1500,6 +1500,31 @@ view: proposta {
 
   }
 
+  dimension: gh_proposta {
+    type: string
+    case: {
+      when: {
+        sql: ${pontuacao_interna} <= 0.349 ;;
+        label: "< 0.349"
+      }
+      when: {
+        sql:${pontuacao_interna} <= 0.431 ;;
+        label: "0.349 - 0.431"
+      }
+      when: {
+        sql: ${pontuacao_interna} <= 0.521  ;;
+        label: "0.431 - 0.521"
+      }
+      when: {
+        sql: ${pontuacao_interna} > 0.521  ;;
+        label: "> 0.5211"
+      }
+      else: "0"
+    }
+    group_label: "Dados da Proposta"
+    group_item_label: "GH - Proposta"
+  }
+
   dimension: id_status_detalhado {
     type: string
     group_label: "Jornada"
@@ -2117,6 +2142,31 @@ view: proposta {
     value_format: "0"
   }
 
+  dimension: gh_aluno_externo {
+    type: string
+    case: {
+      when: {
+        sql: ${score_externo} <= 1685 ;;
+        label: "E"
+      }
+      when: {
+        sql:${score_externo} <= 6351 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${score_externo} <= 8590  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${score_externo} <= 9428 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_label: "Dados do Aluno"
+    group_item_label: "GH - Externo"
+  }
+
   dimension: vl_subsidiado {
     type: number
     group_label: "Dados da Cessão"
@@ -2251,6 +2301,31 @@ view: proposta {
     description: "Indica a pontuação do score externo do Garantidor"
     value_format: "0"
     sql: ${TABLE}."FIA_PONTUACAO_EXTERNA" ;;
+  }
+
+  dimension: gh_fiador_externo {
+    type: string
+    case: {
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 1685 ;;
+        label: "E"
+      }
+      when: {
+        sql:${pontuacao_externa_fiador} <= 6351 ;;
+        label: "D"
+      }
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 8590  ;;
+        label: "C"
+      }
+      when: {
+        sql: ${pontuacao_externa_fiador} <= 9428 ;;
+        label: "B"
+      }
+      else: "A"
+    }
+    group_label: "Dados do Garantidor"
+    group_item_label: "GH - Externo"
   }
 
 
