@@ -18,6 +18,7 @@ view: alunos_ativos_carteira_2 {
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
@@ -97,7 +98,7 @@ view: alunos_ativos_carteira_2 {
 
   measure: sum_saldo60  {
     type: sum
-    group_label: "Saldo "
+    group_label: "Saldo"
     label: "60 dias"
     sql: ${saldo60} ;;
   }
