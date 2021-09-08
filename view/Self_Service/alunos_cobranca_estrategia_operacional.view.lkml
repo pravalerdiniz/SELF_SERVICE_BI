@@ -30,6 +30,7 @@ view: alunos_cobranca_estrategia_operacional {
 
   measure: valor_atraso{
     type: sum
+
     label: "Valor do Atraso"
     sql: ${TABLE}."VALOR_ATRASO" ;;
   }
