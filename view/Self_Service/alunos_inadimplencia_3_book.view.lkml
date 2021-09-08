@@ -24,6 +24,7 @@ view: alunos_inadimplencia_3_book {
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     description: "Indica o ano mês de análise de inadimplência"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
