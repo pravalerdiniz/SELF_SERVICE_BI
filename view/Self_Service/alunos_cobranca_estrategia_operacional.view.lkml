@@ -16,6 +16,7 @@ view: alunos_cobranca_estrategia_operacional {
       f.value:NOME_EMPRESA::varchar as NOME_EMPRESA,
       f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
       f.value:VENCIMENTO::date as VENCIMENTO,
+      f.value:VALOR_BOLETO_ATRASO::number as VALOR_ATRASO,
       f.value:RDG::varchar as RDG
       from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
       lateral flatten (input => dados_elegibilidade) f
@@ -25,6 +26,12 @@ view: alunos_cobranca_estrategia_operacional {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: valor_atraso{
+    type: sum
+    label: "Valor do Atraso"
+    sql: ${TABLE}."VALOR_ATRASO" ;;
   }
 
   dimension: vencimento{
