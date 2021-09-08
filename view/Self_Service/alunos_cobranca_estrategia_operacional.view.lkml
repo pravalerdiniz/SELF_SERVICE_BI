@@ -1,7 +1,7 @@
 view: alunos_cobranca_estrategia_operacional {
   derived_table: {
     sql: select
-
+      a.id_cpf,
       f.key as cpf,
       f.value:ATRASO::number as ATRASO,
       f.value:BOLETOS_ABERTOS::number as BOLETOS_ABERTOS,
@@ -27,9 +27,16 @@ view: alunos_cobranca_estrategia_operacional {
     drill_fields: [detail*]
   }
 
-  dimension: cpf {
-    type: string
+  dimension: id_cpf {
+    type: number
     hidden: yes
+    sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: cpf {
+    type: number
+    hidden: yes
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -39,15 +46,13 @@ view: alunos_cobranca_estrategia_operacional {
     sql: ${TABLE}."ATRASO" ;;
   }
 
-  measure: boletos_abertos {
+  dimension: boletos_abertos {
     type: number
-    hidden: no
     sql: ${TABLE}."BOLETOS_ABERTOS" ;;
   }
 
-  measure: boletos_atraso {
+  dimension: boletos_atraso {
     type: number
-    hidden: no
     sql: ${TABLE}."BOLETOS_ATRASO" ;;
   }
 
@@ -69,12 +74,14 @@ view: alunos_cobranca_estrategia_operacional {
     sql: ${TABLE}."CONTRATOS" ;;
   }
 
-
-  measure: desconto {
+  dimension: desconto {
     type: number
-    value_format: "#.##%"
+   label: "Desconto?"
+
     sql: ${TABLE}."DESCONTO" ;;
   }
+
+
 
   dimension: faixa_atraso {
     type: string

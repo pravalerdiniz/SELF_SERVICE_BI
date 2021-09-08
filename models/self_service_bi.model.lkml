@@ -892,7 +892,7 @@ join: alunos_inadimplencia_2 {
     view_label: "1.9 Cobrança - Estratégia Operacional"
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 
