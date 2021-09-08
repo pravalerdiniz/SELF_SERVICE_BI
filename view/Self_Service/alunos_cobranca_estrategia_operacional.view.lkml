@@ -29,6 +29,7 @@ view: alunos_cobranca_estrategia_operacional {
 
   dimension: vencimento{
     type: date
+    hidden: yes
     sql: ${TABLE}."VENCIMENTO" ;;
   }
 
