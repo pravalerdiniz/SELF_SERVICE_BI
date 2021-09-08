@@ -51,7 +51,7 @@ view: base_carteira_atrasado {
   }
 
   measure: saldo {
-    type: number
+    type: sum
     group_item_label:"Saldo"
     sql: ${TABLE}."SALDO" ;;
   }
