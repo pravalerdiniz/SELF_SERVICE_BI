@@ -23,7 +23,7 @@ view: alunos_ativos_carteira_2 {
 
   dimension: fundo {
     type: number
-    hidden: yes
+    label: "Fundo de Investimento"
     sql: ${TABLE}."FUNDO" ;;
   }
 
@@ -90,35 +90,35 @@ view: alunos_ativos_carteira_2 {
 
   measure: sum_saldo  {
    type: sum
-  group_item_label: "Saldo"
+    group_label:"Saldo"
    label: "Soma"
     sql: ${saldo} ;;
   }
 
   measure: sum_saldo60  {
     type: sum
-    group_item_label: "Saldo"
+    group_label: "Saldo "
     label: "60 dias"
     sql: ${saldo60} ;;
   }
 
   measure: sum_saldo90  {
     type: sum
-    group_item_label: "Saldo"
+    group_label:"Saldo"
     label: "90 dias"
     sql: ${saldo90} ;;
   }
 
   measure: sum_saldo30  {
     type: sum
-    group_item_label: "Saldo"
+    group_label: "Saldo"
     label: "30 dias"
     sql: ${saldo30} ;;
   }
 
   measure: sum_saldo180  {
     type: sum
-    group_item_label: "Saldo"
+    group_label: "Saldo"
     label: "180 dias"
     sql: ${saldo180} ;;
   }
