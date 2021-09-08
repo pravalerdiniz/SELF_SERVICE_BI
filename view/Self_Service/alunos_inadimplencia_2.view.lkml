@@ -9,6 +9,13 @@ view: alunos_inadimplencia_2 {
     drill_fields: [detail*]
   }
 
+  dimension: safra_cpf_primary_key {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${safra_cessao_cpf},${cpf}) ;;
+  }
+
   dimension: safra_cessao_cpf {
     type: string
     label: "Safra Cessão - CPF"
@@ -31,6 +38,8 @@ view: alunos_inadimplencia_2 {
     description: "Indica o grupo da IES que aluno está"
     sql: ${TABLE}."IES_GRUPO" ;;
   }
+
+
 
   dimension: modalidade {
     type: string
@@ -60,12 +69,20 @@ view: alunos_inadimplencia_2 {
     sql: ${TABLE}."FLG_CARENCIA" ;;
   }
 
-  dimension: flg_politica {
-    type: yesno
-    label: "Boleto Cancelado?"
-    description: "Indica se o aluno possui boleto cancelado"
-    sql: ${TABLE}."FLG_POLITICA" ;;
+  dimension: flg_politica_over_30 {
+    type: number
+    label: "Over 30 - Boleto Cancelado?"
+    description: "Indica se o aluno possui boleto cancelado. 0 = Não | 1 = Sim"
+    sql: ${TABLE}."FILTRO_POLITICA_OVER30" ;;
   }
+
+  dimension: flg_politica_over_60 {
+    type: number
+    label: "Over 60 - Boleto Cancelado?"
+    description: "Indica se o aluno possui boleto cancelado. 0 = Não | 1 = Sim"
+    sql: ${TABLE}."FILTRO_POLITICA_OVER60" ;;
+  }
+
 
   dimension: credit_score {
     type: number
@@ -121,7 +138,8 @@ view: alunos_inadimplencia_2 {
       projeto,
       gh,
       flg_carencia,
-      flg_politica,
+      flg_politica_over_30,
+      flg_politica_over_60,
       credit_score,
       fpd15,
       over15,
