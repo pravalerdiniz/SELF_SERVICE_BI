@@ -12,6 +12,7 @@ view: base_caixa_projecao_carteira {
   dimension: cpf {
     type: number
     hidden:  yes
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 

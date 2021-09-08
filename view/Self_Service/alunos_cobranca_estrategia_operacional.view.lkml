@@ -15,8 +15,8 @@ view: alunos_cobranca_estrategia_operacional {
       f.value:FUNDO::varchar as FUNDO,
       f.value:NOME_EMPRESA::varchar as NOME_EMPRESA,
       f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
+      f.value:VENCIMENTO::date as VENCIMENTO,
       f.value:RDG::varchar as RDG
-
       from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
       lateral flatten (input => dados_elegibilidade) f
        ;;
@@ -26,6 +26,32 @@ view: alunos_cobranca_estrategia_operacional {
     type: count
     drill_fields: [detail*]
   }
+
+  dimension: vencimento{
+    type: date
+    sql: ${TABLE}."VENCIMENTO" ;;
+  }
+
+  dimension_group: data_vencimento_group{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      month_name,
+      year,
+      time,
+
+    ]
+    convert_tz: no
+    label: "Vencimento"
+    description: "Indica a a data de menor vencimento do aluno"
+    datatype: date
+    sql: ${vencimento} ;;
+  }
+
 
   dimension: id_cpf {
     type: number
