@@ -1647,7 +1647,7 @@ dimension: url {
     type: string
     group_label: "Atribuição"
     group_item_label: "Canal"
-    description: "Primeiro Canal da proposta/lead"
+    description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
   }
 

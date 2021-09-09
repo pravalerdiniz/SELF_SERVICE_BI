@@ -44,7 +44,7 @@ view: alunos_log_negativacao {
   dimension: seunum {
     type: string
     label: "Seunum"
-    description: "Indica o número do Seunum do Aluno."
+    description: "Indica o número do boleto negativado para o aluno no log."
     sql: ${TABLE}."SEUNUM" ;;
   }
 

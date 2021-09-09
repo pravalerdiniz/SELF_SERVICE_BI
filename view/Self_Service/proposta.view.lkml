@@ -801,7 +801,7 @@ view: proposta {
     type: string
     group_label: "Dados do Fundo de Investimento"
     label: "Nome do Fundo de Investimento"
-    description: "Indica o nome do fundo de investimento responsável."
+    description: "Indica o nome do fundo de investimento responsável vinculado a proposta."
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
   }
 
@@ -1320,7 +1320,7 @@ view: proposta {
     type: string
     group_label: "Dados do Aluno"
     label: "GH "
-    description: "Indica qual Grupo Homogêneo (GH) o aluno se encontra de acordo com o score"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do aluno após passar pela avaliação de análise de crédito baseado no Score de Crédito durante o processo de contratação do Aluno, ou seja, o grupo homogêneo é uma classificação dos scores, por exemplo, os alunos que possuem score maior que 9063 será classificado como GH A, GH B<=9063, GH C<=8845, GH D<=8328, GH E<=5197, GH F<=1728, GH G<=843"
     link: {label:"Documentação - Grupo Homogêneo"
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969408513/GH"}
     sql: ${TABLE}."GH" ;;
@@ -1429,7 +1429,7 @@ view: proposta {
     type: number
     group_label: "Dados do Fundo de Investimento"
     label: "ID Fundo de Investimento"
-    description: "Indica o ID do Fundo de Investimento"
+    description: "Indica o ID do Fundo de Investimento vinculado a proposta"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
@@ -1466,11 +1466,11 @@ view: proposta {
     sql: ${TABLE}."ID_PRODUTO" ;;
   }
 
-  dimension: id_produtos_aprovados {
+  dimension: id_produtos_preaprovados {
     type: string
     group_label: "Dados do Produto"
-    label: "ID Produtos Aprovados"
-    description: "Indica o ID dos produtos aprovados pela instituição ao aluno"
+    label: "ID Produtos Pré Aprovados"
+    description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
     html:
     {% assign words = value | split: ',' %}
@@ -2239,7 +2239,7 @@ view: proposta {
     type: string
     group_label: "Jornada"
     label: "ID Último Status"
-    description: "Indica o ID do último status da proposta"
+    description: "Indica o ID do último status do fluxo da proposta"
     sql: ${TABLE}."VL_ULT_STATUS" ;;
   }
 
