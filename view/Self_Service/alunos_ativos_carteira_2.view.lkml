@@ -15,6 +15,15 @@ view: alunos_ativos_carteira_2 {
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
+
+ dimension: cpf_ano_mes {
+   type: string
+  sql:CONCAT(${tdt_cpf},${tdt_ano_mes}) ;;
+  hidden: yes
+  primary_key: yes
+
+ }
+
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
