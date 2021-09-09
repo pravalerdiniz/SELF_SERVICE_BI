@@ -9,6 +9,12 @@ view: alunos_inadimplencia_fyf {
     drill_fields: [detail*]
   }
 
+  dimension: cpf_referencia {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${cpf},${referencia}) ;;
+  }
+
   dimension: cpf {
     type: number
     hidden: yes
@@ -18,6 +24,7 @@ view: alunos_inadimplencia_fyf {
   dimension: referencia {
     type: number
     label: "Ano e Mês"
+    value_format: "0"
     sql: ${TABLE}."REFERENCIA" ;;
   }
 
@@ -63,9 +70,9 @@ view: alunos_inadimplencia_fyf {
     sql: ${TABLE}."QTD" ;;
   }
 
-  dimension: qtd_rec {
-    type: number
-    hidden: yes
+  measure: qtd_rec {
+    type: sum
+    label: "Quantidade de Alunos Recuperados"
     sql: ${TABLE}."QTD_REC" ;;
   }
 

@@ -12,6 +12,7 @@ view: base_caixa_projecao_carteira {
   dimension: cpf {
     type: number
     hidden:  yes
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -53,29 +54,33 @@ view: base_caixa_projecao_carteira {
   measure: qtde_cpf {
     type: number
     group_item_label: "Quantidade de CPFs"
+    hidden: yes
     sql: ${TABLE}."QTDE_CPF" ;;
   }
 
   measure: saldo_carteira {
-    type: number
+    type: sum
     group_item_label: "Saldo da Carteira"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."SALDO_CARTEIRA" ;;
   }
 
   measure: caixa_acum {
-    type: number
+    type: sum
     group_item_label: "Caixa Acumulado"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."CAIXA_ACUM" ;;
   }
 
   measure: boleto_acum {
-    type: number
+    type: sum
     group_item_label: "Valor de Boleto Acumulado"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."BOLETO_ACUM" ;;
   }
 
   measure: qtde_acum {
-    type: number
+    type: sum
     group_item_label: "Quantidade de Acumulados"
     sql: ${TABLE}."QTDE_ACUM" ;;
   }

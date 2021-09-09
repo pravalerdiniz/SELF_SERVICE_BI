@@ -786,21 +786,21 @@ join: alunos_inadimplencia_2 {
   }
 
   join: alunos_inadimplencia_fyf {
-    view_label: "1.2.3 FYF - Inadimplência "
+    view_label: "1.2.3 FYF - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atrasado {
-    view_label: "1.2.4 Carteira - Atrasado"
+    view_label: "1.2.4 FYF - Carteira Atrasado"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atraso_produto {
-    view_label: "1.2.4.1 Carteira - Atrasado (Produto)"
+    view_label: "1.2.4.1 FYF - Carteira Atrasado (Produto)"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
     type: left_outer
     relationship: one_to_many
@@ -892,7 +892,7 @@ join: alunos_inadimplencia_2 {
     view_label: "1.9 Cobrança - Estratégia Operacional"
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 
