@@ -741,7 +741,7 @@ explore: alunos {
 - proposta.nivel_curso,
 - proposta.flg_produto_ativo,
 - proposta.tipo_produto,
-
+- proposta.sum_qtd_mensalidade_contrato
 
 
 

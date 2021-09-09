@@ -110,6 +110,7 @@ view: alunos_mis_meritocracia {
   dimension: tipo_canal {
     type: string
     group_item_label: "Tipo de Canal"
+    description: "Indica qual a empresa que realizou o acordo"
     sql: ${TABLE}."TIPO_CANAL" ;;
   }
 

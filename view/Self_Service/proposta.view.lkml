@@ -3562,6 +3562,7 @@ view: proposta {
     group_label: "Renda Familiar"
     group_item_label: "Soma"
     description: "Soma da renda familiar"
+    hidden: yes
     required_access_grants: [grupo_renda]
   }
 

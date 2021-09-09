@@ -153,12 +153,14 @@ view: alunos_acordo {
   dimension: canal {
     type: string
     label: "Canal"
+    description: "Indica se o acordo foi realizado de forma IINTERNA(PRAVALER) ou EXTERNA(EMPRESA)"
     sql: ${TABLE}."CANAL" ;;
   }
 
   dimension: tipo_canal {
     type: string
     label: "Tipo de Canal"
+    description: "Indica qual a empresa que realizou o acordo"
     sql: ${TABLE}."TIPO_CANAL" ;;
   }
 
