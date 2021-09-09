@@ -1300,10 +1300,10 @@ foi gerado por um pagamento menor do boleto anterior."
 
 
 
-  dimension: gh_collection {
+  dimension: gh_collection_boleto{
     type: string
     group_label: "Collection"
-    label: "GH do Collection"
+    label: "GH do Collection Boleto"
     description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento do aluno inadimplente por boleto.A classificação dos GHs estão da seguinte forma: A - B - C - D "
     link: {
       label: "Documentação - Dias de Atraso"
