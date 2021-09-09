@@ -70,9 +70,9 @@ view: alunos_inadimplencia_fyf {
     sql: ${TABLE}."QTD" ;;
   }
 
-  dimension: qtd_rec {
-    type: number
-    hidden: yes
+  measure: qtd_rec {
+    type: sum
+    label: "Quantidade de Alunos Recuperados"
     sql: ${TABLE}."QTD_REC" ;;
   }
 
