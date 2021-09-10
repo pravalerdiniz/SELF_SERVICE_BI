@@ -196,3 +196,5 @@ explore: base_score
 {
   label: "Base - Treino Score"
 }
+
+explore: perfil_usuarios {}
