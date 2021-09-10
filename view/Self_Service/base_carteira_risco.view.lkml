@@ -53,6 +53,7 @@ view: base_carteira_risco {
   measure: saldo {
     type: sum
     group_item_label: "Saldo"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."SALDO" ;;
   }
 
