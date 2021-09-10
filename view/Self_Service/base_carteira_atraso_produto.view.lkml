@@ -36,18 +36,21 @@ view: base_carteira_atraso_produto {
   measure: pdd_atual {
     type: sum
     group_item_label:"PDD Atual"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."PDD_ATUAL" ;;
   }
 
   measure: pdd_anterior {
     type: sum
     group_item_label:"PDD Anterior"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."PDD_ANTERIOR" ;;
   }
 
   measure: soma_vp {
     type: sum
     group_item_label: "Soma do Valor Presente"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."SOMA_VP" ;;
   }
 
