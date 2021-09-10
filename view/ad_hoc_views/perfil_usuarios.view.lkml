@@ -41,6 +41,11 @@ view: perfil_usuarios {
     sql: ${TABLE}."NOME_MODULO" ;;
   }
 
+  dimension: FLG_BLOQUEADO {
+    type: yesno
+    sql: ${TABLE}."FLG_BLOQUEADO" ;;
+  }
+
   dimension: nome_usuario {
     type: string
     sql: ${TABLE}."NOME_USUARIO" ;;
