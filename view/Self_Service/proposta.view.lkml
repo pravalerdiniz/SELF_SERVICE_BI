@@ -2377,22 +2377,22 @@ view: proposta {
     case: {
       when: {
         sql: ${ocupacao_garantidor} in ('AUTONOMO') ;;
-        label: "Autônomo"
+        label: "Autonomo"
       }
       when: {
         sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
-        label: "Aposentado ou Pensionista-Profissional Liberal-Estagiário"
+        label: "Aposentado-ou-Pensionista-Profissional-Liberal-Estagiario"
       }
       when: {
         sql: ${ocupacao_garantidor} in ('FUNC. PUBLICO CONCURSADO','SOCIO PROPRIETARIO','DO LAR','TRABALHADOR RURAL') ;;
-        label: "Func. Público Concursado-Sócio Proprietário-Do Lar-Trabalhador Rural"
+        label: "Func.Publico-Concursado-Socio-Proprietário-Do-Lar-Trabalhador-Rural"
       }
       when: {
         sql:  ${ocupacao_garantidor} in ('ASSALARIADO','FUNC. PUBLICO CONTRATADO','ESTUDANTE') ;;
-        label: "Assalariado-Func. Público Contratado-Estudante"
+        label: "Assalariado-Func.Publico-Contratado-Estudante"
       }
 
-      else: "Militar-Microempresário-Missing"
+      else: "Militar-Microempresario-Missing"
     }
     group_label: "Dados do Garantidor"
     group_item_label: "Grupo Natureza da Ocupação"
