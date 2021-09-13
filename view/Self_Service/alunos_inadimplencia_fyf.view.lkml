@@ -78,6 +78,7 @@ view: alunos_inadimplencia_fyf {
   measure: sum_vl_presente {
     type: sum
     label: "Valor Presente"
+    value_format: "$ #,###"
     sql: ${valor_presente} ;;
 
 
