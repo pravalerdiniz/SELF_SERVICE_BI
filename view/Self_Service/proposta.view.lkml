@@ -2380,7 +2380,7 @@ view: proposta {
         label: "Autônomo"
       }
       when: {
-        sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','ASSALARIADO','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
+        sql: ${ocupacao_garantidor} in ('APOSENTADO OU PENSIONISTA','AUTONOMO','DO LAR','ESTAGIARIO','PROFISSIONAL LIBERAL') ;;
         label: "Aposentado ou Pensionista-Profissional Liberal-Estagiário"
       }
       when: {
