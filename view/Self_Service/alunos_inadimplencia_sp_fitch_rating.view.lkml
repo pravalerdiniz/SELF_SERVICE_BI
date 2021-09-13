@@ -25,6 +25,7 @@ view: alunos_inadimplencia_sp_fitch_rating {
 
   dimension: ano_mes {
     type: number
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
     label: "Ano Mês"
     description: "Indica qual o ano e mês"
