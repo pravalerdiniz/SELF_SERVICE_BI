@@ -30,7 +30,6 @@ view: alunos_inadimplencia_fyf {
 
   dimension: fundo {
     type: number
-    hidden: yes
     sql: ${TABLE}."FUNDO" ;;
   }
 
