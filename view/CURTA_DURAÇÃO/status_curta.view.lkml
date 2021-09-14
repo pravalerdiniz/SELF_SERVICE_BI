@@ -170,7 +170,7 @@ view: status_curta {
       }
 
       when: {
-        sql: ${etapa} = 'Documentos Aprovados' ;;
+        sql: ${etapa} = 'Documentos Recebidos' ;;
         label: "3"
       }
       when: {
