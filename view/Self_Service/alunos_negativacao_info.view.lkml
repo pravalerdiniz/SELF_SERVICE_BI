@@ -106,7 +106,7 @@ view: alunos_negativacao_info {
     dimension: id_processamento {
       type: number
       label: "Etapa de Processamento"
-      description: "Indica o ID da etapa de processamento do arquivo"
+      description: "Indica o ID da etapa de processamento do arquivo na negativação"
       sql: ${TABLE}."ID_PROCESSAMENTO" ;;
     }
 
@@ -114,13 +114,14 @@ view: alunos_negativacao_info {
       type: number
       label: "Quantidade de Dias de Atraso"
       description: "Indica a quantidade de dias de atraso do pagamento referente a negativação"
+      hidden: yes
       sql: ${TABLE}."QTD_DIAS_ATRASO" ;;
     }
 
     dimension: id_senum {
       type: number
       label: "Seunum"
-      description: "Indica o número do Seunum do Aluno."
+      description: "Indica o número do último boleto negativado para o aluno."
       sql: ${TABLE}."ID_SENUM" ;;
     }
 

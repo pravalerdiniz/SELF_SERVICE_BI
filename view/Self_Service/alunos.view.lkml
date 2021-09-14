@@ -135,7 +135,7 @@ view: alunos {
     sql: ${TABLE}."RENDA_MENSAL" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Renda Mensal do Aluno"
-    description: "Este campo é uma regra de negócio*. Indica a renda mensal do aluno"
+    description: "Este campo é uma regra de negócio*. Indica a renda mensal do aluno, buscando sempre a informação da última proposta do aluno"
     link: {
       label: "Documentação - Renda Mensal Aluno"
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973771/RENDA+MENSAL+ALUNO"
@@ -421,7 +421,7 @@ view: alunos {
     sql: ${TABLE}."FIA_RENDA_MENSAL" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Renda Mensal do Garantidor"
-    description: "Indica a renda mensal do Garantidor"
+    description: "Indica a renda mensal do Garantidor, buscando sempre a informação da última proposta do aluno"
     required_access_grants: [grupo_renda]
   }
 
@@ -513,7 +513,7 @@ view: alunos {
     sql: ${TABLE}."RENDA_FAM_MENSAL" ;;
     group_label: "Dados da Família e Garantidor"
     group_item_label: "Renda Mensal da Família"
-    description: "Este campo é uma regra de negócio*. Indica a renda mensal da família do aluno"
+    description: "Este campo é uma regra de negócio*. Indica a renda mensal da família do aluno, buscando sempre a informação da última proposta do aluno"
        link: {
       label: "Documentação - Renda Familiar Mensal"
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/984973731/RENDA+FAMILIAR+MENSAL"
@@ -797,7 +797,7 @@ view: alunos {
     type: string
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
     group_label: "Dados do Fundo de Investimento"
-    group_item_label: "Nome do Fundo de Investimento"
+    group_item_label: "Nome do Fundo de Investimento referênte a última proposta do aluno"
     description: "Indica o fundo de investimento responsável pelo financiamento do aluno"
 
   }
@@ -1028,7 +1028,7 @@ view: alunos {
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
     group_label: "Dados do Fundo de Investimento"
     group_item_label: "ID Fundo de Investimento"
-    description: "Número de identificação do fundo de investimento"
+    description: "Número de identificação do fundo de investimento referente a última proposta do aluno"
   }
 
   dimension: nm_originador {
@@ -1036,7 +1036,7 @@ view: alunos {
     sql: ${TABLE}."NM_ORIGINADOR" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Originador"
-    description: "Indica o banco originador do financiamento"
+    description: "Indica o banco originador do financiamento referente a última proposta do aluno"
   }
 
   dimension: num_da_renovacao {
@@ -1085,7 +1085,7 @@ view: alunos {
     sql: ${TABLE}."QTD_PARCELAS_SEMESTRE" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Quantidade de Parcelas"
-    description: "Indica a quantidade de parcelas contratadas pelo aluno"
+    description: "Indica a quantidade de parcelas contratadas na proposta atual preenchida pelo aluno"
   }
 
   dimension: qtd_renovacao {
@@ -1147,7 +1147,7 @@ view: alunos {
     sql: ${TABLE}."GH" ;;
     group_label: "Dados da Proposta"
     group_item_label: "Grupo Homogêneo"
-    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do aluno após passar pela avaliação de análise de crédito baseado no Score de Crédito durante o processo de contratação do Aluno, ou seja, o grupo homogêneo é uma classificação dos scores, por exemplo, os alunos que possuem score maior que 9063 será classificado como GH A, GH B<=9063, GH C<=8845, GH D<=8328, GH E<=5197, GH F<=1728, GH G<=843"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo da última proposta do aluno após passar pela avaliação de análise de crédito baseado no Score de Crédito durante o processo de contratação do Aluno, ou seja, o grupo homogêneo é uma classificação dos scores, por exemplo, os alunos que possuem score maior que 9063 será classificado como GH A, GH B<=9063, GH C<=8845, GH D<=8328, GH E<=5197, GH F<=1728, GH G<=843"
     link: {
       label: "Documentação - GH"
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969408513/GH"
@@ -1394,20 +1394,12 @@ dimension: faixa_tempo_meses_evasao {
   }
 
 
-  measure: sum_qtd_mens_fin {
-    type: sum
-    sql: ${qtd_mensalidade_total} ;;
-    group_label: "Quantidade de Mensalidade Financiada"
-    group_item_label: "Soma"
-    description: "Soma da quantidade de mensalidades que foram efetivamente financiadas pelo PRAVALER"
-  }
-
   measure: avg_qtd_mens_fin {
     type: average
     sql: ${qtd_mensalidade_total} ;;
     group_label: "Quantidade de Mensalidade Financiada"
     group_item_label: "Média"
-    description: "Média da quantidade de mensalidades que foram efetivamente financiadas pelo PRAVALER"
+    description: "Média da quantidade de mensalidades que foram cedidas na proposta atual do aluno"
   }
 
   measure: sum_valor_fin {
@@ -1447,7 +1439,7 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${vl_mensalidade_atual} ;;
     group_label: "Valor Mensalidade"
     group_item_label: "Soma"
-    description: "Soma do valor de mensalidade"
+    description: "Soma dos valores de mensalidades que foram cedidas na proposta atual do aluno"
   }
 
   measure: avg_mensalidade {
@@ -1455,7 +1447,7 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${vl_mensalidade_atual} ;;
     group_label: "Valor Mensalidade"
     group_item_label: "Média"
-    description: "Valor médio de mensalidade"
+    description: "Valor médio de mensalidade que foi cedida na proposta atual do aluno"
   }
 
   measure: min_mensalidade {
@@ -1463,7 +1455,7 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${vl_mensalidade_atual} ;;
     group_label: "Valor Mensalidade"
     group_item_label: "Mínimo"
-    description: "Valor mínimo de mensalidade"
+    description: "Valor mínimo de mensalidade que foi cedida na proposta atual do aluno"
   }
 
   measure: max_mensalidade {
@@ -1471,7 +1463,7 @@ dimension: faixa_tempo_meses_evasao {
     sql: ${vl_mensalidade_atual} ;;
     group_label: "Valor Mensalidade"
     group_item_label: "Máximo"
-    description: "Valor máximo de mensalidade"
+    description: "Valor máximo de mensalidade que foi cedida na proposta atual do aluno"
   }
 
   dimension: gh_final {

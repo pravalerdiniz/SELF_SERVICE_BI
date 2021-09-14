@@ -30,7 +30,8 @@ view: alunos_acordo {
             f.value:VL_VENCENDO::float as VL_VENCENDO,
             f.value:CLASSIFICACAO_FAIXA_ATRASO::varchar as CLASSIFICACAO_FAIXA_ATRASO,
             f.value:VL_PAGO::float as VL_PAGO,
-            f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO
+            f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO,
+            case when max(f.key) over(partition by id_cpf, f.value:DATA_ACORDO::DATE order by f.value:DATA_ACORDO::DATE) = f.key then true else false end as FLG_MAX_ACORDO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => acordo) f
  ;;
@@ -59,6 +60,15 @@ view: alunos_acordo {
     description: "Indica o ID do CPF do aluno"
     sql: ${TABLE}."ID_CPF" ;;
   }
+
+
+  dimension: flg_max_acordo {
+    type: yesno
+    label: "Ùltimo acordo do dia?"
+    description: "Indica se é o último acordo do aluno dentro do dia"
+    sql: ${TABLE}."FLG_MAX_ACORDO" ;;
+  }
+
 
   dimension: id_acordo {
     type: string
@@ -143,12 +153,14 @@ view: alunos_acordo {
   dimension: canal {
     type: string
     label: "Canal"
+    description: "Indica se o acordo foi realizado de forma IINTERNA(PRAVALER) ou EXTERNA(EMPRESA)"
     sql: ${TABLE}."CANAL" ;;
   }
 
   dimension: tipo_canal {
     type: string
     label: "Tipo de Canal"
+    description: "Indica qual a empresa que realizou o acordo"
     sql: ${TABLE}."TIPO_CANAL" ;;
   }
 

@@ -51,13 +51,15 @@ view: base_carteira_risco {
   }
 
   measure: saldo {
-    type: number
+    type: sum
     group_item_label: "Saldo"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."SALDO" ;;
   }
 
   dimension: fec_mar {
     type: string
+    hidden: no
     sql: ${TABLE}."FEC_MAR" ;;
   }
 

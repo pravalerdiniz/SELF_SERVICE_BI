@@ -110,6 +110,13 @@ explore: orquestra_compra_carteira {
 
 explore: orquestra {
   label: "Orquestra"
+
+  join: orquestra_obj_campos {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
+    relationship: one_to_one
+    view_label: "Informações adicionais"
+    }
 }
 
 explore: base_trade {}
@@ -189,3 +196,5 @@ explore: base_score
 {
   label: "Base - Treino Score"
 }
+
+explore: perfil_usuarios {}

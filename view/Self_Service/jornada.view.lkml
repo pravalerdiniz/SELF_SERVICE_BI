@@ -451,6 +451,10 @@ view: jornada {
         sql: ${etapa} = 'Lead' ;;
         label: "0"
       }
+      when: {
+        sql: ${etapa} = 'Elegivel' ;;
+        label: "0"
+      }
 
       when: {
         sql: ${etapa} = 'Simulado' ;;
@@ -1647,7 +1651,7 @@ dimension: url {
     type: string
     group_label: "Atribuição"
     group_item_label: "Canal"
-    description: "Primeiro Canal da proposta/lead"
+    description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
   }
 
