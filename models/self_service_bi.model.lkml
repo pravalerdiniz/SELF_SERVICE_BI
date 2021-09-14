@@ -1010,11 +1010,14 @@ join: financeiro {
 }
 
 
-
 explore: interacoes {
   label: "Interações - Tickets"
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
+  access_filter: {
+    field: EMPRESA_AGENTE
+    user_attribute: grupo_bpo
+  }
 
   join: interacoes_detalhes_ligacao {
     view_label: "Detalhes de ligação"
