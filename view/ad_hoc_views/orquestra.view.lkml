@@ -166,7 +166,6 @@ view: orquestra {
 
   dimension_group: data_fim {
     type: time
-    group_label: "Tarefa"
     timeframes: [
       raw,
       time,
