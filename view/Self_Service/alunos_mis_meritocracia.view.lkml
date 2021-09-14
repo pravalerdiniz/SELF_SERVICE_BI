@@ -9,6 +9,18 @@ view: alunos_mis_meritocracia {
     drill_fields: [detail*]
   }
 
+  dimension: cpf_dt_pg {
+    type: string
+    sql: CONCAT(${cpf},${data_pagamento_group_raw}) ;;
+    primary_key: yes
+    hidden: yes
+
+
+
+
+
+  }
+
   dimension: cpf {
     type: string
     sql: ${TABLE}."CPF" ;;

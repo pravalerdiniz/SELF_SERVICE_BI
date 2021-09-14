@@ -28,7 +28,8 @@ view: base_caixa_projecao_carteira {
     sql: ${TABLE}."DT_REF" ;;
   }
 
-  dimension_group: data_fechamento_group{
+  dimension_group: data_ref
+  {
     type: time
     timeframes: [
       raw,
@@ -41,8 +42,8 @@ view: base_caixa_projecao_carteira {
     ]
     convert_tz: no
     label: "Referência"
-    datatype: date
-    sql: ${dt_ref} ;;
+    datatype:date
+    sql:${dt_ref} ;;
   }
 
   dimension: anomes_ref {
