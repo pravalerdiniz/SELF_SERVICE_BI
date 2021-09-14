@@ -24,7 +24,25 @@ view: base_caixa_projecao_carteira {
   dimension: dt_ref {
     type: date
     group_item_label:"Data de Referência"
+    hidden: yes
     sql: ${TABLE}."DT_REF" ;;
+  }
+
+  dimension_group: data_fechamento_group{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      day_of_month,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Referência"
+    datatype: date
+    sql: ${dt_ref} ;;
   }
 
   dimension: anomes_ref {
