@@ -67,7 +67,16 @@ view: base_caixa_projecao_carteira {
 
   measure: caixa_acum {
     type: sum
-    group_item_label: "Caixa Acumulado"
+    group_label: "Caixa Acumulado"
+    label: "Soma"
+    value_format: "$ #,##0.00"
+    sql: ${TABLE}."CAIXA_ACUM" ;;
+  }
+
+  measure: max_caixa_acum {
+    type: max
+    group_label: "Caixa Acumulado"
+    label: "Máximo"
     value_format: "$ #,##0.00"
     sql: ${TABLE}."CAIXA_ACUM" ;;
   }
