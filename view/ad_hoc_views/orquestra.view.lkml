@@ -152,8 +152,6 @@ view: orquestra {
 
   dimension_group: data_inicio {
     type: time
-    group_label: "Tarefa"
-    group_item_label: "Data Início da Tarefa"
     timeframes: [
       raw,
       time,
@@ -169,7 +167,6 @@ view: orquestra {
   dimension_group: data_fim {
     type: time
     group_label: "Tarefa"
-    group_item_label: "Data Fim da Tarefa"
     timeframes: [
       raw,
       time,
