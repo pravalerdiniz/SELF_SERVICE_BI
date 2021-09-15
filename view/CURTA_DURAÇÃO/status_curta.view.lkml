@@ -276,6 +276,66 @@ view: status_curta {
 
 
 
+dimension: tempo_curta {
+  type: number
+  group_label: "Dados da Etapa"
+  label: "Tempo - Minutos"
+  sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
+  value_format: "hh:mm:ss"
+}
+
+
+  dimension: faixa_tempo_curta {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Minutos"
+     case: {
+      when: {
+        sql: ${tempo_curta} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${tempo_curta} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${tempo_curta} <= 30 ;;
+        label: "15 - 30"
+      }
+      else: "30 >"
+    }
+
+  }
+
+
+  dimension: tempo_curta_segundos {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Tempo - Segundos"
+    sql: ${curta_lead_time.TEMPO_ETAPA} ;;
+  }
+
+  measure: average_tempo_curta {
+    type: average
+    group_label: "Tempo Minutos - Etapa"
+    label: "Média"
+    sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
+    value_format: "hh:mm:ss"
+  }
+
+
+
+
+
+
+  measure: med_tempo_curta {
+    type: median
+    group_label: "Tempo Minutos - Etapa"
+    label: "Mediana"
+    sql: ${tempo_curta} ;;
+
+  }
+
 
 
 
@@ -300,6 +360,7 @@ view: status_curta {
     drill_fields: []
     hidden: yes
   }
+
 
   measure: total_alunos {
     type: count_distinct

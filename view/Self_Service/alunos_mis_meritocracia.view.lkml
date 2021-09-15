@@ -21,6 +21,15 @@ view: alunos_mis_meritocracia {
 
   }
 
+
+
+  dimension: cpf_join {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."CPF_JOIN" ;;
+  }
+
+
   dimension: cpf {
     type: string
     sql: ${TABLE}."CPF" ;;
