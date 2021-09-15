@@ -923,7 +923,7 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_mis_meritocracia {
     view_label: "1.9.7 Cobrança - Meritocracia"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf}::int;;
     type: left_outer
     relationship: one_to_many
   }
