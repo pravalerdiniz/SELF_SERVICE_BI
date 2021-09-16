@@ -205,8 +205,8 @@ view: alunos_inadimplencia_3_book {
     sql: ${TABLE}."MENSALIDE" ;;
   }
 
-  dimension: tx_mensal {
-    type: number
+  measure: tx_mensal {
+    type: sum
     label: "Taxa Mensal"
     description: "Indica o valor da taxa mensal paga pelo ano"
     value_format: "00.00%"
