@@ -291,6 +291,18 @@ view: status {
     }
   }
 
+  dimension: TEMPO_SEG_TRANS_STATUS {
+    type: number
+    sql: ${TABLE}."TEMPO_SEG_TRANS_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Tempo de Transição do Status "
+    description: "Este campo é uma regra de negócio*. Indica a quantidade de segundos levaram para mudança ao status de origem"
+    link: {
+      label: "Documentação - Tempo de Transição do Status"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789610674/QUANTIDADE+DE+DIAS+-+STATUS+ANTERIOR"
+    }
+  }
+
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
@@ -385,6 +397,12 @@ nm_produto
     description: "Contagem de CPFs únicos"
   }
 
+
+  measure: sum_trans_status  {
+    type: sum
+    sql: ${TEMPO_SEG_TRANS_STATUS} ;;
+    label: "Tempo de Transição do Status"
+  }
 
   measure: count_ciclo {
     type: count_distinct
