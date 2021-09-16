@@ -126,6 +126,66 @@ view: status_curta {
     group_item_label: "Tipo de Evento"
   }
 
+  dimension: cpf_aluno {
+    type: number
+    sql: ${student.cpf_aluno} ;;
+    group_item_label: "CPF Aluno"
+    hidden: yes
+  }
+
+  dimension: nome_aluno {
+    type: string
+    sql: ${student.nome_aluno} ;;
+    group_item_label: "Nome do Aluno"
+    hidden: yes
+  }
+
+  dimension: nome_curso {
+    type: string
+    sql: ${student.nome_curso} ;;
+    group_item_label: "Nome do Curso"
+    hidden: yes
+  }
+
+
+  dimension: nome_fantasia_instituicao {
+    type: string
+    sql: ${student.nome_curso} ;;
+    group_item_label: "Nome do Instituição"
+    hidden: yes
+  }
+
+
+  dimension: flg_aluno_resp_fin {
+    type: number
+    sql: ${student.flg_aluno_resp_fin} ;;
+    group_item_label: "Responsável Financeiro?"
+    hidden: yes
+  }
+
+
+  dimension: telefone_aluno_1 {
+    type: number
+    sql: ${student.telefone_aluno_1} ;;
+    group_item_label: "Telefone"
+    hidden: yes
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   dimension: etapa {
@@ -366,6 +426,7 @@ dimension: tempo_curta {
     type: count_distinct
     sql: ${id_aluno} ;;
     group_item_label: "Total de Alunos"
+    drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date]
   }
 
   measure: total_contratos {
