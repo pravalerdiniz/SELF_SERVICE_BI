@@ -339,10 +339,17 @@ view: status_curta {
 dimension: tempo_curta {
   type: number
   group_label: "Dados da Etapa"
-  label: "Tempo - Minutos"
+  label: "Tempo"
   sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
-  value_format: "hh:mm:ss"
 }
+
+
+  dimension: tempo_curta_minutos {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Tempo - Minutos"
+    sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
+  }
 
 
   dimension: faixa_tempo_curta {
@@ -351,18 +358,22 @@ dimension: tempo_curta {
     label: "Faixa de Tempo - Minutos"
      case: {
       when: {
-        sql: ${tempo_curta} <= 5 ;;
+        sql: ${tempo_curta_minutos} <= 5 ;;
         label: "< 5"
       }
       when: {
-        sql: ${tempo_curta} <= 15 ;;
+        sql: ${tempo_curta_minutos} <= 15 ;;
         label: "5 - 15"
       }
       when: {
-        sql: ${tempo_curta} <= 30 ;;
+        sql: ${tempo_curta_minutos} <= 30 ;;
         label: "15 - 30"
       }
-      else: "30 >"
+      when: {
+        sql: ${tempo_curta_minutos} <= 60 ;;
+        label: "30 - 1h"
+      }
+      else: "1h >"
     }
 
   }
@@ -379,22 +390,24 @@ dimension: tempo_curta {
     type: average
     group_label: "Tempo Minutos - Etapa"
     label: "Média"
-    sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
-    value_format: "hh:mm:ss"
+    sql: ${tempo_curta_segundos}/86400.0;;
+    value_format: "[hh]:mm:ss"
   }
 
 
-
-
-
-
-  measure: med_tempo_curta {
-    type: median
+  measure: sum_tempo_curta {
+    type: sum
     group_label: "Tempo Minutos - Etapa"
-    label: "Mediana"
-    sql: ${tempo_curta} ;;
-
+    label: "Soma"
+    sql: ${tempo_curta_segundos}/86400.0;;
+    value_format: "[hh]:mm:ss"
   }
+
+
+
+
+
+
 
 
 
