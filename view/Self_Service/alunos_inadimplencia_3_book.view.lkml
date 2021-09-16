@@ -132,19 +132,15 @@ view: alunos_inadimplencia_3_book {
     sql: ${TABLE}."VP" ;;
   }
 
-  dimension: pdd {
-    type: number
-    group_label: "PDD"
+  measure: pdd {
+    type: sum
     label: "PDD - Provisão do Fundo"
-    hidden: yes
     sql: ${TABLE}."PDD" ;;
   }
 
-  dimension: pdd_new {
-    type: number
-    group_label: "PDD"
+  measure: pdd_new {
+    type: sum
     label: "PDD Nova - Provisão do Fundo"
-    hidden: yes
     sql: ${TABLE}."PDD_NEW" ;;
   }
 
@@ -239,12 +235,7 @@ view: alunos_inadimplencia_3_book {
 
   }
 
-  measure:sum_pdd  {
-    type: sum
-    group_label: "PDD"
-    label: "Provisão Fundo - Soma"
-    sql: ${pdd} ;;
-  }
+
   measure:sum_pdd_mob6  {
     type: sum
     group_label: "PDD"
@@ -252,12 +243,7 @@ view: alunos_inadimplencia_3_book {
     sql: ${pdd_mob6} ;;
   }
 
-  measure:sum_pdd_nova  {
-    type: sum
-    group_label: "PDD"
-    label: "Provisão Fundo (Nova) - Soma"
-    sql: ${pdd_new} ;;
-  }
+
 
   measure:sum_pdd_mob6_nova {
     type: sum
