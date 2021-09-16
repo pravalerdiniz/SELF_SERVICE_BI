@@ -373,7 +373,11 @@ dimension: tempo_curta {
         sql: ${tempo_curta_minutos} <= 60 ;;
         label: "30 - 1h"
       }
-      else: "1h >"
+      when: {
+        sql: ${tempo_curta_minutos} <= 180 ;;
+        label: "1h - 3h"
+      }
+      else: "3h >"
     }
 
   }
