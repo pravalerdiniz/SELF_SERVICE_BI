@@ -404,6 +404,12 @@ nm_produto
     label: "Tempo de Transição do Status"
   }
 
+  measure: sum_trans_days_status  {
+    type: sum
+    sql: to_number(${TEMPO_SEG_TRANS_STATUS} /86400) ;;
+    label: "Dias de Transição do Status"
+  }
+
   measure: count_ciclo {
     type: count_distinct
     sql: ${ciclo} ;;
