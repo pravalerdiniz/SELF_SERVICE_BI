@@ -198,8 +198,8 @@ view: alunos_inadimplencia_3_book {
     sql: ${TABLE}."OVER_90" ;;
   }
 
-  dimension: mensalide {
-    type: number
+  measure: mensalide {
+    type: sum
     label: "Mensalidade"
     description: "Indica o valor da parcela que o aluno está pagando atualmente"
     sql: ${TABLE}."MENSALIDE" ;;
