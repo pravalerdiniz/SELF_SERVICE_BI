@@ -296,11 +296,7 @@ view: status {
     sql: ${TABLE}."TEMPO_SEG_TRANS_STATUS" ;;
     group_label: "Dados do Status"
     label: "Tempo de Transição do Status "
-    description: "Este campo é uma regra de negócio*. Indica a quantidade de segundos levaram para mudança ao status de origem"
-    link: {
-      label: "Documentação - Tempo de Transição do Status"
-      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/789610674/QUANTIDADE+DE+DIAS+-+STATUS+ANTERIOR"
-    }
+    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
   }
 
 
