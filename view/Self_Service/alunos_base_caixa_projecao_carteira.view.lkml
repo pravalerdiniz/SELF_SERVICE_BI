@@ -101,7 +101,14 @@ view: base_caixa_projecao_carteira {
     sql: ${TABLE}."SALDO_CARTEIRA" ;;
   }
 
-  measure: caixa_acum {
+ dimension: caixa_acum {
+    type: number
+    label: "Caixa Acumulado"
+    value_format: "$ #,##0.00"
+    sql: ${TABLE}."CAIXA_ACUM" ;;
+  }
+
+  measure: sum_caixa_acum {
     type: sum
     group_label: "Caixa Acumulado"
     label: "Soma"
