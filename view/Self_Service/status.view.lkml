@@ -291,6 +291,14 @@ view: status {
     }
   }
 
+  dimension: TEMPO_SEG_TRANS_STATUS {
+    type: number
+    sql: ${TABLE}."TEMPO_SEG_TRANS_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Tempo de Transição do Status "
+    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+  }
+
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
@@ -385,6 +393,18 @@ nm_produto
     description: "Contagem de CPFs únicos"
   }
 
+
+  measure: sum_trans_status  {
+    type: sum
+    sql: ${TEMPO_SEG_TRANS_STATUS} ;;
+    label: "Tempo de Transição do Status"
+  }
+
+  measure: sum_trans_days_status  {
+    type: sum
+    sql: to_number(${TEMPO_SEG_TRANS_STATUS} /86400) ;;
+    label: "Dias de Transição do Status"
+  }
 
   measure: count_ciclo {
     type: count_distinct
