@@ -161,7 +161,6 @@ view: orquestra {
       quarter,
       year
     ]
-    group_item_label: "Início Tarefa"
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
@@ -176,7 +175,6 @@ view: orquestra {
       quarter,
       year
     ]
-    group_item_label: "Fim Tarefa"
     sql: ${TABLE}."DATA_FIM" ;;
   }
 
