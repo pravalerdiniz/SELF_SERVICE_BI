@@ -24,7 +24,43 @@ view: base_caixa_projecao_carteira {
   dimension: dt_ref {
     type: date
     group_item_label:"Data de Referência"
+    hidden: yes
     sql: ${TABLE}."DT_REF" ;;
+  }
+
+  dimension: ultimo_dia_mes {
+    type:date
+    label: "Ultimo Dia do Mês"
+    hidden: yes
+    sql:last_day(${data_ref_date}::DATE) ;;
+  }
+
+  dimension: flg_ultimo_dia_mes {
+    type:yesno
+    label: "Ultimo Dia do Mês?"
+    sql:case when ${ultimo_dia_mes} = ${data_ref_date} then true
+    else false end ;;
+  }
+
+
+
+  dimension_group: data_ref
+  {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      day_of_month,
+      week,
+      month,
+      quarter,
+      year,
+      time
+    ]
+    convert_tz: no
+    label: "Referência"
+    datatype:date
+    sql:${dt_ref} ;;
   }
 
   dimension: anomes_ref {
@@ -67,7 +103,16 @@ view: base_caixa_projecao_carteira {
 
   measure: caixa_acum {
     type: sum
-    group_item_label: "Caixa Acumulado"
+    group_label: "Caixa Acumulado"
+    label: "Soma"
+    value_format: "$ #,##0.00"
+    sql: ${TABLE}."CAIXA_ACUM" ;;
+  }
+
+  measure: max_caixa_acum {
+    type: max
+    group_label: "Caixa Acumulado"
+    label: "Máximo"
     value_format: "$ #,##0.00"
     sql: ${TABLE}."CAIXA_ACUM" ;;
   }

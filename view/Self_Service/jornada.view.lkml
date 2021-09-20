@@ -451,6 +451,10 @@ view: jornada {
         sql: ${etapa} = 'Lead' ;;
         label: "0"
       }
+      when: {
+        sql: ${etapa} = 'Elegivel' ;;
+        label: "0"
+      }
 
       when: {
         sql: ${etapa} = 'Simulado' ;;

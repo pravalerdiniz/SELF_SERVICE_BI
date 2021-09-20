@@ -814,14 +814,21 @@ join: alunos_inadimplencia_2 {
   }
 
   join: base_caixa_projecao_carteira {
-    view_label: "1.2.6 Carteira - Base Projeção"
+    view_label: "1.2.8 Carteira - Base Projeção"
     sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
+  join: alunos_base_recuperacao {
+    view_label: "1.2.9 Carteira - Recuperação"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "1.2.8 S&P - Fitch Rating"
+    view_label: "1.2.10 S&P - Fitch Rating"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
     type: left_outer
     relationship: one_to_many
@@ -923,7 +930,7 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_mis_meritocracia {
     view_label: "1.9.7 Cobrança - Meritocracia"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
     type: left_outer
     relationship: one_to_many
   }
