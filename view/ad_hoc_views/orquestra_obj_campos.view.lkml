@@ -3,7 +3,7 @@ view: orquestra_obj_campos {
     sql: select NUMERO_CHAMADO
     ,T.VALUE:"Categoria:"::varchar categoria
     ,T.VALUE:"IES do Aluno:"::varchar ies_do_aluno
-    ,T.VALUE:"Descrição da Solicitação:"::descricao_da_solicitacao
+    ,T.VALUE:"Descrição da Solicitação:"::varchar descricao_da_solicitacao
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
       where T.VALUE:"Categoria:" IS NOT NULL
