@@ -94,6 +94,7 @@ view: orquestra {
   dimension: numero_chamado {
     type: string
     group_label: "Solicitação"
+    drill_fields: [numero_chamado, nome_fila, area_requisitante, data_inicio_date, area_executor, data_fim_date]
     group_item_label: "Número da Solicitação"
     description: "Número do chamado da Solicitação"
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
