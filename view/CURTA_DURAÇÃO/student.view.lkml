@@ -10,6 +10,17 @@ view: student {
     group_item_label: "Bairro"
     group_label: "Dados do Aluno"
   }
+
+  dimension: flg_aluno_resp_fin {
+    type: yesno
+    sql: ${TABLE}."FLG_ALUNO_RESP_FIN";;
+    description:"INDICA SE O ALUNO É O RESPONSÁVEL FINANCEIRO"
+    group_item_label: "Responsavel Financeiro?"
+    group_label: "Dados do Aluno"
+  }
+
+
+
   dimension: bairro_fiador {
     type: string
     sql: ${TABLE}."BAIRRO_FIADOR";;

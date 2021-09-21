@@ -252,4 +252,14 @@ view: orquestra {
     hidden: yes
     sql: ${tempo_desde_abertura_horas} ;;
   }
+
+  measure: count_chamados {
+    type: count_distinct
+    sql: ${numero_chamado} ;;
+    drill_fields: [numero_chamado,
+      nome_fila, data_inicio_date, area_requisitante, data_fim_date, area_executor, descricao_resultado]
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Valor"
+    description: "Contagem de Chamados Únicos"
+  }
 }

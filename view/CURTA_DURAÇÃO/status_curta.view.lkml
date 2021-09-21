@@ -126,6 +126,66 @@ view: status_curta {
     group_item_label: "Tipo de Evento"
   }
 
+  dimension: cpf_aluno {
+    type: number
+    sql: ${student.cpf_aluno} ;;
+    group_item_label: "CPF Aluno"
+    hidden: yes
+  }
+
+  dimension: nome_aluno {
+    type: string
+    sql: ${student.nome_aluno} ;;
+    group_item_label: "Nome do Aluno"
+    hidden: yes
+  }
+
+  dimension: nome_curso {
+    type: string
+    sql: ${student.nome_curso} ;;
+    group_item_label: "Nome do Curso"
+    hidden: yes
+  }
+
+
+  dimension: nome_fantasia_instituicao {
+    type: string
+    sql: ${student.nome_curso} ;;
+    group_item_label: "Nome do Instituição"
+    hidden: yes
+  }
+
+
+  dimension: flg_aluno_resp_fin {
+    type: number
+    sql: ${student.flg_aluno_resp_fin} ;;
+    group_item_label: "Responsável Financeiro?"
+    hidden: yes
+  }
+
+
+  dimension: telefone_aluno_1 {
+    type: number
+    sql: ${student.telefone_aluno_1} ;;
+    group_item_label: "Telefone"
+    hidden: yes
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   dimension: etapa {
@@ -276,6 +336,83 @@ view: status_curta {
 
 
 
+dimension: tempo_curta {
+  type: number
+  group_label: "Dados da Etapa"
+  label: "Tempo"
+  sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
+}
+
+
+  dimension: tempo_curta_minutos {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Tempo - Minutos"
+    sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
+  }
+
+
+  dimension: faixa_tempo_curta {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Minutos"
+     case: {
+      when: {
+        sql: ${tempo_curta_minutos} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 30 ;;
+        label: "15 - 30"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 60 ;;
+        label: "30 - 1h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 180 ;;
+        label: "1h - 3h"
+      }
+      else: "3h >"
+    }
+
+  }
+
+
+  dimension: tempo_curta_segundos {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Tempo - Segundos"
+    sql: ${curta_lead_time.TEMPO_ETAPA} ;;
+  }
+
+  measure: average_tempo_curta {
+    type: average
+    group_label: "Tempo Minutos - Etapa"
+    label: "Média"
+    sql: ${tempo_curta_segundos}/86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+
+  measure: sum_tempo_curta {
+    type: sum
+    group_label: "Tempo Minutos - Etapa"
+    label: "Soma"
+    sql: ${tempo_curta_segundos}/86400.0;;
+    value_format: "[hh]:mm:ss"
+  }
+
+
+
+
+
+
+
 
 
 
@@ -301,10 +438,12 @@ view: status_curta {
     hidden: yes
   }
 
+
   measure: total_alunos {
     type: count_distinct
     sql: ${id_aluno} ;;
     group_item_label: "Total de Alunos"
+    drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date]
   }
 
   measure: total_contratos {

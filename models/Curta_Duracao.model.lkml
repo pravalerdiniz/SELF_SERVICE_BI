@@ -525,6 +525,13 @@ explore: status_curta {
     relationship: one_to_many
   }
 
+  join: curta_lead_time{
+    sql_on: ${curta_lead_time.id_aluno} = ${status_curta.id_aluno} and ${curta_lead_time.ID_STATUS} = ${status_curta.id_status};;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
  # join: fiador {
  #   from:  student
  #   view_label: "Fiador"
