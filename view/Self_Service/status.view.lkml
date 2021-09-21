@@ -161,6 +161,22 @@ view: status {
       description:  "Descreve o status origem geral"
     }
 
+  dimension: grupo_status_origem {
+    type: string
+    sql: ${TABLE}."GRUPO_STATUS_ORIGEM" ;;
+    group_label: "Dados do Status"
+    group_item_label: "Grupo de Status Personalizado - Origem"
+    description:  "Este campo é uma regra de negócio*. Indica o grupo de status personalizado para análises do funil, criado pelo time de Planejamento Comercial."
+  }
+
+  dimension: grupo_status_destino {
+    type: string
+    sql: ${TABLE}."GRUPO_STATUS_DESTINO" ;;
+    group_label: "Dados do Status"
+    group_item_label: "Grupo de Status Personalizado - Destino"
+    description:  "Este campo é uma regra de negócio*. Indica o grupo de status personalizado para análises do funil, criado pelo time de Planejamento Comercial."
+  }
+
     dimension: fonte {
       type: string
       sql: ${TABLE}."FONTE" ;;

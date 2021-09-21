@@ -109,7 +109,7 @@ view: orquestra {
 
   dimension: codigo_resultado {
     type: number
-    group_label: "Dados daSolicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Código do resultado"
     description: "Código do resultado que a solicitação teve após finalizada - Botão de Ação"
     sql: ${TABLE}."CODIGO_RESULTADO" ;;
@@ -169,7 +169,7 @@ view: orquestra {
       quarter,
       year
     ]
-    label: "Início Tarefa"
+    label: "Tarefa Início"
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
@@ -184,7 +184,7 @@ view: orquestra {
       quarter,
       year
     ]
-    label: "Fim Tarefa"
+    label: "Tarefa Fim"
     sql: ${TABLE}."DATA_FIM" ;;
   }
 
