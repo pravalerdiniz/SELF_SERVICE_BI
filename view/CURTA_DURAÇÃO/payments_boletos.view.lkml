@@ -62,7 +62,7 @@ lateral flatten (input=>boletos) f
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
     datatype: date
     label: "Vencimento"
-    sql: ${data_vencimento};;
+    sql: ${TABLE}."DATA_VENCIMENTO";;
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
 
@@ -79,7 +79,7 @@ lateral flatten (input=>boletos) f
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
     datatype: date
     label: "Pagamento"
-    sql: ${data_pagamento};;
+    sql: ${TABLE}."DATA_PAGAMENTO";;
     description: "DATA DE PAGAMENTO DO BOLETO"
   }
 
