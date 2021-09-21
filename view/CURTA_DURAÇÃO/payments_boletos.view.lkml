@@ -20,6 +20,13 @@ lateral flatten (input=>boletos) f
     drill_fields: [detail*]
   }
 
+  measure: count_distinct {
+    type: count_distinct
+    label: "Quantidade de Boletos"
+    sql: ${key} ;;
+    drill_fields: [detail*]
+  }
+
   dimension: key {
     type: string
     group_item_label: "Linha Digitável"
@@ -189,11 +196,11 @@ lateral flatten (input=>boletos) f
 
 ##((1+Juros mensal)^(1/30))-1 - Juros mensal dia a dia
 
-  dimension: flag_menor_vencimento {
+  dimension: flg_menor_vencimento {
   type: yesno
-  sql:${payment_boletos_menor_vencimento.data_vencimento}=${payments_boletos.data_vencimento};;
+  sql:${TABLE}."FLG_MENOR_VENCIMENTO";;
   group_item_label: "Menor Vencimento?"
-  description: "Indica se a data de vencimento é a menor do aluno"
+  description: "Indica se a data menor vencimento do aluno"
   }
 
 
@@ -292,8 +299,10 @@ lateral flatten (input=>boletos) f
   set: detail {
     fields: [
       chave_contrato,
+      key,
       dias_vencido,
       data_vencimento,
+      data_pagamento,
       num_parcela,
       situacao,
       vl_boleto
