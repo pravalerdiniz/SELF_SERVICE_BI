@@ -29,10 +29,24 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
+  dimension: nome_do_aluno {
+    type: string
+    sql: ${TABLE}."NOME_DO_ALUNO" ;;
+    label: "Nome do Aluno"
+    #description: ""
+  }
+
   dimension: ies_do_aluno {
     type: string
     sql: ${TABLE}."IES_DO_ALUNO" ;;
     label: "IES do Aluno"
+    #description: ""
+  }
+
+  dimension: motivo_de_contato {
+    type: string
+    sql: ${TABLE}."MOTIVO_DE_CONTATO" ;;
+    label: "Motivo de Contato"
     #description: ""
   }
 
@@ -43,6 +57,12 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
+  dimension: area_responsavel {
+    type: string
+    sql: ${TABLE}."AREA_RESPONSAVEL" ;;
+    label: "Área Responsável"
+    #description: ""
+  }
 
   set: detail {
     fields: [numero_chamado, categoria]
