@@ -1,18 +1,19 @@
 view: orquestra_obj_campos {
   derived_table: {
-    sql: select NUMERO_CHAMADO
+    sql: select NUMERO_CHAMADO, NOME_TASK
     ,T.VALUE:"Categoria:"::varchar categoria
-    ,T.VALUE:"Nome do Aluno:"::varchar nome_do_aluno
-    ,T.VALUE:"IES do Aluno:"::varchar ies_do_aluno
-    ,T.VALUE:"Motivo de Contato:"::varchar motivo_de_contato
-    ,T.VALUE:"Descrição da Solicitação:"::varchar area_responsavel
+    ,T.VALUE:"Nome do Aluno"::varchar nome_do_aluno
+    ,T.VALUE:"IES do Aluno"::varchar ies_do_aluno
+    ,T.VALUE:"Motivo de Contato"::varchar motivo_de_contato
+    ,T.VALUE:"Descrição da Solicitação"::varchar descricao_da_solicitacao
+    ,T.VALUE:"Área Responsável"::varchar area_responsavel
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      where T.VALUE:"Categoria:" IS NOT NULL
-      and   T.VALUE:"Nome do Aluno:" IS NOT NULL
-      and   T.VALUE:"IES do Aluno:" IS NOT NULL
-      and   T.VALUE:"Motivo de Contato:" IS NOT NULL
-      and   T.VALUE:"Descrição da Solicitação:" IS NOT NULL
+      --where T.VALUE:"Categoria:" IS NOT NULL
+      --and   T.VALUE:"Nome do Aluno:" IS NOT NULL
+      --and   T.VALUE:"IES do Aluno:" IS NOT NULL
+      --and   T.VALUE:"Motivo de Contato:" IS NOT NULL
+      --and   T.VALUE:"Descrição da Solicitação:" IS NOT NULL
        ;;
   }
 
@@ -25,6 +26,12 @@ view: orquestra_obj_campos {
   dimension: numero_chamado {
     type: string
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
+    hidden:  yes
+  }
+
+  dimension: nome_task {
+    type: string
+    sql: ${TABLE}."NOME_TASK" ;;
     hidden:  yes
   }
 
