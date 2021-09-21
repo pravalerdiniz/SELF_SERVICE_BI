@@ -9,6 +9,10 @@ view: orquestra_obj_campos {
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
       where T.VALUE:"Categoria:" IS NOT NULL
+      and   T.VALUE:"Nome do Aluno:" IS NOT NULL
+      and   T.VALUE:"IES do Aluno:" IS NOT NULL
+      and   T.VALUE:"Motivo de Contato:" IS NOT NULL
+      and   T.VALUE:"Descrição da Solicitação:" IS NOT NULL
        ;;
   }
 
