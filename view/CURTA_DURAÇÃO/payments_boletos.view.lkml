@@ -78,7 +78,7 @@ lateral flatten (input=>boletos) f
   dimension_group: data_pagamento_group {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
     datatype: date
-    group_item_label: "Data de Pagamento"
+    label: "Pagamento"
     sql: ${data_pagamento};;
     description: "DATA DE PAGAMENTO DO BOLETO"
   }
