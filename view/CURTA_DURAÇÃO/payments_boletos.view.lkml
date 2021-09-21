@@ -61,7 +61,7 @@ lateral flatten (input=>boletos) f
   dimension_group: data_vencimento_group {
     type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
     datatype: date
-    group_item_label: "Data de Vencimento"
+    label: "Vencimento"
     sql: ${data_vencimento};;
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
@@ -69,7 +69,7 @@ lateral flatten (input=>boletos) f
 
   dimension: data_pagamento {
     type: date
-    group_item_label: "Data de Pagamento"
+    label: "Pagamento"
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
     hidden: yes
     description: "DATA DE PAGAMENTO DO BOLETO"
