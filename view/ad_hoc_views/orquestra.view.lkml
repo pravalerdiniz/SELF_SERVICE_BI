@@ -15,33 +15,33 @@ view: orquestra {
 
   dimension: nome_executor {
     type: string
-    group_label: "Usuário"
-    group_item_label: "Nome do Usuário"
-    description: "Nome da pessoa que possui usuário no Orquestra"
+    group_label: "Dados do Executor"
+    group_item_label: "Nome do Executor"
+    description: "Nome da pessoa que executa uma tarefa no Orquestra"
     sql: ${TABLE}."NOME_EXECUTOR" ;;
   }
 
   dimension: login_executor {
     type: string
-    group_label: "Usuário"
-    group_item_label: "Login do Usuário"
-    description: "Login da pessoa que possui usuário no Orquestra"
+    group_label: "Dados do Executor"
+    group_item_label: "Login do Executor"
+    description: "Login da pessoa que executa uma tarefa no Orquestra"
     sql: ${TABLE}."LOGIN_EXECUTOR" ;;
   }
 
   dimension: area_executor {
     type: string
-    group_label: "Usuário"
-    group_item_label: "Area do Usuário"
-    description: "Área da pessoa que possui usuário no orquestra"
+    group_label: "Dados do Executor"
+    group_item_label: "Area do Executor"
+    description: "Área da pessoa que executa uma tarefa no Orquestra"
     sql: ${TABLE}."AREA_EXECUTOR" ;;
   }
 
   dimension: posicao_executor {
     type: string
-    group_label: "Usuário"
-    group_item_label: "Função do Usuário"
-    description: "Função da pessoa que possui usuário no Orquestra"
+    group_label: "Dados do Executor"
+    group_item_label: "Função do Executor"
+    description: "Função da pessoa que executa uma tarefa no Orquestra"
     sql: ${TABLE}."POSICAO_EXECUTOR" ;;
   }
 
@@ -50,7 +50,7 @@ view: orquestra {
 
   dimension: nome_requisitante {
     type: string
-    group_label: "Solicitante"
+    group_label: "Dados do Solicitante"
     group_item_label: "Nome do solicitante"
     description: "Nome do solicitante da requisição"
     sql: ${TABLE}."NOME_REQUISITANTE" ;;
@@ -58,7 +58,7 @@ view: orquestra {
 
   dimension: login_requisitante {
     type: string
-    group_label: "Solicitante"
+    group_label: "Dados do Solicitante"
     group_item_label: "Login do solicitante"
     description: "Login do solicitante da requisição"
     sql: ${TABLE}."LOGIN_REQUISITANTE" ;;
@@ -66,7 +66,7 @@ view: orquestra {
 
   dimension: area_requisitante {
     type: string
-    group_label: "Solicitante"
+    group_label: "Dados do Solicitante"
     group_item_label: "Área do solicitante"
     description: "Área do solicitante da requisição"
     sql: ${TABLE}."AREA_REQUISITANTE" ;;
@@ -74,7 +74,7 @@ view: orquestra {
 
   dimension: posicao_requisitante {
     type: string
-    group_label: "Solicitante"
+    group_label: "Dados do Solicitante"
     group_item_label: "Função do solicitante"
     description: "Função do solicitante da requisição"
     sql: ${TABLE}."POSICAO_REQUISITANTE" ;;
@@ -85,7 +85,7 @@ view: orquestra {
 
   dimension: nome_fila {
     type: string
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Nome do Processo"
     description: "Nome do processo para consulta (Ex. P17, P24, P40...)"
     sql: ${TABLE}."NOME_FILA" ;;
@@ -93,7 +93,7 @@ view: orquestra {
 
   dimension: numero_chamado {
     type: string
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Número da Solicitação"
     description: "Número do chamado da Solicitação"
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
@@ -101,7 +101,7 @@ view: orquestra {
 
   dimension: tkt_zendesk {
     type: string
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Ticket do Zendesk"
     description: "Número do ticket aberto no Zendesk no atendimento do aluno"
     sql: ${TABLE}."TKT_ZENDESK" ;;
@@ -109,7 +109,7 @@ view: orquestra {
 
   dimension: codigo_resultado {
     type: number
-    group_label: "Solicitação"
+    group_label: "Dados daSolicitação"
     group_item_label: "Código do resultado"
     description: "Código do resultado que a solicitação teve após finalizada - Botão de Ação"
     sql: ${TABLE}."CODIGO_RESULTADO" ;;
@@ -117,7 +117,7 @@ view: orquestra {
 
   dimension: descricao_resultado {
     type: string
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Descrição do resultado"
     description: "Descrição do resultado que a solicitação teve após finalizada - Botão de Ação"
     sql: ${TABLE}."DESCRICAO_RESULTADO" ;;
@@ -125,15 +125,23 @@ view: orquestra {
 
   dimension: flg_processo_em_andamento {
     type: yesno
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Flg Processo em Andamento?"
     description: "Verifica se o chamado está em andamento/tratativa ou não (Yes/No)"
     sql: ${TABLE}."FLG_PROCESSO_EM_ANDAMENTO" ;;
   }
 
+  dimension: tempo_desde_abertura_horas {
+    type: number
+    group_label: "Dados da Solicitação"
+    group_item_label: "Tempo desde abertura (Horas)"
+    description: "Tempo em horas corridas entre abertura e finalização da solicitação"
+    sql: ${TABLE}."TEMPO_DESDE_ABERTURA_HORAS" ;;
+  }
+
   dimension: obj_campos {
     type: string
-    group_label: "Solicitação"
+    group_label: "Dados da Solicitação"
     group_item_label: "Objetos da Solicitação"
     description: "Todas as informações que foram preenchidas no formulário do processo"
     sql: ${TABLE}."OBJ_CAMPOS" ;;
@@ -144,7 +152,7 @@ view: orquestra {
 
   dimension: nome_task {
     type: string
-    group_label: "Tarefa"
+    group_label: "Dados da Tarefa"
     group_item_label: "Nome da Tarefa"
     description: "Tarefas da solicitação"
     sql: ${TABLE}."NOME_TASK" ;;
@@ -161,6 +169,7 @@ view: orquestra {
       quarter,
       year
     ]
+    label: "Início Tarefa"
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
@@ -175,27 +184,22 @@ view: orquestra {
       quarter,
       year
     ]
+    label: "Fim Tarefa"
     sql: ${TABLE}."DATA_FIM" ;;
   }
 
-  dimension: tempo_desde_abertura_horas {
-    type: number
-    group_label: "Tarefa"
-    group_item_label: "Tempo desde abertura (Horas)"
-    description: "Tempo em horas corridas entre abertura e finalização da tarefa"
-    sql: ${TABLE}."TEMPO_DESDE_ABERTURA_HORAS" ;;
-  }
+
 
   dimension: flg_primeira_task {
     type: yesno
-    group_label: "Tarefa"
+    group_label: "Dados da Tarefa"
     group_item_label: "Flg Primeira task?"
     sql: ${TABLE}."FLG_PRIMEIRA_TASK" ;;
   }
 
   dimension: flg_ultima_task {
     type: yesno
-    group_label: "Tarefa"
+    group_label: "Dados da Tarefa"
     group_item_label: "Flg Última task?"
     sql: ${TABLE}."FLG_ULTIMA_TASK" ;;
   }
@@ -204,7 +208,7 @@ view: orquestra {
 
   dimension: cpf {
     type: string
-    group_label: "Aluno"
+    group_label: "Dados do Aluno"
     group_item_label: "CPF do Aluno"
     sql: ${TABLE}."CPF" ;;
   }
