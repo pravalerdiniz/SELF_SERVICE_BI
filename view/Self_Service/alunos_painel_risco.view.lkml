@@ -9,10 +9,32 @@ view: alunos_painel_risco {
             f.value:PROPOSTA::varchar as PROPOSTA,
             f.value:MODALIDADE::varchar as MODALIDADE,
             f.value:ORDEM::varchar as ORDEM,
-            f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS
+            f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS,
+            f.value:data_hora::timestamp as DATA_HORA
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
  ;;
+  }
+
+
+  dimension_group: data_hora {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      hour,
+      minute,
+      second
+    ]
+    sql:${TABLE}."DATA_HORA";;
+    description: "Indica a data da decisão de análise de risco e crédito do Aluno."
+
+
   }
 
   measure: count {
