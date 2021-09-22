@@ -113,7 +113,8 @@ explore: orquestra {
 
   join: orquestra_obj_campos {
     type: left_outer
-    sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
+    sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado}
+    and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};;
     relationship: one_to_one
     view_label: "Informações adicionais"
     }
