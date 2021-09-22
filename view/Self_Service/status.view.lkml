@@ -315,6 +315,13 @@ view: status {
     description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
   }
 
+  dimension: TEMPO_DIAS_TRANS_STATUS {
+    type: number
+    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
+    group_label: "Dados do Status"
+    label: "Dias de Transição do Status "
+    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+  }
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
