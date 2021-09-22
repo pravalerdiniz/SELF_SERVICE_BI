@@ -480,19 +480,12 @@ view: student {
 
   measure: perc_cpf_aluno {
     type: percent_of_total
-    sql: ${count_cpf_aluno} ;;
+    sql: ${count_cpf_aluno_distinct} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Porcentagem"
     description: "Porcentagem do total de CPFs únicos"
   }
 
-  measure: count_cpf_aluno {
-    type: count
-    #sql: ${cpf_aluno} ;;
-    group_label: "Quantidade de Propostas"
-    group_item_label: "Valor"
-    description: "Contagem de ID CPFs não distintos"
-  }
 
 
   measure: avg_renda_aluno {
