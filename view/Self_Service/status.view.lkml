@@ -489,7 +489,13 @@ nm_produto
 
   }
 
-
+  measure: sum_qtd_dias_status_anterior{
+    type: sum
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Soma de quantidade de Dias - Status Anterior"
+    value_format: "0"
+    description: "Indica a soma de quantidade dias que o aluno ficou parado no status de origem"
+  }
 
 
   measure: avg_qtd_dias_status_anterior{
