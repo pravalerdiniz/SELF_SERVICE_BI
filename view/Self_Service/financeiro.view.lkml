@@ -647,7 +647,13 @@ foi gerado por um pagamento menor do boleto anterior."
 
   }
 
-
+  dimension: linha_digitavel {
+    type: string
+    group_label: "Dados do Boleto"
+    label: "Linha Digitavel"
+    description: "Indica o código de barras (linha digitavel) do boleto."
+    sql: ${TABLE}."LINHA_DIGITAVEL" ;;
+  }
 
 
   measure: count_titulo {

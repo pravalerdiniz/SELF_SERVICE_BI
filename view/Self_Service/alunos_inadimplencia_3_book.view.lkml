@@ -217,6 +217,16 @@ view: alunos_inadimplencia_3_book {
 
 
   }
+
+  measure: vl_presente_antigo {
+    type: sum
+    group_label: "Valor Presente Antigo"
+    label: "PDD Antiga - Soma"
+    sql: ${vp} ;;
+    filters: [tdt_ano_mes: "202004"]
+    }
+
+
   measure: vl_presente_mob6 {
     type: sum
     group_label: "Valor Presente"
