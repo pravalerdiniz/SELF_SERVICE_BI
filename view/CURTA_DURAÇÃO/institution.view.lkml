@@ -304,6 +304,29 @@ view: institution {
     group_item_label: "Nome"
     group_label: "Dados da Instituição"
   }
+
+
+  dimension: nome_segmento_instituicao {
+    type: string
+    sql: ${TABLE}."NOME_SEGMENTO";;
+    description:"NOME DO NICHO DA INSTITUIÇÃO. EX: BELEZA, SAÚDE, TECH E ETC."
+    group_item_label: "Segmento"
+    group_label: "Dados da Instituição"
+  }
+
+
+  dimension: score_classificao_instituicao {
+    type: string
+    sql: ${TABLE}."SCORE_SEGMENTO";;
+    description:"CLASSIFICAÇÃO DO SCORE POR NICHO DA INSTITUIÇÃO."
+    group_item_label: "Score - Classificação"
+    group_label: "Dados da Instituição"
+  }
+
+
+
+
+
   dimension: nome_curso {
     type: string
     sql: ${TABLE}."NOME_CURSO";;
