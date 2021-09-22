@@ -186,7 +186,7 @@ explore: contracts {
 
   join: student_curso {
     view_label: "Cursos Alunos"
-    sql_on: ${student.id_aluno} = ${student_curso.id_aluno} ;;
+    sql_on: ${student.id_aluno} = ${student_curso.id_aluno} and ${student_curso.id_aluno} = ${contracts.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
 
