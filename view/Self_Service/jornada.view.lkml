@@ -362,8 +362,8 @@ view: jornada {
     type: number
     sql: datediff('day',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
-    group_item_label: "Tempo no Status"
-    description: "Indica a quantos dias o aluno está no mesmo status"
+    group_item_label: "Tempo no Último Status"
+    description: "Indica a quantidade de dias que o aluno está parado no último status."
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
@@ -373,7 +373,8 @@ view: jornada {
     sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
     group_item_label: "Horas no Status"
-    description: "Indica a quantas horas o aluno está no mesmo status"
+    description: "Indica quantas horas o aluno está no mesmo status"
+    hidden: yes
   }
 
   dimension: grupo_status_renovacao {
@@ -402,8 +403,8 @@ view: jornada {
       else: "30 >"
     }
     group_label: "Telemetria"
-    group_item_label: "Faixa de Tempo no Status"
-    description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
+    group_item_label: "Faixa de Tempo no Último Status"
+    description: "Indica a faixa de tempo, em dias, que o aluno está no último status."
   }
 
 
@@ -720,6 +721,7 @@ view: jornada {
       }
       else: "0 >"
     }
+    hidden: yes
   }
 
 
@@ -734,6 +736,7 @@ view: jornada {
       }
       else: "0 >"
     }
+    hidden: yes
   }
 
   dimension: dias_iniciar_proposta_novos {
@@ -1346,22 +1349,20 @@ view: jornada {
   measure: tempo_status {
     type: average
     sql: ${tempo_no_status} ;;
-    group_label: "Tempo no Status Atual"
-    group_item_label: "Dias"
+    group_item_label: "Tempo no Último Status - Média"
     value_format: "0"
     drill_fields: [detail*]
-    description: "Media de tempo no status"
+    description: "Media de tempo no status atual."
   }
 
 
   measure: tempo_status_median {
     type: median
     sql: ${tempo_no_status} ;;
-    group_label: "Tempo no Status Atual - Mediana"
-    group_item_label: "Dias"
+    group_item_label: "Tempo no Último Status - Mediana"
     value_format: "0"
     drill_fields: [detail*]
-    description: "Mediana de tempo no status"
+    description: "Mediana de tempo no status atual."
   }
 
   measure: tempo_status_hora {
@@ -1371,8 +1372,8 @@ view: jornada {
     group_label: "Tempo no Status Atual"
     group_item_label: "Horas"
     value_format: "0"
-
     description: "Média de horas no status"
+    hidden: yes
   }
 
   # Jornada Novos
@@ -1510,13 +1511,13 @@ view: jornada {
 
   measure: median_total_novos {
     type: number
-    sql: ${iniciar_proposta_novos}+
-     ${finalizar_proposta_novos}+
-    ${mesa_risco_novos}+${aprovacao_instituicao_novos}+
-    ${aguardando_documento_novos}+
-    ${agu_assinatura_contrato_novos}+
-    ${formalizacao_novos}+
-    ${cessao_novos};;
+    sql: coalesce(${iniciar_proposta_novos},0)+
+     coalesce(${finalizar_proposta_novos},0)+
+    coalesce(${mesa_risco_novos},0)+coalesce(${aprovacao_instituicao_novos},0)+
+    coalesce(${aguardando_documento_novos},0)+
+    coalesce(${agu_assinatura_contrato_novos},0)+
+    coalesce(${formalizacao_novos},0)+
+    coalesce(${cessao_novos},0);;
 
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "Total - Tempo de Jornada do Aluno Novo"
@@ -1581,6 +1582,7 @@ view: jornada {
     group_item_label: "3. Aprovação da Instituição"
     value_format: "0"
     description: "Media do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+    hidden: yes
   }
   measure: sla_agu_doc_renov {
     type: median

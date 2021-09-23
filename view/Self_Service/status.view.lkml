@@ -175,6 +175,7 @@ view: status {
     group_label: "Dados do Status"
     group_item_label: "Grupo de Status Personalizado - Destino"
     description:  "Este campo é uma regra de negócio*. Indica o grupo de status personalizado para análises do funil, criado pelo time de Planejamento Comercial."
+    hidden: yes
   }
 
     dimension: fonte {
@@ -208,9 +209,11 @@ view: status {
   dimension: tempo_no_status {
     type: number
     sql: datediff('day',${dt_status_date},current_date) ;;
-    group_item_label: "Tempo no Status"
-    description: "Indica a quantos dias o aluno está no mesmo status"
+    group_label: "Dados do Status"
+    group_item_label: "Tempo de Transição no Status"
+    description: "Indica a quantidade de dias que o aluno está no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
     drill_fields: [id_proposta,id_cpf]
+    hidden: yes
   }
 
 
@@ -307,21 +310,29 @@ view: status {
     }
   }
 
-  dimension: TEMPO_SEG_TRANS_STATUS {
+  dimension: TEMPO_DAY_TRANS_STATUS_ORIGEM {
     type: number
-    sql: ${TABLE}."TEMPO_SEG_TRANS_STATUS" ;;
+    sql: ${TABLE}."TEMPO_DAY_TRANS_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Tempo de Transição do Status "
-    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+    label: "Tempo Total no Status"
+    description: "Indica a quantidade de dias que o aluno ficou em um determinado status, considerando a primeira entrada e a última saída."
   }
 
-  dimension: TEMPO_DIAS_TRANS_STATUS {
+  dimension: QTD_DIAS_GRUPO_STATUS_ORIGEM {
     type: number
-    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
+    sql: ${TABLE}."QTD_DIAS_GRUPO_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Dias de Transição do Status "
-    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+    label: "Tempo Total no Grupo de Origem do Status"
+    description: "Indica a quantidade de dias que o aluno ficou em um determinado grupo de status, considerando a primeira entrada e a última saída."
   }
+
+ # dimension: TEMPO_DIAS_TRANS_STATUS {
+#    type: number
+#    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
+#    group_label: "Dados do Status"
+#    label: "Dias de Transição do Status "
+ #   description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+#  }
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
@@ -417,17 +428,13 @@ nm_produto
   }
 
 
-  measure: sum_trans_status  {
-    type: sum
-    sql: ${TEMPO_SEG_TRANS_STATUS} ;;
-    label: "Tempo de Transição do Status"
-  }
+ # measure: sum_trans_status  {
+#    type: sum
+ #   sql: ${TEMPO_DAY_TRANS_STATUS}_TRANS_STATUS} ;;
+#    label: "Tempo de Transição do Status"
+#  }
 
-  measure: sum_trans_days_status  {
-    type: sum
-    sql: to_number(${TEMPO_SEG_TRANS_STATUS} /86400) ;;
-    label: "Dias de Transição do Status"
-  }
+
 
   measure: count_ciclo {
     type: count_distinct
@@ -459,58 +466,66 @@ nm_produto
     type: sum
     sql: ${vl_vezes_proposta_no_status} ;;
     value_format: "0"
-    label: "Soma de Vezes Proposta no Status"
-    description: " Soma de vezes que a proposta passou pelo status"
+    label: "Quantidade de vezes da Proposta no Status"
+    description: " Indica a quantidade de vezes que a proposta passou pelo status."
   }
 
   measure: avg_vl_vezes_proposta_no_status {
     type: average
     sql: ${vl_vezes_proposta_no_status} ;;
     value_format: "$ #,###"
-    label: "Média de Vezes Proposta no Status"
-    description: " Média de vezes que a proposta passou pelo status"
+    label: "Média de Vezes da Proposta no Status"
+    description: "Média de vezes que a proposta passou pelo status."
+
   }
 
 
   measure: soma_dias_status {
     type: sum
     sql: ${tempo_no_status} ;;
-    label:"Tempo no Status"
-    description: "Soma de Dias da Proposta no Status"
+    label:"Tempo de Transição no Status"
+    description: "Indica a quantidade de dias que o aluno está no status."
+    hidden:  yes
+    #não reativar!
 
   }
 
   measure: avg_dias_status {
     type: average
     sql: ${tempo_no_status} ;;
-    label:"Tempo médio no Status"
+    label:"Tempo médio de Transição no Status"
     value_format: "0"
-    description: "Média de dias parado no Status"
+    description: "Indica a média de dias que o aluno está no status."
+    hidden:  yes
+    #não reativar!
 
   }
-
-
 
 
   measure: avg_qtd_dias_status_anterior{
     type: average
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
-    label: "Média de quantidade de Dias - Status Anterior"
+    label: "Tempo médio de Transição no Status"
     value_format: "0"
-    description: "Indica a média de quantidade dias que o aluno ficou parado no status de origem"
+    description: "Indica a média de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
-  measure: median_qtd_dias_status_anterior{
+  measure: sum_qtd_dias_status_anterior{
+    type: sum
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Tempo de Transição no Status"
+    value_format: "0"
+    description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
+  }
+
+
+    measure: median_qtd_dias_status_anterior{
     type: median
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
     label: "Mediana de quantidade de Dias - Status Anterior"
     value_format: "0"
     description: "Indica a mediana de quantidade dias que o aluno ficou parado no status de origem"
+    hidden:yes
   }
-
-
-
-
-
 
 }
