@@ -363,7 +363,7 @@ view: jornada {
     sql: datediff('day',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
     group_item_label: "Tempo no Último Status"
-    description: "Indica a quantidade de dias que o aluno está no último status."
+    description: "Indica a quantidade de dias que o aluno está parado no último status."
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
@@ -373,7 +373,7 @@ view: jornada {
     sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
     group_item_label: "Horas no Status"
-    description: "Indica a quantas horas o aluno está no mesmo status"
+    description: "Indica quantas horas o aluno está no mesmo status"
     hidden: yes
   }
 
