@@ -326,6 +326,26 @@ view: status {
     description: "Indica a quantidade de dias que o aluno ficou em um determinado grupo de status, considerando a primeira entrada e a última saída."
   }
 
+
+  dimension: QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS {
+    type: number
+    sql: ${TABLE}."DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Tempo Total até o Último Status"
+    description: "Indica a quantidade de dias que a proposta está parada no último status, considerando a primeira vez que ele entrou nesse status."
+  }
+
+
+  dimension: QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_GRUPAMENTO {
+    type: number
+    sql: ${TABLE}."DIAS_PRIMEIRA_VEZ_ULTIMO_GRUPAMENTO" ;;
+    group_label: "Dados do Status"
+    label: "Tempo Total até o Último Status no Grupo de Origem do Status"
+    description: "Indica a quantidade de dias que a proposta está parada no último grupamento, considerando a primeira vez que ele entrou nesse grupamento."
+    }
+
+
+
  # dimension: TEMPO_DIAS_TRANS_STATUS {
 #    type: number
 #    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
