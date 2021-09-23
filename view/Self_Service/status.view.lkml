@@ -338,7 +338,7 @@ view: status {
 
   dimension: QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_GRUPAMENTO {
     type: number
-    sql: ${TABLE}."DIAS_PRIMEIRA_VEZ_ULTIMO_GRUPAMENTO" ;;
+    sql: ${TABLE}."DIAS_PRIMERA_VEZ_ULTIMO_GRUPAMENTO" ;;
     group_label: "Dados do Status"
     label: "Tempo Total até o Último Status no Grupo de Status"
     description: "Indica a quantidade de dias que a proposta está parada no último grupamento, considerando a primeira vez que ele entrou nesse grupamento."
