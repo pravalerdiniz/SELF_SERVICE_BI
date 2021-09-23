@@ -362,8 +362,8 @@ view: jornada {
     type: number
     sql: datediff('day',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
-    group_item_label: "Tempo no Status"
-    description: "Indica a quantos dias o aluno está no mesmo status"
+    group_item_label: "Tempo no Último Status"
+    description: "Indica a quantidade de dias que o aluno está no último status."
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
@@ -374,6 +374,7 @@ view: jornada {
     group_label: "Telemetria"
     group_item_label: "Horas no Status"
     description: "Indica a quantas horas o aluno está no mesmo status"
+    hidden: yes
   }
 
   dimension: grupo_status_renovacao {
@@ -402,8 +403,8 @@ view: jornada {
       else: "30 >"
     }
     group_label: "Telemetria"
-    group_item_label: "Faixa de Tempo no Status"
-    description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
+    group_item_label: "Faixa de Tempo no Último Status"
+    description: "Indica a faixa de tempo, em dias, que o aluno está no último status."
   }
 
 
