@@ -1510,13 +1510,13 @@ view: jornada {
 
   measure: median_total_novos {
     type: number
-    sql: ${iniciar_proposta_novos}+
-     ${finalizar_proposta_novos}+
-    ${mesa_risco_novos}+${aprovacao_instituicao_novos}+
-    ${aguardando_documento_novos}+
-    ${agu_assinatura_contrato_novos}+
-    ${formalizacao_novos}+
-    ${cessao_novos};;
+    sql: coalesce(${iniciar_proposta_novos},0)+
+     coalesce(${finalizar_proposta_novos},0)+
+    coalesce(${mesa_risco_novos},0)+coalesce(${aprovacao_instituicao_novos},0)+
+    coalesce(${aguardando_documento_novos},0)+
+    coalesce(${agu_assinatura_contrato_novos},0)+
+    coalesce(${formalizacao_novos},0)+
+    coalesce(${cessao_novos},0);;
 
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "Total - Tempo de Jornada do Aluno Novo"
