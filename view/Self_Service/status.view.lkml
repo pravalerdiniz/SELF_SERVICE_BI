@@ -307,9 +307,9 @@ view: status {
     }
   }
 
-  dimension: TEMPO_DAY_TRANS_STATUS {
+  dimension: TEMPO_DAY_TRANS_STATUS_ORIGEM {
     type: number
-    sql: ${TABLE}."TEMPO_DAY_TRANS_STATUS" ;;
+    sql: ${TABLE}."TEMPO_DAY_TRANS_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
     label: "Tempo de Transição do Status"
     description: "Indica a quantidade de dias levaram para mudança ao status de origem"
