@@ -213,6 +213,7 @@ view: status {
     group_item_label: "Tempo de Transição no Status"
     description: "Indica a quantidade de dias que o aluno está no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
     drill_fields: [id_proposta,id_cpf]
+    hidden: yes
   }
 
 
@@ -484,6 +485,8 @@ nm_produto
     sql: ${tempo_no_status} ;;
     label:"Tempo de Transição no Status"
     description: "Indica a quantidade de dias que o aluno está no status."
+    hidden:  yes
+    #não reativar!
 
   }
 
@@ -493,6 +496,8 @@ nm_produto
     label:"Tempo médio de Transição no Status"
     value_format: "0"
     description: "Indica a média de dias que o aluno está no status."
+    hidden:  yes
+    #não reativar!
 
   }
 
@@ -500,17 +505,27 @@ nm_produto
   measure: avg_qtd_dias_status_anterior{
     type: average
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
-    label: "Média de quantidade de Dias - Status Anterior"
+    label: "Tempo médio de Transição no Status"
     value_format: "0"
-    description: "Indica a média de quantidade dias que o aluno ficou parado no status de origem"
+    description: "Indica a média de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
-  measure: median_qtd_dias_status_anterior{
+  measure: sum_qtd_dias_status_anterior{
+    type: sum
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Tempo de Transição no Status"
+    value_format: "0"
+    description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
+  }
+
+
+    measure: median_qtd_dias_status_anterior{
     type: median
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
     label: "Mediana de quantidade de Dias - Status Anterior"
     value_format: "0"
     description: "Indica a mediana de quantidade dias que o aluno ficou parado no status de origem"
+    hidden:yes
   }
 
 }
