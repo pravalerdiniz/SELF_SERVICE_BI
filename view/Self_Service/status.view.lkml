@@ -322,7 +322,7 @@ view: status {
     type: number
     sql: ${TABLE}."QTD_DIAS_GRUPO_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Tempo Total no Grupo de Origem do Status"
+    label: "Tempo Total no Grupo de Status"
     description: "Indica a quantidade de dias que o aluno ficou em um determinado grupo de status, considerando a primeira entrada e a última saída."
   }
 
