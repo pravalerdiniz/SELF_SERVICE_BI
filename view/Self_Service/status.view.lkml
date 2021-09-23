@@ -175,7 +175,7 @@ view: status {
     group_label: "Dados do Status"
     group_item_label: "Grupo de Status Personalizado - Destino"
     description:  "Este campo é uma regra de negócio*. Indica o grupo de status personalizado para análises do funil, criado pelo time de Planejamento Comercial."
-    hidden: yes
+
   }
 
     dimension: fonte {
