@@ -307,21 +307,29 @@ view: status {
     }
   }
 
-  dimension: TEMPO_SEG_TRANS_STATUS {
+  dimension: TEMPO_DAY_TRANS_STATUS_ORIGEM {
     type: number
-    sql: ${TABLE}."TEMPO_SEG_TRANS_STATUS" ;;
+    sql: ${TABLE}."TEMPO_DAY_TRANS_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Tempo de Transição do Status "
-    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+    label: "Tempo de Transição do Status"
+    description: "Indica a quantidade de dias levaram para mudança ao status de origem"
   }
 
-  dimension: TEMPO_DIAS_TRANS_STATUS {
+  dimension: QTD_DIAS_GRUPO_STATUS_ORIGEM {
     type: number
-    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
+    sql: ${TABLE}."QTD_DIAS_GRUPO_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Dias de Transição do Status "
-    description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+    label: "Tempo no Grupo de Origem do Status"
+    description: "Indica a quantidade de dias que a proposta ficou no grupo de status"
   }
+
+ # dimension: TEMPO_DIAS_TRANS_STATUS {
+#    type: number
+#    sql: (${TABLE}."TEMPO_SEG_TRANS_STATUS"/86400)::int ;;
+#    group_label: "Dados do Status"
+#    label: "Dias de Transição do Status "
+ #   description: "Indica a quantidade de segundos levaram para mudança ao status de origem"
+#  }
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
@@ -417,17 +425,13 @@ nm_produto
   }
 
 
-  measure: sum_trans_status  {
-    type: sum
-    sql: ${TEMPO_SEG_TRANS_STATUS} ;;
-    label: "Tempo de Transição do Status"
-  }
+ # measure: sum_trans_status  {
+#    type: sum
+ #   sql: ${TEMPO_DAY_TRANS_STATUS}_TRANS_STATUS} ;;
+#    label: "Tempo de Transição do Status"
+#  }
 
-  measure: sum_trans_days_status  {
-    type: sum
-    sql: to_number(${TEMPO_SEG_TRANS_STATUS} /86400) ;;
-    label: "Dias de Transição do Status"
-  }
+
 
   measure: count_ciclo {
     type: count_distinct
@@ -488,7 +492,6 @@ nm_produto
     description: "Média de dias parado no Status"
 
   }
-
 
 
 
