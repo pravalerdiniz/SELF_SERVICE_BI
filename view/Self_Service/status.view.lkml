@@ -209,6 +209,7 @@ view: status {
   dimension: tempo_no_status {
     type: number
     sql: datediff('day',${dt_status_date},current_date) ;;
+    group_label: "Dados do Status"
     group_item_label: "Tempo de Transição no Status"
     description: "Indica a quantidade de dias que o aluno está no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
     drill_fields: [id_proposta,id_cpf]
