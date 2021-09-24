@@ -491,7 +491,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_MENSAL_PREFIXADA";;
     description: "TAXA DE JUROS MENSAL PRE-FIXADA"
     group_item_label: "Taxa de Juros Mensal Pré-fixada"
-    value_format: "0.00\%"
+   value_format: "0.0000%"
     group_label: "Taxas do Contrato"
   }
 
