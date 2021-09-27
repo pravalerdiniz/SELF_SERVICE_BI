@@ -17,6 +17,7 @@ view: cobranca_e_risco {
   dimension: cpf {
     type: number
     sql: ${TABLE}."CPF" ;;
+    primary_key: yes
   }
 
   dimension: proposta {
