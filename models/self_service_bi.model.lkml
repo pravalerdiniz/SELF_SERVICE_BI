@@ -935,6 +935,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: alunos_cobranca_e_risco {
+    view_label: "1.9.8 Cobrança e Risco"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
