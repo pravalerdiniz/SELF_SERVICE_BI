@@ -31,21 +31,62 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."USUARIO_REDE" ;;
   }
 
-  dimension_group: dt_acordo {
+   dimension_group: data_acordo{
     type: time
-    group_item_label: "Data Acordo"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      month_name,
+      year,
+      time,
+
+    ]
+    convert_tz: no
+    label: "Data Acordo"
+    description: "Indica a a data do acordo do aluno"
+    datatype: date
     sql: ${TABLE}."DT_ACORDO" ;;
   }
 
-  dimension: anomes_dt_acordo {
-    type: string
-    group_item_label: "Anomes Data Acordo"
+
+  dimension_group: anomes_data_acordo{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      month_name,
+      year,
+      time,
+
+    ]
+    convert_tz: no
+    label: "Anomes Data Acordo"
+    datatype: date
     sql: ${TABLE}."ANOMES_DT_ACORDO" ;;
   }
 
-  dimension: dt_concessao {
-    type: date
-    group_item_label: "Data Concessao"
+  dimension_group: data_concessao{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      month_name,
+      year,
+      time,
+
+    ]
+    convert_tz: no
+    label: "Data Concessao"
+    datatype: date
     sql: ${TABLE}."DT_CONCESSAO" ;;
   }
 
@@ -61,9 +102,22 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."VP_DIVIDA" ;;
   }
 
-  dimension_group: data {
+  dimension_group: data{
     type: time
-    group_item_label: "Data"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      month_name,
+      year,
+      time,
+
+    ]
+    convert_tz: no
+    label: "Data"
+    datatype: date
     sql: ${TABLE}."DATA" ;;
   }
 
@@ -151,15 +205,15 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."ATRASO" ;;
   }
 
-  dimension: tx_pdd {
+  dimension: taxa_pdd {
     type: number
     group_item_label: "Taxa PDD"
     sql: ${TABLE}."TX_PDD" ;;
   }
 
-  measure: vl_pdd {
+  measure: valor_pdd {
     type: number
-    group_item_label: "VL PDD"
+    group_item_label: "Valor PDD"
     sql: ${TABLE}."VL_PDD" ;;
   }
 
@@ -175,9 +229,9 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."DIF_VP" ;;
   }
 
-  measure: vl_complementar {
+  measure: valor_complementar {
     type: number
-    group_item_label: "Vl Complementar"
+    group_item_label: "Valor Complementar"
     sql: ${TABLE}."VL_COMPLEMENTAR" ;;
   }
 
@@ -187,9 +241,9 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."DESCONTO" ;;
   }
 
-  measure: vl_presente {
+  measure: valor_presente {
     type: number
-    group_item_label: "Vl Presente"
+    group_item_label: "Valor Presente"
     sql: ${TABLE}."VL_PRESENTE" ;;
   }
 
@@ -199,9 +253,9 @@ view: alunos_cobranca_e_risco {
       cpf,
       proposta,
       usuario_rede,
-      dt_acordo_time,
-      anomes_dt_acordo,
-      dt_concessao,
+      data_acordo_time,
+      anomes_data_acordo_date,
+      data_concessao_date,
       anomes_cessao,
       vp_divida,
       data_time,
@@ -219,13 +273,13 @@ view: alunos_cobranca_e_risco {
       complementar,
       vp_anterior,
       atraso,
-      tx_pdd,
-      vl_pdd,
+      taxa_pdd,
+      valor_pdd,
       novo_vp,
       dif_vp,
-      vl_complementar,
+      valor_complementar,
       desconto,
-      vl_presente
+      valor_presente
     ]
   }
 }
