@@ -1,14 +1,15 @@
 view: orquestra_obj_campos {
   derived_table: {
     sql: select NUMERO_CHAMADO, NOME_TASK
-    ,T.VALUE:"Categoria:"::varchar categoria
-    ,T.VALUE:"Nome do Aluno"::varchar nome_do_aluno
-    ,T.VALUE:"IES do Aluno"::varchar ies_do_aluno
-    ,T.VALUE:"Motivo de Contato"::varchar motivo_de_contato
-    ,T.VALUE:"Descrição da Solicitação"::varchar descricao_da_solicitacao
-    ,T.VALUE:"Área Responsável"::varchar area_responsavel
+    ,max(T.VALUE:"Categoria:"::varchar) categoria
+    ,max(T.VALUE:"Nome do Aluno"::varchar) nome_do_aluno
+    ,max(T.VALUE:"IES do Aluno"::varchar) ies_do_aluno
+    ,max(T.VALUE:"Motivo de Contato"::varchar) motivo_de_contato
+    ,max(T.VALUE:"Descrição da Solicitação"::varchar) descricao_da_solicitacao
+    ,max(T.VALUE:"Área Responsável"::varchar) area_responsavel
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
+      group by 1,2
        ;;
   }
 

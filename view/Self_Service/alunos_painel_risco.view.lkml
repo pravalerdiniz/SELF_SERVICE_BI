@@ -10,7 +10,7 @@ view: alunos_painel_risco {
             f.value:MODALIDADE::varchar as MODALIDADE,
             f.value:ORDEM::varchar as ORDEM,
             f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS,
-            f.value:data_hora::timestamp as DATA_HORA
+            f.value:DATA_HORA::timestamp as DATA_HORA
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
  ;;
@@ -31,6 +31,7 @@ view: alunos_painel_risco {
       minute,
       second
     ]
+    label: "Decisão"
     sql:${TABLE}."DATA_HORA";;
     description: "Indica a data da decisão de análise de risco e crédito do Aluno."
 
