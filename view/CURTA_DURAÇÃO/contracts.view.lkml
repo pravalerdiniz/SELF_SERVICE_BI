@@ -583,6 +583,18 @@ view: contracts {
     label: "Ultima Atualização do Contrato"
   }
 
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${ultima_atualizacao_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${ultima_atualizacao_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use essse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+
   dimension: urls_contrato {
     type: string
     sql: ${TABLE}."URLS_CONTRATO";;

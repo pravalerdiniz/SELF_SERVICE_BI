@@ -896,6 +896,16 @@ join: alunos_inadimplencia_2 {
 
   }
 
+
+  join: alunos_mesa_risco_3 {
+    view_label: "1.7.1 Mesa de Risco - Renda"
+    sql_on: ${alunos.id_cpf} = ${alunos_mesa_risco_3.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
