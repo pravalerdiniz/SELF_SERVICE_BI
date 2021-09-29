@@ -111,7 +111,71 @@ lateral flatten (input=>boletos) f
     group_item_label: "Faixa de Atraso"
     sql: ${TABLE}."FAIXA_ATRASO" ;;
     description: "FAIXA DE ATRASO DOS ALUNOS INADIMPLENTES"
+    order_by_field: ordem_faixa_atraso
   }
+
+  dimension: ordem_faixa_atraso {
+    type: number
+    label: "Ordem - Faixa de Atraso"
+    description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
+    sql: CAST(${ordem_faixa_atraso_regra} AS INT) ;;
+
+  }
+
+  dimension: ordem_faixa_atraso_regra {
+    type: string
+    hidden: yes
+    case: {
+      when: {
+        sql: ${faixa_atraso} = 'Em Aberto' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${faixa_atraso} = 'Em Dia' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '1 - 14'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${faixa_atraso} = '15 - 30'  ;;
+        label: "3"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '31 - 60' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '61 - 90' ;;
+        label: "5"
+      }
+      when: {
+        sql: ${faixa_atraso} = '91 - 120' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '121 - 150';;
+        label: "7"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '151 - 180';;
+        label: "9"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '181 - 360' ;;
+        label: "10"
+      }
+      }
+      }
+
 
 
 
