@@ -538,6 +538,15 @@ nm_produto
     description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
+  measure: med_qtd_dias_status_anterior{
+    type: median
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Tempo de Transição no Status - Mediana"
+    value_format: "0"
+    hidden:  yes
+    description: "Indica a mediana de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
+  }
+
 
     measure: median_qtd_dias_status_anterior{
     type: median
