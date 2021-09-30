@@ -199,3 +199,7 @@ explore: base_score
 }
 
 explore: perfil_usuarios {}
+
+explore: cruzeiro_evadidos {}
+
+explore: cruzeiro_inadimplentes {}

@@ -1349,6 +1349,19 @@ foi gerado por um pagamento menor do boleto anterior."
 
 
 
+  dimension: campo_mensagem_cobranca {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Mensagem de Cobrança"
+    description: "Indica mensagem preventiva de vencimento do boleto do aluno, utilizado para ação de cobrança."
+    sql:
+    CASE WHEN ${data_vencimento_date}::date =current_date THEN
+    CONCAT('Pravaler: Seu boleto de R$',${financeiro.vl_boleto},' vence hoje. Pague com o cod barras: ',${financeiro.linha_digitavel},' se ja pagou, desconsidere')
+    ELSE
+    CONCAT('Pravaler: Seu boleto de R$',${financeiro.vl_boleto},' vence ',${data_vencimento_date}::date,'. Pague com o cod barras: ',${financeiro.linha_digitavel},' se ja pagou, desconsidere')
+    END
+    ;;
+  }
 
 
 

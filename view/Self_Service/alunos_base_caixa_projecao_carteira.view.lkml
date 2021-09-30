@@ -60,7 +60,7 @@ view: base_caixa_projecao_carteira {
     convert_tz: no
     label: "Referência"
     datatype:date
-    sql:${dt_ref} ;;
+    sql:${TABLE}."DT_REF"  ;;
   }
 
   dimension: anomes_ref {

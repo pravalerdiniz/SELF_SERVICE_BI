@@ -758,7 +758,7 @@ join: alunos_produtos_aprovados {
 
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} and ${alunos_inadimplencia_1.ano_mes_safra} = ${alunos_inadimplencia_2.safra_cessao_cpf}  ;;
     type: left_outer
     relationship: one_to_many
 
@@ -766,7 +766,7 @@ join: alunos_produtos_aprovados {
 
 join: alunos_inadimplencia_2 {
   view_label: "1.2.1 Inadimplência (Outras Informações)"
-  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf};;
+  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
   type: left_outer
   relationship: one_to_many
 }
@@ -896,6 +896,16 @@ join: alunos_inadimplencia_2 {
 
   }
 
+
+  join: alunos_mesa_risco_3 {
+    view_label: "1.7.1 Mesa de Risco - Renda"
+    sql_on: ${alunos.id_cpf} = ${alunos_mesa_risco_3.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
@@ -931,6 +941,13 @@ join: alunos_inadimplencia_2 {
   join: alunos_mis_meritocracia {
     view_label: "1.9.7 Cobrança - Meritocracia"
     sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_cobranca_e_risco {
+    view_label: "1.9.8 Cobrança e Risco"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
     type: left_outer
     relationship: one_to_many
   }

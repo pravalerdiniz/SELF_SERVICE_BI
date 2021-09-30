@@ -175,7 +175,7 @@ view: status {
     group_label: "Dados do Status"
     group_item_label: "Grupo de Status Personalizado - Destino"
     description:  "Este campo é uma regra de negócio*. Indica o grupo de status personalizado para análises do funil, criado pelo time de Planejamento Comercial."
-    hidden: yes
+
   }
 
     dimension: fonte {
@@ -322,9 +322,29 @@ view: status {
     type: number
     sql: ${TABLE}."QTD_DIAS_GRUPO_STATUS_ORIGEM" ;;
     group_label: "Dados do Status"
-    label: "Tempo Total no Grupo de Origem do Status"
+    label: "Tempo Total no Grupo de Status de Origem"
     description: "Indica a quantidade de dias que o aluno ficou em um determinado grupo de status, considerando a primeira entrada e a última saída."
   }
+
+
+  dimension: QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS {
+    type: number
+    sql: ${TABLE}."DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Tempo Total até o Último Status"
+    description: "Indica a quantidade de dias que a proposta está parada no último status, considerando a primeira vez que ele entrou nesse status."
+  }
+
+
+  dimension: QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_GRUPAMENTO {
+    type: number
+    sql: ${TABLE}."DIAS_PRIMERA_VEZ_ULTIMO_GRUPAMENTO" ;;
+    group_label: "Dados do Status"
+    label: "Tempo Total até o Último Status no Grupo de Status"
+    description: "Indica a quantidade de dias que a proposta está parada no último grupamento, considerando a primeira vez que ele entrou nesse grupamento."
+    }
+
+
 
  # dimension: TEMPO_DIAS_TRANS_STATUS {
 #    type: number
@@ -516,6 +536,15 @@ nm_produto
     label: "Tempo de Transição no Status"
     value_format: "0"
     description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
+  }
+
+  measure: med_qtd_dias_status_anterior{
+    type: median
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Tempo de Transição no Status - Mediana"
+    value_format: "0"
+    hidden:  yes
+    description: "Indica a mediana de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
 
