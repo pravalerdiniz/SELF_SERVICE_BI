@@ -1,21 +1,37 @@
 view: curta_lead_time {
     derived_table: {
-      sql: select *,
-              datediff(second,data_evento_anterior,DATA_EVENTO) as TEMPO_ETAPA
+      sql:
+select *,
+        datediff(second,data_evento_anterior,DATA_EVENTO) as TEMPO_ETAPA
               from (
-              SELECT
-              ID_STATUS,
-              ID_ALUNO,
-              TIPO_EVENTO,
-              DATA_EVENTO,
-              lag(data_evento,1)
-              over(partition by id_aluno order by data_evento)
-              as data_evento_anterior
-              FROM  "VETERANO"."CURTA"."STATUS"
-              where TIPO_EVENTO in ('STUDENT.ACQUIRED','STUDENT.RISK.APPROVED','STUDENT.DOCS.RECEIVEDALL','STUDENT.CONTRACT.CREATED','STUDENT.CONTRACT.SIGNATUREFINISHED', 'STUDENT.CONTRACT.DISBURSED', 'STUDENT.CONTRACT.CANCELED')
-                 --qualify row_number() over(partition by id_aluno order by id_aluno) = 1
+                    SELECT
+                    ID_STATUS,
+                    ID_ALUNO,
+                    TIPO_EVENTO,
+                    DATA_EVENTO,
+                    lag(data_evento,1)
+                    over(partition by id_aluno order by data_evento)
+                    as data_evento_anterior
+                    FROM  (SELECT
+                                  ID_STATUS,
+                                  ID_ALUNO,
+                                  CASE TIPO_EVENTO
+                                      WHEN 'STUDENT.ACQUIRED'THEN 1
+                                      WHEN 'STUDENT.RISK.APPROVED'THEN 2
+                                      WHEN 'STUDENT.DOCS.RECEIVEDALL'THEN 3
+                                      WHEN 'STUDENT.CONTRACT.CREATED'THEN 4
+                                      WHEN 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 5
+                                      WHEN 'STUDENT.CONTRACT.DISBURSED' THEN 6
+                                      WHEN 'STUDENT.CONTRACT.CANCELED'THEN 7
+                                      ELSE 0
+                                  END AS ORDER_EVENTO,
+                                  TIPO_EVENTO,
+                                  DATA_EVENTO
+                                  FROM  "VETERANO"."CURTA"."STATUS"
+                                  where TIPO_EVENTO in ('STUDENT.ACQUIRED','STUDENT.RISK.APPROVED','STUDENT.DOCS.RECEIVEDALL','STUDENT.CONTRACT.CREATED','STUDENT.CONTRACT.SIGNATUREFINISHED', 'STUDENT.CONTRACT.DISBURSED', 'STUDENT.CONTRACT.CANCELED')
+                                  order by data_evento, ORDER_EVENTO)
+                      --qualify row_number() over(partition by id_aluno order by id_aluno) = 1
                     order by data_evento
-              ) a
                ;;
     }
 
