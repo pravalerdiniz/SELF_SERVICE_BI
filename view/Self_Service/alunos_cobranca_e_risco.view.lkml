@@ -86,7 +86,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: vp_divida {
-    type: number
+    type: sum
     group_item_label: "VP Divida"
     sql: ${TABLE}."VP_DIVIDA" ;;
   }
@@ -183,7 +183,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: vp_anterior {
-    type: number
+    type: sum
     group_item_label: "VP Anterior"
     sql: ${TABLE}."VP_ANTERIOR" ;;
   }
@@ -201,7 +201,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: valor_pdd {
-    type: number
+    type: sum
     group_item_label: "Valor PDD"
     sql: ${TABLE}."VL_PDD" ;;
   }
@@ -213,13 +213,13 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: dif_vp {
-    type: number
+    type: sum
     group_item_label: "Dif VP"
     sql: ${TABLE}."DIF_VP" ;;
   }
 
   measure: valor_complementar {
-    type: number
+    type: sum
     group_item_label: "Valor Complementar"
     sql: ${TABLE}."VL_COMPLEMENTAR" ;;
   }
@@ -231,7 +231,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: valor_presente {
-    type: number
+    type: sum
     group_item_label: "Valor Presente"
     sql: ${TABLE}."VL_PRESENTE" ;;
   }
