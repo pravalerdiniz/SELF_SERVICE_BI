@@ -51,6 +51,15 @@ view: alunos_inadimplencia_1 {
     description: "Mês de observação"
   }
 
+  dimension: ano_mes_safra {
+    sql: CONCAT(${ano_mes_year},0,${ano_mes_month_num}) ;;
+    hidden: yes
+
+
+
+  }
+
+
   dimension: fpd {
     type: yesno
     label: "FPD15?"

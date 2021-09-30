@@ -758,7 +758,7 @@ join: alunos_produtos_aprovados {
 
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} and ${alunos_inadimplencia_1.ano_mes_safra} = ${alunos_inadimplencia_2.safra_cessao_cpf}  ;;
     type: left_outer
     relationship: one_to_many
 
@@ -766,7 +766,7 @@ join: alunos_produtos_aprovados {
 
 join: alunos_inadimplencia_2 {
   view_label: "1.2.1 Inadimplência (Outras Informações)"
-  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf};;
+  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
   type: left_outer
   relationship: one_to_many
 }
