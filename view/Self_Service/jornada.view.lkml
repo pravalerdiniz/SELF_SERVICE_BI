@@ -1677,6 +1677,493 @@ dimension: flg_d1 {
   hidden:  yes
 }
 
+  dimension_group: dt_segundo_repasse {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_SEGUNDO_REPASSE" ;;
+    label: "Data Segundo Repasse"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Segundo Repasse"
+
+  }
+
+  measure: avg_segundo_repasse {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_segundo_repasse_date}) ;;
+    label: "Média de dias até o Segundo Repasse"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Segundo Repasse"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_cessao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_CESSAO" ;;
+    label: "Data Aguardando Cessão"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardnado Cessão"
+
+  }
+
+  measure: avg_aguardando_cessao {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_cessao_date}) ;;
+    label: "Cessão"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardnado Cessão"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cedido {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CEDIDO" ;;
+    label: "Data Cedido"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cedido"
+
+  }
+
+  measure: avg_cedido {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cedido_date}) ;;
+    label: "Cedido"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cedido"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cancelado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CANCELADO" ;;
+    label: "Data Cancelado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cancelado"
+
+  }
+
+  measure: avg_cancelado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cancelado_date}) ;;
+    label: "Cancelado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cancelado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cadastro_finalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CADASTRO_FINALIZADO" ;;
+    label: "Data Cadastro Finalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cadastro Finalizado"
+
+  }
+
+  measure: avg_cadastro_finalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cadastro_finalizado_date}) ;;
+    label: "Cadastro Finalizado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cadastro Finalizado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_ELEGIVEL" ;;
+    label: "Data Elegivel"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Elegível"
+
+  }
+
+  measure: avg_elegivel {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_elegivel_date}) ;;
+    label: "Elegível"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de ELegível"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_risco {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_RISCO" ;;
+    label: "Data Aprovado Risco"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Risco"
+
+  }
+
+  measure: avg_aprovado_risco {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_risco_date}) ;;
+    label: "Aprovado Risco"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Risco"
+    value_format: "0"
+  }
+
+  dimension_group: dt_formalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_FORMALIZADO" ;;
+    label: "Data Formalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Formalizado"
+
+  }
+
+  measure: avg_Formalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_formalizado_date}) ;;
+    label: "Formalizado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Formalizado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_behavior {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_BEHAVIOR" ;;
+    label: "Data Aprovado Behavior"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Behavior"
+
+  }
+
+  measure: avg_Aprovado_Behavior {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
+    label: "Aprovado Behavior"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Behavior"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_assinatura {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_ASSINATURA" ;;
+    label: "Data Aguardando Assinatura"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Assinatura"
+
+  }
+
+  measure: avg_aguardando_assinatura {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_assinatura_date}) ;;
+    label: "Aguardando Assinatura"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Assinatura"
+    value_format: "0"
+  }
+
+  dimension_group: dt_iniciado_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_INICIADO_ELEGIVEL" ;;
+    label: "Data Iniciado / Elegível"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Iniciado / Elegível"
+
+  }
+
+  measure: avg_iniciado_elegivel {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_elegivel_date}) ;;
+    label: "Iniciado / Elegível"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado / Elegível"
+    value_format: "0"
+  }
+
+  dimension_group: dt_iniciado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_INICIADO" ;;
+    label: "Data Iniciado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Iniciado"
+
+  }
+
+  measure: avg_dt_iniciado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_date}) ;;
+    label: "Iniciado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_documento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTO" ;;
+    label: "Data Aguardando Documento"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Documento"
+
+  }
+
+  measure: avg_aguardando_documento {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documento_date}) ;;
+    label: "Aguardando Documento"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documento"
+    value_format: "0"
+  }
+
+
+  dimension_group: dt_lead {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_LEAD" ;;
+    label: "Data Lead"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Lead"
+
+  }
+
+  measure: avg_Lead {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_lead_date}) ;;
+    label: "Lead"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Lead"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_documentos {
+    type: time
+    timeframes: [
+     raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTOS" ;;
+    label: "Data Aguardando Documentos"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Documentos"
+
+  }
+
+  measure: avg_aguardando_documentos {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documentos_date}) ;;
+    label: "Aguardando Documentos"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documentos"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_instituicao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_INSTITUICAO" ;;
+    label: "Data Aprovado Instituição"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Instituição"
+
+  }
+
+  measure: avg_aprovado_instituicao {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_instituicao_date}) ;;
+    label: "Aprovado Instituição"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Instituição"
+    value_format: "0"
+  }
+
+  dimension_group: dt_simulado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_SIMULADO" ;;
+    label: "Data Simulado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Simulado"
+
+  }
+
+  measure: avg_simulado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_simulado_date}) ;;
+    label: "Simulado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Simulado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_finalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_FINALIZADO" ;;
+    label: "Data Finalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Finalizado"
+
+  }
+
+  measure: avg_finalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_finalizado_date}) ;;
+    label: "Finalizado"
+    group_label: "Média de dias por Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Finalizado"
+    value_format: "0"
+  }
+
   set: detail {
     fields: [
       id_cpf,
