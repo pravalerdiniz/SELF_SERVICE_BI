@@ -2,15 +2,15 @@ view: curta_lead_time {
     derived_table: {
       sql:
 select *,
-        datediff(second,data_evento_anterior,DATA_EVENTO) as TEMPO_ETAPA
+              datediff(second,data_evento_anterior,DATA_EVENTO) as TEMPO_ETAPA
               from (
                     SELECT
-                    ID_STATUS,
-                    ID_ALUNO,
-                    TIPO_EVENTO,
-                    DATA_EVENTO,
-                    lag(data_evento,1)
-                    over(partition by id_aluno order by data_evento)
+                    ODS.ID_STATUS,
+                    ODS.ID_ALUNO,
+                    ODS.TIPO_EVENTO,
+                    ODS.DATA_EVENTO,
+                    lag(ODS.data_evento,1)
+                    over(partition by ODS.id_aluno order by ODS.data_evento)
                     as data_evento_anterior
                     FROM  (SELECT
                                   ID_STATUS,
@@ -28,8 +28,15 @@ select *,
                                   TIPO_EVENTO,
                                   DATA_EVENTO
                                   FROM  "VETERANO"."CURTA"."STATUS"
-                                  where TIPO_EVENTO in ('STUDENT.ACQUIRED','STUDENT.RISK.APPROVED','STUDENT.DOCS.RECEIVEDALL','STUDENT.CONTRACT.CREATED','STUDENT.CONTRACT.SIGNATUREFINISHED', 'STUDENT.CONTRACT.DISBURSED', 'STUDENT.CONTRACT.CANCELED')
-                                  order by data_evento, ORDER_EVENTO)
+                                  where TIPO_EVENTO in ('STUDENT.ACQUIRED',
+                                                        'STUDENT.RISK.APPROVED',
+                                                        'STUDENT.DOCS.RECEIVEDALL',
+                                                        'STUDENT.CONTRACT.CREATED',
+                                                        'STUDENT.CONTRACT.SIGNATUREFINISHED',
+                                                        'STUDENT.CONTRACT.DISBURSED',
+                                                        'STUDENT.CONTRACT.CANCELED')
+                                  order by data_evento, ORDER_EVENTO)  ODS
+                    )
                       --qualify row_number() over(partition by id_aluno order by id_aluno) = 1
                     order by data_evento
                ;;
