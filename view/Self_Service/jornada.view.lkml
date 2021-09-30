@@ -1697,7 +1697,7 @@ dimension: flg_d1 {
     label: "Data Segundo Repasse"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Segundo Repasse"
-    hidden: yes
+
   }
 
   measure: avg_segundo_repasse {
@@ -1728,7 +1728,7 @@ dimension: flg_d1 {
     label: "Data Aguardando Cessão"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aguardnado Cessão"
-    hidden: yes
+
   }
 
   measure: avg_aguardando_cessao {
@@ -1759,7 +1759,7 @@ dimension: flg_d1 {
     label: "Data Cedido"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Cedido"
-    hidden: yes
+
   }
 
   measure: avg_cedido {
@@ -1790,7 +1790,7 @@ dimension: flg_d1 {
     label: "Data Cancelado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Cancelado"
-    hidden: yes
+
   }
 
   measure: avg_cancelado {
@@ -1821,7 +1821,7 @@ dimension: flg_d1 {
     label: "Data Cadastro Finalizado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Cadastro Finalizado"
-    hidden: yes
+
   }
 
   measure: avg_cadastro_finalizado {
@@ -1852,7 +1852,7 @@ dimension: flg_d1 {
     label: "Data Elegivel"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Elegível"
-    hidden: yes
+
   }
 
   measure: avg_elegivel {
@@ -1883,7 +1883,7 @@ dimension: flg_d1 {
     label: "Data Aprovado Risco"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aprovado Risco"
-    hidden: yes
+
   }
 
   measure: avg_aprovado_risco {
@@ -1914,7 +1914,7 @@ dimension: flg_d1 {
     label: "Data Formalizado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Formalizado"
-    hidden: yes
+
   }
 
   measure: avg_Formalizado {
@@ -1945,7 +1945,7 @@ dimension: flg_d1 {
     label: "Data Aprovado Behavior"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aprovado Behavior"
-    hidden: yes
+
   }
 
   measure: avg_Aprovado_Behavior {
@@ -1976,7 +1976,7 @@ dimension: flg_d1 {
     label: "Data Aguardando Assinatura"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aguardando Assinatura"
-    hidden: yes
+
   }
 
   measure: avg_aguardando_assinatura {
@@ -2007,7 +2007,7 @@ dimension: flg_d1 {
     label: "Data Iniciado / Elegível"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Iniciado / Elegível"
-    hidden: yes
+
   }
 
   measure: avg_iniciado_elegivel {
@@ -2038,7 +2038,7 @@ dimension: flg_d1 {
     label: "Data Iniciado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Iniciado"
-    hidden: yes
+
   }
 
   measure: avg_dt_iniciado {
@@ -2069,7 +2069,7 @@ dimension: flg_d1 {
     label: "Data Aguardando Documento"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aguardando Documento"
-    hidden: yes
+
   }
 
   measure: avg_aguardando_documento {
@@ -2101,7 +2101,7 @@ dimension: flg_d1 {
     label: "Data Lead"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Lead"
-    hidden: yes
+
   }
 
   measure: avg_Lead {
@@ -2132,7 +2132,7 @@ dimension: flg_d1 {
     label: "Data Aguardando Documentos"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aguardando Documentos"
-    hidden: yes
+
   }
 
   measure: avg_aguardando_documentos {
@@ -2163,7 +2163,7 @@ dimension: flg_d1 {
     label: "Data Aprovado Instituição"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Aprovado Instituição"
-    hidden: yes
+
   }
 
   measure: avg_aprovado_instituicao {
@@ -2194,7 +2194,7 @@ dimension: flg_d1 {
     label: "Data Simulado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Simulado"
-    hidden: yes
+
   }
 
   measure: avg_simulado {
@@ -2225,7 +2225,7 @@ dimension: flg_d1 {
     label: "Data Finalizado"
     group_label: "Última Data das Etapas"
     description: "Ultima data que a proposta passou pela etapa de Finalizado"
-    hidden: yes
+
   }
 
   measure: avg_finalizado {
