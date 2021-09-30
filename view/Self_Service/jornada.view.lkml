@@ -1685,12 +1685,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_SEGUNDO_REPASSE" ;;
@@ -1706,6 +1701,7 @@ dimension: flg_d1 {
     label: "Média de dias até o Segundo Repasse"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Segundo Repasse"
+    value_format: "0"
   }
 
   dimension_group: dt_aguardando_cessao {
@@ -1716,12 +1712,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_AGUARDANDO_CESSAO" ;;
@@ -1734,9 +1725,10 @@ dimension: flg_d1 {
   measure: avg_aguardando_cessao {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_cessao_date}) ;;
-    label: "Média de dias até o Aguardnado Cessão"
+    label: "Cessão"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardnado Cessão"
+    value_format: "0"
   }
 
   dimension_group: dt_cedido {
@@ -1747,12 +1739,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_CEDIDO" ;;
@@ -1765,9 +1752,10 @@ dimension: flg_d1 {
   measure: avg_cedido {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cedido_date}) ;;
-    label: "Média de dias até o Cedido"
+    label: "Cedido"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cedido"
+    value_format: "0"
   }
 
   dimension_group: dt_cancelado {
@@ -1778,12 +1766,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_CANCELADO" ;;
@@ -1796,9 +1779,10 @@ dimension: flg_d1 {
   measure: avg_cancelado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cancelado_date}) ;;
-    label: "Média de dias até a etapa Cancelado"
+    label: "Cancelado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cancelado"
+    value_format: "0"
   }
 
   dimension_group: dt_cadastro_finalizado {
@@ -1809,12 +1793,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_CADASTRO_FINALIZADO" ;;
@@ -1827,9 +1806,10 @@ dimension: flg_d1 {
   measure: avg_cadastro_finalizado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cadastro_finalizado_date}) ;;
-    label: "Média de dias até a etapa Cadastro Finalizado"
+    label: "Cadastro Finalizado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cadastro Finalizado"
+    value_format: "0"
   }
 
   dimension_group: dt_elegivel {
@@ -1840,12 +1820,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_ELEGIVEL" ;;
@@ -1858,9 +1833,10 @@ dimension: flg_d1 {
   measure: avg_elegivel {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_elegivel_date}) ;;
-    label: "Média de dias até a etapa Elegível"
+    label: "Elegível"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de ELegível"
+    value_format: "0"
   }
 
   dimension_group: dt_aprovado_risco {
@@ -1871,12 +1847,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_APROVADO_RISCO" ;;
@@ -1889,9 +1860,10 @@ dimension: flg_d1 {
   measure: avg_aprovado_risco {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_risco_date}) ;;
-    label: "Média de dias até a etapa Aprovado Risco"
+    label: "Aprovado Risco"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Risco"
+    value_format: "0"
   }
 
   dimension_group: dt_formalizado {
@@ -1902,12 +1874,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_FORMALIZADO" ;;
@@ -1920,9 +1887,10 @@ dimension: flg_d1 {
   measure: avg_Formalizado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_formalizado_date}) ;;
-    label: "Média de dias até a etapa Formalizado"
+    label: "Formalizado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Formalizado"
+    value_format: "0"
   }
 
   dimension_group: dt_aprovado_behavior {
@@ -1933,12 +1901,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_APROVADO_BEHAVIOR" ;;
@@ -1951,9 +1914,10 @@ dimension: flg_d1 {
   measure: avg_Aprovado_Behavior {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
-    label: "Média de dias até a etapa Aprovado Behavior"
+    label: "Aprovado Behavior"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Behavior"
+    value_format: "0"
   }
 
   dimension_group: dt_aguardando_assinatura {
@@ -1964,12 +1928,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_AGUARDANDO_ASSINATURA" ;;
@@ -1982,9 +1941,10 @@ dimension: flg_d1 {
   measure: avg_aguardando_assinatura {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_assinatura_date}) ;;
-    label: "Média de dias até a etapa Aguardando Assinatura"
+    label: "Aguardando Assinatura"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Assinatura"
+    value_format: "0"
   }
 
   dimension_group: dt_iniciado_elegivel {
@@ -1995,12 +1955,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_INICIADO_ELEGIVEL" ;;
@@ -2013,9 +1968,10 @@ dimension: flg_d1 {
   measure: avg_iniciado_elegivel {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_elegivel_date}) ;;
-    label: "Média de dias até a etapa Iniciado / Elegível"
+    label: "Iniciado / Elegível"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado / Elegível"
+    value_format: "0"
   }
 
   dimension_group: dt_iniciado {
@@ -2026,12 +1982,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_INICIADO" ;;
@@ -2044,9 +1995,10 @@ dimension: flg_d1 {
   measure: avg_dt_iniciado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_date}) ;;
-    label: "Média de dias até a etapa Iniciado"
+    label: "Iniciado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado"
+    value_format: "0"
   }
 
   dimension_group: dt_aguardando_documento {
@@ -2057,12 +2009,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTO" ;;
@@ -2075,9 +2022,10 @@ dimension: flg_d1 {
   measure: avg_aguardando_documento {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documento_date}) ;;
-    label: "Média de dias até a etapa Aguardando Documento"
+    label: "Aguardando Documento"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documento"
+    value_format: "0"
   }
 
 
@@ -2089,12 +2037,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_LEAD" ;;
@@ -2107,25 +2050,21 @@ dimension: flg_d1 {
   measure: avg_Lead {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_lead_date}) ;;
-    label: "Média de dias até a etapa Lead"
+    label: "Lead"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Lead"
+    value_format: "0"
   }
 
   dimension_group: dt_aguardando_documentos {
     type: time
     timeframes: [
-      raw,
+     raw,
       time,
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTOS" ;;
@@ -2138,9 +2077,10 @@ dimension: flg_d1 {
   measure: avg_aguardando_documentos {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documentos_date}) ;;
-    label: "Média de dias até a etapa Aguardando Documentos"
+    label: "Aguardando Documentos"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documentos"
+    value_format: "0"
   }
 
   dimension_group: dt_aprovado_instituicao {
@@ -2151,12 +2091,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_APROVADO_INSTITUICAO" ;;
@@ -2169,9 +2104,10 @@ dimension: flg_d1 {
   measure: avg_aprovado_instituicao {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_instituicao_date}) ;;
-    label: "Média de dias até a etapa Aprovado Instituição"
+    label: "Aprovado Instituição"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Instituição"
+    value_format: "0"
   }
 
   dimension_group: dt_simulado {
@@ -2182,12 +2118,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_SIMULADO" ;;
@@ -2200,9 +2131,10 @@ dimension: flg_d1 {
   measure: avg_simulado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_simulado_date}) ;;
-    label: "Média de dias até a etapa Simulado"
+    label: "Simulado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Simulado"
+    value_format: "0"
   }
 
   dimension_group: dt_finalizado {
@@ -2213,12 +2145,7 @@ dimension: flg_d1 {
       date,
       week,
       month,
-      quarter,
       year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
       month_num
     ]
     sql: ${TABLE}."DT_FINALIZADO" ;;
@@ -2231,9 +2158,10 @@ dimension: flg_d1 {
   measure: avg_finalizado {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_finalizado_date}) ;;
-    label: "Média de dias até a etapa Finalizado"
+    label: "Finalizado"
     group_label: "Média de dias por Etapa"
     description: "Média em dias da diferença entre o início da proposta até a etapa de Finalizado"
+    value_format: "0"
   }
 
   set: detail {
