@@ -952,6 +952,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: custo_bv {
+    view_label: "1.10 Custos BV"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
