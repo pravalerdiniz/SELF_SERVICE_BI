@@ -758,7 +758,7 @@ join: alunos_produtos_aprovados {
 
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} and ${alunos_inadimplencia_1.ano_mes_safra} = ${alunos_inadimplencia_2.safra_cessao_cpf}  ;;
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}    ;;
     type: left_outer
     relationship: one_to_many
 
@@ -948,6 +948,13 @@ join: alunos_inadimplencia_2 {
   join: alunos_cobranca_e_risco {
     view_label: "1.9.8 Cobrança e Risco"
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: custo_bv {
+    view_label: "1.10 Custos BV"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
     type: left_outer
     relationship: one_to_many
   }
