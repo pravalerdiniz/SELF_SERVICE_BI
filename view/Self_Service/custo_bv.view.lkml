@@ -7,11 +7,13 @@ view: custo_bv {
   dimension: chave {
     sql: CONCAT(${ano_mes},${cpf});;
     primary_key: yes
+    hidden: yes
   }
 
   dimension: cpf {
     type: number
     sql: ${TABLE}."CPF" ;;
+    hidden: yes
   }
 
   measure: count {
