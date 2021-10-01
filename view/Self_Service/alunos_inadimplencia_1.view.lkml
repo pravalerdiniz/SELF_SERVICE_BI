@@ -13,7 +13,8 @@ view: alunos_inadimplencia_1 {
             f.value:"OVER 30"::boolean as over30,
             f.value:"OVER 60"::boolean as over60,
             f.value:"PDD"::varchar as pdd_produto,
-            f.value:SAFRA_CESSAO_SEMESTRE_NUM::number as safra
+            f.value:SAFRA_CESSAO_SEMESTRE_NUM::number as safra,
+            f.value:SAFRA_CESSAO_CPF::number as safra_cessao_cpf
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => maturidade_info) f
  ;;
@@ -44,6 +45,15 @@ view: alunos_inadimplencia_1 {
   dimension: safra {
     type: number
     sql: ${TABLE}."SAFRA" ;;
+    label: "Safra - Semestre"
+    hidden: yes
+    value_format: "0"
+  }
+
+
+  dimension: safra_cessao_cpf {
+    type: number
+    sql: ${TABLE}."SAFRA_CESSAO_CPF" ;;
     label: "Safra - CPF"
     value_format: "0"
   }
