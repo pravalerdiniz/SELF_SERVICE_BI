@@ -147,6 +147,23 @@ view: orquestra {
     sql: ${TABLE}."OBJ_CAMPOS" ;;
   }
 
+  measure:  min_data {
+    type: date
+    group_label: "Dados da Solicitação"
+    label: "Solicitação Início"
+    sql: min(${data_inicio_date})
+      ;;
+  }
+
+  #dimension:  max_data {
+    #type: date
+    #group_label: "Dados da Solicitação"
+    #label: "Solicitação Fim"
+    #sql:case when ${flg_processo_em_andamento} = false then max(${data_inicio_date}) else null end
+    #  ;;
+  #}
+
+
   ## TAREFA
 
 
