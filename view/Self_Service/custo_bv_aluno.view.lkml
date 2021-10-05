@@ -9,6 +9,14 @@ view: custo_bv_aluno {
     drill_fields: [detail*]
   }
 
+  dimension: cpf {
+    type: number
+    sql: ${TABLE}."CPF" ;;
+    primary_key: yes
+    hidden: yes
+  }
+
+
   dimension: acao {
     type: string
     group_item_label: "Ação"
