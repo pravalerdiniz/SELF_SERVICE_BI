@@ -190,6 +190,36 @@ view: orquestra {
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
+  dimension_group: data_inicio_min {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Chamado Início"
+    sql: min(${TABLE}."DATA_INICIO") over (partition by ${numero_chamado} order by ${data_inicio_date});;
+  }
+
+  dimension_group: data_fim_max {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Chamado Última atualização"
+    sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${data_fim_date});;
+  }
+
   dimension_group: data_fim {
     type: time
     timeframes: [
