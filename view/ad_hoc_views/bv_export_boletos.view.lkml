@@ -86,6 +86,16 @@ view: bv_export_boletos {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  dimension: renda_aluno {
+    type: number
+    sql:${TABLE}."RENDA_ALUNO" ;;
+  }
+
+  dimension: renda_avalista {
+    type: number
+    sql:${TABLE}."RENDA_AVALISTA" ;;
+  }
+
   dimension: despesa {
     type: number
     sql: ${TABLE}."DESPESA" ;;
