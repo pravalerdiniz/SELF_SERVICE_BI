@@ -190,32 +190,14 @@ view: orquestra {
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
-  dimension_group: data_inicio_min {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  measure: data_inicio_min {
+    type: date
     label: "Chamado Início"
     sql: min(${TABLE}."DATA_INICIO");;
   }
 
-  dimension_group: data_fim_max {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  measure: data_fim_max {
+    type: date
     label: "Chamado Última atualização"
     sql: max(${TABLE}."DATA_FIM");;
   }
