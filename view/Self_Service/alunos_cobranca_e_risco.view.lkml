@@ -51,27 +51,15 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."DT_ACORDO" ;;
   }
 
-
-  dimension_group: anomes_data_acordo{
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      month_name,
-      year,
-      time,
-
-    ]
-    convert_tz: no
-    label: "Anomes Data Acordo"
-    datatype: date
+  dimension: ano_mes_data_acordo {
+    type: number
+    label: "Ano - Mês Acordo"
+    value_format: "0"
+    description: "Indica o ano e mes da data do acordo"
     sql: ${TABLE}."ANOMES_DT_ACORDO" ;;
   }
 
-  dimension_group: data_concessao{
+  dimension_group: data_concessao {
     type: time
     timeframes: [
       raw,
@@ -81,8 +69,7 @@ view: alunos_cobranca_e_risco {
       quarter,
       month_name,
       year,
-      time,
-
+      time
     ]
     convert_tz: no
     label: "Data Concessao"
@@ -90,14 +77,16 @@ view: alunos_cobranca_e_risco {
     sql: ${TABLE}."DT_CONCESSAO" ;;
   }
 
-  dimension: anomes_cessao {
-    type: string
-    group_item_label: "Anomes Cessao"
+  dimension: ano_mes_cessao {
+    type: number
+    label: "Ano - Mês Cessao"
+    value_format: "0"
+    description: "Indica o ano e mês da data da cessao"
     sql: ${TABLE}."ANOMES_CESSAO" ;;
   }
 
   measure: vp_divida {
-    type: number
+    type: sum
     group_item_label: "VP Divida"
     sql: ${TABLE}."VP_DIVIDA" ;;
   }
@@ -194,7 +183,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: vp_anterior {
-    type: number
+    type: sum
     group_item_label: "VP Anterior"
     sql: ${TABLE}."VP_ANTERIOR" ;;
   }
@@ -212,7 +201,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: valor_pdd {
-    type: number
+    type: sum
     group_item_label: "Valor PDD"
     sql: ${TABLE}."VL_PDD" ;;
   }
@@ -224,13 +213,13 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: dif_vp {
-    type: number
+    type: sum
     group_item_label: "Dif VP"
     sql: ${TABLE}."DIF_VP" ;;
   }
 
   measure: valor_complementar {
-    type: number
+    type: sum
     group_item_label: "Valor Complementar"
     sql: ${TABLE}."VL_COMPLEMENTAR" ;;
   }
@@ -242,7 +231,7 @@ view: alunos_cobranca_e_risco {
   }
 
   measure: valor_presente {
-    type: number
+    type: sum
     group_item_label: "Valor Presente"
     sql: ${TABLE}."VL_PRESENTE" ;;
   }
@@ -254,9 +243,9 @@ view: alunos_cobranca_e_risco {
       proposta,
       usuario_rede,
       data_acordo_time,
-      anomes_data_acordo_date,
-      data_concessao_date,
-      anomes_cessao,
+      ano_mes_data_acordo,
+      data_concessao_time,
+      ano_mes_cessao,
       vp_divida,
       data_time,
       status,

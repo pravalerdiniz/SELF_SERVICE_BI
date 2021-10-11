@@ -147,6 +147,23 @@ view: orquestra {
     sql: ${TABLE}."OBJ_CAMPOS" ;;
   }
 
+  measure:  min_data {
+    type: date
+    group_label: "Dados da Solicitação"
+    label: "Solicitação Início"
+    sql: min(${data_inicio_date})
+      ;;
+  }
+
+  #dimension:  max_data {
+    #type: date
+    #group_label: "Dados da Solicitação"
+    #label: "Solicitação Fim"
+    #sql:case when ${flg_processo_em_andamento} = false then max(${data_inicio_date}) else null end
+    #  ;;
+  #}
+
+
   ## TAREFA
 
 
@@ -171,6 +188,36 @@ view: orquestra {
     ]
     label: "Tarefa Início"
     sql: ${TABLE}."DATA_INICIO" ;;
+  }
+
+  dimension_group: data_inicio_min {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Chamado Início"
+    sql: min(${TABLE}."DATA_INICIO") over (partition by ${numero_chamado} order by ${data_inicio_date});;
+  }
+
+  dimension_group: data_fim_max {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    label: "Chamado Última atualização"
+    sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${data_fim_date});;
   }
 
   dimension_group: data_fim {

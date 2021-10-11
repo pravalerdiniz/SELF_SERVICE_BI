@@ -538,6 +538,15 @@ nm_produto
     description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
+  measure: med_qtd_dias_status_anterior{
+    type: median
+    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    label: "Tempo de Transição no Status - Mediana"
+    value_format: "0"
+    hidden:  yes
+    description: "Indica a mediana de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
+  }
+
 
     measure: median_qtd_dias_status_anterior{
     type: median
@@ -546,6 +555,280 @@ nm_produto
     value_format: "0"
     description: "Indica a mediana de quantidade dias que o aluno ficou parado no status de origem"
     hidden:yes
+  }
+
+
+  dimension: status_alteracao {
+
+    type: string
+    case: {
+      when: {
+        sql: ${status_origem_detalhado} =  ${status_destino_detalhado} ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '0.0' and ${status_destino_detalhado} in ('1,0','1.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('1.1','1.0') and ${status_destino_detalhado} in ('1,1','2.0') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '2.0' and ${status_destino_detalhado} = '2.35' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '2.35' and (${status_destino_detalhado} = '2.37' or
+          ${status_destino_geral} = -9090) ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '2.37' and (${status_destino_detalhado} in ('11.0','2.90') or
+          ${status_destino_geral} in (10,19,8,9)) ;;
+        label: "Certo"
+      }
+      when: {
+        sql: (${status_origem_geral} = -9090 or ${status_origem_detalhado} = '2.90')
+          and ${status_destino_detalhado} = '2.0' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_geral} = 8 and ${status_destino_detalhado} in ('2.37','26.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_geral} = 9 and (${status_destino_detalhado} in ('10.6','8.7','0.2') or
+          ${status_destino_geral} = 11) ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('11.0','11.2') and ${status_destino_geral} in (39,13,14,25) ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_geral} = 13 and (${status_destino_geral} = 25 or
+          ${status_destino_detalhado} = '0.1300') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '14.0' and (${status_destino_geral} = 25 or
+          ${status_destino_detalhado} = '0.1400') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_geral} = 15 and ${status_destino_geral} in (39,13,14,25)  ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('25.1','25.3','25.4','26.1') and ${status_destino_detalhado} = '31.1' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '25.2' and ${status_destino_detalhado} = '26.1' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('18.0','28.0','38.0','48.0') and ${status_destino_detalhado} = '0.1100' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '31.1' and ${status_destino_detalhado} in ('33.0','33.2','31.4') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('33.0','33.2') and ${status_destino_detalhado} in ('31.0','33.0') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '31.4' and ${status_destino_detalhado} = '34.0' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '34.0' and ${status_destino_detalhado} = '34.1' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '34.1' and ${status_destino_detalhado} = '35.0' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '35.0' and ${status_destino_detalhado} = '40.5' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '40.5' and ${status_destino_detalhado} in ('41.0','42.2') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '42.2' and ${status_destino_detalhado} in ('42.4','41.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '42.4' and ${status_destino_detalhado} in ('42.2','41.0') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('41.0','41.1') and ${status_destino_detalhado} in ('50.0','84.0','-99.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '50.0' and ${status_destino_detalhado} in ('51.0','57.0') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '84.0' and ${status_destino_detalhado} in ('41.0','41.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} = '0.1100' and ${status_destino_detalhado} = '1.1' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} in ('46.1','-99.1') ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_origem_detalhado} not in ('0.0','1.1','1.0','2.0','2.35','2.37','2.90','11.0',
+                                      '11.2','14.0','14.13','18.0','25.1','25.2','25.3','25.4',
+                                      '26.1','28.0','31.1','33.0','33.2','31.4','34.0','34.1','35.0',
+                                      '40.5','42.2','42.4','46.1','38.0','48.0','41.0','41.1','50.0',
+                                      '84.0','-99.1','0.1100')
+              and ${status_origem_geral} not in (-9090,8,9,13,15);;
+        label: "Não Atribuído"
+      }
+      else: "Errado"
+    }
+    hidden: yes
+  }
+
+  dimension: de_para_status_alteracao {
+    case: {
+      when: {
+        sql: ${status_alteracao} = 'Certo' ;;
+        label: "Certo"
+      }
+      when: {
+        sql: ${status_alteracao} = 'Não Atribuído' ;;
+        label: "Não Atribuído"
+      }
+      when: {
+        sql: ${status_alteracao} = 'Errado' ;;
+        label: "Errado"
+      }
+    }
+    label: "Status da Alteração"
+    description: "Indica se a alteração está de acordo com o fluxo padrão do PRAVALER"
+    hidden: yes
+  }
+
+  dimension: etapa_alteracao {
+    type: string
+    case: {
+      when: {
+        sql: ${status_destino_geral}  in (0,1) ;;
+        label: "Preenchendo Proposta"
+      }
+      when: {
+        sql: ${status_destino_geral} = 2 ;;
+        label: "Análise de Risco"
+      }
+      when: {
+        sql: ${status_destino_geral} in (8,9,10,19) ;;
+        label: "Não Aprovado por Risco"
+      }
+      when: {
+        sql: ${status_destino_geral} in (11) ;;
+        label: "Tela da Instituição"
+      }
+      when: {
+        sql: ${status_destino_geral} in (13,14,39,36) ;;
+        label: "Não Aprovado pela Instituição"
+      }
+      when: {
+        sql: ${status_destino_geral} in (25) ;;
+        label: "Preenchendo Dados Adicionais"
+      }
+      when: {
+        sql: ${status_destino_geral} in (31) ;;
+        label: "Aprovado para Geração de Contrato"
+      }
+      when: {
+        sql: ${status_destino_geral} in (40,42) ;;
+        label: "Formalização"
+      }
+      when: {
+        sql: ${status_destino_geral} in (41) ;;
+        label: "Formalizado"
+      }
+      when: {
+        sql: ${status_destino_geral} in (46,47,49) ;;
+        label: "Não Aprovado pela Formalização"
+      }
+      when: {
+        sql: ${status_destino_geral} in (50) ;;
+        label: "Cedido"
+      }
+      when: {
+        sql: ${status_destino_geral} in (51) ;;
+        label: "Segundo Repasse"
+      }
+      else: "Outros"
+    }
+    label: "Etapa da Alteração"
+    hidden: yes
+  }
+
+  dimension: etapa_alteracao_geral {
+    type: string
+    case: {
+      when: {
+        sql: ${status_destino_geral}  in (0,1) ;;
+        label: "Proposta"
+      }
+      when: {
+        sql: ${status_destino_geral} in (2,8,9,10,19) ;;
+        label: "Risco"
+      }
+      when: {
+        sql: ${status_destino_geral} in (11,13,14,39,36) ;;
+        label: "Tela da Instituição"
+      }
+      when: {
+        sql: ${status_destino_geral} in (25) ;;
+        label: "Dados Adicionais"
+      }
+      when: {
+        sql: ${status_destino_geral} in (31) ;;
+        label: "Geração de Contrato"
+      }
+      when: {
+        sql: ${status_destino_geral} in (40,42,46,47,49) ;;
+        label: "Formalização"
+      }
+      when: {
+        sql: ${status_destino_geral} in (41) ;;
+        label: "Formalizado"
+      }
+      when: {
+        sql: ${status_destino_geral} in (50) ;;
+        label: "Cedido"
+      }
+      when: {
+        sql: ${status_destino_geral} in (51) ;;
+        label: "Segundo Repasse"
+      }
+      else: "Outros"
+    }
+    label: "Fluxo"
+    hidden: yes
+  }
+
+  dimension: alteracao {
+    type: string
+    sql: concat(${status_origem_geral},' -> ',${status_destino_geral}) ;;
+    description: "Concatena o status de origem e de destino"
+    hidden: yes
   }
 
 }

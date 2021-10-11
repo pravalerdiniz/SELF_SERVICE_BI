@@ -10,8 +10,8 @@ view: payments_boletos {
        F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO,
        F.VALUE:PAID_AT::DATE AS DATA_PAGAMENTO,
        F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO,
-       F.VALUE:FLG_MENOR_VENCIMENTO::BOOLEAN AS FLG_MENOR_VENCIMENTO
-
+       F.VALUE:FLG_MENOR_VENCIMENTO::BOOLEAN AS FLG_MENOR_VENCIMENTO,
+       F.VALUE:FAIXA_ATRASO::VARCHAR AS FAIXA_ATRASO
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
  ;;
@@ -104,73 +104,79 @@ lateral flatten (input=>boletos) f
 
 
 
-  dimension: faixa_de_atraso {
+
+
+  dimension: faixa_atraso {
     type: string
+    group_item_label: "Faixa de Atraso"
+    sql: ${TABLE}."FAIXA_ATRASO" ;;
+    description: "FAIXA DE ATRASO DOS ALUNOS INADIMPLENTES"
+    order_by_field: ordem_faixa_atraso
+  }
+
+  dimension: ordem_faixa_atraso {
+    type: number
+    label: "Ordem - Faixa de Atraso"
+    description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
+    sql: CAST(${ordem_faixa_atraso_regra} AS INT) ;;
+
+  }
+
+  dimension: ordem_faixa_atraso_regra {
+    type: string
+    hidden: yes
     case: {
       when: {
-        sql: ${dias_atraso} = 0 ;;
-        label: "Em dia"
+        sql: ${faixa_atraso} = 'Em Aberto' ;;
+        label: "0"
       }
       when: {
-        sql: ${dias_atraso} < 15  ;;
-        label: "1 - 14"
+        sql: ${faixa_atraso} = 'Em Dia' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '1 - 14'  ;;
+        label: "2"
       }
       when: {
-        sql: ${dias_atraso} <= 30  ;;
-        label: "15 - 30"
+        sql: ${faixa_atraso} = '15 - 30'  ;;
+        label: "3"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '31 - 60' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '61 - 90' ;;
+        label: "5"
       }
       when: {
-        sql: ${dias_atraso} <= 60 ;;
-        label: "31 - 60"
+        sql: ${faixa_atraso} = '91 - 120' ;;
+        label: "6"
       }
+
       when: {
-        sql: ${dias_atraso} <= 90 ;;
-        label: "61 - 90"
+        sql: ${faixa_atraso} = '121 - 150';;
+        label: "7"
       }
+
       when: {
-        sql: ${dias_atraso} <= 120 ;;
-        label: "91 - 120"
+        sql: ${faixa_atraso} = '151 - 180';;
+        label: "9"
       }
+
       when: {
-        sql: ${dias_atraso} <= 150 ;;
-        label: "121 - 150"
+        sql: ${faixa_atraso} = '181 - 360' ;;
+        label: "10"
       }
-      when: {
-        sql: ${dias_atraso} <= 180 ;;
-        label: "151 - 180"
       }
-      when: {
-        sql: ${dias_atraso} <= 360 ;;
-        label: "181 - 360"
       }
-      when: {
-        sql: ${dias_atraso} > 360 ;;
-        label: "W.O"
-      }
-      else: "Não Atribuido"
-    }
-    group_item_label: "Faixa de Atraso"
-    description: "Indica a faixa de atraso do boleto do aluno"
-  }
 
 
-  dimension:perc_provisao{
-    type: number
-    group_item_label: "Percentual de Provisão"
-    description: "Indica o porcentual de provisão de cada boleto de acordo com a faixa de atraso. Informação gerada pela equipe de Risco e Portfólio"
-    sql: CASE WHEN ${faixa_de_atraso} = 'Em dia' THEN 0.008
-              WHEN ${faixa_de_atraso} = '1 - 14' THEN  0.072
-              WHEN ${faixa_de_atraso} = '15 - 30' THEN  0.17
-              WHEN ${faixa_de_atraso} = '31 - 60' THEN  0.44
-              WHEN ${faixa_de_atraso} = '61 - 90' THEN  0.60
-              WHEN ${faixa_de_atraso} = '91 - 120' THEN  0.75
-              WHEN ${faixa_de_atraso} = '121 - 150' THEN  0.84
-              WHEN ${faixa_de_atraso} = '151 - 180' THEN  0.89
-              WHEN ${faixa_de_atraso} = '181 - 360' THEN  1.00
-              ELSE 0 END
-    ;;
-    value_format: "0.00%"
-  }
 
 
 
