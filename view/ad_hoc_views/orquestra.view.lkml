@@ -217,7 +217,7 @@ view: orquestra {
       year
     ]
     label: "Chamado Última atualização"
-    sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${data_fim_date});;
+    sql: (max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${data_fim_date}));;
   }
 
   dimension_group: data_fim {
