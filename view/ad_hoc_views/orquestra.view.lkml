@@ -50,33 +50,33 @@ view: orquestra {
 
   dimension: nome_requisitante {
     type: string
-    group_label: "Dados do Solicitante"
-    group_item_label: "Nome do solicitante"
-    description: "Nome do solicitante da requisição"
+    group_label: "Dados do Requisitante"
+    group_item_label: "Nome do requisitante"
+    description: "Nome do requisitante da requisição"
     sql: ${TABLE}."NOME_REQUISITANTE" ;;
   }
 
   dimension: login_requisitante {
     type: string
-    group_label: "Dados do Solicitante"
-    group_item_label: "Login do solicitante"
-    description: "Login do solicitante da requisição"
+    group_label: "Dados do Requisitante"
+    group_item_label: "Login do requisitante"
+    description: "Login do requisitante da requisição"
     sql: ${TABLE}."LOGIN_REQUISITANTE" ;;
   }
 
   dimension: area_requisitante {
     type: string
-    group_label: "Dados do Solicitante"
-    group_item_label: "Área do solicitante"
-    description: "Área do solicitante da requisição"
+    group_label: "Dados do Requisitante"
+    group_item_label: "Área do requisitante"
+    description: "Área do requisitante da requisição"
     sql: ${TABLE}."AREA_REQUISITANTE" ;;
   }
 
   dimension: posicao_requisitante {
     type: string
-    group_label: "Dados do Solicitante"
-    group_item_label: "Função do solicitante"
-    description: "Função do solicitante da requisição"
+    group_label: "Dados do Requisitante"
+    group_item_label: "Função do requisitante"
+    description: "Função do requisitante da requisição"
     sql: ${TABLE}."POSICAO_REQUISITANTE" ;;
   }
 
@@ -86,7 +86,7 @@ view: orquestra {
   dimension: nome_fila {
     type: string
     group_label: "Dados da Solicitação"
-    group_item_label: "Nome do Processo"
+    group_item_label: "Nome do processo"
     description: "Nome do processo para consulta (Ex. P17, P24, P40...)"
     sql: ${TABLE}."NOME_FILA" ;;
   }
@@ -94,7 +94,7 @@ view: orquestra {
   dimension: numero_chamado {
     type: string
     group_label: "Dados da Solicitação"
-    group_item_label: "Número da Solicitação"
+    group_item_label: "Número do chamado"
     description: "Número do chamado da Solicitação"
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
   }
