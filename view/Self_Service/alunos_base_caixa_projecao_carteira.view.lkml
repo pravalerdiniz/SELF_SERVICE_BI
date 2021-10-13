@@ -69,6 +69,11 @@ view: base_caixa_projecao_carteira {
     sql: ${TABLE}."ANOMES_REF" ;;
   }
 
+  dimension: writeoff {
+    type: date
+    group_item_label:"Data que entrou em WO"
+    sql: ${TABLE}."WRITEOFF" ;;
+  }
   dimension: fx_atraso {
     type: string
     group_item_label:"Faixa de Atraso"
@@ -150,7 +155,8 @@ view: base_caixa_projecao_carteira {
       saldo_carteira,
       caixa_acum,
       boleto_acum,
-      qtde_acum
+      qtde_acum,
+      writeoff
     ]
   }
 }

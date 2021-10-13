@@ -190,6 +190,18 @@ view: orquestra {
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
+  measure: data_inicio_min {
+    type: date
+    label: "Chamado Início"
+    sql: min(${TABLE}."DATA_INICIO");;
+  }
+
+  measure: data_fim_max {
+    type: date
+    label: "Chamado Última atualização"
+    sql: max(${TABLE}."DATA_FIM");;
+  }
+
   dimension_group: data_fim {
     type: time
     timeframes: [
