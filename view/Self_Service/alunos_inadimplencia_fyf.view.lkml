@@ -17,7 +17,7 @@ view: alunos_inadimplencia_fyf {
 
   dimension: cpf {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -41,31 +41,31 @@ view: alunos_inadimplencia_fyf {
 
   dimension: valor_presente {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."VALOR_PRESENTE" ;;
   }
 
   dimension: valor_futuro {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."VALOR_FUTURO" ;;
   }
 
   dimension: recup {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."RECUP" ;;
   }
 
   dimension: recup_2 {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."RECUP_2" ;;
   }
 
   dimension: qtd {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."QTD" ;;
   }
 
