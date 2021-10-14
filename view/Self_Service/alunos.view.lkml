@@ -1044,7 +1044,7 @@ view: alunos {
 
   dimension: flag_sem_fiador {
     type:  yesno
-    label: "Produto Com/Sem Fiador"
+    label: "Flag Sem Fiador"
     sql: case when ${jornada.data_inicio_da_proposta_date}} >= '2020-09-14'
     and ${alunos.cpf_fiador} is null then 1 else 0 ;;
     }
