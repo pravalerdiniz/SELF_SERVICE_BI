@@ -1045,8 +1045,8 @@ view: alunos {
   dimension: flag_sem_fiador {
     type:  yesno
     label: "Flag Sem Fiador"
-    sql: ${jornada.data_inicio_da_proposta_date} >= '2020-09-14'
-    and ${alunos.cpf_fiador} is null ;;
+    sql: ${jornada.data_inicio_da_proposta_date} >= '2021-09-14'
+    and ${proposta.cpf_fiador} is null ;;
     }
 
 
