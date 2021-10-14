@@ -976,16 +976,7 @@ view: alunos {
     CASE WHEN DATE_PART(quarter, ${data_primeira_cessao_raw}) = 1 OR
     DATE_PART(quarter, ${data_primeira_cessao_raw}) = 2 THEN '01' ELSE
     '02' END);;
-
-
-
   }
-
-
-
-
-
-
 
 
   dimension_group: data_ultima_cessao {
