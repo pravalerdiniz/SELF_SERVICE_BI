@@ -60,7 +60,7 @@ view: solucx {
 
   dimension: nota_pesquisa {
     type: number
-    group_label: "Dados da Pesquisaa"
+    group_label: "Dados da Pesquisa"
     group_item_label: "Nota da Pesquisa"
     description: "Nota de recomendação do aluno."
     sql: ${TABLE}."NOTA_PESQUISA" ;;
