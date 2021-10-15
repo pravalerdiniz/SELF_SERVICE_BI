@@ -208,7 +208,7 @@ view: orquestra {
   dimension: min_data_chamado {
     type: date
     group_label: "Dados da Solicitação"
-    label: "Chamado Início"
+    label: "Início do Chamado"
     hidden:  no
     sql: ${TABLE}."MIN_DATA_CHAMADO";;
   }
@@ -216,7 +216,7 @@ view: orquestra {
   dimension: max_data_chamado {
     type: date
     group_label: "Dados da Solicitação"
-    label: "Chamado Última atualização"
+    label: "Última Atualização do Chamado"
     hidden:  no
     sql: ${TABLE}."MAX_DATA_CHAMADO";;
   }
