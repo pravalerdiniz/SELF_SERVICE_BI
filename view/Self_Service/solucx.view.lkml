@@ -82,89 +82,137 @@ view: solucx {
     sql: ${TABLE}."CANAL_PESQUISA" ;;
   }
 
-  dimension_group: data_envio_pesquisa {
-    type: time
-    sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
-  }
-
   dimension: cpf_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF do Aluno"
+    description: "Número do CPF do aluno."
     sql: ${TABLE}."CPF_ALUNO" ;;
   }
 
   dimension: email_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "E-mail do Aluno"
+    description: "E-mail do aluno."
     sql: ${TABLE}."EMAIL_ALUNO" ;;
   }
 
   dimension: nome_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome do Aluno"
+    description: "Nome do aluno."
     sql: ${TABLE}."NOME_ALUNO" ;;
   }
 
   dimension: telefone_aluno {
     type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Telefone do Aluno"
+    description: "Número do telefone do aluno."
     sql: ${TABLE}."TELEFONE_ALUNO" ;;
   }
 
   dimension: motivo_atendimento_alunos {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Atendimento Alunos"
+    description: "Como o aluno avalia o Atendimento ao Aluno."
     sql: ${TABLE}."MOTIVO_ATENDIMENTO_ALUNOS" ;;
   }
 
   dimension: motivo_produtos {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Produtos"
+    description: "Como o aluno avalia os Produtos."
     sql: ${TABLE}."MOTIVO_PRODUTOS" ;;
   }
 
   dimension: motivo_processo_aprovacao {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Processo Aprovação"
+    description: "Como o aluno avalia o Processo de Aprovação."
     sql: ${TABLE}."MOTIVO_PROCESSO_APROVACAO" ;;
   }
 
   dimension: motivo_cadastro {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Cadastro"
+    description: "Como o aluno avalia o Cadastro."
     sql: ${TABLE}."MOTIVO_CADASTRO" ;;
   }
 
   dimension: motivo_resolutividade {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Resolutividade"
+    description: "Como o aluno avalia a Resolutividade."
     sql: ${TABLE}."MOTIVO_RESOLUTIVIDADE" ;;
   }
 
   dimension: motivo_acessibilidade {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Acessibilidade"
+    description: "Como o aluno avalia a Acessibilidade."
     sql: ${TABLE}."MOTIVO_ACESSIBILIDADE" ;;
   }
 
   dimension: motivo_comunicacao {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Comunicação"
+    description: "Como o aluno avalia a Comunicação."
     sql: ${TABLE}."MOTIVO_COMUNICACAO" ;;
   }
 
   dimension: motivo_pagamento {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Pagamento"
+    description: "Como o aluno avalia o Pagamento."
     sql: ${TABLE}."MOTIVO_PAGAMENTO" ;;
   }
 
   dimension: motivo_clareza {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Clareza"
+    description: "Como o aluno avalia a Clareza."
     sql: ${TABLE}."MOTIVO_CLAREZA" ;;
   }
 
   dimension: motivo_canais {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Canais"
+    description: "Como o aluno avalia os Canais."
     sql: ${TABLE}."MOTIVO_CANAIS" ;;
   }
 
   dimension: motivo_contratacao {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Contratação"
+    description: "Como o aluno avalia a Contratação."
     sql: ${TABLE}."MOTIVO_CONTRATACAO" ;;
   }
 
   dimension: motivo_atendimento {
     type: string
+    group_label: "Motivos"
+    group_item_label: "Atendimento"
+    description: "Como o aluno avalia o Atendimento."
     sql: ${TABLE}."MOTIVO_ATENDIMENTO" ;;
+  }
+
+  dimension_group: data_envio_pesquisa {
+    type: time
+    sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
   }
 
   dimension_group: data_resposta_pesquisa {
