@@ -976,16 +976,7 @@ view: alunos {
     CASE WHEN DATE_PART(quarter, ${data_primeira_cessao_raw}) = 1 OR
     DATE_PART(quarter, ${data_primeira_cessao_raw}) = 2 THEN '01' ELSE
     '02' END);;
-
-
-
   }
-
-
-
-
-
-
 
 
   dimension_group: data_ultima_cessao {
@@ -1050,6 +1041,13 @@ view: alunos {
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/999292966/NUMERO+DA+RENOVA+O"
     }
   }
+
+  dimension: flag_sem_fiador {
+    type:  yesno
+    label: "Flag Sem Fiador"
+    sql: ${jornada.data_inicio_da_proposta_date} >= '2021-09-14'
+    and ${proposta.cpf_fiador} is null ;;
+    }
 
 
   dimension: qtd_contratos_cedidos {

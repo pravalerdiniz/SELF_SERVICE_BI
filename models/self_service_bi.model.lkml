@@ -158,7 +158,8 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - alunos.flag_sem_fiador
 
   ]
 
@@ -354,7 +355,8 @@ explore: instituicao {
     - proposta.tipo_original,
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - alunos.flag_sem_fiador
 
   ]
 
@@ -597,7 +599,8 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+- alunos.ativo_ano_mes,
+- alunos.flag_sem_fiador
 
 
 

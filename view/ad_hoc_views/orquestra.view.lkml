@@ -151,6 +151,7 @@ view: orquestra {
     type: date
     group_label: "Dados da Solicitação"
     label: "Solicitação Início"
+    hidden:  yes
     sql: min(${data_inicio_date})
       ;;
   }
@@ -193,13 +194,31 @@ view: orquestra {
   measure: data_inicio_min {
     type: date
     label: "Chamado Início"
-    sql: min(${TABLE}."DATA_INICIO");;
+    hidden:  yes
+    sql: min(${TABLE}."DATA_INICIO") over (partition by ${numero_chamado} order by ${numero_chamado});;
   }
 
   measure: data_fim_max {
     type: date
     label: "Chamado Última atualização"
-    sql: max(${TABLE}."DATA_FIM");;
+    hidden:  yes
+    sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${numero_chamado});;
+  }
+
+  dimension: min_data_chamado {
+    type: date
+    group_label: "Dados da Solicitação"
+    label: "Início do Chamado"
+    hidden:  no
+    sql: ${TABLE}."MIN_DATA_CHAMADO";;
+  }
+
+  dimension: max_data_chamado {
+    type: date
+    group_label: "Dados da Solicitação"
+    label: "Última Atualização do Chamado"
+    hidden:  no
+    sql: ${TABLE}."MAX_DATA_CHAMADO";;
   }
 
   dimension_group: data_fim {
