@@ -36,17 +36,55 @@ view: solucx {
 
   dimension: jornada {
     type: string
+    group_label: "Jornada"
+    group_item_label: "Dados da Pesquisa"
+    description: "Tipo de jornada que o aluno está participando."
     sql: ${TABLE}."JORNADA" ;;
+  }
+
+  dimension: grupo_pesquisa {
+    type: string
+    group_label: "Grupo Pesquisa"
+    group_item_label: "Dados da Pesquisa"
+    description: "Grupo da pesquisa. (Relacional ou Transacional)"
+    sql: ${TABLE}."GRUPO_PESQUISA" ;;
+  }
+
+  dimension: comentario_pesquisa {
+    type: string
+    group_label: "Comentário da Pesquisa"
+    group_item_label: "Dados da Pesquisa"
+    description: "Comentário do aluno."
+    sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
+  }
+
+  dimension: nota_pesquisa {
+    type: number
+    group_label: "Nota da Pesquisa"
+    group_item_label: "Dados da Pesquisa"
+    description: "Nota de recomendação do aluno."
+    sql: ${TABLE}."NOTA_PESQUISA" ;;
+  }
+
+  dimension: promotor_detrator {
+    type: string
+    group_label: "Tipo de aluno - Promotor/Detrator"
+    group_item_label: "Dados da Pesquisa"
+    description: "Tipo do aluno de acordo com a sua nota de recomendação (0-6 = detrator, 7 e 8 = neutro, 9 e 10 = promotor)."
+    sql: ${TABLE}."PROMOTOR_DETRATOR" ;;
+  }
+
+  dimension: canal_pesquisa {
+    type: string
+    group_label: "Canal da Pesquisa"
+    group_item_label: "Dados da Pesquisa"
+    description: "Canal de disparo da pesquisa."
+    sql: ${TABLE}."CANAL_PESQUISA" ;;
   }
 
   dimension_group: data_envio_pesquisa {
     type: time
     sql: ${TABLE}."DATA_ENVIO_PESQUISA" ;;
-  }
-
-  dimension: grupo_pesquisa {
-    type: string
-    sql: ${TABLE}."GRUPO_PESQUISA" ;;
   }
 
   dimension: cpf_aluno {
@@ -67,11 +105,6 @@ view: solucx {
   dimension: telefone_aluno {
     type: string
     sql: ${TABLE}."TELEFONE_ALUNO" ;;
-  }
-
-  dimension: comentario_pesquisa {
-    type: string
-    sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
   }
 
   dimension: motivo_atendimento_alunos {
@@ -134,25 +167,12 @@ view: solucx {
     sql: ${TABLE}."MOTIVO_ATENDIMENTO" ;;
   }
 
-  dimension: canal_pesquisa {
-    type: string
-    sql: ${TABLE}."CANAL_PESQUISA" ;;
-  }
-
   dimension_group: data_resposta_pesquisa {
     type: time
     sql: ${TABLE}."DATA_RESPOSTA_PESQUISA" ;;
   }
 
-  dimension: nota_pesquisa {
-    type: number
-    sql: ${TABLE}."NOTA_PESQUISA" ;;
-  }
 
-  dimension: promotor_detrator {
-    type: string
-    sql: ${TABLE}."PROMOTOR_DETRATOR" ;;
-  }
 
   set: detail {
     fields: [
