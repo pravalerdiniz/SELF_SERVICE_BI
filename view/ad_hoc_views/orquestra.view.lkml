@@ -151,6 +151,7 @@ view: orquestra {
     type: date
     group_label: "Dados da Solicitação"
     label: "Solicitação Início"
+    hidden:  yes
     sql: min(${data_inicio_date})
       ;;
   }
@@ -212,7 +213,7 @@ view: orquestra {
     sql: ${TABLE}."MIN_DATA_CHAMADO";;
   }
 
-  measure: max_data_chamado {
+  dimension: max_data_chamado {
     type: date
     group_label: "Dados da Solicitação"
     label: "Chamado Última atualização"
