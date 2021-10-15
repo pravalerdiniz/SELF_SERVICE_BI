@@ -1058,6 +1058,11 @@ join: financeiro {
 }
 
 
+explore: solucx {
+  label: "SoluCX - NPS"
+  }
+
+
 explore: interacoes {
   label: "Interações - Tickets"
   view_label: "Interações - Tickets"
