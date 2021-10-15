@@ -32,6 +32,7 @@ view: solucx {
   measure: count {
     type: count
     drill_fields: [detail*]
+    hidden: yes
   }
 
   dimension: jornada {
