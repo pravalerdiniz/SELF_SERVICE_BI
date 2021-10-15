@@ -36,48 +36,48 @@ view: solucx {
 
   dimension: jornada {
     type: string
-    group_label: "Jornada"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Jornada"
     description: "Tipo de jornada que o aluno está participando."
     sql: ${TABLE}."JORNADA" ;;
   }
 
   dimension: grupo_pesquisa {
     type: string
-    group_label: "Grupo Pesquisa"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Grupo Pesquisa"
     description: "Grupo da pesquisa. (Relacional ou Transacional)"
     sql: ${TABLE}."GRUPO_PESQUISA" ;;
   }
 
   dimension: comentario_pesquisa {
     type: string
-    group_label: "Comentário da Pesquisa"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Comentário da Pesquisa"
     description: "Comentário do aluno."
     sql: ${TABLE}."COMENTARIO_PESQUISA" ;;
   }
 
   dimension: nota_pesquisa {
     type: number
-    group_label: "Nota da Pesquisa"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisaa"
+    group_item_label: "Nota da Pesquisa"
     description: "Nota de recomendação do aluno."
     sql: ${TABLE}."NOTA_PESQUISA" ;;
   }
 
   dimension: promotor_detrator {
     type: string
-    group_label: "Tipo de aluno - Promotor/Detrator"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Tipo de aluno - Promotor/Detrator"
     description: "Tipo do aluno de acordo com a sua nota de recomendação (0-6 = detrator, 7 e 8 = neutro, 9 e 10 = promotor)."
     sql: ${TABLE}."PROMOTOR_DETRATOR" ;;
   }
 
   dimension: canal_pesquisa {
     type: string
-    group_label: "Canal da Pesquisa"
-    group_item_label: "Dados da Pesquisa"
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Canal da Pesquisa"
     description: "Canal de disparo da pesquisa."
     sql: ${TABLE}."CANAL_PESQUISA" ;;
   }
