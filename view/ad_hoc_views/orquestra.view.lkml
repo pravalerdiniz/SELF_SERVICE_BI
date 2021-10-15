@@ -193,13 +193,15 @@ view: orquestra {
   measure: data_inicio_min {
     type: date
     label: "Chamado Início"
-    sql: min(${TABLE}."DATA_INICIO");;
+    hidden:  yes
+    sql: min(${TABLE}."DATA_INICIO") over (partition by ${numero_chamado} order by ${numero_chamado});;
   }
 
   measure: data_fim_max {
     type: date
     label: "Chamado Última atualização"
-    sql: max(${TABLE}."DATA_FIM");;
+    hidden:  yes
+    sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${numero_chamado});;
   }
 
   dimension_group: data_fim {
