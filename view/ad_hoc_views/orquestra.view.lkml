@@ -204,6 +204,20 @@ view: orquestra {
     sql: max(${TABLE}."DATA_FIM") over (partition by ${numero_chamado} order by ${numero_chamado});;
   }
 
+  dimension: min_data_chamado {
+    type: date
+    label: "Chamado Início"
+    hidden:  no
+    sql: ${TABLE}."MIN_DATA_CHAMADO";;
+  }
+
+  measure: max_data_chamado {
+    type: date
+    label: "Chamado Última atualização"
+    hidden:  no
+    sql: ${TABLE}."MAX_DATA_CHAMADO";;
+  }
+
   dimension_group: data_fim {
     type: time
     timeframes: [
