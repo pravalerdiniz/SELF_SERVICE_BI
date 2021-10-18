@@ -424,7 +424,7 @@ view: student {
 
   dimension: nome_curso {
     type: string
-    sql: ${institution.nome_curso};;
+    sql: ${courses.nome_curso};;
     description:"DESCRICAO DO CURSO"
     group_item_label: "Nome do Curso"
     group_label: "Dados do Curso"
