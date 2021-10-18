@@ -219,8 +219,12 @@ view: proposta {
   }
 
 
-
-
+  dimension: flag_sem_fiador {
+    type:  yesno
+    label: "Flag Sem Fiador"
+    sql: ${proposta.data_preenchimento_date} >= '2021-09-14'
+      and ${proposta.cpf_fiador} is null ;;
+  }
 
   dimension: gh_bhv{
     type: string

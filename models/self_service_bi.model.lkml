@@ -158,7 +158,8 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -354,7 +355,8 @@ explore: instituicao {
     - proposta.tipo_original,
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -466,6 +468,7 @@ explore: financeiro {
           - financeiro_extrato_titulo.id_cpf,
           - financeiro_extrato_titulo.id_titulo,
           - proposta.max_boleto_atrasado,
+    - proposta.flag_sem_fiador
           ]
 
   join: financeiro_extrato_titulo {
@@ -597,7 +600,8 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+- alunos.ativo_ano_mes,
+- proposta.flag_sem_fiador
 
 
 
@@ -1053,6 +1057,11 @@ join: financeiro {
 
 
 }
+
+
+explore: solucx {
+  label: "SoluCX - NPS"
+  }
 
 
 explore: interacoes {

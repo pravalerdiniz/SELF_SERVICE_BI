@@ -11,7 +11,7 @@ view: base_carteira_risco {
 
   dimension: cpf {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -63,6 +63,31 @@ view: base_carteira_risco {
     sql: ${TABLE}."FEC_MAR" ;;
   }
 
+  dimension: pdd_atual {
+    type: string
+    group_item_label: "PDD Atual"
+    sql: ${TABLE}."PDD_ATUAL" ;;
+  }
+
+  measure: pdd_new {
+    type: sum
+    group_item_label: "PDD Atual"
+    sql: ${TABLE}."PDD_ATUAL" ;;
+  }
+
+  dimension: pdd_antiga {
+    type: string
+    group_item_label: "PDD Anterior"
+    sql: ${TABLE}."PDD_ANTERIOR" ;;
+  }
+
+  measure: pdd_anterior {
+    type: sum
+    group_item_label: "PDD Anterior"
+    sql: ${TABLE}."PDD_ANTERIOR" ;;
+  }
+
+
   set: detail {
     fields: [
       cpf,
@@ -73,7 +98,9 @@ view: base_carteira_risco {
       bkt,
       qtd,
       saldo,
-      fec_mar
+      fec_mar,
+      pdd_atual,
+      pdd_anterior
     ]
   }
 }
