@@ -776,14 +776,14 @@ join: alunos_inadimplencia_2 {
 }
 
   join: alunos_inadimplencia_3_book {
-    view_label: "1.2.2 Book Inadimplência "
+    view_label: "1.2.2 Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_book_produtos {
-    view_label: "1.2.2.1 Book Inadimplência (Produtos) "
+    view_label: "1.2.2.1 Book Inadimplência (Produtos)"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
     type: left_outer
     relationship: one_to_many
