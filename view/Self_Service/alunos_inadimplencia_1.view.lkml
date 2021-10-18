@@ -80,7 +80,7 @@ view: alunos_inadimplencia_1 {
   dimension: fpd {
     type: yesno
     label: "FPD15?"
-    description: "Indica se o aluno realizou o pagamento do primeiro boleto dentro de 15 dias após ser cedido."
+    description: "Indica se o aluno realizou o pagamento do primeiro boleto dentro de 15 dias após o vencimento."
     sql: ${TABLE}."FPD" ;;
 
   }

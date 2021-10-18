@@ -158,7 +158,8 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -354,7 +355,8 @@ explore: instituicao {
     - proposta.tipo_original,
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -466,6 +468,7 @@ explore: financeiro {
           - financeiro_extrato_titulo.id_cpf,
           - financeiro_extrato_titulo.id_titulo,
           - proposta.max_boleto_atrasado,
+    - proposta.flag_sem_fiador
           ]
 
   join: financeiro_extrato_titulo {
@@ -597,7 +600,8 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+- alunos.ativo_ano_mes,
+- proposta.flag_sem_fiador
 
 
 
@@ -774,6 +778,13 @@ join: alunos_inadimplencia_2 {
   join: alunos_inadimplencia_3_book {
     view_label: "1.2.2 Book Inadimplência "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_inadimplencia_book_produtos {
+    view_label: "1.2.2.1 Book Inadimplência (Produtos) "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
     type: left_outer
     relationship: one_to_many
   }
@@ -959,6 +970,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: custo_bv_aluno {
+    view_label: "1.10.1 Custos BV Aluno"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
@@ -1039,6 +1057,11 @@ join: financeiro {
 
 
 }
+
+
+explore: solucx {
+  label: "SoluCX - NPS"
+  }
 
 
 explore: interacoes {
