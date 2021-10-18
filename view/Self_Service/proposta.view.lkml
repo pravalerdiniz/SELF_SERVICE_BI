@@ -222,7 +222,7 @@ view: proposta {
   dimension: flag_sem_fiador {
     type:  yesno
     label: "Flag Sem Fiador"
-    sql: ${jornada.data_inicio_da_proposta_date} >= '2021-09-14'
+    sql: ${proposta.data_preenchimento_date} >= '2021-09-14'
       and ${proposta.cpf_fiador} is null ;;
   }
 
