@@ -229,6 +229,14 @@ view: proposta {
     sql: ${TABLE}."GH_BHV" ;;
   }
 
+  dimension: gh_aluno{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "GH - Sem Fiador"
+    description: "GH Sem Fiador"
+    sql: ${TABLE}."GH_ALUNO" ;;
+  }
+
 
   dimension: mapa_uf_aluno {
     sql: ${TABLE}."ALUNO_UF" ;;
