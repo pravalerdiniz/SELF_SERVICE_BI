@@ -159,7 +159,8 @@ explore: status {
     - financeiro.id_cpf,
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
-    - alunos.flag_sem_fiador
+    - alunos.flag_sem_fiador,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -356,7 +357,8 @@ explore: instituicao {
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies,
-    - alunos.flag_sem_fiador
+    - alunos.flag_sem_fiador,
+    - proposta.flag_sem_fiador
 
   ]
 
@@ -468,6 +470,7 @@ explore: financeiro {
           - financeiro_extrato_titulo.id_cpf,
           - financeiro_extrato_titulo.id_titulo,
           - proposta.max_boleto_atrasado,
+    - proposta.flag_sem_fiador
           ]
 
   join: financeiro_extrato_titulo {
@@ -600,7 +603,8 @@ fields: [ALL_FIELDS *,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
 - alunos.ativo_ano_mes,
-- alunos.flag_sem_fiador
+- alunos.flag_sem_fiador,
+- proposta.flag_sem_fiador
 
 
 
