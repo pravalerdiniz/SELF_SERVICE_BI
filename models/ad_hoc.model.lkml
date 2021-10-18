@@ -205,3 +205,5 @@ explore: cruzeiro_evadidos {}
 explore: cruzeiro_inadimplentes {}
 
 explore: csat_nuvem_palavras_bad {}
+
+explore: alunos_inadimplencia_2 {}
