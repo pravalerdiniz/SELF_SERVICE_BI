@@ -1,16 +1,18 @@
 view: orquestra_obj_campos {
   derived_table: {
-    sql: select NUMERO_CHAMADO, NOME_TASK
+    #sql: select NUMERO_CHAMADO, NOME_TASK -- bkp Mari
+    sql: select NUMERO_CHAMADO
     ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria"::varchar)) categoria
-    ,max(coalesce(T.VALUE:"Nome do Aluno"::varchar,T.VALUE:"Nome do Aluno:"::varchar)) nome_do_aluno
+    ,max(coalesce(T.VALUE:"Nome do Aluno"::varchar,T.VALUE:"Nome do Aluno:"::varchar,T.VALUE:"Nome Completo do Aluno:"::varchar,T.VALUE:"Nome do aluno:"::varchar)) nome_do_aluno
     ,max(coalesce(T.VALUE:"IES do Aluno"::varchar,T.VALUE:"IES do Aluno:"::varchar)) ies_do_aluno
-    ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo de Contato:"::varchar)) motivo_de_contato
+    ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo de Contato:"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) motivo_de_contato
     ,max(coalesce(T.VALUE:"Descrição da Solicitação"::varchar,T.VALUE:"Descrição da Solicitação:"::varchar)) descricao_da_solicitacao
-    ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar)) area_responsavel
+    ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar,T.VALUE:"Qual área atende?"::varchar,T.VALUE:"Qual área será encaminhado?"::varchar)) area_responsavel
     ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      group by 1,2
+      --group by 1,2  -- bkp Mari
+      group by 1
        ;;
   }
 
@@ -60,12 +62,6 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: descricao_da_solicitacao {
-    type: string
-    sql: ${TABLE}."DESCRICAO_DA_SOLICITACAO" ;;
-    label: "Descrição da Solicitação"
-    #description: ""
-  }
 
   dimension: area_responsavel {
     type: string
