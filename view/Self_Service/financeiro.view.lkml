@@ -130,6 +130,7 @@ dimension: data_trunc  {
        raw,
       date,
       week,
+      month_num,
       month,
       day_of_month,
       month_name,
@@ -143,6 +144,17 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+
+
+dimension: safra_vencimento {
+  type: number
+  label: "Vencimento - Safra"
+  value_format: "0"
+  sql: CONCAT(LEFT(${data_vencimento_month},4),RIGHT(${data_vencimento_month},2)) ;;
+  description: "Indica a safra de vencimento do boleto do aluno"
+
+
+}
 
 
   dimension: pagamento_prazo {
