@@ -9,7 +9,7 @@ view: alunos_cobranca_estrategia_operacional {
       f.value:CELULAR_ALUNO::number as CELULAR_ALUNO,
       f.value:CELULAR_FIADOR::number as CELULAR_FIADOR,
       f.value:CONTRATOS::varchar as CONTRATOS,
-      f.value:DESCONTO::number as DESCONTO,
+      f.value:DESCONTO::float as DESCONTO,
       f.value:FAIXA_ATRASO::varchar as FAIXA_ATRASO,
       f.value:FASE::varchar as FASE,
       f.value:FUNDO::varchar as FUNDO,
@@ -28,9 +28,15 @@ view: alunos_cobranca_estrategia_operacional {
     drill_fields: [detail*]
   }
 
-  measure: valor_atraso{
+  measure: sum_valor_atraso{
     type: sum
+    label: "Valor do Atraso"
+    sql: ${valor_atraso} ;;
+  }
 
+
+  dimension: valor_atraso{
+    type: number
     label: "Valor do Atraso"
     sql: ${TABLE}."VALOR_ATRASO" ;;
   }
@@ -110,9 +116,9 @@ view: alunos_cobranca_estrategia_operacional {
   }
 
   dimension: desconto {
-    type: number
+   type: number
    label: "Desconto?"
-
+   value_format: "0.00%"
     sql: ${TABLE}."DESCONTO" ;;
   }
 
