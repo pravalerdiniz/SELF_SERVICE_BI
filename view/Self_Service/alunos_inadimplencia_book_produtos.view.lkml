@@ -7,13 +7,22 @@ view: alunos_inadimplencia_book_produtos {
   measure: count {
     type: count
     drill_fields: [detail*]
-    hidden: yes
+
   }
 
   dimension: rank_ano_mes {
     type: number
-    hidden: yes
     sql: ${TABLE}."RANK_ANO_MES" ;;
+  }
+
+
+  dimension: primary_key {
+    type: string
+    hidden: yes
+    sql: CONCAT(${tdt_ano_mes},${cpf}) ;;
+    primary_key: yes
+
+
   }
 
   dimension: cpf {
@@ -96,7 +105,14 @@ view: alunos_inadimplencia_book_produtos {
 
  measure: vp {
     type: sum
-    label: "Valor Presenta"
+    label: "Valor Presente"
+    sql: ${TABLE}."VP" ;;
+  }
+
+
+  dimension: vp_campo {
+    type: number
+    label: "Valor Presente"
     sql: ${TABLE}."VP" ;;
   }
 
