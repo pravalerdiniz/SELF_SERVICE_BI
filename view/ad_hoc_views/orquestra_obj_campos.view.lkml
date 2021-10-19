@@ -7,6 +7,7 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo de Contato:"::varchar)) motivo_de_contato
     ,max(coalesce(T.VALUE:"Descrição da Solicitação"::varchar,T.VALUE:"Descrição da Solicitação:"::varchar)) descricao_da_solicitacao
     ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar)) area_responsavel
+    ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
       group by 1,2
@@ -70,6 +71,13 @@ view: orquestra_obj_campos {
     type: string
     sql: ${TABLE}."AREA_RESPONSAVEL" ;;
     label: "Área Responsável"
+    #description: ""
+  }
+
+  dimension: assunto_principal_do_contato{
+    type: string
+    sql: ${TABLE}."ASSUNTO_PRINCIPAL_DO_CONTATO" ;;
+    label: "Assunto Principal do Contato"
     #description: ""
   }
 

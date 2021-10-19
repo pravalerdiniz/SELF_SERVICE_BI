@@ -219,13 +219,6 @@ view: proposta {
   }
 
 
-  dimension: flag_sem_fiador {
-    type:  yesno
-    label: "Flag Sem Fiador"
-    sql: ${proposta.data_preenchimento_date} >= '2021-09-14'
-      and ${proposta.cpf_fiador} is null ;;
-  }
-
   dimension: gh_bhv{
     type: string
     group_label: "Dados do Aluno"
@@ -234,6 +227,14 @@ view: proposta {
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969244677/GH+-+Behavior"}
     description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
+  }
+
+  dimension: gh_aluno{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "GH - Sem Fiador"
+    description: "GH Sem Fiador"
+    sql: ${TABLE}."GH_ALUNO" ;;
   }
 
 
