@@ -1,6 +1,7 @@
 view: orquestra_obj_campos {
   derived_table: {
-    sql: select NUMERO_CHAMADO, NOME_TASK
+    #sql: select NUMERO_CHAMADO, NOME_TASK -- bkp Mari
+    sql: select NUMERO_CHAMADO
     ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria"::varchar)) categoria
     ,max(coalesce(T.VALUE:"Nome do Aluno"::varchar,T.VALUE:"Nome do Aluno:"::varchar)) nome_do_aluno
     ,max(coalesce(T.VALUE:"IES do Aluno"::varchar,T.VALUE:"IES do Aluno:"::varchar)) ies_do_aluno
@@ -10,7 +11,8 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      group by 1,2
+      --group by 1,2  -- bkp Mari
+      group by 1
        ;;
   }
 
