@@ -45,6 +45,7 @@ view: alunos_cobranca_pdd {
   dimension: cpf {
     type: number
     hidden: yes
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -62,13 +63,13 @@ view: alunos_cobranca_pdd {
 
   dimension: despesagem_2 {
     type: number
-    hidden: yes
+   hidden: yes
     sql: ${TABLE}."DESPESAGEM_2" ;;
   }
 
   dimension: reversao_2 {
     type: number
-    hidden: yes
+   hidden: yes
     sql: ${TABLE}."REVERSAO_2" ;;
   }
 
@@ -93,6 +94,12 @@ view: alunos_cobranca_pdd {
   dimension: despesa_total {
     type: number
     hidden: yes
+    sql: ${TABLE}."DESPESA_TOTAL" ;;
+  }
+
+  measure: despesatotal {
+    type: sum
+    label: "Despesa Total"
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
 
