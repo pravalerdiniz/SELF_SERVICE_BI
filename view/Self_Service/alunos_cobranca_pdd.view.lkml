@@ -32,7 +32,7 @@ view: alunos_cobranca_pdd {
     label: "Aluno - Calcular"
     description: "Indica a data de baixa realizada"
     datatype: date
-    sql: ${dt_aluno_calcular} ;;
+    sql: ${TABLE}."DT_ALUNO_CALCULAR" ;;
   }
 
 
