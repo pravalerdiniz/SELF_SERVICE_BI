@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_book_produtos {
   derived_table: {
-    sql: select * from stage.public.book_inadimplencia_produtos
+    sql: select distinct* from stage.public.book_inadimplencia_produtos
       ;;
   }
 
