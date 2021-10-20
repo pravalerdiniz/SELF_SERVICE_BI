@@ -15,7 +15,7 @@ view: alunos_cobranca_pdd {
     sql: ${TABLE}."DT_ALUNO_CALCULAR" ;;
   }
 
-  dimension_group: data_aluno_calcular_group{
+  dimension_group: data_aluno_calcular_group {
     type: time
     timeframes: [
       raw,
