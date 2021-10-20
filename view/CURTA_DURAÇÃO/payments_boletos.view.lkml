@@ -11,7 +11,8 @@ view: payments_boletos {
        F.VALUE:PAID_AT::DATE AS DATA_PAGAMENTO,
        F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO,
        F.VALUE:FLG_MENOR_VENCIMENTO::BOOLEAN AS FLG_MENOR_VENCIMENTO,
-       F.VALUE:FAIXA_ATRASO::VARCHAR AS FAIXA_ATRASO
+       F.VALUE:FAIXA_ATRASO::VARCHAR AS FAIXA_ATRASO,
+       F.VALUE:VL_PRESENTE_SEMJUROS::FLOAT AS VL_PRESENTE_SEM_JUROS
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
  ;;
@@ -194,30 +195,6 @@ lateral flatten (input=>boletos) f
     description: "INDICA SE O BOLETO ESTÁ PAGO, ABERTO, VENCIDO, PAGO EM ATRASO, ETC"
   }
 
-  dimension: taxa_juros_diaria_prefixada {
-    type:  number
-    group_item_label: "Taxa DIARIA Prefixada"
-    sql: ${contracts.taxa_juros_diaria_prefixada} ;;
-    description: "TAXA DIARIA PREFIXADA"
-  }
-
-  dimension: taxa_juros_mensal_prefixada {
-    type:  number
-    group_item_label: "Taxa Mensal Prefixada"
-    sql: ${contracts.taxa_juros_mensal_prefixada} ;;
-    description: "TAXA MENSAL PREFIXADA"
-    hidden: yes
-  }
-
-
-  dimension: taxa_juros_mensal_dia_dia {
-    type:  number
-    group_item_label: "Taxa Mensal Prefixada - Dia a Dia"
-    sql: power((1+${taxa_juros_mensal_prefixada}),(1/30))-1;;
-    description: "TAXA MENSAL PREFIXADA"
-    value_format: "0.00%"
-
-  }
 
 
 
@@ -238,6 +215,16 @@ lateral flatten (input=>boletos) f
     value_format: "$ #,##0.00"
     description: "SOMA DOS VALORES DOS BOLETOS"
   }
+
+
+  measure: vl_presente_sem_juros {
+    type: sum
+    group_item_label: "Valor Presente - Sem Juros"
+    sql: ${TABLE}."VL_PRESENTE_SEM_JUROS" ;;
+    value_format: "$ #,##0.00"
+    description: "Este campo é uma regra de negócio*. Indica a soma do Valor Presente - Sem Juros do boleto."
+  }
+
 
   measure: avg_vl_boleto {
     type: average
@@ -286,33 +273,8 @@ lateral flatten (input=>boletos) f
     description: "MÉDIA DE DIAS FORA DA VALIDADE"
   }
 
-  measure: menor_data_vencimento_atrasado {
-    type: date
-    group_item_label: "Menor Data de Vencimento"
-    sql: min(${data_vencimento}) ;;
-    description: "MENOR DATA DE VENCIMENTO DO BOLETO DO ALUNO"
-  }
-
-  measure: sum_vl_presente {
-    type:  number
-    group_label: "Valor Presente"
-    group_item_label: "Anual"
-    value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/power(1+${taxa_juros_diaria_prefixada},(datediff('day',${data_vencimento},current_date)/30)) ;;
-    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do ano"
-  }
 
 
-
-
-  measure: sum_vl_presente_mensal {
-    type:  number
-    group_label: "Valor Presente"
-    group_item_label: "Mensal"
-    value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/power(1+${taxa_juros_mensal_dia_dia},(datediff('day',${data_vencimento},current_date)/30)) ;;
-    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do mês"
-  }
 
 
 
