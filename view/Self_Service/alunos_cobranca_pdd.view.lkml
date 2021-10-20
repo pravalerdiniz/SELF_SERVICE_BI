@@ -38,13 +38,13 @@ view: alunos_cobranca_pdd {
 
   dimension: id_fundo_investimento {
     type: number
-    hidden: yes
+    label: "ID Fundo Investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: cpf {
     type: number
-    hidden: yes
+    label: "CPF"
     primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
@@ -93,7 +93,6 @@ view: alunos_cobranca_pdd {
 
   dimension: despesa_total {
     type: number
-    hidden: yes
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
 
