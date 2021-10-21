@@ -30,7 +30,7 @@ view: alunos_mesa_risco_3 {
 
   dimension: cpf_garantidor {
     type: number
-    hidden: yes
+    label: "CPF - Garantidor"
     sql: ${TABLE}."CPF_GARANTIDOR" ;;
   }
 
