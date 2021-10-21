@@ -1287,6 +1287,14 @@ dimension: faixa_tempo_meses_evasao {
 
 }
 
+  dimension: kyc_platform {
+    type: yesno
+    group_label: "Biometria"
+    label: "Flag - Biometria (KYC)"
+    description: "Indica se o aluno passou pelo processo de biometria ou não"
+    sql: ${TABLE}."KYC_PLATFORM" ;;
+
+  }
 
 
 
