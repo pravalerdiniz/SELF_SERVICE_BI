@@ -49,6 +49,7 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 explore: meta {
   label: "Meta"
+  view_label: "Meta"
 
 }
 
