@@ -93,8 +93,16 @@ view: alunos_cobranca_pdd {
 
   dimension: despesa_total {
     type: number
+    label: "Despesa Total"
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
+
+  dimension: dia_util {
+    type: number
+    label: "Dia Útil"
+    sql: ${TABLE}."DIA_UTIL" ;;
+  }
+
 
   measure: despesatotal {
     type: sum
@@ -164,7 +172,8 @@ measure: sum_despesagem {
       despesa_total_2,
       despesagem,
       reversao,
-      despesa_total
+      despesa_total,
+      dia_util
     ]
   }
 }
