@@ -930,7 +930,7 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_cobranca_pdd {
     view_label: "1.9.1 Cobrança - PDD "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd .cpf};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
     type: left_outer
     relationship: one_to_many
   }

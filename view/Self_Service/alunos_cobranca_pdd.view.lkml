@@ -15,7 +15,7 @@ view: alunos_cobranca_pdd {
     sql: ${TABLE}."DT_ALUNO_CALCULAR" ;;
   }
 
-  dimension_group: data_aluno_calcular_group{
+  dimension_group: data_aluno_calcular_group {
     type: time
     timeframes: [
       raw,
@@ -32,19 +32,20 @@ view: alunos_cobranca_pdd {
     label: "Aluno - Calcular"
     description: "Indica a data de baixa realizada"
     datatype: date
-    sql: ${dt_aluno_calcular} ;;
+    sql: ${TABLE}."DT_ALUNO_CALCULAR" ;;
   }
 
 
   dimension: id_fundo_investimento {
     type: number
-    hidden: yes
+    label: "ID Fundo Investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
   dimension: cpf {
     type: number
-    hidden: yes
+    label: "CPF"
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -62,13 +63,13 @@ view: alunos_cobranca_pdd {
 
   dimension: despesagem_2 {
     type: number
-    hidden: yes
+   hidden: yes
     sql: ${TABLE}."DESPESAGEM_2" ;;
   }
 
   dimension: reversao_2 {
     type: number
-    hidden: yes
+   hidden: yes
     sql: ${TABLE}."REVERSAO_2" ;;
   }
 
@@ -92,7 +93,12 @@ view: alunos_cobranca_pdd {
 
   dimension: despesa_total {
     type: number
-    hidden: yes
+    sql: ${TABLE}."DESPESA_TOTAL" ;;
+  }
+
+  measure: despesatotal {
+    type: sum
+    label: "Despesa Total"
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
 
