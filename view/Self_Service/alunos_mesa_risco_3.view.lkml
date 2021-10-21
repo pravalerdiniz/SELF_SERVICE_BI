@@ -84,7 +84,7 @@ view: alunos_mesa_risco_3 {
 
   dimension: cpf {
     type: number
-    hidden: yes
+    label: "Boa Vista - CPF"
     sql: ${TABLE}."CPF" ;;
   }
 
