@@ -62,8 +62,8 @@ view: alunos_mesa_risco_3 {
     sql: ${TABLE}."VALOR_COMPROVAR" ;;
   }
 
-  dimension: fia_renda {
-    type: number
+  measure: fia_renda {
+    type: sum
     group_label: "Renda"
     label: "Fiador"
     sql: ${TABLE}."FIA_RENDA" ;;
