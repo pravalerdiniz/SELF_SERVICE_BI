@@ -53,6 +53,8 @@ view: base_caixa_projecao_carteira {
       day_of_month,
       week,
       month,
+      month_name,
+      month_num,
       quarter,
       year,
       time
