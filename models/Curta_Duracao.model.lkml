@@ -47,6 +47,14 @@ map_layer: MAPA_CIDADE_ALUNO {
 # # and define the joins that connect them together.
 #
 
+explore: meta {
+  label: "Meta"
+  view_label: "Meta"
+
+}
+
+
+
 explore: student {
   label: "Alunos"
   view_label: "Alunos"
