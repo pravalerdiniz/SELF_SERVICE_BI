@@ -3,7 +3,7 @@ view: base_caixa_projecao_carteira {
     sql: --select * from stage.public.base_caixa_projecao_carteira
     select * from stage.public.base_caixa_projecao_carteira
         where DT_REF between  concat(left(dateadd(month,-12,current_date),7),'-01')::Date and last_day(dateadd(month,-12,current_date))
-        or DT_REF between concat(left(dateadd(month,-4,current_date),7),'-01')::Date and current_date()-1
+        or DT_REF between concat(left(dateadd(month,-3,current_date),7),'-01')::Date and current_date()-1
       ;;
   }
 
