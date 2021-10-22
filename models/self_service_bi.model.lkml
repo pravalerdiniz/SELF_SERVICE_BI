@@ -159,7 +159,6 @@ explore: status {
     - financeiro.id_cpf,
     - alunos.id_cpf,
     - alunos.ativo_ano_mes
-
   ]
 
   join: proposta
@@ -465,7 +464,7 @@ explore: financeiro {
           - financeiro_extrato_titulo.id_contrato,
           - financeiro_extrato_titulo.id_cpf,
           - financeiro_extrato_titulo.id_titulo,
-          - proposta.max_boleto_atrasado,
+          - proposta.max_boleto_atrasado
           ]
 
   join: financeiro_extrato_titulo {
@@ -758,7 +757,7 @@ join: alunos_produtos_aprovados {
 
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf} and ${alunos_inadimplencia_1.cpf} = ${alunos_inadimplencia_2.cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
     type: left_outer
     relationship: one_to_many
 
@@ -766,14 +765,21 @@ join: alunos_produtos_aprovados {
 
 join: alunos_inadimplencia_2 {
   view_label: "1.2.1 Inadimplência (Outras Informações)"
-  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf};;
+  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
   type: left_outer
   relationship: one_to_many
 }
 
   join: alunos_inadimplencia_3_book {
-    view_label: "1.2.2 Book Inadimplência "
+    view_label: "1.2.2 Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_inadimplencia_book_produtos {
+    view_label: "1.2.2.1 Book Inadimplência (Produtos)"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
     type: left_outer
     relationship: one_to_many
   }
@@ -896,6 +902,16 @@ join: alunos_inadimplencia_2 {
 
   }
 
+
+  join: alunos_mesa_risco_3 {
+    view_label: "1.7.1 Mesa de Risco - Renda"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
@@ -914,12 +930,17 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_cobranca_pdd {
     view_label: "1.9.1 Cobrança - PDD "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd .cpf};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
-
+  join: alunos_cobranca_radar {
+    view_label: "1.9.2 Cobrança - RADAR "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: alunos_cobranca_pdd_boletos {
     view_label: "1.9.6 Cobrança - PDD Boletos"
@@ -931,6 +952,27 @@ join: alunos_inadimplencia_2 {
   join: alunos_mis_meritocracia {
     view_label: "1.9.7 Cobrança - Meritocracia"
     sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_cobranca_e_risco {
+    view_label: "1.9.8 Cobrança e Risco"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: custo_bv {
+    view_label: "1.10 Custos BV"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: custo_bv_aluno {
+    view_label: "1.10.1 Custos BV Aluno"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
     type: left_outer
     relationship: one_to_many
   }
@@ -1015,6 +1057,11 @@ join: financeiro {
 
 
 }
+
+
+explore: solucx {
+  label: "SoluCX - NPS"
+  }
 
 
 explore: interacoes {

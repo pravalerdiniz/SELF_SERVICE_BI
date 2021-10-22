@@ -9,10 +9,33 @@ view: alunos_painel_risco {
             f.value:PROPOSTA::varchar as PROPOSTA,
             f.value:MODALIDADE::varchar as MODALIDADE,
             f.value:ORDEM::varchar as ORDEM,
-            f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS
+            f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS,
+            f.value:DATA_HORA::timestamp as DATA_HORA
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
  ;;
+  }
+
+
+  dimension_group: data_hora {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      hour,
+      minute,
+      second
+    ]
+    label: "Decisão"
+    sql:${TABLE}."DATA_HORA";;
+    description: "Indica a data da decisão de análise de risco e crédito do Aluno."
+
+
   }
 
   measure: count {
@@ -144,6 +167,13 @@ view: alunos_painel_risco {
     hidden: yes
   }
 
+  dimension: flag_sem_fiador {
+    type:  yesno
+    label: "Flag Sem Fiador"
+    sql: ${TABLE}."DATA_HORA" >= '2021-09-14'
+      and ${proposta.cpf_fiador} is null
+      and ${proposta.fia_idade} is null;;
+}
 
   set: detail {
     fields: [

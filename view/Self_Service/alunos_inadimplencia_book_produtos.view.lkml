@@ -1,19 +1,28 @@
 view: alunos_inadimplencia_book_produtos {
   derived_table: {
-    sql: select * from stage.public.book_inadimplencia_produtos
+    sql: select distinct* from stage.public.book_inadimplencia_produtos
       ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
-    hidden: yes
+
   }
 
   dimension: rank_ano_mes {
     type: number
-    hidden: yes
     sql: ${TABLE}."RANK_ANO_MES" ;;
+  }
+
+
+  dimension: primary_key {
+    type: string
+    hidden: yes
+    sql: CONCAT(${tdt_ano_mes},${cpf}) ;;
+    primary_key: yes
+
+
   }
 
   dimension: cpf {
@@ -24,19 +33,19 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: tdt_ano_mes {
     type: number
-    hidden: yes
+    label: "Ano - Mês"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
   dimension: data_fechamento {
     type: date
-    hidden: yes
+    label: "Data de Fechamento"
     sql: ${TABLE}."DATA_FECHAMENTO" ;;
   }
 
   dimension: fundo {
     type: number
-    hidden: yes
+    label: "Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
@@ -94,21 +103,28 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."QTDE_CPF" ;;
   }
 
-  dimension: vp {
-    type: number
-    hidden: yes
+ measure: vp {
+    type: sum
+    label: "Valor Presente"
     sql: ${TABLE}."VP" ;;
   }
 
-  dimension: pdd {
+
+  dimension: vp_campo {
     type: number
-    hidden: yes
+    label: "Valor Presente"
+    sql: ${TABLE}."VP" ;;
+  }
+
+  measure: pdd {
+    type: sum
+    label: "PDD"
     sql: ${TABLE}."PDD" ;;
   }
 
-  dimension: pdd_new {
-    type: number
-    hidden: yes
+  measure: pdd_new {
+    type: sum
+    label: "PDD - Nova"
     sql: ${TABLE}."PDD_NEW" ;;
   }
 
@@ -182,6 +198,69 @@ view: alunos_inadimplencia_book_produtos {
     type: number
     hidden: yes
     sql: ${TABLE}."FPD" ;;
+  }
+
+  measure: vl_presente_mob6 {
+    type: sum
+    group_label: "Valor Presente"
+    label: "MOB 6 - Soma"
+    sql: ${vp_mob6} ;;
+
+
+  }
+
+  measure: vl_presente_mob6_over60 {
+    type: sum
+    group_label: "Valor Presente"
+    label: "MOB 6 | OVER60 - Soma"
+    sql: ${vp_over60_mob6} ;;
+
+
+  }
+
+
+  measure:sum_pdd_mob6  {
+    type: sum
+    group_label: "PDD"
+    label: "MOB 6 - Soma"
+    sql: ${pdd_mob6} ;;
+  }
+
+
+
+  measure:sum_pdd_mob6_nova {
+    type: sum
+    group_label: "PDD"
+    label: "MOB 6 (Nova) - Soma"
+    sql: ${pdd_new_mob6} ;;
+  }
+
+  measure:sum_pdd_over_5  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 5 - Soma"
+    sql: ${over_05} ;;
+  }
+
+  measure:sum_pdd_over_30  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 30 - Soma"
+    sql: ${over_30} ;;
+  }
+
+  measure:sum_pdd_over_60  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 60 - Soma"
+    sql: ${over_60} ;;
+  }
+
+  measure:sum_pdd_over_90  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 90 - Soma"
+    sql: ${over_90} ;;
   }
 
   set: detail {

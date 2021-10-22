@@ -9,7 +9,10 @@ view: payments_boletos {
        F.VALUE:VALUE::FLOAT AS VL_BOLETO,
        F.VALUE:UPDATED_AT::DATETIME AS DATA_ATUALIZACAO,
        F.VALUE:PAID_AT::DATE AS DATA_PAGAMENTO,
-       F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO
+       F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO,
+       F.VALUE:FLG_MENOR_VENCIMENTO::BOOLEAN AS FLG_MENOR_VENCIMENTO,
+       F.VALUE:FAIXA_ATRASO::VARCHAR AS FAIXA_ATRASO,
+       F.VALUE:VL_PRESENTE_SEMJUROS::FLOAT AS VL_PRESENTE_SEM_JUROS
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
  ;;
@@ -17,6 +20,13 @@ lateral flatten (input=>boletos) f
 
   measure: count {
     type: count
+    drill_fields: [detail*]
+  }
+
+  measure: count_distinct {
+    type: count_distinct
+    label: "Quantidade de Boletos"
+    sql: ${key} ;;
     drill_fields: [detail*]
   }
 
@@ -47,13 +57,32 @@ lateral flatten (input=>boletos) f
     type: date
     group_item_label: "Data de Vencimento"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
+    hidden: yes
     description: "DATA DE VENCIMENTO DO BOLETO"
   }
 
+  dimension_group: data_vencimento_group {
+    type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
+    datatype: date
+    label: "Vencimento"
+    sql: ${TABLE}."DATA_VENCIMENTO";;
+    description: "DATA DE VENCIMENTO DO BOLETO"
+  }
+
+
   dimension: data_pagamento {
     type: date
-    group_item_label: "Data de Pagamento"
+    label: "Pagamento"
     sql: ${TABLE}."DATA_PAGAMENTO" ;;
+    hidden: yes
+    description: "DATA DE PAGAMENTO DO BOLETO"
+  }
+
+  dimension_group: data_pagamento_group {
+    type: time    timeframes: [      raw,      date,      week,      month,      quarter,      year    ]    convert_tz: no
+    datatype: date
+    label: "Pagamento"
+    sql: ${TABLE}."DATA_PAGAMENTO";;
     description: "DATA DE PAGAMENTO DO BOLETO"
   }
 
@@ -76,73 +105,79 @@ lateral flatten (input=>boletos) f
 
 
 
-  dimension: faixa_de_atraso {
+
+
+  dimension: faixa_atraso {
     type: string
+    group_item_label: "Faixa de Atraso"
+    sql: ${TABLE}."FAIXA_ATRASO" ;;
+    description: "FAIXA DE ATRASO DOS ALUNOS INADIMPLENTES"
+    order_by_field: ordem_faixa_atraso
+  }
+
+  dimension: ordem_faixa_atraso {
+    type: number
+    label: "Ordem - Faixa de Atraso"
+    description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
+    sql: CAST(${ordem_faixa_atraso_regra} AS INT) ;;
+
+  }
+
+  dimension: ordem_faixa_atraso_regra {
+    type: string
+    hidden: yes
     case: {
       when: {
-        sql: ${dias_atraso} = 0 ;;
-        label: "Em dia"
+        sql: ${faixa_atraso} = 'Em Aberto' ;;
+        label: "0"
       }
       when: {
-        sql: ${dias_atraso} < 15  ;;
-        label: "1 - 14"
+        sql: ${faixa_atraso} = 'Em Dia' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '1 - 14'  ;;
+        label: "2"
       }
       when: {
-        sql: ${dias_atraso} <= 30  ;;
-        label: "15 - 30"
+        sql: ${faixa_atraso} = '15 - 30'  ;;
+        label: "3"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '31 - 60' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '61 - 90' ;;
+        label: "5"
       }
       when: {
-        sql: ${dias_atraso} <= 60 ;;
-        label: "31 - 60"
+        sql: ${faixa_atraso} = '91 - 120' ;;
+        label: "6"
       }
+
       when: {
-        sql: ${dias_atraso} <= 90 ;;
-        label: "61 - 90"
+        sql: ${faixa_atraso} = '121 - 150';;
+        label: "7"
       }
+
       when: {
-        sql: ${dias_atraso} <= 120 ;;
-        label: "91 - 120"
+        sql: ${faixa_atraso} = '151 - 180';;
+        label: "9"
       }
+
       when: {
-        sql: ${dias_atraso} <= 150 ;;
-        label: "121 - 150"
+        sql: ${faixa_atraso} = '181 - 360' ;;
+        label: "10"
       }
-      when: {
-        sql: ${dias_atraso} <= 180 ;;
-        label: "151 - 180"
       }
-      when: {
-        sql: ${dias_atraso} <= 360 ;;
-        label: "181 - 360"
       }
-      when: {
-        sql: ${dias_atraso} > 360 ;;
-        label: "W.O"
-      }
-      else: "Não Atribuido"
-    }
-    group_item_label: "Faixa de Atraso"
-    description: "Indica a faixa de atraso do boleto do aluno"
-  }
 
 
-  dimension:perc_provisao{
-    type: number
-    group_item_label: "Percentual de Provisão"
-    description: "Indica o porcentual de provisão de cada boleto de acordo com a faixa de atraso. Informação gerada pela equipe de Risco e Portfólio"
-    sql: CASE WHEN ${faixa_de_atraso} = 'Em dia' THEN 0.008
-              WHEN ${faixa_de_atraso} = '1 - 14' THEN  0.072
-              WHEN ${faixa_de_atraso} = '15 - 30' THEN  0.17
-              WHEN ${faixa_de_atraso} = '31 - 60' THEN  0.44
-              WHEN ${faixa_de_atraso} = '61 - 90' THEN  0.60
-              WHEN ${faixa_de_atraso} = '91 - 120' THEN  0.75
-              WHEN ${faixa_de_atraso} = '121 - 150' THEN  0.84
-              WHEN ${faixa_de_atraso} = '151 - 180' THEN  0.89
-              WHEN ${faixa_de_atraso} = '181 - 360' THEN  1.00
-              ELSE 0 END
-    ;;
-    value_format: "0.00%"
-  }
 
 
 
@@ -160,40 +195,16 @@ lateral flatten (input=>boletos) f
     description: "INDICA SE O BOLETO ESTÁ PAGO, ABERTO, VENCIDO, PAGO EM ATRASO, ETC"
   }
 
-  dimension: taxa_juros_diaria_prefixada {
-    type:  number
-    group_item_label: "Taxa DIARIA Prefixada"
-    sql: ${contracts.taxa_juros_diaria_prefixada} ;;
-    description: "TAXA DIARIA PREFIXADA"
-  }
-
-  dimension: taxa_juros_mensal_prefixada {
-    type:  number
-    group_item_label: "Taxa Mensal Prefixada"
-    sql: ${contracts.taxa_juros_mensal_prefixada} ;;
-    description: "TAXA MENSAL PREFIXADA"
-    hidden: yes
-  }
-
-
-  dimension: taxa_juros_mensal_dia_dia {
-    type:  number
-    group_item_label: "Taxa Mensal Prefixada - Dia a Dia"
-    sql: power((1+${taxa_juros_mensal_prefixada}),(1/30))-1;;
-    description: "TAXA MENSAL PREFIXADA"
-    value_format: "0.00%"
-
-  }
 
 
 
 ##((1+Juros mensal)^(1/30))-1 - Juros mensal dia a dia
 
-  dimension: flag_menor_vencimento {
+  dimension: flg_menor_vencimento {
   type: yesno
-  sql:${payment_boletos_menor_vencimento.data_vencimento}=${payments_boletos.data_vencimento};;
+  sql:${TABLE}."FLG_MENOR_VENCIMENTO";;
   group_item_label: "Menor Vencimento?"
-  description: "Indica se a data de vencimento é a menor do aluno"
+  description: "Indica se a data menor vencimento do aluno"
   }
 
 
@@ -204,6 +215,16 @@ lateral flatten (input=>boletos) f
     value_format: "$ #,##0.00"
     description: "SOMA DOS VALORES DOS BOLETOS"
   }
+
+
+  measure: vl_presente_sem_juros {
+    type: sum
+    group_item_label: "Valor Presente - Sem Juros"
+    sql: ${TABLE}."VL_PRESENTE_SEM_JUROS" ;;
+    value_format: "$ #,##0.00"
+    description: "Este campo é uma regra de negócio*. Indica a soma do Valor Presente - Sem Juros do boleto."
+  }
+
 
   measure: avg_vl_boleto {
     type: average
@@ -252,33 +273,8 @@ lateral flatten (input=>boletos) f
     description: "MÉDIA DE DIAS FORA DA VALIDADE"
   }
 
-  measure: menor_data_vencimento_atrasado {
-    type: date
-    group_item_label: "Menor Data de Vencimento"
-    sql: min(${data_vencimento}) ;;
-    description: "MENOR DATA DE VENCIMENTO DO BOLETO DO ALUNO"
-  }
-
-  measure: sum_vl_presente {
-    type:  number
-    group_label: "Valor Presente"
-    group_item_label: "Anual"
-    value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/power(1+${taxa_juros_diaria_prefixada},(datediff('day',${data_vencimento},current_date)/30)) ;;
-    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do ano"
-  }
 
 
-
-
-  measure: sum_vl_presente_mensal {
-    type:  number
-    group_label: "Valor Presente"
-    group_item_label: "Mensal"
-    value_format: "$ #,##0.00"
-    sql: ${vl_boleto}/power(1+${taxa_juros_mensal_dia_dia},(datediff('day',${data_vencimento},current_date)/30)) ;;
-    description: "Indica a soma do valor presente referente ao calculo da taxa de juros diária em função do mês"
-  }
 
 
 
@@ -292,8 +288,10 @@ lateral flatten (input=>boletos) f
   set: detail {
     fields: [
       chave_contrato,
+      key,
       dias_vencido,
       data_vencimento,
+      data_pagamento,
       num_parcela,
       situacao,
       vl_boleto

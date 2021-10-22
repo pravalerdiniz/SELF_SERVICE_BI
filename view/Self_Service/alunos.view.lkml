@@ -976,16 +976,7 @@ view: alunos {
     CASE WHEN DATE_PART(quarter, ${data_primeira_cessao_raw}) = 1 OR
     DATE_PART(quarter, ${data_primeira_cessao_raw}) = 2 THEN '01' ELSE
     '02' END);;
-
-
-
   }
-
-
-
-
-
-
 
 
   dimension_group: data_ultima_cessao {
@@ -1296,6 +1287,14 @@ dimension: faixa_tempo_meses_evasao {
 
 }
 
+  dimension: kyc_platform {
+    type: yesno
+    group_label: "Biometria"
+    label: "Flag - Biometria (KYC)"
+    description: "Indica se o aluno passou pelo processo de biometria ou não"
+    sql: ${TABLE}."KYC_PLATFORM" ;;
+
+  }
 
 
 

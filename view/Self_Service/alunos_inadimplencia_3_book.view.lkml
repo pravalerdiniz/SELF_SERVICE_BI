@@ -17,7 +17,7 @@ view: alunos_inadimplencia_3_book {
 
   dimension: cpf {
     type: number
-    hidden: yes
+    label: "CPF"
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -55,39 +55,33 @@ view: alunos_inadimplencia_3_book {
     type: number
     label: "ID Fundo de Investimento"
     description: "Indica o fundo de investimento do aluno"
-    hidden: yes
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: ies_grupo {
     type: string
     label: "Grupo - IES"
-    hidden: yes
     sql: ${TABLE}."IES_GRUPO" ;;
   }
 
   dimension: ies_nome {
     type: string
     label: "Nome - IES"
-    hidden: yes
     sql: ${TABLE}."IES_NOME" ;;
   }
 
   dimension: curso {
     type: string
-    hidden: yes
     sql: ${TABLE}."CURSO" ;;
   }
 
   dimension: estado {
     type: string
-    hidden: yes
     sql: ${TABLE}."ESTADO" ;;
   }
 
   dimension: cidade {
     type: string
-    hidden: yes
     sql: ${TABLE}."CIDADE" ;;
   }
 
@@ -119,7 +113,6 @@ view: alunos_inadimplencia_3_book {
 
   dimension: qtde_cpf {
     type: number
-    hidden: yes
     sql: ${TABLE}."QTDE_CPF" ;;
   }
 
@@ -127,7 +120,6 @@ view: alunos_inadimplencia_3_book {
     type: number
     group_label: "Valor Presente"
     label: "Valor Presente - Dívida Total"
-    hidden: yes
     description: "Indica o Valor Presente da dívida do aluno."
     sql: ${TABLE}."VP" ;;
   }
@@ -147,49 +139,56 @@ view: alunos_inadimplencia_3_book {
   dimension: vp_mob6 {
     type: number
     group_label: "PDD"
-    hidden: yes
     label: "PDD Nova - Provisão do Fundo"
+    hidden: yes
     sql: ${TABLE}."VP_MOB6" ;;
   }
 
   dimension: vp_over60_mob6 {
     type: number
+    label: "VP Over 60-MOB6"
     hidden: yes
     sql: ${TABLE}."VP_OVER60_MOB6" ;;
   }
 
   dimension: pdd_mob6 {
     type: number
+    label: "PDD - MOB6"
     hidden: yes
     sql: ${TABLE}."PDD_MOB6" ;;
   }
 
   dimension: pdd_new_mob6 {
     type: number
+    label: "PDD - NEW-MOB6"
     hidden: yes
     sql: ${TABLE}."PDD_NEW_MOB6" ;;
   }
 
   dimension: over_05 {
     type: number
+    label: "Over-05"
     hidden: yes
     sql: ${TABLE}."OVER_05" ;;
   }
 
   dimension: over_30 {
     type: number
+    label: "Over-30"
     hidden: yes
     sql: ${TABLE}."OVER_30" ;;
   }
 
   dimension: over_60 {
     type: number
+    label: "Over-60"
     hidden: yes
     sql: ${TABLE}."OVER_60" ;;
   }
 
   dimension: over_90 {
     type: number
+    label: "Over-90"
     hidden: yes
     sql: ${TABLE}."OVER_90" ;;
   }
@@ -217,6 +216,16 @@ view: alunos_inadimplencia_3_book {
 
 
   }
+
+  measure: vl_presente_antigo {
+    type: sum
+    group_label: "Valor Presente Antigo"
+    label: "PDD Antiga - Soma"
+    sql: ${vp} ;;
+    filters: [tdt_ano_mes: "202004"]
+    }
+
+
   measure: vl_presente_mob6 {
     type: sum
     group_label: "Valor Presente"

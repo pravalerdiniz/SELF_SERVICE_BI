@@ -114,6 +114,7 @@ explore: orquestra {
   join: orquestra_obj_campos {
     type: left_outer
     sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
     view_label: "Informações adicionais"
     }
@@ -198,3 +199,13 @@ explore: base_score
 }
 
 explore: perfil_usuarios {}
+
+explore: cruzeiro_evadidos {}
+
+explore: cruzeiro_inadimplentes {}
+
+explore: csat_nuvem_palavras_bad {}
+
+explore: alunos_inadimplencia_2 {}
+
+explore: uni_prv {}

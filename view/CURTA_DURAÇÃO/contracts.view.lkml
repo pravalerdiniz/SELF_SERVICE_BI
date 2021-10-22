@@ -473,7 +473,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_ANUAL_PREFIXADA";;
     description: "TAAX DE JUROS ANUAL PRE-FIXADA PARA O CONTRATO"
     group_item_label: "Taxa de Juros Anual Pré-fixada"
-    value_format: "0.00\%"
+    value_format: "0.00%"
     group_label: "Taxas do Contrato"
   }
 
@@ -482,7 +482,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_DIARIA_PREFIXADA";;
     description: "TAXA DE JUROS DIÁRIA PRE-FIXADA"
     group_item_label: "Taxa de Juros Diária Pré-fixada"
-    value_format: "0.00\%"
+    value_format: "0.00%"
     group_label: "Taxas do Contrato"
   }
 
@@ -491,7 +491,7 @@ view: contracts {
     sql: ${TABLE}."TAXA_JUROS_MENSAL_PREFIXADA";;
     description: "TAXA DE JUROS MENSAL PRE-FIXADA"
     group_item_label: "Taxa de Juros Mensal Pré-fixada"
-    value_format: "0.00\%"
+   value_format: "0.0000%"
     group_label: "Taxas do Contrato"
   }
 
@@ -582,6 +582,18 @@ view: contracts {
     description: "DATA DA ULTIMA ATUALIZAÇÃO DO REGISTRO"
     label: "Ultima Atualização do Contrato"
   }
+
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Month to Date - Data da Etapa"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${ultima_atualizacao_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${ultima_atualizacao_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Use essse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
 
   dimension: urls_contrato {
     type: string

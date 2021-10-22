@@ -1,6 +1,9 @@
 view: base_caixa_projecao_carteira {
   derived_table: {
-    sql: select * from stage.public.base_caixa_projecao_carteira
+    sql: --select * from stage.public.base_caixa_projecao_carteira
+    select * from stage.public.base_caixa_projecao_carteira
+        where DT_REF between  concat(left(dateadd(month,-12,current_date),7),'-01')::Date and last_day(dateadd(month,-12,current_date))
+        or DT_REF between concat(left(dateadd(month,-3,current_date),7),'-01')::Date and current_date()-1
       ;;
   }
 
@@ -53,6 +56,8 @@ view: base_caixa_projecao_carteira {
       day_of_month,
       week,
       month,
+      month_name,
+      month_num,
       quarter,
       year,
       time
@@ -60,7 +65,7 @@ view: base_caixa_projecao_carteira {
     convert_tz: no
     label: "Referência"
     datatype:date
-    sql:${dt_ref} ;;
+    sql:${TABLE}."DT_REF"  ;;
   }
 
   dimension: anomes_ref {
@@ -69,6 +74,11 @@ view: base_caixa_projecao_carteira {
     sql: ${TABLE}."ANOMES_REF" ;;
   }
 
+  dimension: writeoff {
+    type: date
+    group_item_label:"Data que entrou em WO"
+    sql: ${TABLE}."WRITEOFF" ;;
+  }
   dimension: fx_atraso {
     type: string
     group_item_label:"Faixa de Atraso"
@@ -150,7 +160,8 @@ view: base_caixa_projecao_carteira {
       saldo_carteira,
       caixa_acum,
       boleto_acum,
-      qtde_acum
+      qtde_acum,
+      writeoff
     ]
   }
 }

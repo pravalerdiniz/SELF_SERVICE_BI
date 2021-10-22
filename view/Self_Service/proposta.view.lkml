@@ -219,9 +219,6 @@ view: proposta {
   }
 
 
-
-
-
   dimension: gh_bhv{
     type: string
     group_label: "Dados do Aluno"
@@ -230,6 +227,36 @@ view: proposta {
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/969244677/GH+-+Behavior"}
     description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
+  }
+
+  dimension: gh_aluno{
+    type: string
+    group_label: "Dados do Aluno"
+    label: "GH - Sem Fiador"
+    description: "GH Sem Fiador"
+    case: {
+    when: {
+      sql: ${score_externo} <= 1938 ;;
+      label: "E"
+    }
+    when: {
+      sql:${score_externo} between 1939 and 5929 ;;
+      label: "D"
+    }
+    when: {
+      sql: ${score_externo} between 5930 and 8762  ;;
+      label: "C"
+    }
+    when: {
+      sql: ${score_externo} between 8763 and 9192 ;;
+      label: "B"
+    }
+      when: {
+        sql: ${score_externo} > 9192 ;;
+        label: "A"
+      }
+    else: "null"
+  }
   }
 
 

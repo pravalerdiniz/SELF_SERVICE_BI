@@ -11,19 +11,19 @@ view: alunos_cobranca_pdd_boletos {
 
   dimension: datapg {
     type: date
-    group_item_label: "Data de Pagamento"
+    label: "Data de Pagamento"
     sql: ${TABLE}."DATAPG" ;;
   }
 
   dimension: fundo {
     type: number
-    group_item_label: "Fundo"
+    label: "Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: fx_atraso {
     type: string
-    group_item_label: "Faixa de Atraso"
+    label: "Faixa de Atraso"
     sql: ${TABLE}."FX_ATRASO" ;;
   }
 
@@ -34,56 +34,56 @@ view: alunos_cobranca_pdd_boletos {
   }
 
   measure: qtd_boletos_pagos {
-    type: number
-    group_item_label: "Quantidade de Boletos Pagos"
+    type: sum
+    label: "Quantidade de Boletos Pagos"
     sql: ${TABLE}."QTD_BOLETOS_PAGOS" ;;
   }
 
   measure: valor_boletos {
-    type: number
-    group_item_label: "Valor dos Boletos"
+    type: sum
+    label: "Valor dos Boletos"
     sql: ${TABLE}."VALOR_BOLETOS" ;;
   }
 
   measure: valor_pago {
-    type: number
-    group_item_label: "Valor Pago"
+    type: sum
+    label: "Valor Pago"
     sql: ${TABLE}."VALOR_PAGO" ;;
   }
 
   measure: valor_atualizado {
-    type: number
-    group_item_label: "Valor Atualizado"
+    type: sum
+    label: "Valor Atualizado"
     sql: ${TABLE}."VALOR_ATUALIZADO" ;;
   }
 
   measure: desconto_cedido {
-    type: number
-    group_item_label: "Desconto Cedido"
+    type: sum
+    label: "Desconto Cedido"
     sql: ${TABLE}."DESCONTO_CEDIDO" ;;
   }
 
   measure: juros_recebido {
-    type: number
-    group_item_label: "Juros Recebidos"
+    type: sum
+    label: "Juros Recebidos"
     sql: ${TABLE}."JUROS_RECEBIDO" ;;
   }
 
   measure: desconto_principal {
-    type: number
-    group_item_label: "Desconto Principal"
+    type: sum
+    label: "Desconto Principal"
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
 
   dimension: flg_maior_atraso {
     type: yesno
-    group_item_label: "Maior Atraso?"
+    label: "Maior Atraso?"
     sql: ${TABLE}."FLG_MAIOR_ATRASO" ;;
   }
 
   dimension: flg_maior_faixa_atraso {
     type: yesno
-    group_item_label: "Maior Faixa de Atraso?"
+    label: "Maior Faixa de Atraso?"
     sql: ${TABLE}."FLG_MAIOR_FAIXA_ATRASO" ;;
   }
 

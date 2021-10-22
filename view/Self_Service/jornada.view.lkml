@@ -362,8 +362,8 @@ view: jornada {
     type: number
     sql: datediff('day',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
-    group_item_label: "Tempo no Status"
-    description: "Indica a quantos dias o aluno está no mesmo status"
+    group_item_label: "Tempo no Último Status"
+    description: "Indica a quantidade de dias que o aluno está parado no último status."
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
@@ -373,7 +373,8 @@ view: jornada {
     sql: datediff('hour',${data_ultimo_status_raw},current_date) ;;
     group_label: "Telemetria"
     group_item_label: "Horas no Status"
-    description: "Indica a quantas horas o aluno está no mesmo status"
+    description: "Indica quantas horas o aluno está no mesmo status"
+    hidden: yes
   }
 
   dimension: grupo_status_renovacao {
@@ -402,8 +403,8 @@ view: jornada {
       else: "30 >"
     }
     group_label: "Telemetria"
-    group_item_label: "Faixa de Tempo no Status"
-    description: "Indica a faixa de tempo, em dias, que o aluno está no mesmo status"
+    group_item_label: "Faixa de Tempo no Último Status"
+    description: "Indica a faixa de tempo, em dias, que o aluno está no último status."
   }
 
 
@@ -715,11 +716,13 @@ view: jornada {
     label: "SLA de Iniciados - Faixa de Tempo"
     case: {
       when: {
-        sql: ${jornada_pivot.sla_ini_novos} = '0' ;;
+        #sql: ${jornada_pivot.sla_ini_novos} = '0' ;;
+        sql: ${sla_ini_novos} = '0' ;;
         label: "0"
       }
       else: "0 >"
     }
+    hidden: yes
   }
 
 
@@ -729,20 +732,23 @@ view: jornada {
     label: "SLA de Finalizado - Faixa de Tempo"
     case: {
       when: {
-        sql: ${jornada_pivot.sla_fin_novos} = '0' ;;
+        #sql: ${jornada_pivot.sla_fin_novos} = '0' ;;
+        sql: ${sla_fin_novos} = '0' ;;
         label: "0"
       }
       else: "0 >"
     }
+    hidden: yes
   }
 
   dimension: dias_iniciar_proposta_novos {
     type: number
-    sql: ${jornada_pivot.sla_ini_novos} ;;
+    #sql: ${jornada_pivot.sla_ini_novos} ;;
+    sql: ${sla_ini_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
     hidden: yes
 
@@ -751,11 +757,12 @@ view: jornada {
 
   dimension: dias_finalizar_proposta_novos {
     type: number
-    sql: ${jornada_pivot.sla_fin_novos} ;;
+    #sql: ${jornada_pivot.sla_fin_novos} ;;
+    sql: ${sla_fin_novos} ;;
     group_label: "Tempo de Jornada - Novos"
     group_item_label: "1. Iniciar Proposta"
     value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
     hidden: yes
   }
@@ -1346,22 +1353,20 @@ view: jornada {
   measure: tempo_status {
     type: average
     sql: ${tempo_no_status} ;;
-    group_label: "Tempo no Status Atual"
-    group_item_label: "Dias"
+    group_item_label: "Tempo no Último Status - Média"
     value_format: "0"
     drill_fields: [detail*]
-    description: "Media de tempo no status"
+    description: "Media de tempo no status atual."
   }
 
 
   measure: tempo_status_median {
     type: median
     sql: ${tempo_no_status} ;;
-    group_label: "Tempo no Status Atual - Mediana"
-    group_item_label: "Dias"
+    group_item_label: "Tempo no Último Status - Mediana"
     value_format: "0"
     drill_fields: [detail*]
-    description: "Mediana de tempo no status"
+    description: "Mediana de tempo no status atual."
   }
 
   measure: tempo_status_hora {
@@ -1371,8 +1376,8 @@ view: jornada {
     group_label: "Tempo no Status Atual"
     group_item_label: "Horas"
     value_format: "0"
-
     description: "Média de horas no status"
+    hidden: yes
   }
 
   # Jornada Novos
@@ -1388,257 +1393,9 @@ view: jornada {
     ]
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos2]
     description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta, desconsiderando os alunos que tem diferença de dias = 0"
-  }
-
-
-  measure: iniciar_proposta_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql:${jornada_pivot.sla_ini_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "1. Iniciar Proposta"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos]
-    description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
-  }
-
-  measure: finalizar_proposta_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_fin_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "2. Finalizar Proposta"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
-    description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
-  }
-
-
-  measure: finalizar_proposta_novos2 {
-    type: median
-    sql: ${dias_finalizar_proposta_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "2. Finalizar Proposta (Maior que 0)"
-    value_format: "0"
-    filters: [dias_finalizar_proposta_novos: ">0"
-    ]
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,iniciar_proposta_novos2]
-    description: "Mediana do tempo entre o aluno iniciar  e finalizar uma proposta, desconsiderando os alunos que tem diferença de dias = 0"
-  }
-
-
-
-  measure: mesa_risco_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_apr_risco_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "3. Mesa de Risco"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mesa_risco_novos]
-    description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
-  }
-
-  measure: aprovacao_instituicao_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_apr_ies_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "4. Aprovação da Instituição"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
-    description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
-  }
-
-
-  measure: aprovacao_instituicao_novos_media {
-    type: average
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_apr_ies_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "4. Aprovação da Instituição - Média"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,finalizar_proposta_novos]
-    description: "Media do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
-  }
-
-  measure: aguardando_documento_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_agu_doc_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "5. Aguardando Documento"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,aguardando_documento_novos]
-    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
-  }
-
-
-  measure: agu_assinatura_contrato_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_agu_ass_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "7. Aguardando Assinatura de Contrato"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,agu_assinatura_contrato_novos]
-    description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
-  }
-
-  measure: formalizacao_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_form_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "8. Formalização"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,formalizacao_novos]
-    description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
-  }
-
-  measure: cessao_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_ced_novos} ;;
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "9. Cessão"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,cessao_novos]
-    description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
-  }
-
-
-  measure: median_total_novos {
-    type: number
-    sql: ${iniciar_proposta_novos}+
-     ${finalizar_proposta_novos}+
-    ${mesa_risco_novos}+${aprovacao_instituicao_novos}+
-    ${aguardando_documento_novos}+
-    ${agu_assinatura_contrato_novos}+
-    ${formalizacao_novos}+
-    ${cessao_novos};;
-
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "Total - Tempo de Jornada do Aluno Novo"
-    value_format: "0"
-    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,median_total_novos]
-    description: "Soma da mediana do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
-  }
-
-
-  measure: total_novos {
-    type: median
-    sql_distinct_key: ${id_proposta} ;;
-    sql: ${jornada_pivot.sla_total_novos} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Novos"
-    group_item_label: "Total"
-    value_format: "0"
     hidden: yes
-    description: "Média da diferença de data, em dias, entre o aluno iniciar a proposta e ser cedido"
   }
 
-  # Jornada Renovação
-  measure: sla_eleg_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_eleg_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "1. Elegibilidade"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
-  }
-
-  measure: sla_beha_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_beha_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "2. Aprovação Behavior"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ser elegível e ser aprovado no behavior"
-  }
-  measure: sla_apr_ies_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "3. Aprovação da Instituição"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
-  }
-
-
-  measure: sla_apr_ies_renov_media {
-    type: average
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação | Média"
-    group_item_label: "3. Aprovação da Instituição"
-    value_format: "0"
-    description: "Media do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
-  }
-  measure: sla_agu_doc_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_agu_doc_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "4. Aguardando Documento"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
-  }
-
-  measure: sla_agu_ass_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_agu_ass_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "6. Aguardando Assinatura de Contrato"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
-  }
-
-  measure: sla_form_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_form_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "7. Formalização"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
-  }
-
-  measure: sla_ced_renov {
-    type: median
-    sql_distinct_key: ${id_proposta};;
-    sql: ${jornada_pivot.sla_ced_renov} ;;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "8. Cessão"
-    value_format: "0"
-    description: "Mediana do tempo entre o aluno ter o contrado formalizado e cedido."
-  }
-
-  measure: median_total_renov {
-    type: number
-    sql: ${sla_eleg_renov}+${sla_beha_renov}+
-     ${sla_form_renov}+${sla_apr_ies_renov}+
-     ${sla_agu_doc_renov}+
-    ${sla_agu_ass_renov}
-    ${sla_form_renov}+${sla_ced_renov};;
-    drill_fields: [detail*]
-    group_label: "Tempo de Jornada - Renovação"
-    group_item_label: "Total - Tempo de Jornada do Aluno de Renovação"
-    value_format: "0"
-    description: "Soma da mediana do tempo de todas as etapas do aluno de renovação durante o processo de contratação no PRAVALER"
-  }
 dimension: url {
   type: string
   group_label: "Atribuição"
@@ -1674,6 +1431,1189 @@ dimension: flg_d1 {
   group_item_label: "Flag D-1"
   hidden:  yes
 }
+
+  dimension_group: dt_segundo_repasse {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_SEGUNDO_REPASSE" ;;
+    label: "Data Segundo Repasse"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Segundo Repasse"
+
+  }
+
+  measure: avg_segundo_repasse {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_segundo_repasse_date}) ;;
+    label: "Segundo Repasse"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Segundo Repasse"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_cessao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_CESSAO" ;;
+    label: "Data Aguardando Cessão"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardnado Cessão"
+
+  }
+
+  measure: avg_aguardando_cessao {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_cessao_date}) ;;
+    label: "Cessão"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Cessão"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cedido {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CEDIDO" ;;
+    label: "Data Cedido"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cedido"
+
+  }
+
+  measure: avg_cedido {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cedido_date}) ;;
+    label: "Cedido"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cedido"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cancelado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CANCELADO" ;;
+    label: "Data Cancelado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cancelado"
+
+  }
+
+  measure: avg_cancelado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cancelado_date}) ;;
+    label: "Cancelado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cancelado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_cadastro_finalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_CADASTRO_FINALIZADO" ;;
+    label: "Data Cadastro Finalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Cadastro Finalizado"
+
+  }
+
+  measure: avg_cadastro_finalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cadastro_finalizado_date}) ;;
+    label: "Cadastro Finalizado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Cadastro Finalizado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_ELEGIVEL" ;;
+    label: "Data Elegivel"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Elegível"
+
+  }
+
+  measure: avg_elegivel {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_elegivel_date}) ;;
+    label: "Elegível"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de ELegível"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_risco {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_RISCO" ;;
+    label: "Data Aprovado Risco"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Risco"
+
+  }
+
+  measure: avg_aprovado_risco {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_risco_date}) ;;
+    label: "Aprovado Risco"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Risco"
+    value_format: "0"
+  }
+
+  dimension_group: dt_formalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_FORMALIZADO" ;;
+    label: "Data Formalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Formalizado"
+
+  }
+
+  measure: avg_Formalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_formalizado_date}) ;;
+    label: "Formalizado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Formalizado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_behavior {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_BEHAVIOR" ;;
+    label: "Data Aprovado Behavior"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Behavior"
+
+  }
+
+  measure: avg_Aprovado_Behavior {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
+    label: "Aprovado Behavior"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Behavior"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_assinatura {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_ASSINATURA" ;;
+    label: "Data Aguardando Assinatura"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Assinatura"
+
+  }
+
+  measure: avg_aguardando_assinatura {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_assinatura_date}) ;;
+    label: "Aguardando Assinatura"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Assinatura"
+    value_format: "0"
+  }
+
+  dimension_group: dt_iniciado_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_INICIADO_ELEGIVEL" ;;
+    label: "Data Iniciado / Elegível"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Iniciado / Elegível"
+
+  }
+
+  measure: avg_iniciado_elegivel {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_elegivel_date}) ;;
+    label: "Iniciado / Elegível"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado / Elegível"
+    value_format: "0"
+  }
+
+  dimension_group: dt_iniciado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_INICIADO" ;;
+    label: "Data Iniciado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Iniciado"
+
+  }
+
+  measure: avg_dt_iniciado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_date}) ;;
+    label: "Iniciado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_documento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTO" ;;
+    label: "Data Aguardando Documento"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Documento"
+
+  }
+
+  measure: avg_aguardando_documento {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documento_date}) ;;
+    label: "Aguardando Documento"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documento"
+    value_format: "0"
+  }
+
+
+  dimension_group: dt_lead {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_LEAD" ;;
+    label: "Data Lead"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Lead"
+
+  }
+
+  measure: avg_Lead {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_lead_date}) ;;
+    label: "Lead"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Lead"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aguardando_documentos {
+    type: time
+    timeframes: [
+     raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_AGUARDANDO_DOCUMENTOS" ;;
+    label: "Data Aguardando Documentos"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aguardando Documentos"
+
+  }
+
+  measure: avg_aguardando_documentos {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documentos_date}) ;;
+    label: "Aguardando Documentos"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documentos"
+    value_format: "0"
+  }
+
+  dimension_group: dt_aprovado_instituicao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_APROVADO_INSTITUICAO" ;;
+    label: "Data Aprovado Instituição"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Aprovado Instituição"
+
+  }
+
+  measure: avg_aprovado_instituicao {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_instituicao_date}) ;;
+    label: "Aprovado Instituição"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Instituição"
+    value_format: "0"
+  }
+
+  dimension_group: dt_simulado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_SIMULADO" ;;
+    label: "Data Simulado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Simulado"
+
+  }
+
+  measure: avg_simulado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_simulado_date}) ;;
+    label: "Simulado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Simulado"
+    value_format: "0"
+  }
+
+  dimension_group: dt_finalizado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      year,
+      month_num
+    ]
+    sql: ${TABLE}."DT_FINALIZADO" ;;
+    label: "Data Finalizado"
+    group_label: "Última Data das Etapas"
+    description: "Ultima data que a proposta passou pela etapa de Finalizado"
+
+  }
+
+  measure: avg_finalizado {
+    type: average
+    sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_finalizado_date}) ;;
+    label: "Finalizado"
+    group_label: "Média de dias até a Etapa"
+    description: "Média em dias da diferença entre o início da proposta até a etapa de Finalizado"
+    value_format: "0"
+  }
+
+
+  dimension: sla_lead_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${dt_lead_raw} , ${dt_simulado_raw}) < 0
+                   or ${dt_lead_raw} is null or ${dt_simulado_raw} is null))
+              then null
+              else datediff(day,${dt_lead_raw} , ${dt_simulado_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+
+
+
+
+  dimension: sla_ini_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND ((datediff(day,${dt_simulado_raw} , ${dt_iniciado_raw}) < 0
+                   or ${dt_simulado_raw} is null or ${dt_iniciado_raw} is null))
+              then null
+              else datediff(day,${dt_simulado_raw} , ${dt_iniciado_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_fin_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${dt_iniciado_raw} , ${dt_finalizado_raw}) < 0)
+                  -- or ${dt_iniciado_raw} is null or ${dt_finalizado_raw} is null)
+              then null
+              else datediff(day,${dt_iniciado_raw}
+              , coalesce(${dt_finalizado_raw},${dt_iniciado_raw}) )
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_risco_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,coalesce(${dt_finalizado_raw},${dt_iniciado_raw}) , ${dt_aprovado_risco_raw}) < 0)
+                  -- or ${dt_finalizado_raw} is null or ${dt_aprovado_risco_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_finalizado_raw},${dt_iniciado_raw})
+              , coalesce(${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_ies_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,coalesce(${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}),${dt_aprovado_instituicao_raw}) < 0)
+                   --or ${dt_aprovado_risco_raw} is null or ${dt_aprovado_instituicao_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw})
+              , coalesce(${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_agu_ass_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,coalesce(${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}),${dt_aguardando_assinatura_raw}) < 0)
+                   --or ${dt_aprovado_instituicao_raw} is null or ${dt_aguardando_assinatura_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+
+    #case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw}) < 0
+    #               or ${dt_aguardando_documento_raw} is null or ${dt_aguardando_assinatura_raw} is null)
+    #          then null
+    #          else datediff(day,${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw})
+    #     end ;;
+      value_format: "0"
+      hidden: yes
+    }
+
+  dimension: sla_agu_doc_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND
+                  (datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}),${dt_aguardando_documento_raw}) < 0)
+                   --or ${dt_aguardando_assinatura_raw} is null or ${dt_aguardando_documento_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+
+   # case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${dt_aprovado_instituicao_raw},${dt_aguardando_documento_raw}) < 0
+   #                or ${dt_aprovado_instituicao_raw} is null or ${dt_aguardando_documento_raw} is null)
+   #           then null
+   #           else datediff(day,${dt_aprovado_instituicao_raw},${dt_aguardando_documento_raw})
+   #      end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_form_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,coalesce(${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}),${dt_formalizado_raw}) < 0)
+                   --or ${dt_aguardando_documento_raw} is null or ${dt_formalizado_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw})
+              , coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+
+       #case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${dt_aguardando_assinatura_raw},${dt_formalizado_raw}) < 0
+       #           or ${dt_aguardando_assinatura_raw} is null or ${dt_formalizado_raw} is null)
+       #      then null
+       #      else datediff(day,${dt_aguardando_assinatura_raw},${dt_formalizado_raw})
+       # end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_ced_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}),${dt_cedido_raw}) < 0)
+                   --or ${dt_formalizado_raw} is null or ${dt_cedido_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_cedido_raw},${dt_formalizado_raw},${dt_aguardando_documento_raw}, ${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw},${dt_aprovado_risco_raw},${dt_finalizado_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_total_novos {
+    type: number
+    sql: case when ${tipo_proposta} = 'NOVO' AND (datediff(day,${dt_iniciado_raw},${dt_cedido_raw}) < 0
+                   or ${dt_iniciado_raw} is null or ${dt_cedido_raw} is null)
+              then null
+              else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+# Renovação
+  dimension: sla_eleg_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw}) < 0
+                   or ${dt_iniciado_raw} is null or ${dt_iniciado_elegivel_raw} is null)
+              then null
+              else datediff(day,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_beha_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})  , ${dt_aprovado_behavior_raw}) < 0)
+                   --or ${dt_iniciado_elegivel_raw} is null or ${dt_aprovado_behavior_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_apr_ies_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}) , ${dt_aprovado_instituicao_raw}) < 0)
+                   --or ${dt_aprovado_behavior_raw} is null or ${dt_aprovado_instituicao_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_agu_ass_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_assinatura_raw}) < 0)
+                   --or ${dt_aprovado_instituicao_raw} is null or ${dt_aguardando_assinatura_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_agu_doc_renov {
+    type: number
+    sql:  case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_documento_raw}) < 0)
+                   --or ${dt_aguardando_assinatura_raw} is null or ${dt_aguardando_documento_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+
+    #case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_aprovado_instituicao_raw},${dt_aguardando_documento_raw}) < 0
+    #               or ${dt_aprovado_instituicao_raw} is null or ${dt_aguardando_documento_raw} is null)
+    #          then null
+    #          else datediff(day,${dt_aprovado_instituicao_raw},${dt_aguardando_documento_raw})
+    #     end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+
+
+
+  dimension: sla_form_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_formalizado_raw}) < 0)
+                   --or ${dt_aguardando_documento_raw} is null or ${dt_formalizado_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+
+       #case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_aguardando_assinatura_raw},${dt_formalizado_raw}) < 0
+       #           or ${dt_aguardando_assinatura_raw} is null or ${dt_formalizado_raw} is null)
+       #      then null
+       #      else datediff(day,${dt_aguardando_assinatura_raw},${dt_formalizado_raw})
+       # end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_ced_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_cedido_raw}) < 0)
+                   --or ${dt_formalizado_raw} is null or ${dt_cedido_raw} is null)
+              then null
+              else datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_cedido_raw},${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+  dimension: sla_total_renov {
+    type: number
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_iniciado_raw},${dt_cedido_raw}) < 0
+                   or ${dt_iniciado_raw} is null or ${dt_cedido_raw} is null)
+              then null
+              else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
+         end ;;
+    value_format: "0"
+    hidden: yes
+  }
+
+
+  measure: mediana_iniciados_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql:${jornada_pivot.sla_ini_novos} ;;
+    sql:${sla_ini_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "1. Lead até Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_iniciados_novos]
+    description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
+  }
+
+  measure: mediana_finalizado_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_fin_novos} ;;
+    sql: ${sla_fin_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_finalizado_novos]
+    description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
+  }
+
+
+  measure: mediana_mesa_risco_novos{
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_risco_novos} ;;
+    sql: ${sla_apr_risco_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "3. Finalizar Proposta até Aprovado Risco"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_mesa_risco_novos]
+    description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
+  }
+
+  measure: mediana_aprovado_instituicao_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    sql: ${sla_apr_ies_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "4. Aprovado Risco até Aprovado Instituição"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_finalizado_novos]
+    description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
+
+
+  measure:mediana_aguard_doc_novos{
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_doc_novos} ;;
+    sql: ${sla_agu_doc_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "5. Aprovado Instituição até Aguardando Documento"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_aguard_doc_novos]
+    description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
+  }
+
+
+  measure: mediana_aguard_ass_ctt_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_ass_novos} ;;
+    sql: ${sla_agu_ass_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "7. Aguardando Documento até Aguardando Assinatura"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_aguard_ass_ctt_novos]
+    description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
+  }
+
+  measure: mediana_formalizados_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_form_novos} ;;
+    sql: ${sla_form_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "8. Aguardando Assinatura até Formalizado"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_formalizados_novos]
+    description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
+  measure: mediana_cedidos_novos {
+    type: median
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${sla_ced_novos} ;;
+    group_label: "Mediana do tempo de Jornada - Novos"
+    group_item_label: "9. Formalizado até Cedido"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_cedidos_novos]
+    description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
+  }
+
+
+  measure: mediana_total_novos {
+    type: number
+    sql: coalesce(${mediana_iniciados_novos},0)+
+           coalesce(${mediana_finalizado_novos},0)+
+          coalesce(${mediana_mesa_risco_novos},0)+
+          coalesce(${mediana_aprovado_instituicao_novos},0)+
+          coalesce(${mediana_aguard_doc_novos},0)+
+          coalesce(${mediana_aguard_ass_ctt_novos},0)+
+          coalesce(${mediana_formalizados_novos},0)+
+          coalesce(${mediana_cedidos_novos},0);;
+
+      group_label: "Mediana do tempo de Jornada - Novos"
+      group_item_label: "10. Tempo Total da Jornada do Aluno Novo"
+      value_format: "0"
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,mediana_total_novos]
+      description: "Soma da mediana do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+    }
+
+
+      # Jornada Renovação
+    measure: sla_eleg_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_eleg_renov} ;;
+      sql: ${sla_eleg_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "1. Iniciar Proposta até Elegível"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
+    }
+
+    measure: sla_beha_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_beha_renov} ;;
+      sql: ${sla_beha_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "2. Elegível até Aprovado Behavior"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ser elegível e ser aprovado no behavior"
+    }
+    measure: sla_apr_ies_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+      sql: ${sla_apr_ies_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+    }
+
+
+      measure: sla_agu_doc_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_agu_doc_renov} ;;
+      sql: ${sla_agu_doc_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "4. Aprovado Instituição até Aguardando Documento"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
+    }
+
+    measure: sla_agu_ass_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_agu_ass_renov} ;;
+      sql: ${sla_agu_ass_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "6. Aguardando Document até Aguardando Assinatura"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
+    }
+
+    measure: sla_form_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_form_renov} ;;
+      sql: ${sla_form_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "7. Aguardando Assinatura até Formalizado"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+    }
+
+    measure: sla_ced_renov2 {
+      type: median
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_ced_renov} ;;
+      sql: ${sla_ced_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "8. Formalizado até Cedido"
+      value_format: "0"
+      description: "Mediana do tempo entre o aluno ter o contrado formalizado e cedido."
+    }
+
+    measure: median_total_renov {
+      type: number
+      sql: coalesce(${sla_eleg_renov},0)
+          +coalesce(${sla_beha_renov},0)
+          +coalesce(${sla_form_renov},0)
+          +coalesce(${sla_apr_ies_renov},0)
+          +coalesce(${sla_agu_doc_renov},0)
+          +coalesce(${sla_agu_ass_renov},0)
+          +coalesce(${sla_form_renov},0)
+          +coalesce(${sla_ced_renov},0);;
+      drill_fields: [detail*]
+      group_label: "Mediana do Tempo de Jornada - Renovação"
+      group_item_label: "Tempo Total de Jornada do Aluno de Renovação"
+      value_format: "0"
+      description: "Soma da mediana do tempo de todas as etapas do aluno de renovação durante o processo de contratação no PRAVALER"
+    }
+
+  measure: media_iniciados_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql:${jornada_pivot.sla_ini_novos} ;;
+    sql:${sla_ini_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "1. Lead até Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
+    description: "Média do tempo entre o aluno ser lead e iniciar uma proposta"
+  }
+
+  measure: media_finalizados_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_fin_novos} ;;
+    sql: ${sla_fin_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
+    description: "Média do tempo entre o aluno iniciar e finalizar uma proposta"
+  }
+
+
+  measure: media_mesa_risco_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_risco_novos} ;;
+    sql: ${sla_apr_risco_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "3. Finalizar Proposta até Aprovado Risco"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
+    description: "Média do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
+  }
+
+  measure: media_aprovado_instituicao_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    sql: ${sla_apr_ies_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "4. Aprovado Risco até Aprovado Instituição"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
+    description: "Média do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
+
+
+  measure: media_aguard_doc_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_doc_novos} ;;
+    sql: ${sla_agu_doc_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "6. Aprovado Instituição até Aguardando Documento"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
+    description: "Média do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
+  }
+
+
+  measure: media_aguard_ass_ctt_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_ass_novos} ;;
+    sql: ${sla_agu_ass_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
+    description: "Média do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
+  }
+
+  measure: media_formalizado_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_form_novos} ;;
+    sql: ${sla_form_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "8. Aguardando Assinatura até Formalizado"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
+    description: "Média do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
+  measure: media_cedidos_novos {
+    type: average
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${sla_ced_novos} ;;
+    group_label: "Média do tempo de Jornada - Novos"
+    group_item_label: "9. Formalizado até Cedido"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
+    description: "Média do tempo entre o aluno estar formalizado e ser cedido"
+  }
+
+
+  measure: avarege_total_novos {
+    type: number
+    sql:  coalesce(${media_iniciados_novos},0)+
+          coalesce(${media_finalizados_novos},0)+
+          coalesce(${media_mesa_risco_novos},0)+
+          coalesce(${media_aprovado_instituicao_novos},0)+
+          coalesce(${media_aguard_doc_novos},0)+
+          coalesce(${media_aguard_ass_ctt_novos},0)+
+          coalesce(${media_formalizado_novos},0)+
+          coalesce(${media_cedidos_novos},0);;
+
+      group_label: "Média do tempo de Jornada - Novos"
+      group_item_label: "Tempo Total de Jornada do Aluno Novo"
+      value_format: "0"
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+    }
+
+
+
+
+    # Jornada Renovação
+    measure: sla_eleg_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_eleg_renov} ;;
+      sql: ${sla_eleg_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "1. Iniciar Proposta até Elegível"
+      value_format: "0"
+      description: "Média do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
+    }
+
+    measure: sla_beha_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_beha_renov} ;;
+      sql: ${sla_beha_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "2. Elegível até Aprovado Behavior"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ser elegível e ser aprovado no behavior"
+    }
+    measure: sla_apr_ies_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
+      sql: ${sla_apr_ies_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
+    }
+
+    measure: sla_agu_doc_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_agu_doc_renov} ;;
+      sql: ${sla_agu_doc_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "4. Aprovado Instituição até Aguardando Documento"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
+    }
+
+    measure: sla_agu_ass_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_agu_ass_renov} ;;
+      sql: ${sla_agu_ass_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "6. Aguardando Documento até Aguardando Assinatura"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
+    }
+
+    measure: sla_form_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_form_renov} ;;
+      sql: ${sla_form_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "7. Aguardando Assinatura até Formalizado"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+    }
+
+    measure: sla_ced_renov23 {
+      type: average
+      #sql_distinct_key: ${id_proposta};;
+      #sql: ${jornada_pivot.sla_ced_renov} ;;
+      sql: ${sla_ced_renov} ;;
+      drill_fields: [detail*]
+      group_label: "Média do tempo de Jornada - Renovação"
+      group_item_label: "8. Formalizado até Cedido"
+      value_format: "0"
+      description: "Média do tempo entre o aluno ter o contrado formalizado e cedido."
+    }
+
+  measure: avarege_total_renovacao {
+    type: number
+    sql:  coalesce(${sla_eleg_renov23},0)+
+          coalesce(${sla_agu_ass_renov23},0)+
+          coalesce(${sla_agu_doc_renov23},0)+
+          coalesce(${sla_apr_ies_renov23},0)+
+          coalesce(${sla_beha_renov23},0)+
+          coalesce(${sla_ced_renov23},0)+
+          coalesce(${sla_form_renov23},0);;
+
+      group_label: "Média do tempo de Jornada - Novos"
+      group_item_label: "Tempo Total de Jornada do Aluno Novo"
+      value_format: "0"
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+    }
+
 
   set: detail {
     fields: [
