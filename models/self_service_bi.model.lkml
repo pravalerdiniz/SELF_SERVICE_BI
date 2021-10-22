@@ -935,7 +935,12 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
-
+  join: alunos_cobranca_radar {
+    view_label: "1.9.2 Cobrança - RADAR "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: alunos_cobranca_pdd_boletos {
     view_label: "1.9.6 Cobrança - PDD Boletos"
