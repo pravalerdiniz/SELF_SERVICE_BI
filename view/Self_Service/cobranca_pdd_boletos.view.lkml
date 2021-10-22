@@ -34,43 +34,43 @@ view: alunos_cobranca_pdd_boletos {
   }
 
   measure: qtd_boletos_pagos {
-    type: number
+    type: sum
     group_item_label: "Quantidade de Boletos Pagos"
     sql: ${TABLE}."QTD_BOLETOS_PAGOS" ;;
   }
 
   measure: valor_boletos {
-    type: number
+    type: sum
     group_item_label: "Valor dos Boletos"
     sql: ${TABLE}."VALOR_BOLETOS" ;;
   }
 
   measure: valor_pago {
-    type: number
+    type: sum
     group_item_label: "Valor Pago"
     sql: ${TABLE}."VALOR_PAGO" ;;
   }
 
   measure: valor_atualizado {
-    type: number
+    type: sum
     group_item_label: "Valor Atualizado"
     sql: ${TABLE}."VALOR_ATUALIZADO" ;;
   }
 
   measure: desconto_cedido {
-    type: number
+    type: sum
     group_item_label: "Desconto Cedido"
     sql: ${TABLE}."DESCONTO_CEDIDO" ;;
   }
 
   measure: juros_recebido {
-    type: number
+    type: sum
     group_item_label: "Juros Recebidos"
     sql: ${TABLE}."JUROS_RECEBIDO" ;;
   }
 
   measure: desconto_principal {
-    type: number
+    type: sum
     group_item_label: "Desconto Principal"
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
