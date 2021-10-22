@@ -11,19 +11,19 @@ view: alunos_cobranca_pdd_boletos {
 
   dimension: datapg {
     type: date
-    group_item_label: "Data de Pagamento"
+    label: "Data de Pagamento"
     sql: ${TABLE}."DATAPG" ;;
   }
 
   dimension: fundo {
     type: number
-    group_item_label: "Fundo"
+    label: "Fundo"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: fx_atraso {
     type: string
-    group_item_label: "Faixa de Atraso"
+    label: "Faixa de Atraso"
     sql: ${TABLE}."FX_ATRASO" ;;
   }
 
@@ -35,55 +35,55 @@ view: alunos_cobranca_pdd_boletos {
 
   measure: qtd_boletos_pagos {
     type: sum
-    group_item_label: "Quantidade de Boletos Pagos"
+    label: "Quantidade de Boletos Pagos"
     sql: ${TABLE}."QTD_BOLETOS_PAGOS" ;;
   }
 
   measure: valor_boletos {
     type: sum
-    group_item_label: "Valor dos Boletos"
+    label: "Valor dos Boletos"
     sql: ${TABLE}."VALOR_BOLETOS" ;;
   }
 
   measure: valor_pago {
     type: sum
-    group_item_label: "Valor Pago"
+    label: "Valor Pago"
     sql: ${TABLE}."VALOR_PAGO" ;;
   }
 
   measure: valor_atualizado {
     type: sum
-    group_item_label: "Valor Atualizado"
+    label: "Valor Atualizado"
     sql: ${TABLE}."VALOR_ATUALIZADO" ;;
   }
 
   measure: desconto_cedido {
     type: sum
-    group_item_label: "Desconto Cedido"
+    label: "Desconto Cedido"
     sql: ${TABLE}."DESCONTO_CEDIDO" ;;
   }
 
   measure: juros_recebido {
     type: sum
-    group_item_label: "Juros Recebidos"
+    label: "Juros Recebidos"
     sql: ${TABLE}."JUROS_RECEBIDO" ;;
   }
 
   measure: desconto_principal {
     type: sum
-    group_item_label: "Desconto Principal"
+    label: "Desconto Principal"
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
 
   dimension: flg_maior_atraso {
     type: yesno
-    group_item_label: "Maior Atraso?"
+    label: "Maior Atraso?"
     sql: ${TABLE}."FLG_MAIOR_ATRASO" ;;
   }
 
   dimension: flg_maior_faixa_atraso {
     type: yesno
-    group_item_label: "Maior Faixa de Atraso?"
+    label: "Maior Faixa de Atraso?"
     sql: ${TABLE}."FLG_MAIOR_FAIXA_ATRASO" ;;
   }
 
