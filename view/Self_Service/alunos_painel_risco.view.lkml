@@ -171,7 +171,8 @@ view: alunos_painel_risco {
     type:  yesno
     label: "Flag Sem Fiador"
     sql: ${TABLE}."DATA_HORA" >= '2021-09-14'
-      and ${proposta.cpf_fiador} is null ;;
+      and ${proposta.cpf_fiador} is null
+      and ${proposta.fia_idade} is null;;
 }
 
   set: detail {

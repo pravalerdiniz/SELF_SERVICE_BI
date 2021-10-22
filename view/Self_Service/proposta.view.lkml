@@ -234,7 +234,29 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "GH - Sem Fiador"
     description: "GH Sem Fiador"
-    sql: ${TABLE}."GH_ALUNO" ;;
+    case: {
+    when: {
+      sql: ${score_externo} <= 1938 ;;
+      label: "E"
+    }
+    when: {
+      sql:${score_externo} between 1939 and 5929 ;;
+      label: "D"
+    }
+    when: {
+      sql: ${score_externo} between 5930 and 8762  ;;
+      label: "C"
+    }
+    when: {
+      sql: ${score_externo} between 8763 and 9192 ;;
+      label: "B"
+    }
+      when: {
+        sql: ${score_externo} > 9192 ;;
+        label: "A"
+      }
+    else: "null"
+  }
   }
 
 

@@ -30,7 +30,7 @@ view: alunos_mesa_risco_3 {
 
   dimension: cpf_garantidor {
     type: number
-    hidden: yes
+    label: "CPF - Garantidor"
     sql: ${TABLE}."CPF_GARANTIDOR" ;;
   }
 
@@ -62,8 +62,8 @@ view: alunos_mesa_risco_3 {
     sql: ${TABLE}."VALOR_COMPROVAR" ;;
   }
 
-  dimension: fia_renda {
-    type: number
+  measure: fia_renda {
+    type: sum
     group_label: "Renda"
     label: "Fiador"
     sql: ${TABLE}."FIA_RENDA" ;;
@@ -84,7 +84,7 @@ view: alunos_mesa_risco_3 {
 
   dimension: cpf {
     type: number
-    hidden: yes
+    label: "Boa Vista - CPF"
     sql: ${TABLE}."CPF" ;;
   }
 
