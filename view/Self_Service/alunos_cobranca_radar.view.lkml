@@ -68,13 +68,13 @@ view: alunos_cobranca_radar {
   }
 
   dimension: flag_inibidos {
-    type: yesno
+    type: string
     label: "Flag Inibidos"
     sql: ${TABLE}."FLAG_INIBIDOS" ;;
   }
 
   dimension: flag_promessa {
-    type: yesno
+    type: string
     label: "Flag Promessa"
     sql: ${TABLE}."FLAG_PROMESSA" ;;
   }
