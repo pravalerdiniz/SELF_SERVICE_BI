@@ -11,7 +11,7 @@ view: alunos_cobranca_radar {
 
   dimension: cpf {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "CPF"
     primary_key: yes
     sql: ${TABLE}."cpf" ;;
@@ -31,7 +31,7 @@ view: alunos_cobranca_radar {
 
   dimension: sexo {
     type: string
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Sexo"
     hidden: yes
     sql: ${TABLE}."SEXO" ;;
@@ -99,21 +99,21 @@ view: alunos_cobranca_radar {
 
   dimension: cidade {
     type: string
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Cidade"
     sql: ${TABLE}."CIDADE" ;;
   }
 
   dimension: estado {
     type: string
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Estado"
     sql: ${TABLE}."ESTADO" ;;
   }
 
   dimension: regiao {
     type: string
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Região"
     sql: ${TABLE}."REGIAO" ;;
   }
@@ -156,84 +156,84 @@ view: alunos_cobranca_radar {
 
   dimension: aluno_classe_renda {
     type: string
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Aluno Classe Renda"
     sql: ${TABLE}."ALUNO_CLASSE_RENDA" ;;
   }
 
   dimension: garantidor_classe_renda {
     type: string
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor Classe Renda"
     sql: ${TABLE}."GARANTIDOR_CLASSE_RENDA" ;;
   }
 
   dimension: aluno_possui_endereco {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Possui endereço?"
     sql: ${TABLE}."ALUNO_POSSUI_ENDERECO" ;;
   }
 
   dimension: aluno_possui_email {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Aluno possui e-mail?"
     sql: ${TABLE}."ALUNO_POSSUI_EMAIL" ;;
   }
 
   dimension: aluno_possui_telefone_fixo {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Aluno possui telefone fixo?"
     sql: ${TABLE}."ALUNO_POSSUI_TELEFONE_FIXO" ;;
   }
 
   dimension: aluno_possui_telefone_celular {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Aluno possui celular?"
     sql: ${TABLE}."ALUNO_POSSUI_TELEFONE_CELULAR" ;;
   }
 
   dimension: aluno_possui_telefone_comercial {
     type: number
-    group_item_label: "Dados do Aluno"
+    group_label: "Dados do Aluno"
     label: "Aluno possui telefone comercial?"
     sql: ${TABLE}."ALUNO_POSSUI_TELEFONE_COMERCIAL" ;;
   }
 
   dimension: garantidor_possui_endereco {
     type: number
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor possui endereço?"
     sql: ${TABLE}."GARANTIDOR_POSSUI_ENDERECO" ;;
   }
 
   dimension: garantidor_possui_email {
     type: number
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor possui e-mail"
     sql: ${TABLE}."GARANTIDOR_POSSUI_EMAIL" ;;
   }
 
   dimension: garantidor_possui_telefone_fixo {
     type: number
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor possui telefone fixo?"
     sql: ${TABLE}."GARANTIDOR_POSSUI_TELEFONE_FIXO" ;;
   }
 
   dimension: garantidor_possui_telefone_celular {
     type: number
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor possui celular?"
     sql: ${TABLE}."GARANTIDOR_POSSUI_TELEFONE_CELULAR" ;;
   }
 
   dimension: garantidor_possui_telefone_comercial {
     type: number
-    group_item_label: "Dados do Garantidor"
+    group_label: "Dados do Garantidor"
     label: "Garantidor possui telefone comercial?"
     sql: ${TABLE}."GARANTIDOR_POSSUI_TELEFONE_COMERCIAL" ;;
   }
