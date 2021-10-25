@@ -25,7 +25,7 @@ view: solucx {
         solucx."RATING_TIMESTAMP" as data_resposta_pesquisa,
         solucx."RATING_VALUE" as nota_pesquisa,
         solucx."CLASS_NOTA" as promotor_detrator
-      from "FATO"."SOLUCX_TRANSACTION" as solucx
+      from veterano."FATO"."SOLUCX_TRANSACTION" as solucx
        ;;
   }
 
