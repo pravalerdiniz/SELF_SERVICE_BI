@@ -33,7 +33,6 @@ view: alunos_cobranca_radar {
     type: string
     group_label: "Dados do Aluno"
     label: "Sexo"
-    hidden: yes
     sql: ${TABLE}."SEXO" ;;
   }
 
