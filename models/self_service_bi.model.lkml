@@ -141,7 +141,16 @@ explore: inep {
 
   }
 }
-explore: instituicao_metas_gc {}
+explore: instituicao_metas_gc {
+
+  join: dias_uteis
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
+    type: left_outer
+    relationship: many_to_one
+  }
+}
+
 explore: status {
   persist_for: "1 hours"
   access_filter: {
@@ -193,6 +202,7 @@ explore: status {
     relationship: one_to_many
     type: left_outer
   }
+
 
 
 
