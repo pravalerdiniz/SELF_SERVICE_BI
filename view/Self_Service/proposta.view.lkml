@@ -236,23 +236,23 @@ view: proposta {
     description: "GH Sem Fiador"
     case: {
     when: {
-      sql: ${score_externo} <= 1938 ;;
+      sql: ${TABLE}."VL_SCORE" <= 1938 ;;
       label: "E"
     }
     when: {
-      sql:${score_externo} between 1939 and 5929 ;;
+      sql:${TABLE}."VL_SCORE" between 1939 and 5929 ;;
       label: "D"
     }
     when: {
-      sql: ${score_externo} between 5930 and 8762  ;;
+      sql: ${TABLE}."VL_SCORE" between 5930 and 8762  ;;
       label: "C"
     }
     when: {
-      sql: ${score_externo} between 8763 and 9192 ;;
+      sql: ${TABLE}."VL_SCORE" between 8763 and 9192 ;;
       label: "B"
     }
       when: {
-        sql: ${score_externo} > 9192 ;;
+        sql: ${TABLE}."VL_SCORE" > 9192 ;;
         label: "A"
       }
     else: "null"
