@@ -21,6 +21,26 @@ view: dias_uteis {
     sql: ${TABLE}."DS_DATE" ;;
   }
 
+  dimension_group: data {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DS_DATE" ;;
+    label: "Data"
+  }
+
   dimension: ano {
     type: number
     label: "ANO"
