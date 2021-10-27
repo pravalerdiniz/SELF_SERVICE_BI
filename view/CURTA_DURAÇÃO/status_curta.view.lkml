@@ -382,6 +382,32 @@ dimension: tempo_curta {
 
   }
 
+  dimension: faixa_tempo_curta_horas {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Horas"
+    case: {
+      when: {
+        sql: ${tempo_curta_minutos} <= 60 ;;
+        label: "< 1h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 300 ;;
+        label: "1h - 5h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 900 ;;
+        label: "5h - 15h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 1200 ;;
+        label: "15h - 20h"
+      }
+      else: "20h >"
+    }
+
+  }
+
 
   dimension: tempo_curta_segundos {
     type: number
