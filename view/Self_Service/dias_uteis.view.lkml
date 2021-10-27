@@ -95,6 +95,12 @@ view: dias_uteis {
     sql: ${TABLE}."FERIADO" ;;
   }
 
+  dimension: dia_util_mes {
+    type: number
+    label: "DIA UTIL MES"
+    sql: ${TABLE}."DIA_UTIL_MES" ;;
+  }
+
   dimension: flg_ultimo_dia {
     type: string
     label: "FLG ULTIMO DIA"
