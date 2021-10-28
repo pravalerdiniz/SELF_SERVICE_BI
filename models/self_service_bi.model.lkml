@@ -919,9 +919,17 @@ join: alunos_inadimplencia_2 {
 
   }
 
+  join: alunos_mesa_2{
+    view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
 
   join: alunos_mesa_risco_3 {
-    view_label: "1.7.1 Mesa de Risco - Renda"
+    view_label: "1.7.2 Mesa de Risco 3 - Renda"
     sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
     type: left_outer
     relationship: one_to_many
