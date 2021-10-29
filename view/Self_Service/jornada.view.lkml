@@ -2510,6 +2510,23 @@ dimension: flg_d1 {
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
+  dimension: tempo_total_novos {
+    type: number
+    sql:  ${sla_ini_novos}+
+${sla_fin_novos}+
+${sla_apr_risco_novos}+
+${sla_apr_ies_novos}+
+${sla_agu_doc_novos}+
+${sla_agu_ass_novos}+
+${sla_form_novos}+
+${sla_ced_novos};;
+
+      group_label: "Tempo Total de Jornada - Novos"
+      group_item_label: "Tempo Total de Jornada do Aluno Novo"
+      value_format: "0"
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      description: "Soma do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+    }
 
 
     # Jornada Renovação
