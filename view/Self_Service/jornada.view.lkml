@@ -2512,14 +2512,14 @@ dimension: flg_d1 {
 
   dimension: tempo_total_novos {
     type: number
-    sql:  ${sla_ini_novos}+
-${sla_fin_novos}+
-${sla_apr_risco_novos}+
-${sla_apr_ies_novos}+
-${sla_agu_doc_novos}+
-${sla_agu_ass_novos}+
-${sla_form_novos}+
-${sla_ced_novos};;
+    sql:  coalesce(${sla_ini_novos},0)+
+coalesce(${sla_fin_novos},0)+
+coalesce(${sla_apr_risco_novos},0)+
+coalesce(${sla_apr_ies_novos},0)+
+coalesce(${sla_agu_doc_novos},0)+
+coalesce(${sla_agu_ass_novos},0)+
+coalesce(${sla_form_novos},0)+
+coalesce(${sla_ced_novos},0);;
 
       group_label: "Tempo Total de Jornada - Novos"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
