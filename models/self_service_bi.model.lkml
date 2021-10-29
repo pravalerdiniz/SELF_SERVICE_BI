@@ -149,6 +149,13 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
+  join: engajometro
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${engajometro.data};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: status {
