@@ -2057,7 +2057,7 @@ dimension: flg_d1 {
               else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
          end ;;
     value_format: "0"
-    hidden: yes
+    hidden: no
   }
 
 # Renovação
@@ -2509,7 +2509,6 @@ dimension: flg_d1 {
       drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
-
 
 
 
