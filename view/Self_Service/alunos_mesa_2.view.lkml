@@ -17,9 +17,28 @@ view: alunos_mesa_2 {
 
   dimension: sl_data {
     type: date
-
+    hidden: yes
     sql: ${TABLE}."SL_DATA" ;;
   }
+
+  dimension_group: data_renda {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Mesa 2"
+    sql: ${sl_data};;
+  }
+
 
   dimension: sl_status_destino {
     type: number
