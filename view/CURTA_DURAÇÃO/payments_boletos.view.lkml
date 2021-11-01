@@ -12,6 +12,7 @@ view: payments_boletos {
        F.VALUE:PAID_AMOUNT::FLOAT AS VL_PAGO,
        F.VALUE:FLG_MENOR_VENCIMENTO::BOOLEAN AS FLG_MENOR_VENCIMENTO,
        F.VALUE:FAIXA_ATRASO::VARCHAR AS FAIXA_ATRASO,
+       F.VALUE:ORIGEM_CARTEIRA::VARCHAR AS ORIGEM_CARTEIRA,
        F.VALUE:VL_PRESENTE_SEMJUROS::FLOAT AS VL_PRESENTE_SEM_JUROS
        from "VETERANO"."CURTA"."PAYMENT" py,
 lateral flatten (input=>boletos) f
@@ -113,6 +114,14 @@ lateral flatten (input=>boletos) f
     sql: ${TABLE}."FAIXA_ATRASO" ;;
     description: "FAIXA DE ATRASO DOS ALUNOS INADIMPLENTES"
     order_by_field: ordem_faixa_atraso
+  }
+
+  dimension: origem_carteira {
+    type: string
+    label: "Origem"
+    description: "Indica qual fundo/origem o boleto e contrato do aluno está. "
+    sql: ${TABLE}."ORIGEM_CARTEIRA" ;;
+
   }
 
   dimension: ordem_faixa_atraso {
