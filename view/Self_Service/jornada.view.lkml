@@ -750,7 +750,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: yes
+    hidden: no
 
   }
 
@@ -764,7 +764,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: yes
+    hidden: no
   }
 
 
