@@ -750,7 +750,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: yes
+    hidden: no
 
   }
 
@@ -764,7 +764,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: yes
+    hidden: no
   }
 
 
@@ -2057,7 +2057,7 @@ dimension: flg_d1 {
               else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
          end ;;
     value_format: "0"
-    hidden: yes
+    hidden: no
   }
 
 # Renovação
@@ -2510,7 +2510,23 @@ dimension: flg_d1 {
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
+  dimension: tempo_total_novos {
+    type: number
+    sql:  coalesce(${sla_ini_novos},0)+
+coalesce(${sla_fin_novos},0)+
+coalesce(${sla_apr_risco_novos},0)+
+coalesce(${sla_apr_ies_novos},0)+
+coalesce(${sla_agu_doc_novos},0)+
+coalesce(${sla_agu_ass_novos},0)+
+coalesce(${sla_form_novos},0)+
+coalesce(${sla_ced_novos},0);;
 
+      group_label: "Tempo Total de Jornada - Novos"
+      group_item_label: "Tempo Total de Jornada do Aluno Novo"
+      value_format: "0"
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      description: "Soma do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+    }
 
 
     # Jornada Renovação
