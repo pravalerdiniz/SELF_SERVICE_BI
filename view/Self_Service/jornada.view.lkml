@@ -2642,7 +2642,7 @@ dimension: qtd_dias_iniciados {
   measure: average_qtd_dias_iniciados {
     type: average
     sql: ${qtd_dias_iniciados} ;;
-    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Iniciados"
     hidden: no
     description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
