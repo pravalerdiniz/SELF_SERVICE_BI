@@ -10,7 +10,9 @@ view: alunos_painel_risco {
             f.value:MODALIDADE::varchar as MODALIDADE,
             f.value:ORDEM::varchar as ORDEM,
             f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS,
-            f.value:DATA_HORA::timestamp as DATA_HORA
+            f.value:DATA_HORA::timestamp as DATA_HORA,
+            f.value:VL_PONTUACAO::varchar as VL_PONTUACAO,
+            f.value:GH::varchar as GH
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
  ;;
@@ -174,6 +176,18 @@ view: alunos_painel_risco {
       and ${proposta.cpf_fiador} is null
       and ${proposta.fia_idade} is null;;
 }
+
+dimension: VL_PONTUACAO {
+  type:  number
+  label: "Score"
+  sql: ${TABLE}."VL_PONTUACAO" ;;
+}
+
+  dimension: GH {
+    type:  string
+    label: "Score"
+    sql: ${TABLE}."GH" ;;
+  }
 
   set: detail {
     fields: [
