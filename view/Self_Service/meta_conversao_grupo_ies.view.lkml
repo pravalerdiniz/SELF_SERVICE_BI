@@ -107,6 +107,14 @@ view: meta_conversao_grupo_ies {
     description: "Meta da Conversão da etapa Aguardando Assinatura para Formalizado"
   }
 
+  measure:avg_simulado {
+    type:average
+    label: "Média - Simulado"
+    group_label: "Simulado"
+    sql: ${simulado};;
+
+  }
+
   dimension_group: data_meta {
     type: time
     timeframes: [
