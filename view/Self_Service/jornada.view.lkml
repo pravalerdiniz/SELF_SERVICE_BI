@@ -2689,6 +2689,162 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
 
+  dimension: qtd_dias_apr_risco {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_APR_RISCO" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_apr_risco {
+    type: average
+    sql: ${qtd_dias_apr_risco} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aprovação Risco"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_apr_risco {
+    type: median
+    sql: ${qtd_dias_apr_risco} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aprovação Risco"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
+  }
+
+  dimension: qtd_dias_apr_ies {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_APR_IES" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_apr_ies {
+    type: average
+    sql: ${qtd_dias_apr_ies} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aprovação IES"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_apr_ies {
+    type: median
+    sql: ${qtd_dias_apr_ies} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aprovação IES"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
+  }
+
+  dimension: qtd_dias_agg_doc {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_AGG_DOC" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_agg_doc {
+    type: average
+    sql: ${qtd_dias_agg_doc} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aguardando Documentos"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_agg_doc {
+    type: median
+    sql: ${qtd_dias_agg_doc} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aguardando Documentos"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
+  }
+
+  dimension: qtd_dias_agg_ass {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_AGG_ASS" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_agg_ass {
+    type: average
+    sql: ${qtd_dias_agg_ass} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aguardando Assinatura"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_agg_ass {
+    type: median
+    sql: ${qtd_dias_agg_ass} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Aguardando Assinatura"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
+  }
+
+  dimension: qtd_dias_form {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_FORM" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_form {
+    type: average
+    sql: ${qtd_dias_form} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Formalizados"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_form {
+    type: median
+    sql: ${qtd_dias_form} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Formalizados"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
+  dimension: qtd_dias_cedido {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_CEDIDO" ;;
+    hidden:  yes
+  }
+
+  measure: average_qtd_dias_cedido {
+    type: average
+    sql: ${qtd_dias_cedido} ;;
+    group_label: "Média - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Cedidos"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_cedido {
+    type: median
+    sql: ${qtd_dias_cedido} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Cedidos"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
+  }
+
   set: detail {
     fields: [
       id_cpf,
