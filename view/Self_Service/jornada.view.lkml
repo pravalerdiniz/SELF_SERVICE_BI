@@ -2644,8 +2644,19 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_iniciados} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Iniciados"
+    value_format: "0.0"
     hidden: no
-    description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_iniciados {
+    type: median
+    sql: ${qtd_dias_iniciados} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Iniciados"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
 
 
@@ -2663,8 +2674,19 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_finalizados} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Finalizados"
+    value_format: "0.0"
     hidden: no
-    description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
+  }
+
+  measure: median_qtd_dias_finalizados {
+    type: median
+    sql: ${qtd_dias_finalizados} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Finalizados"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
 
   set: detail {
