@@ -2630,6 +2630,21 @@ coalesce(${sla_ced_novos},0);;
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
+measure: qtd_dias_iniciados {
+  type: number
+  sql: ${TABLE}."QTD_DIAS_INICIADOS" ;;
+  group_label: "Quantidade de Dias da Proposta na Etapa"
+  group_item_label: "Iniciados"
+  description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
+}
+
+  measure: qtd_dias_finalizados {
+    type: number
+    sql: ${TABLE}."QTD_DIAS_FINALIZADOS" ;;
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Finalizados"
+    description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
+  }
 
   set: detail {
     fields: [
