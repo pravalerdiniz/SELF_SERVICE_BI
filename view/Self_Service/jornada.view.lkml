@@ -2844,6 +2844,8 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
 
+  ##ERRADO##
+
   dimension: total_qtd_dias_novo {
     type: number
     sql: coalesce(${qtd_dias_iniciados})+
@@ -2855,10 +2857,17 @@ dimension: qtd_dias_iniciados {
     coalesce(${qtd_dias_cedido});;
     hidden:  yes
     }
+  ##ERRADO##
 
   measure: average_total_qtd_dias_novos {
-    type: average
-    sql: ${qtd_dias_cedido} ;;
+    type: number
+    sql: coalesce(${average_qtd_dias_iniciados})+
+    coalesce(${average_qtd_dias_finalizados})+
+    coalesce(${average_qtd_dias_apr_risco})+
+    coalesce(${average_qtd_dias_apr_ies})+
+    coalesce(${average_qtd_dias_agg_doc})+
+    coalesce(${average_qtd_dias_form})+
+    coalesce(${average_qtd_dias_cedido}) ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
     value_format: "0"
@@ -2867,8 +2876,14 @@ dimension: qtd_dias_iniciados {
     }
 
   measure: median_total_qtd_dias_novos {
-    type: median
-    sql: ${qtd_dias_cedido} ;;
+    type: number
+    sql: coalesce(${median_qtd_dias_iniciados})+
+    coalesce(${median_qtd_dias_finalizados})+
+    coalesce(${median_qtd_dias_apr_risco})+
+    coalesce(${median_qtd_dias_apr_ies})+
+    coalesce(${median_qtd_dias_agg_doc})+
+    coalesce(${median_qtd_dias_form})+
+    coalesce(${median_qtd_dias_cedido}) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
     value_format: "0"
