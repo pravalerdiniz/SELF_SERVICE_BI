@@ -54,6 +54,7 @@ view: meta_conversao_grupo_ies {
   dimension: simulado {
     type: number
     label: "META CONVERSAO - SIMULADO"
+    value_format: "0.00%"
     sql: ${TABLE}."SIMULADO" ;;
     description: "Meta da Conversão da etapa Lead para Simulado"
   }
@@ -61,6 +62,7 @@ view: meta_conversao_grupo_ies {
   dimension: iniciado {
     type: number
     label: "META CONVERSAO - INICIADO"
+    value_format: "0.00%"
     sql: ${TABLE}."INICIADO" ;;
     description: "Meta da Conversão da etapa Simulado para Iniciado"
   }
@@ -68,6 +70,7 @@ view: meta_conversao_grupo_ies {
   dimension: finalizado {
     type: number
     label: "META CONVERSAO - FINALIZADO"
+    value_format: "0.00%"
     sql: ${TABLE}."FINALIZADO" ;;
     description: "Meta da Conversão da etapa Iniciado para Finalizado"
   }
@@ -75,6 +78,7 @@ view: meta_conversao_grupo_ies {
   dimension: aprovado_risco {
     type: number
     label: "META CONVERSAO - APROVADO RISCO"
+    value_format: "0.00%"
     sql: ${TABLE}."APROVADO_RISCO" ;;
     description: "Meta da Conversão da etapa Finalizado para Aprovado Risco"
   }
@@ -82,6 +86,7 @@ view: meta_conversao_grupo_ies {
   dimension: aprovado_ies {
     type: number
     label: "META CONVERSAO - APROVADO IES"
+    value_format: "0.00%"
     sql: ${TABLE}."APROVADO_IES" ;;
     description: "Meta da Conversão da etapa Aprovado Risco para Aprovado Instituição"
   }
@@ -89,6 +94,7 @@ view: meta_conversao_grupo_ies {
   dimension: aguardando_documento {
     type: number
     label: "META CONVERSAO - AGUARDANDO DOCUMENTO"
+    value_format: "0.00%"
     sql: ${TABLE}."AGUARDANDO_DOCUMENTO" ;;
     description: "Meta da Conversão da etapa Aprovado Instituição para Aguardando Documento"
   }
@@ -96,6 +102,7 @@ view: meta_conversao_grupo_ies {
   dimension: aguardando_assinatura {
     type: number
     label: "META CONVERSAO - AGUARDANDO ASSINATURA"
+    value_format: "0.00%"
     sql: ${TABLE}."AGUARDANDO_ASSINATURA" ;;
     description: "Meta da Conversão da etapa Aguardando Documento para Aguardando Assinatura"
   }
@@ -103,6 +110,7 @@ view: meta_conversao_grupo_ies {
   dimension: formalizado {
     type: number
     label: "META CONVERSAO - FORMALIZADO"
+    value_format: "0.00%"
     sql: ${TABLE}."FORMALIZADO" ;;
     description: "Meta da Conversão da etapa Aguardando Assinatura para Formalizado"
   }
@@ -110,6 +118,7 @@ view: meta_conversao_grupo_ies {
   measure:avg_simulado {
     type:average
     label: "Média - Simulado"
+    value_format: "0.00%"
     group_label: "Simulado"
     sql: ${simulado};;
 
