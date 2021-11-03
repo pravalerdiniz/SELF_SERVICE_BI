@@ -9,6 +9,13 @@ view: meta_conversao_grupo_ies {
     drill_fields: [detail*]
   }
 
+  dimension: data_grupo_ies {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql:concat(${data},${grupo} ;;
+  }
+
   dimension: data {
     type: date
     label: "DATA REFERENCIA META"
