@@ -2861,13 +2861,13 @@ dimension: qtd_dias_iniciados {
 
   measure: average_total_qtd_dias_novos {
     type: number
-    sql: coalesce(${average_qtd_dias_iniciados})+
-    coalesce(${average_qtd_dias_finalizados})+
-    coalesce(${average_qtd_dias_apr_risco})+
-    coalesce(${average_qtd_dias_apr_ies})+
-    coalesce(${average_qtd_dias_agg_doc})+
-    coalesce(${average_qtd_dias_form})+
-    coalesce(${average_qtd_dias_cedido}) ;;
+    sql: coalesce(${average_qtd_dias_iniciados},0)+
+    coalesce(${average_qtd_dias_finalizados},0)+
+    coalesce(${average_qtd_dias_apr_risco},0)+
+    coalesce(${average_qtd_dias_apr_ies},0)+
+    coalesce(${average_qtd_dias_agg_doc},0)+
+    coalesce(${average_qtd_dias_form},0)+
+    coalesce(${average_qtd_dias_cedido},0) ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
     value_format: "0"
