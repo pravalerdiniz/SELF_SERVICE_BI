@@ -2492,7 +2492,7 @@ dimension: flg_d1 {
   }
 
 
-  measure: avarege_total_novos {
+  measure: average_total_novos {
     type: number
     sql:  coalesce(${media_iniciados_novos},0)+
           coalesce(${media_finalizados_novos},0)+
@@ -2506,7 +2506,7 @@ dimension: flg_d1 {
       group_label: "Média do tempo de Jornada - Novos"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
       value_format: "0"
-      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
@@ -2524,7 +2524,7 @@ coalesce(${sla_ced_novos},0);;
       group_label: "Tempo Total de Jornada - Novos"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
       value_format: "0"
-      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
@@ -2613,7 +2613,7 @@ coalesce(${sla_ced_novos},0);;
       description: "Média do tempo entre o aluno ter o contrado formalizado e cedido."
     }
 
-  measure: avarege_total_renovacao {
+  measure: average_total_renovacao {
     type: number
     sql:  coalesce(${sla_eleg_renov23},0)+
           coalesce(${sla_agu_ass_renov23},0)+
@@ -2623,12 +2623,13 @@ coalesce(${sla_ced_novos},0);;
           coalesce(${sla_ced_renov23},0)+
           coalesce(${sla_form_renov23},0);;
 
-      group_label: "Média do tempo de Jornada - Novos"
+      group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
       value_format: "0"
-      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,avarege_total_novos]
+      drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
+
 
 ##TEMPO - QUANTIDADE DE DIAS DA PROPOSTA NA ETAPA##
 
@@ -2662,10 +2663,7 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_finalizados {
     type: number
     sql: ${TABLE}."QTD_DIAS_FINALIZADOS" ;;
-    group_label: "Quantidade de Dias da Proposta na Etapa"
-    group_item_label: "Novos - Finalizados"
     hidden:  yes
-    description: "Indica a quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
 
   measure: average_qtd_dias_finalizados {
@@ -2891,6 +2889,19 @@ dimension: qtd_dias_iniciados {
     description: "Indica a média da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
   }
 
+
+##TEMPO - QUANTIDADE DE VEZES DA PROPOSTA NA ETAPA##
+
+#qtd_vezes_iniciado
+#qtd_vezes_finalizados
+#qtd_vezes_apr_risco
+#qtd_vezes_apr_ies
+#qtd_vezes_agg_doc
+#qtd_vezes_agg_ass
+#qtd_vezes_formalizado
+#qtd_vezes_cedido
+
+####################################################
 
   set: detail {
     fields: [
