@@ -185,7 +185,7 @@ dimension: VL_PONTUACAO {
 
   dimension: GH {
     type:  string
-    label: "Score"
+    label: "GH"
     sql: ${TABLE}."GH" ;;
   }
 
