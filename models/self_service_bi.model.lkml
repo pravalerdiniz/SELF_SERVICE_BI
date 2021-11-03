@@ -156,6 +156,13 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
+  join: meta_conversao_grupo_ies
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: status {
