@@ -12,6 +12,7 @@ view: alunos_inadimplencia_fyf {
   dimension: cpf_referencia {
     type: string
     primary_key: yes
+    hidden: yes
     sql: CONCAT(${cpf},${referencia}) ;;
   }
 
