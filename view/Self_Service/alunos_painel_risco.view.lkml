@@ -180,6 +180,7 @@ view: alunos_painel_risco {
 dimension: VL_PONTUACAO {
   type:  number
   label: "Score"
+  value_format: "0"
   sql: ${TABLE}."VL_PONTUACAO" ;;
 }
 

@@ -12,6 +12,8 @@ view: dias_uteis {
   dimension: id_date {
     type: number
     label: "ID DATE"
+    primary_key: yes
+    hidden: yes
     sql: ${TABLE}."ID_DATE" ;;
   }
 

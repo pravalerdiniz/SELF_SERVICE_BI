@@ -44,6 +44,14 @@ view: engajometro {
     description: "Data de referencia do processamento da tabela"
     hidden: yes
   }
+
+  dimension: data_grupo_ies {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql:concat(${data},${grupo}) ;;
+  }
+
   dimension_group: data {
     type: time
     timeframes: [
