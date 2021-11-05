@@ -17,7 +17,16 @@ view: alunos_cobranca_estrategia_operacional {
       f.value:ORDEM_FAIXA_ATRASO::varchar as ORDEM_FAIXA_ATRASO,
       f.value:VENCIMENTO::date as VENCIMENTO,
       f.value:VALOR_BOLETO_ATRASO::number(38,2) as VALOR_ATRASO,
-      f.value:RDG::varchar as RDG
+      f.value:RDG::varchar as RDG,
+      f.value:TELEFONE_01::number as TELEFONE_01,
+      f.value:TELEFONE_02::number as TELEFONE_02,
+      f.value:TELEFONE_03::number as TELEFONE_03,
+      f.value:CELULAR_01::number as CELULAR_01,
+      f.value:CELULAR_02::number as CELULAR_02,
+      f.value:CELULAR_03::number as CELULAR_03,
+      f.value:EMAIL_01::varchar as EMAIL_01,
+      f.value:EMAIL_02::varchar as EMAIL_02,
+      f.value:EMAIL_03::varchar as EMAIL_03
       from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
       lateral flatten (input => dados_elegibilidade) f
        ;;
@@ -154,6 +163,57 @@ view: alunos_cobranca_estrategia_operacional {
     sql: ${TABLE}."RDG" ;;
   }
 
+  dimension: telefone_01 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."TELEFONE_01" ;;
+  }
+
+  dimension: telefone_02 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."TELEFONE_02" ;;
+  }
+
+  dimension: telefone_03 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."TELEFONE_03" ;;
+  }
+
+  dimension: celular_01 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."CELULAR_01" ;;
+  }
+
+  dimension: celular_02 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."CELULAR_02" ;;
+  }
+
+  dimension: celular_03 {
+    type: number
+    value_format: "0"
+    sql: ${TABLE}."CELULAR_03" ;;
+  }
+
+  dimension: email_01 {
+    type: string
+    sql: ${TABLE}."EMAIL_01" ;;
+  }
+
+  dimension: email_02 {
+    type: string
+    sql: ${TABLE}."EMAIL_02" ;;
+  }
+
+  dimension: email_03 {
+    type: string
+    sql: ${TABLE}."EMAIL_03" ;;
+  }
+
   set: detail {
     fields: [
       cpf,
@@ -169,7 +229,16 @@ view: alunos_cobranca_estrategia_operacional {
       fundo,
       nome_empresa,
       ordem_faixa_atraso,
-      rdg
+      rdg,
+      telefone_01,
+      telefone_02,
+      telefone_03,
+      celular_01,
+      celular_02,
+      celular_03,
+      email_01,
+      email_02,
+      email_03
     ]
   }
 }
