@@ -2892,14 +2892,214 @@ dimension: qtd_dias_iniciados {
 
 ##TEMPO - QUANTIDADE DE VEZES DA PROPOSTA NA ETAPA##
 
-#qtd_vezes_iniciado
-#qtd_vezes_finalizados
-#qtd_vezes_apr_risco
-#qtd_vezes_apr_ies
-#qtd_vezes_agg_doc
-#qtd_vezes_agg_ass
-#qtd_vezes_formalizado
-#qtd_vezes_cedido
+
+  dimension: qtd_vezes_iniciado {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_INICIADO" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_iniciado {
+    type: average
+    sql: ${qtd_vezes_iniciado} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Iniciado"
+  }
+
+  measure: median_qtd_vezes_iniciado {
+    type: median
+    sql: ${qtd_vezes_iniciado} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Iniciado"
+  }
+
+  dimension: qtd_vezes_finalizados {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_FINALIZADOS" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_finalizados {
+    type: average
+    sql: ${qtd_vezes_finalizados} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Finalizado"
+  }
+
+  measure: median_qtd_vezes_finalizados {
+    type: median
+    sql: ${qtd_vezes_finalizados} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Finalizado"
+  }
+
+  dimension: qtd_vezes_apr_risco{
+    type: number
+    sql: ${TABLE}."QTD_VEZES_APR_RISCO" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_apr_risco {
+    type: average
+    sql: ${qtd_vezes_apr_risco} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
+  }
+
+  measure: median_qtd_vezes_apr_risco {
+    type: median
+    sql: ${qtd_vezes_apr_risco} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
+  }
+
+  dimension: qtd_vezes_apr_ies{
+    type: number
+    sql: ${TABLE}."QTD_VEZES_APR_IES" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_apr_ies {
+    type: average
+    sql: ${qtd_vezes_apr_ies} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
+  }
+
+  measure: median_qtd_vezes_apr_ies {
+    type: median
+    sql: ${qtd_vezes_apr_ies} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
+  }
+
+  dimension: qtd_vezes_agg_doc {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_AGG_DOC" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_agg_doc {
+    type: average
+    sql: ${qtd_vezes_agg_doc} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
+  }
+
+  measure: median_qtd_vezes_agg_doc {
+    type: median
+    sql: ${qtd_vezes_agg_doc} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
+  }
+
+  dimension: qtd_vezes_agg_ass {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_AGG_ASS" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_agg_ass {
+    type: average
+    sql: ${qtd_vezes_agg_ass} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
+  }
+
+  measure: median_qtd_vezes_agg_ass {
+    type: median
+    sql: ${qtd_vezes_agg_ass} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
+  }
+
+  dimension: qtd_vezes_formalizado {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_FORMALIZADO" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_formalizado {
+    type: average
+    sql: ${qtd_vezes_formalizado} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Formalizado"
+  }
+
+  measure: median_qtd_vezes_formalizado {
+    type: median
+    sql: ${qtd_vezes_formalizado} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Formalizado"
+  }
+
+  dimension: qtd_vezes_cedido {
+    type: number
+    sql: ${TABLE}."QTD_VEZES_CEDIDO" ;;
+    hidden: yes
+  }
+
+  measure: average_qtd_vezes_cedido {
+    type: average
+    sql: ${qtd_vezes_cedido} ;;
+    group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Cedido"
+  }
+
+  measure: median_qtd_vezes_cedido {
+    type: median
+    sql: ${qtd_vezes_cedido} ;;
+    group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Cedido"
+  }
 
 ####################################################
 
