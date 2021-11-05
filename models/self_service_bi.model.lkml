@@ -149,6 +149,20 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
+  join: engajometro
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${engajometro.data};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: meta_conversao_grupo_ies
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: status {
@@ -271,7 +285,7 @@ explore: jornada {
 
   join: instituicao_metas_gc {
     view_label: "2.3 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -912,9 +926,17 @@ join: alunos_inadimplencia_2 {
 
   }
 
+  join: alunos_mesa_2{
+    view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
 
   join: alunos_mesa_risco_3 {
-    view_label: "1.7.1 Mesa de Risco - Renda"
+    view_label: "1.7.2 Mesa de Risco 3 - Renda"
     sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
     type: left_outer
     relationship: one_to_many

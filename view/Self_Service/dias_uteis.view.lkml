@@ -12,6 +12,8 @@ view: dias_uteis {
   dimension: id_date {
     type: number
     label: "ID DATE"
+    primary_key: yes
+    hidden: yes
     sql: ${TABLE}."ID_DATE" ;;
   }
 
@@ -93,6 +95,12 @@ view: dias_uteis {
     type: string
     label: "FERIADO"
     sql: ${TABLE}."FERIADO" ;;
+  }
+
+  dimension: dia_util_mes {
+    type: number
+    label: "DIA UTIL MES"
+    sql: ${TABLE}."DIA_UTIL_MES" ;;
   }
 
   dimension: flg_ultimo_dia {

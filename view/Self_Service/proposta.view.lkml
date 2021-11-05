@@ -14,6 +14,10 @@ view: proposta {
   }
 
 
+
+
+
+
   dimension: cpf_semestre_financiado {
     type: string
     group_label: "Dados do Aluno"
@@ -173,6 +177,8 @@ view: proposta {
   }
 
 
+
+
   dimension: aluno_uf {
     type: string
     group_label: "Dados do Aluno"
@@ -228,6 +234,16 @@ view: proposta {
     description: "Este campo é uma regra de negócio*. Indica a classificação do Behavior do aluno. Behavior: Previsão de Inadimplência dado histórico de pagamentos recentes do aluno"
     sql: ${TABLE}."GH_BHV" ;;
   }
+
+  dimension: vl_nota_corte{
+    type: number
+    group_label: "Dados do Produto"
+    label: "Nota de Corte"
+    description: "Indica a nota de corte de score para o produto atrelado ao aluno"
+    sql: ${TABLE}."VL_NOTA_CORTE" ;;
+  }
+
+
 
   dimension: gh_aluno{
     type: string

@@ -344,6 +344,8 @@ dimension: tempo_curta {
 }
 
 
+
+
   dimension: tempo_curta_minutos {
     type: number
     group_label: "Dados da Etapa"
@@ -382,6 +384,32 @@ dimension: tempo_curta {
 
   }
 
+  dimension: faixa_tempo_curta_horas {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Horas"
+    case: {
+      when: {
+        sql: ${tempo_curta_minutos} <= 60 ;;
+        label: "< 1h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 300 ;;
+        label: "1h - 5h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 900 ;;
+        label: "5h - 15h"
+      }
+      when: {
+        sql: ${tempo_curta_minutos} <= 1200 ;;
+        label: "15h - 20h"
+      }
+      else: "20h >"
+    }
+
+  }
+
 
   dimension: tempo_curta_segundos {
     type: number
@@ -390,6 +418,17 @@ dimension: tempo_curta {
     sql: ${curta_lead_time.TEMPO_ETAPA} ;;
   }
 
+
+  dimension: tempo_curta_horas{
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Tempo - Horas"
+    sql: ${curta_lead_time.TEMPO_ETAPA}/86400.0 ;;
+  }
+
+
+
+
   measure: average_tempo_curta {
     type: average
     group_label: "Tempo Minutos - Etapa"
@@ -397,6 +436,15 @@ dimension: tempo_curta {
     sql: ${tempo_curta_segundos}/86400.0;;
     value_format: "[hh]:mm:ss"
   }
+
+  measure: median_tempo_curta {
+    type: number
+    group_label: "Tempo Minutos - Etapa"
+    label: "Médiana"
+    sql: median(${tempo_curta_horas});;
+    value_format: "[hh]:mm:ss"
+  }
+
 
 
   measure: sum_tempo_curta {
