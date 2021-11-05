@@ -2904,7 +2904,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_iniciado} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
@@ -2914,7 +2914,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_iniciado} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
@@ -2930,7 +2930,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_finalizados} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Finalizado"
   }
@@ -2940,7 +2940,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_finalizados} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Finalizado"
   }
@@ -2956,7 +2956,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_apr_risco} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
   }
@@ -2966,7 +2966,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_apr_risco} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
   }
@@ -2982,7 +2982,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_apr_ies} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
   }
@@ -2992,7 +2992,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_apr_ies} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
   }
@@ -3008,7 +3008,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_agg_doc} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
   }
@@ -3018,7 +3018,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_agg_doc} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
   }
@@ -3034,7 +3034,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_agg_ass} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
   }
@@ -3044,7 +3044,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_agg_ass} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
   }
@@ -3060,7 +3060,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_formalizado} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Formalizado"
   }
@@ -3070,7 +3070,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_formalizado} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Formalizado"
   }
@@ -3086,7 +3086,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_cedido} ;;
     group_label: "Média - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
@@ -3096,7 +3096,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_vezes_cedido} ;;
     group_label: "Mediana - Quantidade de Vezes da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
