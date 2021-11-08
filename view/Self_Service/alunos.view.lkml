@@ -529,6 +529,7 @@ view: alunos {
     description: "Indica a quantidade de semestres do curso contratado pelo aluno"
   }
 
+
   dimension: area_conhecimento_curso {
     type: string
     sql: ${TABLE}."AREA_CONHECIMENTO_CURSO" ;;
