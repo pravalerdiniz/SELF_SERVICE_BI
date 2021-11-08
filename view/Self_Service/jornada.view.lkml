@@ -2846,6 +2846,8 @@ dimension: qtd_dias_iniciados {
 
   dimension: total_qtd_dias_novo {
     type: number
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Total"
     sql: coalesce(${qtd_dias_iniciados})+
     coalesce(${qtd_dias_finalizados})+
     coalesce(${qtd_dias_apr_risco})+
@@ -2853,7 +2855,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${qtd_dias_agg_doc})+
     coalesce(${qtd_dias_form})+
     coalesce(${qtd_dias_cedido});;
-    hidden:  yes
+    hidden:  no
     }
   ##ERRADO##
 
