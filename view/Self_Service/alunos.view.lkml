@@ -531,7 +531,7 @@ view: alunos {
 
   dimension: valor_mensalidade_curso {
     type: number
-    sql: ${TABLE}."Valor Mensalidade" ;;
+    sql: ${TABLE}."valor_mensalidade" ;;
     group_label: "Dados do Curso"
     group_item_label: "Valor da Mensalidade do Curso"
     description: "Indica o valor da mensalidade do Curso"
