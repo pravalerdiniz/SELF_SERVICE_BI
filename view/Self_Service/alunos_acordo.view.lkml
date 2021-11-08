@@ -122,7 +122,7 @@ view: alunos_acordo {
     type: number
     group_label: "Valores"
     group_item_label: "Valor da Divida Atual"
-    value_format: "$ ,.00"
+    value_format: "$ #,##0.00"
     description: "Indica a divida atual do aluno com o Pravaler"
     sql: ${TABLE}."VL_DIVIDA_ATUAL" ;;
   }
@@ -131,7 +131,7 @@ view: alunos_acordo {
     type: number
     group_label: "Valores"
     group_item_label: "Valor da Promessa"
-    value_format: "$ ,.00"
+    value_format: "$ #,##0.00"
     description: "Indica o valor da divida do aluno após o acordo"
     sql: ${TABLE}."VL_PROMESSA" ;;
   }
