@@ -54,6 +54,9 @@ lateral flatten (input=>boletos) f
   }
 
 
+
+
+
   dimension: data_vencimento {
     type: date
     group_item_label: "Data de Vencimento"
