@@ -30,38 +30,38 @@ view: alunos_cobranca_pdd_boletos {
     sql: ${TABLE}."CPF" ;;
   }
 
-  dimension: qtd_boletos_pagos {
-    type: number
+  measure: qtd_boletos_pagos {
+    type: sum
     sql: ${TABLE}."QTD_BOLETOS_PAGOS" ;;
   }
 
-  dimension: valor_boletos {
-    type: number
+  measure: valor_boletos {
+    type: sum
     sql: ${TABLE}."VALOR_BOLETOS" ;;
   }
 
-  dimension: valor_pago {
-    type: number
+  measure: valor_pago {
+    type: sum
     sql: ${TABLE}."VALOR_PAGO" ;;
   }
 
-  dimension: valor_atualizado {
-    type: number
+  measure: valor_atualizado {
+    type: sum
     sql: ${TABLE}."VALOR_ATUALIZADO" ;;
   }
 
-  dimension: desconto_cedido {
-    type: number
+  measure: desconto_cedido {
+    type: sum
     sql: ${TABLE}."DESCONTO_CEDIDO" ;;
   }
 
-  dimension: juros_recebido {
-    type: number
+  measure: juros_recebido {
+    type: sum
     sql: ${TABLE}."JUROS_RECEBIDO" ;;
   }
 
-  dimension: desconto_principal {
-    type: number
+  measure: desconto_principal {
+    type: sum
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
 
