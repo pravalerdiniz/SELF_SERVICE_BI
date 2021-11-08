@@ -923,7 +923,6 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: alunos_mesa_2{

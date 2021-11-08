@@ -9,6 +9,14 @@ view: alunos_cobranca_pdd_boletos {
     drill_fields: [detail*]
   }
 
+  dimension: cpf_datapg {
+    type: string
+    primary_key: yes
+    hidden: yes
+    description: "Indica o CPFe data de pagamento"
+    sql: ${TABLE}."CPF_DATAPG" ;;
+  }
+
   dimension: datapg {
     type: date
     sql: ${TABLE}."DATAPG" ;;
@@ -26,7 +34,6 @@ view: alunos_cobranca_pdd_boletos {
 
   dimension: cpf {
     type: number
-    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -77,6 +84,7 @@ view: alunos_cobranca_pdd_boletos {
 
   set: detail {
     fields: [
+      cpf_datapg,
       datapg,
       fundo,
       fx_atraso,
