@@ -529,6 +529,14 @@ view: alunos {
     description: "Indica a quantidade de semestres do curso contratado pelo aluno"
   }
 
+  dimension: valor_mensalidade_curso {
+    type: number
+    sql: ${TABLE}."Valor Mensalidade" ;;
+    group_label: "Dados do Curso"
+    group_item_label: "Valor da Mensalidade do Curso"
+    description: "Indica o valor da mensalidade do Curso"
+  }
+
   dimension: area_conhecimento_curso {
     type: string
     sql: ${TABLE}."AREA_CONHECIMENTO_CURSO" ;;
