@@ -1,4 +1,4 @@
-view: alunos_cobranca_pdd_boletos {
+view: cobranca_pdd_boletos {
   derived_table: {
     sql: select * from stage.public.cobranca_pdd_boletos
       ;;
