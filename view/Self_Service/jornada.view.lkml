@@ -2848,13 +2848,13 @@ dimension: qtd_dias_iniciados {
     type: number
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
-    sql: coalesce(${qtd_dias_iniciados})+
-    coalesce(${qtd_dias_finalizados})+
-    coalesce(${qtd_dias_apr_risco})+
-    coalesce(${qtd_dias_apr_ies})+
-    coalesce(${qtd_dias_agg_doc})+
-    coalesce(${qtd_dias_form})+
-    coalesce(${qtd_dias_cedido});;
+    sql: coalesce(${qtd_dias_iniciados},0)+
+    coalesce(${qtd_dias_finalizados},0)+
+    coalesce(${qtd_dias_apr_risco},0)+
+    coalesce(${qtd_dias_apr_ies},0)+
+    coalesce(${qtd_dias_agg_doc},0)+
+    coalesce(${qtd_dias_form},0)+
+    coalesce(${qtd_dias_cedido},0);;
     hidden:  no
     }
   ##ERRADO##
