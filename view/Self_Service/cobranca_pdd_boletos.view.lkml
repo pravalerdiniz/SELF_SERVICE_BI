@@ -30,7 +30,6 @@ view: cobranca_pdd_boletos {
   dimension: cpf {
     type: number
     hidden:  yes
-    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 

@@ -14,8 +14,9 @@ view: alunos_cobranca_pdd_boletos {
     primary_key: yes
     hidden: yes
     description: "Indica o CPFe data de pagamento"
-    sql: ${TABLE}."CPF_DATAPG" ;;
+    sql: CONCAT(${cpf},${datapg}) ;;
   }
+
 
   dimension: datapg {
     type: date
