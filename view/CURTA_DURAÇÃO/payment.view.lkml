@@ -43,6 +43,7 @@ view: payment {
       description:"CPF DO RESPONSÁVEL PELO PAGAMENTO DO BOLETO"
       group_item_label: "CPF"
     group_label: "Dados Responsável Financeiro"
+    value_format: "0"
     required_access_grants: [grupo_cpf]
   }
   dimension: email {
