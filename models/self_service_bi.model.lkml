@@ -959,7 +959,7 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_cobranca_pdd_boletos {
     view_label: "1.9.6 Cobrança - PDD Boletos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf_datapg};;
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
     relationship: one_to_many
   }
 

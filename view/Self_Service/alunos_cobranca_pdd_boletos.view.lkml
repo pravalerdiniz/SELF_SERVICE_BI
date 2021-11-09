@@ -9,17 +9,33 @@ view: alunos_cobranca_pdd_boletos {
     drill_fields: [detail*]
   }
 
-  dimension: cpf_datapg {
-    type: string
-    primary_key: yes
-    hidden: yes
-    description: "Indica o CPFe data de pagamento"
-    sql: CONCAT(${cpf},${datapg}) ;;
-  }
-
+dimension: cpf_datapg {
+  type: string
+  sql: CONCAT(${cpf},${datapg_grupo_raw}) ;;
+  hidden: yes
+}
 
   dimension: datapg {
     type: date
+    sql: ${TABLE}."DATAPG" ;;
+    hidden: yes
+  }
+
+  dimension_group: datapg_grupo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Data do Pagamento"
     sql: ${TABLE}."DATAPG" ;;
   }
 
@@ -35,6 +51,7 @@ view: alunos_cobranca_pdd_boletos {
 
   dimension: cpf {
     type: number
+    primary_key: yes
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -85,7 +102,6 @@ view: alunos_cobranca_pdd_boletos {
 
   set: detail {
     fields: [
-      cpf_datapg,
       datapg,
       fundo,
       fx_atraso,
