@@ -871,17 +871,11 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
-
-
-
-
-
   join: alunos_negativacao_info{
     view_label: "1.3 Negativação Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: alunos_log_negativacao{
@@ -889,7 +883,6 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: dim_cpf {
@@ -904,7 +897,6 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: alunos_acordo_renegociacao {
@@ -914,7 +906,6 @@ join: alunos_inadimplencia_2 {
     ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: pdd {
@@ -922,7 +913,6 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.id_cpf} = ${pdd.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: alunos_painel_risco {
@@ -930,7 +920,6 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
     type: left_outer
     relationship: one_to_many
-
   }
 
   join: alunos_mesa_2{
@@ -938,25 +927,20 @@ join: alunos_inadimplencia_2 {
     sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
     type: left_outer
     relationship: one_to_many
-
   }
-
 
   join: alunos_mesa_risco_3 {
     view_label: "1.7.2 Mesa de Risco 3 - Renda"
     sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
     type: left_outer
     relationship: one_to_many
-
   }
-
 
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
     type: left_outer
     relationship: one_to_one
-
   }
 
   join: alunos_cobranca_estrategia_operacional {
@@ -965,7 +949,6 @@ join: alunos_inadimplencia_2 {
     type: left_outer
     relationship: many_to_one
   }
-
 
   join: alunos_cobranca_pdd {
     view_label: "1.9.1 Cobrança - PDD "
@@ -984,7 +967,6 @@ join: alunos_inadimplencia_2 {
   join: alunos_cobranca_pdd_boletos {
     view_label: "1.9.6 Cobrança - PDD Boletos"
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
-    type: left_outer
     relationship: one_to_many
   }
 

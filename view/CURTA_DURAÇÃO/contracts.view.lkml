@@ -744,7 +744,8 @@ view: contracts {
 
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${chave_payment} ;;
     drill_fields: []
     group_item_label: "Total de contratos"
 
