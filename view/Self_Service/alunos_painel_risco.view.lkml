@@ -41,7 +41,8 @@ view: alunos_painel_risco {
 measure: max_data_hora {
   type: date
   sql:  MAX(${data_hora_raw}) ;;
-  label: "Última Data de Decisão"
+  label: "Última Data da Decisão"
+  description: "Última data da decisão de Risco, de acordo com a granularidade da análise - proposta ou aluno"
 }
 
 
