@@ -163,6 +163,13 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
+  join: meta_sla_comercial
+  {
+    sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: status {
