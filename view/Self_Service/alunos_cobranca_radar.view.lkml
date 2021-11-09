@@ -14,7 +14,7 @@ view: alunos_cobranca_radar {
     group_label: "Dados do Aluno"
     label: "CPF"
     primary_key: yes
-    sql: ${TABLE}."cpf" ;;
+    sql: ${TABLE}."CPF" ;;
   }
 
   dimension: contrato {
