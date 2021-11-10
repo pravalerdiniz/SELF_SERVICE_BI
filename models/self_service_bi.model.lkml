@@ -297,6 +297,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: meta_sla_comercial
+  {
+    sql_on: ${jornada.etapa} = ${meta_sla_comercial.etapa_funil} and
+            ${proposta.gerente_atual}=${meta_sla_comercial.gerente};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
   join: status {
     view_label: "4. Status"
