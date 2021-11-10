@@ -36,9 +36,15 @@ view: alunos_painel_risco {
     label: "Decisão"
     sql:${TABLE}."DATA_HORA";;
     description: "Indica a data da decisão de análise de risco e crédito do Aluno."
-
-
   }
+
+measure: max_data_hora {
+  type: date
+  sql:  MAX(${data_hora_raw}) ;;
+  label: "Última Data da Decisão"
+  description: "Última data da decisão de Risco, de acordo com a granularidade da análise - proposta ou aluno"
+}
+
 
   measure: count {
     type: count
