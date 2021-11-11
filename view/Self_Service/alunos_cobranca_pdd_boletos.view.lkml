@@ -46,6 +46,7 @@ dimension: cpf_datapg {
 
   dimension: fx_atraso {
     type: string
+    label: "Faixa Atraso"
     sql: ${TABLE}."FX_ATRASO" ;;
   }
 
