@@ -77,8 +77,8 @@ measure: max_data_criacao {
 
   dimension: flg_acordo {
     type: yesno
-    label: "Acordo Ativo?"
-    description: "Indica se o acordo está ativo ou não."
+    label: "Divida Ativa?"
+    description: "Indica se o aluno tem dívida ativa ou não."
     sql: ${TABLE}."FLG_ACORDO" ;;
   }
 
