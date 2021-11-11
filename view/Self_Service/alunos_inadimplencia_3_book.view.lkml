@@ -18,6 +18,7 @@ view: alunos_inadimplencia_3_book {
   dimension: cpf {
     type: number
     label: "CPF"
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 
