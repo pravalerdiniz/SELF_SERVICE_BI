@@ -27,6 +27,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: cpf {
     type: number
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 

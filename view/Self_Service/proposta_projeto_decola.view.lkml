@@ -68,6 +68,13 @@ view: proposta_projeto_decola {
     sql: ${TABLE}."DATA_CRIACAO" ;;
   }
 
+measure: max_data_criacao {
+  type: date
+  sql: MAX(${data_criacao_raw}) ;;
+  label: "Última Data de Acordo"
+}
+
+
   dimension: flg_acordo {
     type: yesno
     label: "Acordo Ativo?"

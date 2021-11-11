@@ -121,6 +121,16 @@ view: dias_uteis {
     sql: ${TABLE}."DIA_SEMANA" ;;
   }
 
+  dimension: dia_util_adap {
+    type: number
+    label: "DIA UTIL ADAP"
+    sql:
+      CASE
+        WHEN ${dia_semana}=0 OR ${dia_semana}=6 OR ${feriado} IS NOT NULL THEN 0.5
+        ELSE 1
+        END;;
+  }
+
   set: detail {
     fields: [
       id_date,
