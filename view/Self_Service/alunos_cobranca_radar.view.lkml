@@ -13,6 +13,7 @@ view: alunos_cobranca_radar {
     type: number
     group_label: "Dados do Aluno"
     label: "CPF"
+    value_format: "0"
     primary_key: yes
     sql: ${TABLE}."cpf" ;;
   }
