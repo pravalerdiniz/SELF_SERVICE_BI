@@ -78,6 +78,7 @@ view: alunos_inadimplencia_3_book {
 
   dimension: estado {
     type: string
+    map_layer_name: MAPA_ESTADO_ALUNO
     sql: ${TABLE}."ESTADO" ;;
   }
 
@@ -217,20 +218,33 @@ view: alunos_inadimplencia_3_book {
     }
 
 
+  measure: vl_presente_perc {
+    type: percent_of_total
+    group_label: "Valor Presente"
+    label: "Divida Atual - Soma Porcentagem "
+    sql: ${vp} ;;
+  }
+
+
     measure: vl_presente_media {
       type: average
       group_label: "Valor Presente"
       label: "Divida Atual - Média"
       sql: ${vp} ;;
 
+  }
 
 
 
-
-
-
+  measure: vl_presente_media_porc {
+    type: percent_of_total
+    group_label: "Valor Presente"
+    label: "Divida Atual - Média Porcentagem"
+    sql: ${vl_presente_media} ;;
 
   }
+
+
 
   measure: vl_presente_antigo {
     type: sum

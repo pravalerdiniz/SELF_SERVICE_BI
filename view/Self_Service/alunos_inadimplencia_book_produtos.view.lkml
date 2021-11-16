@@ -64,7 +64,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: estado {
     type: string
-    hidden: yes
+    map_layer_name: MAPA_ESTADO_ALUNO
     sql: ${TABLE}."ESTADO" ;;
   }
 
