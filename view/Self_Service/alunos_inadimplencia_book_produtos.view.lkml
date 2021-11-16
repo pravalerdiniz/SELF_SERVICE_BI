@@ -34,6 +34,7 @@ view: alunos_inadimplencia_book_produtos {
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
