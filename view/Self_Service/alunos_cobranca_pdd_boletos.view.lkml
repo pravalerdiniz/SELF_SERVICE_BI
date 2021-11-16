@@ -53,6 +53,7 @@ dimension: cpf_datapg {
   dimension: cpf {
     type: number
     primary_key: yes
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 
@@ -63,31 +64,37 @@ dimension: cpf_datapg {
 
   measure: valor_boletos {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VALOR_BOLETOS" ;;
   }
 
   measure: valor_pago {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VALOR_PAGO" ;;
   }
 
   measure: valor_atualizado {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VALOR_ATUALIZADO" ;;
   }
 
   measure: desconto_cedido {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."DESCONTO_CEDIDO" ;;
   }
 
   measure: juros_recebido {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."JUROS_RECEBIDO" ;;
   }
 
   measure: desconto_principal {
     type: sum
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."DESCONTO_PRINCIPAL" ;;
   }
 
