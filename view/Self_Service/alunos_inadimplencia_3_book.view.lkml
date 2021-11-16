@@ -214,6 +214,20 @@ view: alunos_inadimplencia_3_book {
     group_label: "Valor Presente"
     label: "Divida Atual - Soma"
     sql: ${vp} ;;
+    }
+
+
+    measure: vl_presente_media {
+      type: average
+      group_label: "Valor Presente"
+      label: "Divida Atual - Média"
+      sql: ${vp} ;;
+
+
+
+
+
+
 
 
   }
