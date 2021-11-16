@@ -1185,4 +1185,8 @@ explore: documentos_solicitados {
 
 explore: atribuicao {}
 
+explore: atribuicao_nova {
+  view_label: "Atribuição (Nova)"
+}
+
 explore: alunos_ativos_carteira {}
