@@ -4,6 +4,7 @@ view: proposta_projeto_decola {
     sql: select
       id_cpf,
       id_proposta,
+      flg_ultimo_acordo,
       f.key as id_acordo,
       f.value:DT_CRIACAO::date as DATA_CRIACAO,
       f.value:FLG_ACORDO::boolean as FLG_ACORDO,
