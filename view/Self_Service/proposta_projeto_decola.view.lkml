@@ -12,7 +12,8 @@ view: proposta_projeto_decola {
       f.value:NOTA_ACADEMICA::float as NOTA_ACADEMICA,
       f.value:QTD_PARCELAS::int as QTD_PARCELAS,
       f.value:VL_ACORDO::float as VL_ACORDO,
-      f.value:VL_PARCELAS::float as VL_PARCELAS
+      f.value:VL_PARCELAS::float as VL_PARCELAS,
+      f.value:FLG_ULTIMO_ACORDO::boolean as FLG_ULTIMO_ACORDO
       from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
       lateral flatten (input => OBJ_DEBTS) f
  ;;
@@ -235,6 +236,12 @@ measure: max_data_criacao {
 
   }
 
+dimension: flg_ultimo_acordo {
+  type:  yesno
+  sql: ${TABLE}."FLG_ULTIMO_ACORDO" ;;
+  label: "Último Acordo?"
+
+}
   set: detail {
     fields: [
       id_cpf,
