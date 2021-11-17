@@ -13,6 +13,7 @@ view: alunos_cobranca_radar {
     type: number
     group_label: "Dados do Aluno"
     label: "CPF"
+    value_format: "0"
     primary_key: yes
     sql: ${TABLE}."cpf" ;;
   }
@@ -51,12 +52,14 @@ view: alunos_cobranca_radar {
   measure: vlr_em_atraso {
     type: sum
     label: "Valor em atraso"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VLR_EM_ATRASO" ;;
   }
 
   measure: vlr_total {
     type: sum
     label: "Valor Total"
+    value_format: "$ #,##0.00"
     sql: ${TABLE}."VLR_TOTAL" ;;
   }
 

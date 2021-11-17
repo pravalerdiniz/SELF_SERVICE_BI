@@ -768,13 +768,6 @@ explore: alunos {
 - proposta.cargo_atual,
 - proposta.tipo_atual,
 - proposta.cp_atual,
-- proposta.id_curso,
-- proposta.ds_curso,
-- proposta.flg_curso_ativo,
-- proposta.periodo_curso,
-- proposta.area_conhecimento_curso,
-- proposta.enfase_curso,
-- proposta.qtd_semestre_curso,
 - proposta.nivel_curso,
 - proposta.flg_produto_ativo,
 - proposta.tipo_produto,
@@ -1191,5 +1184,9 @@ explore: documentos_solicitados {
 }
 
 explore: atribuicao {}
+
+explore: atribuicao_nova {
+  view_label: "Atribuição (Nova)"
+}
 
 explore: alunos_ativos_carteira {}

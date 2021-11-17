@@ -414,7 +414,7 @@ explore: payment {
 
   join: student {
     view_label: "Alunos"
-    sql_on: ${student.id_aluno} = ${contracts.id_aluno} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno}   ;;
     type: left_outer
     relationship: one_to_many
 

@@ -27,12 +27,14 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: cpf {
     type: number
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
@@ -62,7 +64,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: estado {
     type: string
-    hidden: yes
+    map_layer_name: MAPA_ESTADO_ALUNO
     sql: ${TABLE}."ESTADO" ;;
   }
 
@@ -102,10 +104,11 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."QTDE_CPF" ;;
   }
 
- measure: vp {
-    type: sum
+ dimension: vp {
+    type: number
     label: "Valor Presente"
-    sql: ${TABLE}."VP" ;;
+    hidden: yes
+    sql: ${TABLE}."VP";;
   }
 
 
@@ -215,6 +218,14 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${vp_over60_mob6} ;;
 
 
+  }
+
+
+  measure:sum_vp  {
+    type: sum
+    group_label: "Valor Presente"
+    label: "Soma"
+    sql: ${vp} ;;
   }
 
 

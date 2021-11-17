@@ -68,10 +68,17 @@ view: proposta_projeto_decola {
     sql: ${TABLE}."DATA_CRIACAO" ;;
   }
 
+measure: max_data_criacao {
+  type: date
+  sql: MAX(${data_criacao_raw}) ;;
+  label: "Última Data de Acordo"
+}
+
+
   dimension: flg_acordo {
     type: yesno
-    label: "Acordo Ativo?"
-    description: "Indica se o acordo está ativo ou não."
+    label: "Divida Ativa?"
+    description: "Indica se o aluno tem dívida ativa ou não."
     sql: ${TABLE}."FLG_ACORDO" ;;
   }
 
