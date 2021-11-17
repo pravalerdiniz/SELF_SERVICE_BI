@@ -129,6 +129,8 @@ explore: student {
         relationship: one_to_many
       }
 
+
+
   join: contracts_desc_taxas {
     view_label: "Contratos Taxas"
     sql_on: ${contracts_desc_taxas.id_contrato} = ${contracts.id_contrato} ;;
