@@ -3846,7 +3846,11 @@ dimension: produto_preaprovado {
   }
 
 
-
+dimension: flag_ultimo_acordo  {
+  type:  yesno
+  sql: ${TABLE}."FLG_ULTIMO_ACORDO" ;;
+  label: "Último Acordo?"
+}
 
   set: detail {
     fields: [
