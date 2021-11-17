@@ -14,10 +14,6 @@ view: proposta {
   }
 
 
-
-
-
-
   dimension: cpf_semestre_financiado {
     type: string
     group_label: "Dados do Aluno"
