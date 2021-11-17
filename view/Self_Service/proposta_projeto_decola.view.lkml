@@ -4,6 +4,7 @@ view: proposta_projeto_decola {
     sql: select
       id_cpf,
       id_proposta,
+      a.flg_ultimo_acordo,
       f.key as id_acordo,
       f.value:DT_CRIACAO::date as DATA_CRIACAO,
       f.value:FLG_ACORDO::boolean as FLG_ACORDO,
@@ -235,6 +236,12 @@ measure: max_data_criacao {
 
   }
 
+dimension: flag_ultimo_acordo {
+  type:  yesno
+  sql: ${TABLE}."FLG_ULTIMO_ACORDO" ;;
+  label: "Último Acordo?"
+  description: "Indica se o Acordo é o mais recente relacionado à Proposta, ou não"
+}
 
   set: detail {
     fields: [
