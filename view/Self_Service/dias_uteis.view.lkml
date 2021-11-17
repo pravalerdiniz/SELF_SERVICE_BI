@@ -131,6 +131,16 @@ view: dias_uteis {
         END;;
   }
 
+  dimension: flg_dia_util {
+    type: number
+    label: "FLG DIA UTIL"
+    sql:
+      CASE
+        WHEN ${dia_semana}=0 OR ${dia_semana}=6 OR ${feriado} IS NOT NULL THEN 0
+        ELSE 1
+        END;;
+  }
+
   set: detail {
     fields: [
       id_date,
