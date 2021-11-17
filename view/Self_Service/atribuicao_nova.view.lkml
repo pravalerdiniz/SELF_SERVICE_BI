@@ -222,4 +222,13 @@ view: atribuicao_nova {
     value_format: "0"
   }
 
+  measure: perc_cpf {
+    type: percent_of_total
+    sql: ${count_id_cpf} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Porcentagem"
+    description: "Porcentagem do total de ID CPFs únicos"
+    value_format: "0%"
+  }
+
   }
