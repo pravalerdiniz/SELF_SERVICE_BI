@@ -34,6 +34,7 @@ view: alunos_inadimplencia_book_produtos {
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
@@ -63,7 +64,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: estado {
     type: string
-    hidden: yes
+    map_layer_name: MAPA_ESTADO_ALUNO
     sql: ${TABLE}."ESTADO" ;;
   }
 
