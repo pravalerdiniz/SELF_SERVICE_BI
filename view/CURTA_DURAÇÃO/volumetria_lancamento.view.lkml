@@ -20,6 +20,7 @@ view: volumetria_lancamento {
   dimension: cnpj_data_inicio_data_fim_pk {
     type: string
     primary_key: yes
+    hidden: yes
     sql: CONCAT(${cnpj},${data_inicio_raw},${data_final_raw});;
 
 
