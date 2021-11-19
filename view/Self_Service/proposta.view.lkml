@@ -14,10 +14,6 @@ view: proposta {
   }
 
 
-
-
-
-
   dimension: cpf_semestre_financiado {
     type: string
     group_label: "Dados do Aluno"
@@ -3844,8 +3840,6 @@ dimension: produto_preaprovado {
     description: "Indica o método de autenticação da proposta. Ex: WhatsApp, SMS ou e-mail."
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
-
-
 
 
   set: detail {
