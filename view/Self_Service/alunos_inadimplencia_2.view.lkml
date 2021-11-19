@@ -17,7 +17,7 @@ view: alunos_inadimplencia_2 {
   }
 
   dimension: safra_cessao_cpf {
-    type: string
+    type: number
     label: "Safra Cessão - CPF"
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
     value_format: "0"
