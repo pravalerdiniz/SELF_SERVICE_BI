@@ -73,6 +73,13 @@ explore: student {
       relationship: one_to_many
       }
 
+  join: volumetria_lancamento {
+    view_label: "Instituição de Ensino - Volumetria de Lançamento"
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: courses {
     view_label: "Cursos"
     sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
@@ -209,6 +216,13 @@ explore: contracts {
     relationship: one_to_many
   }
 
+  join: volumetria_lancamento {
+    view_label: "Instituição de Ensino - Volumetria de Lançamento"
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: courses {
     view_label: "Cursos"
     sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
@@ -306,6 +320,13 @@ explore: risk {
   join: institution {
     view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: volumetria_lancamento {
+    view_label: "Instituição de Ensino - Volumetria de Lançamento"
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -436,6 +457,13 @@ explore: payment {
     relationship: one_to_many
   }
 
+  join: volumetria_lancamento {
+    view_label: "Instituição de Ensino - Volumetria de Lançamento"
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: courses {
     view_label: "Cursos"
     sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
@@ -510,6 +538,13 @@ explore: status_curta {
   join: institution {
     view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: volumetria_lancamento {
+    view_label: "Instituição de Ensino - Volumetria de Lançamento"
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
