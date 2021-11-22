@@ -15,6 +15,21 @@ view: alunos_inadimplencia_3_book {
     sql: ${TABLE}."RANK_ANO_MES" ;;
   }
 
+  dimension: cpf_fundo_ano_mes {
+    primary_key: yes
+    type: string
+    hidden: yes
+    sql: CONCAT(${cpf},${fundo},${tdt_ano_mes}) ;;
+
+
+
+
+  }
+
+
+
+
+
   dimension: cpf {
     type: number
     label: "CPF"
