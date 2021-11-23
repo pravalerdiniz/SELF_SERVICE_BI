@@ -2921,6 +2921,16 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
 
+  measure: max_qtd_vezes_iniciado {
+    type: max
+    sql: ${qtd_vezes_iniciado} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Iniciado"
+  }
+
   dimension: qtd_vezes_finalizados {
     type: number
     sql: ${TABLE}."QTD_VEZES_FINALIZADOS" ;;
