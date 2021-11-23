@@ -2404,6 +2404,30 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno ser lead e iniciar uma proposta"
   }
 
+  measure: max_iniciados_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql:${jornada_pivot.sla_ini_novos} ;;
+    sql:${sla_ini_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "1. Lead até Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
+    description: "Maxima do tempo entre o aluno ser lead e iniciar uma proposta"
+  }
+
+  measure: min_iniciados_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql:${jornada_pivot.sla_ini_novos} ;;
+    sql:${sla_ini_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "1. Lead até Iniciar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
+    description: "Mínima do tempo entre o aluno ser lead e iniciar uma proposta"
+  }
+
   measure: media_finalizados_novos {
     type: average
     #sql_distinct_key: ${id_proposta} ;;
@@ -2416,6 +2440,29 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno iniciar e finalizar uma proposta"
   }
 
+  measure: max_finalizados_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_fin_novos} ;;
+    sql: ${sla_fin_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
+    description: "Máxima do tempo entre o aluno iniciar e finalizar uma proposta"
+  }
+
+  measure: min_finalizados_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_fin_novos} ;;
+    sql: ${sla_fin_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
+    description: "Mínima do tempo entre o aluno iniciar e finalizar uma proposta"
+  }
 
   measure: media_mesa_risco_novos {
     type: average
@@ -2427,6 +2474,30 @@ dimension: flg_d1 {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
     description: "Média do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
+  }
+
+  measure: max_mesa_risco_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_risco_novos} ;;
+    sql: ${sla_apr_risco_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "3. Finalizar Proposta até Aprovado Risco"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
+    description: "Máxima do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
+  }
+
+  measure: min_mesa_risco_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_risco_novos} ;;
+    sql: ${sla_apr_risco_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "3. Finalizar Proposta até Aprovado Risco"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
+    description: "Mínima do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
 
   measure: media_aprovado_instituicao_novos {
@@ -2441,6 +2512,29 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
 
+  measure: max_aprovado_instituicao_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    sql: ${sla_apr_ies_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "4. Aprovado Risco até Aprovado Instituição"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
+    description: "Máxima do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
+
+  measure: min_aprovado_instituicao_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_apr_ies_novos} ;;
+    sql: ${sla_apr_ies_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "4. Aprovado Risco até Aprovado Instituição"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
+    description: "Mínima do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
+  }
 
   measure: media_aguard_doc_novos {
     type: average
@@ -2454,6 +2548,29 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
 
+  measure: max_aguard_doc_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_doc_novos} ;;
+    sql: ${sla_agu_doc_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "6. Aprovado Instituição até Aguardando Documento"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
+    description: "Máxima do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
+  }
+
+  measure: min_aguard_doc_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_doc_novos} ;;
+    sql: ${sla_agu_doc_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "6. Aprovado Instituição até Aguardando Documento"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
+    description: "Mínima do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
+  }
 
   measure: media_aguard_ass_ctt_novos {
     type: average
@@ -2465,6 +2582,30 @@ dimension: flg_d1 {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
     description: "Média do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
+  }
+
+  measure: max_aguard_ass_ctt_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_ass_novos} ;;
+    sql: ${sla_agu_ass_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
+    description: "Máxima do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
+  }
+
+  measure: min_aguard_ass_ctt_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_agu_ass_novos} ;;
+    sql: ${sla_agu_ass_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
+    description: "Mínima do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
 
   measure: media_formalizado_novos {
@@ -2479,6 +2620,30 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
 
+  measure: max_formalizado_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_form_novos} ;;
+    sql: ${sla_form_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "8. Aguardando Assinatura até Formalizado"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
+    description: "Máxima do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
+  measure: min_formalizado_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_form_novos} ;;
+    sql: ${sla_form_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "8. Aguardando Assinatura até Formalizado"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
+    description: "Mínima do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
+  }
+
   measure: media_cedidos_novos {
     type: average
     #sql_distinct_key: ${id_proposta} ;;
@@ -2491,6 +2656,29 @@ dimension: flg_d1 {
     description: "Média do tempo entre o aluno estar formalizado e ser cedido"
   }
 
+  measure: max_cedidos_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${sla_ced_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "9. Formalizado até Cedido"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
+    description: "Máxima do tempo entre o aluno estar formalizado e ser cedido"
+  }
+
+  measure: min_cedidos_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${sla_ced_novos} ;;
+    group_label: "Minima do tempo de Jornada - Novos"
+    group_item_label: "9. Formalizado até Cedido"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
+    description: "Mínima do tempo entre o aluno estar formalizado e ser cedido"
+  }
 
   measure: average_total_novos {
     type: number
@@ -2528,6 +2716,29 @@ coalesce(${sla_ced_novos},0);;
       description: "Soma do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
 
+  measure: max_total_novos {
+    type: max
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${tempo_total_novos} ;;
+    group_label: "Máxima do tempo de Jornada - Novos"
+    group_item_label: "Tempo Total de Jornada do Aluno Novo"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
+    description: "Máxima do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+  }
+
+  measure: min_total_novos {
+    type: min
+    #sql_distinct_key: ${id_proposta} ;;
+    #sql: ${jornada_pivot.sla_ced_novos} ;;
+    sql: ${tempo_total_novos} ;;
+    group_label: "Mínima do tempo de Jornada - Novos"
+    group_item_label: "Tempo Total de Jornada do Aluno Novo"
+    value_format: "0"
+    drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
+    description: "Mínima do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
+  }
 
     # Jornada Renovação
     measure: sla_eleg_renov23 {
@@ -2659,6 +2870,25 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
 
+  measure: max_qtd_dias_iniciados {
+    type: max
+    sql: ${qtd_dias_iniciados} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_iniciados {
+    type: min
+    sql: ${qtd_dias_iniciados} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
+  }
 
   dimension: qtd_dias_finalizados {
     type: number
@@ -2684,6 +2914,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
+  }
+
+  measure: max_qtd_dias_finalizados {
+    type: max
+    sql: ${qtd_dias_finalizados} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_finalizados {
+    type: min
+    sql: ${qtd_dias_finalizados} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_apr_risco {
@@ -2712,6 +2962,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
   }
 
+  measure: max_qtd_dias_apr_risco {
+    type: max
+    sql: ${qtd_dias_apr_risco} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_apr_risco {
+    type: min
+    sql: ${qtd_dias_apr_risco} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
+  }
+
   dimension: qtd_dias_apr_ies {
     type: number
     sql: ${TABLE}."QTD_DIAS_APR_IES" ;;
@@ -2736,6 +3006,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
+  }
+
+  measure: max_qtd_dias_apr_ies {
+    type: max
+    sql: ${qtd_dias_apr_ies} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_apr_ies {
+    type: min
+    sql: ${qtd_dias_apr_ies} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_agg_doc {
@@ -2764,6 +3054,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
   }
 
+  measure: max_qtd_dias_agg_doc {
+    type: max
+    sql: ${qtd_dias_agg_doc} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_agg_doc {
+    type: min
+    sql: ${qtd_dias_agg_doc} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
+  }
+
   dimension: qtd_dias_agg_ass {
     type: number
     sql: ${TABLE}."QTD_DIAS_AGG_ASS" ;;
@@ -2788,6 +3098,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
+  }
+
+  measure: max_qtd_dias_agg_ass {
+    type: max
+    sql: ${qtd_dias_agg_ass} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_agg_ass {
+    type: min
+    sql: ${qtd_dias_agg_ass} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_form {
@@ -2816,6 +3146,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
 
+  measure: max_qtd_dias_form {
+    type: max
+    sql: ${qtd_dias_form} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
+  measure: min_qtd_dias_form {
+    type: min
+    sql: ${qtd_dias_form} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
   dimension: qtd_dias_cedido {
     type: number
     sql: ${TABLE}."QTD_DIAS_CEDIDO" ;;
@@ -2842,7 +3192,16 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
 
-  ##ERRADO##
+  measure: max_qtd_dias_cedido {
+    type: max
+    sql: ${qtd_dias_cedido} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
+  }
+
 
   dimension: total_qtd_dias_novo {
     type: number
@@ -2857,7 +3216,27 @@ dimension: qtd_dias_iniciados {
     coalesce(${qtd_dias_cedido},0);;
     hidden:  no
     }
-  ##ERRADO##
+
+  measure: max_qtd_dias_novo {
+    type: max
+    sql: ${total_qtd_dias_novo} ;;
+    group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Total"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
+  }
+
+  measure: min_qtd_dias_novo {
+    type: min
+    sql: ${total_qtd_dias_novo} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Total"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
+  }
+
 
   measure: average_total_qtd_dias_novos {
     type: number
@@ -2931,6 +3310,16 @@ dimension: qtd_dias_iniciados {
     description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
 
+  measure: min_qtd_vezes_iniciado {
+    type: min
+    sql: ${qtd_vezes_iniciado} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Iniciado"
+  }
+
   dimension: qtd_vezes_finalizados {
     type: number
     sql: ${TABLE}."QTD_VEZES_FINALIZADOS" ;;
@@ -2955,6 +3344,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Finalizado"
+  }
+
+  measure: max_qtd_vezes_finalizados {
+    type: max
+    sql: ${qtd_vezes_finalizados} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Finalizado"
+  }
+
+  measure: min_qtd_vezes_finalizados {
+    type: min
+    sql: ${qtd_vezes_finalizados} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Finalizado"
   }
 
   dimension: qtd_vezes_apr_risco{
@@ -2983,6 +3392,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
   }
 
+  measure: max_qtd_vezes_apr_risco {
+    type: max
+    sql: ${qtd_vezes_apr_risco} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
+  }
+
+  measure: min_qtd_vezes_apr_risco {
+    type: min
+    sql: ${qtd_vezes_apr_risco} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Aprovação Risco"
+  }
+
   dimension: qtd_vezes_apr_ies{
     type: number
     sql: ${TABLE}."QTD_VEZES_APR_IES" ;;
@@ -3007,6 +3436,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
+  }
+
+  measure: max_qtd_vezes_apr_ies {
+    type: max
+    sql: ${qtd_vezes_apr_ies} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
+  }
+
+  measure: min_qtd_vezes_apr_ies {
+    type: min
+    sql: ${qtd_vezes_apr_ies} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Aprovação IES"
   }
 
   dimension: qtd_vezes_agg_doc {
@@ -3035,6 +3484,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
   }
 
+  measure: max_qtd_vezes_agg_doc {
+    type: max
+    sql: ${qtd_vezes_agg_doc} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
+  }
+
+  measure: min_qtd_vezes_agg_doc {
+    type: min
+    sql: ${qtd_vezes_agg_doc} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Aguardando Documentos"
+  }
+
   dimension: qtd_vezes_agg_ass {
     type: number
     sql: ${TABLE}."QTD_VEZES_AGG_ASS" ;;
@@ -3059,6 +3528,26 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
+  }
+
+  measure: max_qtd_vezes_agg_ass {
+    type: max
+    sql: ${qtd_vezes_agg_ass} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
+  }
+
+  measure: min_qtd_vezes_agg_ass {
+    type: min
+    sql: ${qtd_vezes_agg_ass} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
   }
 
   dimension: qtd_vezes_formalizado {
@@ -3087,6 +3576,26 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Formalizado"
   }
 
+  measure: max_qtd_vezes_formalizado {
+    type: max
+    sql: ${qtd_vezes_formalizado} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Formalizado"
+  }
+
+  measure: min_qtd_vezes_formalizado {
+    type: min
+    sql: ${qtd_vezes_formalizado} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Formalizado"
+  }
+
   dimension: qtd_vezes_cedido {
     type: number
     sql: ${TABLE}."QTD_VEZES_CEDIDO" ;;
@@ -3112,6 +3621,27 @@ dimension: qtd_dias_iniciados {
     hidden: no
     description: "Indica a mediana da quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
+
+  measure: max_qtd_vezes_cedido {
+    type: max
+    sql: ${qtd_vezes_cedido} ;;
+    group_label: "Máxima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a máxima da quantidade de vezes que a proposta passou pela etapa de Cedido"
+  }
+
+  measure: min_qtd_vezes_cedido {
+    type: min
+    sql: ${qtd_vezes_cedido} ;;
+    group_label: "Mínima - Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Cedido"
+  }
+
 
 ####################################################
 
