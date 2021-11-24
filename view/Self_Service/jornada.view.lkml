@@ -2847,7 +2847,10 @@ coalesce(${sla_ced_novos},0);;
 dimension: qtd_dias_iniciados {
   type: number
   sql: ${TABLE}."QTD_DIAS_INICIADOS" ;;
-  hidden: yes
+  hidden: no
+  group_label: "Quantidade de Dias da Proposta na Etapa"
+  group_item_label: "Novos - Iniciados"
+  value_format: "0"
 }
 
   measure: average_qtd_dias_iniciados {
@@ -2893,7 +2896,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_finalizados {
     type: number
     sql: ${TABLE}."QTD_DIAS_FINALIZADOS" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Finalizados"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_finalizados {
@@ -2939,7 +2945,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_apr_risco {
     type: number
     sql: ${TABLE}."QTD_DIAS_APR_RISCO" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação Risco"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_apr_risco {
@@ -2985,7 +2994,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_apr_ies {
     type: number
     sql: ${TABLE}."QTD_DIAS_APR_IES" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aprovação IES"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_apr_ies {
@@ -3031,7 +3043,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_agg_doc {
     type: number
     sql: ${TABLE}."QTD_DIAS_AGG_DOC" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Documentos"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_agg_doc {
@@ -3077,7 +3092,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_agg_ass {
     type: number
     sql: ${TABLE}."QTD_DIAS_AGG_ASS" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Aguardando Assinatura"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_agg_ass {
@@ -3123,7 +3141,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_form {
     type: number
     sql: ${TABLE}."QTD_DIAS_FORM" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_form {
@@ -3169,7 +3190,10 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_dias_cedido {
     type: number
     sql: ${TABLE}."QTD_DIAS_CEDIDO" ;;
-    hidden:  yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
   }
 
   measure: average_qtd_dias_cedido {
