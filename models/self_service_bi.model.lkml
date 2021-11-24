@@ -1,6 +1,9 @@
 connection: "graduado"
 
-
+access_grant: ies_api {
+  user_attribute: ies_api
+  allowed_values: [ "YES" ]
+}
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome

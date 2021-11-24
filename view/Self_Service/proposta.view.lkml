@@ -1481,12 +1481,16 @@ view: proposta {
     value_format: "0"
   }
 
+
+
   dimension: id_instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "ID Instituição"
     description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
+    required_access_grants: [ies_api]
+
   }
 
   dimension: id_originadores_ativos_ies {
