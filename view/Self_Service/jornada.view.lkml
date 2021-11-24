@@ -3202,6 +3202,16 @@ dimension: qtd_dias_iniciados {
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
 
+  measure: min_qtd_dias_cedido {
+    type: min
+    sql: ${qtd_dias_cedido} ;;
+    group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
+  }
+
 
   dimension: total_qtd_dias_novo {
     type: number
