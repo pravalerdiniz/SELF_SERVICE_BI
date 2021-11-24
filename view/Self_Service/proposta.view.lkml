@@ -1495,10 +1495,10 @@ view: proposta {
   dimension: id_instituicao_filtro {
     type: string
     group_label: "Dados da Instituição"
-    label: "ID Instituição"
+    label: "ID Instituicao"
     description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
-    hidden: yes
+    #hidden: yes
   }
 
   dimension: id_originadores_ativos_ies {
