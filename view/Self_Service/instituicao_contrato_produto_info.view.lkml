@@ -21,6 +21,7 @@ view: instituicao_contrato_produto_info {
       ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
       ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
       ,f.value:FLG_CORTE::boolean as FLG_CORTE
+      ,f.value:MODALIDADE::varchar as MODALIDADE_RISCO
       from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
       lateral flatten (input => ies_contrato) f
        ;;
@@ -97,6 +98,13 @@ view: instituicao_contrato_produto_info {
     label: "Descrição dos Originadores Ativos"
     description: "Indica os originadores que tem contrato ativo com a instituição"
     sql: ${TABLE}."DESC_ORIGINADORES_ATIVOS" ;;
+  }
+
+  dimension: modalidade_risco {
+    type: string
+    label: "Modalidade - Risco"
+    description: "Indica a modalidade do produto seguindo parametros da Análise de Risco e Crédito"
+    sql: ${TABLE}."MODALIDADE_RISCO" ;;
   }
 
   dimension: originadores_inativos {
