@@ -1498,7 +1498,7 @@ view: proposta {
     label: "ID Instituicao"
     description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
-    #hidden: yes
+    hidden: yes
   }
 
   dimension: id_originadores_ativos_ies {
