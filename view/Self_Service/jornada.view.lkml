@@ -2898,7 +2898,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_iniciado {
     type: number
     sql: ${TABLE}."QTD_VEZES_INICIADO" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Iniciados"
+    value_format: "0.0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
 
   measure: average_qtd_vezes_iniciado {
