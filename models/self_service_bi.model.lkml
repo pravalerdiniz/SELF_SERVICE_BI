@@ -1,5 +1,6 @@
 connection: "graduado"
 
+include: "Teste.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
