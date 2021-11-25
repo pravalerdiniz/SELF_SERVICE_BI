@@ -75,17 +75,11 @@ view: instituicao_metas_gc {
       sql: ${TABLE}."GRUPO_IES_ANO_MES" ;;
     }
 
-
-
-
-
-
   dimension: grupo_instituicao {
     type: string
     label: "Grupo da Instituição - Meta"
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
   }
-
 
   dimension_group: data_meta {
     type: time
@@ -120,12 +114,6 @@ view: instituicao_metas_gc {
     label: "Gerente"
     sql: ${TABLE}."GERENTE" ;;
   }
-
-
-
-
-
-
 
     dimension: iniciados {
       type: number
@@ -185,9 +173,6 @@ view: instituicao_metas_gc {
       sql: ${TABLE}."MES" ;;
     }
 
-
-
-
   measure: min_cedidos {
     type: min
     label: "Minimo"
@@ -204,7 +189,6 @@ view: instituicao_metas_gc {
 
   }
 
-
   measure: avg_cedidos {
     type: average
     label: "Média"
@@ -212,13 +196,6 @@ view: instituicao_metas_gc {
     sql: ${cedidos} ;;
 
   }
-
-
-
-
-
-
-
 
     measure:sum_cedidos {
     type: sum
@@ -245,8 +222,6 @@ view: instituicao_metas_gc {
     sql: ${gerados} ;;
 
   }
-
-
 
   measure: sum_gerados {
     type: sum
@@ -525,10 +500,6 @@ view: instituicao_metas_gc {
     sql: ${meta_finalizado} ;;
 
   }
-
-
-
-
 
 
     set: detail {
