@@ -14,10 +14,6 @@ view: proposta {
   }
 
 
-
-
-
-
   dimension: cpf_semestre_financiado {
     type: string
     group_label: "Dados do Aluno"
@@ -1485,12 +1481,24 @@ view: proposta {
     value_format: "0"
   }
 
+
+
   dimension: id_instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "ID Instituição"
     description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
+
+  }
+
+  dimension: id_instituicao_filtro {
+    type: string
+    group_label: "Dados da Instituição"
+    label: "ID Instituicao"
+    description: "Indica o ID da instituição"
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+    hidden: yes
   }
 
   dimension: id_originadores_ativos_ies {
@@ -3844,8 +3852,6 @@ dimension: produto_preaprovado {
     description: "Indica o método de autenticação da proposta. Ex: WhatsApp, SMS ou e-mail."
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
-
-
 
 
   set: detail {

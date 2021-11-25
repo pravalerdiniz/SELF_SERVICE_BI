@@ -52,7 +52,6 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: ies_grupo {
     type: string
-    hidden: yes
     sql: ${TABLE}."IES_GRUPO" ;;
   }
 
