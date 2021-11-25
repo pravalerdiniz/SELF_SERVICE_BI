@@ -1,4 +1,4 @@
-- dashboard: onepage_ie__alunos_renovaoteste
+- dashboard: onepage_ie__alunos_renovao
   title: OnePage IE - Alunos Renovação
   layout: newspaper
   preferred_viewer: dashboards-next

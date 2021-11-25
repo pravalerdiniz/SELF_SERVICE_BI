@@ -1,7 +1,8 @@
 connection: "graduado"
 
-include: "Teste.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-
+include: "onepage_ie__alunos_renovao.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "/**/*.dashboard.lookml"
+include: "/**/*.dashboard"
 access_grant: grupo_nome {
   user_attribute: grupo_nome
   allowed_values: ["grupo_nome"]
