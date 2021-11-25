@@ -3311,7 +3311,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_iniciado {
     type: number
     sql: ${TABLE}."QTD_VEZES_INICIADO" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Iniciado"
   }
 
   measure: average_qtd_vezes_iniciado {
@@ -3357,7 +3361,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_finalizados {
     type: number
     sql: ${TABLE}."QTD_VEZES_FINALIZADOS" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Finalizados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Finalizados"
   }
 
   measure: average_qtd_vezes_finalizados {
@@ -3403,7 +3411,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_apr_risco{
     type: number
     sql: ${TABLE}."QTD_VEZES_APR_RISCO" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Apr. Risco"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Apr. Risco"
   }
 
   measure: average_qtd_vezes_apr_risco {
@@ -3449,7 +3461,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_apr_ies{
     type: number
     sql: ${TABLE}."QTD_VEZES_APR_IES" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Apr. IES"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Apr. IES"
   }
 
   measure: average_qtd_vezes_apr_ies {
@@ -3495,7 +3511,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_agg_doc {
     type: number
     sql: ${TABLE}."QTD_VEZES_AGG_DOC" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Agg Doc"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Aguardando Documento"
   }
 
   measure: average_qtd_vezes_agg_doc {
@@ -3541,7 +3561,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_agg_ass {
     type: number
     sql: ${TABLE}."QTD_VEZES_AGG_ASS" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Agg Ass"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Aguardando Assinatura"
   }
 
   measure: average_qtd_vezes_agg_ass {
@@ -3587,7 +3611,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_formalizado {
     type: number
     sql: ${TABLE}."QTD_VEZES_FORMALIZADO" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Formalizado"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Formalizado"
   }
 
   measure: average_qtd_vezes_formalizado {
@@ -3633,7 +3661,11 @@ dimension: qtd_dias_iniciados {
   dimension: qtd_vezes_cedido {
     type: number
     sql: ${TABLE}."QTD_VEZES_CEDIDO" ;;
-    hidden: yes
+    group_label: "Quantidade de Vezes da Proposta na Etapa"
+    group_item_label: "Qtd - Cedidos"
+    value_format: "0"
+    hidden: no
+    description: "Indica a quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
 
   measure: average_qtd_vezes_cedido {

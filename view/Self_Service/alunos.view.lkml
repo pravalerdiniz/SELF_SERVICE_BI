@@ -1670,12 +1670,18 @@ measure: porc_evasao {
   description: "Indica a porcentagem de alunos que evadiram do PRAVALER"
   value_format: "0%"
   drill_fields: [cpf_aluno,data_primeira_cessao_date,data_ultimo_status_proposta_date,ultimo_status_proposta]
-
-
-
-
-
 }
 
+dimension:  ultimo_acordo_decola{
+  type: string
+  sql: ${TABLE}."ULTIMO_ACORDO" ;;
+  label: "Último Acordo Decola"
+}
+
+  dimension:  ultimo_acordo_proposta{
+    type: string
+    sql: ${TABLE}."ULT_ACO_PROPOSTA" ;;
+    label: "Última Proposta - Acordo Decola"
+  }
 
 }

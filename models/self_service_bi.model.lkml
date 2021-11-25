@@ -936,6 +936,14 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: alunos_worthy_credit {
+    view_label: "1.7.3 Modelo - Worthy Credit"
+    sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
@@ -1009,7 +1017,9 @@ join: alunos_inadimplencia_2 {
 
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
-    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf} and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta};;
+    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
+    and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
+    and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
     relationship: many_to_one
     type: left_outer
 
