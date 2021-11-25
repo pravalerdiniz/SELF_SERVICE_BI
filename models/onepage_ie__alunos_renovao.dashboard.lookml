@@ -1047,5 +1047,5 @@
     explore: jornada
     listens_to_filters: []
     field: proposta.id_instituicao_filtro
-  #embed_style:
-  #  show_filters_bar: false
+  embed_style:
+    show_filters_bar: false
