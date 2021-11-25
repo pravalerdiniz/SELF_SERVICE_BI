@@ -1048,4 +1048,4 @@
     listens_to_filters: []
     field: proposta.id_instituicao_filtro
   embed_style:
-    show_filters_bar: true
+    show_filters_bar: false
