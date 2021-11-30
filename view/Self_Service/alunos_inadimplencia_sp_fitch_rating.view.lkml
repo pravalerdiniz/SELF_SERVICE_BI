@@ -63,6 +63,14 @@ view: alunos_inadimplencia_sp_fitch_rating {
     sql: ${TABLE}."MENOR_VENCTO" ;;
   }
 
+  dimension: dias_atraso {
+   type: number
+  label: "Dias de Atraso"
+  description: "Indica os dias de atraso referente ao último vencimento aberto do aluno."
+   sql:  datediff('day',${menor_vencto_raw}, current_date);;
+
+  }
+
 
   measure: sum_vp {
     label: "Valor Presente"
