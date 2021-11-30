@@ -1,5 +1,6 @@
 connection: "graduado"
 
+include: "/**/*.dashboard.lookml"
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
