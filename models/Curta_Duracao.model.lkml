@@ -154,21 +154,34 @@ explore: student {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment}  and  ${contracts.id_aluno} = ${student.id_aluno};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: payments_boletos {
     view_label: "Boletos"
-    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
 
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+
+
+
+
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"
-    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
     fields: []
@@ -270,7 +283,14 @@ explore: contracts {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -368,7 +388,7 @@ explore: risk {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -390,10 +410,18 @@ explore: risk {
  # }
   join: payments_boletos {
     view_label: "Boletos"
-    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"
@@ -434,6 +462,14 @@ explore: payment {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: student {
     view_label: "Alunos"
@@ -515,6 +551,7 @@ explore: payment {
   relationship: one_to_many
   fields: []
 }
+
 }
 explore: status_curta {
   label:"Status"
@@ -634,6 +671,14 @@ explore: status_curta {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"
