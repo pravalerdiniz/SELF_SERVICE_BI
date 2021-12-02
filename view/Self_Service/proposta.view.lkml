@@ -1790,7 +1790,6 @@ view: proposta {
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades - Semestre Atual"
     description:"Indica a quantidade de mensalidades por contrato do semestre atual"
-    hidden: yes
     sql: ${TABLE}."QTD_MEN_CORRENTE" ;;
   }
 
@@ -2066,7 +2065,6 @@ view: proposta {
     label: "Valor do Financiamento"
     value_format: "$ #,###.00"
     description: "Indica o valor total do financiamento do contrato"
-    hidden:  yes
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
 

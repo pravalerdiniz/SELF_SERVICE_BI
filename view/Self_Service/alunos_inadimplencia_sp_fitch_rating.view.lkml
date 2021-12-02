@@ -72,6 +72,9 @@ view: alunos_inadimplencia_sp_fitch_rating {
   }
 
 
+
+
+
   measure: sum_vp {
     label: "Valor Presente"
     sql: ${soma_vp} ;;
