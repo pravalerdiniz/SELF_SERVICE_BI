@@ -835,7 +835,7 @@ nm_produto
     type: string
     case: {
       when: {
-        sql: ${status_destino_detalhado}="1.1" AND
+        sql: ${status_destino_detalhado}="1.1"
              AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
         label: "Estoque Produtivo Iniciados"
       }
