@@ -835,22 +835,22 @@ nm_produto
     type: string
     case: {
       when: {
-        sql: ${status_destino_detalhado}="1.1"
+        sql: ${status_destino_detalhado}='1.1'
              AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
         label: "Estoque Produtivo Iniciados"
       }
       when: {
-        sql: ${grupo_status_destino}="ESTOQUE TELA DA INSTITUIÇÃO"
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
         label: "Estoque Produtivo Tela IES"
       }
       when: {
-        sql: ${grupo_status_destino}="ESTOQUE DOCUMENTOS"
+        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
         label: "Estoque Produtivo Documentos"
       }
       when: {
-        sql: ${status_destino_detalhado}="40.5"
+        sql: ${status_destino_detalhado}='40.5'
           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
         label: " Estoque Produtivo Assinatura "
       }
