@@ -1213,7 +1213,7 @@ explore:  fato_lead_mgm {
 
   join: status {
     view_label: "Status"
-    sql_on: ${fato_lead_mgm.cpf} = ${status.id_cpf} ;;
+    sql_on: ${fato_lead_mgm.cpf} = ${status.cpf_aluno} ;;
     relationship: one_to_many
     type: left_outer
     fields: [status.status_destino_geral]
