@@ -1213,17 +1213,15 @@ explore:  fato_lead_mgm {
 
   join: status {
     view_label: "Status"
-    sql_on: ${fato_lead_mgm.cpf} = ${status.cpf_aluno} ;;
+    sql_on: ${status.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
     relationship: one_to_many
     type: left_outer
     fields: [status.status_destino_geral]
-
-
   }
 
   join: financeiro {
     view_label: "Financeiro"
-    sql_on: ${fato_lead_mgm.cpf} = ${financeiro.cpf_aluno} ;;
+    sql_on: ${financeiro.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
     type: left_outer
     relationship: one_to_many
     fields: [financeiro.data_pagamento_date]
