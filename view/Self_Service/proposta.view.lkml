@@ -1000,6 +1000,14 @@ view: proposta {
     required_access_grants: [grupo_email]
   }
 
+  dimension: fia_cp_score{
+    type: number
+    group_label: "Dados do Garantidor"
+    label: "Cadastro Positivo - Score"
+    description: "Indica o valor de score do fiador dentro do cadastro POSITIVO."
+    sql: ${TABLE}."FIA_CP_SCORE" ;;
+  }
+
   dimension: fia_escolaridade {
     type: string
     group_label: "Dados do Garantidor"
@@ -1297,6 +1305,14 @@ view: proposta {
     label: "Assinou Contrato - Testemunhas?"
     description: "Indica se as testemunhas assinaram o contrato"
     sql: ${TABLE}."FLG_TESTEMUNHAS_ASSINARAM" ;;
+  }
+
+  dimension: flg_possui_divida {
+    type: yesno
+    group_label: "Dados do Contrato"
+    label: "Possui Divida?"
+    description: "Indica se o aluno possui divída em relação ao contrato"
+    sql: ${TABLE}."FLG_POSSUI_DIVIDA" ;;
   }
 
   dimension: flg_wo_ies {
@@ -1800,6 +1816,15 @@ view: proposta {
     description:"Indica a quantidade de mensalidades por contrato"
     hidden: yes
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
+  }
+
+  dimension: qtd_mensalidade_atraso {
+    type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Mensalidades em Atraso"
+    description:"Indica a quantidade de mensalidades em atraso por contrato"
+    hidden: yes
+    sql: ${TABLE}."QTD_MENSALIDADE_ATRASO" ;;
   }
 
   dimension: qtd_prestacoes {
@@ -2949,6 +2974,10 @@ view: proposta {
     description: "Soma da quantidade de mensalidades por contrato do semestre atual"
   }
 
+
+
+
+
   measure: avg_qtd_mensalidade_atual {
     type: average
     group_label: "Mensalidade - Atual"
@@ -3066,7 +3095,7 @@ view: proposta {
   measure: sum_qtd_mensalidade_contrato {
     type: sum
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades"
+    group_item_label: "Soma | Quantidade "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Soma da quantidade de mensalidades por contrato"
@@ -3075,7 +3104,7 @@ view: proposta {
   measure: avg_qtd_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Média"
+    group_item_label: "Média | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Média da quantidade de mensalidades por contrato"
@@ -3084,7 +3113,7 @@ view: proposta {
   measure: min_qtd_mensalidade_contrato {
     type: min
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Mínimo"
+    group_item_label: "Mínimo | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Mínimo da quantidade de mensalidades por contrato"
@@ -3094,11 +3123,51 @@ view: proposta {
   measure: max_qtd_mensalidade_contrato  {
     type: max
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Máximo"
+    group_item_label: "Máximo | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Máximo da quantidade de mensalidades por contrato"
   }
+
+  measure: sum_qtd_mensalidade_atraso {
+    type: sum
+    group_label: "Mensalidade"
+    group_item_label: "Soma | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Soma da quantidade de mensalidades em atraso por contrato"
+  }
+
+  measure: avg_qtd_mensalidade_atraso {
+    type: average
+    group_label: "Mensalidade"
+    group_item_label: "Média | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Média da quantidade de mensalidades em atraso por contrato"
+  }
+
+  measure: max_qtd_mensalidade_atraso {
+    type: max
+    group_label: "Mensalidade"
+    group_item_label: "Máximo | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Máximo da quantidade de mensalidades em atraso por contrato"
+  }
+
+
+  measure: min_qtd_mensalidade_atraso {
+    type: min
+    group_label: "Mensalidade"
+    group_item_label: "Máximo | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Mínimo da quantidade de mensalidades em atraso por contrato"
+  }
+
+
+
 
 
   measure: sum_vl_prestacoes {
