@@ -1189,8 +1189,27 @@ explore: log_negativacao {
   view_label: "Log de Negativação"
 }
 
+
 explore: documentos_solicitados {
   view_label: "Documentos Solicitados"
+}
+
+explore:  fato_lead_mgm {
+  view_label: "Leads MGM"
+
+  join: alunos {
+    view_label: "Informações Alunos"
+    sql_on: ${alunos.id_cpf} = ${fato_lead_mgm.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: ano_mes_carteira_ativa {
+    fields: []
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: atribuicao {}
