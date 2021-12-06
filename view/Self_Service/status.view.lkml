@@ -861,4 +861,14 @@ nm_produto
     description: "Marcação dos Alunos em Estoque Produtivo"
   }
 
+  measure: tempo_medio_iniciados {
+    type: average
+    sql:jornada.average_qtd_dias_iniciados;;
+    group_label: "Estoque Produtivo"
+    group_item_label: "Tempo Médio - Iniciados"
+    value_format: "0"
+    hidden: no
+    description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Iniciados"
+  }
+
 }
