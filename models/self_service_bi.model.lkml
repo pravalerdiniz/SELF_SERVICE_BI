@@ -945,7 +945,7 @@ join: alunos_inadimplencia_2 {
 
   join: alunos_score_gh {
     view_label: "1.7.4 GH"
-    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
     type: left_outer
     relationship: one_to_many
   }
