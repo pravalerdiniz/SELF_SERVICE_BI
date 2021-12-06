@@ -8,7 +8,7 @@ view: alunos_score_gh {
             f.value:PROPOSTA::varchar as PROPOSTA,
             f.value:DATA_HORA::timestamp as DATA_HORA,
             f.value:VL_PONTUACAO::varchar as VL_PONTUACAO,
-            f.value:GH::varchar as GH,
+            f.value:GH::varchar as GH
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => score_gh) f
  ;;
