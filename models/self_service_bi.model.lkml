@@ -943,6 +943,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: alunos_score_gh {
+    view_label: "1.7.4 GH"
+    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
@@ -1199,7 +1206,7 @@ explore:  fato_lead_mgm {
 
   join: alunos {
     view_label: "Informações Alunos"
-    sql_on: ${alunos.id_cpf} = ${fato_lead_mgm.cpf} ;;
+    sql_on: ${alunos.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -1209,6 +1216,22 @@ explore:  fato_lead_mgm {
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
+  }
+
+  join: status {
+    view_label: "Status"
+    sql_on: ${status.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+    fields: [status.status_destino_geral]
+  }
+
+  join: financeiro {
+    view_label: "Financeiro"
+    sql_on: ${financeiro.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: [financeiro.data_pagamento_date]
   }
 }
 
