@@ -943,6 +943,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: alunos_score_gh {
+    view_label: "1.7.4 GH"
+    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
