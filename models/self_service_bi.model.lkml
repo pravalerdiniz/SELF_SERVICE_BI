@@ -1199,7 +1199,7 @@ explore:  fato_lead_mgm {
 
   join: alunos {
     view_label: "Informações Alunos"
-    sql_on: ${alunos.id_cpf} = ${fato_lead_mgm.cpf} ;;
+    sql_on: ${alunos.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -1209,6 +1209,24 @@ explore:  fato_lead_mgm {
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
+  }
+
+  join: status {
+    view_label: "Status"
+    sql_on: ${fato_lead_mgm.cpf} = ${status.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+    fields: [status.status_destino_geral]
+
+
+  }
+
+  join: financeiro {
+    view_label: "Financeiro"
+    sql_on: ${fato_lead_mgm.cpf} = ${financeiro.cpf_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: [financeiro.data_pagamento_date]
   }
 }
 
