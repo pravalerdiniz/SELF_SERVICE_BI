@@ -1189,9 +1189,6 @@ explore: log_negativacao {
   view_label: "Log de Negativação"
 }
 
-explore:  fato_lead_mgm {
-  label: "Leads MGM"
-}
 
 explore: documentos_solicitados {
   view_label: "Documentos Solicitados"
@@ -1204,3 +1201,7 @@ explore: atribuicao_nova {
 }
 
 explore: alunos_ativos_carteira {}
+
+explore:  fato_lead_mgm {
+  view_label: "Leads MGM"
+}
