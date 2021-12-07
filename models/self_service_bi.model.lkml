@@ -1223,7 +1223,8 @@ explore:  fato_lead_mgm {
     sql_on: ${status.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
-    fields: [status.status_destino_geral]
+    fields: [status.status_destino_geral,
+      status.status_destino_detalhado]
   }
 
   join: financeiro {
@@ -1247,4 +1248,10 @@ explore: pipedrive_pipelines {
   label: "Pipedrive - Pipelines"
   view_label: "Pipedrive - Pipelines"
   description: "Apresenta os dados do Pipeline - Pipedrive"
+}
+
+explore: pipedrive_atividades {
+  label: "Pipedrive - Atividades"
+  view_label: "Pipedrive - Atividades"
+  description: "Apresenta os dados das Atividades registradas no Pipedrive"
 }
