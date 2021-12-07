@@ -1249,3 +1249,9 @@ explore: pipedrive_pipelines {
   view_label: "Pipedrive - Pipelines"
   description: "Apresenta os dados do Pipeline - Pipedrive"
 }
+
+explore: pipedrive_atividades {
+  label: "Pipedrive - Atividades"
+  view_label: "Pipedrive - Atividades"
+  description: "Apresenta os dados das Atividades registradas no Pipedrive"
+}
