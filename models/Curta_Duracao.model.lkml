@@ -75,7 +75,7 @@ explore: student {
 
   join: volumetria_lancamento {
     view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj} and ${student_curso.id_instituicao} = ${institution.id_instituicao} and ${student_curso.id_curso} = ${courses.id_curso} and  ${student.id_aluno} = ${student_curso.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
