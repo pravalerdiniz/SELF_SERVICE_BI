@@ -77,7 +77,7 @@ view: atribuicao_nova {
 
   dimension: descoberta_final {
     type: string
-    sql: concat(${canal_descoberta},"-",${canal_finalizacao}) ;;
+    sql: concat(${canal_descoberta},'-',${canal_finalizacao}) ;;
     label: "Canal Descoberta + Finalização"
   }
 
