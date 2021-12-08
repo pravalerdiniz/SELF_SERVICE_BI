@@ -129,8 +129,8 @@ view: alunos_inadimplencia_sp_fitch_rating {
 
 measure: sum_over05 {
   type: count
-  group_label: "Overs"
-  label: "Quantidade - Over 05"
+  group_label: "Overs - Quantidade"
+  label: "Over 05"
   filters: [over05: "yes"]
 
 
