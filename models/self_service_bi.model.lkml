@@ -1243,15 +1243,3 @@ explore: atribuicao_nova {
 }
 
 explore: alunos_ativos_carteira {}
-
-explore: pipedrive_pipelines {
-  label: "Pipedrive - Pipelines"
-  view_label: "Pipedrive - Pipelines"
-  description: "Apresenta os dados do Pipeline - Pipedrive"
-}
-
-explore: pipedrive_atividades {
-  label: "Pipedrive - Atividades"
-  view_label: "Pipedrive - Atividades"
-  description: "Apresenta os dados das Atividades registradas no Pipedrive"
-}
