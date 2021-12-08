@@ -156,6 +156,8 @@ view: student {
     label: "Aluno - Idade"
   }
 
+
+
   dimension: faixa_etaria_aluno {
     type: tier
     tiers: [16,18,25,30,35,40,50]
@@ -521,6 +523,36 @@ view: student {
     group_label: "Renda"
   }
 
+measure: sum_idade_aluno {
+  type: sum
+  sql: ${idade_aluno} ;;
+  group_label: "Idade"
+  label: "Soma"
+  description: "Indica a soma da idade dos alunos"
 
+
+
+}
+
+
+  measure: avg_idade_aluno {
+    type: average
+    sql: ${idade_aluno} ;;
+    group_label: "Idade"
+    label: "Média"
+    description: "Indica a média da idade dos alunos"
+
+
+  }
+
+  measure: med_idade_aluno {
+    type: median
+    sql: ${idade_aluno} ;;
+    group_label: "Idade"
+    label: "Médiana"
+    description: "Indica a médiana da idade dos alunos"
+
+
+  }
 
 }
