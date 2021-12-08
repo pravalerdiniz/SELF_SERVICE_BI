@@ -157,6 +157,16 @@ view: student {
   }
 
 
+  dimension: regra_idade_aluno {
+    type: number
+    label: "Idade Regra"
+    hidden: yes
+    sql: ${idade_aluno} ;;
+
+
+  }
+
+
 
   dimension: faixa_etaria_aluno {
     type: tier
@@ -547,7 +557,7 @@ measure: sum_idade_aluno {
 
   measure: med_idade_aluno {
     type: median
-    sql: ${idade_aluno} ;;
+    sql: ${regra_idade_aluno} ;;
     group_label: "Idade"
     label: "Médiana"
     description: "Indica a médiana da idade dos alunos"
