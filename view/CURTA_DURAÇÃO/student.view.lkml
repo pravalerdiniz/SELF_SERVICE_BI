@@ -559,7 +559,7 @@ measure: sum_idade_aluno {
     type: median
     sql: ${idade_aluno} ;;
     group_label: "Idade"
-    label: "Médiana"
+    label: "Mediana"
     description: "Indica a médiana da idade dos alunos"
 
 
