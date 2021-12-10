@@ -35,6 +35,39 @@ view: alunos_inadimplencia_sp_fitch_rating {
     sql: ${TABLE}."QDE_BOLETOS" ;;
   }
 
+  dimension: over05 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 05?"
+    description: "Indica se o aluno possui mais de 05 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER05" ;;
+  }
+
+  dimension: over15 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 15?"
+    description: "Indica se o aluno possui mais de 15 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER15" ;;
+  }
+
+
+  dimension: over30 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 30?"
+    description: "Indica se o aluno possui mais de 30 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER30" ;;
+  }
+
+  dimension: over60 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 60?"
+    description: "Indica se o aluno possui mais de 60 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER60" ;;
+  }
+
   dimension: soma_vp {
     type: number
     hidden: yes
@@ -63,19 +96,89 @@ view: alunos_inadimplencia_sp_fitch_rating {
     sql: ${TABLE}."MENOR_VENCTO" ;;
   }
 
-  dimension: dias_atraso {
-   type: number
-  label: "Dias de Atraso"
-  description: "Indica os dias de atraso referente ao último vencimento aberto do aluno."
-   sql:  datediff('day',${menor_vencto_raw}, current_date);;
-
+  dimension_group: dt_titulo_calcular {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    label: "Titulo Calcular"
+    description: "Indica a data base para calculo de divida do aluno"
+    sql: ${TABLE}."DT_TITULO_CALCULAR" ;;
   }
 
 
 
 
 
+
+
+  dimension: qtd_dias_atraso {
+   type: number
+  label: "Dias de Atraso"
+  description: "Indica os dias de atraso referente ao último vencimento aberto do aluno."
+   sql:  ${TABLE}."QT_DIAS_ATRASO";;
+
+  }
+
+
+measure: sum_over05 {
+  type: count
+  group_label: "Overs - Quantidade"
+  label: "Over 05"
+  filters: [over05: "yes"]
+
+
+
+
+
+}
+
+
+  measure: sum_over15 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 15"
+    filters: [over15: "yes"]
+
+
+
+
+
+  }
+
+  measure: sum_over30 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 30"
+    filters: [over30: "yes"]
+
+
+
+
+
+  }
+
+  measure: sum_over60 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 60"
+    filters: [over60: "yes"]
+
+
+
+
+
+  }
+
+
   measure: sum_vp {
+    type: sum
     label: "Valor Presente"
     sql: ${soma_vp} ;;
     description: "Indica a soma do Valor Presente do Aluno"
@@ -83,6 +186,7 @@ view: alunos_inadimplencia_sp_fitch_rating {
   }
 
   measure: sum_vf {
+    type: sum
     label: "Boleto"
     sql: ${soma_vp} ;;
     description: "Indica a soma do valor dos boletos não pagos do aluno"
