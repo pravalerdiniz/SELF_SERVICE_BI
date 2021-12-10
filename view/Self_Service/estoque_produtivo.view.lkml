@@ -22,6 +22,27 @@ view: estoque_produtivo {
     sql: ${TABLE}."DT_INSERCAO" ;;
   }
 
+  dimension_group: dt_insercao_group {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DT_INSERCAO" ;;
+    label: "Grupo Data Inserção"
+  }
+
+
   dimension_group: dt_status {
     type: time
     label: "Data Status"
