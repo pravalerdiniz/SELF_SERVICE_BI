@@ -1243,3 +1243,8 @@ explore: atribuicao_nova {
 }
 
 explore: alunos_ativos_carteira {}
+
+explore: estoque_produtivo {
+  label: "Estoque Produtivo Jornada"
+  view_label: "Estoque Produtivo Jornada"
+}
