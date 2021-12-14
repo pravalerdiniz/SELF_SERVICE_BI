@@ -671,7 +671,12 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+- alunos.ativo_ano_mes,
+- jornada.aluno_cpf,
+- jornada.email_aluno,
+- jornada.nome_aluno,
+- jornada.celular_aluno,
+- jornada.total_renov
 
 
 
@@ -755,6 +760,14 @@ join: proposta_docs_pendentes {
     sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
     relationship: one_to_many
     type: left_outer
+  }
+
+  join: jornada {
+    view_label: "6. Jornada"
+    sql_on:  ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+
   }
 
 }
