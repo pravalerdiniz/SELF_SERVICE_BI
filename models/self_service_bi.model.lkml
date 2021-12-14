@@ -404,6 +404,20 @@ explore: instituicao {
 
   }
 
+  join: dim_cpf {
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
@@ -468,6 +482,17 @@ explore: instituicao {
     relationship: one_to_many
     type: left_outer
 
+  }
+
+  join: jornada {
+    view_label: "5. Jornada"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
+          AND ${proposta.id_campus} = ${instituicao.id_campus}
+          AND ${proposta.id_curso} = ${instituicao.id_curso}
+          and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto}
+          and ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
   }
 
   join: ano_mes_carteira_ativa {
