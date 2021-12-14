@@ -1085,6 +1085,13 @@ join: financeiro {
     relationship: one_to_many
   }
 
+  join: atribuicao_nova {
+    view_label: "7. Atribuição"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
