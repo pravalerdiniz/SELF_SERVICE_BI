@@ -730,7 +730,7 @@ join: proposta_docs_pendentes {
 
 
   join: status {
-    view_label: "3. Status"
+    view_label: "4. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
