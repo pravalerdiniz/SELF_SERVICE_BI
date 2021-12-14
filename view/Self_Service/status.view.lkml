@@ -306,7 +306,7 @@ view: status {
         label: "< 5"
       }
       when: {
-        sql: ${QTD_DIAS_STATUS}} <= 15 ;;
+        sql: ${QTD_DIAS_STATUS} <= 15 ;;
         label: "5 - 15"
       }
       when: {
