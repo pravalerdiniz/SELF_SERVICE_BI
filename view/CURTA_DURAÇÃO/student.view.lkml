@@ -555,19 +555,7 @@ measure: sum_idade_aluno {
 
   }
 
-  measure: med_idade_aluno {
-<<<<<<< HEAD
-    type: number
-=======
-    type: median
->>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
-    sql: ${idade_aluno} ;;
-    group_label: "Idade"
-    label: "Mediana"
-    description: "Indica a médiana da idade dos alunos"
 
-
-  }
 
 
 
