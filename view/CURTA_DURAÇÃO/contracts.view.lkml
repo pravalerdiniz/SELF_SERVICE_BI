@@ -604,81 +604,81 @@ view: contracts {
   }
 
 
-  dimension: all_day_disbursement {
+
+  dimension: flg_desembolso_diario {
     type: yesno
-    sql: ${TABLE}."ALL_DAY_DISBURSEMENT";;
+    sql: ${TABLE}."FLG_DESEMBOLSO_DIARIO";;
     description: "DEFINIR*"
-    group_item_label: "DESEMBOLSO TOTAL NO DIA?"
+    group_item_label: "Desembolso Diário?"
     group_label: "Dados do Contrato"
   }
 
-  dimension: disburse_before_assign {
+  dimension: flg_desembolso_antes_atribuicao {
     type: yesno
-    sql: ${TABLE}."DISBURSE_BEFORE_ASSIGN";;
+    sql: ${TABLE}."FLG_DESEMBOLSO_ANTES_ATRIBUICAO";;
     description: "DEFINIR*"
-    group_item_label: "DESEMBOLSO ANTES DE ASSINAR?"
+    group_item_label: "Desembolso antes de assinar?"
     group_label: "Dados do Contrato"
   }
 
-  dimension: disbursed_before_assign {
-    type: yesno
-    sql: ${TABLE}."DISBURSE_BEFORE_ASSIGN";;
-    description: "DEFINIR*"
-    group_item_label: "DESEMBOLSO ANTES DE ASSINAR?"
-    group_label: "Dados do Contrato"
-  }
 
-  dimension_group: disbursed_at {
+
+
+  dimension_group: data_desembolso {
     type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
-    sql: ${TABLE}."DISBURSED_AT";;
+    sql: ${TABLE}."DATA_DESEMBOLSO";;
     description: "DATA DA REALIZAÇÃO DO VALOR DO DESEMBOLSO"
-    label: "Desembolsado"
+    label: "Desembolso"
   }
 
-  dimension_group: disbursement_confirmed_at {
+  dimension_group: desembolso_confirmado{
     type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
-    sql: ${TABLE}."DISBURSEMENT_CONFIRMED_AT";;
+    sql: ${TABLE}."DATA_CONFIRMACAO_DESEMBOLSO";;
     description: "DATA DA CONFIRMAÇÃO DE REALIZAÇÃO DO DESEMBOLSO"
     label: "Desembolso Confirmado"
   }
 
-  dimension_group: disbursement_date {
+  dimension_group: desembolso_abreviado {
     type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
-    sql: ${TABLE}."DISBURSEMENT_DATE";;
+    sql: ${TABLE}."DATA_ABREVIADA_DESEMBOLSO";;
+    hidden: yes
     description: "DATA DA REALIZAÇÃO DO VALOR DO DESEMBOLSO"
-    label: "Desembolsado em"
+    label: "Desembolsado Abreviado em"
   }
 
-  dimension_group: disbursement_start_date {
+
+
+
+  dimension_group: data_inicio_desembolso {
     type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
-    sql: ${TABLE}."DISBURSEMENT_START_DATE";;
+    sql: ${TABLE}."DATA_INICIO_DESEMBOLSO";;
     description: "DATA DE INICIO DO DESEMBOLSO"
-    label: "Inicio de Desembolso"
+    label: "Inicio do Desembolso"
   }
 
-  dimension_group: disbursement_end_date {
+  dimension_group: data_fim_desembolso {
     type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
-    sql: ${TABLE}."DISBURSEMENT_END_DATE";;
+    sql: ${TABLE}."DATA_FINAL_DESEMBOLSO";;
     description: "DATA DO FIM DO DESEMBOLSO"
     label: "Fim do Desembolso"
   }
 
 
 
-  measure: disbursed_issu_amount{
+  measure: vl_emitido_desembolso{
     type: sum
-    sql: ${TABLE}."DISBURSED_ISSUE_AMOUNT";;
+    sql: ${TABLE}."VL_EMITIDO_DESEMBOLSO";;
     description: "DEFINIR*"
-    label: "VALOR DESEMBOLSADO"
+    label: "Valor Emitido"
     group_label: "Desembolso"
   }
 
 
-  measure: final_disbursed_issu_amount {
+  measure: vl_final_desembolso {
     type: sum
-    sql: ${TABLE}."FINAL_DISBURSEMENT_AMOUNT";;
+    sql: ${TABLE}."VL_FINAL_DESEMBOLSO";;
     description: "DEFINIR*"
-    label: "VALOR FINAL DESEMBOLSADO"
+    label: "Valor Final"
     group_label: "Desembolso"
   }
 

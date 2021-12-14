@@ -556,13 +556,15 @@ measure: sum_idade_aluno {
   }
 
   measure: med_idade_aluno {
-    type: median
-    sql: ${regra_idade_aluno} ;;
+    type: number
+    sql: ${idade_aluno} ;;
     group_label: "Idade"
     label: "Médiana"
     description: "Indica a médiana da idade dos alunos"
 
 
   }
+
+
 
 }

@@ -458,6 +458,18 @@ explore: instituicao {
 
   }
 
+  join: status {
+    view_label: "4. Status"
+    sql_on: ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
+          AND ${proposta.id_campus} = ${instituicao.id_campus}
+          AND ${proposta.id_curso} = ${instituicao.id_curso}
+          and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto}
+          and ${proposta.id_proposta} = ${status.id_proposta};;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
   join: ano_mes_carteira_ativa {
     fields: []
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
