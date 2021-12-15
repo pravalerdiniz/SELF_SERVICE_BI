@@ -748,6 +748,13 @@ join: proposta_docs_pendentes {
     relationship: many_to_one
   }
 
+  join: alunos_painel_risco {
+    view_label: "2.1 Análise de Risco e Crédito - Decisão"
+    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: financeiro {
     view_label: "3. Financeiro"
     sql_on: ${proposta.id_proposta} = ${financeiro.id_contrato} ;;
