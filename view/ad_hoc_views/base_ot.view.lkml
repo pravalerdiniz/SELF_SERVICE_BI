@@ -39,6 +39,7 @@ view: base_ot {
     type: number
     group_label: "Dados da Instituição de Ensino"
     label: "CNPJ"
+    value_format: "0"
     sql: ${TABLE}."CNPJ_ENTIDADE_PAGADORA" ;;
   }
 
