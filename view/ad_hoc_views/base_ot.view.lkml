@@ -244,7 +244,7 @@ view: base_ot {
 
   dimension: nome_fundo {
     type: string
-    group_label: "Dados do Fundo"
+    group_label: "Dados do Fundo de Investimento"
     label: "Nome do Fundo de Investimento"
     description: "Indica o nome do fundo de investimento"
     sql: ${TABLE}."NOME_FUNDO" ;;
