@@ -211,4 +211,11 @@ explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}
 
+explore: base_ot {
+  label: "Base de Dados - Oliveira Trust"
+
+
+
+}
+
 explore: watson {}
