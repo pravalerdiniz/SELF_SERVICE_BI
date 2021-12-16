@@ -32,8 +32,8 @@ view: alunos_acordo {
             f.value:VL_PAGO::float as VL_PAGO,
             f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO,
             case when max(f.key) over(partition by id_cpf, f.value:DATA_ACORDO::DATE order by f.value:DATA_ACORDO::DATE) = f.key then true else false end as FLG_MAX_ACORDO
-            from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
-            lateral flatten (input => acordo) f
+            from GRADUADO.RISCO.ACORDOS a,
+            lateral flatten (input => PROMESSA) f
  ;;
   }
   ##f.value:CANAL::varchar as CANAL,
