@@ -790,7 +790,6 @@ explore: alunos {
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
     - jornada.id_cpf,
-    - proposta.aluno_cal_vet,
 - proposta.aluno_celular,
 - proposta.aluno_cidade,
 - proposta.aluno_email,
