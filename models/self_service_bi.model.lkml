@@ -950,7 +950,7 @@ join: alunos_inadimplencia_2 {
   }
 
   join: alunos_gerencial_renovacao_status_elegibilidade{
-    view_label: "1.4 Renovação - Status de Elegibilidade"
+    view_label: "1.4.1 Renovação - Status de Elegibilidade"
     sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
     type: left_outer
     relationship: one_to_many
