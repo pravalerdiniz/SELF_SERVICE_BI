@@ -52,8 +52,8 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."MATURIDADE_CPF2" ;;
   }
 
-  dimension: valor_presente2 {
-    type: number
+  measure: valor_presente2 {
+    type: sum
     label: "Valor Presente"
     sql: ${TABLE}."VALOR_PRESENTE2" ;;
   }
@@ -152,8 +152,10 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."QTD_PARC_FINAN" ;;
   }
 
-  dimension: qtd_calendario_ies {
-    type: number
+  measure: qtd_calendario_ies {
+    type: sum
+    group_label: "Calendário - IES"
+    label: "Quantidade"
     sql: ${TABLE}."QTD_CALENDARIO_IES" ;;
   }
 
