@@ -936,8 +936,22 @@ join: alunos_inadimplencia_2 {
   }
 
   join: alunos_log_negativacao{
-    view_label: "1.4 Negativação Logs"
+    view_label: "1.3.1 Negativação Logs"
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_carteira_elegibilidade{
+    view_label: "1.4 Renovação - Gerencial da Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_status_elegibilidade{
+    view_label: "1.4 Renovação - Status de Elegibilidade"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
