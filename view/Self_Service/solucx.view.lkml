@@ -1,7 +1,7 @@
 view: solucx {
   derived_table: {
     sql: select
-        solucx."ID" as id
+        solucx."ID" as id,
         solucx."JOURNEY" as jornada,
         solucx."TIMESTAMP" as data_envio_pesquisa,
         solucx."STORE_NAME" as grupo_pesquisa,
