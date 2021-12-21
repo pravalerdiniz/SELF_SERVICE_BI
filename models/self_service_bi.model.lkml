@@ -777,6 +777,13 @@ join: proposta_docs_pendentes {
 
   }
 
+  join: atribuicao_nova {
+    view_label: "7. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
 }
 
 explore: alunos {
@@ -1317,6 +1324,37 @@ explore: atribuicao {}
 
 explore: atribuicao_nova {
   view_label: "Atribuição (Nova)"
+  fields: [ALL_FIELDS * ,
+    - proposta.vl_acordo,
+    - proposta.data_acordo,
+    - jornada.aluno_cpf,
+    - jornada.email_aluno,
+    - jornada.nome_aluno,
+    - jornada.celular_aluno,
+    - jornada.total_renov,
+    - alunos.ativo_ano_mes]
+
+join: proposta {
+  view_label: "Proposta"
+  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+}
+
+  join: jornada {
+    view_label: "Jornada"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: alunos_ativos_carteira {}
