@@ -41,7 +41,7 @@ view: solucx {
     group_label: "Dados da Pesquisa"
     group_item_label: "Id da Pesquisa"
     description: "Id único de cada disparo"
-    sql: ${TABLE}."JORNADA" ;;
+    sql: ${TABLE}."ID" ;;
   }
 
 
@@ -235,6 +235,7 @@ view: solucx {
 
   set: detail {
     fields: [
+      id,
       jornada,
       data_envio_pesquisa_time,
       grupo_pesquisa,
