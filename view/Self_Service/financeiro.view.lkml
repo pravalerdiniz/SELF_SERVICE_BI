@@ -145,6 +145,26 @@ dimension: data_trunc  {
   }
 
 
+  measure: ultimo_vencimento {
+    type: date
+    label: "Último Vencimento - Mais antigo"
+    sql: MIN(${data_vencimento_raw}) ;;
+    convert_tz: no
+  }
+
+
+
+  measure: ultimo_vencimento_mais_recente {
+    type: date
+    label: "Último Vencimento - Mais Recente"
+    sql: MAX(${data_vencimento_raw}) ;;
+    convert_tz: no
+  }
+
+
+
+
+
 
 dimension: safra_vencimento {
   type: number

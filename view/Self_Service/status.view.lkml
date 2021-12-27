@@ -298,6 +298,29 @@ view: status {
   }
 
 
+  dimension: faixa_tempo_transicao_no_status {
+    type: string
+    case: {
+      when: {
+        sql: ${QTD_DIAS_STATUS} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${QTD_DIAS_STATUS} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${QTD_DIAS_STATUS} <= 30 ;;
+        label: "15 - 30"
+      }
+      else: "30 >"
+    }
+    group_label: "Dados do Status"
+    group_item_label: "Faixa de Tempo - Status Anterior (Origem)"
+    description: "Indica a faixa de tempo, em dias, que o aluno ficou parado no status de origem."
+  }
+
+
   dimension: QTD_DIAS_STATUS {
     type: number
     sql: ${TABLE}."QTD_DIAS_STATUS" ;;
