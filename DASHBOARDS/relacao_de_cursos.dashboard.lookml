@@ -21,7 +21,7 @@
       instituicao.uf_campus: ''
       instituicao.nome_curso: ''
     sorts: [instituicao.nome_fantasia]
-    limit: 500
+
     show_view_names: false
     show_row_numbers: false
     transpose: false
@@ -42,5 +42,5 @@
     show_row_totals: true
     series_types: {}
     defaults_version: 1
-    embed_style:
-      show_filters_bar: false
+  embed_style:
+    show_filters_bar: false
