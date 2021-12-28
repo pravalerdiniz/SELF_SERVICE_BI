@@ -1359,7 +1359,7 @@ join: proposta {
 
 explore: alunos_ativos_carteira {}
 
-explore: estoque_produtivo {
-  label: "Estoque Produtivo Jornada"
-  view_label: "Estoque Produtivo Jornada"
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
 }
