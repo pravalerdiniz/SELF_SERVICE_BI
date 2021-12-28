@@ -30,7 +30,7 @@ view: projecao_formalizados {
 
   dimension: qtd_form_prevista {
     type: number
-    label: "Data Inclusão Sistema"
+    label: "Quantidade de formalizados prevista"
     sql: ${TABLE}."QTD_FORM_PREVISTA" ;;
   }
 
