@@ -154,7 +154,7 @@ view: instituicao {
   }
 
   dimension: curso_ativo {
-    type: number
+    type: yesno
     group_label: "Dados do Curso - IE"
     label: "Curso Ativo?"
     description:"Indica se o curso está ativo no sistema."
@@ -358,7 +358,7 @@ view: instituicao {
   }
 
   dimension: ies_ativa {
-    type: string
+    type: yesno
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
     description:"Indica se a Instituição está ativa."

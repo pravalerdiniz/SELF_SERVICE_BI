@@ -159,7 +159,8 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date};;
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: left_outer
     relationship: many_to_one
   }
@@ -777,6 +778,13 @@ join: proposta_docs_pendentes {
 
   }
 
+  join: atribuicao_nova {
+    view_label: "7. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
 }
 
 explore: alunos {
@@ -790,7 +798,6 @@ explore: alunos {
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
     - jornada.id_cpf,
-    - proposta.aluno_cal_vet,
 - proposta.aluno_celular,
 - proposta.aluno_cidade,
 - proposta.aluno_email,
@@ -936,8 +943,22 @@ join: alunos_inadimplencia_2 {
   }
 
   join: alunos_log_negativacao{
-    view_label: "1.4 Negativação Logs"
+    view_label: "1.3.1 Negativação Logs"
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_carteira_elegibilidade{
+    view_label: "1.4 Renovação - Gerencial da Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_status_elegibilidade{
+    view_label: "1.4.1 Renovação - Status de Elegibilidade"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -1304,11 +1325,42 @@ explore: atribuicao {}
 
 explore: atribuicao_nova {
   view_label: "Atribuição (Nova)"
+  fields: [ALL_FIELDS * ,
+    - proposta.vl_acordo,
+    - proposta.data_acordo,
+    - jornada.aluno_cpf,
+    - jornada.email_aluno,
+    - jornada.nome_aluno,
+    - jornada.celular_aluno,
+    - jornada.total_renov,
+    - alunos.ativo_ano_mes]
+
+join: proposta {
+  view_label: "Proposta"
+  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+}
+
+  join: jornada {
+    view_label: "Jornada"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: alunos_ativos_carteira {}
 
-explore: estoque_produtivo {
-  label: "Estoque Produtivo Jornada"
-  view_label: "Estoque Produtivo Jornada"
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
 }
