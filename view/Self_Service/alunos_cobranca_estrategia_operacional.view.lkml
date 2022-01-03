@@ -40,6 +40,7 @@ view: alunos_cobranca_estrategia_operacional {
   measure: sum_valor_atraso{
     type: sum
     label: "Valor do Atraso"
+    description: "Soma do valor da divida em atraso do aluno"
     sql: ${valor_atraso} ;;
   }
 
@@ -47,12 +48,14 @@ view: alunos_cobranca_estrategia_operacional {
   dimension: valor_atraso{
     type: number
     label: "Valor do Atraso"
+    description: "Valor da divida em atraso do aluno"
     sql: ${TABLE}."VALOR_ATRASO" ;;
   }
 
   dimension: vencimento{
     type: date
     hidden: yes
+    description: "Data de vencimento do boleto do aluno"
     sql: ${TABLE}."VENCIMENTO" ;;
   }
 
@@ -71,7 +74,7 @@ view: alunos_cobranca_estrategia_operacional {
     ]
     convert_tz: no
     label: "Vencimento"
-    description: "Indica a a data de menor vencimento do aluno"
+    description: "Indica a data de vencimento do aluno"
     datatype: date
     sql: ${vencimento} ;;
   }
@@ -87,40 +90,47 @@ view: alunos_cobranca_estrategia_operacional {
     type: number
     hidden: yes
     primary_key: yes
+    description: "CPF aluno"
     sql: ${TABLE}."CPF" ;;
   }
 
   dimension: atraso {
     type: number
     hidden: no
+    description: "Dias em atraso do aluno após o vencimento"
     sql: ${TABLE}."ATRASO" ;;
   }
 
   dimension: boletos_abertos {
     type: number
+    description: "Quantidade de boletos em aberto do aluno"
     sql: ${TABLE}."BOLETOS_ABERTOS" ;;
   }
 
   dimension: boletos_atraso {
     type: number
+    description: "Quantidade de boletos em atraso do aluno"
     sql: ${TABLE}."BOLETOS_ATRASO" ;;
   }
 
   dimension: celular_aluno {
     type: number
     hidden: yes
+    description: "celular"
     sql: ${TABLE}."CELULAR_ALUNO" ;;
   }
 
   dimension: celular_fiador {
     type: number
     hidden: yes
+    description: "celular do fiador"
     sql: ${TABLE}."CELULAR_FIADOR" ;;
   }
 
   dimension: contratos {
     type: string
     hidden: no
+    description: "ID Contratos do aluno"
     sql: ${TABLE}."CONTRATOS" ;;
   }
 
@@ -128,89 +138,103 @@ view: alunos_cobranca_estrategia_operacional {
    type: number
    label: "Desconto?"
    value_format: "0.00%"
+  description: "Desconto cedido ao aluno"
     sql: ${TABLE}."DESCONTO" ;;
   }
 
-
-
   dimension: faixa_atraso {
     type: string
+    description: "Faixa de atraso do aluno após o vencimento do boleto"
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
   dimension: fase {
     type: string
+    description: "Fase de atraso do aluno"
     sql: ${TABLE}."FASE" ;;
   }
 
   dimension: fundo {
     type: string
+    description: "Fundo de Investimento do aluno"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: nome_empresa {
     type: string
+    description: "Nome da empresa responsavel pelo acordo do aluno"
     sql: ${TABLE}."NOME_EMPRESA" ;;
   }
 
   dimension: ordem_faixa_atraso {
     type: string
+    description: "Ordem da faixa de atraso********"
     sql: ${TABLE}."ORDEM_FAIXA_ATRASO" ;;
   }
 
   dimension: rdg {
     type: string
+    description: "Digito randomico CPF do aluno"
     sql: ${TABLE}."RDG" ;;
   }
 
   dimension: telefone_01 {
     type: number
     value_format: "0"
+    description: "Indica o telefone do aluno (se tiver)"
     sql: ${TABLE}."TELEFONE_01" ;;
   }
 
   dimension: telefone_02 {
     type: number
     value_format: "0"
+    description: "Indica o telefone do aluno (se tiver)"
     sql: ${TABLE}."TELEFONE_02" ;;
   }
 
   dimension: telefone_03 {
     type: number
     value_format: "0"
+    description: "Indica o telefone do aluno (se tiver)"
     sql: ${TABLE}."TELEFONE_03" ;;
   }
 
   dimension: celular_01 {
     type: number
     value_format: "0"
+    description: "Indica o celular de enriquecimento do aluno"
     sql: ${TABLE}."CELULAR_01" ;;
   }
 
   dimension: celular_02 {
     type: number
     value_format: "0"
+    description: "Indica o celular de enriquecimento do aluno"
     sql: ${TABLE}."CELULAR_02" ;;
   }
 
   dimension: celular_03 {
     type: number
     value_format: "0"
+    description: "Indica o celular de enriquecimento do aluno"
     sql: ${TABLE}."CELULAR_03" ;;
   }
 
   dimension: email_01 {
     type: string
+    description: "Indica o e-mail do aluno (se tiver)"
     sql: ${TABLE}."EMAIL_01" ;;
   }
 
   dimension: email_02 {
     type: string
+    description: "Indica o e-mail do aluno (se tiver)"
     sql: ${TABLE}."EMAIL_02" ;;
   }
 
   dimension: email_03 {
     type: string
+    description: "Indica o e-mail do aluno (se tiver)"
     sql: ${TABLE}."EMAIL_03" ;;
   }
 

@@ -40,12 +40,14 @@ view: alunos_cobranca_radar {
   dimension: fpd {
     type: number
     label: "FPD"
+    description: "Indica os alunos que estão em atraso desde a primeira parcela com o PRAVALER"
     sql: ${TABLE}."FPD" ;;
   }
 
   dimension: lpd {
     type: number
     label: "LPD"
+    description: "Indica os alunos que estão em atraso apenas a última parcela do financiamento com o PRAVALER"
     sql: ${TABLE}."LPD" ;;
   }
 
@@ -53,6 +55,7 @@ view: alunos_cobranca_radar {
     type: sum
     label: "Valor em atraso"
     value_format: "$ #,##0.00"
+    description: "Valor em atraso do aluno"
     sql: ${TABLE}."VLR_EM_ATRASO" ;;
   }
 
@@ -60,42 +63,49 @@ view: alunos_cobranca_radar {
     type: sum
     label: "Valor Total"
     value_format: "$ #,##0.00"
+    description: "Valor total da divida do aluno"
     sql: ${TABLE}."VLR_TOTAL" ;;
   }
 
   measure: atraso {
     type: sum
     label: "Atraso"
+    description: "Indica qual o atraso do aluno"
     sql: ${TABLE}."ATRASO" ;;
   }
 
   dimension: flag_inibidos {
     type: string
     label: "Flag Inibidos"
+    description: "Indica se o PRAVALER deve ou não seguir com a cobrança desse aluno"
     sql: ${TABLE}."FLAG_INIBIDOS" ;;
   }
 
   dimension: flag_promessa {
     type: string
     label: "Flag Promessa"
+    description: "Indica se o aluno possui acordo feito"
     sql: ${TABLE}."FLAG_PROMESSA" ;;
   }
 
   dimension: escritorio {
     type: string
     label: "Escritorio"
+    description: "Nome da empresa prestadora de serviço. Ex:Actionline, Pravaler, Flex"
     sql: ${TABLE}."ESCRITORIO" ;;
   }
 
   dimension: fundo {
     type: number
     label: "Fundo"
+    description: "Indica qual o fundo de investimento do aluno"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: behavior {
     type: string
     label: "Bahavior"
+    hidden: yes
     sql: ${TABLE}."BEHAVIOR" ;;
   }
 
@@ -153,6 +163,7 @@ view: alunos_cobranca_radar {
   dimension: faixa_valor_enquadramento {
     type: string
     label: "Faixa Valor Enquadramento"
+    description: "Faixa de valor em atraso que o aluno se encontra"
     sql: ${TABLE}."FAIXA_VALOR_ENQUADRAMENTO" ;;
   }
 
