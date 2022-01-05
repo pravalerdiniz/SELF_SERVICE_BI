@@ -159,7 +159,8 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date};;
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: left_outer
     relationship: many_to_one
   }
@@ -684,41 +685,52 @@ fields: [ALL_FIELDS *,
 
         ]
 
+
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
-  view_label: "1.1 Documentos Pendentes"
+  view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer
 }
 
   join: proposta_docs_entregues {
-    view_label: "1.2 Documentos Entregues"
+    view_label: "1.3 Documentos Entregues"
     sql_on: ${proposta_docs_entregues.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_motivo_rejeicao_docs {
-    view_label: "1.3 Documentos Rejeitados"
+    view_label: "1.4 Documentos Rejeitados"
     sql_on: ${proposta_motivo_rejeicao_docs.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
   join: instituicao_metas_gc {
-    view_label: "1.4 Metas GC"
+    view_label: "1.5 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_projeto_decola {
-    view_label: "1.5 Acordos - Projeto Decola"
+    view_label: "1.6 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
     ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
     ;;
     relationship: one_to_many
     type: left_outer
   }
+
+
+
 
 
 
@@ -775,6 +787,13 @@ join: proposta_docs_pendentes {
     type: left_outer
     relationship: one_to_many
 
+  }
+
+  join: atribuicao_nova {
+    view_label: "7. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
   }
 
 }
@@ -1317,11 +1336,42 @@ explore: atribuicao {}
 
 explore: atribuicao_nova {
   view_label: "Atribuição (Nova)"
+  fields: [ALL_FIELDS * ,
+    - proposta.vl_acordo,
+    - proposta.data_acordo,
+    - jornada.aluno_cpf,
+    - jornada.email_aluno,
+    - jornada.nome_aluno,
+    - jornada.celular_aluno,
+    - jornada.total_renov,
+    - alunos.ativo_ano_mes]
+
+join: proposta {
+  view_label: "Proposta"
+  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+}
+
+  join: jornada {
+    view_label: "Jornada"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: alunos_ativos_carteira {}
 
-explore: estoque_produtivo {
-  label: "Estoque Produtivo Jornada"
-  view_label: "Estoque Produtivo Jornada"
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
 }
