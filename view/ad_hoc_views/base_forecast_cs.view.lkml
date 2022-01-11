@@ -17,18 +17,23 @@ view: base_forecast_cs {
       quarter,
       year
     ]
-    convert_tz: no
-    datatype: date
-    group_item_label: "Data"
+    description: "Data do Forecast"
     sql: ${TABLE}."DATA" ;;
   }
 
-  dimension: contatos {
-    type: number
+  measure: contatos {
+    type: sum
     group_item_label: "Forecast Contatos"
     description: "Previsão de contatos dos contatos"
     sql: ${TABLE}."CONTATOS" ;;
   }
+
+  #dimension: contatos {
+    #type: number
+    #group_item_label: "Forecast Contatos"
+    #description: "Previsão de contatos dos contatos"
+    #sql: ${TABLE}."CONTATOS" ;;
+  #}
 
   dimension: chat {
     type: number
