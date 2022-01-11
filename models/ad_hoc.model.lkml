@@ -121,6 +121,11 @@ explore: orquestra {
     }
 }
 
+explore: base_forecast_cs {
+  label: "Forecast Contatos"
+}
+
+
 explore: base_trade {}
 
 explore: report_builder_cargas {}
@@ -213,6 +218,13 @@ explore: uni_prv {}
 
 explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
+
+
+
+}
+
+explore: base_ot_analise {
+  label: "Análise - Oliveira Trust"
 
 
 

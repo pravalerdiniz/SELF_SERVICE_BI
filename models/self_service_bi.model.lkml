@@ -421,7 +421,7 @@ explore: instituicao {
 
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao} and
         AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
     relationship: one_to_many
@@ -685,41 +685,52 @@ fields: [ALL_FIELDS *,
 
         ]
 
+
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
-  view_label: "1.1 Documentos Pendentes"
+  view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer
 }
 
   join: proposta_docs_entregues {
-    view_label: "1.2 Documentos Entregues"
+    view_label: "1.3 Documentos Entregues"
     sql_on: ${proposta_docs_entregues.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_motivo_rejeicao_docs {
-    view_label: "1.3 Documentos Rejeitados"
+    view_label: "1.4 Documentos Rejeitados"
     sql_on: ${proposta_motivo_rejeicao_docs.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
   join: instituicao_metas_gc {
-    view_label: "1.4 Metas GC"
+    view_label: "1.5 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_projeto_decola {
-    view_label: "1.5 Acordos - Projeto Decola"
+    view_label: "1.6 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
     ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
     ;;
     relationship: one_to_many
     type: left_outer
   }
+
+
+
 
 
 

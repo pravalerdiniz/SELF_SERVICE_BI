@@ -574,6 +574,7 @@ view: proposta {
 
   dimension: analise_ytd {
     type: yesno
+    group_label: "Dados da Cessão"
     label: "Concessão - YTD?"
     description: "Indica o acumulado no ano mês a mês."
     sql:
