@@ -9,6 +9,7 @@ view: base_forecast_cs {
 
   dimension_group: data {
     type: time
+    label: "Forecast"
     timeframes: [
       raw,
       date,
