@@ -57,7 +57,7 @@ view: base_forecast_cs {
     group_item_label: "TMA Chat"
     description: "Tempo médio de Atendimento do Chat em segundos"
     sql: ${TABLE}."TMA_SEGUNDOS_CHAT" ;;
-    value_format: "[hh]:mm:ss"
+    value_format: "hh:mm:[ss]"
   }
 
   measure: tma_segundos_ligacao {
@@ -65,7 +65,7 @@ view: base_forecast_cs {
     group_item_label: "TMA Ligação"
     description: "Tempo médio de Atendimento do Chat em segundos"
     sql: ${TABLE}."TMA_SEGUNDOS_LIGACAO" ;;
-    value_format: "[hh]:mm:ss"
+    value_format: "hh:mm:[ss]"
   }
 
 }
