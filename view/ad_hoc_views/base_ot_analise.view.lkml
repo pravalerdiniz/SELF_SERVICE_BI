@@ -111,7 +111,7 @@ view: base_ot_analise {
   }
 
   dimension: qtd_renovacao_realizada {
-    type: string
+    type: number
     label: "Quantidade de Renovações"
     description: "Indica a quantidade de renovações do aluno até o momento"
     sql: ${TABLE}."QTD_RENOVACAO_REALIZADA" ;;
