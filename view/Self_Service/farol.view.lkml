@@ -651,6 +651,18 @@ view: farol {
     sql: ${TABLE}."NOME_PRODUTO" ;;
   }
 
+  dimension: amigo_edu_fora {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."AMIGO_EDU_FORA" ;;
+  }
+
+
+  dimension: amigo_edu_dentro {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."AMIGO_EDU_dentro" ;;
+  }
 
   dimension: flg_ultima_carga {
     type: yesno
@@ -676,6 +688,25 @@ dimension: tempo_status {
     }
 
 
+  measure: sum_amigo_edu_fora {
+    type: sum
+    sql: ${amigo_edu_fora};;
+    label: "Amigo Edu - SLA Fora "
+    group_label: "AMIGO EDU"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+
+  }
+
+  measure: sum_amigo_edu_dentro {
+    type: sum
+    sql: ${amigo_edu_dentro};;
+    label: "Amigo Edu - SLA Dentro "
+    group_label: "AMIGO EDU"
+    drill_fields: [cpf,proposta,grupo_instituicao,nome_instituicao,id_produto,nome_produto,status,data_date,tempo_status]
+
+
+  }
 
 
     measure: status_2_90 {

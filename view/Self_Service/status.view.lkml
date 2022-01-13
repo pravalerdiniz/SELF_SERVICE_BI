@@ -368,6 +368,15 @@ view: status {
     }
 
 
+  dimension: FLUXO_STATUS {
+    type: string
+    sql: ${TABLE}."FLUXO_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Fluxo Status"
+    description: "Indica se o fluxo do status do aluno está certo ou errado."
+  }
+
+
 
  # dimension: TEMPO_DIAS_TRANS_STATUS {
 #    type: number
