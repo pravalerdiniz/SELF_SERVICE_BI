@@ -421,7 +421,7 @@ explore: instituicao {
 
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao} and
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
         AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
     relationship: one_to_many
