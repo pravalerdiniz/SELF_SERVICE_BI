@@ -9,6 +9,7 @@ view: base_forecast_cs {
 
   dimension_group: data {
     type: time
+    label: "Forecast"
     timeframes: [
       raw,
       date,
@@ -17,49 +18,47 @@ view: base_forecast_cs {
       quarter,
       year
     ]
-    convert_tz: no
-    datatype: date
-    group_item_label: "Data"
+    description: "Data do Forecast"
     sql: ${TABLE}."DATA" ;;
   }
 
-  dimension: contatos {
-    type: number
+  measure: contatos {
+    type: sum
     group_item_label: "Forecast Contatos"
     description: "Previsão de contatos dos contatos"
     sql: ${TABLE}."CONTATOS" ;;
   }
 
-  dimension: chat {
-    type: number
+  measure: chat {
+    type: sum
     group_item_label: "Forecast Chat"
     description: "Previsão de contatos do chat"
     sql: ${TABLE}."CHAT" ;;
   }
 
-  dimension: ligacao {
-    type: number
+  measure: ligacao {
+    type: sum
     group_item_label: "Forecast Ligação"
     description: "Previsão de contatos de voz"
     sql: ${TABLE}."LIGACAO" ;;
   }
 
-    dimension: whatsapp {
-      type: number
+    measure: whatsapp {
+      type: sum
       group_item_label: "Forecast WhatsApp"
       description: "Previsão de contatos de whatsApp"
       sql: ${TABLE}."WHATSAPP" ;;
     }
 
-  dimension: tma_segundos_chat {
-    type: number
+  measure: tma_segundos_chat {
+    type: average
     group_item_label: "TMA Chat"
     description: "Tempo médio de Atendimento do Chat em segundos"
     sql: ${TABLE}."TMA_SEGUNDOS_CHAT" ;;
   }
 
-  dimension: tma_segundos_ligacao {
-    type: number
+  measure: tma_segundos_ligacao {
+    type: average
     group_item_label: "TMA Ligação"
     description: "Tempo médio de Atendimento do Chat em segundos"
     sql: ${TABLE}."TMA_SEGUNDOS_LIGACAO" ;;

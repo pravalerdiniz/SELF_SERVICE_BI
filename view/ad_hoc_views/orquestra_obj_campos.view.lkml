@@ -9,6 +9,7 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Descrição da Solicitação"::varchar,T.VALUE:"Descrição da Solicitação:"::varchar)) descricao_da_solicitacao
     ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar,T.VALUE:"Qual área atende?"::varchar,T.VALUE:"Qual área será encaminhado?"::varchar)) area_responsavel
     ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
+    ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
       --group by 1,2  -- bkp Mari
@@ -74,6 +75,13 @@ view: orquestra_obj_campos {
     type: string
     sql: ${TABLE}."ASSUNTO_PRINCIPAL_DO_CONTATO" ;;
     label: "Assunto Principal do Contato"
+    #description: ""
+  }
+
+  dimension: solicitacao_correta{
+    type: yesno
+    sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
+    label: "Solicitação está correta?"
     #description: ""
   }
 
