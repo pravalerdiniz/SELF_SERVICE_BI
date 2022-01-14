@@ -12,6 +12,7 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
+      where nome_fila ilike 'P17%'
       --group by 1,2  -- bkp Mari
       group by 1
        ;;
