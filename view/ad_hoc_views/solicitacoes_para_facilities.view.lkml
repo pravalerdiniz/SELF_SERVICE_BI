@@ -2,7 +2,7 @@ view: solicitacoes_para_facilities {
   derived_table: {
     sql: select NUMERO_CHAMADO
     ,max(coalesce(T.VALUE:"Nome do Contato 1ª assinatura:"::varchar,T.VALUE:"Nome do Contato 1ª assinatura"::varchar)) nome_contato_1_assinatura
-    ,max(coalesce(T.VALUE:"Horário 2ª assinatura"::varchar,T.VALUE:"Horário 2ª assinatura:"::)) horario_2_assinatura
+    ,max(coalesce(T.VALUE:"Horário 2ª assinatura"::varchar,T.VALUE:"Horário 2ª assinatura:"::varchar)) horario_2_assinatura
     ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
     ,max(coalesce(T.VALUE:"Centro de Custo do solicitante"::varchar,T.VALUE:"Centro de Custo do solicitante:"::varchar)) centro_custo_solicitante
     ,max(coalesce(T.VALUE:"Qual a sua solicitação?"::varchar,T.VALUE:"Qual a sua solicitação?"::varchar)) solicitacao
@@ -11,6 +11,7 @@ view: solicitacoes_para_facilities {
     ,max(coalesce(T.VALUE:"Nome solicitante das assinaturas:"::varchar,T.VALUE:"Nome solicitante das assinaturas:"::varchar)) nome_solicitante_assinaturas
     from GRADUADO.AD_HOC.ORQUESTRA A,
     lateral flatten (input=>OBJ_CAMPOS) T
+     where nome_fila ilike 'P37%'
     group by 1
     ;;
   }
@@ -33,8 +34,8 @@ view: solicitacoes_para_facilities {
     hidden:  yes
   }
 
-  dimension: solicitacao_correta {
-    type: yesno
+  dimension: flg_solicitacao_correta {
+    type: string
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
     label: "Solicitação está correta?"
     #description: ""
@@ -47,7 +48,7 @@ view: solicitacoes_para_facilities {
     #description: ""
   }
   dimension: horario_2_assinatura {
-    type: number
+    type: string
     sql: ${TABLE}."HORARIO_2_ASSINATURA" ;;
     label: "Horario 2ª Assinatura"
     #description: ""
@@ -93,7 +94,7 @@ view: solicitacoes_para_facilities {
     fields: [
       numero_chamado,
       nome_task,
-      solicitacao_correta,
+      flg_solicitacao_correta,
       nome_contato_1_assinatura,
       horario_2_assinatura,
       centro_custo_solicitante,
