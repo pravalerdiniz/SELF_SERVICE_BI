@@ -119,6 +119,14 @@ explore: orquestra {
     relationship: one_to_one
     view_label: "Informações adicionais"
     }
+
+  join: solicitacoes_para_facilities {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Solicitações para Facilities"
+  }
 }
 
 explore: base_forecast_cs {
