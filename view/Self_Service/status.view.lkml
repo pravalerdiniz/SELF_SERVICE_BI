@@ -465,7 +465,6 @@ view: status {
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
-    value_format: "0"
     label: "Quantidade de CPFs"
     drill_fields: [cpf_aluno, id_proposta, aluno_nome,
       aluno_email,
