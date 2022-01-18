@@ -20,7 +20,7 @@ view: solicitacoes_para_facilities {
     ,max(coalesce(T.VALUE:"Endereço 1ª assinatura:"::varchar,T.VALUE:"Endereço 1ª assinatura:"::varchar)) endereco_1_assinatura
     ,max(coalesce(T.VALUE:"Horário da coleta:"::varchar,T.VALUE:"Horário da coleta:"::varchar)) horario_coleta
     ,max(coalesce(T.VALUE:"Nome do Contato de coleta:"::varchar,T.VALUE:"Nome do Contato de coleta:"::varchar)) nome_contato_coleta
-    ,max(coalesce(T.VALUE:"O documento está impresso?":::varchar,T.VALUE:"O documento está impresso?":::varchar)) flg_documento_impresso
+    ,max(coalesce(T.VALUE:"O documento está impresso?"::varchar,T.VALUE:"O documento está impresso?"::varchar)) flg_documento_impresso
     ,max(coalesce(T.VALUE:"Data de coleta:"::varchar,T.VALUE:"Data de coleta:"::varchar)) data_coleta
     ,max(coalesce(T.VALUE:"Tel de contato 2ª assinatura:"::varchar,T.VALUE:"Tel de contato 2ª assinatura:"::varchar)) tel_contato_2_assinatura
     ,max(coalesce(T.VALUE:"Qual a data que ele irá receber:"::varchar,T.VALUE:"Qual a data que ele irá receber:"::varchar)) data_recebimento
@@ -28,6 +28,24 @@ view: solicitacoes_para_facilities {
     ,max(coalesce(T.VALUE:"Data 2ª assinatura:"::varchar,T.VALUE: "Data 2ª assinatura:"::varchar)) data_2_assinatura
     ,max(coalesce(T.VALUE:"Tel contato 1ª assinatura:"::varchar,T.VALUE:"Tel contato 1ª assinatura:"::varchar)) tel_contato_1_assinatura
     ,max(coalesce(T.VALUE:"Data 1ª assinatura:"::varchar,T.VALUE: "Data 1ª assinatura:"::varchar)) data_1_assinatura
+
+    ,max(coalesce(T.VALUE:"Prazo para retirar o pacote na casa do solicitante::"::varchar,T.VALUE:"Prazo para retirar o pacote na casa do solicitante:"::varchar)) prazo_retirada_solicitante
+    ,max(coalesce(T.VALUE:"Código de rastreio:"::varchar,T.VALUE:"Código de rastreio:"::varchar)) codigo_rastreio
+    ,max(coalesce(T.VALUE:"Solicitante recebeu a entrega?"::varchar,T.VALUE:"Solicitante recebeu a entrega?"::varchar)) flg_solicitante_recebeu
+    ,max(coalesce(T.VALUE:"Vai usar o serviço de correios?"::varchar,T.VALUE:"Vai usar o serviço de correios?"::varchar)) flg_servico_correios
+    ,max(coalesce(T.VALUE:"Haverá devolução de equipamento?"::varchar,T.VALUE:"Haverá devolução de equipamento?"::varchar)) flg_devolucao_equipamento
+    ,max(coalesce(T.VALUE:"Data limite de entrega via correios:"::varchar,T.VALUE:"Data limite de entrega via correios:"::varchar)) data_limite_entrega_correios
+    ,max(coalesce(T.VALUE:"Endereço de entrega:"::varchar,T.VALUE:"Endereço de entrega:"::varchar)) endereco_entrega
+    ,max(coalesce(T.VALUE:"Data limite de entrega:"::varchar,T.VALUE:"Data limite de entrega:"::varchar)) data_limite_entrega
+    ,max(coalesce(T.VALUE:"Código de postagem dos correios:"::varchar,T.VALUE:"Código de postagem dos correios:"::varchar)) codigo_postagem_correios
+    ,max(coalesce(T.VALUE:"Nome do Solicitante:"::varchar,T.VALUE:"Nome do Solicitante:"::varchar)) nome_solicitante
+    ,max(coalesce(T.VALUE:"Nome do Contato onde será entregue:"::varchar,T.VALUE:"Nome do Contato onde será entregue:"::varchar)) nome_contato_entrega
+    ,max(coalesce(T.VALUE:"Horário da entrega:"::varchar,T.VALUE:"Horário da entrega:"::varchar)) horario_entrega
+    ,max(coalesce(T.VALUE:"Telefone do contato de entrega:"::varchar,T.VALUE:"Telefone do contato de entrega:"::varchar)) tel_contato_entrega
+    ,max(coalesce(T.VALUE:"Quem vai retirar o pacote para envio?"::varchar,T.VALUE:"Quem vai retirar o pacote para envio?"::varchar)) nome_retirar_pacote_envio
+    ,max(coalesce(T.VALUE:"Correios fez a retirada?"::varchar,T.VALUE:"Correios fez a retirada?:"::varchar)) flg_correios_retirou
+    ,max(coalesce(T.VALUE:"O que será transportado:"::varchar,T.VALUE:"O que será transportado:"::varchar)) obj_transportado
+    ,max(coalesce(T.VALUE:"Data que a entrega foi realizada:"::varchar,T.VALUE:"Data que a entrega foi realizada:"::varchar)) data_entrega
         from GRADUADO.AD_HOC.ORQUESTRA A,
     lateral flatten (input=>OBJ_CAMPOS) T
      where nome_fila ilike 'P37%'
@@ -56,194 +74,357 @@ view: solicitacoes_para_facilities {
   dimension: flg_solicitacao_correta {
     type: string
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
-    label: "Solicitação está correta?"
+    group_item_label: "Solicitação está correta?"
+    group_label: "Informações Solicitante"
+
     #description: ""
   }
 
   dimension: nome_contato_1_assinatura {
     type: string
     sql: ${TABLE}."NOME_CONTATO_1_ASSINATURA" ;;
-    label: "Nome do Contato 1ª Assinatura"
+    group_item_label:"Nome do Contato 1ª Assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
   dimension: horario_2_assinatura {
     type: string
     sql: ${TABLE}."HORARIO_2_ASSINATURA" ;;
-    label: "Horario 2ª Assinatura"
+    group_item_label: "Horario 2ª Assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: centro_custo_solicitante {
     type: string
     sql: ${TABLE}."CENTRO_CUSTO_SOLICITANTE" ;;
-    label: "Centro de Custo do Solicitante"
+    group_item_label: "Centro de Custo do Solicitante"
+    group_label: "Informações Solicitante"
     #description: ""
   }
 
   dimension: qual_solicitacao {
     type: string
     sql: ${TABLE}."QUAL_SOLICITACAO" ;;
-    label: "Qual a sua solicitação?"
+    group_item_label: "Qual a sua solicitação?"
+    group_label: "Informações Solicitante"
     #description: ""
   }
 
   dimension: endereco_coleta {
     type: string
     sql: ${TABLE}."ENDERECO_COLETA" ;;
-    label: "Endereço de Coleta"
+    group_label: "Dados Coleta"
+    group_item_label: "Endereço de Coleta"
     #description: ""
   }
 
   dimension: tel_contato_coleta {
     type: string
     sql: ${TABLE}."TEL_CONTATO_COLETA" ;;
-    label: "Telefone do contato de Coleta"
-    #description: ""
-  }
-  dimension: nome_solicitante_assinaturas {
-    type: string
-    sql: ${TABLE}."NOME_SOLICITANTE_ASSINATURAS" ;;
-    label: "Nome solicitante das assinaturas"
+    group_item_label: "Telefone do contato de Coleta"
+    group_label: "Dados Coleta"
     #description: ""
   }
 
   dimension: endereco_completo {
     type: string
     sql: ${TABLE}."ENDERECO_COMPLETO" ;;
-    label: "Endereço completo"
+    group_item_label: "Endereço completo"
+    group_label: "Informações Solicitante"
     #description: ""
   }
 
   dimension: obs_analise {
     type: string
     sql: ${TABLE}."OBS_ANALISE" ;;
-    label: "Observações da analise"
+    group_item_label: "Observações da analise"
+    group_label: "Informações Solicitante"
     #description: ""
   }
 
   dimension: nome_contato_2_assinatura {
     type: string
     sql: ${TABLE}."NOME_CONTATO_2_ASSINATURA" ;;
-    label: "Nome do contato 2ª assinatura"
+    group_item_label: "Nome do contato 2ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: endereco_2_assinatura {
     type: string
     sql: ${TABLE}."ENDERECO_2_ASSINATURA" ;;
-    label: "Endereço 2ª assinatura"
+    group_item_label: "Endereço 2ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: flg_assinatura_diretor {
     type: string
     sql: ${TABLE}."FLG_ASSINATURA_DIRETOR" ;;
-    label: "Precisará de assinatura de Diretor/Comex?"
+    group_item_label: "Precisará de assinatura de Diretor/Comex?"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: horario_recebimento {
     type: string
     sql: ${TABLE}."HORARIO_RECEBIMENTO" ;;
-    label: "Horário de recebimento"
+    group_item_label: "Horário de recebimento"
+    group_label: "Dados Entrega"
     #description: ""
   }
 
   dimension: horario_1_assinatura {
     type: string
     sql: ${TABLE}."HORARIO_1_ASSINATURA" ;;
-    label: "Horário 1ª assinatura"
+    group_item_label: "Horário 1ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: flg_servico_cartorio {
     type: string
     sql: ${TABLE}."FLG_SERVICO_CARTORIO" ;;
-    label: "Vai precisar de serviço de cartório?"
+    group_item_label: "Vai precisar de serviço de cartório?"
+    group_label: "Informações Solicitante"
     #description: ""
   }
 
   dimension: tel_contato_a_receber {
     type: string
     sql: ${TABLE}."TEL_CONTATO_A_RECEBER" ;;
-    label: "Tel do contato que irá receber"
+    group_item_label: "Tel do contato que irá receber"
+    group_label: "Dados Entrega"
     #description: ""
   }
 
   dimension: endereco_1_assinatura {
     type: string
     sql: ${TABLE}."ENDERECO_1_ASSINATURA" ;;
-    label: "Endereço 1ª assinatura"
+    group_item_label: "Endereço 1ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: horario_coleta {
     type: string
     sql: ${TABLE}."HORARIO_COLETA" ;;
-    label: "Horário da coleta"
+    group_label: "Dados Coleta"
+    group_item_label: "Horário da coleta"
     #description: ""
   }
 
   dimension: nome_contato_coleta {
     type: string
     sql: ${TABLE}."NOME_CONTATO_COLETA" ;;
-    label: "Nome do Contato de coleta"
+    group_item_label: "Nome do Contato de coleta"
+    group_label: "Dados Coleta"
     #description: ""
   }
 
   dimension: flg_documento_impresso {
     type: string
     sql: ${TABLE}."FLG_DOCUMENTO_IMPRESSO" ;;
-    label: "O documento está impresso?"
+    group_item_label: "O documento está impresso?"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: data_coleta {
     type: string
     sql: ${TABLE}."DATA_COLETA" ;;
-    label: "Data de coleta"
+    group_item_label: "Data de coleta"
+    group_label: "Dados Coleta"
     #description: ""
   }
 
   dimension: tel_contato_2_assinatura {
     type: string
     sql: ${TABLE}."TEL_CONTATO_2_ASSINATURA" ;;
-    label: "Tel de contato 2ª assinatura"
+    group_item_label: "Tel de contato 2ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: data_recebimento {
     type: string
     sql: ${TABLE}."DATA_RECEBIMENTO" ;;
-    label: "Qual a data que ele irá receber"
+    group_item_label: "Qual a data que ele irá receber"
+    group_label: "Dados Entrega"
     #description: ""
   }
 
   dimension: nome_contato_recebimento_final {
     type: string
     sql: ${TABLE}."NOME_CONTATO_RECEBIMENTO_FINAL" ;;
-    label: "Nome do Contato que irá receber o documento final"
+    group_item_label: "Nome do Contato que irá receber o documento final"
+    group_label: "Dados Entrega"
     #description: ""
   }
 
   dimension: data_2_assinatura {
     type: string
     sql: ${TABLE}."DATA_2_ASSINATURA" ;;
-    label: "Data 2ª assinatura"
+    group_item_label: "Data 2ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: tel_contato_1_assinatura {
     type: string
     sql: ${TABLE}."TEL_CONTATO_1_ASSINATURA" ;;
-    label: "Tel contato 1ª assinatura"
+    group_item_label: "Tel contato 1ª assinatura"
+    group_label: "Dados Documentos"
     #description: ""
   }
 
   dimension: data_1_assinatura {
     type: string
     sql: ${TABLE}."DATA_1_ASSINATURA" ;;
-    label: "Data 1ª assinatura"
+    group_item_label: "Data 1ª assinatura"
+    group_label: "Dados Documentos"
+    #description: ""
+  }
+
+
+
+
+
+
+  dimension: prazo_retirada_solicitante {
+    type: string
+    sql: ${TABLE}."PRAZO_RETIRADA_SOLICITANTE" ;;
+    group_item_label: "Prazo para retirar o pacote na casa do solicitante:"
+    group_label: "Dados Coleta"
+    #description: ""
+  }
+
+  dimension: codigo_rastreio {
+    type: string
+    sql: ${TABLE}."CODIGO_RASTREIO" ;;
+    group_item_label: "Código de rastreio:"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: flg_solicitante_recebeu {
+    type: yesno
+    sql: ${TABLE}."FLG_SOLICITANTE_RECEBEU" ;;
+    group_item_label: "Solicitante recebeu a entrega?"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: flg_servico_correios {
+    type: string
+    sql: ${TABLE}."FLG_SERVICO_CORREIOS" ;;
+    group_item_label: "Vai usar o serviço de correios?"
+    group_label: "Dados Correios"
+    #description: ""
+  }
+
+  dimension: flg_devolucao_equipamento {
+    type: string
+    sql: ${TABLE}."FLG_DEVOLUCAO_EQUIPAMENTO" ;;
+    group_item_label: "Haverá devolução de equipamento?"
+    group_label: "Informações Solicitante"
+    #description: ""
+  }
+
+  dimension: data_limite_entrega_correios {
+    type: string
+    sql: ${TABLE}."DATA_LIMITE_ENTREGA_CORREIOS" ;;
+    group_item_label: "Data limite de entrega via correios"
+    group_label: "Dados Correios"
+    #description: ""
+  }
+
+  dimension: endereco_entrega {
+    type: string
+    sql: ${TABLE}."ENDERECO_ENTREGA" ;;
+    group_item_label:: "Endereço de entrega"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: data_limite_entrega {
+    type: string
+    sql: ${TABLE}."DATA_LIMITE_ENTREGA" ;;
+    group_item_label: "Data limite de entrega"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: codigo_postagem_correios {
+    type: string
+    sql: ${TABLE}."CODIGO_POSTAGEM_CORREIOS" ;;
+    group_item_label: "Código de postagem dos correios"
+    group_label: "Dados Correios"
+    #description: ""
+  }
+
+  dimension: nome_solicitante {
+    type: string
+    sql: ${TABLE}."NOME_SOLICITANTE" ;;
+    group_item_label: "Nome do Solicitante"
+    group_label: "Informações Solicitante"
+    #description: ""
+  }
+
+   dimension: nome_contato_entrega {
+    type: string
+    sql: ${TABLE}."NOME_CONTATO_ENTREGA" ;;
+    group_item_label: "Nome do Contato onde será entregue"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: horario_entrega {
+    type: string
+    sql: ${TABLE}."HORARIO_ENTREGA" ;;
+    group_item_label: "Horário da entrega"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: tel_contato_entrega {
+    type: string
+    sql: ${TABLE}."TEL_CONTATO_ENTREGA" ;;
+    group_item_label: "Telefone do contato de entrega"
+    group_label: "Dados Entrega"
+    #description: ""
+  }
+
+  dimension: nome_retirar_pacote_envio {
+    type: string
+    sql: ${TABLE}."NOME_RETIRAR_PACOTE_ENVIO" ;;
+    group_item_label: "Quem vai retirar o pacote para envio?"
+    group_label: "Dados Coleta"
+    #description: ""
+  }
+
+  dimension: flg_correios_retirou {
+    type: string
+    sql: ${TABLE}."FLG_CORREIOS_RETIROU" ;;
+    group_item_label: "Correios fez a retirada?"
+    group_label: "Dados Correios"
+    #description: ""
+  }
+
+  dimension: obj_transportado {
+    type: string
+    sql: ${TABLE}."OBJ_TRANSPORTADO" ;;
+    group_item_label: "O que será transportado"
+    group_label: "Dados Coleta"
+    #description: ""
+  }
+
+  dimension: data_entrega {
+    type: string
+    sql: ${TABLE}."DATA_ENTREGA" ;;
+    group_item_label: "Data que a entrega foi realizada"
+    group_label: "Dados Entrega"
     #description: ""
   }
 
@@ -260,7 +441,6 @@ view: solicitacoes_para_facilities {
       qual_solicitacao,
       endereco_coleta,
       tel_contato_coleta,
-      nome_solicitante_assinaturas,
       endereco_completo,
       obs_analise,
       nome_contato_2_assinatura,
@@ -280,8 +460,24 @@ view: solicitacoes_para_facilities {
       nome_contato_recebimento_final,
       data_2_assinatura,
       tel_contato_1_assinatura,
-      data_1_assinatura
-
+      data_1_assinatura,
+      prazo_retirada_solicitante,
+      codigo_rastreio,
+      flg_solicitante_recebeu,
+      flg_servico_correios,
+      flg_devolucao_equipamento,
+      data_limite_entrega_correios,
+      endereco_entrega,
+      data_limite_entrega,
+      codigo_postagem_correios,
+      nome_solicitante,
+      nome_contato_entrega,
+      horario_entrega,
+      tel_contato_entrega,
+      nome_retirar_pacote_envio,
+      flg_correios_retirou,
+      obj_transportado,
+      data_entrega
     ]
   }
 }
