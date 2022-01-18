@@ -405,6 +405,14 @@ explore: instituicao {
 
   }
 
+  join: produto_ies_snapshot {
+    view_label: "1.1. Contrato da Instituição por Produto - (Histórico)"
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
