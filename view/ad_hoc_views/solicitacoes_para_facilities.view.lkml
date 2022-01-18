@@ -309,7 +309,7 @@ view: solicitacoes_para_facilities {
   }
 
   dimension: flg_solicitante_recebeu {
-    type: yesno
+    type: string
     sql: ${TABLE}."FLG_SOLICITANTE_RECEBEU" ;;
     group_item_label: "Solicitante recebeu a entrega?"
     group_label: "Dados Entrega"
