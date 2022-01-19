@@ -1,6 +1,6 @@
 view: solicitacoes_para_facilities_p51 {
   derived_table: {
-   sql: select NUMERO_CHAMADO
+    sql: select NUMERO_CHAMADO
     ,max(coalesce(T.VALUE:"Campo auxiliar analista solicitante"::varchar,T.VALUE:"campoauxiliaranalistasolicitante"::varchar)) campo_auxiliar_analista_solicitante
     ,max(coalesce(T.VALUE:"Nome do Solicitante"::varchar,T.VALUE:"Nome do Solicitante"::varchar)) nome_solicitante
     ,max(coalesce(T.VALUE:"Justificativa"::varchar,T.VALUE:"Justificativa"::varchar)) justificativa
@@ -142,8 +142,8 @@ view: solicitacoes_para_facilities_p51 {
 
   set: detail {
     fields: [
-      nome_task,
       numero_chamado,
+      nome_task,
       campo_auxiliar_analista_solicitante,
       nome_solicitante,
       justificativa,
