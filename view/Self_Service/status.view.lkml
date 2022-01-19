@@ -374,7 +374,7 @@ view: status {
     group_label: "Dados do Status"
     label: "Fluxo Status"
     description: "Indica se o fluxo do status do aluno está certo ou errado."
-    drill_fields: [id_cpf,id_proposta,motivo_alteracao,status_origem_geral,status_destino_geral,nm_usuario,id_usuario,dt_status_date,]
+    drill_fields: [id_cpf,id_proposta,motivo_alteracao,status_origem_geral,status_destino_geral,nm_usuario,id_usuario,dt_status_date]
   }
 
 
