@@ -1,25 +1,24 @@
 view: solicitacoes_para_facilities_p51 {
   derived_table: {
     sql: select NUMERO_CHAMADO
-    ,max(coalesce(T.VALUE:"Campo auxiliar analista solicitante"::varchar,T.VALUE:"campoauxiliaranalistasolicitante"::varchar)) campo_auxiliar_analista_solicitante
-    ,max(coalesce(T.VALUE:"Nome do Solicitante"::varchar,T.VALUE:"Nome do Solicitante"::varchar)) nome_solicitante
-    ,max(coalesce(T.VALUE:"Justificativa"::varchar,T.VALUE:"Justificativa"::varchar)) justificativa
+    ,max(coalesce(T.VALUE:"campoauxiliaranalistasolicitante"::varchar,T.VALUE:"campoauxiliaranalistasolicitante"::varchar)) campo_auxiliar_analista_solicitante
+    ,max(coalesce(T.VALUE:"Nome do Solicitante:"::varchar,T.VALUE:"Nome do Solicitante:"::varchar)) nome_solicitante
+    ,max(coalesce(T.VALUE:"Justificativa:"::varchar,T.VALUE:"Justificativa:"::varchar)) justificativa
     ,max(coalesce(T.VALUE:"Precisa solicitar Motoboy/Correios?"::varchar,T.VALUE:"Precisa solicitar Motoboy/Correios?"::varchar)) flg_precisa_motoboy_correios
-    ,max(coalesce(T.VALUE:"Centro de Custo do Solicitante"::varchar,T.VALUE:"Centro de Custo do Solicitante"::varchar)) centro_custo_solicitante
-    ,max(coalesce(T.VALUE:"Número da linha com DDD"::varchar,T.VALUE:"Número da linha com DDD"::varchar)) numero_linha_ddd
-    ,max(coalesce(T.VALUE:"Nome do Gestor Responsável"::varchar,T.VALUE:"Nome do Gestor Responsável"::varchar)) nome_gestor_responsavel
-    ,max(coalesce(T.VALUE:"Observações da análise do Gestor"::varchar,T.VALUE:"Observações da análise do Gestor"::varchar)) obs_analise_gestor
+    ,max(coalesce(T.VALUE:"Centro de Custo do Solicitante:"::varchar,T.VALUE:"Centro de Custo do Solicitante:"::varchar)) centro_custo_solicitante
+    ,max(coalesce(T.VALUE:"Número da linha com DDD:"::varchar,T.VALUE:"Número da linha com DDD:"::varchar)) numero_linha_ddd
+    ,max(coalesce(T.VALUE:"Nome do Gestor Responsável:"::varchar,T.VALUE:"Nome do Gestor Responsável:"::varchar)) nome_gestor_responsavel
+    ,max(coalesce(T.VALUE:"Observações da análise do Gestor:"::varchar,T.VALUE:"Observações da análise do Gestor:"::varchar)) obs_analise_gestor
     ,max(coalesce(T.VALUE:"Qual a sua solicitação?"::varchar,T.VALUE:"Qual a sua solicitação?"::varchar)) qual_solicitacao
-    ,max(coalesce(T.VALUE:"Conclusão da solicitação"::varchar,T.VALUE:"Conclusão da solicitação"::varchar)) conclusao_solicitacao
-    ,max(coalesce(T.VALUE:"Serviço a ser ativado"::varchar,T.VALUE:"Serviço a ser ativado"::varchar)) servico_ativado
-    ,max(coalesce(T.VALUE:"Nome de usuário"::varchar,T.VALUE:"Nome de usuári"::varchar)) nome_usuario
-    ,max(coalesce(T.VALUE:"Observações da análise de Facilities"::varchar,T.VALUE:"Observações da análise de Facilities"::varchar)) obs_analise_facilities
+    ,max(coalesce(T.VALUE:"Conclusão da solicitação:"::varchar,T.VALUE:"Conclusão da solicitação:"::varchar)) conclusao_solicitacao
+    ,max(coalesce(T.VALUE:"Serviço a ser ativado:"::varchar,T.VALUE:"Serviço a ser ativado:"::varchar)) servico_ativado
+    ,max(coalesce(T.VALUE:"Nome de usuário:"::varchar,T.VALUE:"Nome de usuário:"::varchar)) nome_usuario
+    ,max(coalesce(T.VALUE:"Observações da análise de Facilities:"::varchar,T.VALUE:"Observações da análise de Facilities:"::varchar)) obs_analise_facilities
     ,max(coalesce(T.VALUE:"Especifique os requerimentos do novo aparelho:"::varchar,T.VALUE:"Especifique os requerimentos do novo aparelho:"::varchar)) esp_requerimentos_novo_aparelho
     ,max(coalesce(T.VALUE:"Qual deverá ser o DDD da linha?"::varchar,T.VALUE:"Qual deverá ser o DDD da linha?"::varchar)) qual_ddd
     ,max(coalesce(T.VALUE:"Endereço para coleta:"::varchar,T.VALUE:"Endereço para coleta:"::varchar)) endereco_coleta
     ,max(coalesce(T.VALUE:"Especifique o problema:"::varchar,T.VALUE:"Especifique o problema:"::varchar)) esp_problema
     ,max(coalesce(T.VALUE:"Data para coleta:"::varchar,T.VALUE:"Data para coleta:"::varchar)) data_coleta
-    ,max(coalesce(T.VALUE:"Serviço a ser ativado:"::varchar,T.VALUE:"Serviço a ser ativado:"::varchar)) servico_ativar
     ,max(coalesce(T.VALUE:"Marca/Modelo:"::varchar,T.VALUE:"Marca/Modelo:"::varchar)) marca_modelo
     ,max(coalesce(T.VALUE:"Precisa de backup?"::varchar,T.VALUE:"Precisa de backup?"::varchar)) flg_precisa_backup
     ,max(coalesce(T.VALUE:"Endereço de entrega:"::varchar,T.VALUE:"Endereço de entrega:"::varchar)) endereco_entrega

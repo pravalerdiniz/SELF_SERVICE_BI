@@ -1,10 +1,10 @@
 view: solicitacoes_para_facilities {
   derived_table: {
     sql: select NUMERO_CHAMADO
-    ,max(coalesce(T.VALUE:"Nome do Contato 1ª assinatura:"::varchar,T.VALUE:"Nome do Contato 1ª assinatura"::varchar)) nome_contato_1_assinatura
-    ,max(coalesce(T.VALUE:"Horário 2ª assinatura"::varchar,T.VALUE:"Horário 2ª assinatura:"::varchar)) horario_2_assinatura
+    ,max(coalesce(T.VALUE:"Nome do Contato 1ª assinatura:"::varchar,T.VALUE:"Nome do Contato 1ª assinatura:"::varchar)) nome_contato_1_assinatura
+    ,max(coalesce(T.VALUE:"Horário 2ª assinatura:"::varchar,T.VALUE:"Horário 2ª assinatura:"::varchar)) horario_2_assinatura
     ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
-    ,max(coalesce(T.VALUE:"Centro de Custo do solicitante"::varchar,T.VALUE:"Centro de Custo do solicitante:"::varchar)) centro_custo_solicitante
+    ,max(coalesce(T.VALUE:"Centro de Custo do solicitante:"::varchar,T.VALUE:"Centro de Custo do solicitante:"::varchar)) centro_custo_solicitante
     ,max(coalesce(T.VALUE:"Qual a sua solicitação?"::varchar,T.VALUE:"Qual a sua solicitação?"::varchar)) qual_solicitacao
     ,max(coalesce(T.VALUE:"Endereço de coleta:"::varchar,T.VALUE:"Endereço de coleta:"::varchar)) endereco_coleta
     ,max(coalesce(T.VALUE:"Telefone do contato de coleta:"::varchar,T.VALUE:"Telefone do contato de coleta:"::varchar)) tel_contato_coleta
@@ -29,7 +29,7 @@ view: solicitacoes_para_facilities {
     ,max(coalesce(T.VALUE:"Tel contato 1ª assinatura:"::varchar,T.VALUE:"Tel contato 1ª assinatura:"::varchar)) tel_contato_1_assinatura
     ,max(coalesce(T.VALUE:"Data 1ª assinatura:"::varchar,T.VALUE: "Data 1ª assinatura:"::varchar)) data_1_assinatura
 
-    ,max(coalesce(T.VALUE:"Prazo para retirar o pacote na casa do solicitante::"::varchar,T.VALUE:"Prazo para retirar o pacote na casa do solicitante:"::varchar)) prazo_retirada_solicitante
+    ,max(coalesce(T.VALUE:"Prazo para retirar o pacote na casa do solicitante:"::varchar,T.VALUE:"Prazo para retirar o pacote na casa do solicitante:"::varchar)) prazo_retirada_solicitante
     ,max(coalesce(T.VALUE:"Código de rastreio:"::varchar,T.VALUE:"Código de rastreio:"::varchar)) codigo_rastreio
     ,max(coalesce(T.VALUE:"Solicitante recebeu a entrega?"::varchar,T.VALUE:"Solicitante recebeu a entrega?"::varchar)) flg_solicitante_recebeu
     ,max(coalesce(T.VALUE:"Vai usar o serviço de correios?"::varchar,T.VALUE:"Vai usar o serviço de correios?"::varchar)) flg_servico_correios
@@ -43,7 +43,7 @@ view: solicitacoes_para_facilities {
     ,max(coalesce(T.VALUE:"Horário da entrega:"::varchar,T.VALUE:"Horário da entrega:"::varchar)) horario_entrega
     ,max(coalesce(T.VALUE:"Telefone do contato de entrega:"::varchar,T.VALUE:"Telefone do contato de entrega:"::varchar)) tel_contato_entrega
     ,max(coalesce(T.VALUE:"Quem vai retirar o pacote para envio?"::varchar,T.VALUE:"Quem vai retirar o pacote para envio?"::varchar)) nome_retirar_pacote_envio
-    ,max(coalesce(T.VALUE:"Correios fez a retirada?"::varchar,T.VALUE:"Correios fez a retirada?:"::varchar)) flg_correios_retirou
+    ,max(coalesce(T.VALUE:"Correios fez a retirada?"::varchar,T.VALUE:"Correios fez a retirada?"::varchar)) flg_correios_retirou
     ,max(coalesce(T.VALUE:"O que será transportado:"::varchar,T.VALUE:"O que será transportado:"::varchar)) obj_transportado
     ,max(coalesce(T.VALUE:"Data que a entrega foi realizada:"::varchar,T.VALUE:"Data que a entrega foi realizada:"::varchar)) data_entrega
         from GRADUADO.AD_HOC.ORQUESTRA A,
