@@ -1,14 +1,6 @@
 view: solicitacoes_para_facilities_p51 {
   derived_table: {
    sql: select NUMERO_CHAMADO
-    ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria"::varchar)) categoria
-    ,max(coalesce(T.VALUE:"Nome do Aluno"::varchar,T.VALUE:"Nome do Aluno:"::varchar,T.VALUE:"Nome Completo do Aluno:"::varchar,T.VALUE:"Nome do aluno:"::varchar)) nome_do_aluno
-    ,max(coalesce(T.VALUE:"IES do Aluno"::varchar,T.VALUE:"IES do Aluno:"::varchar)) ies_do_aluno
-    ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo de Contato:"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) motivo_de_contato
-    ,max(coalesce(T.VALUE:"Descrição da Solicitação"::varchar,T.VALUE:"Descrição da Solicitação:"::varchar)) descricao_da_solicitacao
-    ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar,T.VALUE:"Qual área atende?"::varchar,T.VALUE:"Qual área será encaminhado?"::varchar)) area_responsavel
-    ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
-    ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
     ,max(coalesce(T.VALUE:"Campo auxiliar analista solicitante"::varchar,T.VALUE:"campoauxiliaranalistasolicitante"::varchar)) campo_auxiliar_analista_solicitante
     ,max(coalesce(T.VALUE:"Nome do Solicitante"::varchar,T.VALUE:"Nome do Solicitante"::varchar)) nome_solicitante
     ,max(coalesce(T.VALUE:"Justificativa"::varchar,T.VALUE:"Justificativa"::varchar)) justificativa
@@ -22,6 +14,15 @@ view: solicitacoes_para_facilities_p51 {
     ,max(coalesce(T.VALUE:"Serviço a ser ativado"::varchar,T.VALUE:"Serviço a ser ativado"::varchar)) servico_ativado
     ,max(coalesce(T.VALUE:"Nome de usuário"::varchar,T.VALUE:"Nome de usuári"::varchar)) nome_usuario
     ,max(coalesce(T.VALUE:"Observações da análise de Facilities"::varchar,T.VALUE:"Observações da análise de Facilities"::varchar)) obs_analise_facilities
+    ,max(coalesce(T.VALUE:"Especifique os requerimentos do novo aparelho:"::varchar,T.VALUE:"Especifique os requerimentos do novo aparelho:"::varchar)) esp_requerimentos_novo_aparelho
+    ,max(coalesce(T.VALUE:"Qual deverá ser o DDD da linha?"::varchar,T.VALUE:"Qual deverá ser o DDD da linha?"::varchar)) qual_ddd
+    ,max(coalesce(T.VALUE:"Endereço para coleta:"::varchar,T.VALUE:"Endereço para coleta:"::varchar)) endereco_coleta
+    ,max(coalesce(T.VALUE:"Especifique o problema:"::varchar,T.VALUE:"Especifique o problema:"::varchar)) esp_problema
+    ,max(coalesce(T.VALUE:"Data para coleta:"::varchar,T.VALUE:"Data para coleta:"::varchar)) data_coleta
+    ,max(coalesce(T.VALUE:"Serviço a ser ativado:"::varchar,T.VALUE:"Serviço a ser ativado:"::varchar)) servico_ativar
+    ,max(coalesce(T.VALUE:"Marca/Modelo:"::varchar,T.VALUE:"Marca/Modelo:"::varchar)) marca_modelo
+    ,max(coalesce(T.VALUE:"Precisa de backup?"::varchar,T.VALUE:"Precisa de backup?"::varchar)) flg_precisa_backup
+    ,max(coalesce(T.VALUE:"Endereço de entrega:"::varchar,T.VALUE:"Endereço de entrega:"::varchar)) endereco_entrega
         from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
       where nome_fila ilike 'P51%'
@@ -33,251 +34,116 @@ view: solicitacoes_para_facilities_p51 {
   measure: count {
     type: count
     drill_fields: [detail*]
-  }
-
-  dimension: nome_fila {
-    type: string
-    sql: ${TABLE}."NOME_FILA" ;;
+    hidden: yes
   }
 
   dimension: nome_task {
     type: string
     sql: ${TABLE}."NOME_TASK" ;;
+    hidden: yes
   }
 
   dimension: numero_chamado {
     type: string
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
-  }
-
-  dimension: nome_requisitante {
-    type: string
-    sql: ${TABLE}."NOME_REQUISITANTE" ;;
-  }
-
-  dimension: login_requisitante {
-    type: string
-    sql: ${TABLE}."LOGIN_REQUISITANTE" ;;
-  }
-
-  dimension: area_requisitante {
-    type: string
-    sql: ${TABLE}."AREA_REQUISITANTE" ;;
-  }
-
-  dimension: posicao_requisitante {
-    type: string
-    sql: ${TABLE}."POSICAO_REQUISITANTE" ;;
-  }
-
-  dimension_group: data_inicio {
-    type: time
-    sql: ${TABLE}."DATA_INICIO" ;;
-  }
-
-  dimension_group: data_fim {
-    type: time
-    sql: ${TABLE}."DATA_FIM" ;;
-  }
-
-  dimension: flg_processo_em_andamento {
-    type: string
-    sql: ${TABLE}."FLG_PROCESSO_EM_ANDAMENTO" ;;
-  }
-
-  dimension: codigo_resultado {
-    type: number
-    sql: ${TABLE}."CODIGO_RESULTADO" ;;
-  }
-
-  dimension: descricao_resultado {
-    type: string
-    sql: ${TABLE}."DESCRICAO_RESULTADO" ;;
-  }
-
-  dimension: nome_executor {
-    type: string
-    sql: ${TABLE}."NOME_EXECUTOR" ;;
-  }
-
-  dimension: login_executor {
-    type: string
-    sql: ${TABLE}."LOGIN_EXECUTOR" ;;
-  }
-
-  dimension: area_executor {
-    type: string
-    sql: ${TABLE}."AREA_EXECUTOR" ;;
-  }
-
-  dimension: posicao_executor {
-    type: string
-    sql: ${TABLE}."POSICAO_EXECUTOR" ;;
-  }
-
-  dimension: tkt_zendesk {
-    type: string
-    sql: ${TABLE}."TKT_ZENDESK" ;;
-  }
-
-  dimension: cpf {
-    type: string
-    sql: ${TABLE}."CPF" ;;
-  }
-
-  dimension: obj_campos {
-    type: string
-    sql: ${TABLE}."OBJ_CAMPOS" ;;
-  }
-
-  dimension: flg_primeira_task {
-    type: string
-    sql: ${TABLE}."FLG_PRIMEIRA_TASK" ;;
-  }
-
-  dimension: flg_ultima_task {
-    type: string
-    sql: ${TABLE}."FLG_ULTIMA_TASK" ;;
-  }
-
-  dimension: tempo_desde_abertura_horas {
-    type: number
-    sql: ${TABLE}."TEMPO_DESDE_ABERTURA_HORAS" ;;
-  }
-
-  dimension: sla {
-    type: number
-    sql: ${TABLE}."SLA" ;;
-  }
-
-  dimension: min_data_chamado {
-    type: date
-    sql: ${TABLE}."MIN_DATA_CHAMADO" ;;
-  }
-
-  dimension: max_data_chamado {
-    type: date
-    sql: ${TABLE}."MAX_DATA_CHAMADO" ;;
+    hidden: yes
   }
 
   dimension: campo_auxiliar_analista_solicitante {
     type: date
     sql: ${TABLE}."CAMPO_AUXILIAR_ANALISTA_SOLICITANTE" ;;
     group_item_label: "Campo auxiliar analista solicitante"
-    group_label: ""
+    group_label: "Dados Solicitante"
   }
 
   dimension: nome_solicitante {
     type: date
     sql: ${TABLE}."NOME_SOLICITANTE" ;;
     group_item_label: "Nome do Solicitante"
-    group_label: ""
+    group_label: "Dados Solicitante"
   }
 
   dimension: justificativa {
     type: date
     sql: ${TABLE}."JUSTIFICATIVA" ;;
     group_item_label: "Justificativa"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: flg_precisa_motoboy_correios {
     type: date
     sql: ${TABLE}."FLG_PRECISA_MOTOBOY_CORREIOS" ;;
     group_item_label: "Precisa solicitar Motoboy/Correios?"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: centro_custo_solicitante {
     type: date
     sql: ${TABLE}."MCENTRO_CUSTO_SOLICITANTE" ;;
     group_item_label: "Centro de Custo do Solicitante"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: numero_linha_ddd {
     type: date
     sql: ${TABLE}."NUMERO_LINHA_DDD" ;;
     group_item_label: "Número da linha com DDD"
-    group_label: ""
+    group_label: "Dados Solicitante"
   }
 
   dimension: nome_gestor_responsavel {
     type: date
     sql: ${TABLE}."NOME_GESTOR_RESPONSAVEL" ;;
     group_item_label: "Nome do Gestor Responsável"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: obs_analise_gestor {
     type: date
     sql: ${TABLE}."OBS_ANALISE_GESTOR" ;;
     group_item_label: "Observações da análise do Gestor"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: flg_qual_solicitação {
     type: date
     sql: ${TABLE}."FLG_QUAL_SOLICITACAO" ;;
     group_item_label: "Qual a sua solicitação?"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: conclusao_solicitacao {
     type: date
     sql: ${TABLE}."CONCLUSAO_SOLICITACAO" ;;
     group_item_label: "Conclusão da solicitação"
-    group_label: ""
+    group_label: "Informações Chamado"
   }
 
   dimension: servico_ativado {
     type: date
     sql: ${TABLE}."SERVICO_ATIVADO" ;;
-    group_item_label: "Serviço a ser ativad"
-    group_label: ""
+    group_item_label: "Serviço a ser ativado"
+    group_label: "Informações Chamado"
   }
 
   dimension: nome_usuario {
     type: date
     sql: ${TABLE}."NOME_USUARIO" ;;
     group_item_label: "Nome de usuário"
-    group_label: ""
+    group_label: "Dados Solicitante"
   }
 
   dimension: obs_analise_facilities {
     type: date
     sql: ${TABLE}."OBS_ANALISE_FACITILIES" ;;
-    group_item_label: "Nome de usuário"
-    group_label: "Observações da análise de Facilities"
+    group_item_label: "Observações da análise de Facilities"
+    group_label: "Informações Chamado"
   }
 
   set: detail {
     fields: [
-      nome_fila,
       nome_task,
       numero_chamado,
-      nome_requisitante,
-      login_requisitante,
-      area_requisitante,
-      posicao_requisitante,
-      data_inicio_time,
-      data_fim_time,
-      flg_processo_em_andamento,
-      codigo_resultado,
-      descricao_resultado,
-      nome_executor,
-      login_executor,
-      area_executor,
-      posicao_executor,
-      tkt_zendesk,
-      cpf,
-      obj_campos,
-      flg_primeira_task,
-      flg_ultima_task,
-      tempo_desde_abertura_horas,
-      sla,
-      min_data_chamado,
-      max_data_chamado,
       campo_auxiliar_analista_solicitante,
       nome_solicitante,
       justificativa,
