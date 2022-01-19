@@ -9,7 +9,7 @@ view: solicitacoes_para_facilities_p51 {
     ,max(coalesce(T.VALUE:"Número da linha com DDD"::varchar,T.VALUE:"Número da linha com DDD"::varchar)) numero_linha_ddd
     ,max(coalesce(T.VALUE:"Nome do Gestor Responsável"::varchar,T.VALUE:"Nome do Gestor Responsável"::varchar)) nome_gestor_responsavel
     ,max(coalesce(T.VALUE:"Observações da análise do Gestor"::varchar,T.VALUE:"Observações da análise do Gestor"::varchar)) obs_analise_gestor
-    ,max(coalesce(T.VALUE:"Qual a sua solicitação?"::varchar,T.VALUE:"Qual a sua solicitação?"::varchar)) flg_qual_solicitacao
+    ,max(coalesce(T.VALUE:"Qual a sua solicitação?"::varchar,T.VALUE:"Qual a sua solicitação?"::varchar)) qual_solicitacao
     ,max(coalesce(T.VALUE:"Conclusão da solicitação"::varchar,T.VALUE:"Conclusão da solicitação"::varchar)) conclusao_solicitacao
     ,max(coalesce(T.VALUE:"Serviço a ser ativado"::varchar,T.VALUE:"Serviço a ser ativado"::varchar)) servico_ativado
     ,max(coalesce(T.VALUE:"Nome de usuário"::varchar,T.VALUE:"Nome de usuári"::varchar)) nome_usuario
@@ -79,7 +79,7 @@ view: solicitacoes_para_facilities_p51 {
 
   dimension: centro_custo_solicitante {
     type: string
-    sql: ${TABLE}."MCENTRO_CUSTO_SOLICITANTE" ;;
+    sql: ${TABLE}."CENTRO_CUSTO_SOLICITANTE" ;;
     group_item_label: "Centro de Custo do Solicitante"
     group_label: "Informações Chamado"
   }
@@ -105,9 +105,9 @@ view: solicitacoes_para_facilities_p51 {
     group_label: "Informações Chamado"
   }
 
-  dimension: flg_qual_solicitacao {
+  dimension: qual_solicitacao {
     type: string
-    sql: ${TABLE}."FLG_QUAL_SOLICITACAO" ;;
+    sql: ${TABLE}."QUAL_SOLICITACAO" ;;
     group_item_label: "Qual a sua solicitação?"
     group_label: "Informações Chamado"
   }
@@ -135,7 +135,7 @@ view: solicitacoes_para_facilities_p51 {
 
   dimension: obs_analise_facilities {
     type: string
-    sql: ${TABLE}."OBS_ANALISE_FACITILIES" ;;
+    sql: ${TABLE}."OBS_ANALISE_FACILITIES" ;;
     group_item_label: "Observações da análise de Facilities"
     group_label: "Informações Chamado"
   }
@@ -152,7 +152,7 @@ view: solicitacoes_para_facilities_p51 {
       numero_linha_ddd,
       nome_gestor_responsavel,
       obs_analise_gestor,
-      flg_qual_solicitacao,
+      qual_solicitacao,
       conclusao_solicitacao,
       servico_ativado,
       nome_usuario,
