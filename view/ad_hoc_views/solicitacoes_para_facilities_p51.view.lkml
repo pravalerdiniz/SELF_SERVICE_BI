@@ -50,91 +50,91 @@ view: solicitacoes_para_facilities_p51 {
   }
 
   dimension: campo_auxiliar_analista_solicitante {
-    type: date
+    type: string
     sql: ${TABLE}."CAMPO_AUXILIAR_ANALISTA_SOLICITANTE" ;;
     group_item_label: "Campo auxiliar analista solicitante"
     group_label: "Dados Solicitante"
   }
 
   dimension: nome_solicitante {
-    type: date
+    type: string
     sql: ${TABLE}."NOME_SOLICITANTE" ;;
     group_item_label: "Nome do Solicitante"
     group_label: "Dados Solicitante"
   }
 
   dimension: justificativa {
-    type: date
+    type: string
     sql: ${TABLE}."JUSTIFICATIVA" ;;
     group_item_label: "Justificativa"
     group_label: "Informações Chamado"
   }
 
   dimension: flg_precisa_motoboy_correios {
-    type: date
+    type: string
     sql: ${TABLE}."FLG_PRECISA_MOTOBOY_CORREIOS" ;;
     group_item_label: "Precisa solicitar Motoboy/Correios?"
     group_label: "Informações Chamado"
   }
 
   dimension: centro_custo_solicitante {
-    type: date
+    type: string
     sql: ${TABLE}."MCENTRO_CUSTO_SOLICITANTE" ;;
     group_item_label: "Centro de Custo do Solicitante"
     group_label: "Informações Chamado"
   }
 
   dimension: numero_linha_ddd {
-    type: date
+    type: string
     sql: ${TABLE}."NUMERO_LINHA_DDD" ;;
     group_item_label: "Número da linha com DDD"
     group_label: "Dados Solicitante"
   }
 
   dimension: nome_gestor_responsavel {
-    type: date
+    type: string
     sql: ${TABLE}."NOME_GESTOR_RESPONSAVEL" ;;
     group_item_label: "Nome do Gestor Responsável"
     group_label: "Informações Chamado"
   }
 
   dimension: obs_analise_gestor {
-    type: date
+    type: string
     sql: ${TABLE}."OBS_ANALISE_GESTOR" ;;
     group_item_label: "Observações da análise do Gestor"
     group_label: "Informações Chamado"
   }
 
   dimension: flg_qual_solicitação {
-    type: date
+    type: string
     sql: ${TABLE}."FLG_QUAL_SOLICITACAO" ;;
     group_item_label: "Qual a sua solicitação?"
     group_label: "Informações Chamado"
   }
 
   dimension: conclusao_solicitacao {
-    type: date
+    type: string
     sql: ${TABLE}."CONCLUSAO_SOLICITACAO" ;;
     group_item_label: "Conclusão da solicitação"
     group_label: "Informações Chamado"
   }
 
   dimension: servico_ativado {
-    type: date
+    type: string
     sql: ${TABLE}."SERVICO_ATIVADO" ;;
     group_item_label: "Serviço a ser ativado"
     group_label: "Informações Chamado"
   }
 
   dimension: nome_usuario {
-    type: date
+    type: string
     sql: ${TABLE}."NOME_USUARIO" ;;
     group_item_label: "Nome de usuário"
     group_label: "Dados Solicitante"
   }
 
   dimension: obs_analise_facilities {
-    type: date
+    type: string
     sql: ${TABLE}."OBS_ANALISE_FACITILIES" ;;
     group_item_label: "Observações da análise de Facilities"
     group_label: "Informações Chamado"
