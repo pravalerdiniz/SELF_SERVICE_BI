@@ -2,7 +2,7 @@ view: orquestra_obj_campos {
   derived_table: {
     #sql: select NUMERO_CHAMADO, NOME_TASK -- bkp Mari
     sql: select NUMERO_CHAMADO
-    ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria"::varchar)) categoria
+    ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria:"::varchar)) categoria
     ,max(coalesce(T.VALUE:"Nome do Aluno"::varchar,T.VALUE:"Nome do Aluno:"::varchar,T.VALUE:"Nome Completo do Aluno:"::varchar,T.VALUE:"Nome do aluno:"::varchar)) nome_do_aluno
     ,max(coalesce(T.VALUE:"IES do Aluno"::varchar,T.VALUE:"IES do Aluno:"::varchar)) ies_do_aluno
     ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo de Contato:"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) motivo_de_contato
@@ -31,7 +31,7 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Retorno da IES:"::varchar,T.VALUE:"Retorno da IES:"::varchar)) retorno_ies
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      where nome_fila ilike 'P17%'
+      --where nome_fila ilike 'P17%'
       --group by 1,2  -- bkp Mari
       group by 1
        ;;
@@ -104,8 +104,8 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: solicitacao_correta{
-    type: yesno
+  dimension: flg_solicitacao_correta{
+    type: string
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
     group_label: "Solicitação está correta?"
     group_item_label: ""
