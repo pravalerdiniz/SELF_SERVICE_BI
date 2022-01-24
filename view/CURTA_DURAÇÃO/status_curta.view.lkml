@@ -190,7 +190,7 @@ view: status_curta {
 
   dimension: etapa {
     type: string
-    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
+    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' or  ${TABLE}."TIPO_EVENTO" ilike 'Student.Created') THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 'Contrato Assinado'
@@ -251,7 +251,7 @@ view: status_curta {
 
   dimension: funil_completo {
     type: string
-    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
+    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' or  ${TABLE}."TIPO_EVENTO" ILike 'Student.Created') THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
