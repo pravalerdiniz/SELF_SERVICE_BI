@@ -5,9 +5,9 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Categoria:"::varchar,T.VALUE:"Categoria:"::varchar)) categoria
     ,max(coalesce(T.VALUE:"Nome do Aluno:"::varchar,T.VALUE:"Nome Completo do Aluno:"::varchar)) nome_do_aluno
     ,max(coalesce(T.VALUE:"IES do Aluno"::varchar,T.VALUE:"IES do Aluno:"::varchar)) ies_do_aluno
-    ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) motivo_de_contato
+    ,max(coalesce(T.VALUE:"Motivo de Contato"::varchar,T.VALUE:"Motivo"::varchar)) motivo_de_contato
     ,max(coalesce(T.VALUE:"Descrição da Solicitação"::varchar,T.VALUE:"Descrição da Solicitação:"::varchar)) descricao_da_solicitacao
-    ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar,T.VALUE:"Qual área atende?"::varchar,T.VALUE:"Qual área será encaminhado?"::varchar,T.VALUE:"Quem atende esta solicitação?"::varchar)) area_responsavel
+    ,max(coalesce(T.VALUE:"Área Responsável"::varchar,T.VALUE:"Área Responsável:"::varchar,T.VALUE:"Qual área atende?"::varchar,T.VALUE:"Qual área será encaminhado?"::varchar,T.VALUE:"Quem atende esta solicitação?"::varchar,T.VALUE:"Responsável:"::varchar)) area_responsavel
     ,max(coalesce(T.VALUE:"Assunto principal do contato"::varchar,T.VALUE:"Assunto principal do contato:"::varchar)) assunto_principal_do_contato
     ,max(coalesce(T.VALUE:"Solicitação está correta?"::varchar,T.VALUE:"Solicitação está correta?"::varchar)) flg_solicitacao_correta
     ,max(coalesce(T.VALUE:"Possível Causa Raíz"::varchar,T.VALUE:"Possível Causa Raíz"::varchar)) possivel_causa_raiz
@@ -27,15 +27,14 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Escolha a área para encaminhar:"::varchar,T.VALUE:"Selecione a(s) área(s) que deseja encaminhar o caso:"::varchar)) escolha_area_encaminhar
     ,max(coalesce(T.VALUE:"Resultado da Postergação"::varchar,T.VALUE:"Resultado da Postergação"::varchar)) resultado_postergacao
     ,max(coalesce(T.VALUE:"Retorno da IES:"::varchar,T.VALUE:"Retorno da IES:"::varchar)) retorno_ies
-    ,max(coalesce(T.VALUE:"ID Hugme"::varchar,T.VALUE:"ID Hugme"::varchar)) id_hugme
-    ,max(coalesce(T.VALUE:"Responsável:"::varchar,T.VALUE:"Responsável:"::varchar)) responsavel
+    ,max(coalesce(T.VALUE:"ID Hugme"::varchar,T.VALUE:"ID Hugme:"::varchar)) id_hugme
     ,max(coalesce(T.VALUE:"Retorno da Interfile:"::varchar,T.VALUE:"Retorno da Interfile:"::varchar)) retorno_interfile
-    ,max(coalesce(T.VALUE:"Origem da Solicitação"::varchar,T.VALUE:"Origem da Solicitação"::varchar)) origem_solicitacao
-    ,max(coalesce(T.VALUE:"Subcategoria Contratos e Formalização"::varchar,T.VALUE:"Subcategoria Contratos e Formalização"::varchar)) subcategoria_contratos_formalizacao
+    ,max(coalesce(T.VALUE:"Origem da Solicitação"::varchar,T.VALUE:"Origem da Solicitação:"::varchar)) origem_solicitacao
+    ,max(coalesce(T.VALUE:"Subcategoria Contratos e Formalização"::varchar,T.VALUE:"Subcategoria Contratos e Formalização:"::varchar)) subcategoria_contratos_formalizacao
     ,max(coalesce(T.VALUE:"Descreva o problema informado pelo aluno:"::varchar,T.VALUE:"Descreva o problema informado pelo aluno:"::varchar)) desc_problema_inf_aluno
     ,max(coalesce(T.VALUE:"Observação de retorno da análise:"::varchar,T.VALUE:"Observação de retorno da análise:"::varchar)) obs_retorno_analise
     ,max(coalesce(T.VALUE:"Retorno do chamado:"::varchar,T.VALUE:"Retorno do chamado:"::varchar)) retorno_chamado
-    ,max(coalesce(T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar,T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar)) flg_aluno_possui_ordem_judicial_reclameaqui
+    ,max(coalesce(T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco:"::varchar,T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar)) flg_aluno_possui_ordem_judicial_reclameaqui
 
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
@@ -114,7 +113,7 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: flg_solicitacao_correta{
+  dimension: flg_solicitacao_correta {
     type: string
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
     group_label: "Dados Chamado"
@@ -132,7 +131,7 @@ view: orquestra_obj_campos {
 
   dimension: ticket_zendesk{
     type: string
-    sql: ${TABLE}."TCKET_ZENDESK" ;;
+    sql: ${TABLE}."TICKET_ZENDESK" ;;
     group_label: "Dados Chamado"
     group_item_label: "Ticket Zendesk"
     #description: ""
@@ -202,14 +201,6 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: observacoes{
-    type: string
-    sql: ${TABLE}."OBSERVACOES" ;;
-    group_label: "Dados Chamado"
-    group_item_label: "Observações"
-    #description: ""
-  }
-
   dimension: subcategoria_risco{
     type: string
     sql: ${TABLE}."SUBCATEGORIA_RISCO" ;;
@@ -242,13 +233,6 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: motivo{
-    type: string
-    sql: ${TABLE}."MOTIVO" ;;
-    group_label: "Dados Chamado"
-    group_item_label: "Motivo"
-    #description: ""
-  }
 
   dimension: escolha_area_encaminhar{
     type:string
@@ -268,7 +252,7 @@ view: orquestra_obj_campos {
 
   dimension: retorno_ies{
     type: string
-    sql: ${TABLE}."RESTORNO_IES" ;;
+    sql: ${TABLE}."RETORNO_IES" ;;
     group_label: "Dados Chamado"
     group_item_label: "Retorno da IES"
     #description: ""
@@ -290,7 +274,7 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension:  retorno_interfile {
+  dimension: retorno_interfile {
     type: string
     sql: ${TABLE}."RETORNO_INTERFILE" ;;
     group_label: "Dados Chamado"
@@ -301,7 +285,7 @@ view: orquestra_obj_campos {
   dimension: origem_solicitacao {
     type: string
     sql: ${TABLE}."ORIGEM_SOLICITACAO" ;;
-    group_label: "Dados Chamado:"
+    group_label: "Dados Chamado"
     group_item_label: "Origem da Solicitação"
     #description: ""
   }
@@ -361,12 +345,10 @@ view: orquestra_obj_campos {
       flg_aluno_p_fies,
       obs_analise,
       anexo,
-      observacoes,
       subcategoria_risco,
       flg_encaminhar_outro_time,
       atraso,
       tempo_postergacao,
-      motivo,
       escolha_area_encaminhar,
       resultado_postergacao,
       retorno_ies,
