@@ -18,6 +18,7 @@ view: alunos_inadimplencia_book_wo {
   dimension: safra_wo {
     type: number
     label: "Safra - WO"
+    value_format: "0"
     sql: ${TABLE}."SAFRA_WO" ;;
   }
 
@@ -45,7 +46,6 @@ view: alunos_inadimplencia_book_wo {
 
   dimension: fundo {
     type: number
-    hidden: yes
     sql: ${TABLE}."FUNDO" ;;
   }
 
