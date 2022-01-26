@@ -46,6 +46,7 @@ view: alunos_inadimplencia_book_wo {
 
   dimension: fundo {
     type: number
+    suggestable: yes
     sql: ${TABLE}."FUNDO" ;;
   }
 
