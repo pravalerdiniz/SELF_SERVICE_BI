@@ -14,6 +14,7 @@ view: base_ot_analise {
   dimension: cpf_aluno {
     type: number
     label: "CPF do Aluno"
+    value_format: "0"
     sql: ${TABLE}."CPF_ALUNO" ;;
   }
 
