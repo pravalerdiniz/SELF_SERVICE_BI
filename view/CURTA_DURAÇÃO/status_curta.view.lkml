@@ -190,9 +190,15 @@ view: status_curta {
 
   dimension: etapa {
     type: string
-    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' or  ${TABLE}."TIPO_EVENTO" ilike 'Student.Created') THEN 'Lead'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
+    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' THEN 'Aprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 'Contrato Assinado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
               ELSE NULL END
@@ -225,22 +231,49 @@ view: status_curta {
         label: "1"
       }
       when: {
-        sql: ${etapa} = 'Aprovado Risco' ;;
+        sql: ${etapa} = 'Pré-Aprovado Risco (Score)' ;;
         label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
+        label: "3"
       }
 
       when: {
-        sql: ${etapa} = 'Documentos Recebidos' ;;
-        label: "3"
-      }
-      when: {
-        sql: ${etapa} = 'Contrato Assinado' ;;
+        sql: ${etapa} = 'Biometria - Aprovada' ;;
         label: "4"
       }
 
       when: {
-        sql: ${etapa} = 'Cedido' ;;
+        sql: ${etapa} = 'Cadastro Completo' ;;
         label: "5"
+      }
+
+      when: {
+        sql: ${etapa} = 'Documentos Recebidos' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Documentos Aprovados' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Risco (Renda)' ;;
+        label: "9"
+      }
+
+      when: {
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "11"
+      }
+
+      when: {
+        sql: ${etapa} = 'Cedido' ;;
+        label: "12"
       }
       else: "0"
     }
@@ -251,11 +284,16 @@ view: status_curta {
 
   dimension: funil_completo {
     type: string
-    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' or  ${TABLE}."TIPO_EVENTO" ILike 'Student.Created') THEN 'Lead'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco'
+    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.REPROVED' THEN 'Biometria - Reprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' THEN 'Aprovado Risco (Renda)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCUMENTS.WRONG' THEN 'Documentos Reprovados'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CREATED' THEN 'Contrato Criado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
@@ -289,45 +327,71 @@ view: status_curta {
         label: "1"
       }
       when: {
-        sql: ${funil_completo} = 'Aprovado Risco' ;;
+        sql: ${funil_completo} = 'Pré-Aprovado Risco (Score)' ;;
         label: "2"
       }
       when: {
-        sql: ${funil_completo} = 'Reprovado Risco' ;;
+        sql: ${funil_completo} = 'Reprovado Risco (Score e Renda)' ;;
         label: "3"
       }
       when: {
-        sql: ${funil_completo} = 'Documentos Recebidos' ;;
+        sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
+        label: "3"
+      }
+
+      when: {
+        sql: ${etapa} = 'Biometria - Aprovada' ;;
         label: "4"
       }
+
       when: {
-        sql: ${funil_completo} = 'Documentos Aprovados' ;;
+        sql: ${etapa} = 'Biometria - Reprovada' ;;
         label: "5"
       }
+
       when: {
-        sql: ${funil_completo} = 'Documentos Reprovados' ;;
+        sql: ${etapa} = 'Cadastro Completo' ;;
+        label: "5"
+      }
+
+      when: {
+        sql: ${funil_completo} = 'Documentos Recebidos' ;;
         label: "6"
       }
       when: {
-        sql: ${funil_completo} = 'Contrato Criado' ;;
+        sql: ${funil_completo} = 'Documentos Aprovados' ;;
         label: "7"
       }
       when: {
-        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        sql: ${funil_completo} = 'Documentos Reprovados' ;;
         label: "8"
+      }
+
+
+      when: {
+        sql: ${funil_completo} = 'Aprovado Risco (Renda)' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Criado' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        label: "12"
       }
       when: {
         sql: ${funil_completo} = 'Contrato Assinado' ;;
-        label: "9"
+        label: "13"
       }
 
       when: {
         sql: ${funil_completo} = 'Cedido' ;;
-        label: "10"
+        label: "14"
       }
       when: {
         sql: ${funil_completo} = 'Contrato Cancelado' ;;
-        label: "11"
+        label: "15"
       }
       else: "0"
     }
