@@ -336,62 +336,62 @@ view: status_curta {
       }
       when: {
         sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
-        label: "3"
-      }
-
-      when: {
-        sql: ${etapa} = 'Biometria - Aprovada' ;;
         label: "4"
       }
 
       when: {
-        sql: ${etapa} = 'Biometria - Reprovada' ;;
+        sql: ${etapa} = 'Biometria - Aprovada' ;;
         label: "5"
+      }
+
+      when: {
+        sql: ${etapa} = 'Biometria - Reprovada' ;;
+        label: "6"
       }
 
       when: {
         sql: ${etapa} = 'Cadastro Completo' ;;
-        label: "5"
+        label: "7"
       }
 
       when: {
         sql: ${funil_completo} = 'Documentos Recebidos' ;;
-        label: "6"
+        label: "8"
       }
       when: {
         sql: ${funil_completo} = 'Documentos Aprovados' ;;
-        label: "7"
+        label: "9"
       }
       when: {
         sql: ${funil_completo} = 'Documentos Reprovados' ;;
-        label: "8"
+        label: "10"
       }
 
 
       when: {
         sql: ${funil_completo} = 'Aprovado Risco (Renda)' ;;
-        label: "10"
-      }
-      when: {
-        sql: ${funil_completo} = 'Contrato Criado' ;;
         label: "11"
       }
       when: {
-        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        sql: ${funil_completo} = 'Contrato Criado' ;;
         label: "12"
       }
       when: {
-        sql: ${funil_completo} = 'Contrato Assinado' ;;
+        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
         label: "13"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Assinado' ;;
+        label: "14"
       }
 
       when: {
         sql: ${funil_completo} = 'Cedido' ;;
-        label: "14"
+        label: "15"
       }
       when: {
         sql: ${funil_completo} = 'Contrato Cancelado' ;;
-        label: "15"
+        label: "16"
       }
       else: "0"
     }
