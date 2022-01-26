@@ -286,7 +286,7 @@ view: status_curta {
     type: string
     sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score e Renda)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.REPROVED' THEN 'Biometria - Reprovada'
@@ -335,22 +335,22 @@ view: status_curta {
         label: "3"
       }
       when: {
-        sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
+        sql: ${funil_completo} = 'Biometria - Análise Iniciada' ;;
         label: "4"
       }
 
       when: {
-        sql: ${etapa} = 'Biometria - Aprovada' ;;
+        sql: ${funil_completo} = 'Biometria - Aprovada' ;;
         label: "5"
       }
 
       when: {
-        sql: ${etapa} = 'Biometria - Reprovada' ;;
+        sql: ${funil_completo} = 'Biometria - Reprovada' ;;
         label: "6"
       }
 
       when: {
-        sql: ${etapa} = 'Cadastro Completo' ;;
+        sql: ${funil_completo} = 'Cadastro Completo' ;;
         label: "7"
       }
 
