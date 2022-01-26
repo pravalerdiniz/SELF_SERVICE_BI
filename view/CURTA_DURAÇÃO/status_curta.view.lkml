@@ -190,7 +190,7 @@ view: status_curta {
 
   dimension: etapa {
     type: string
-    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
@@ -284,7 +284,7 @@ view: status_curta {
 
   dimension: funil_completo {
     type: string
-    sql: CASE WHEN  (${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
