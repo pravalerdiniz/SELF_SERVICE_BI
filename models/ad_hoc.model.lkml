@@ -117,8 +117,24 @@ explore: orquestra {
     sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Informações adicionais"
+    view_label: "Informações Processos"
     }
+
+  join: solicitacoes_para_facilities {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Facilities - Processo P37"
+  }
+
+  join: solicitacoes_para_facilities_p51 {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities_p51.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Facilities - Processo P51"
+  }
 }
 
 explore: base_forecast_cs {

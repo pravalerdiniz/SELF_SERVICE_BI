@@ -405,6 +405,14 @@ explore: instituicao {
 
   }
 
+  join: produto_ies_snapshot {
+    view_label: "1.1. Contrato da Instituição por Produto - (Histórico)"
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
@@ -421,7 +429,7 @@ explore: instituicao {
 
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao} and
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
         AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
     relationship: one_to_many

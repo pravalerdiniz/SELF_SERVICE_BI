@@ -374,7 +374,7 @@ view: status {
     group_label: "Dados do Status"
     label: "Fluxo Status"
     description: "Indica se o fluxo do status do aluno está certo ou errado."
-  }
+    }
 
 
 
@@ -464,7 +464,6 @@ view: status {
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
-    value_format: "0"
     label: "Quantidade de CPFs"
     drill_fields: [cpf_aluno, id_proposta, aluno_nome,
       aluno_email,
@@ -479,6 +478,19 @@ nm_produto
     description: "Contagem de CPFs únicos"
   }
 
+  measure: cont_cpf_fluxo {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Fluxo Status"
+    label: "Quantidade de CPFs para fluxo status"
+    drill_fields: [id_cpf,
+      id_proposta,
+      motivo_alteracao,
+      status_origem_geral,
+      status_destino_geral,nm_usuario,
+      id_usuario,dt_status_date]
+    description: "Contagem de CPFs únicos para fluxo dos status"
+  }
 
  # measure: sum_trans_status  {
 #    type: sum

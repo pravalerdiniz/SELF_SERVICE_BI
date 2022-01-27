@@ -112,6 +112,7 @@ dimension: cpf_datapg {
     type: string
     description: "Indica o maior atraso do aluno"
     sql: ${TABLE}."FLG_MAIOR_ATRASO" ;;
+    hidden: yes
   }
 
   dimension: flg_maior_faixa_atraso {

@@ -14,6 +14,7 @@ view: base_ot_analise {
   dimension: cpf_aluno {
     type: number
     label: "CPF do Aluno"
+    value_format: "0"
     sql: ${TABLE}."CPF_ALUNO" ;;
   }
 
@@ -111,7 +112,7 @@ view: base_ot_analise {
   }
 
   dimension: qtd_renovacao_realizada {
-    type: string
+    type: number
     label: "Quantidade de Renovações"
     description: "Indica a quantidade de renovações do aluno até o momento"
     sql: ${TABLE}."QTD_RENOVACAO_REALIZADA" ;;
@@ -131,8 +132,55 @@ view: base_ot_analise {
     sql: ${TABLE}."TIPO_PROPOSTA" ;;
   }
 
+  dimension: flg_base_recente {
+    type: yesno
+    label: "Base Recente"
+    description: "Indica o tipo de proposta do aluno: NOVO, RENOVAÇÃO, SEGUNDO REPASSE, e etc"
+    sql: ${TABLE}."FLG_BASE_RECENTE" ;;
+  }
+
+  dimension: vl_presente {
+    type: number
+    label: "Valor Presente"
+    sql: ${TABLE}."VALOR_PRESENTE" ;;
+  }
+
+
+  dimension: vl_aquisicao {
+    type: number
+    label: "Valor Aquisição"
+    sql: ${TABLE}."VALOR_AQUISICAO" ;;
+  }
+
+
+  dimension: nome_fundo {
+    type: string
+    label: "Fundo de Investimento"
+    sql: ${TABLE}."NOME_FUNDO" ;;
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: []
   }
+
+
+  measure: sum_vl_presente {
+    type: sum
+    label: "Valor Presente"
+    sql: ${vl_presente} ;;
+    drill_fields: []
+  }
+
+
+  measure: sum_vl_aquisicao {
+    type: sum
+    label: "Valor Aquisição"
+    sql: ${vl_aquisicao} ;;
+    drill_fields: []
+  }
+
+
 }
