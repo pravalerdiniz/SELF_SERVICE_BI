@@ -191,7 +191,7 @@ view: status_curta {
   dimension: etapa {
     type: string
     sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
@@ -231,7 +231,7 @@ view: status_curta {
         label: "1"
       }
       when: {
-        sql: ${etapa} = 'Pré-Aprovado Risco (Score)' ;;
+        sql: ${etapa} = 'Aprovado Risco' ;;
         label: "2"
       }
       when: {
@@ -285,7 +285,7 @@ view: status_curta {
   dimension: funil_completo {
     type: string
     sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.PREAPPROVED' THEN 'Pré-Aprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
@@ -328,7 +328,7 @@ view: status_curta {
         label: "1"
       }
       when: {
-        sql: ${funil_completo} = 'Pré-Aprovado Risco (Score)' ;;
+        sql: ${funil_completo} = 'Aprovado Risco' ;;
         label: "2"
       }
       when: {
