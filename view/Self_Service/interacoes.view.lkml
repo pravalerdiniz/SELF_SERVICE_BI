@@ -187,6 +187,15 @@ view: interacoes {
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 
+  dimension: cpf_requester_num {
+    type: number
+    group_label: "Dados do Solicitante"
+    group_item_label: "CPF Num"
+    value_format: "0"
+    description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
+    sql: ${TABLE}."CPF_REQUESTER" ;;
+  }
+
   dimension: cpf_submitter {
     type: string
     group_item_label: "CPF"
