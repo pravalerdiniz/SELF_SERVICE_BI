@@ -49,7 +49,7 @@ view: fato_mongo_lead {
   dimension: ds_status_proposta {
     type: string
     sql: ${TABLE}."DS_STATUS_PROPOSTA" ;;
-    label: "Etapa"
+    label: "Etapa - Cadastro"
     description: "Etapa em que o aluno está de acordo com o fluxo de cadastro"
   }
 
