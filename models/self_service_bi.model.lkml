@@ -405,6 +405,14 @@ explore: instituicao {
 
   }
 
+  join: produto_ies_snapshot {
+    view_label: "1.1. Contrato da Instituição por Produto - (Histórico)"
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
@@ -685,41 +693,52 @@ fields: [ALL_FIELDS *,
 
         ]
 
+
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
-  view_label: "1.1 Documentos Pendentes"
+  view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer
 }
 
   join: proposta_docs_entregues {
-    view_label: "1.2 Documentos Entregues"
+    view_label: "1.3 Documentos Entregues"
     sql_on: ${proposta_docs_entregues.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_motivo_rejeicao_docs {
-    view_label: "1.3 Documentos Rejeitados"
+    view_label: "1.4 Documentos Rejeitados"
     sql_on: ${proposta_motivo_rejeicao_docs.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
   join: instituicao_metas_gc {
-    view_label: "1.4 Metas GC"
+    view_label: "1.5 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_projeto_decola {
-    view_label: "1.5 Acordos - Projeto Decola"
+    view_label: "1.6 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
     ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
     ;;
     relationship: one_to_many
     type: left_outer
   }
+
+
+
 
 
 

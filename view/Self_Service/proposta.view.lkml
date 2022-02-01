@@ -553,6 +553,17 @@ view: proposta {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  dimension: safra_cessao {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Cessao - Safra"
+    value_format: "0"
+    sql: CONCAT(LEFT(${data_concessao_month},4),RIGHT(${data_concessao_month},2)) ;;
+    description: "Indica a safra de cessão do contrato"
+
+
+  }
+
   dimension_group: data_cessao_original {
     type: time
     timeframes: [
@@ -574,6 +585,7 @@ view: proposta {
 
   dimension: analise_ytd {
     type: yesno
+    group_label: "Dados da Cessão"
     label: "Concessão - YTD?"
     description: "Indica o acumulado no ano mês a mês."
     sql:
