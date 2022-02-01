@@ -349,6 +349,12 @@ explore: jornada {
     type: left_outer
   }
 
+  join: fato_mongo_lead {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_cpf} = ${fato_mongo_lead.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: instituicao {
