@@ -13,7 +13,6 @@ view: metas {
 
   dimension: cnpj {
     type: string
-    hidden: yes
     sql: ${TABLE}."CNPJ" ;;
   }
 

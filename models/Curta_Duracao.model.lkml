@@ -59,63 +59,7 @@ explore: metas {
   label: "Metas - Escolas"
   view_label: "Metas - Escolas"
 
-  join: institution {
-    view_label: "Instituição de Ensino"
-    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj} and ${student_curso.id_instituicao} = ${institution.id_instituicao}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-
-  join: student {
-    view_label: "Alunos"
-    sql_on: ${student.id_aluno} = ${contracts.id_aluno} and ${institution.cnpj_instituicao} = ${metas.cnpj} and ${student_curso.id_instituicao} = ${institution.id_instituicao};;
-    type: left_outer
-    relationship: one_to_many
-
-  }
-
-
-
-  join: student_curso {
-    view_label: "Cursos Alunos"
-    sql_on: ${student.id_aluno} = ${student_curso.id_aluno} and ${student_curso.id_aluno} = ${contracts.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-
-  }
-
-
-
-  join: contracts {
-    view_label: "Contratos"
-    sql_on: ${contracts.id_aluno} = ${student.id_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-  join: status_curta {
-    view_label: "Status"
-    sql_on: ${student.id_aluno} = ${status_curta.id_aluno} and ${student_curso.id_instituicao} = ${institution.id_instituicao} and  ${institution.cnpj_instituicao} = ${metas.cnpj};;
-    type: left_outer
-    relationship: one_to_many
-
-  }
-
-  join: courses {
-    view_label: "Cursos"
-    sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao} and ${institution.id_instituicao} = ${courses.id_instituicao};;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-  join: curta_lead_time{
-    sql_on: ${curta_lead_time.id_aluno} = ${status_curta.id_aluno} and ${curta_lead_time.ID_STATUS} = ${status_curta.id_status};;
-    type: left_outer
-    relationship: one_to_many
-
-  }
 
 
 
