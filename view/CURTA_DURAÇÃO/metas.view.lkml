@@ -46,6 +46,7 @@ view: metas {
     timeframes: [
       raw,
       date,
+      day_of_month,
       week,
       month,
       quarter,
