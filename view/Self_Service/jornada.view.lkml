@@ -2075,7 +2075,7 @@ dimension: flg_d1 {
               else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
          end ;;
     value_format: "0"
-    hidden: no
+    hidden: yes
   }
 
 # Renovação
@@ -2210,6 +2210,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_finalizado_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }

@@ -227,7 +227,6 @@ view: institution {
     sql: ${TABLE}."FLG_INTITUICAO_ATIVA";;
     description:"INDICA SE A INSTITUIÇÃO ESTÁ ATIVA"
     group_item_label: "Instituição Ativa?"
-    hidden: yes
     group_label: "Dados da Instituição"
   }
   dimension: id_contrato_instituicao {
