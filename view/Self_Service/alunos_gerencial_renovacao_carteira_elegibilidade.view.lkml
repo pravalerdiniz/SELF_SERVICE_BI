@@ -46,6 +46,25 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."DATA_VISAO" ;;
   }
 
+
+  dimension_group: data_carga {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Carga"
+    sql: ${TABLE}."DT_CARGA" ;;
+  }
+
   dimension: maturidade_cpf2 {
     type: number
     label: "Maturidade CPF"
