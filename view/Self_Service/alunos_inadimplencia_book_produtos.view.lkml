@@ -81,7 +81,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: produtos_novos {
     type: string
-    hidden: yes
+    label: "Produto"
     sql: ${TABLE}."PRODUTOS_NOVOS" ;;
   }
 
