@@ -39,6 +39,28 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
     sql: ${TABLE}."SL_DATA" ;;
   }
 
+
+  dimension_group: data_usuario_inserido {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Inserção - Elegibilidade"
+    sql: ${TABLE}."DT_USUARIO_INS" ;;
+  }
+
+
+
+
   dimension: status_origem {
     type: string
     group_label: "Dados de Status - Renovação"
