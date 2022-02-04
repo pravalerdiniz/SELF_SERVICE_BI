@@ -9,11 +9,23 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
     drill_fields: [detail*]
   }
 
+  dimension: primary_key {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${cpf},${data_usuario_inserido_raw},${sl_data_date},${status_destino}) ;;
+
+
+
+
+
+  }
+
 measure: count_distinct {
   type: count_distinct
   sql: ${cpf} ;;
   label: "Quantidade de Cpfs"
-
+  drill_fields: [detail*]
 
 }
 
@@ -106,7 +118,9 @@ measure: count_distinct {
       status_origem,
       status_destino,
       status_elegib,
-      status_aprov
+      status_aprov,
+      data_usuario_inserido_raw
+
     ]
   }
 }
