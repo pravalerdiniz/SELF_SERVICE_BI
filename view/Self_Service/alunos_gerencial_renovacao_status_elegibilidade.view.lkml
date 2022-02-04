@@ -9,6 +9,15 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
     drill_fields: [detail*]
   }
 
+measure: count_distinct {
+  type: count_distinct
+  sql: ${cpf} ;;
+  label: "Quantidade de Cpfs"
+
+
+}
+
+
   dimension: safra {
     type: string
     label: "Safra - Status"
