@@ -12,7 +12,7 @@ view: campanha_valoriza {
   }
 
 
-  dimension: pontos {
+  measure: pontos {
     type: number
     sql: ${TABLE}."Pontos" ;;
   }
