@@ -141,6 +141,9 @@ explore: base_forecast_cs {
   label: "Forecast Contatos"
 }
 
+explore: campanha_valoriza {
+  label: "Campanha Valoriza"
+}
 
 explore: base_trade {}
 

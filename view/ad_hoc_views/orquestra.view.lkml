@@ -249,7 +249,16 @@ view: orquestra {
     type: yesno
     group_label: "Dados da Tarefa"
     group_item_label: "Flg Última task?"
+    description: "Esta FLG indica se é a ultima task do chamado, incluindo as tasks que são automaticas, como por exemplo, M01 - "
     sql: ${TABLE}."FLG_ULTIMA_TASK" ;;
+  }
+
+  dimension: flg_ultima_task_manual {
+    type: yesno
+    group_label: "Dados da Tarefa"
+    group_item_label: "Flg Última task manual?"
+    description: "Está FLG indica se é a ultima task manual do chamado, ou seja, não entra as tarefas que são automaticas, como por exemplo, mensagens M01 - "
+    sql: ${TABLE}."FLG_ULTIMA_TASK_MANUAL" ;;
   }
 
   ## ALUNOS
