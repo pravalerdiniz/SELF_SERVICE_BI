@@ -13,7 +13,7 @@ view: campanha_valoriza {
 
 
   measure: pontos {
-    type: number
+    type: sum
     sql: ${TABLE}."Pontos" ;;
   }
 
