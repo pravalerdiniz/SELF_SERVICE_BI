@@ -262,12 +262,12 @@ view: orquestra {
   }
 
   dimension: concluido {
-    type: number
+    type: yesno
     group_label: "Dados da Tarefa"
     group_item_label: "Chamado concluido?"
     sql: ${TABLE}."FLG_ULTIMA_TASK_MANUAL" = 'Yes'
-      and (${solicitacoes_para_facilities.data_entrega} is not null
-      OR ${orquestra.data_fim_date} is not null)  ;;
+      and ${solicitacoes_para_facilities.data_entrega} is not null
+      OR ${orquestra.data_fim_date} is not null  ;;
   }
 
   ## ALUNOS
