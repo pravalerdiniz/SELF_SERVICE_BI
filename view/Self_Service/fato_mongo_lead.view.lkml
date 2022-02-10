@@ -24,6 +24,7 @@ view: fato_mongo_lead {
     sql: ${TABLE}."DATA_ACESSO" ;;
     description: "Data em que o aluno realizou etapa correspondente do cadastro"
     label: "Data de Acesso"
+    group_label: "Dados Mongo"
   }
 
   dimension_group: data_carga {
@@ -49,6 +50,7 @@ view: fato_mongo_lead {
   dimension: ds_status_proposta {
     type: string
     sql: ${TABLE}."DS_STATUS_PROPOSTA" ;;
+    group_label: "Dados Mongo"
     label: "Etapa - Cadastro"
     description: "Etapa em que o aluno está de acordo com o fluxo de cadastro"
   }
@@ -92,6 +94,7 @@ view: fato_mongo_lead {
   measure: count_distinct_cpf {
     type: count_distinct
     sql: ${TABLE}."ID_CPF" ;;
+    group_label: "Dados Mongo"
     label: "Quantidade de Alunos"
 
   }
@@ -99,6 +102,7 @@ view: fato_mongo_lead {
   measure: count_distinct_proposta {
     type: count_distinct
     sql: ${TABLE}."ID_PROPOSTA" ;;
+    group_label: "Dados Mongo"
     label: "Quantidade de Propostas"
 
   }
