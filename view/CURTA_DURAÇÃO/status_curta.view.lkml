@@ -197,7 +197,9 @@ view: status_curta {
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' THEN 'Aprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR
+              ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOME.APPROVED'
+              THEN 'Aprovado Risco (Renda)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' OR
                ${TABLE}."TIPO_EVENTO" = 'MANAGEMENT.CONTRACT.SIGNED'
