@@ -130,6 +130,7 @@ view: status_curta {
     type: number
     sql: ${student.cpf_aluno} ;;
     group_item_label: "CPF Aluno"
+    value_format: "0"
     hidden: yes
   }
 
