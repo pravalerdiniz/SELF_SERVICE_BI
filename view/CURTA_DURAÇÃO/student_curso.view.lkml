@@ -73,6 +73,15 @@ view: student_curso {
     description: "VALOR TOTAL DO CURSO"
   }
 
+  measure: count_curso {
+    type: count_distinct
+    sql: ${id_curso}  ;;
+    label: "Quantidade de Cursos"
+
+
+
+  }
+
   set: detail {
     fields: [
       id_aluno,
