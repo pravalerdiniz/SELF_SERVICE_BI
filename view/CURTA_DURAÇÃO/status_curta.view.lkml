@@ -340,7 +340,7 @@ view: status_curta {
         label: "2"
       }
       when: {
-        sql: ${funil_completo} = 'Reprovado Risco (Score e Renda)' ;;
+        sql: ${funil_completo} = 'Reprovado Risco (Score)' ;;
         label: "3"
       }
       when: {
