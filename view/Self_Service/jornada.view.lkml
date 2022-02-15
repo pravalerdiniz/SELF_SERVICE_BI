@@ -3222,6 +3222,16 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
 
+  measure: median_qtd_dias_form_old {
+    type: median
+    sql: ${qtd_dias_form} ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados (Antigo)"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
   measure: max_qtd_dias_form {
     type: max
     sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
