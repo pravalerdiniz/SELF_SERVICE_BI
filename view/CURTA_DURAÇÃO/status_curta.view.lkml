@@ -151,7 +151,7 @@ view: status_curta {
 
   dimension: nome_fantasia_instituicao {
     type: string
-    sql: ${student.nome_curso} ;;
+    sql: ${student.nome_fantasia_instituicao} ;;
     group_item_label: "Nome do Instituição"
     hidden: yes
   }
