@@ -3195,7 +3195,7 @@ dimension: qtd_dias_iniciados {
 
   dimension: qtd_dias_form {
     type: number
-    sql: ${TABLE}."QTD_DIAS_FORM" ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
@@ -3204,7 +3204,7 @@ dimension: qtd_dias_iniciados {
 
   measure: average_qtd_dias_form {
     type: average
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3214,7 +3214,7 @@ dimension: qtd_dias_iniciados {
 
   measure: median_qtd_dias_form {
     type: median
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3224,7 +3224,7 @@ dimension: qtd_dias_iniciados {
 
   measure: max_qtd_dias_form {
     type: max
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3234,7 +3234,7 @@ dimension: qtd_dias_iniciados {
 
   measure: min_qtd_dias_form {
     type: min
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
