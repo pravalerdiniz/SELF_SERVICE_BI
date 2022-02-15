@@ -3224,7 +3224,7 @@ dimension: qtd_dias_iniciados {
 
   measure: median_qtd_dias_form_old {
     type: median
-    sql: ${qtd_dias_form} ;;
+    sql: ${TABLE}."QTD_DIAS_FORM" ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados (Antigo)"
     value_format: "0"
