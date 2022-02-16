@@ -72,14 +72,15 @@ view: proposta_datas_interfile {
   dimension: tempo_abertura_envio{
     type: number
     sql: datediff('day',${dt_abertura_processo_raw},${dt_envio_documentacao_raw}) ;;
-    value_format: "0.#"
+    value_format: "0.0"
+    hidden:  yes
     label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
   }
 
   measure: average_tempo_abertura_envio {
     type: average
     sql:  ${tempo_abertura_envio};;
-    value_format: "0.#"
+    value_format: "0.0"
     group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
     group_item_label: "Média"
   }
@@ -87,8 +88,32 @@ view: proposta_datas_interfile {
   measure: sum_tempo_abertura_envio {
     type: sum
     sql:  ${tempo_abertura_envio};;
-    value_format: "0.#"
+    value_format: "0.0"
     group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
+    group_item_label: "Soma"
+  }
+
+  dimension: tempo_envio_analise{
+    type: number
+    sql: datediff('day',${dt_envio_documentacao_raw},${dt_ultima_resposta_interfile_raw}) ;;
+    value_format: "0.0"
+    hidden:  yes
+    label: "Tempo entre Envio da Documentação Completa e Última Análise Interfile"
+  }
+
+  measure: average_tempo_envio_analise {
+    type: average
+    sql:  ${tempo_envio_analise};;
+    value_format: "0.0"
+    group_label: "Tempo entre Envio da Documentação Completa e Última Análise Interfile"
+    group_item_label: "Média"
+  }
+
+  measure: sum_tempo_envio_analise {
+    type: sum
+    sql:  ${tempo_envio_analise};;
+    value_format: "0.0"
+    group_label: "Tempo entre Envio da Documentação Completa e Última Análise Interfile"
     group_item_label: "Soma"
   }
 

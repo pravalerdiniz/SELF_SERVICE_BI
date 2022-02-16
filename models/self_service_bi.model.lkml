@@ -745,7 +745,8 @@ join: proposta_docs_pendentes {
 
   join: proposta_datas_interfile {
     view_label: "1.7 Dados Interfile"
-    sql_on: ${proposta_datas_interfile.id_proposta} = ${proposta.id_proposta}
+    sql_on: ${proposta_datas_interfile.id_proposta} = ${proposta.id_proposta} and
+    ${proposta.release_contrato} = ${proposta_datas_interfile.release_contrato}
           ;;
     relationship: one_to_many
     type: left_outer
