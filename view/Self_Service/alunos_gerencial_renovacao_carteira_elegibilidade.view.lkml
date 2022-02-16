@@ -9,6 +9,14 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     drill_fields: [detail*]
   }
 
+  dimension: chave_primaria {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${tdt_ano_mes},${tdt_cpf},${data_carga_raw}) ;;
+
+
+  }
+
   dimension: tdt_ano_mes {
     type: number
     label: "Carteira - Ano e mês"
