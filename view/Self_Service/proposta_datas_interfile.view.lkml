@@ -75,6 +75,20 @@ view: proposta_datas_interfile {
     label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
   }
 
+  measure: average_tempo_abertura_envio {
+  type: average
+  sql:  ${tempo_abertura_envio};;
+  group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
+  group_item_label: "Média"
+  }
+
+  measure: sum_tempo_abertura_envio {
+    type: sum
+    sql:  ${tempo_abertura_envio};;
+    group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
+    group_item_label: "Soma"
+  }
+
   dimension: release_contrato {
     type: string
     sql: ${TABLE}."RELEASE_CONTRATO" ;;
