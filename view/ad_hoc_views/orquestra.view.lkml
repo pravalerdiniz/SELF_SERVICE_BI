@@ -309,7 +309,7 @@ view: orquestra {
 
   measure: total_tempo_desde_abertura_horas {
     type: sum
-    hidden: yes
+    hidden: no
     sql: ${tempo_desde_abertura_horas} ;;
   }
 
