@@ -9,10 +9,17 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     drill_fields: [detail*]
   }
 
+  measure: count_cpf {
+    type: count_distinct
+    label: "Quantidade de Alunos"
+    sql: ${tdt_cpf} ;;
+  }
+
   dimension: chave_primaria {
     type: string
     primary_key: yes
     sql: CONCAT(${tdt_ano_mes},${tdt_cpf},${data_carga_raw}) ;;
+    hidden: yes
 
 
   }
