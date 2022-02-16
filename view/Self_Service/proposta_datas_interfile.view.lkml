@@ -77,15 +77,17 @@ view: proposta_datas_interfile {
   }
 
   measure: average_tempo_abertura_envio {
-  type: average
-  sql:  ${tempo_abertura_envio};;
-  group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
-  group_item_label: "Média"
+    type: average
+    sql:  ${tempo_abertura_envio};;
+    value_format: "0.#"
+    group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
+    group_item_label: "Média"
   }
 
   measure: sum_tempo_abertura_envio {
     type: sum
     sql:  ${tempo_abertura_envio};;
+    value_format: "0.#"
     group_label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
     group_item_label: "Soma"
   }
