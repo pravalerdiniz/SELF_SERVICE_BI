@@ -124,10 +124,10 @@ view: orquestra {
   }
 
   dimension: flg_processo_em_andamento {
-    type: yesno
+    type: string
     group_label: "Dados da Solicitação"
     group_item_label: "Flg Processo em Andamento?"
-    description: "Verifica se o chamado está em andamento/tratativa ou não (Yes/No)"
+    description: "Verifica se o chamado está em andamento/tratativa ou não"
     sql: ${TABLE}."FLG_PROCESSO_EM_ANDAMENTO" ;;
   }
 
