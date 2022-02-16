@@ -72,6 +72,7 @@ view: proposta_datas_interfile {
   dimension: tempo_abertura_envio{
     type: number
     sql: datediff('day',${dt_abertura_processo_raw},${dt_envio_documentacao_raw}) ;;
+    value_format: "0.#"
     label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
   }
 
