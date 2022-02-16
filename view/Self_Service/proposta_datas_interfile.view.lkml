@@ -15,27 +15,63 @@ view: proposta_datas_interfile {
   }
 
 
-  dimension: dt_abertura_processo{
-    type: date_time
+  dimension_group: dt_abertura_processo{
+  type: time
+  timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.DT_ABERTURA_PROCESSO ;;
     label: "Data de Abertura do Processo"
   }
 
-  dimension: dt_envio_documentacao{
-    type: date_time
+  dimension_group: dt_envio_documentacao{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.DT_ENVIO_DOCUMENTACAO ;;
     label: "Data de Envio da Documentação Completa"
   }
 
-  dimension: dt_ultima_resposta_interfile{
-    type: date_time
+  dimension_group: dt_ultima_resposta_interfile{
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.DT_ULTIMA_RESPOSTA_INTERFILE ;;
     label: "Data da Última Resposta da Análise"
   }
 
   dimension: tempo_abertura_envio{
     type: number
-    sql: diffdays(${dt_envio_documentacao},${dt_abertura_processo}) ;;
+    sql: diffdays(${dt_envio_documentacao_raw},${dt_abertura_processo_raw}) ;;
     label: "Tempo entre Abertura do Processo e Envio da Documentação Completa"
   }
 
