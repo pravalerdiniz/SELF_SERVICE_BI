@@ -7,20 +7,22 @@ view: dim_field_group_mongo {
   dimension: mongo_fieldgroup {
     type: string
     sql: ${TABLE}."MONGO_FIELDGROUP" ;;
+    group_label: "Dados Mongo"
+    hidden: yes
   }
 
   dimension: pageview {
     type: string
     sql: ${TABLE}."PAGEVIEW" ;;
+    group_label: "Dados Mongo"
+    label: "PageView - Google Analytics"
   }
 
   dimension: subetapa {
     type: string
     sql: ${TABLE}."SUBETAPA" ;;
+    group_label: "Dados Mongo"
+    label: "Sub-Etapa"
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
 }
