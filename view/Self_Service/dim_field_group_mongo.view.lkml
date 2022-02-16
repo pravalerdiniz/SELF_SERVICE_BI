@@ -1,7 +1,7 @@
 
 view: dim_field_group_mongo {
 
-  sql_table_name: "DIMENSAO"."DIM_FIELD_GROUP_MONGO"
+  sql_table_name: "VETERANO"."DIMENSAO"."DIM_FIELD_GROUP_MONGO"
     ;;
 
   dimension: mongo_fieldgroup {
@@ -14,15 +14,15 @@ view: dim_field_group_mongo {
   dimension: pageview {
     type: string
     sql: ${TABLE}."PAGEVIEW" ;;
-    group_label: "Dados Mongo"
+    group_label: "Dados Etapa de Cadastro"
     label: "PageView - Google Analytics"
   }
 
   dimension: subetapa {
     type: string
     sql: ${TABLE}."SUBETAPA" ;;
-    group_label: "Dados Mongo"
-    label: "Sub-Etapa"
+    group_label: "Dados Etapa de Cadastro"
+    label: "Subetapa"
   }
 
 }
