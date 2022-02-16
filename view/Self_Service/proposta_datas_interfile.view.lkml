@@ -16,19 +16,19 @@ view: proposta_datas_interfile {
 
 
   dimension: dt_abertura_processo{
-    type: date
+    type: date_time
     sql: ${TABLE}.DT_ABERTURA_PROCESSO ;;
     label: "Data de Abertura do Processo"
   }
 
   dimension: dt_envio_documentacao{
-    type: date
+    type: date_time
     sql: ${TABLE}.DT_ENVIO_DOCUMENTACAO ;;
     label: "Data de Envio da Documentação Completa"
   }
 
   dimension: dt_ultima_resposta_interfile{
-    type: date
+    type: date_time
     sql: ${TABLE}.DT_ULTIMA_RESPOSTA_INTERFILE ;;
     label: "Data da Última Resposta da Análise"
   }
