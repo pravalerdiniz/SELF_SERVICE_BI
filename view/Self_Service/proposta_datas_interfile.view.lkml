@@ -5,9 +5,9 @@ view: proposta_datas_interfile {
       id_cpf,
       id_proposta,
       f.value:RELEASE_CONTRATO::int as RELEASE_CONTRATO,
-      f.value:data_abertura_processo::date as DT_ABERTURA_PROCESSO,
-      f.value:data_envio_documentacao_completa_aluno::date as DT_ENVIO_DOCUMENTACAO,
-      f.value:data_ultima_resposta_analise_interfile::date as DT_ULTIMA_RESPOSTA_INTERFILE
+      f.value:data_abertura_processo::timestamp as DT_ABERTURA_PROCESSO,
+      f.value:data_envio_documentacao_completa_aluno::timestamp as DT_ENVIO_DOCUMENTACAO,
+      f.value:data_ultima_resposta_analise_interfile::timestamp as DT_ULTIMA_RESPOSTA_INTERFILE
 
       from GRADUADO.SELF_SERVICE_BI.PROPOSTA a,
       lateral flatten (input => DATAS_TELEMETRIA_INTEFILE) f
