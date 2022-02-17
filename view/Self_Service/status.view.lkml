@@ -388,7 +388,7 @@ view: status {
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
-    ##hidden: yes
+    hidden: yes
 
   }
 
@@ -458,7 +458,7 @@ view: status {
 
   measure: count {
     type: count
-    drill_fields: [cpf_aluno,id, id_proposta, status_origem_geral,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
+    drill_fields: [id, id_proposta, status_origem_geral,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
   }
 
   measure: cont_cpf {
@@ -483,7 +483,7 @@ nm_produto
     sql: ${id_cpf} ;;
     group_label: "Fluxo Status"
     label: "Quantidade de CPFs para fluxo status"
-    drill_fields: [id_cpf,
+    drill_fields: [cpf_aluno,
       id_proposta,
       motivo_alteracao,
       status_origem_geral,
