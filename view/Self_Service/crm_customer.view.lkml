@@ -10,6 +10,14 @@ view: crm_customer {
     hidden: yes
   }
 
+  measure: count_id_envio {
+    type: count_distinct
+    sql: ${id_envio} ;;
+    group_label: "Quantidade de Eventos"
+    group_item_label: "Quantidade"
+    description: "Contagem de eventos únicos"
+  }
+
   dimension: id_envio {
     type: string
     group_label: "Dados do Envio"
@@ -63,7 +71,7 @@ view: crm_customer {
 
   dimension: campaign_id {
     type: number
-    group_label: "Dados do Envio"
+    group_label: "Dados da Campanha"
     label: "ID do Grupo Campanha"
     description: "Indica o ID do Grupo da CAmpanha disparada"
     sql: ${TABLE}."CAMPAIGN_ID" ;;
@@ -71,15 +79,15 @@ view: crm_customer {
 
   dimension: id_tamplate {
     type: number
-    group_label: "Dados do Envio"
-    label: "Id da Campanha"
+    group_label: "Dados da Campanha"
+    label: "ID da Campanha"
     description: "Indica o ID da campanha disparada"
     sql: ${TABLE}."ID_TAMPLATE" ;;
   }
 
   dimension: nome_tamplate {
     type: string
-    group_label: "Dados do Envio"
+    group_label: "Dados da Campanha"
     label: "Nome da Campanha"
     description: "Indica o Nome da campanha disparada"
     sql: ${TABLE}."NOME_TAMPLATE" ;;
@@ -87,7 +95,7 @@ view: crm_customer {
 
   dimension: msg_template {
     type: string
-    group_label: "Dados do Envio"
+    group_label: "Dados da Campanha"
     label: "Mensagem da Campanha"
     description: "Indica Mensagem da campanha disparada"
     sql: ${TABLE}."MSG_TEMPLATE" ;;
@@ -95,7 +103,7 @@ view: crm_customer {
 
   dimension: assunto_acao {
     type: string
-    group_label: "Dados do Envio"
+    group_label: "Dados da Campanha"
     label: "Assunto da Campanha"
     description: "Indica o Assunto da campanha disparada"
     sql: ${TABLE}."ASSUNTO_ACAO" ;;
@@ -123,6 +131,7 @@ view: crm_customer {
     year
   ]
     group_label: "Dados do Evento"
+    group_item_label: "Data Evento"
     label: "Data Evento"
     description: "Indica a data que foi realizado o evento"
     sql: ${TABLE}."DATA_ENTREGA" ;;
@@ -130,7 +139,7 @@ view: crm_customer {
 
   dimension: canal_de_contato {
     type: string
-    group_label: "Dados do Evento"
+    group_label: "Dados da Campanha"
     label: "Canal de Contato"
     description: "Indica o canal que houve a comunicação"
     sql: ${TABLE}."CANAL_DE_CONTATO" ;;
@@ -138,7 +147,7 @@ view: crm_customer {
 
   dimension: body {
     type: string
-    group_label: "Dados do Evento"
+    group_label: "Dados da Campanha"
     label: "Texto da mensagem"
     description: "Indica o texto da comunicação que foi enviada"
     sql: ${TABLE}."BODY" ;;
