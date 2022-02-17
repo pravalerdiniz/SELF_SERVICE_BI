@@ -1400,3 +1400,7 @@ explore: projecao_formalizados {
   label: "Projeção Formalizados Jornada"
   view_label: "Projeção Formalizados Jornada"
 }
+
+explore: crm_customer {
+  label: "CRM - Customer io"
+}
