@@ -130,8 +130,7 @@ view: crm_customer {
     quarter,
     year
   ]
-    group_label: "Dados do Evento"
-    group_item_label: "Data Evento"
+    group_label: "Data Evento"
     label: "Data Evento"
     description: "Indica a data que foi realizado o evento"
     sql: ${TABLE}."DATA_ENTREGA" ;;
