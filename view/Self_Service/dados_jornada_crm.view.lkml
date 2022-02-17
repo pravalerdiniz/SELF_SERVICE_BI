@@ -6,8 +6,8 @@ view: dados_jornada_crm {
             f.value:ID_PROPOSTA::int as ID_PROPOSTA,
             f.value:DATA_INICIO_PROPOSTA::timestamp as DATA_INICIO_PROPOSTA,
             f.value:DT_STATUS::timestamp as DT_STATUS,
-            f.value:ETAPA::varchar as ETAPA
-            f.value:STATUS_ETAPA::int as STATUS_ETAPA
+            f.value:ETAPA::varchar as ETAPA,
+            f.value:STATUS_ETAPA::int as STATUS_ETAPA,
             f.value:TIPO_PROPOSTA::varchar as TIPO_PROPOSTA
 
             from GRADUADO.CRM.CUSTOMER a,
