@@ -1,6 +1,6 @@
 view: alunos_gerencial_renovacao_status_elegibilidade {
   derived_table: {
-    sql: select * from stage.public.validacao_status_renovacao
+    sql: select * from GRADUADO.RISCO.VW_VALIDACAO_STATUS_RENOVACAO
       ;;
   }
 
@@ -8,6 +8,27 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
     type: count
     drill_fields: [detail*]
   }
+
+  dimension: primary_key {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${cpf},${data_usuario_inserido_raw},${sl_data_date},${status_destino}) ;;
+
+
+
+
+
+  }
+
+measure: count_distinct {
+  type: count_distinct
+  sql: ${cpf} ;;
+  label: "Quantidade de Cpfs"
+  drill_fields: [detail*]
+
+}
+
 
   dimension: safra {
     type: string
@@ -38,6 +59,28 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
     label: "Renovação - Status"
     sql: ${TABLE}."SL_DATA" ;;
   }
+
+
+  dimension_group: data_usuario_inserido {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Inserção - Elegibilidade"
+    sql: ${TABLE}."DT_USUARIO_INS" ;;
+  }
+
+
+
 
   dimension: status_origem {
     type: string
@@ -75,7 +118,9 @@ view: alunos_gerencial_renovacao_status_elegibilidade {
       status_origem,
       status_destino,
       status_elegib,
-      status_aprov
+      status_aprov,
+      data_usuario_inserido_raw
+
     ]
   }
 }

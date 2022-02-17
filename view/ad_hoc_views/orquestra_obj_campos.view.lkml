@@ -38,7 +38,7 @@ view: orquestra_obj_campos {
 
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      where (nome_fila ilike 'P17%' or nome_fila ilike 'P24' or nome_fila ilike 'P33' or nome_fila ilike 'P40')
+      where (nome_fila ilike 'P17%' or nome_fila ilike 'P24' or nome_fila ilike 'P33' or nome_fila ilike 'P40' or nome_fila ilike 'P37' or nome_fila ilike 'P51')
       --group by 1,2  -- bkp Mari
       group by 1
        ;;
@@ -266,14 +266,6 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
-  dimension: responsavel {
-    type: string
-    sql: ${TABLE}."RESPONSAVEL" ;;
-    group_label: "Dados Chamado"
-    group_item_label: "Responsável"
-    #description: ""
-  }
-
   dimension: retorno_interfile {
     type: string
     sql: ${TABLE}."RETORNO_INTERFILE" ;;
@@ -353,7 +345,6 @@ view: orquestra_obj_campos {
       resultado_postergacao,
       retorno_ies,
       id_hugme,
-      responsavel,
       retorno_interfile,
       origem_solicitacao,
       subcategoria_contratos_formalizacao,
