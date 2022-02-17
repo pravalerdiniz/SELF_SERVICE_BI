@@ -388,7 +388,7 @@ view: status {
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
-    hidden: yes
+    ##hidden: yes
 
   }
 
