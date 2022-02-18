@@ -233,6 +233,8 @@ explore: csat_nuvem_palavras_bad {}
 
 explore: nps_nuvem_palavras_detratores {}
 
+explore: nps_nuvem_palavras_neutros {}
+
 explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}
