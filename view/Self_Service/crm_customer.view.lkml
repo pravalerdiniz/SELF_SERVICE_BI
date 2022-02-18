@@ -166,6 +166,7 @@ view: crm_customer {
     sql: ${TABLE}."INFOS_JORNADA" ;;
   }
 
+
   set: detail {
     fields: [
       id_envio,

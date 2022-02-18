@@ -1405,8 +1405,9 @@ explore: crm_customer {
   label: "CRM - Customer io"
 
   join: dados_jornada_crm {
+    from: dados_jornada_crm
     view_label: "Jornada"
-    sql_on: ${crm_customer.id_cpf} = ${dados_jornada_crm.id_cpf} ;;
+    sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
     relationship: many_to_many
     type: left_outer
   }
