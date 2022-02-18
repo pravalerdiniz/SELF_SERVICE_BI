@@ -72,7 +72,7 @@ view: crm_customer {
   dimension: campaign_id {
     type: number
     group_label: "Dados da Campanha"
-    label: "ID do Grupo Campanha"
+    label: "ID da Campanha"
     description: "Indica o ID do Grupo da CAmpanha disparada"
     sql: ${TABLE}."CAMPAIGN_ID" ;;
   }
@@ -80,24 +80,24 @@ view: crm_customer {
   dimension: id_tamplate {
     type: number
     group_label: "Dados da Campanha"
-    label: "ID da Campanha"
-    description: "Indica o ID da campanha disparada"
+    label: "ID do Disparo"
+    description: "Indica o ID do disparo feito"
     sql: ${TABLE}."ID_TAMPLATE" ;;
   }
 
   dimension: nome_tamplate {
     type: string
     group_label: "Dados da Campanha"
-    label: "Nome da Campanha"
-    description: "Indica o Nome da campanha disparada"
+    label: "Nome do Disparo"
+    description: "Indica o Nome do Disparo feito"
     sql: ${TABLE}."NOME_TAMPLATE" ;;
   }
 
   dimension: msg_template {
     type: string
     group_label: "Dados da Campanha"
-    label: "Mensagem da Campanha"
-    description: "Indica Mensagem da campanha disparada"
+    label: "Mensagem do Disparo"
+    description: "Indica Mensagem do Disparo"
     sql: ${TABLE}."MSG_TEMPLATE" ;;
   }
 
@@ -117,7 +117,7 @@ view: crm_customer {
     sql: ${TABLE}."NOME_EVENTO" ;;
   }
 
-  dimension_group: data_entrega {
+  dimension_group: data_evento {
     type: time
    timeframes: [
     raw,
@@ -133,7 +133,7 @@ view: crm_customer {
     group_label: "Data Evento"
     label: "Data Evento"
     description: "Indica a data que foi realizado o evento"
-    sql: ${TABLE}."DATA_ENTREGA" ;;
+    sql: ${TABLE}."DATA_EVENTO" ;;
   }
 
   dimension: canal_de_contato {
@@ -170,8 +170,8 @@ view: crm_customer {
     type: string
     case: {
       when: {
-        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_entrega_date}
-             AND ${dados_jornada_crm.DT_STATUS_date} <= add_days(3,${crm_customer.data_entrega_date} ;;
+        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
+             AND ${dados_jornada_crm.DT_STATUS_date} <= add_days(3,${data_evento_date}) ;;
         label: "1"
       }
       else: "0"
@@ -195,7 +195,7 @@ view: crm_customer {
       msg_template,
       assunto_acao,
       nome_evento,
-      data_entrega_time,
+      data_evento_time,
       canal_de_contato,
       body,
       tipo_contato,
