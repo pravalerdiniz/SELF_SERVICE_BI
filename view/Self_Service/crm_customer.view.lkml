@@ -166,6 +166,20 @@ view: crm_customer {
     sql: ${TABLE}."INFOS_JORNADA" ;;
   }
 
+  dimension: mudou_etapa {
+    type: string
+    case: {
+      when: {
+        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_entrega_date}
+             AND ${dados_jornada_crm.DT_STATUS_date} <= add_days(3,${crm_customer.data_entrega_date} ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Evento"
+    label: "Mudou Etapa"
+    description: "Indicador de mudança de status"
+  }
 
   set: detail {
     fields: [
