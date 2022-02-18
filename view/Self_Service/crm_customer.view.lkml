@@ -18,6 +18,14 @@ view: crm_customer {
     description: "Contagem de eventos únicos"
   }
 
+  measure: count_cpf_cio {
+    type: count_distinct
+    sql: ${cpf_cio} ;;
+    group_label: "Quantidade de Alunos"
+    group_item_label: "Quantidade de Alunos"
+    description: "Contagem de alunos unicos pelo cpf que vem da CIO"
+  }
+
   dimension: id_envio {
     type: string
     group_label: "Dados do Envio"
@@ -180,6 +188,7 @@ view: crm_customer {
     label: "Mudou Etapa"
     description: "Indicador de mudança de status"
   }
+
 
   set: detail {
     fields: [
