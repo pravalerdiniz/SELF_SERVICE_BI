@@ -483,7 +483,7 @@ nm_produto
     sql: ${id_cpf} ;;
     group_label: "Fluxo Status"
     label: "Quantidade de CPFs para fluxo status"
-    drill_fields: [id_cpf,
+    drill_fields: [cpf_aluno,
       id_proposta,
       motivo_alteracao,
       status_origem_geral,

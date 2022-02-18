@@ -1,6 +1,6 @@
 view: alunos_gerencial_renovacao_status_elegibilidade {
   derived_table: {
-    sql: select * from stage.public.validacao_status_renovacao
+    sql: select * from GRADUADO.RISCO.VW_VALIDACAO_STATUS_RENOVACAO
       ;;
   }
 

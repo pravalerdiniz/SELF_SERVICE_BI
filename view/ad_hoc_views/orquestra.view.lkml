@@ -124,10 +124,10 @@ view: orquestra {
   }
 
   dimension: flg_processo_em_andamento {
-    type: yesno
+    type: string
     group_label: "Dados da Solicitação"
     group_item_label: "Flg Processo em Andamento?"
-    description: "Verifica se o chamado está em andamento/tratativa ou não (Yes/No)"
+    description: "Verifica se o chamado está em andamento/tratativa ou não"
     sql: ${TABLE}."FLG_PROCESSO_EM_ANDAMENTO" ;;
   }
 
@@ -261,6 +261,15 @@ view: orquestra {
     sql: ${TABLE}."FLG_ULTIMA_TASK_MANUAL" ;;
   }
 
+  dimension: concluido {
+    type: yesno
+    group_label: "Dados da Tarefa"
+    group_item_label: "Chamado concluido?"
+    sql: ${TABLE}."FLG_ULTIMA_TASK_MANUAL" = 'Yes'
+      and ${solicitacoes_para_facilities.data_entrega} is not null
+      OR ${orquestra.data_fim_date} is not null  ;;
+  }
+
   ## ALUNOS
 
   dimension: cpf {
@@ -300,7 +309,7 @@ view: orquestra {
 
   measure: total_tempo_desde_abertura_horas {
     type: sum
-    hidden: yes
+    hidden: no
     sql: ${tempo_desde_abertura_horas} ;;
   }
 

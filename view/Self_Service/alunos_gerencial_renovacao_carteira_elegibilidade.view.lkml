@@ -9,6 +9,21 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     drill_fields: [detail*]
   }
 
+  measure: count_cpf {
+    type: count_distinct
+    label: "Quantidade de Alunos"
+    sql: ${tdt_cpf} ;;
+  }
+
+  dimension: chave_primaria {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${tdt_ano_mes},${tdt_cpf},${data_visao_raw}) ;;
+    hidden: yes
+
+
+  }
+
   dimension: tdt_ano_mes {
     type: number
     label: "Carteira - Ano e mês"
@@ -18,7 +33,6 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   dimension: tdt_cpf {
     type: number
     label: "CPF"
-    hidden: yes
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
@@ -47,6 +61,14 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   }
 
 
+dimension: data_carga_time {
+  type: date_time
+  sql: ${TABLE}."DT_CARGA" ;;
+  hidden: yes
+
+}
+
+
   dimension_group: data_carga {
     type: time
     timeframes: [
@@ -62,7 +84,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     convert_tz: no
     datatype: date
     label: "Carga"
-    sql: ${TABLE}."DT_CARGA" ;;
+    sql: ${data_carga_time} ;;
   }
 
   dimension: maturidade_cpf2 {
