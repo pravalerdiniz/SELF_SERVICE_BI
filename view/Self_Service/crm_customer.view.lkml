@@ -171,7 +171,7 @@ view: crm_customer {
     case: {
       when: {
         sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
-             AND ${dados_jornada_crm.DT_STATUS_date} <= add_days(3,${data_evento_date}) ;;
+             AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
         label: "1"
       }
       else: "0"
