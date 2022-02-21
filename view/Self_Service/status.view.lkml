@@ -875,24 +875,7 @@ nm_produto
     hidden: yes
   }
 
-  dimension: estoque_produtivo {
-    type: string
-        sql:
-    case
-      when ${status_destino_detalhado}='1.1'
-           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "Estoque Produtivo Iniciados"
-      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "Estoque Produtivo Tela IES"
-      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "Estoque Produtivo Documentos"
-      when ${status_destino_detalhado}='40.5'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "Estoque Produtivo Assinatura"
-      else "Outros";;
-    group_label: "Estoque Produtivo"
-    group_item_label: " Estoque Produtivo"
-    hidden: yes
-    description: "Marcação dos Alunos em Estoque Produtivo"
-  }
+
 
   dimension: fx_estoque_produtivo {
     type: string
