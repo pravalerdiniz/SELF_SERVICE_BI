@@ -911,23 +911,19 @@ nm_produto
     case: {
       when: {
         sql: ${status_destino_detalhado}='1.1'
-             and (${dt_status_date} >= dateadd(day,-45,current_date())
-             and ${dt_status_date} <= current_date())
+             and ${dt_status_date} >= dateadd(day,-45,current_date())
              AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
         label: "1. Andamento no Prazo"
       }
       when: {
         sql: ${status_destino_detalhado}='1.1'
-             and (${dt_status_date}>=dateadd(day,-45,current_date())
-             and ${dt_status_date}<=current_date())
-             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2
-             and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8);;
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
+             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
         label: "2. Andamento Atuação"
       }
       when: {
         sql: ${status_destino_detalhado}='1.1'
-             and (${dt_status_date}>=dateadd(day,-45,current_date())
-             and ${dt_status_date}<=current_date())
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
              AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
         label: "3. NOK/Abandono"
       }
