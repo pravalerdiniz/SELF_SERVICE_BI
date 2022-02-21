@@ -1398,7 +1398,7 @@ view: jornada {
 
 dimension: url {
   type: string
-  group_label: "Atribuição"
+  group_label: "Dados de Primeiro Canal"
   group_item_label: "URL"
   description: "Primeira URL da proposta/lead"
   sql: ${TABLE}."URL" ;;
@@ -1406,7 +1406,7 @@ dimension: url {
 
   dimension: canal {
     type: string
-    group_label: "Atribuição"
+    group_label: "Dados de Primeiro Canal"
     group_item_label: "Canal"
     description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
