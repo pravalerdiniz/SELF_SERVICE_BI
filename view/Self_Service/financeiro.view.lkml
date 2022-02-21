@@ -1411,6 +1411,22 @@ foi gerado por um pagamento menor do boleto anterior."
     ;;
   }
 
+  dimension_group: data_reajuste_ipca {
+    type: time
+      timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Data de reajuste de IPCA"
+    description: "Data em que o boleto foi reajustado de acordo com o IPCA"
+    datatype: date
+    sql: ${TABLE}."DATA_TIT_IPCA" ;;
+  }
 
 
 
