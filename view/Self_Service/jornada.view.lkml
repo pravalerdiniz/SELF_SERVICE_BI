@@ -3781,7 +3781,7 @@ dimension: qtd_dias_iniciados {
         label: "1. Andamento no Prazo"
       }
       when: {
-        sql: ${etapa}='Iniciado' AND tempo_no_status>2 and ${tempo_no_status}<=8;;
+        sql: ${etapa}='Iniciado' AND ${tempo_no_status}>2 and ${tempo_no_status}<=8;;
         label: "2. Andamento Atuação"
       }
       when: {
