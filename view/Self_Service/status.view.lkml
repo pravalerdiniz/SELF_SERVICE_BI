@@ -884,30 +884,30 @@ nm_produto
       when ${status_destino_detalhado}='1.1'
             and ${dt_status_date} >= dateadd(day,-45,current_date())
             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
-      when ${status_destino_detalhado}='1.1'
-            and ${dt_status_date}>=dateadd(day,-45,current_date())
+      when ${status_destino_detalhado} = '1.1'
+            and ${dt_status_date} >= dateadd(day,-45,current_date())
             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8) then "2. Andamento Atuação"
-      when ${status_destino_detalhado}='1.1'
-            and ${dt_status_date}>=dateadd(day,-45,current_date())
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 then "3. NOK/Abandono"
-      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
-      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20) then "2. Andamento Atuação"
-      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20 then "3. NOK/Abandono"
-      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
-      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20) then "2. Andamento Atuação"
-      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20 then "3. NOK/Abandono"
-      when ${status_destino_detalhado}='40.5'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
-      when ${status_destino_detalhado}='40.5'
-            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8) then "2. Andamento Atuação"
-      when ${status_destino_detalhado}='40.5'
-            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 then "3. NOK/Abandono"
+      when ${status_destino_detalhado} = '1.1'
+            and ${dt_status_date} >= dateadd(day,-45,current_date())
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 8 then "3. NOK/Abandono"
+      when ${grupo_status_destino} = 'ESTOQUE TELA DA INSTITUIÇÃO'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 8 then "1. Andamento no Prazo"
+      when ${grupo_status_destino} = 'ESTOQUE TELA DA INSTITUIÇÃO'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 20) then "2. Andamento Atuação"
+      when ${grupo_status_destino} = 'ESTOQUE TELA DA INSTITUIÇÃO'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 20 then "3. NOK/Abandono"
+      when ${grupo_status_destino} = 'ESTOQUE DOCUMENTOS'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 8 then "1. Andamento no Prazo"
+      when ${grupo_status_destino} = 'ESTOQUE DOCUMENTOS'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 20) then "2. Andamento Atuação"
+      when ${grupo_status_destino} = 'ESTOQUE DOCUMENTOS'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 20 then "3. NOK/Abandono"
+      when ${status_destino_detalhado} = '40.5'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 2 then "1. Andamento no Prazo"
+      when ${status_destino_detalhado} = '40.5'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 8) then "2. Andamento Atuação"
+      when ${status_destino_detalhado} = '40.5'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} > 8 then "3. NOK/Abandono"
     else "Outros");;
     group_label: "Estoque Produtivo"
     group_item_label: "Faixa Estoque Produtivo"
