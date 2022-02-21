@@ -3777,14 +3777,14 @@ dimension: qtd_dias_iniciados {
     type: string
     case: {
       when: {
-        sql: ${etapa}="Iniciado" AND AND ${tempo_no_status} <= 2
+        sql: ${etapa}="Iniciado" AND ${tempo_no_status} <= 2
              and ${dt_status_date} >= dateadd(day,-45,GETDATE())
              and ${dt_status_date} <= GETDATE();;
         label: "1. Andamento no Prazo"
       }
       when: {
-        sql: ${etapa}="Iniciado" AND
-          tempo_no_status>2 and ${tempo_no_status}<=8
+        sql: ${etapa}="Iniciado"
+        AND tempo_no_status>2 and ${tempo_no_status}<=8
           and ${dt_status_date} >= dateadd(day,-45,GETDATE())
           and ${dt_status_date} <= GETDATE();;
         label: "2. Andamento Atuação"
