@@ -1,8 +1,8 @@
-# The name of this view in Looker is "Volumetria Lancamento"
-view: volumetria_lancamento {
+# The name of this view in Looker is "Metas"
+view: metas {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "VETERANO"."CURTA"."VOLUMETRIA_LANCAMENTO"
+  sql_table_name: "VETERANO"."CURTA"."METAS"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -13,17 +13,13 @@ view: volumetria_lancamento {
 
   dimension: cnpj {
     type: string
-    hidden: yes
     sql: ${TABLE}."CNPJ" ;;
   }
 
-  dimension: id {
+  dimension: cpnj_limpo {
     type: string
-    primary_key: yes
     hidden: yes
-    sql: ${TABLE}."ID";;
-
-
+    sql: ${TABLE}."CPNJ_LIMPO" ;;
   }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
@@ -42,7 +38,6 @@ view: volumetria_lancamento {
     convert_tz: no
     datatype: date
     label: "Final"
-    description: "Indica a data final do lançamento das vagas"
     sql: ${TABLE}."DATA_FINAL" ;;
   }
 
@@ -51,6 +46,7 @@ view: volumetria_lancamento {
     timeframes: [
       raw,
       date,
+      day_of_month,
       week,
       month,
       quarter,
@@ -58,8 +54,7 @@ view: volumetria_lancamento {
     ]
     convert_tz: no
     datatype: date
-    label: "Inicio"
-    description: "Indica a data de inicio do lançamento das vagas"
+    label: "Referência"
     sql: ${TABLE}."DATA_INICIO" ;;
   }
 
@@ -73,71 +68,70 @@ view: volumetria_lancamento {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_dias_em_lancamentos {
-    type: sum
-    group_label: "Dias em lançamento"
-    label: "Soma"
-    sql: ${dias_em_lancamentos} ;;
-  }
-
-  measure: average_dias_em_lancamentos {
-    type: average
-    group_label: "Dias em lançamento"
-    label: "Média"
-    sql: ${dias_em_lancamentos} ;;
-  }
 
   dimension: escola {
     type: string
-    label: "Escola"
-    description: "Indica o nome da instituição de ensino."
     sql: ${TABLE}."ESCOLA" ;;
   }
 
   dimension: mes {
     type: string
-    label: "Mês"
-    description: "Indica o mês de lançamento do curso"
     sql: ${TABLE}."MES" ;;
   }
 
   dimension: semana {
     type: number
-    label: "Semana"
-    description: "Indica o número de semanas em relação ao lançamento das vagas da escola."
     sql: ${TABLE}."SEMANA" ;;
   }
 
   dimension: vagas {
     type: number
     label: "Vagas"
-    description: "Indica a soma de vagas em relação ao lançamento do curso da escola"
+    description: "Indica a quantidade de vagas disponiveis por escola"
     sql: ${TABLE}."VAGAS" ;;
   }
 
-  measure: sum_vagas {
-    type: sum
-    group_label: "Vagas"
-    label: "Soma"
-    description: "Indica a soma de vagas em relação ao lançamento do curso da escola"
-    sql: ${vagas};;
+  dimension: volumetria_diaria {
+    type: number
+    sql: ${TABLE}."VOLUMETRIA_DIARIA" ;;
   }
 
-  measure: avg_vagas {
+measure: sum_volumetria_diaria {
+  type: sum
+  group_label: "Volumetria - Meta"
+  label: "Soma"
+  sql: ${volumetria_diaria} ;;
+
+
+}
+
+  measure: avg_volumetria_diaria {
     type: average
-    group_label: "Vagas"
+    group_label: "Volumetria - Meta"
     label: "Média"
-    description: "Indica a média de vagas em relação ao lançamento do curso da escola"
-    sql: ${vagas} ;;
+    sql: ${volumetria_diaria} ;;
+
+
   }
 
-  measure: med_vagas {
+  measure: min_volumetria_diaria {
     type: average
-    group_label: "Vagas"
-    label: "Mediana"
-    description: "Indica a mediana de vagas em relação ao lançamento do curso da escola"
-    sql: ${vagas} ;;
+    group_label: "Volumetria - Meta"
+    label: "Mínimo"
+    sql: ${volumetria_diaria} ;;
+
+
   }
+
+  measure: max_volumetria_diaria {
+    type: average
+    group_label: "Volumetria - Meta"
+    label: "Máximo"
+    sql: ${volumetria_diaria} ;;
+
+
+  }
+
 
   measure: count {
     type: count

@@ -48,11 +48,22 @@ map_layer: MAPA_CIDADE_ALUNO {
 #
 
 explore: meta {
-  label: "Meta"
-  view_label: "Meta"
+  label: "Meta - Geral"
+  view_label: "Meta - Geral"
+
 
 }
 
+
+explore: metas {
+  label: "Metas - Escolas"
+  view_label: "Metas - Escolas"
+
+
+
+
+
+}
 
 
 explore: student {
@@ -73,9 +84,9 @@ explore: student {
       relationship: one_to_many
       }
 
-  join: volumetria_lancamento {
-    view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj} and ${student_curso.id_instituicao} = ${institution.id_instituicao} and ${student_curso.id_curso} = ${courses.id_curso} and  ${student.id_aluno} = ${student_curso.id_aluno} ;;
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -229,9 +240,9 @@ explore: contracts {
     relationship: one_to_many
   }
 
-  join: volumetria_lancamento {
-    view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -344,9 +355,9 @@ explore: risk {
     relationship: one_to_many
   }
 
-  join: volumetria_lancamento {
-    view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -493,9 +504,9 @@ explore: payment {
     relationship: one_to_many
   }
 
-  join: volumetria_lancamento {
-    view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -579,11 +590,11 @@ explore: status_curta {
     relationship: one_to_many
   }
 
-  join: volumetria_lancamento {
-    view_label: "Instituição de Ensino - Volumetria de Lançamento"
-    sql_on: ${institution.cnpj_instituicao} = ${volumetria_lancamento.cnpj}  ;;
-    type: left_outer
-    relationship: one_to_many
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
+    type: inner
+    relationship: one_to_one
   }
 
   join: courses {

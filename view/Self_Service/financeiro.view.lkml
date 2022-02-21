@@ -122,6 +122,22 @@ dimension: data_trunc  {
     description: "Indica a faixa de adimplência do aluno"
   }
 
+  dimension: faixa_adimple2 {
+    type: string
+    sql:
+    CASE WHEN ${flg_boleto_pago} = TRUE THEN
+    CASE WHEN ${dias_pagamento_vencido} <= -30  THEN 'A - Pago - Menos 30'
+         ELSE 'B - Pago Após' END
+    ELSE 'C - A pagar'
+              END;;
+    group_label: "Dados do Boleto"
+    group_item_label: "Faixa de Adimplência 2"
+    description: "Indica a faixa de adimplência do aluno"
+  }
+
+
+
+
 
 
   dimension_group: data_vencimento {

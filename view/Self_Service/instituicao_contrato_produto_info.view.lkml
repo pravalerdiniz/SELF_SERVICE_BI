@@ -32,6 +32,14 @@ view: instituicao_contrato_produto_info {
     drill_fields: [detail*]
   }
 
+
+  dimension: id_instituicao_id_contrato_id_produto_pk {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${id_instituicao},${id_ies_contrato},${id_produto}) ;;
+  }
+
+
   dimension: id_instituicao {
     type: string
     label: "ID da Instituição"

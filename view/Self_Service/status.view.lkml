@@ -368,6 +368,15 @@ view: status {
     }
 
 
+  dimension: FLUXO_STATUS {
+    type: string
+    sql: ${TABLE}."FLUXO_STATUS" ;;
+    group_label: "Dados do Status"
+    label: "Fluxo Status"
+    description: "Indica se o fluxo do status do aluno está certo ou errado."
+    }
+
+
 
  # dimension: TEMPO_DIAS_TRANS_STATUS {
 #    type: number
@@ -455,7 +464,6 @@ view: status {
   measure: cont_cpf {
     type: count_distinct
     sql: ${id_cpf} ;;
-    value_format: "0"
     label: "Quantidade de CPFs"
     drill_fields: [cpf_aluno, id_proposta, aluno_nome,
       aluno_email,
@@ -470,6 +478,19 @@ nm_produto
     description: "Contagem de CPFs únicos"
   }
 
+  measure: cont_cpf_fluxo {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    group_label: "Fluxo Status"
+    label: "Quantidade de CPFs para fluxo status"
+    drill_fields: [cpf_aluno,
+      id_proposta,
+      motivo_alteracao,
+      status_origem_geral,
+      status_destino_geral,nm_usuario,
+      id_usuario,dt_status_date]
+    description: "Contagem de CPFs únicos para fluxo dos status"
+  }
 
  # measure: sum_trans_status  {
 #    type: sum
@@ -875,13 +896,39 @@ nm_produto
       when: {
         sql: ${status_destino_detalhado}='40.5'
           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: " Estoque Produtivo Assinatura "
+        label: "Estoque Produtivo Assinatura"
       }
       else: "Outros"
     }
     group_label: "Estoque Produtivo"
     group_item_label: " Estoque Produtivo"
+    hidden: yes
     description: "Marcação dos Alunos em Estoque Produtivo"
+  }
+
+  dimension: fx_estoque_produtivo {
+    type: string
+    sql: case when ${estoque_produtivo} = "Estoque Produtivo Iniciados" then
+               {case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "2. Andamento Atuação"
+                else "3. NOK/Abandono"}
+              when ${estoque_produtivo} = "Estoque Produtivo Tela IES" then
+               {case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "2. Andamento Atuação"
+               else "3. NOK/Abandono"}
+              when ${estoque_produtivo} = "Estoque Produtivo Documentos" then
+               {case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "2. Andamento Atuação"
+               else "3. NOK/Abandono"}
+              when ${estoque_produtivo} = "Estoque Produtivo Assinatura" thne
+               {case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8  then "2. Andamento Atuação"
+               else "3. NOK/Abandono"}
+         else "Outros";;
+    group_label: "Estoque Produtivo"
+    group_item_label: "Faixa Estoque Produtivo"
+    hidden: yes
+    description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
 
 }

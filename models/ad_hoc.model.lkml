@@ -117,8 +117,32 @@ explore: orquestra {
     sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Informações adicionais"
+    view_label: "Informações Processos"
     }
+
+  join: solicitacoes_para_facilities {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Facilities - Processo P37"
+  }
+
+  join: solicitacoes_para_facilities_p51 {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities_p51.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Facilities - Processo P51"
+  }
+}
+
+explore: base_forecast_cs {
+  label: "Forecast Contatos"
+}
+
+explore: campanha_valoriza {
+  label: "Campanha Valoriza"
 }
 
 explore: base_trade {}
@@ -207,12 +231,25 @@ explore: cruzeiro_inadimplentes {}
 
 explore: csat_nuvem_palavras_bad {}
 
+explore: nps_nuvem_palavras_detratores {}
+
+explore: nps_nuvem_palavras_neutros {}
+
+explore: nps_nuvem_palavras_promotores {}
+
 explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}
 
 explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
+
+
+
+}
+
+explore: base_ot_analise {
+  label: "Análise - Oliveira Trust"
 
 
 

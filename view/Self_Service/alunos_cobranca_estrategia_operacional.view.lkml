@@ -136,7 +136,7 @@ view: alunos_cobranca_estrategia_operacional {
 
   dimension: desconto {
    type: number
-   label: "Desconto?"
+   label: "Desconto"
    value_format: "0.00%"
   description: "Desconto cedido ao aluno"
     sql: ${TABLE}."DESCONTO" ;;
@@ -168,7 +168,7 @@ view: alunos_cobranca_estrategia_operacional {
 
   dimension: ordem_faixa_atraso {
     type: string
-    description: "Ordem da faixa de atraso********"
+    description: "Ordem da faixa de atraso"
     sql: ${TABLE}."ORDEM_FAIXA_ATRASO" ;;
   }
 

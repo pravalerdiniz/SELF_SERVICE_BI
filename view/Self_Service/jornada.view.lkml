@@ -750,7 +750,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: no
+    hidden: yes
 
   }
 
@@ -764,7 +764,7 @@ view: jornada {
     value_format: "0"
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date]
     description: "Diferença de dias entre o aluno ser lead e iniciar uma proposta"
-    hidden: no
+    hidden: yes
   }
 
 
@@ -1398,7 +1398,7 @@ view: jornada {
 
 dimension: url {
   type: string
-  group_label: "Atribuição"
+  group_label: "Dados de Primeiro Canal"
   group_item_label: "URL"
   description: "Primeira URL da proposta/lead"
   sql: ${TABLE}."URL" ;;
@@ -1406,7 +1406,7 @@ dimension: url {
 
   dimension: canal {
     type: string
-    group_label: "Atribuição"
+    group_label: "Dados de Primeiro Canal"
     group_item_label: "Canal"
     description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
@@ -1455,6 +1455,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_segundo_repasse_date}) ;;
     label: "Segundo Repasse"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Segundo Repasse"
     value_format: "0"
   }
@@ -1482,6 +1483,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_cessao_date}) ;;
     label: "Cessão"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Cessão"
     value_format: "0"
   }
@@ -1509,6 +1511,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cedido_date}) ;;
     label: "Cedido"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cedido"
     value_format: "0"
   }
@@ -1536,6 +1539,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cancelado_date}) ;;
     label: "Cancelado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cancelado"
     value_format: "0"
   }
@@ -1563,6 +1567,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cadastro_finalizado_date}) ;;
     label: "Cadastro Finalizado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cadastro Finalizado"
     value_format: "0"
   }
@@ -1590,6 +1595,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_elegivel_date}) ;;
     label: "Elegível"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de ELegível"
     value_format: "0"
   }
@@ -1617,6 +1623,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_risco_date}) ;;
     label: "Aprovado Risco"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Risco"
     value_format: "0"
   }
@@ -1644,6 +1651,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_formalizado_date}) ;;
     label: "Formalizado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Formalizado"
     value_format: "0"
   }
@@ -1671,6 +1679,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
     label: "Aprovado Behavior"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Behavior"
     value_format: "0"
   }
@@ -1698,6 +1707,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_assinatura_date}) ;;
     label: "Aguardando Assinatura"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Assinatura"
     value_format: "0"
   }
@@ -1725,6 +1735,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_elegivel_date}) ;;
     label: "Iniciado / Elegível"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado / Elegível"
     value_format: "0"
   }
@@ -1752,6 +1763,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_date}) ;;
     label: "Iniciado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado"
     value_format: "0"
   }
@@ -1779,6 +1791,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documento_date}) ;;
     label: "Aguardando Documento"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documento"
     value_format: "0"
   }
@@ -1807,6 +1820,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_lead_date}) ;;
     label: "Lead"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Lead"
     value_format: "0"
   }
@@ -1834,6 +1848,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documentos_date}) ;;
     label: "Aguardando Documentos"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documentos"
     value_format: "0"
   }
@@ -1861,6 +1876,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_instituicao_date}) ;;
     label: "Aprovado Instituição"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Instituição"
     value_format: "0"
   }
@@ -1888,6 +1904,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_simulado_date}) ;;
     label: "Simulado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Simulado"
     value_format: "0"
   }
@@ -1915,6 +1932,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_finalizado_date}) ;;
     label: "Finalizado"
     group_label: "Média de dias até a Etapa"
+    hidden: no
     description: "Média em dias da diferença entre o início da proposta até a etapa de Finalizado"
     value_format: "0"
   }
@@ -2057,7 +2075,7 @@ dimension: flg_d1 {
               else datediff(day,${dt_iniciado_raw},${dt_cedido_raw})
          end ;;
     value_format: "0"
-    hidden: no
+    hidden: yes
   }
 
 # Renovação
@@ -2179,6 +2197,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "1. Lead até Iniciar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_iniciados_novos]
     description: "Mediana do tempo entre o aluno ser lead e iniciar uma proposta"
   }
@@ -2191,6 +2210,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_finalizado_novos]
     description: "Mediana do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -2204,6 +2224,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "3. Finalizar Proposta até Aprovado Risco"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_mesa_risco_novos]
     description: "Mediana do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
@@ -2216,6 +2237,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "4. Aprovado Risco até Aprovado Instituição"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_finalizado_novos]
     description: "Mediana do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
@@ -2229,6 +2251,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "5. Aprovado Instituição até Aguardando Documento"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_aguard_doc_novos]
     description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
@@ -2242,6 +2265,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "7. Aguardando Documento até Aguardando Assinatura"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_aguard_ass_ctt_novos]
     description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
@@ -2254,6 +2278,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "8. Aguardando Assinatura até Formalizado"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_formalizados_novos]
     description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
@@ -2266,6 +2291,7 @@ dimension: flg_d1 {
     group_label: "Mediana do tempo de Jornada - Novos"
     group_item_label: "9. Formalizado até Cedido"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,mediana_cedidos_novos]
     description: "Mediana do tempo entre o aluno estar formalizado e ser cedido"
   }
@@ -2285,6 +2311,7 @@ dimension: flg_d1 {
       group_label: "Mediana do tempo de Jornada - Novos"
       group_item_label: "10. Tempo Total da Jornada do Aluno Novo"
       value_format: "0"
+    hidden:  yes
       drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,mediana_total_novos]
       description: "Soma da mediana do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
@@ -2400,6 +2427,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "1. Lead até Iniciar Proposta"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
     description: "Média do tempo entre o aluno ser lead e iniciar uma proposta"
   }
@@ -2412,6 +2440,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "1. Lead até Iniciar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
     description: "Maxima do tempo entre o aluno ser lead e iniciar uma proposta"
   }
@@ -2424,6 +2453,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "1. Lead até Iniciar Proposta"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_iniciados_novos]
     description: "Mínima do tempo entre o aluno ser lead e iniciar uma proposta"
   }
@@ -2436,6 +2466,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
     description: "Média do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -2448,6 +2479,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
     description: "Máxima do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -2460,6 +2492,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "2. Iniciar Proposta até Finalizar Proposta"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_finalizados_novos]
     description: "Mínima do tempo entre o aluno iniciar e finalizar uma proposta"
   }
@@ -2472,6 +2505,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "3. Finalizar Proposta até Aprovado Risco"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
     description: "Média do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
@@ -2484,6 +2518,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "3. Finalizar Proposta até Aprovado Risco"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
     description: "Máxima do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
@@ -2496,6 +2531,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "3. Finalizar Proposta até Aprovado Risco"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_mesa_risco_novos]
     description: "Mínima do tempo entre o aluno finalizar uma proposta e ser aprovado por risco"
   }
@@ -2508,6 +2544,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "4. Aprovado Risco até Aprovado Instituição"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
     description: "Média do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
@@ -2520,6 +2557,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "4. Aprovado Risco até Aprovado Instituição"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
     description: "Máxima do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
@@ -2532,6 +2570,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "4. Aprovado Risco até Aprovado Instituição"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aprovado_instituicao_novos]
     description: "Mínima do tempo entre o aluno ser aprovado por risco e ser aprovado pela instituição"
   }
@@ -2544,6 +2583,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "6. Aprovado Instituição até Aguardando Documento"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
     description: "Média do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
@@ -2556,6 +2596,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "6. Aprovado Instituição até Aguardando Documento"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
     description: "Máxima do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
@@ -2568,6 +2609,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "6. Aprovado Instituição até Aguardando Documento"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_doc_novos]
     description: "Mínima do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos pendentes."
   }
@@ -2580,6 +2622,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
     description: "Média do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
@@ -2592,6 +2635,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
     description: "Máxima do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
@@ -2604,6 +2648,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "5. Aguardando Documento até Aguardando Assinatura"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_aguard_ass_ctt_novos]
     description: "Mínima do tempo entre o aluno ter o contrato gerado e aguardar o contrato ser assinado"
   }
@@ -2616,6 +2661,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "8. Aguardando Assinatura até Formalizado"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
     description: "Média do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
@@ -2628,6 +2674,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "8. Aguardando Assinatura até Formalizado"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
     description: "Máxima do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
@@ -2640,6 +2687,7 @@ dimension: flg_d1 {
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "8. Aguardando Assinatura até Formalizado"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_formalizado_novos]
     description: "Mínima do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
   }
@@ -2652,6 +2700,7 @@ dimension: flg_d1 {
     group_label: "Média do tempo de Jornada - Novos"
     group_item_label: "9. Formalizado até Cedido"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
     description: "Média do tempo entre o aluno estar formalizado e ser cedido"
   }
@@ -2664,6 +2713,7 @@ dimension: flg_d1 {
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "9. Formalizado até Cedido"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
     description: "Máxima do tempo entre o aluno estar formalizado e ser cedido"
   }
@@ -2676,6 +2726,7 @@ dimension: flg_d1 {
     group_label: "Minima do tempo de Jornada - Novos"
     group_item_label: "9. Formalizado até Cedido"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
     description: "Mínima do tempo entre o aluno estar formalizado e ser cedido"
   }
@@ -2694,6 +2745,7 @@ dimension: flg_d1 {
       group_label: "Média do tempo de Jornada - Novos"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
       value_format: "0"
+    hidden: yes
       drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
@@ -2712,6 +2764,7 @@ coalesce(${sla_ced_novos},0);;
       group_label: "Tempo Total de Jornada - Novos"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
       value_format: "0"
+      hidden:  yes
       drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
@@ -2724,6 +2777,7 @@ coalesce(${sla_ced_novos},0);;
     group_label: "Máxima do tempo de Jornada - Novos"
     group_item_label: "Tempo Total de Jornada do Aluno Novo"
     value_format: "0"
+    hidden:  yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
     description: "Máxima do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
   }
@@ -2736,6 +2790,7 @@ coalesce(${sla_ced_novos},0);;
     group_label: "Mínima do tempo de Jornada - Novos"
     group_item_label: "Tempo Total de Jornada do Aluno Novo"
     value_format: "0"
+    hidden: yes
     drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,dt_status_date,media_cedidos_novos]
     description: "Mínima do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
   }
@@ -3140,7 +3195,7 @@ dimension: qtd_dias_iniciados {
 
   dimension: qtd_dias_form {
     type: number
-    sql: ${TABLE}."QTD_DIAS_FORM" ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
@@ -3149,7 +3204,7 @@ dimension: qtd_dias_iniciados {
 
   measure: average_qtd_dias_form {
     type: average
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3159,7 +3214,7 @@ dimension: qtd_dias_iniciados {
 
   measure: median_qtd_dias_form {
     type: median
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3167,9 +3222,19 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
 
+  measure: median_qtd_dias_form_old {
+    type: median
+    sql: ${TABLE}."QTD_DIAS_FORM" ;;
+    group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Novos - Formalizados (Antigo)"
+    value_format: "0"
+    hidden: no
+    description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
+  }
+
   measure: max_qtd_dias_form {
     type: max
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3179,7 +3244,7 @@ dimension: qtd_dias_iniciados {
 
   measure: min_qtd_dias_form {
     type: min
-    sql: ${qtd_dias_form} ;;
+    sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
     value_format: "0"
@@ -3246,7 +3311,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${qtd_dias_apr_risco},0)+
     coalesce(${qtd_dias_apr_ies},0)+
     coalesce(${qtd_dias_agg_doc},0)+
-    coalesce(${qtd_dias_form},0)+
+    coalesce(${qtd_dias_agg_ass},0)+
     coalesce(${qtd_dias_cedido},0);;
     hidden:  no
     }
@@ -3279,7 +3344,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${average_qtd_dias_apr_risco},0)+
     coalesce(${average_qtd_dias_apr_ies},0)+
     coalesce(${average_qtd_dias_agg_doc},0)+
-    coalesce(${average_qtd_dias_form},0)+
+    coalesce(${average_qtd_dias_agg_ass},0)+
     coalesce(${average_qtd_dias_cedido},0) ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
@@ -3295,7 +3360,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${median_qtd_dias_apr_risco},0)+
     coalesce(${median_qtd_dias_apr_ies},0)+
     coalesce(${median_qtd_dias_agg_doc},0)+
-    coalesce(${median_qtd_dias_form},0)+
+    coalesce(${median_qtd_dias_agg_ass},0)+
     coalesce(${median_qtd_dias_cedido},0) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
@@ -3706,6 +3771,64 @@ dimension: qtd_dias_iniciados {
     value_format: "0"
     hidden: no
     description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Cedido"
+  }
+
+  dimension: estoque_produtivo_jornada {
+    type: string
+    case: {
+      when: {
+        sql: ${etapa}='Iniciado' AND ${tempo_no_status} <= 2;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${etapa}='Iniciado' AND ${tempo_no_status}>2 and ${tempo_no_status}<=8;;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${etapa}='Iniciado' AND ${tempo_no_status}>8;;
+        label: "3. NOK/Abandono"
+      }
+      when: {
+        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}<=8;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}>8 and ${tempo_no_status}<=20;;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}>20;;
+        label: "3. NOK/Abandono"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}<=8;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}>8 and ${tempo_no_status}<=20;;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}>20;;
+        label: "3. NOK/Abandono"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}<=2;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}>2 and ${tempo_no_status}<=8;;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}>8;;
+        label: "3. NOK/Abandono"
+      }
+    else: "Outros"
+    }
+    group_label: "Estoque Produtivo"
+    group_item_label: "Faixa Estoque Produtivo"
+    description: "Marcação dos Alunos em Estoque Produtivo"
   }
 
 
