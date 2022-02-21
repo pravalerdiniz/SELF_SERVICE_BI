@@ -190,7 +190,7 @@ view: crm_customer {
   }
 
   dimension: mudou_etapa_num {
-    type: string
+    type: number
     sql: case when ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
                AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date})
               then 1
