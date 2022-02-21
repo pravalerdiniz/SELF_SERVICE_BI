@@ -897,7 +897,7 @@ nm_produto
   dimension: fx_estoque_produtivo {
     type: string
     sql:
-    case
+    (case
       when ${status_destino_detalhado}='1.1'
             and ${dt_status_date} >= dateadd(day,-45,current_date())
             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
@@ -925,7 +925,7 @@ nm_produto
             AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8) then "2. Andamento Atuação"
       when ${status_destino_detalhado}='40.5'
             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 then "3. NOK/Abandono"
-    else "Outros";;
+    else "Outros");;
     group_label: "Estoque Produtivo"
     group_item_label: "Faixa Estoque Produtivo"
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
