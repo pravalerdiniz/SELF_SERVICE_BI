@@ -3778,21 +3778,21 @@ dimension: qtd_dias_iniciados {
     case: {
       when: {
         sql: ${etapa}='Iniciado' AND ${tempo_no_status} <= 2
-             and ${dt_status_date} >= dateadd(day,-45,GETDATE())
-             and ${dt_status_date} <= GETDATE();;
+             and ${dt_status_date} >= dateadd(day,-45,current_date())
+             and ${dt_status_date} <= current_date();;
         label: "1. Andamento no Prazo"
       }
       when: {
         sql: ${etapa}='Iniciado'
-        AND tempo_no_status>2 and ${tempo_no_status}<=8
-          and ${dt_status_date} >= dateadd(day,-45,GETDATE())
-          and ${dt_status_date} <= GETDATE();;
+        AND ${tempo_no_status}>2 and ${tempo_no_status}<=8
+          and ${dt_status_date} >= dateadd(day,-45,current_date())
+          and ${dt_status_date} <= current_date();;
         label: "2. Andamento Atuação"
       }
       when: {
         sql: ${etapa}='Iniciado' AND ${tempo_no_status}>8
-        and ${dt_status_date} >= dateadd(day,-45,GETDATE())
-        and ${dt_status_date} <= GETDATE();;
+        and ${dt_status_date} >= dateadd(day,-45,current_date())
+        and ${dt_status_date} <=current_date();;
         label: "3. NOK/Abandono"
       }
       when: {
