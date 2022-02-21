@@ -877,29 +877,17 @@ nm_produto
 
   dimension: estoque_produtivo {
     type: string
-    case: {
-      when: {
-        sql: ${status_destino_detalhado}='1.1'
-             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: "Estoque Produtivo Iniciados"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
-        label: "Estoque Produtivo Tela IES"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
-        label: "Estoque Produtivo Documentos"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='40.5'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: "Estoque Produtivo Assinatura"
-      }
-      else: "Outros"
-    }
+        sql:
+    case
+      when ${status_destino_detalhado}='1.1'
+           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "Estoque Produtivo Iniciados"
+      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "Estoque Produtivo Tela IES"
+      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+           AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "Estoque Produtivo Documentos"
+      when ${status_destino_detalhado}='40.5'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "Estoque Produtivo Assinatura"
+      else "Outros";;
     group_label: "Estoque Produtivo"
     group_item_label: " Estoque Produtivo"
     hidden: yes
@@ -908,74 +896,36 @@ nm_produto
 
   dimension: fx_estoque_produtivo {
     type: string
-    case: {
-      when: {
-        sql: ${status_destino_detalhado}='1.1'
-             and ${dt_status_date} >= dateadd(day,-45,current_date())
-             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='1.1'
-             and ${dt_status_date}>=dateadd(day,-45,current_date())
-             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='1.1'
-             and ${dt_status_date}>=dateadd(day,-45,current_date())
-             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8
-                  and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20);;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8
-                  and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20);;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='40.5'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='40.5'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8);;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${status_destino_detalhado}='40.5'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
-        label: "3. NOK/Abandono"
-      }
-      else: "Outros"
-    }
+    sql:
+    case
+      when ${status_destino_detalhado}='1.1'
+            and ${dt_status_date} >= dateadd(day,-45,current_date())
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+      when ${status_destino_detalhado}='1.1'
+            and ${dt_status_date}>=dateadd(day,-45,current_date())
+            and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8) then "2. Andamento Atuação"
+      when ${status_destino_detalhado}='1.1'
+            and ${dt_status_date}>=dateadd(day,-45,current_date())
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 then "3. NOK/Abandono"
+      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20) then "2. Andamento Atuação"
+      when ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20 then "3. NOK/Abandono"
+      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20) then "2. Andamento Atuação"
+      when ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20 then "3. NOK/Abandono"
+      when ${status_destino_detalhado}='40.5'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+      when ${status_destino_detalhado}='40.5'
+            AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8) then "2. Andamento Atuação"
+      when ${status_destino_detalhado}='40.5'
+            AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 then "3. NOK/Abandono"
+    else "Outros";;
     group_label: "Estoque Produtivo"
     group_item_label: "Faixa Estoque Produtivo"
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
