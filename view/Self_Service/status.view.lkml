@@ -907,29 +907,21 @@ nm_produto
 
   dimension: fx_estoque_produtivo {
     type: string
-    sql: case when ${estoque_produtivo} = "Estoque Produtivo Iniciados"
-               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2
-                    then "1. Andamento no Prazo"
-                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8
-                    then "2. Andamento Atuação"
+    sql: case when ${estoque_produtivo} = "Estoque Produtivo Iniciados" then
+               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "2. Andamento Atuação"
                else "3. NOK/Abandono"
-              when ${estoque_produtivo} = "Estoque Produtivo Tela IES"
-               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8
-                    then "1. Andamento no Prazo"
-                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20
-                    then "2. Andamento Atuação"
+              when ${estoque_produtivo} = "Estoque Produtivo Tela IES" then
+               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "2. Andamento Atuação"
                else "3. NOK/Abandono"
-              when ${estoque_produtivo} = "Estoque Produtivo Documentos"
-               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8
-                    then "1. Andamento no Prazo"
-                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20
-                    then "2. Andamento Atuação"
+              when ${estoque_produtivo} = "Estoque Produtivo Documentos" then
+               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 then "2. Andamento Atuação"
                else "3. NOK/Abandono"
-              when ${estoque_produtivo} = "Estoque Produtivo Assinatura"
-               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2
-                    then "1. Andamento no Prazo"
-                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8
-                    then "2. Andamento Atuação"
+              when ${estoque_produtivo} = "Estoque Produtivo Assinatura" thne
+               case when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2 then "1. Andamento no Prazo"
+                    when ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8  then "2. Andamento Atuação"
                else "3. NOK/Abandono"
          else "Outros";;
     group_label: "Estoque Produtivo"
