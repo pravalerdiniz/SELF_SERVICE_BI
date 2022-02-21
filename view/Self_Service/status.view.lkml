@@ -906,8 +906,7 @@ nm_produto
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8
-                  and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20);;
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -922,8 +921,7 @@ nm_produto
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8
-                  and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20);;
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -938,7 +936,7 @@ nm_produto
       }
       when: {
         sql: ${status_destino_detalhado}='40.5'
-          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>2 and ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8);;
+          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
         label: "2. Andamento Atuação"
       }
       when: {
