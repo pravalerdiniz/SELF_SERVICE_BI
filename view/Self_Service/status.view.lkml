@@ -902,6 +902,7 @@ nm_produto
     }
     group_label: "Estoque Produtivo"
     group_item_label: " Estoque Produtivo"
+    hidden: yes
     description: "Marcação dos Alunos em Estoque Produtivo"
   }
 
@@ -926,6 +927,7 @@ nm_produto
          else "Outros";;
     group_label: "Estoque Produtivo"
     group_item_label: "Faixa Estoque Produtivo"
+    hidden: yes
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
 
