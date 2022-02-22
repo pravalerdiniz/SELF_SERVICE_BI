@@ -3775,7 +3775,6 @@ dimension: qtd_dias_iniciados {
 
 
 
-
 ####################################################
 
   set: detail {
