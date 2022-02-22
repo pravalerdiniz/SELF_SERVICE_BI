@@ -887,7 +887,7 @@ nm_produto
       when: {
         sql: ${status_destino_detalhado}='1.1'
              and ${dt_status_date}>=dateadd(day,-45,current_date())
-             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
+             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -913,7 +913,7 @@ nm_produto
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
+          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -938,7 +938,7 @@ nm_produto
     }
     when: {
       sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
+        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
       label: "2. Andamento Atuação"
     }
     when: {
@@ -964,7 +964,7 @@ dimension: fx_estoque_produtivo_assinatura {
     }
     when: {
       sql: ${status_destino_detalhado}='40.5'
-        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
+        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
       label: "2. Andamento Atuação"
     }
     when: {
@@ -992,7 +992,7 @@ dimension: fx_estoque_produtivo_assinatura {
       when: {
         sql: ${status_destino_detalhado}='1.1'
              and ${dt_status_date}>=dateadd(day,-45,current_date())
-             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
+             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -1008,7 +1008,7 @@ dimension: fx_estoque_produtivo_assinatura {
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -1023,7 +1023,7 @@ dimension: fx_estoque_produtivo_assinatura {
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 8 and 20);;
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -1038,7 +1038,7 @@ dimension: fx_estoque_produtivo_assinatura {
       }
       when: {
         sql: ${status_destino_detalhado}='40.5'
-          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 2 and 8);;
+          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
         label: "2. Andamento Atuação"
       }
       when: {
@@ -1052,5 +1052,6 @@ dimension: fx_estoque_produtivo_assinatura {
     group_item_label: "Faixa Estoque Produtivo"
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
+
 
 }
