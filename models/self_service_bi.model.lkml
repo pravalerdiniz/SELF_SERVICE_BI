@@ -814,9 +814,9 @@ join: proposta_docs_pendentes {
 
   }
 
-  join: atribuicao_nova {
+  join: atribuicao {
     view_label: "7. Atribuição"
-    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    sql_on:  ${atribuicao.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
   }
@@ -1199,9 +1199,9 @@ join: financeiro {
     relationship: one_to_many
   }
 
-  join: atribuicao_nova {
+  join: atribuicao {
     view_label: "7. Atribuição"
-    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${atribuicao.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -1357,10 +1357,8 @@ explore:  fato_lead_mgm {
   }
 }
 
-explore: atribuicao {}
-
-explore: atribuicao_nova {
-  view_label: "Atribuição (Nova)"
+explore: atribuicao {
+  view_label: "Atribuição"
   fields: [ALL_FIELDS * ,
     - proposta.vl_acordo,
     - proposta.data_acordo,
@@ -1373,14 +1371,14 @@ explore: atribuicao_nova {
 
 join: proposta {
   view_label: "Proposta"
-  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+  sql_on:  ${atribuicao.id_cpf} = ${proposta.id_cpf} ;;
   type: left_outer
   relationship: one_to_many
 }
 
   join: jornada {
     view_label: "Jornada"
-    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    sql_on:  ${atribuicao.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
 
@@ -1388,7 +1386,7 @@ join: proposta {
 
   join: alunos {
     view_label: "Alunos"
-    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${atribuicao.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
