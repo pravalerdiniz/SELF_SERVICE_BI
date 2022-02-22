@@ -429,6 +429,33 @@ dimension: tempo_curta {
     label: "Tempo - Minutos"
     sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
   }
+dimension: tempo_evento_dias {
+  type: number
+  label: "Tempo Evento - Dias"
+  hidden: yes
+  sql:datediff('day',${data_evento_raw},current_date);;
+
+}
+
+  dimension: faixa_tempo_curta_dias {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Dia | Hoje"
+    case: {
+      when: {
+        sql: ${tempo_evento_dias} <= 2 ;;
+        label: "< 2"
+      }
+      when: {
+        sql: ${tempo_evento_dias} <= 7 ;;
+        label: "3 - 7"
+      }
+      else: "8 dias ou mais"
+    }
+
+  }
+
+
 
 
   dimension: faixa_tempo_curta {
@@ -460,6 +487,8 @@ dimension: tempo_curta {
     }
 
   }
+
+
 
   dimension: faixa_tempo_curta_horas {
     type: string
