@@ -66,6 +66,7 @@ view: atribuicao_nova {
     type: string
     sql: ${TABLE}."CANAL_DESCOBERTA" ;;
     label: "Canal de Descoberta (First Click)"
+    group_label: "Dados de Atribuição"
   }
 
 
@@ -73,12 +74,14 @@ view: atribuicao_nova {
     type: string
     sql: ${TABLE}."CANAL_FINALIZACAO" ;;
     label: "Canal de Finalização (Last Click)"
+    group_label: "Dados de Atribuição"
   }
 
   dimension: descoberta_final {
     type: string
     sql: concat(${canal_descoberta},'-',${canal_finalizacao}) ;;
     label: "Canal Descoberta + Finalização"
+    group_label: "Dados de Atribuição"
   }
 
   dimension_group: data_descoberta {
@@ -94,6 +97,7 @@ view: atribuicao_nova {
     ]
     sql: ${TABLE}."DATA_DESCOBERTA" ;;
     label: "Data de Descoberta"
+    group_label: "Dados de Atribuição"
     description: "Data da primeira interação do aluno (first click) com o Pravaler"
   }
 
@@ -110,6 +114,7 @@ view: atribuicao_nova {
     ]
     sql: ${TABLE}."DATA_FINALIZACAO" ;;
     label: "Data de Finalização"
+    group_label: "Dados de Atribuição"
     description: "Data da interação do aluno referente à finalização da proposta (last click) com o Pravaler"
   }
 
@@ -126,6 +131,7 @@ view: atribuicao_nova {
     ]
     sql: ${TABLE}."DATA_PRIMEIRA_PROPOSTA" ;;
     label: "Data da Primeira Proposta"
+    group_label: "Dados de Atribuição"
     description: "Data da primeira proposta do aluno com o Pravaler"
   }
 
