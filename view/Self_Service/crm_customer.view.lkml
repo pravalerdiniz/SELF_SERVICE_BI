@@ -189,7 +189,7 @@ view: crm_customer {
     description: "Indicador de mudança de status"
   }
 
-  dimension: mudou_etapa_num {
+  measure: mudou_etapa_num {
     type: number
     sql: case when ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
                AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date})
