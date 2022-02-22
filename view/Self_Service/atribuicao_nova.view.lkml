@@ -1,4 +1,4 @@
-view: atribuicao {
+view: atribuicao_nova {
 
   sql_table_name: "SELF_SERVICE_BI"."ATRIBUICAO"
     ;;
