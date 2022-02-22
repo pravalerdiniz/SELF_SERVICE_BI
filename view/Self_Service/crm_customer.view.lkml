@@ -189,15 +189,6 @@ view: crm_customer {
     description: "Indicador de mudança de status"
   }
 
-  measure: mudou_etapa_num {
-    type: count_distinct
-    sql: case when ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
-               AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date})
-              then "1";;
-    group_label: "Contagem Mudança de Etapa"
-    label: "Mudou Etapa Num"
-    description: "Indicador de mudança de status (formato Numerico)"
-  }
 
 
   set: detail {
