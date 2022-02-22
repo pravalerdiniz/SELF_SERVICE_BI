@@ -444,7 +444,7 @@ dimension: tempo_evento_dias {
     case: {
       when: {
         sql: ${tempo_evento_dias} <= 2 ;;
-        label: "< 5"
+        label: "< 2"
       }
       when: {
         sql: ${tempo_evento_dias} <= 7 ;;
