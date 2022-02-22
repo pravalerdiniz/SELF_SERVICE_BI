@@ -258,6 +258,14 @@ explore: jornada {
 
   ]
 
+
+  join: atribuicao {
+    view_label: "1.1. Atribuição"
+    sql_on:  ${atribuicao.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
@@ -292,7 +300,7 @@ explore: jornada {
 
 
   join: instituicao_metas_gc {
-    view_label: "2.3 Metas GC"
+    view_label: "2.1 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: one_to_many
     type: left_outer
@@ -326,7 +334,7 @@ explore: jornada {
   }
 
   join: proposta_projeto_decola {
-    view_label: "2.3 Projeto Decola"
+    view_label: "2.2 Projeto Decola"
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
     relationship: many_to_one
     type: left_outer
@@ -815,7 +823,7 @@ join: proposta_docs_pendentes {
   }
 
   join: atribuicao {
-    view_label: "7. Atribuição"
+    view_label: "6.1. Atribuição"
     sql_on:  ${atribuicao.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
@@ -1200,7 +1208,7 @@ join: financeiro {
   }
 
   join: atribuicao {
-    view_label: "7. Atribuição"
+    view_label: "4.1. Atribuição"
     sql_on: ${alunos.id_cpf} = ${atribuicao.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
