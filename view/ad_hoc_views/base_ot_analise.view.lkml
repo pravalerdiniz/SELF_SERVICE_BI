@@ -146,6 +146,15 @@ view: base_ot_analise {
   }
 
 
+  dimension: vl_face {
+    type: number
+    label: "Valor de Face"
+    sql: ${TABLE}."VALOR_FACE" ;;
+  }
+
+
+
+
   dimension: vl_aquisicao {
     type: number
     label: "Valor Aquisição"
@@ -166,6 +175,13 @@ view: base_ot_analise {
     drill_fields: []
   }
 
+
+  measure: sum_vl_face {
+    type: sum
+    label: "Valor de Face"
+    sql: ${vl_face} ;;
+    drill_fields: []
+  }
 
   measure: sum_vl_presente {
     type: sum
