@@ -1402,6 +1402,7 @@ dimension: url {
   group_item_label: "URL"
   description: "Primeira URL da proposta/lead"
   sql: ${TABLE}."URL" ;;
+  hidden:  no
 }
 
   dimension: canal {
@@ -1410,6 +1411,7 @@ dimension: url {
     group_item_label: "Canal"
     description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
+    hidden:  no
   }
 
   measure: total_renov {

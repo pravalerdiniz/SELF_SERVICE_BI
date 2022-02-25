@@ -1,7 +1,8 @@
-view: atribuicao_nova {
-
+view: atribuicao_nova
+{view_label: "Atribuição"
   sql_table_name: "SELF_SERVICE_BI"."ATRIBUICAO"
     ;;
+
 
   dimension: brandformance {
     type: number
