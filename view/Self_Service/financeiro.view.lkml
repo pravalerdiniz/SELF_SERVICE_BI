@@ -161,7 +161,7 @@ dimension: data_trunc  {
   }
 
   dimension: wtd_only {
-    group_label: "Filtros para Análise de Períodos (Data de Vencimento"
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
     label: "Week to Date"
     type: yesno
     sql:  (EXTRACT(DOW FROM ${data_vencimento_raw}) < EXTRACT(DOW FROM GETDATE())
