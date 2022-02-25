@@ -156,7 +156,7 @@ view: proposta {
     value_format: "0"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
-    sql:IFNULL(${TABLE}."ALUNO_RENDA",0) ;;
+    sql:NULLIF(${TABLE}."ALUNO_RENDA",0) ;;
     drill_fields: [id_cpf, cpf_aluno,id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     required_access_grants: [grupo_renda]
   }
@@ -454,9 +454,12 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Comprometimento de Renda - Curso"
     value_format: "0.00%"
+
     description: "Indica qual a porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor da mensalidade do curso."
-    sql: (NULLIF(${vl_mensalidade},0)/2)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
+    sql: (IFNULL(${vl_mensalidade},0)/2)/(IFNULL(${aluno_renda},0)+IFNULL(${fia_renda},0)) ;;
   }
+
+
 
   dimension: faixa_comprometimento_renda_curso {
     type: string
@@ -1074,7 +1077,7 @@ view: proposta {
     label: "Renda do Garantidor"
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do Garantidor do aluno."
-    sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
+    sql: NULLIF(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
   }
@@ -2144,7 +2147,7 @@ view: proposta {
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     hidden: no
-    sql: IFNULL(${TABLE}."VL_MENSALIDADE",0) ;;
+    sql: NULLIF(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
   dimension: vl_parcela {
