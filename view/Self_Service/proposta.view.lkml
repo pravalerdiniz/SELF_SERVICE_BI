@@ -455,7 +455,7 @@ view: proposta {
     label: "Comprometimento de Renda - Curso"
     value_format: "0.00%"
     description: "Indica qual a porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor da mensalidade do curso."
-    sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
+    sql: (NULLIF(${vl_mensalidade},0)/2)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
   }
 
   dimension: faixa_comprometimento_renda_curso {
@@ -465,16 +465,16 @@ view: proposta {
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
-        sql: ${comprometimento_renda_curso} <= 0.1 ;;
-        label: "< 10%"
+        sql: ${comprometimento_renda_curso} <= 0.15 ;;
+        label: "< 15%"
       }
       when: {
-        sql:  ${comprometimento_renda_curso} <= 0.2 ;;
-        label: "10% - 20%"
+        sql:  ${comprometimento_renda_curso} <= 0.25 ;;
+        label: "15% - 25%"
       }
       when: {
         sql:  ${comprometimento_renda_curso}<= 0.3 ;;
-        label: "20% - 30%"
+        label: "25% - 30%"
       }
       when: {
         sql:  ${comprometimento_renda_curso}<= 0.4 ;;
