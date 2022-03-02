@@ -1520,6 +1520,7 @@ explore: mgm_publico_alvo {
     type: left_outer
   }
 
+
 }
 
 explore: mgm_publico_alvo_resgate{
