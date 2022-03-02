@@ -1506,3 +1506,16 @@ explore: crm_customer {
   }
 
 }
+
+explore: mgm_lista_resgate {
+  label: "MGM - Lista Resgate"
+}
+explore: mgm_publico_alvo {
+  label: "MGM - Público Alvo"
+}
+explore: mgm_publico_alvo_resgate{
+  label: "MGM - Público Alvo Resgate"
+}
+explore: mgm_usuario {
+  label: "MGM - Usuário"
+}
