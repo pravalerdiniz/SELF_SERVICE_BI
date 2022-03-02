@@ -1512,7 +1512,16 @@ explore: mgm_lista_resgate {
 }
 explore: mgm_publico_alvo {
   label: "MGM - Público Alvo"
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 }
+
 explore: mgm_publico_alvo_resgate{
   label: "MGM - Público Alvo Resgate"
 }
