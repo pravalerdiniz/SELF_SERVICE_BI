@@ -1,6 +1,6 @@
-view: mgm_lista_resgate {
+view: mgm_publico_alvo_resgate {
   derived_table: {
-    sql: select * from GRADUADO.AD_HOC.LISTA_RESGATE
+    sql: select * from GRADUADO.AD_HOC.PUBLICO_ALVO_RESGATE
       ;;
   }
 
@@ -15,7 +15,7 @@ view: mgm_lista_resgate {
     group_label: "Dados Player"
     label: "Nome Player"
     description: "Indica o nome do atendente (player)"
-    sql: ${TABLE}."NOME_PLAYER";;
+    sql: ${TABLE}."NOME_PLAYER" ;;
   }
 
   dimension: cpf_player {
@@ -25,6 +25,36 @@ view: mgm_lista_resgate {
     label: "CPF Player"
     description: "Indica o CPF do atendente (player)"
     sql: ${TABLE}."CPF_PLAYER" ;;
+  }
+
+  dimension: data_nascimento {
+    type: date
+    group_label: "Dados Player"
+    label: "Data Nascimento Player"
+    description: "Indica a data de nascimento do atendente (player)"
+    sql: ${TABLE}."DATA_NASCIMENTO" ;;
+  }
+
+  dimension: email {
+    type: string
+    group_label: "Dados Player"
+    label: "Email Player"
+    description: "Indica o email do atendente (player)"
+    sql: ${TABLE}."EMAIL" ;;
+  }
+
+  measure: pontos_resgatados {
+    type: sum
+    group_label: "Pontos Resgatados"
+    label: "Quantidade de pontos"
+    sql: ${TABLE}."PONTOS_RESGATADOS" ;;
+  }
+
+  measure: valor_resgatado {
+    type: sum
+    group_label: "Pontos Resgatados"
+    label: "Valor dos pontos resgatados"
+    sql: ${TABLE}."VALOR_RESGATADO" ;;
   }
 
   dimension_group: data_resgate {
@@ -44,20 +74,6 @@ view: mgm_lista_resgate {
     label: "Data Resgate"
     description: "Indica a data que foi realizado o resgate"
     sql: ${TABLE}."DATA_RESGATE" ;;
-  }
-
-  measure: pontos_resgatados {
-    type: sum
-    group_label: "Pontos Resgatados"
-    label: "Quantidade de pontos"
-    sql: ${TABLE}."PONTOS_RESGATADOS" ;;
-  }
-
-  measure: valor_resgatado {
-    type: sum
-    group_label: "Pontos Resgatados"
-    label: "Valor dos pontos"
-    sql: ${TABLE}."VALOR_RESGATADO" ;;
   }
 
   dimension_group: dt_carga {
@@ -83,6 +99,8 @@ view: mgm_lista_resgate {
     fields: [
       nome_player,
       cpf_player,
+      data_nascimento,
+      email,
       pontos_resgatados,
       valor_resgatado,
       data_resgate_time,
