@@ -85,36 +85,36 @@ view: crm_customer {
     sql: ${TABLE}."CAMPAIGN_ID" ;;
   }
 
-  dimension: id_tamplate {
+  dimension: id_tamplate_campaign {
     type: number
     group_label: "Dados da Campanha"
     label: "ID do Disparo"
     description: "Indica o ID do disparo feito"
-    sql: ${TABLE}."ID_TAMPLATE" ;;
+    sql: ${TABLE}."ID_TAMPLATE_CAMPAIGN" ;;
   }
 
-  dimension: nome_tamplate {
+  dimension: nome_tamplate_campaign {
     type: string
     group_label: "Dados da Campanha"
     label: "Nome do Disparo"
     description: "Indica o Nome do Disparo feito"
-    sql: ${TABLE}."NOME_TAMPLATE" ;;
+    sql: ${TABLE}."NOME_TAMPLATE_CAMPAIGN" ;;
   }
 
-  dimension: msg_template {
+  dimension: msg_template_campaign {
     type: string
     group_label: "Dados da Campanha"
     label: "Mensagem do Disparo"
     description: "Indica Mensagem do Disparo"
-    sql: ${TABLE}."MSG_TEMPLATE" ;;
+    sql: ${TABLE}."MSG_TEMPLATE_CAMPAIGN" ;;
   }
 
-  dimension: assunto_acao {
+  dimension: assunto_acao_campaign {
     type: string
     group_label: "Dados da Campanha"
     label: "Assunto da Campanha"
     description: "Indica o Assunto da campanha disparada"
-    sql: ${TABLE}."ASSUNTO_ACAO" ;;
+    sql: ${TABLE}."ASSUNTO_ACAO_CAMPAIGN" ;;
   }
 
   dimension: nome_evento {
@@ -152,12 +152,12 @@ view: crm_customer {
     sql: ${TABLE}."CANAL_DE_CONTATO" ;;
   }
 
-  dimension: body {
+  dimension: body_campaign {
     type: string
     group_label: "Dados da Campanha"
     label: "Texto da mensagem"
     description: "Indica o texto da comunicação que foi enviada"
-    sql: ${TABLE}."BODY" ;;
+    sql: ${TABLE}."BODY_CAMPAIGN" ;;
   }
 
   dimension: tipo_contato {
@@ -172,6 +172,54 @@ view: crm_customer {
     type: string
     hidden: yes
     sql: ${TABLE}."INFOS_JORNADA" ;;
+  }
+
+  dimension: newsletter_id {
+    type: number
+    group_label: "Dados da Newsletter"
+    label: "ID da Newsletter"
+    description: "Indica o ID da Newsletter"
+    sql: ${TABLE}."NEWSLETTER_ID" ;;
+  }
+
+  dimension: id_tamplate_newsletter {
+    type: number
+    group_label: "Dados da Newsletter"
+    label: "ID Template Newsletter"
+    description: "Indica o ID Template Newsletter"
+    sql: ${TABLE}."ID_TAMPLATE_NEWSLETTER" ;;
+  }
+
+  dimension: nome_tamplate_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Nome Template Newsletter"
+    description: "Indica o Nome Template Newsletter"
+    sql: ${TABLE}."NOME_TAMPLATE_NEWSLETTER" ;;
+  }
+
+  dimension: msg_template_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Mensagem da Newsletter"
+    description: "Indica Mensagem da Newsletter"
+    sql: ${TABLE}."MSG_TEMPLATE_NEWSLETTER" ;;
+  }
+
+  dimension: assunto_acao_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Assunto da Newsletter"
+    description: "Indica o Assunto da Newsletter"
+    sql: ${TABLE}."ASSUNTO_ACAO_NEWSLETTER" ;;
+  }
+
+  dimension: body_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Texto da mensagem Newsletter"
+    description: "Indica o texto da comunicação que foi enviada - Newsletter"
+    sql: ${TABLE}."BODY_NEWSLETTER" ;;
   }
 
   dimension: mudou_etapa {
@@ -190,7 +238,6 @@ view: crm_customer {
   }
 
 
-
   set: detail {
     fields: [
       id_envio,
@@ -200,14 +247,20 @@ view: crm_customer {
       cpf,
       cpf_cio,
       campaign_id,
-      id_tamplate,
-      nome_tamplate,
-      msg_template,
-      assunto_acao,
+      id_tamplate_campaign,
+      nome_tamplate_campaign,
+      msg_template_campaign,
+      assunto_acao_campaign,
       nome_evento,
       data_evento_time,
       canal_de_contato,
-      body,
+      body_campaign,
+      newsletter_id,
+      id_tamplate_newsletter,
+      nome_tamplate_newsletter,
+      msg_template_newsletter,
+      assunto_acao_newsletter,
+      body_newsletter,
       tipo_contato,
       infos_jornada
     ]

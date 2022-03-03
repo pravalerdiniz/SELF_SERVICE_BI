@@ -1514,3 +1514,54 @@ explore: crm_customer {
   }
 
 }
+
+explore: mgm_lista_resgate {
+  label: "MGM - Lista Resgate"
+}
+explore: mgm_publico_alvo {
+  label: "MGM - Público Alvo"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov
+  ]
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "1.Alunos"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    view_label: "2.Jornada"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${jornada.aluno_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+}
+
+explore: mgm_publico_alvo_resgate{
+  label: "MGM - Público Alvo Resgate"
+}
+explore: mgm_usuario {
+  label: "MGM - Usuário"
+}
