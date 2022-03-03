@@ -1551,6 +1551,28 @@ explore: mgm_publico_alvo {
 
 }
 
+explore: mgm_publico_alvo_jornada {
+  label: "MGM - Público Alvo + Jornada"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+  ]
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "1.Alunos"
+    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
 explore: mgm_publico_alvo_resgate{
   label: "MGM - Público Alvo Resgate"
 }
