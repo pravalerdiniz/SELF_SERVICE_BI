@@ -116,8 +116,22 @@ view: base_carteira_renovacao {
     sql: ${TABLE}."DATA_VISAO" ;;
   }
 
-  dimension: dt_filtro {
-    type: string
+
+
+
+  dimension_group: dt_filtro {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Filtro"
     sql: ${TABLE}."DT_FILTRO" ;;
   }
 
