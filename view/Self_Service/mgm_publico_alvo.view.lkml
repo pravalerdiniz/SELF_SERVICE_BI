@@ -180,8 +180,8 @@ view: mgm_publico_alvo {
   dimension: unidade_player {
     type: string
     group_label: "Dados Player"
-    label: "Regional Player"
-    description: "Indica a Regional do atendente (player)"
+    label: "Unidade Player"
+    description: "Indica a Unidade do atendente (player)"
     sql: ${TABLE}."UNIDADE_PLAYER" ;;
   }
 

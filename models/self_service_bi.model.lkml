@@ -1512,6 +1512,10 @@ explore: mgm_lista_resgate {
 }
 explore: mgm_publico_alvo {
   label: "MGM - Público Alvo"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes
+  ]
 
   join: dim_cpf {
     view_label: "CPF"
@@ -1520,6 +1524,12 @@ explore: mgm_publico_alvo {
     type: left_outer
   }
 
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 
 }
 
