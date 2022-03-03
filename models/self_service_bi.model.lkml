@@ -1586,4 +1586,19 @@ explore: mgm_publico_alvo_resgate{
 }
 explore: mgm_usuario {
   label: "MGM - Usuário"
+
+  join: mgm_lista_resgate{
+    view_label: "Solicitou resgate"
+    sql_on: ${mgm_usuario.cpf}=${mgm_lista_resgate.cpf_player} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: mgm_publico_alvo_resgate{
+    view_label: "Pagamento realizado - resgate"
+    sql_on: ${mgm_usuario.cpf}=${mgm_publico_alvo_resgate.cpf_player} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 }
