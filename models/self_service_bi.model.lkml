@@ -1318,7 +1318,7 @@ explore: solucx {
 
 
 join: depara_respondentes_ies {
-  view_label: "SoluCX - NPS"
+  view_label: "Solucx"
   type: left_outer
   sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
   relationship: many_to_one
