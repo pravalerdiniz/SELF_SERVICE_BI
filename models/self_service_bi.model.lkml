@@ -1514,7 +1514,18 @@ explore: mgm_publico_alvo {
   label: "MGM - Público Alvo"
   fields: [ALL_FIELDS *,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov
   ]
 
   join: dim_cpf {
@@ -1525,9 +1536,16 @@ explore: mgm_publico_alvo {
   }
 
   join: alunos {
-    view_label: "Alunos"
+    view_label: "1.Alunos"
     sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
     relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    view_label: "2.Jornada"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${jornada.aluno_cpf} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
