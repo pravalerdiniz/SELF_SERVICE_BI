@@ -298,9 +298,10 @@ view: status_curta {
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.REPROVED'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.APPROVED'
               THEN 'Aprovado Risco (Renda)'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.REPROVEDBYINCOME' THEN 'Reprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.REPROVEDBYINCOME' OR ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.REPROVED'
+              THEN 'Reprovado Risco (Renda)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCUMENTS.WRONG' THEN 'Documentos Reprovados'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CREATED' THEN 'Contrato Criado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
@@ -429,6 +430,33 @@ dimension: tempo_curta {
     label: "Tempo - Minutos"
     sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
   }
+dimension: tempo_evento_dias {
+  type: number
+  label: "Tempo Evento - Dias"
+  hidden: yes
+  sql:datediff('day',${data_evento_raw},current_date);;
+
+}
+
+  dimension: faixa_tempo_curta_dias {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Dia | Hoje"
+    case: {
+      when: {
+        sql: ${tempo_evento_dias} <= 2 ;;
+        label: "< 2"
+      }
+      when: {
+        sql: ${tempo_evento_dias} <= 7 ;;
+        label: "3 - 7"
+      }
+      else: "8 dias ou mais"
+    }
+
+  }
+
+
 
 
   dimension: faixa_tempo_curta {
@@ -460,6 +488,8 @@ dimension: tempo_curta {
     }
 
   }
+
+
 
   dimension: faixa_tempo_curta_horas {
     type: string

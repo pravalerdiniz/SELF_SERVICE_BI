@@ -231,6 +231,12 @@ explore: cruzeiro_inadimplentes {}
 
 explore: csat_nuvem_palavras_bad {}
 
+explore: nps_nuvem_palavras_detratores {}
+
+explore: nps_nuvem_palavras_neutros {}
+
+explore: nps_nuvem_palavras_promotores {}
+
 explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}

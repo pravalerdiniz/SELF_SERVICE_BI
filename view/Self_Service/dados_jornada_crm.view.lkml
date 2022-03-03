@@ -3,7 +3,7 @@ view: dados_jornada_crm {
     persist_for: "1 hour"
     sql: select
             id_cpf,
-            f.value:ID_PROPOSTA::int as ID_PROPOSTA,
+            f.value:ID_PROPOSTA::varchar as ID_PROPOSTA,
             f.value:DATA_INICIO_PROPOSTA::timestamp as DATA_INICIO_PROPOSTA,
             f.value:DT_STATUS::timestamp as DT_STATUS,
             f.value:ETAPA::varchar as ETAPA,

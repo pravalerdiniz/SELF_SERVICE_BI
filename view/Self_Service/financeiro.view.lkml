@@ -160,6 +160,36 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Week to Date"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_vencimento_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_vencimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Ou WTD. Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Month to Date"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_vencimento_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_vencimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Ou MTD. Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Year to Date"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_vencimento_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_vencimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Ou YTD. Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+  }
+
 
   measure: ultimo_vencimento {
     type: date
@@ -1411,6 +1441,22 @@ foi gerado por um pagamento menor do boleto anterior."
     ;;
   }
 
+  dimension_group: data_reajuste_ipca {
+    type: time
+      timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Data de reajuste de IPCA"
+    description: "Data em que o boleto foi reajustado de acordo com o IPCA"
+    datatype: date
+    sql: ${TABLE}."DATA_TIT_IPCA" ;;
+  }
 
 
 

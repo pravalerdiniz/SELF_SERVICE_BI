@@ -253,10 +253,99 @@ explore: jornada {
     - proposta.count_tipo_proposta_seg_repasse,
     - status.id_cpf,
     - status.flg_proposta_atual,
-    - status.tipo_proposta
+    - status.tipo_proposta,
+    - alunos.id_cpf,
+- alunos.id_proposta_atual,
+- alunos.aluno_nome,
+- alunos.aluno_idade,
+- alunos.aluno_genero,
+- alunos.email,
+- alunos.celular,
+- alunos.escolaridade,
+- alunos.numero_dependentes,
+- alunos.cep,
+- alunos.bairro,
+- alunos.cidade,
+- alunos.uf,
+- alunos.tipo_residencia,
+- alunos.estado_civil,
+- alunos.tempo_empresa,
+- alunos.natureza_ocupacao,
+- alunos.profissao,
+- alunos.nacionalidade,
+- alunos.renda_mensal,
+- alunos.renda_fam_mensal,
+- alunos.ds_trabalha,
+- alunos.ano_termino_ensino_medio,
+- alunos.flg_pai_falecido,
+- alunos.flg_mae_falecida,
+- alunos.id_fia_cpf_atual,
+- alunos.fia_nome,
+- alunos.fia_email,
+- alunos.fia_celular,
+- alunos.fia_escolaridade,
+- alunos.fia_numero_dependentes,
+- alunos.fia_cep,
+- alunos.fia_bairro,
+- alunos.fia_cidade,
+- alunos.fia_uf,
+- alunos.fia_tipo_residencia,
+- alunos.fia_estado_civil,
+- alunos.fia_tempo_empresa,
+- alunos.fia_natureza_ocupacao,
+- alunos.fia_profissao,
+- alunos.fia_nacionalidade,
+- alunos.fia_renda_mensal,
+- alunos.fia_parentesco,
+- alunos.fia_idade,
+- alunos.cpf_fiador,
+- alunos.qtd_cursos_procurados,
+- alunos.id_curso,
+- alunos.ds_curso,
+- alunos.flg_curso_ativo,
+- alunos.periodo_curso,
+- alunos.area_conhecimento_curso,
+- alunos.enfase_curso,
+- alunos.qtd_semestre_curso,
+- alunos.nivel_curso,
+- alunos.id_instituicao,
+- alunos.ds_instituicao,
+- alunos.grupo_instituicao,
+- alunos.cidade_instituicao,
+- alunos.uf_instituicao,
+- alunos.flg_instituicao_ativa,
+- alunos.qtd_campus_procurados,
+- alunos.id_campus,
+- alunos.ds_campus,
+- alunos.flg_campus_ativo,
+- alunos.cidade_campus,
+- alunos.uf_campus,
+- alunos.id_produto,
+- alunos.nm_produto,
+- alunos.flg_produto_ativo,
+- alunos.nm_modalidade_produto,
+- alunos.tipo_produto,
+- alunos.fia_endereco,
+- alunos.mapa_uf_fiador,
+- alunos.mapa_uf_aluno,
+- alunos.mapa_uf_campus,
+- alunos.mapa_uf_instituicao,
+- alunos.cpf_aluno,
+- alunos.endereco,
+- alunos.ds_fundo_investimento,
+- alunos.id_fundo_investimento,
+- alunos.ativo_ano_mes
 
 
   ]
+
+
+  join: atribuicao_nova {
+    view_label: "1.1. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
 
   join: proposta {
     view_label: "2. Proposta"
@@ -292,7 +381,7 @@ explore: jornada {
 
 
   join: instituicao_metas_gc {
-    view_label: "2.3 Metas GC"
+    view_label: "2.1 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: one_to_many
     type: left_outer
@@ -326,7 +415,7 @@ explore: jornada {
   }
 
   join: proposta_projeto_decola {
-    view_label: "2.3 Projeto Decola"
+    view_label: "2.2 Projeto Decola"
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
     relationship: many_to_one
     type: left_outer
@@ -362,6 +451,12 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+  join: alunos {
+    view_label: "6. Alunos"
+    sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one}
 }
 
 explore: instituicao {
@@ -814,8 +909,8 @@ join: proposta_docs_pendentes {
 
   }
 
-  join: atribuicao_nova {
-    view_label: "7. Atribuição"
+  join: atribuicao_nova{
+    view_label: "6.1. Atribuição"
     sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
@@ -1200,7 +1295,7 @@ join: financeiro {
   }
 
   join: atribuicao_nova {
-    view_label: "7. Atribuição"
+    view_label: "4.1. Atribuição"
     sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
@@ -1357,10 +1452,8 @@ explore:  fato_lead_mgm {
   }
 }
 
-explore: atribuicao {}
-
 explore: atribuicao_nova {
-  view_label: "Atribuição (Nova)"
+  view_label: "Atribuição"
   fields: [ALL_FIELDS * ,
     - proposta.vl_acordo,
     - proposta.data_acordo,
@@ -1405,10 +1498,62 @@ explore: crm_customer {
   label: "CRM - Customer io"
 
   join: dados_jornada_crm {
+    from: dados_jornada_crm
     view_label: "Jornada"
-    sql_on: ${crm_customer.id_cpf} = ${dados_jornada_crm.id_cpf} ;;
+    sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
     relationship: many_to_many
     type: left_outer
   }
 
+}
+
+explore: mgm_lista_resgate {
+  label: "MGM - Lista Resgate"
+}
+explore: mgm_publico_alvo {
+  label: "MGM - Público Alvo"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov
+  ]
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "1.Alunos"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    view_label: "2.Jornada"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${jornada.aluno_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+}
+
+explore: mgm_publico_alvo_resgate{
+  label: "MGM - Público Alvo Resgate"
+}
+explore: mgm_usuario {
+  label: "MGM - Usuário"
 }
