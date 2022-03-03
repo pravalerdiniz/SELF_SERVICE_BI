@@ -256,3 +256,7 @@ explore: base_ot_analise {
 }
 
 explore: watson {}
+
+explore: amigo_edu {
+  label: "Amigo Edu"
+}
