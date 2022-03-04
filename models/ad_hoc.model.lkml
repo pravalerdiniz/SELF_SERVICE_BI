@@ -266,3 +266,7 @@ explore: amigo_edu {
 explore: kpi_financeiro {
   label: "KPI Financeiro"
 }
+
+explore: kpi_controladoria {
+  label: "KPI Controladoria"
+}
