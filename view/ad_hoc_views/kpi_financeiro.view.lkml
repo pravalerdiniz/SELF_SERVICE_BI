@@ -41,7 +41,6 @@ view: kpi_financeiro {
 
   measure: custo_captacao {
     type: sum
-    value_format: "0.00\%"
     sql: ${taxa}  ;;
   }
 
