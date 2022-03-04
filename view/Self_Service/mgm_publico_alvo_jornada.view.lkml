@@ -58,11 +58,18 @@ view: mgm_publico_alvo_jornada {
     sql: ${TABLE}."INFOS_JORNADA" ;;
   }
 
-  dimension: premiacao {
+  dimension: premiacao_formalizado {
     type: string
     label: "Premiação"
-    description: "Indicador se o aluno formalizaou em até 120 dias depois da indicação"
-    sql: ${TABLE}."PREMIACAO" ;;
+    description: "Indicador se o aluno formalizou a proposta atual em até 120 dias depois da indicação"
+    sql: ${TABLE}."PREMIACAO_FORMALIZADO" ;;
+  }
+
+  dimension: premiacao_iniciado {
+    type: string
+    label: "Iniciado"
+    description: "Indicador se o aluno iniciou a proposta atual em até 120 dias depois da indicação"
+    sql: ${TABLE}."PREMIACAO_INICIADO" ;;
   }
 
   dimension: validation_code {
@@ -246,7 +253,8 @@ view: mgm_publico_alvo_jornada {
       dias_diferenca,
       data_adesao_lead_time,
       infos_jornada,
-      premiacao,
+      premiacao_formalizado,
+      premiacao_iniciado,
       validation_code,
       nome_lead,
       cidade_lead,
