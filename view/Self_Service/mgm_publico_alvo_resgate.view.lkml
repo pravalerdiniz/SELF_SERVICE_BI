@@ -18,9 +18,15 @@ view: mgm_publico_alvo_resgate {
     sql: ${TABLE}."NOME_PLAYER" ;;
   }
 
+  dimension: cpf_dt_resgate {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql:concat(${cpf_player},${data_resgate_date}) ;;
+  }
+
   dimension: cpf_player {
     type: number
-    primary_key: yes
     group_label: "Dados Player"
     label: "CPF Player"
     description: "Indica o CPF do atendente (player)"
