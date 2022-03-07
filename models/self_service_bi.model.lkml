@@ -1590,14 +1590,14 @@ explore: mgm_usuario {
   join: mgm_lista_resgate{
     view_label: "Solicitou resgate"
     sql_on: ${mgm_usuario.cpf}=${mgm_lista_resgate.cpf_player} ;;
-    relationship: many_to_one
+    relationship: one_to_many
     type: left_outer
   }
 
   join: mgm_publico_alvo_resgate{
     view_label: "Pagamento realizado - resgate"
     sql_on: ${mgm_usuario.cpf}=${mgm_publico_alvo_resgate.cpf_player} ;;
-    relationship: many_to_one
+    relationship: one_to_many
     type: left_outer
   }
   }
