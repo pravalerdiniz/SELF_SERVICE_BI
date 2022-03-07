@@ -1600,5 +1600,9 @@ explore: mgm_usuario {
     relationship: many_to_one
     type: left_outer
   }
+  }
+
+  explore: tetris_withoutproducts {
+    label: "Tetris (Without Product)"
 
 }
