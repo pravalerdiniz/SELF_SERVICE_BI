@@ -262,3 +262,11 @@ explore: watson {}
 explore: amigo_edu {
   label: "Amigo Edu"
 }
+
+explore: kpi_financeiro {
+  label: "KPI Financeiro"
+}
+
+explore: kpi_controladoria {
+  label: "KPI Controladoria"
+}
