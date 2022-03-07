@@ -67,7 +67,7 @@ view: tetris_withoutproducts {
 
   dimension: course_institution {
     type: string
-    sql: concatenate("BOF-",${TABLE}."COURSE_INSTITUTION") ;;
+    sql: concatenate('BOF-',${TABLE}."COURSE_INSTITUTION") ;;
     label: "ID da IES"
   }
 
