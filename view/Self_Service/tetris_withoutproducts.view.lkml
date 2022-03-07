@@ -102,8 +102,8 @@ view: tetris_withoutproducts {
   }
 
   measure: count {
-    type: count
-    drill_fields: [course_name]
-    hidden: yes
+    type: count_distinct
+    sql: ${TABLE}."COURSE_ID" ;;
+    hidden: no
   }
 }
