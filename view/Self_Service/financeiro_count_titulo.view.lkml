@@ -7,7 +7,7 @@ view: financeiro_count_titulo {
            AS financeiro
       LEFT JOIN "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA"
            AS proposta ON (proposta."ID_PROPOSTA")=(financeiro."ID_CONTRATO")
-      WHERE (financeiro."DS_TITULO_STATUS" ) = 'ATIVO'
+      WHERE (financeiro."DS_TITULO_CLASSIFICACAO" ) = 'CONTRATO'
       GROUP BY
           1
       ORDER BY
