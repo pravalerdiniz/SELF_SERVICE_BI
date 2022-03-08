@@ -734,13 +734,6 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
-dimension: count_titulo_dim {
-  type: number
-  value_format: "0"
-  group_item_label: "Quantidade de Títulos"
-  sql: COUNT(${TABLE}."ID_TITULO") ;;
-}
-
   measure: count_titulo {
     type: count
     value_format: "0"
