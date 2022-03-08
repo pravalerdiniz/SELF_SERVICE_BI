@@ -19,6 +19,8 @@ view: proposta_datas_interfile {
   type: time
   timeframes: [
       raw,
+      time,
+      hour_of_day,
       date,
       week,
       month,
@@ -37,6 +39,8 @@ view: proposta_datas_interfile {
     type: time
     timeframes: [
       raw,
+      time,
+      hour_of_day,
       date,
       week,
       month,
@@ -55,6 +59,8 @@ view: proposta_datas_interfile {
     type: time
     timeframes: [
       raw,
+      time,
+      hour_of_day,
       date,
       week,
       month,

@@ -22,15 +22,13 @@ view: base_ot_analise {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_cpf_aluno {
-    type: sum
+  measure: count_cpf_aluno {
+    type: count_distinct
+    label: "Quantidade de CPFs"
     sql: ${cpf_aluno} ;;
   }
 
-  measure: average_cpf_aluno {
-    type: average
-    sql: ${cpf_aluno} ;;
-  }
+
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
@@ -146,6 +144,15 @@ view: base_ot_analise {
   }
 
 
+  dimension: vl_face {
+    type: number
+    label: "Valor de Face"
+    sql: ${TABLE}."VALOR_FACE" ;;
+  }
+
+
+
+
   dimension: vl_aquisicao {
     type: number
     label: "Valor Aquisição"
@@ -166,6 +173,13 @@ view: base_ot_analise {
     drill_fields: []
   }
 
+
+  measure: sum_vl_face {
+    type: sum
+    label: "Valor de Face"
+    sql: ${vl_face} ;;
+    drill_fields: []
+  }
 
   measure: sum_vl_presente {
     type: sum

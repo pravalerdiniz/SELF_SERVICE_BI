@@ -1398,18 +1398,20 @@ view: jornada {
 
 dimension: url {
   type: string
-  group_label: "Atribuição"
+  group_label: "Dados de Primeiro Canal"
   group_item_label: "URL"
   description: "Primeira URL da proposta/lead"
   sql: ${TABLE}."URL" ;;
+  hidden:  no
 }
 
   dimension: canal {
     type: string
-    group_label: "Atribuição"
+    group_label: "Dados de Primeiro Canal"
     group_item_label: "Canal"
     description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
+    hidden:  no
   }
 
   measure: total_renov {
@@ -3772,6 +3774,7 @@ dimension: qtd_dias_iniciados {
     hidden: no
     description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
+
 
 
 ####################################################

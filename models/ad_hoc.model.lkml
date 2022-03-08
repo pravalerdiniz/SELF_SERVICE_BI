@@ -36,7 +36,9 @@ explore: comunicacao_conversao {
   }
 }
 
-
+explore: base_carteira_renovacao {
+  label: "Carteira Renovação - Homologação"
+}
 
 explore: orcamento {
   label: "Orçamento - Histórico"
@@ -256,3 +258,15 @@ explore: base_ot_analise {
 }
 
 explore: watson {}
+
+explore: amigo_edu {
+  label: "Amigo Edu"
+}
+
+explore: kpi_financeiro {
+  label: "KPI Financeiro"
+}
+
+explore: kpi_controladoria {
+  label: "KPI Controladoria"
+}
