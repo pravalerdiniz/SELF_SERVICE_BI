@@ -12,7 +12,6 @@ view: financeiro_count_titulo {
           1
       ORDER BY
           2 DESC
-      FETCH NEXT 500 ROWS ONLY
        ;;
   }
 
