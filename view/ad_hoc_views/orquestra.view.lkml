@@ -115,6 +115,14 @@ view: orquestra {
     sql: ${TABLE}."CODIGO_RESULTADO" ;;
   }
 
+  dimension: status {
+    type: string
+    group_label: "Dados da Solicitação"
+    group_item_label: "Status do Chamado"
+    description: "Status em que o chamado se encontra"
+    sql: ${TABLE}."STATUS" ;;
+  }
+
   dimension: descricao_resultado {
     type: string
     group_label: "Dados da Solicitação"
