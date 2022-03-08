@@ -104,6 +104,14 @@ view: tetris_withoutproducts {
   measure: count {
     type: count_distinct
     sql: ${TABLE}."COURSE_ID" ;;
+    label: "Quantidade de Registros Distintos"
+    hidden: no
+  }
+
+  measure: count_id {
+    type: count_distinct
+    sql: ${TABLE}."_ID" ;;
+    label: "Quantidade de Registros"
     hidden: no
   }
 }
