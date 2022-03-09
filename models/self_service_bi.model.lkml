@@ -901,6 +901,13 @@ join: proposta_docs_pendentes {
     type: left_outer
   }
 
+  join: financeiro_count_titulo {
+    view_label: "3. Financeiro"
+    sql_on: ${proposta.id_proposta} = ${financeiro_count_titulo.proposta_id_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: jornada {
     view_label: "6. Jornada"
     sql_on:  ${proposta.id_proposta} = ${jornada.id_proposta} ;;

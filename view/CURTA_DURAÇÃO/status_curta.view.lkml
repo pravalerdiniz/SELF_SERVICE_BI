@@ -10,6 +10,7 @@ view: status_curta {
       date,
       week,
       day_of_week,
+      month_name,
       day_of_month,
       month,
       quarter,
@@ -444,14 +445,14 @@ dimension: tempo_evento_dias {
     label: "Faixa de Tempo - Dia | Hoje"
     case: {
       when: {
-        sql: ${tempo_evento_dias} <= 2 ;;
-        label: "< 2"
+        sql: ${tempo_evento_dias} <= 4 ;;
+        label: "< 4"
       }
       when: {
-        sql: ${tempo_evento_dias} <= 7 ;;
-        label: "3 - 7"
+        sql: ${tempo_evento_dias} <= 10 ;;
+        label: "5 - 10"
       }
-      else: "8 dias ou mais"
+      else: "10 dias ou mais"
     }
 
   }

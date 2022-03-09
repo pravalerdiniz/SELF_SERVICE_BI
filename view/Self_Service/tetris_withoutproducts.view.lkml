@@ -49,25 +49,25 @@ view: tetris_withoutproducts {
 
   dimension: campus {
     type: string
-    sql: ${TABLE}."CAMPUS" ;;
+    sql: concat('BOF-',${TABLE}."CAMPUS") ;;
     label: "ID Campus"
   }
 
   dimension: campus_descricao {
     type: string
-    sql: ${TABLE}."CAMPUS_DESCRICAO" ;;
+    sql: ${TABLE}."DESCRICAO" ;;
     label: "Nome de Campus"
   }
 
   dimension: course_id {
     type: string
-    sql: ${TABLE}."COURSE_ID" ;;
+    sql: concat('BOF-',${TABLE}."COURSE_ID") ;;
     label: "ID do Curso"
   }
 
   dimension: course_institution {
     type: string
-    sql: concatenate('BOF-',${TABLE}."COURSE_INSTITUTION") ;;
+    sql: concat('BOF-',${TABLE}."COURSE_INSTITUTION") ;;
     label: "ID da IES"
   }
 
@@ -102,8 +102,16 @@ view: tetris_withoutproducts {
   }
 
   measure: count {
-    type: count
-    drill_fields: [course_name]
-    hidden: yes
+    type: count_distinct
+    sql: ${TABLE}."COURSE_ID" ;;
+    label: "Quantidade de Registros Distintos"
+    hidden: no
+  }
+
+  measure: count_id {
+    type: count_distinct
+    sql: ${TABLE}."_ID" ;;
+    label: "Quantidade de Registros"
+    hidden: no
   }
 }
