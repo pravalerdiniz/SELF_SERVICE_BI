@@ -200,7 +200,7 @@ view: crm_customer {
   }
 
   dimension: name_newsletter {
-    type: number
+    type: string
     group_label: "Dados da Newsletter"
     label: "Nome da Newsletter"
     description: "Indica o Nome da Newsletter"
@@ -208,7 +208,7 @@ view: crm_customer {
   }
 
   dimension: tags_newsletter {
-    type: number
+    type: string
     group_label: "Dados da Newsletter"
     label: "Tag Newsletter"
     description: "Indica a Tag da Newsletter"
