@@ -2,7 +2,7 @@
 view: fato_ies_aval {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "FATO"."FATO_IES_AVAL"
+  sql_table_name: "VETERANO"."FATO"."FATO_IES_AVAL"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
