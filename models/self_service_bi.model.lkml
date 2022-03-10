@@ -1620,6 +1620,10 @@ explore: instituicao_contrato_produto_info{
   label: "Instituicao contrato produto"
 }
 
+explore: instituicao_taxas_antecipacao{
+  label: "Instituicao taxa antecipacao"
+}
+
   explore: tetris_withoutproducts {
     label: "Tetris (Without Product)"
 
