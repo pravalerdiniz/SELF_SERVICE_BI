@@ -14,10 +14,6 @@ view: proposta {
   }
 
 
-
-
-
-
   dimension: cpf_semestre_financiado {
     type: string
     group_label: "Dados do Aluno"
@@ -160,7 +156,7 @@ view: proposta {
     value_format: "0"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
-    sql:IFNULL(${TABLE}."ALUNO_RENDA",0) ;;
+    sql:NULLIF(${TABLE}."ALUNO_RENDA",0) ;;
     drill_fields: [id_cpf, cpf_aluno,id_proposta, tipo_proposta,renda_familiar,aluno_renda]
     required_access_grants: [grupo_renda]
   }
@@ -458,9 +454,12 @@ view: proposta {
     group_label: "Dados do Curso"
     label: "Comprometimento de Renda - Curso"
     value_format: "0.00%"
+
     description: "Indica qual a porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor da mensalidade do curso."
-    sql: NULLIF(${vl_mensalidade},0)/(NULLIF(${aluno_renda},0)+NULLIF(${fia_renda},0)) ;;
+    sql: (IFNULL(${vl_mensalidade},0)/2)/(IFNULL(${aluno_renda},0)+IFNULL(${fia_renda},0)) ;;
   }
+
+
 
   dimension: faixa_comprometimento_renda_curso {
     type: string
@@ -469,16 +468,16 @@ view: proposta {
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
     case: {
       when: {
-        sql: ${comprometimento_renda_curso} <= 0.1 ;;
-        label: "< 10%"
+        sql: ${comprometimento_renda_curso} <= 0.15 ;;
+        label: "< 15%"
       }
       when: {
-        sql:  ${comprometimento_renda_curso} <= 0.2 ;;
-        label: "10% - 20%"
+        sql:  ${comprometimento_renda_curso} <= 0.25 ;;
+        label: "15% - 25%"
       }
       when: {
         sql:  ${comprometimento_renda_curso}<= 0.3 ;;
-        label: "20% - 30%"
+        label: "25% - 30%"
       }
       when: {
         sql:  ${comprometimento_renda_curso}<= 0.4 ;;
@@ -557,6 +556,17 @@ view: proposta {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  dimension: safra_cessao {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Cessao - Safra"
+    value_format: "0"
+    sql: CONCAT(LEFT(${data_concessao_month},4),RIGHT(${data_concessao_month},2)) ;;
+    description: "Indica a safra de cessão do contrato"
+
+
+  }
+
   dimension_group: data_cessao_original {
     type: time
     timeframes: [
@@ -578,6 +588,7 @@ view: proposta {
 
   dimension: analise_ytd {
     type: yesno
+    group_label: "Dados da Cessão"
     label: "Concessão - YTD?"
     description: "Indica o acumulado no ano mês a mês."
     sql:
@@ -1004,6 +1015,14 @@ view: proposta {
     required_access_grants: [grupo_email]
   }
 
+  dimension: fia_cp_score{
+    type: number
+    group_label: "Dados do Garantidor"
+    label: "Cadastro Positivo - Score"
+    description: "Indica o valor de score do fiador dentro do cadastro POSITIVO."
+    sql: ${TABLE}."FIA_CP_SCORE" ;;
+  }
+
   dimension: fia_escolaridade {
     type: string
     group_label: "Dados do Garantidor"
@@ -1058,7 +1077,7 @@ view: proposta {
     label: "Renda do Garantidor"
     value_format: "$ #,##0.00"
     description: "Indica o valor da renda do Garantidor do aluno."
-    sql: IFNULL(${TABLE}."FIA_RENDA",0) ;;
+    sql: NULLIF(${TABLE}."FIA_RENDA",0) ;;
 
     required_access_grants: [grupo_renda]
   }
@@ -1303,6 +1322,14 @@ view: proposta {
     sql: ${TABLE}."FLG_TESTEMUNHAS_ASSINARAM" ;;
   }
 
+  dimension: flg_possui_divida {
+    type: yesno
+    group_label: "Dados do Contrato"
+    label: "Possui Divida?"
+    description: "Indica se o aluno possui divída em relação ao contrato"
+    sql: ${TABLE}."FLG_POSSUI_DIVIDA" ;;
+  }
+
   dimension: flg_wo_ies {
     type: yesno
     group_label: "Dados da Instituição"
@@ -1485,12 +1512,24 @@ view: proposta {
     value_format: "0"
   }
 
+
+
   dimension: id_instituicao {
     type: string
     group_label: "Dados da Instituição"
     label: "ID Instituição"
     description: "Indica o ID da instituição"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
+
+  }
+
+  dimension: id_instituicao_filtro {
+    type: string
+    group_label: "Dados da Instituição"
+    label: "ID Instituicao"
+    description: "Indica o ID da instituição"
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
+    hidden: yes
   }
 
   dimension: id_originadores_ativos_ies {
@@ -1782,7 +1821,6 @@ view: proposta {
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades - Semestre Atual"
     description:"Indica a quantidade de mensalidades por contrato do semestre atual"
-    hidden: yes
     sql: ${TABLE}."QTD_MEN_CORRENTE" ;;
   }
 
@@ -1793,6 +1831,15 @@ view: proposta {
     description:"Indica a quantidade de mensalidades por contrato"
     hidden: yes
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
+  }
+
+  dimension: qtd_mensalidade_atraso {
+    type: number
+    group_label: "Dados do Contrato"
+    label:"Quantidade de Mensalidades em Atraso"
+    description:"Indica a quantidade de mensalidades em atraso por contrato"
+    hidden: yes
+    sql: ${TABLE}."QTD_MENSALIDADE_ATRASO" ;;
   }
 
   dimension: qtd_prestacoes {
@@ -2058,7 +2105,6 @@ view: proposta {
     label: "Valor do Financiamento"
     value_format: "$ #,###.00"
     description: "Indica o valor total do financiamento do contrato"
-    hidden:  yes
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
   }
 
@@ -2101,7 +2147,7 @@ view: proposta {
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     hidden: no
-    sql: IFNULL(${TABLE}."VL_MENSALIDADE",0) ;;
+    sql: NULLIF(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
   dimension: vl_parcela {
@@ -2943,6 +2989,10 @@ view: proposta {
     description: "Soma da quantidade de mensalidades por contrato do semestre atual"
   }
 
+
+
+
+
   measure: avg_qtd_mensalidade_atual {
     type: average
     group_label: "Mensalidade - Atual"
@@ -3060,7 +3110,7 @@ view: proposta {
   measure: sum_qtd_mensalidade_contrato {
     type: sum
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades"
+    group_item_label: "Soma | Quantidade "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Soma da quantidade de mensalidades por contrato"
@@ -3069,7 +3119,7 @@ view: proposta {
   measure: avg_qtd_mensalidade_contrato  {
     type: average
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Média"
+    group_item_label: "Média | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Média da quantidade de mensalidades por contrato"
@@ -3078,7 +3128,7 @@ view: proposta {
   measure: min_qtd_mensalidade_contrato {
     type: min
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Mínimo"
+    group_item_label: "Mínimo | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Mínimo da quantidade de mensalidades por contrato"
@@ -3088,11 +3138,51 @@ view: proposta {
   measure: max_qtd_mensalidade_contrato  {
     type: max
     group_label: "Mensalidade"
-    group_item_label: "Quantidade de Mensalidades - Máximo"
+    group_item_label: "Máximo | Quantidade  "
     sql:${qtd_mensalidades};;
     value_format: "0"
     description: "Máximo da quantidade de mensalidades por contrato"
   }
+
+  measure: sum_qtd_mensalidade_atraso {
+    type: sum
+    group_label: "Mensalidade"
+    group_item_label: "Soma | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Soma da quantidade de mensalidades em atraso por contrato"
+  }
+
+  measure: avg_qtd_mensalidade_atraso {
+    type: average
+    group_label: "Mensalidade"
+    group_item_label: "Média | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Média da quantidade de mensalidades em atraso por contrato"
+  }
+
+  measure: max_qtd_mensalidade_atraso {
+    type: max
+    group_label: "Mensalidade"
+    group_item_label: "Máximo | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Máximo da quantidade de mensalidades em atraso por contrato"
+  }
+
+
+  measure: min_qtd_mensalidade_atraso {
+    type: min
+    group_label: "Mensalidade"
+    group_item_label: "Máximo | Atraso "
+    sql:${qtd_mensalidade_atraso};;
+    value_format: "0"
+    description: "Mínimo da quantidade de mensalidades em atraso por contrato"
+  }
+
+
+
 
 
   measure: sum_vl_prestacoes {
@@ -3844,8 +3934,6 @@ dimension: produto_preaprovado {
     description: "Indica o método de autenticação da proposta. Ex: WhatsApp, SMS ou e-mail."
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
-
-
 
 
   set: detail {

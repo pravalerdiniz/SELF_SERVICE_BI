@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_2 {
   derived_table: {
-    sql: select * from STAGE.PUBLIC.INADIMPLENCIA ina
+    sql: select * from GRADUADO.RISCO.VW_INADIMPLENCIA ina
       ;;
   }
 
@@ -17,11 +17,11 @@ view: alunos_inadimplencia_2 {
   }
 
   dimension: safra_cessao_cpf {
-    type: string
+    type: number
     label: "Safra Cessão - CPF"
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
     value_format: "0"
-    sql: ${TABLE}."SAFRA_CESSAO_CPF"::int ;;
+    sql: ${TABLE}."SAFRA_CESSAO_CPF"::int;;
   }
 
   dimension: cpf {

@@ -1,7 +1,15 @@
 view: alunos_inadimplencia_sp_fitch_rating {
   derived_table: {
-    sql: select * from stage.public.risco_sp_fitch
+    sql: select * from stage.public.SP_fitch_Ratings
       ;;
+  }
+
+  dimension: cpf_fundo_data {
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${cpf},${id_fundo_investimento},${menor_vencto_raw}) ;;
+
+
   }
 
   measure: count {
@@ -11,122 +19,188 @@ view: alunos_inadimplencia_sp_fitch_rating {
 
   dimension: cpf {
     type: number
+    hidden: yes
     sql: ${TABLE}."CPF" ;;
-  label: "CPF"
-  hidden: yes
   }
 
-  dimension: cpf_ano_mes {
-    type: string
-    sql: CONCAT(${cpf},${ano_mes}) ;;
-    primary_key: yes
+  dimension: id_fundo_investimento {
+    type: number
+    label: "ID Fundo de Investimento"
+    sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
+  }
+
+  dimension: qde_boletos {
+    type: number
+    label: "Quantidade de Boletos"
+    sql: ${TABLE}."QDE_BOLETOS" ;;
+  }
+
+  dimension: over05 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 05?"
+    description: "Indica se o aluno possui mais de 05 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER05" ;;
+  }
+
+  dimension: over15 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 15?"
+    description: "Indica se o aluno possui mais de 15 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER15" ;;
+  }
+
+
+  dimension: over30 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 30?"
+    description: "Indica se o aluno possui mais de 30 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER30" ;;
+  }
+
+  dimension: over60 {
+    type: yesno
+    group_label: "Overs"
+    label: "Over 60?"
+    description: "Indica se o aluno possui mais de 60 dias de atraso em relação a seu vencimento mais antigo"
+    sql: ${TABLE}."OVER60" ;;
+  }
+
+  dimension: soma_vp {
+    type: number
     hidden: yes
-    }
-
-  dimension: ano_mes {
-    type: number
-    value_format: "0"
-    sql: ${TABLE}."TDT_ANO_MES" ;;
-    label: "Ano Mês"
-    description: "Indica qual o ano e mês"
+    sql: ${TABLE}."SOMA_VP" ;;
   }
 
-  dimension: fundo {
-    type: number
-    sql: ${TABLE}."FUNDO" ;;
-    label: "Fundo"
-    description: "Indica qual o fundo de investimento"
-  }
-
-  dimension: qtd_over_5 {
+  dimension: soma_vf {
     type: number
     hidden: yes
-    sql: ${TABLE}."QTD_OVER_5" ;;
+    sql: ${TABLE}."SOMA_VF" ;;
   }
 
-  dimension: qtd_over_30 {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."QTD_OVER_30" ;;
+  dimension_group: menor_vencto {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    label: "Menor Vencimento"
+    description: "Indica a data do menor vencimento em aberto do aluno"
+    sql: ${TABLE}."MENOR_VENCTO" ;;
   }
 
-  dimension: qtd_over_60 {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."QTD_OVER_60" ;;
+  dimension_group: dt_titulo_calcular {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    label: "Titulo Calcular"
+    description: "Indica a data base para calculo de divida do aluno"
+    sql: ${TABLE}."DT_TITULO_CALCULAR" ;;
   }
 
-  dimension: qtd {
-    hidden: yes
-    type: number
-    sql: ${TABLE}."QTD" ;;
+
+
+
+
+
+
+  dimension: qtd_dias_atraso {
+   type: number
+  label: "Dias de Atraso"
+  description: "Indica os dias de atraso referente ao último vencimento aberto do aluno."
+   sql:  ${TABLE}."QT_DIAS_ATRASO";;
+
   }
 
 
-  dimension: valor_presente_over_5 {
-    type: number
-    sql: ${TABLE}."VP_OVER_5" ;;
-    label: "Valor Presente - Over 5"
-    description: "Soma dos Valores Presentes - Over 5"
+measure: sum_over05 {
+  type: count
+  group_label: "Overs - Quantidade"
+  label: "Over 05"
+  filters: [over05: "yes"]
+
+
+
+
+
+}
+
+
+  measure: sum_over15 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 15"
+    filters: [over15: "yes"]
+
+
+
+
+
   }
 
-  dimension: valor_presente_over_30 {
-    type: number
-    sql: ${TABLE}."VP_OVER_30" ;;
-    label: "Valor Presente - Over 30"
-    description: "Soma dos Valores Presentes - Over 30"
+  measure: sum_over30 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 30"
+    filters: [over30: "yes"]
+
+
+
+
+
   }
 
-  dimension: valor_presente_over_60 {
-    type: number
-    sql: ${TABLE}."VP_OVER_60" ;;
-    label: "Valor Presente - Over 60"
-    description: "Soma dos Valores Presentes - Over 60"
+  measure: sum_over60 {
+    type: count
+    group_label: "Overs - Quantidade"
+    label: "Over 60"
+    filters: [over60: "yes"]
+
+
+
+
+
   }
 
-  dimension: valor_presente {
-    type: number
-    sql: ${TABLE}."VP" ;;
+
+  measure: sum_vp {
+    type: sum
     label: "Valor Presente"
-    description: "Soma dos Valores Presentes"
+    sql: ${soma_vp} ;;
+    description: "Indica a soma do Valor Presente do Aluno"
+
   }
 
-  measure: sum_valor_presente_over_5 {
+  measure: sum_vf {
     type: sum
-    sql: ${TABLE}."VP_OVER_5" ;;
-    label: "Valor Presente - Over 5"
-    description: "Soma dos Valores Presentes - Over 5"
-  }
+    label: "Boleto"
+    sql: ${soma_vp} ;;
+    description: "Indica a soma do valor dos boletos não pagos do aluno"
 
-  measure: sum_valor_presente_over_30 {
-    type: sum
-    sql: ${TABLE}."VP_OVER_30" ;;
-    label: "Valor Presente - Over 30"
-    description: "Soma dos Valores Presentes - Over 30"
-  }
-
-  measure: sum_valor_presente_over_60 {
-    type: sum
-    sql: ${TABLE}."VP_OVER_60" ;;
-    label: "Valor Presente - Over 60"
-    description: "Soma dos Valores Presentes - Over 60"
-  }
-
- measure: sum_valor_presente {
-    type: sum
-    sql: ${TABLE}."VP" ;;
-    label: "Valor Presente"
-    description: "Soma dos Valores Presentes"
   }
 
   set: detail {
     fields: [
-      ano_mes,
-      fundo,
-      qtd_over_5,
-      qtd_over_30,
-      qtd_over_60,
-      qtd,
+      cpf,
+      id_fundo_investimento,
+      qde_boletos,
+      soma_vp,
+      soma_vf,
+      menor_vencto_date
     ]
   }
 }

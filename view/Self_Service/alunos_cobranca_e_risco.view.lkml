@@ -88,6 +88,7 @@ view: alunos_cobranca_e_risco {
   measure: vp_divida {
     type: sum
     group_item_label: "VP Divida"
+    description: "Valor Principal da Divida do aluno"
     sql: ${TABLE}."VP_DIVIDA" ;;
   }
 

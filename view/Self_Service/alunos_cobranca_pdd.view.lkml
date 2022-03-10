@@ -39,6 +39,7 @@ view: alunos_cobranca_pdd {
   dimension: id_fundo_investimento {
     type: number
     label: "ID Fundo Investimento"
+    description: "Indica o ID Fundo Investimento"
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
   }
 
@@ -64,42 +65,49 @@ view: alunos_cobranca_pdd {
   dimension: despesagem_2 {
     type: number
    hidden: yes
+  description: "Valor da despesagem - valor que o aluno despesa da faixa de atraso que ele se encontra"
     sql: ${TABLE}."DESPESAGEM_2" ;;
   }
 
   dimension: reversao_2 {
     type: number
    hidden: yes
+  description: "Valor recuperado da despesagem"
     sql: ${TABLE}."REVERSAO_2" ;;
   }
 
   dimension: despesa_total_2 {
     type: number
     hidden: yes
+    description: "Indica o valor que está provisionado na PDD"
     sql: ${TABLE}."DESPESA_TOTAL_2" ;;
   }
 
   dimension: despesagem {
     type: number
     hidden: yes
+    description: "Valor da despesagem - valor que o aluno despesa da faixa de atraso que ele se encontra"
     sql: ${TABLE}."DESPESAGEM" ;;
   }
 
   dimension: reversao {
     type: number
     hidden: yes
+    description: "Valor recuperado da despesagem"
     sql: ${TABLE}."REVERSAO" ;;
   }
 
   dimension: despesa_total {
     type: number
     label: "Despesa Total"
+    description: "Indica o valor que está provisionado na PDD"
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
 
   dimension: dia_util {
     type: number
     label: "Dia Útil"
+    description: "Indica qual dia útil do mês a data representa"
     sql: ${TABLE}."DIA_UTIL" ;;
   }
 
@@ -107,6 +115,7 @@ view: alunos_cobranca_pdd {
   measure: despesatotal {
     type: sum
     label: "Despesa Total"
+    description: "Indica o valor que está provisionado na PDD"
     sql: ${TABLE}."DESPESA_TOTAL" ;;
   }
 
@@ -114,50 +123,48 @@ measure: sum_despesagem {
   type: sum
   group_label: "Despesagem"
   label: "Soma 1"
+  description: "Soma do valor da despesagem - valor que o aluno despesa da faixa de atraso que ele se encontra"
   sql: ${despesagem} ;;
-
-
 }
 
   measure: sum_despesagem_2 {
     type: sum
     group_label: "Despesagem"
     label: "Soma 2"
+    hidden: yes
+    description: "Soma do valor da despesagem - valor que o aluno despesa da faixa de atraso que ele se encontra"
     sql: ${despesagem_2} ;;
-
   }
-
 
   measure: sum_despesagem_total {
     type: sum
     group_label: "Despesagem"
     label: "Total 1"
     sql: ${despesa_total} ;;
-
   }
 
   measure: sum_despesagem_total_2 {
     type: sum
     group_label: "Despesagem"
     label: "Total 2"
+    hidden: yes
     sql: ${despesa_total_2} ;;
-
   }
 
   measure: sum_reversao {
     type: sum
     group_label: "Reversão"
     label: "Soma 1"
+    description: "Valor recuperado da despesagem"
     sql: ${reversao} ;;
-
   }
 
   measure: sum_reversao2 {
     type: sum
     group_label: "Reversão"
     label: "Soma 2"
+    hidden: yes
     sql: ${reversao_2} ;;
-
   }
 
   set: detail {

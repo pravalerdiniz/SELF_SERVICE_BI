@@ -603,6 +603,87 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
+
+
+  dimension: flg_desembolso_diario {
+    type: yesno
+    sql: ${TABLE}."FLG_DESEMBOLSO_DIARIO";;
+    description: "DEFINIR*"
+    group_item_label: "Desembolso Diário?"
+    group_label: "Dados do Contrato"
+  }
+
+  dimension: flg_desembolso_antes_atribuicao {
+    type: yesno
+    sql: ${TABLE}."FLG_DESEMBOLSO_ANTES_ATRIBUICAO";;
+    description: "DEFINIR*"
+    group_item_label: "Desembolso antes de assinar?"
+    group_label: "Dados do Contrato"
+  }
+
+
+
+
+  dimension_group: data_desembolso {
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
+    sql: ${TABLE}."DATA_DESEMBOLSO";;
+    description: "DATA DA REALIZAÇÃO DO VALOR DO DESEMBOLSO"
+    label: "Desembolso"
+  }
+
+  dimension_group: desembolso_confirmado{
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
+    sql: ${TABLE}."DATA_CONFIRMACAO_DESEMBOLSO";;
+    description: "DATA DA CONFIRMAÇÃO DE REALIZAÇÃO DO DESEMBOLSO"
+    label: "Desembolso Confirmado"
+  }
+
+  dimension_group: desembolso_abreviado {
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
+    sql: ${TABLE}."DATA_ABREVIADA_DESEMBOLSO";;
+    hidden: yes
+    description: "DATA DA REALIZAÇÃO DO VALOR DO DESEMBOLSO"
+    label: "Desembolsado Abreviado em"
+  }
+
+
+
+
+  dimension_group: data_inicio_desembolso {
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
+    sql: ${TABLE}."DATA_INICIO_DESEMBOLSO";;
+    description: "DATA DE INICIO DO DESEMBOLSO"
+    label: "Inicio do Desembolso"
+  }
+
+  dimension_group: data_fim_desembolso {
+    type: time    timeframes: [      raw,      time,      date, day_of_month,  day_of_week,    week,      month,      quarter,      year    ]
+    sql: ${TABLE}."DATA_FINAL_DESEMBOLSO";;
+    description: "DATA DO FIM DO DESEMBOLSO"
+    label: "Fim do Desembolso"
+  }
+
+
+
+  measure: vl_emitido_desembolso{
+    type: sum
+    sql: ${TABLE}."VL_EMITIDO_DESEMBOLSO";;
+    description: "DEFINIR*"
+    label: "Valor Emitido"
+    group_label: "Desembolso"
+  }
+
+
+  measure: vl_final_desembolso {
+    type: sum
+    sql: ${TABLE}."VL_FINAL_DESEMBOLSO";;
+    description: "DEFINIR*"
+    label: "Valor Final"
+    group_label: "Desembolso"
+  }
+
+
+
   measure: valor_assinatura {
     type: sum
     sql: ${TABLE}."VALOR_ASSINATURA";;

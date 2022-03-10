@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_book_produtos {
   derived_table: {
-    sql: select distinct* from stage.public.book_inadimplencia_produtos
+    sql: select distinct* from GRADUADO.RISCO.VW_BOOK_INADIMPLENCIA_PRODUTOS
       ;;
   }
 
@@ -31,9 +31,19 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."CPF" ;;
   }
 
+
+  dimension: produtos {
+    type: string
+    label: "Produto"
+    sql: ${TABLE}."PRODUTOS" ;;
+  }
+
+
+
   dimension: tdt_ano_mes {
     type: number
     label: "Ano - Mês"
+    value_format: "0"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
 
@@ -51,7 +61,6 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: ies_grupo {
     type: string
-    hidden: yes
     sql: ${TABLE}."IES_GRUPO" ;;
   }
 
@@ -63,13 +72,13 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: estado {
     type: string
-    hidden: yes
+    map_layer_name: MAPA_ESTADO_ALUNO
     sql: ${TABLE}."ESTADO" ;;
   }
 
   dimension: aluno_novo {
     type: string
-    hidden: yes
+    label: "Tipo de Aluno - Produto"
     sql: ${TABLE}."ALUNO_NOVO" ;;
   }
 
@@ -81,7 +90,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: produtos_novos {
     type: string
-    hidden: yes
+    label: "Produtos - Novos"
     sql: ${TABLE}."PRODUTOS_NOVOS" ;;
   }
 
@@ -159,6 +168,12 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."OVER_05" ;;
   }
 
+  dimension: over_15 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."OVER_15" ;;
+  }
+
   dimension: over_30 {
     type: number
     hidden: yes
@@ -175,6 +190,12 @@ view: alunos_inadimplencia_book_produtos {
     type: number
     hidden: yes
     sql: ${TABLE}."OVER_90" ;;
+  }
+
+  dimension: over_15_90 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."OVER_15_90" ;;
   }
 
   dimension: cpf_fpd {
@@ -242,6 +263,20 @@ view: alunos_inadimplencia_book_produtos {
     group_label: "PDD"
     label: "MOB 6 (Nova) - Soma"
     sql: ${pdd_new_mob6} ;;
+  }
+
+  measure:sum_pdd_over_15  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 15 - Soma"
+    sql: ${over_15} ;;
+  }
+
+  measure:sum_pdd_over_15_90  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 15 a 90 - Soma"
+    sql: ${over_15_90} ;;
   }
 
   measure:sum_pdd_over_5  {

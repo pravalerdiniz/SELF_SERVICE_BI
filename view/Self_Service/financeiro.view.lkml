@@ -122,6 +122,22 @@ dimension: data_trunc  {
     description: "Indica a faixa de adimplência do aluno"
   }
 
+  dimension: faixa_adimple2 {
+    type: string
+    sql:
+    CASE WHEN ${flg_boleto_pago} = TRUE THEN
+    CASE WHEN ${dias_pagamento_vencido} <= -30  THEN 'A - Pago - Menos 30'
+         ELSE 'B - Pago Após' END
+    ELSE 'C - A pagar'
+              END;;
+    group_label: "Dados do Boleto"
+    group_item_label: "Faixa de Adimplência 2"
+    description: "Indica a faixa de adimplência do aluno"
+  }
+
+
+
+
 
 
   dimension_group: data_vencimento {
@@ -143,6 +159,56 @@ dimension: data_trunc  {
     description: "Indica a data de vencimento do boleto"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
+
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Week to Date"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_vencimento_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_vencimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Ou WTD. Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Month to Date"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_vencimento_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_vencimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Ou MTD. Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Year to Date"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_vencimento_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_vencimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Ou YTD. Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+  }
+
+
+  measure: ultimo_vencimento {
+    type: date
+    label: "Último Vencimento - Mais antigo"
+    sql: MIN(${data_vencimento_raw}) ;;
+    convert_tz: no
+  }
+
+
+
+  measure: ultimo_vencimento_mais_recente {
+    type: date
+    label: "Último Vencimento - Mais Recente"
+    sql: MAX(${data_vencimento_raw}) ;;
+    convert_tz: no
+  }
+
+
+
 
 
 
@@ -433,7 +499,7 @@ dimension: safra_vencimento {
     type: number
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
-    value_format: "0.00\%"
+    value_format: "0.00%"
     description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
@@ -1375,6 +1441,22 @@ foi gerado por um pagamento menor do boleto anterior."
     ;;
   }
 
+  dimension_group: data_reajuste_ipca {
+    type: time
+      timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Data de reajuste de IPCA"
+    description: "Data em que o boleto foi reajustado de acordo com o IPCA"
+    datatype: date
+    sql: ${TABLE}."DATA_TIT_IPCA" ;;
+  }
 
 
 

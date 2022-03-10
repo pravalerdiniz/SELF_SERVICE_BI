@@ -1,6 +1,6 @@
 view: alunos_acordo {
   derived_table: {
-    persist_for: "1 hour"
+    persist_for: "1 minutes"
     sql: select
             id_cpf,
             f.key as id_acordo,
@@ -32,8 +32,8 @@ view: alunos_acordo {
             f.value:VL_PAGO::float as VL_PAGO,
             f.value:FAIXA_DE_DESCONTO::number as FAIXA_DE_DESCONTO,
             case when max(f.key) over(partition by id_cpf, f.value:DATA_ACORDO::DATE order by f.value:DATA_ACORDO::DATE) = f.key then true else false end as FLG_MAX_ACORDO
-            from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
-            lateral flatten (input => acordo) f
+            from GRADUADO.RISCO.ACORDOS a,
+            lateral flatten (input => PROMESSA) f
  ;;
   }
   ##f.value:CANAL::varchar as CANAL,
@@ -325,12 +325,14 @@ dimension: faixa_atraso_ordenada {
   dimension: flg_pagamento {
     type: yesno
     label: "Acordo Pago?"
+    description: "Informa se o acordo foi pago ou não"
     sql: ${TABLE}."FLG_PAGAMENTO" ;;
   }
 
   dimension: flg_vencendo {
     type: yesno
     label: "Acordo Vencendo?"
+    description: "Informa se o acordo está vencendo"
     sql: ${TABLE}."FLG_VENCENDO" ;;
   }
 
@@ -339,30 +341,35 @@ dimension: faixa_atraso_ordenada {
 dimension: tipo_investimento {
   type: string
   label: "Tipo de Investimento"
+  description: "Informa qual o tipo de investimento"
   sql: ${TABLE}."TIPO_INVESTIMENTO" ;;
 }
 
   dimension: carteira {
     type: string
     label: "Carteira"
+    description: "Segmento do aluno. Ex: Ativa ou WO"
     sql: ${TABLE}."CARTEIRA" ;;
   }
 
   dimension: fundo {
     type: number
     label: "Fundo"
+    description: "Fundo de investimento"
     sql: ${TABLE}."FUNDO" ;;
   }
 
   dimension: hora_acordo {
     type: number
     label: "Hora do acordo"
+    description: "Informa qual a hora que o acordo foi feito"
     sql: ${TABLE}."HORA_ACORDO" ;;
   }
 
   dimension: faixa_de_desconto {
     type: number
     label: "Desconto"
+    description: "Informa qual foi o desconto do aluno de acordo com a faixa de atraso"
     sql: ${TABLE}."FAIXA_DE_DESCONTO" ;;
   }
 
@@ -395,7 +402,7 @@ dimension: tipo_investimento {
     type: count_distinct
     sql: ${id_acordo} ;;
     label: "Quantidade de acordos Pagos"
-    description: "Contagem de ID Acordos únicos"
+    description: "Contagem de ID Acordos únicos pagos"
     filters: [flg_pagamento: "1"]
     drill_fields: [detail*]
   }
@@ -415,7 +422,7 @@ dimension: tipo_investimento {
     group_label: "Valor Divida"
     label: "Soma"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "Soma da divida do aluno"
   }
 
   measure: avg_valor_divida {
@@ -424,7 +431,7 @@ dimension: tipo_investimento {
     group_label: "Valor Divida"
     label: "Média"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "valor médio da divida do aluno"
   }
 
   measure: min_valor_divida {
@@ -433,7 +440,7 @@ dimension: tipo_investimento {
     group_label: "Valor Divida"
     label: "Minimo"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "valor minimo da divida do aluno"
   }
 
   measure: max_valor_divida {
@@ -442,7 +449,7 @@ dimension: tipo_investimento {
     group_label: "Valor Divida"
     label: "Máximo"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "valor maximo da divida do aluno"
   }
 
   measure: sum_valor_promessa {
@@ -450,7 +457,7 @@ dimension: tipo_investimento {
     sql: ${vl_promessa} ;;
     label: "Valor Promessa"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "Soma do valor do acordo que o aluno fez para pagamento"
   }
 
   measure: saldo_solucionado {
@@ -458,7 +465,7 @@ dimension: tipo_investimento {
     sql: ${TABLE}."SALDO_SOLUCIONADO" ;;
     label: "Saldo Solucionado"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "Valor original da divida do aluno"
   }
 
   measure: vl_pago {
@@ -466,7 +473,7 @@ dimension: tipo_investimento {
     sql: ${TABLE}."VL_PAGO" ;;
     label: "Valor Pago"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "Valor que o aluno pagou em atraso"
   }
 
   measure: vl_vencendo {
@@ -474,7 +481,7 @@ dimension: tipo_investimento {
     sql: ${TABLE}."VL_VENCENDO" ;;
     label: "Valor Vencendo"
     value_format: "$ #,##0.00"
-    description: ""
+    description: "Valor da divida do aluno que está vencendo"
   }
 
   set: detail {

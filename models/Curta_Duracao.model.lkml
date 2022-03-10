@@ -48,11 +48,22 @@ map_layer: MAPA_CIDADE_ALUNO {
 #
 
 explore: meta {
-  label: "Meta"
-  view_label: "Meta"
+  label: "Meta - Geral"
+  view_label: "Meta - Geral"
+
 
 }
 
+
+explore: metas {
+  label: "Metas - Escolas"
+  view_label: "Metas - Escolas"
+
+
+
+
+
+}
 
 
 explore: student {
@@ -61,7 +72,7 @@ explore: student {
 
   join: student_curso {
     view_label: "Cursos Alunos"
-    sql_on: ${student.id_aluno} = ${student_curso.id_aluno} ;;
+    sql_on: ${student.id_aluno} = ${student_curso.id_aluno} and ${student_curso.id_aluno} = ${contracts.id_aluno};;
     type: left_outer
     relationship: one_to_many
 
@@ -72,6 +83,13 @@ explore: student {
       type: left_outer
       relationship: one_to_many
       }
+
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: courses {
     view_label: "Cursos"
@@ -129,6 +147,8 @@ explore: student {
         relationship: one_to_many
       }
 
+
+
   join: contracts_desc_taxas {
     view_label: "Contratos Taxas"
     sql_on: ${contracts_desc_taxas.id_contrato} = ${contracts.id_contrato} ;;
@@ -145,21 +165,34 @@ explore: student {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment}  and  ${contracts.id_aluno} = ${student.id_aluno};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: payments_boletos {
     view_label: "Boletos"
-    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
 
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+
+
+
+
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"
-    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} ;;
+    sql_on: ${payment_boletos_menor_vencimento.chave_contrato} = ${payments_boletos.chave_contrato} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
     fields: []
@@ -203,6 +236,13 @@ explore: contracts {
   join: institution {
     view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -254,7 +294,14 @@ explore: contracts {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -308,6 +355,13 @@ explore: risk {
     relationship: one_to_many
   }
 
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: courses {
     view_label: "Cursos"
     sql_on: ${student_curso.id_curso} = ${courses.id_curso} and ${student_curso.id_instituicao} = ${courses.id_instituicao};;
@@ -345,7 +399,7 @@ explore: risk {
 
   join: payment {
     view_label: "Responsável Pelo Boleto"
-    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -367,10 +421,18 @@ explore: risk {
  # }
   join: payments_boletos {
     view_label: "Boletos"
-    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} ;;
+    sql_on: ${payments_boletos.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} ;;
     type: left_outer
     relationship: one_to_many
   }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"
@@ -412,6 +474,14 @@ explore: payment {
     relationship: one_to_many
   }
 
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
   join: student {
     view_label: "Alunos"
     sql_on: ${payment.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno}   ;;
@@ -430,6 +500,13 @@ explore: payment {
   join: institution {
     view_label: "Instituição de Ensino"
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -485,6 +562,7 @@ explore: payment {
   relationship: one_to_many
   fields: []
 }
+
 }
 explore: status_curta {
   label:"Status"
@@ -510,6 +588,13 @@ explore: status_curta {
     sql_on: ${student_curso.id_instituicao} = ${institution.id_instituicao} ;;
     type: left_outer
     relationship: one_to_many
+  }
+
+  join: metas {
+    view_label: "Instituição de Ensino - Metas"
+    sql_on: ${institution.cnpj_instituicao} = ${metas.cnpj}  ;;
+    type: inner
+    relationship: one_to_one
   }
 
   join: courses {
@@ -597,6 +682,14 @@ explore: status_curta {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: payment_negativacao {
+    view_label: "Boletos - Negativação"
+    sql_on: ${payment_negativacao.chave_contrato} = ${contracts.chave_payment} and  ${contracts.id_aluno} = ${student.id_aluno} and ${payment_negativacao.key} = ${payments_boletos.key} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: payment_boletos_menor_vencimento {
     view_label: "Boletos"

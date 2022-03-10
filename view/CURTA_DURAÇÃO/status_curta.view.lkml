@@ -10,6 +10,7 @@ view: status_curta {
       date,
       week,
       day_of_week,
+      month_name,
       day_of_month,
       month,
       quarter,
@@ -130,6 +131,7 @@ view: status_curta {
     type: number
     sql: ${student.cpf_aluno} ;;
     group_item_label: "CPF Aluno"
+    value_format: "0"
     hidden: yes
   }
 
@@ -150,7 +152,7 @@ view: status_curta {
 
   dimension: nome_fantasia_instituicao {
     type: string
-    sql: ${student.nome_curso} ;;
+    sql: ${student.nome_fantasia_instituicao} ;;
     group_item_label: "Nome do Instituição"
     hidden: yes
   }
@@ -190,10 +192,20 @@ view: status_curta {
 
   dimension: etapa {
     type: string
-    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 'Contrato Assinado'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR
+              ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.APPROVED'
+              THEN 'Aprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' OR
+               ${TABLE}."TIPO_EVENTO" = 'MANAGEMENT.CONTRACT.SIGNED'
+              THEN 'Contrato Assinado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
               ELSE NULL END
               ;;
@@ -228,19 +240,46 @@ view: status_curta {
         sql: ${etapa} = 'Aprovado Risco' ;;
         label: "2"
       }
-
       when: {
-        sql: ${etapa} = 'Documentos Recebidos' ;;
+        sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
         label: "3"
       }
+
       when: {
-        sql: ${etapa} = 'Contrato Assinado' ;;
+        sql: ${etapa} = 'Biometria - Aprovada' ;;
         label: "4"
       }
 
       when: {
-        sql: ${etapa} = 'Cedido' ;;
+        sql: ${etapa} = 'Cadastro Completo' ;;
         label: "5"
+      }
+
+      when: {
+        sql: ${etapa} = 'Documentos Recebidos' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Documentos Aprovados' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Risco (Renda)' ;;
+        label: "9"
+      }
+
+      when: {
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "11"
+      }
+
+      when: {
+        sql: ${etapa} = 'Cedido' ;;
+        label: "12"
       }
       else: "0"
     }
@@ -251,15 +290,25 @@ view: status_curta {
 
   dimension: funil_completo {
     type: string
-    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Lead'
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.DISAPPROVED' THEN 'Reprovado Risco (Score)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.REPROVED' THEN 'Biometria - Reprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.APPROVED'
+              THEN 'Aprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.REPROVEDBYINCOME' OR ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.REPROVED'
+              THEN 'Reprovado Risco (Renda)'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCUMENTS.WRONG' THEN 'Documentos Reprovados'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CREATED' THEN 'Contrato Criado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
-              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' THEN 'Contrato Assinado'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' OR
+              ${TABLE}."TIPO_EVENTO" = 'MANAGEMENT.CONTRACT.SIGNED'
+              THEN 'Contrato Assinado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.CANCELED' THEN 'Contrato Cancelado'
               ELSE NULL END
@@ -293,41 +342,71 @@ view: status_curta {
         label: "2"
       }
       when: {
-        sql: ${funil_completo} = 'Reprovado Risco' ;;
+        sql: ${funil_completo} = 'Reprovado Risco (Score)' ;;
         label: "3"
       }
       when: {
-        sql: ${funil_completo} = 'Documentos Recebidos' ;;
+        sql: ${funil_completo} = 'Biometria - Análise Iniciada' ;;
         label: "4"
       }
+
       when: {
-        sql: ${funil_completo} = 'Documentos Aprovados' ;;
+        sql: ${funil_completo} = 'Biometria - Aprovada' ;;
         label: "5"
       }
+
       when: {
-        sql: ${funil_completo} = 'Documentos Reprovados' ;;
+        sql: ${funil_completo} = 'Biometria - Reprovada' ;;
         label: "6"
       }
+
       when: {
-        sql: ${funil_completo} = 'Contrato Criado' ;;
+        sql: ${funil_completo} = 'Cadastro Completo' ;;
         label: "7"
       }
+
       when: {
-        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        sql: ${funil_completo} = 'Documentos Recebidos' ;;
         label: "8"
       }
       when: {
-        sql: ${funil_completo} = 'Contrato Assinado' ;;
+        sql: ${funil_completo} = 'Documentos Aprovados' ;;
         label: "9"
+      }
+      when: {
+        sql: ${funil_completo} = 'Documentos Reprovados' ;;
+        label: "10"
+      }
+
+
+      when: {
+        sql: ${funil_completo} = 'Aprovado Risco (Renda)' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${funil_completo} = 'Reprovado Risco (Renda)' ;;
+        label: "12"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Criado' ;;
+        label: "13"
+      }
+      when: {
+        sql: ${funil_completo} = 'Aguardando Assinatura' ;;
+        label: "14"
+      }
+      when: {
+        sql: ${funil_completo} = 'Contrato Assinado' ;;
+        label: "15"
       }
 
       when: {
         sql: ${funil_completo} = 'Cedido' ;;
-        label: "10"
+        label: "16"
       }
       when: {
         sql: ${funil_completo} = 'Contrato Cancelado' ;;
-        label: "11"
+        label: "17"
       }
       else: "0"
     }
@@ -352,6 +431,33 @@ dimension: tempo_curta {
     label: "Tempo - Minutos"
     sql: ${curta_lead_time.TEMPO_ETAPA}/60 ;;
   }
+dimension: tempo_evento_dias {
+  type: number
+  label: "Tempo Evento - Dias"
+  hidden: yes
+  sql:datediff('day',${data_evento_raw},current_date);;
+
+}
+
+  dimension: faixa_tempo_curta_dias {
+    type: string
+    group_label: "Dados da Etapa"
+    label: "Faixa de Tempo - Dia | Hoje"
+    case: {
+      when: {
+        sql: ${tempo_evento_dias} <= 4 ;;
+        label: "< 4"
+      }
+      when: {
+        sql: ${tempo_evento_dias} <= 10 ;;
+        label: "5 - 10"
+      }
+      else: "10 dias ou mais"
+    }
+
+  }
+
+
 
 
   dimension: faixa_tempo_curta {
@@ -383,6 +489,8 @@ dimension: tempo_curta {
     }
 
   }
+
+
 
   dimension: faixa_tempo_curta_horas {
     type: string

@@ -12,7 +12,9 @@ view: alunos_painel_risco {
             f.value:ULTIMO_STATUS::varchar as ULTIMO_STATUS,
             f.value:DATA_HORA::timestamp as DATA_HORA,
             f.value:VL_PONTUACAO::varchar as VL_PONTUACAO,
-            f.value:GH::varchar as GH
+            f.value:GH::varchar as GH,
+            f.value:FLG_APROVADO::boolean as FLG_APROVADO,
+            f.value:FLG_ATIVO::boolean as FLG_ATIVO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
             lateral flatten (input => painel_risco) f
  ;;
@@ -194,6 +196,18 @@ dimension: VL_PONTUACAO {
     type:  string
     label: "GH"
     sql: ${TABLE}."GH" ;;
+  }
+
+dimension: FLG_ATIVO {
+  type: yesno
+  label: "Flag Ativo"
+  sql: ${TABLE}."FLG_ATIVO" ;;
+}
+
+  dimension: FLG_APROVADO {
+    type: yesno
+    label: "Flag Aprovado"
+    sql: ${TABLE}."FLG_APROVADO" ;;
   }
 
   set: detail {

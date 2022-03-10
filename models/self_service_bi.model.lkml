@@ -1,6 +1,6 @@
 connection: "graduado"
 
-
+include: "/**/*.dashboard.lookml"
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
@@ -159,7 +159,8 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date};;
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: left_outer
     relationship: many_to_one
   }
@@ -252,10 +253,99 @@ explore: jornada {
     - proposta.count_tipo_proposta_seg_repasse,
     - status.id_cpf,
     - status.flg_proposta_atual,
-    - status.tipo_proposta
+    - status.tipo_proposta,
+    - alunos.id_cpf,
+- alunos.id_proposta_atual,
+- alunos.aluno_nome,
+- alunos.aluno_idade,
+- alunos.aluno_genero,
+- alunos.email,
+- alunos.celular,
+- alunos.escolaridade,
+- alunos.numero_dependentes,
+- alunos.cep,
+- alunos.bairro,
+- alunos.cidade,
+- alunos.uf,
+- alunos.tipo_residencia,
+- alunos.estado_civil,
+- alunos.tempo_empresa,
+- alunos.natureza_ocupacao,
+- alunos.profissao,
+- alunos.nacionalidade,
+- alunos.renda_mensal,
+- alunos.renda_fam_mensal,
+- alunos.ds_trabalha,
+- alunos.ano_termino_ensino_medio,
+- alunos.flg_pai_falecido,
+- alunos.flg_mae_falecida,
+- alunos.id_fia_cpf_atual,
+- alunos.fia_nome,
+- alunos.fia_email,
+- alunos.fia_celular,
+- alunos.fia_escolaridade,
+- alunos.fia_numero_dependentes,
+- alunos.fia_cep,
+- alunos.fia_bairro,
+- alunos.fia_cidade,
+- alunos.fia_uf,
+- alunos.fia_tipo_residencia,
+- alunos.fia_estado_civil,
+- alunos.fia_tempo_empresa,
+- alunos.fia_natureza_ocupacao,
+- alunos.fia_profissao,
+- alunos.fia_nacionalidade,
+- alunos.fia_renda_mensal,
+- alunos.fia_parentesco,
+- alunos.fia_idade,
+- alunos.cpf_fiador,
+- alunos.qtd_cursos_procurados,
+- alunos.id_curso,
+- alunos.ds_curso,
+- alunos.flg_curso_ativo,
+- alunos.periodo_curso,
+- alunos.area_conhecimento_curso,
+- alunos.enfase_curso,
+- alunos.qtd_semestre_curso,
+- alunos.nivel_curso,
+- alunos.id_instituicao,
+- alunos.ds_instituicao,
+- alunos.grupo_instituicao,
+- alunos.cidade_instituicao,
+- alunos.uf_instituicao,
+- alunos.flg_instituicao_ativa,
+- alunos.qtd_campus_procurados,
+- alunos.id_campus,
+- alunos.ds_campus,
+- alunos.flg_campus_ativo,
+- alunos.cidade_campus,
+- alunos.uf_campus,
+- alunos.id_produto,
+- alunos.nm_produto,
+- alunos.flg_produto_ativo,
+- alunos.nm_modalidade_produto,
+- alunos.tipo_produto,
+- alunos.fia_endereco,
+- alunos.mapa_uf_fiador,
+- alunos.mapa_uf_aluno,
+- alunos.mapa_uf_campus,
+- alunos.mapa_uf_instituicao,
+- alunos.cpf_aluno,
+- alunos.endereco,
+- alunos.ds_fundo_investimento,
+- alunos.id_fundo_investimento,
+- alunos.ativo_ano_mes
 
 
   ]
+
+
+  join: atribuicao_nova {
+    view_label: "1.1. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
 
   join: proposta {
     view_label: "2. Proposta"
@@ -291,7 +381,7 @@ explore: jornada {
 
 
   join: instituicao_metas_gc {
-    view_label: "2.3 Metas GC"
+    view_label: "2.1 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: one_to_many
     type: left_outer
@@ -325,7 +415,7 @@ explore: jornada {
   }
 
   join: proposta_projeto_decola {
-    view_label: "2.3 Projeto Decola"
+    view_label: "2.2 Projeto Decola"
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
     relationship: many_to_one
     type: left_outer
@@ -348,6 +438,25 @@ explore: jornada {
     type: left_outer
   }
 
+  join: fato_mongo_lead {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_cpf} = ${fato_mongo_lead.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dim_field_group_mongo {
+    view_label: "1. Jornada"
+    sql_on: ${fato_mongo_lead.mongo_fieldgroup} = ${dim_field_group_mongo.mongo_fieldgroup};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "6. Alunos"
+    sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one}
 }
 
 explore: instituicao {
@@ -404,6 +513,28 @@ explore: instituicao {
 
   }
 
+  join: produto_ies_snapshot {
+    view_label: "1.1. Contrato da Instituição por Produto - (Histórico)"
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: dim_cpf {
+    view_label: "1. CPF"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada_pivot {
+    view_label: "1.2 Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
@@ -456,6 +587,29 @@ explore: instituicao {
     relationship: one_to_many
     type: left_outer
 
+  }
+
+  join: status {
+    view_label: "4. Status"
+    sql_on: ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
+          AND ${proposta.id_campus} = ${instituicao.id_campus}
+          AND ${proposta.id_curso} = ${instituicao.id_curso}
+          and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto}
+          and ${proposta.id_proposta} = ${status.id_proposta};;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: jornada {
+    view_label: "5. Jornada"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_instituicao}  = ${instituicao.id_instituicao}
+          AND ${proposta.id_campus} = ${instituicao.id_campus}
+          AND ${proposta.id_curso} = ${instituicao.id_curso}
+          and ${instituicao_contrato_produto_info.id_produto} = ${proposta.id_produto}
+          and ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
   }
 
   join: ano_mes_carteira_ativa {
@@ -634,7 +788,12 @@ fields: [ALL_FIELDS *,
 - alunos.endereco,
 - alunos.ds_fundo_investimento,
 - alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+- alunos.ativo_ano_mes,
+- jornada.aluno_cpf,
+- jornada.email_aluno,
+- jornada.nome_aluno,
+- jornada.celular_aluno,
+- jornada.total_renov
 
 
 
@@ -642,35 +801,50 @@ fields: [ALL_FIELDS *,
 
         ]
 
+
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fato_ies_aval.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
-  view_label: "1.1 Documentos Pendentes"
+  view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
   relationship: one_to_many
   type: left_outer
 }
 
   join: proposta_docs_entregues {
-    view_label: "1.2 Documentos Entregues"
+    view_label: "1.3 Documentos Entregues"
     sql_on: ${proposta_docs_entregues.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_motivo_rejeicao_docs {
-    view_label: "1.3 Documentos Rejeitados"
+    view_label: "1.4 Documentos Rejeitados"
     sql_on: ${proposta_motivo_rejeicao_docs.id_proposta} = ${proposta.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
   join: instituicao_metas_gc {
-    view_label: "1.4 Metas GC"
+    view_label: "1.5 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}  ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: proposta_projeto_decola {
-    view_label: "1.5 Acordos - Projeto Decola"
+    view_label: "1.6 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
     ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
     ;;
@@ -678,7 +852,14 @@ join: proposta_docs_pendentes {
     type: left_outer
   }
 
-
+  join: proposta_datas_interfile {
+    view_label: "1.7 Dados Interfile"
+    sql_on: ${proposta_datas_interfile.id_proposta} = ${proposta.id_proposta} and
+    ${proposta.release_contrato} = ${proposta_datas_interfile.release_contrato}
+          ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: instituicao {
     view_label: "5. Instituicao"
@@ -693,7 +874,7 @@ join: proposta_docs_pendentes {
 
 
   join: status {
-    view_label: "3. Status"
+    view_label: "4. Status"
     sql_on: ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
@@ -704,6 +885,13 @@ join: proposta_docs_pendentes {
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: alunos_painel_risco {
+    view_label: "2.1 Análise de Risco e Crédito - Decisão"
+    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
   }
 
   join: financeiro {
@@ -720,6 +908,28 @@ join: proposta_docs_pendentes {
     type: left_outer
   }
 
+  join: financeiro_count_titulo {
+    view_label: "3. Financeiro"
+    sql_on: ${proposta.id_proposta} = ${financeiro_count_titulo.proposta_id_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: jornada {
+    view_label: "6. Jornada"
+    sql_on:  ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: atribuicao_nova{
+    view_label: "6.1. Atribuição"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
 }
 
 explore: alunos {
@@ -733,7 +943,6 @@ explore: alunos {
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
     - jornada.id_cpf,
-    - proposta.aluno_cal_vet,
 - proposta.aluno_celular,
 - proposta.aluno_cidade,
 - proposta.aluno_email,
@@ -879,8 +1088,22 @@ join: alunos_inadimplencia_2 {
   }
 
   join: alunos_log_negativacao{
-    view_label: "1.4 Negativação Logs"
+    view_label: "1.3.1 Negativação Logs"
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_carteira_elegibilidade{
+    view_label: "1.4 Renovação - Gerencial da Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_status_elegibilidade{
+    view_label: "1.4.1 Renovação - Status de Elegibilidade"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -935,6 +1158,21 @@ join: alunos_inadimplencia_2 {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: alunos_worthy_credit {
+    view_label: "1.7.3 Modelo - Worthy Credit"
+    sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_score_gh {
+    view_label: "1.7.4 GH"
+    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: alunos_hotlead {
     view_label: "1.8 Campanhas DBM"
@@ -1009,7 +1247,9 @@ join: alunos_inadimplencia_2 {
 
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
-    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf} and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta};;
+    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
+    and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
+    and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
     relationship: many_to_one
     type: left_outer
 
@@ -1068,6 +1308,13 @@ join: financeiro {
     relationship: one_to_many
   }
 
+  join: atribuicao_nova {
+    view_label: "4.1. Atribuição"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
@@ -1082,6 +1329,14 @@ join: financeiro {
 
 explore: solucx {
   label: "SoluCX - NPS"
+
+
+join: depara_respondentes_ies {
+  view_label: "Solucx"
+  type: left_outer
+  sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
+  relationship: many_to_one
+}
   }
 
 
@@ -1179,14 +1434,193 @@ explore: log_negativacao {
   view_label: "Log de Negativação"
 }
 
+
 explore: documentos_solicitados {
   view_label: "Documentos Solicitados"
 }
 
-explore: atribuicao {}
+explore:  fato_lead_mgm {
+  view_label: "Leads MGM"
+
+  join: alunos {
+    view_label: "Informações Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: ano_mes_carteira_ativa {
+    fields: []
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: status {
+    view_label: "Status"
+    sql_on: ${status.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+    fields: [status.status_destino_geral,
+      status.status_destino_detalhado]
+  }
+
+  join: financeiro {
+    view_label: "Financeiro"
+    sql_on: ${financeiro.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+    fields: [financeiro.data_pagamento_date]
+  }
+}
 
 explore: atribuicao_nova {
-  view_label: "Atribuição (Nova)"
+  view_label: "Atribuição"
+  fields: [ALL_FIELDS * ,
+    - proposta.vl_acordo,
+    - proposta.data_acordo,
+    - jornada.aluno_cpf,
+    - jornada.email_aluno,
+    - jornada.nome_aluno,
+    - jornada.celular_aluno,
+    - jornada.total_renov,
+    - alunos.ativo_ano_mes]
+
+join: proposta {
+  view_label: "Proposta"
+  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+  type: left_outer
+  relationship: one_to_many
+}
+
+  join: jornada {
+    view_label: "Jornada"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: alunos_ativos_carteira {}
+
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
+}
+
+explore: crm_customer {
+  label: "CRM - Customer io"
+
+  join: dados_jornada_crm {
+    from: dados_jornada_crm
+    view_label: "Jornada"
+    sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+}
+
+explore: mgm_lista_resgate {
+  label: "MGM - Lista Resgate"
+}
+explore: mgm_publico_alvo {
+  label: "MGM - Público Alvo"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov
+  ]
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "1.Alunos"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    view_label: "2.Jornada"
+    sql_on: ${mgm_publico_alvo.cpf_lead} = ${jornada.aluno_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+}
+
+explore: mgm_publico_alvo_jornada {
+  label: "MGM - Público Alvo + Jornada"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+  ]
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: alunos {
+    view_label: "1.Alunos"
+    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: mgm_publico_alvo_resgate{
+  label: "MGM - Público Alvo Resgate"
+}
+explore: mgm_usuario {
+  label: "MGM - Usuário"
+
+  join: mgm_lista_resgate{
+    view_label: "Solicitou resgate"
+    sql_on: ${mgm_usuario.cpf}=${mgm_lista_resgate.cpf_player} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: mgm_publico_alvo_resgate{
+    view_label: "Pagamento realizado - resgate"
+    sql_on: ${mgm_usuario.cpf}=${mgm_publico_alvo_resgate.cpf_player} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+  }
+
+explore: instituicao_contrato_produto_info{
+  label: "Instituicao contrato produto"
+}
+
+  explore: tetris_withoutproducts {
+    label: "Tetris (Without Product)"
+
+}

@@ -1,6 +1,7 @@
 view: solucx {
   derived_table: {
     sql: select
+        solucx."ID" as id,
         solucx."JOURNEY" as jornada,
         solucx."TIMESTAMP" as data_envio_pesquisa,
         solucx."STORE_NAME" as grupo_pesquisa,
@@ -34,6 +35,15 @@ view: solucx {
     drill_fields: [detail*]
     hidden: yes
   }
+
+  dimension: id {
+    type: string
+    group_label: "Dados da Pesquisa"
+    group_item_label: "Id da Pesquisa"
+    description: "Id único de cada disparo"
+    sql: ${TABLE}."ID" ;;
+  }
+
 
   dimension: jornada {
     type: string
@@ -225,6 +235,7 @@ view: solucx {
 
   set: detail {
     fields: [
+      id,
       jornada,
       data_envio_pesquisa_time,
       grupo_pesquisa,
