@@ -499,7 +499,7 @@ dimension: safra_vencimento {
     type: number
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
-    value_format: "0.00\%"
+    value_format: "0.00%"
     description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
