@@ -3,8 +3,8 @@ view: instituicao_contrato_produto_info {
     persist_for: "1 hour"
     sql: select
         id_instituicao
-          ,f.key as ID_IES_CONTRATO
-        ,f.value:BANCO::varchar as BANCO
+      ,f.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO
+      ,f.value:BANCO::varchar as BANCO
       ,f.value:AGENCIA::varchar as DS_BANCO_AGENCIA
       ,f.value:CONTA::varchar as DS_BANCO_CC
       ,f.value:DIA_VENCIMENTO::number as DIA_VENCIMENTO

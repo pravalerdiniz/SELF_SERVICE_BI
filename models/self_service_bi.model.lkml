@@ -538,7 +538,7 @@ explore: instituicao {
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-        AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+        --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -809,6 +809,13 @@ fields: [ALL_FIELDS *,
     type: left_outer
   }
 
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fato_ies_aval.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
   view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
@@ -897,6 +904,13 @@ join: proposta_docs_pendentes {
   join: financeiro_parcelas_futuro {
     view_label: "3.1 Boletos Futuros "
     sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: financeiro_count_titulo {
+    view_label: "3. Financeiro"
+    sql_on: ${proposta.id_proposta} = ${financeiro_count_titulo.proposta_id_contrato} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1601,6 +1615,14 @@ explore: mgm_usuario {
     type: left_outer
   }
   }
+
+explore: instituicao_contrato_produto_info{
+  label: "Instituicao contrato produto"
+}
+
+explore: instituicao_taxas_antecipacao{
+  label: "Instituicao taxa antecipacao"
+}
 
   explore: tetris_withoutproducts {
     label: "Tetris (Without Product)"

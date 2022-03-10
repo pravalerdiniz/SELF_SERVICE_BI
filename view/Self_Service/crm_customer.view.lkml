@@ -51,6 +51,8 @@ view: crm_customer {
     sql: ${TABLE}."NOME" ;;
   }
 
+
+
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno BO"
@@ -83,6 +85,21 @@ view: crm_customer {
     label: "ID da Campanha"
     description: "Indica o ID do Grupo da CAmpanha disparada"
     sql: ${TABLE}."CAMPAIGN_ID" ;;
+  }
+  dimension: name_campaign {
+    type: string
+    group_label: "Dados da Campanha"
+    label: "Nome da Campanha"
+    description: "Indica o nome da Campanha"
+    sql: ${TABLE}."NAME_CAMPAIGN" ;;
+  }
+
+  dimension: tags_campaign {
+    type: string
+    group_label: "Dados da Campanha"
+    label: "Tag Campanha"
+    description: "Indica a Tag da Campanha"
+    sql: ${TABLE}."TAGS_CAMPAIGN" ;;
   }
 
   dimension: id_tamplate_campaign {
@@ -180,6 +197,22 @@ view: crm_customer {
     label: "ID da Newsletter"
     description: "Indica o ID da Newsletter"
     sql: ${TABLE}."NEWSLETTER_ID" ;;
+  }
+
+  dimension: name_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Nome da Newsletter"
+    description: "Indica o Nome da Newsletter"
+    sql: ${TABLE}."NAME_NEWSLETTER" ;;
+  }
+
+  dimension: tags_newsletter {
+    type: string
+    group_label: "Dados da Newsletter"
+    label: "Tag Newsletter"
+    description: "Indica a Tag da Newsletter"
+    sql: ${TABLE}."TAGS_NEWSLETTER" ;;
   }
 
   dimension: id_tamplate_newsletter {
