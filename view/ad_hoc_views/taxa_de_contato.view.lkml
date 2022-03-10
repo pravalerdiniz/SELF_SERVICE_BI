@@ -241,37 +241,37 @@ view: taxa_de_contato {
   }
 
   measure: qtd_aluno_ativo {
-    type: number
+    type: sum
     group_item_label: "QTD Alunos Ativos"
     sql: ${TABLE}."QTD_ALUNO_ATIVO" ;;
   }
 
   measure: qtd_aluno_cedido {
-    type: number
+    type: sum
     group_item_label: "QTD Alunos Cedidos Novos"
     sql: ${TABLE}."QTD_ALUNO_CEDIDO" ;;
   }
 
   measure: qtd_aluno_ativo_emcontato {
-    type: number
+    type: sum
     group_item_label: "QTD Alunos Ativos em Contato"
     sql: ${TABLE}."QTD_ALUNO_ATIVO_EMCONTATO" ;;
   }
 
   measure: qtd_aluno_cedido_emcontato {
-    type: number
+    type: sum
     group_item_label: "QTD Alunos Cedidos em Contato"
     sql: ${TABLE}."QTD_ALUNO_CEDIDO_EMCONTATO" ;;
   }
 
   measure: qtd_ticket_aluno_ativo {
-    type: number
+    type: sum
     group_item_label: "QTD Tickets de Alunos Ativos"
     sql: ${TABLE}."QTD_TICKET_ALUNO_ATIVO" ;;
   }
 
   measure: qtd_ticket_aluno_cedido {
-    type: number
+    type: sum
     group_item_label: "QTD Tickets de Alunos Cedidos"
     sql: ${TABLE}."QTD_TICKET_ALUNO_CEDIDO" ;;
   }
