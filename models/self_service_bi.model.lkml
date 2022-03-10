@@ -809,6 +809,13 @@ fields: [ALL_FIELDS *,
     type: left_outer
   }
 
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fato_ies_aval.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 join: proposta_docs_pendentes {
   view_label: "1.2 Documentos Pendentes"
   sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
