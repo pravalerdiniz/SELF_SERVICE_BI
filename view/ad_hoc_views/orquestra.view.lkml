@@ -115,6 +115,7 @@ view: orquestra {
     sql: ${TABLE}."CODIGO_RESULTADO" ;;
   }
 
+
   dimension: descricao_resultado {
     type: string
     group_label: "Dados da Solicitação"

@@ -1402,6 +1402,7 @@ dimension: url {
   group_item_label: "URL"
   description: "Primeira URL da proposta/lead"
   sql: ${TABLE}."URL" ;;
+  hidden:  no
 }
 
   dimension: canal {
@@ -1410,6 +1411,7 @@ dimension: url {
     group_item_label: "Canal"
     description: "Primeiro Canal da proposta referente a URL de entrada do aluno"
     sql: ${TABLE}."CANAL" ;;
+    hidden:  no
   }
 
   measure: total_renov {
@@ -3773,63 +3775,6 @@ dimension: qtd_dias_iniciados {
     description: "Indica a mínima da quantidade de vezes que a proposta passou pela etapa de Cedido"
   }
 
-  dimension: estoque_produtivo_jornada {
-    type: string
-    case: {
-      when: {
-        sql: ${etapa}='Iniciado' AND ${tempo_no_status} <= 2;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${etapa}='Iniciado' AND ${tempo_no_status}>2 and ${tempo_no_status}<=8;;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${etapa}='Iniciado' AND ${tempo_no_status}>8;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}<=8;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}>8 and ${tempo_no_status}<=20;;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${etapa}='Aprovado Instituicao' AND ${tempo_no_status}>20;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}<=8;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}>8 and ${tempo_no_status}<=20;;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Documento' AND ${tempo_no_status}>20;;
-        label: "3. NOK/Abandono"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}<=2;;
-        label: "1. Andamento no Prazo"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}>2 and ${tempo_no_status}<=8;;
-        label: "2. Andamento Atuação"
-      }
-      when: {
-        sql: ${etapa}='Aguardando Assinatura' AND ${tempo_no_status}>8;;
-        label: "3. NOK/Abandono"
-      }
-    else: "Outros"
-    }
-    group_label: "Estoque Produtivo"
-    group_item_label: "Faixa Estoque Produtivo"
-    description: "Marcação dos Alunos em Estoque Produtivo"
-  }
 
 
 ####################################################

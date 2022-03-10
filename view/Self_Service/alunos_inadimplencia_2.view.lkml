@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_2 {
   derived_table: {
-    sql: select * from STAGE.PUBLIC.INADIMPLENCIA ina
+    sql: select * from GRADUADO.RISCO.VW_INADIMPLENCIA ina
       ;;
   }
 
