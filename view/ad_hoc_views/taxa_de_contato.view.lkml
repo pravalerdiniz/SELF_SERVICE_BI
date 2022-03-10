@@ -5,7 +5,7 @@ view: taxa_de_contato {
         A.QTD_ALUNO_ATIVO,
         C.QTD_ALUNO_CEDIDO,
         T.QTD_ALUNO_CONTATO AS "QTD_ALUNO_ATIVO_EMCONTATO",
-        C.QTD_ALUNO_CONTATO AS "ALUNO_CEDIDO_EMCONTATO",
+        C.QTD_ALUNO_CONTATO AS "QTD_ALUNO_CEDIDO_EMCONTATO",
         T.QTD_TICKET AS "QTD_TICKET_ALUNO_ATIVO",
         C.QTD_TICKET AS "QTD_TICKET_ALUNO_CEDIDO"
 
@@ -233,43 +233,46 @@ view: taxa_de_contato {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-
   dimension: data {
     type: string
+    group_item_label: "Data"
+    description: "Mês referente à taxa de contato"
     sql: ${TABLE}."DATA" ;;
   }
 
-  dimension: qtd_aluno_ativo {
+  measure: qtd_aluno_ativo {
     type: number
+    group_item_label: "QTD Alunos Ativos"
     sql: ${TABLE}."QTD_ALUNO_ATIVO" ;;
   }
 
-  dimension: qtd_aluno_cedido {
+  measure: qtd_aluno_cedido {
     type: number
+    group_item_label: "QTD Alunos Cedidos Novos"
     sql: ${TABLE}."QTD_ALUNO_CEDIDO" ;;
   }
 
-  dimension: qtd_aluno_ativo_emcontato {
+  measure: qtd_aluno_ativo_emcontato {
     type: number
+    group_item_label: "QTD Alunos Ativos em Contato"
     sql: ${TABLE}."QTD_ALUNO_ATIVO_EMCONTATO" ;;
   }
 
-  dimension: aluno_cedido_emcontato {
+  measure: qtd_aluno_cedido_emcontato {
     type: number
-    sql: ${TABLE}."ALUNO_CEDIDO_EMCONTATO" ;;
+    group_item_label: "QTD Alunos Cedidos em Contato"
+    sql: ${TABLE}."QTD_ALUNO_CEDIDO_EMCONTATO" ;;
   }
 
-  dimension: qtd_ticket_aluno_ativo {
+  measure: qtd_ticket_aluno_ativo {
     type: number
+    group_item_label: "QTD Tickets de Alunos Ativos"
     sql: ${TABLE}."QTD_TICKET_ALUNO_ATIVO" ;;
   }
 
-  dimension: qtd_ticket_aluno_cedido {
+  measure: qtd_ticket_aluno_cedido {
     type: number
+    group_item_label: "QTD Tickets de Alunos Cedidos"
     sql: ${TABLE}."QTD_TICKET_ALUNO_CEDIDO" ;;
   }
 
@@ -279,7 +282,7 @@ view: taxa_de_contato {
       qtd_aluno_ativo,
       qtd_aluno_cedido,
       qtd_aluno_ativo_emcontato,
-      aluno_cedido_emcontato,
+      qtd_aluno_cedido_emcontato,
       qtd_ticket_aluno_ativo,
       qtd_ticket_aluno_cedido
     ]
