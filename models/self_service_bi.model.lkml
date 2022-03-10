@@ -1609,6 +1609,10 @@ explore: mgm_usuario {
   }
   }
 
+explore: instituicao_contrato_produto_info{
+  label: "Instituicao contrato produto"
+}
+
   explore: tetris_withoutproducts {
     label: "Tetris (Without Product)"
 
