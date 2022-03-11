@@ -285,6 +285,10 @@ view: base_carteira_renovacao {
     sql: ${TABLE}."VP_ZERO" ;;
   }
 
+  dimension: flg_semestre_atual_financiado {
+    type: yesno
+    sql: ${TABLE}."FLG_SEMESTRE_ATUAL_FINANCIADO" ;;
+  }
   measure: count {
     type: count
     drill_fields: [id]

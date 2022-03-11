@@ -143,6 +143,10 @@ explore: base_forecast_cs {
   label: "Forecast Contatos"
 }
 
+explore: taxa_de_contato{
+  label: "Taxa de Contato"
+}
+
 explore: campanha_valoriza {
   label: "Campanha Valoriza"
 }
