@@ -1382,7 +1382,7 @@ explore: interacoes {
   join: dim_cpf {
     view_label: "CPF"
     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
-    relationship: many_to_one
+    relationship: one_to_many
     type: left_outer
   }
 
