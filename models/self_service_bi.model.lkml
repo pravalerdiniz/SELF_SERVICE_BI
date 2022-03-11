@@ -1390,7 +1390,7 @@ explore: interacoes {
 
   join: jornada {
     view_label: "Jornada"
-    sql_on: ${jornada.id_proposta} = ${jornada.id_cpf};;
+    sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
     type: left_outer
     relationship: one_to_many
   }
