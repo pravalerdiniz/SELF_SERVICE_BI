@@ -387,6 +387,172 @@ view: amigo_edu {
     sql: ${d_ticket_medio_provas_digitais_por_tipo} ;;
   }
 
+  dimension: d_bolsa_estudos_checkout_pago  {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_CHECKOUT_PAGO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_checkout_pago  {
+    type: sum
+    sql: ${d_bolsa_estudos_checkout_pago} ;;
+  }
+
+  dimension: d_bolsa_estudos_checkout_organico {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_CHECKOUT_ORGANICO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_checkout_organico {
+    type: sum
+    sql: ${d_bolsa_estudos_checkout_organico} ;;
+  }
+
+  dimension: d_bolsa_estudos_share_leads_pago {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_SHARE_LEADS_PAGO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_share_leads_pago {
+    type: sum
+    sql: ${d_bolsa_estudos_share_leads_pago} ;;
+  }
+
+  dimension: d_bolsa_estudos_share_leads_organico {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_SHARE_LEADS_ORGANICO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_share_leads_organico {
+    type: sum
+    sql: ${d_bolsa_estudos_share_leads_organico} ;;
+  }
+
+  dimension: d_bolsa_estudos_alunos_canal_organico {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_ALUNOS_CANAL_ORGANICO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_alunos_canal_organico {
+    type: sum
+    sql: ${d_bolsa_estudos_alunos_canal_organico} ;;
+  }
+
+  dimension: d_bolsa_estudos_alunos_canal_pago {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_ALUNOS_CANAL_PAGO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_alunos_canal_pago {
+    type: sum
+    sql: ${d_bolsa_estudos_alunos_canal_pago} ;;
+  }
+
+  dimension: d_bolsa_estudos_total_chamados {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_TOTAL_CHAMADOS" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_total_chamados {
+    type: sum
+    sql: ${d_bolsa_estudos_total_chamados} ;;
+  }
+
+  dimension: d_bolsa_estudos_peso_presencial {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_PESO_PRESENCIAL" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_peso_presencial  {
+    type: sum
+    sql: ${d_bolsa_estudos_peso_presencial} ;;
+  }
+
+  dimension: d_bolsa_estudos_peso_semi_presencial {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_PESO_SEMI_PRESENCIAL" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_peso_semi_presencial  {
+    type: sum
+    sql: ${d_bolsa_estudos_peso_semi_presencial} ;;
+  }
+
+  dimension: d_bolsa_estudos_peso_ead {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_PESO_EAD" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_peso_ead  {
+    type: sum
+    sql: ${d_bolsa_estudos_peso_ead} ;;
+  }
+
+  dimension: d_bolsa_estudos_ticket_medio_presencial {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_TICKET_MEDIO_PRESENCIAL" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_ticket_medio_presencial  {
+    type: sum
+    sql: ${d_bolsa_estudos_ticket_medio_presencial} ;;
+  }
+
+  dimension: d_bolsa_estudos_ticket_medio_semi_presencial {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_TICKET_MEDIO_SEMI_PRESENCIAL" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_ticket_medio_semi_presencial  {
+    type: sum
+    sql: ${d_bolsa_estudos_ticket_medio_semi_presencial} ;;
+  }
+
+  dimension: d_bolsa_estudos_ticket_medio_ead {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_TICKET_MEDIO_EAD" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_ticket_medio_ead   {
+    type: sum
+    sql: ${d_bolsa_estudos_ticket_medio_ead} ;;
+  }
+
+  dimension: d_bolsa_estudos_conversao_canal_pago {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_CONVERSAO_CANAL_PAGO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_conversao_canal_pago {
+    type: sum
+    sql: ${d_bolsa_estudos_conversao_canal_pago} ;;
+  }
+
+  dimension: d_bolsa_estudos_conversao_canal_organico {
+    type: string
+    sql: ${TABLE}."BOLSA_ESTUDOS_CONVERSAO_CANAL_ORGANICO" ;;
+    hidden: yes
+  }
+
+  measure: bolsa_estudos_conversao_canal_organico {
+    type: sum
+    sql: ${d_bolsa_estudos_conversao_canal_organico} ;;
+  }
+
+
 
   set: detail {
     fields: [
@@ -423,7 +589,23 @@ view: amigo_edu {
       d_peso_receita_por_tipo_de_prova_vestibular_padrao_vestibular_premium_etc,
       d_total_de_vestibulares_realizados,
       d_total_provas_letivas_contratadas,
-      d_ticket_medio_provas_digitais_por_tipo
+      d_ticket_medio_provas_digitais_por_tipo,
+      d_bolsa_estudos_checkout_pago,
+      d_bolsa_estudos_checkout_organico,
+      d_bolsa_estudos_share_leads_pago,
+      d_bolsa_estudos_share_leads_organico,
+      d_bolsa_estudos_alunos_canal_organico,
+      d_bolsa_estudos_alunos_canal_pago,
+      d_bolsa_estudos_total_chamados,
+      d_bolsa_estudos_peso_presencial,
+      d_bolsa_estudos_peso_semi_presencial,
+      d_bolsa_estudos_peso_ead,
+      d_bolsa_estudos_ticket_medio_presencial,
+      d_bolsa_estudos_ticket_medio_semi_presencial,
+      d_bolsa_estudos_ticket_medio_ead,
+      d_bolsa_estudos_conversao_canal_pago,
+      d_bolsa_estudos_conversao_canal_organico
+
     ]
   }
 }

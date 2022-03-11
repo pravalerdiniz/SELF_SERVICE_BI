@@ -237,7 +237,8 @@ view: jornada {
       month_name,
       day_of_year,
       hour_of_day,
-      month_num
+      month_num,
+      week_of_year
     ]
     sql: ${TABLE}."DATA_INICIO_PROPOSTA" ;;
     label: "Início da Proposta"

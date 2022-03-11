@@ -36,9 +36,7 @@ explore: comunicacao_conversao {
   }
 }
 
-explore: base_carteira_renovacao {
-  label: "Carteira Renovação - Homologação"
-}
+
 
 explore: orcamento {
   label: "Orçamento - Histórico"
@@ -141,6 +139,10 @@ explore: orquestra {
 
 explore: base_forecast_cs {
   label: "Forecast Contatos"
+}
+
+explore: taxa_de_contato{
+  label: "Taxa de Contato"
 }
 
 explore: campanha_valoriza {

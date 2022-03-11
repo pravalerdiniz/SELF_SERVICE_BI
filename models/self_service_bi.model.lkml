@@ -538,7 +538,7 @@ explore: instituicao {
   join: instituicao_taxas_antecipacao {
     view_label: "1.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-        AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+        --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -1344,8 +1344,22 @@ explore: interacoes {
   label: "Interações - Tickets"
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
+  fields: [ALL_FIELDS *,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov
+  ]
   access_filter: {
     field: EMPRESA_AGENTE
+
     user_attribute: grupo_bpo
   }
 
@@ -1365,8 +1379,19 @@ explore: interacoes {
     relationship: one_to_many
 
   }
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 
-
+  join: jornada {
+    view_label: "Jornada"
+    sql_on: ${dim_cpf.id_cpf} = ${jornada.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
   }
@@ -1615,6 +1640,16 @@ explore: mgm_usuario {
     type: left_outer
   }
   }
+
+explore: instituicao_contrato_produto_info{
+  label: "Instituicao contrato produto"
+  hidden: yes
+}
+
+explore: instituicao_taxas_antecipacao{
+  label: "Instituicao taxa antecipacao"
+  hidden: yes
+}
 
   explore: tetris_withoutproducts {
     label: "Tetris (Without Product)"
