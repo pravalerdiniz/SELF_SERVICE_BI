@@ -1355,7 +1355,9 @@ explore: interacoes {
     - jornada.nm_modalidade_produto,
     - jornada.nm_produto,
     - jornada.ds_curso,
-    - jornada.total_renov
+    - jornada.total_renov,
+    - alunos *,
+    alunos.id_proposta_atual
   ]
   access_filter: {
     field: EMPRESA_AGENTE
@@ -1388,7 +1390,14 @@ explore: interacoes {
 
   join: jornada {
     view_label: "Jornada"
-    sql_on: ${dim_cpf.id_cpf} = ${jornada.id_cpf};;
+    sql_on: ${jornada.id_proposta} = ${jornada.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
     type: left_outer
     relationship: one_to_many
   }
