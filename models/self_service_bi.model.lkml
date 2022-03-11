@@ -1388,16 +1388,17 @@ explore: interacoes {
     type: left_outer
   }
 
-  join: jornada {
-    view_label: "Jornada"
-    sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
-    type: left_outer
-    relationship: one_to_many
-  }
 
   join: alunos {
     view_label: "Alunos"
     sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: jornada {
+    view_label: "Jornada"
+    sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
     type: left_outer
     relationship: one_to_many
   }
