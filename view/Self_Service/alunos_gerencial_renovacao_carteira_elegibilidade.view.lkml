@@ -11,6 +11,8 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   dimension: id {
     primary_key: yes
     type: number
+    group_label: "Dados de Renovação"
+    label: "ID Proposta - Atual"
     sql: ${TABLE}."ID" ;;
   }
 
@@ -27,7 +29,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   dimension: alu_contrato {
     type: number
     group_label: "Dados de Renovação"
-    label: "ID Proposta"
+    label: "ID do Último Contrato Cedido"
     description: "Indica a última proposta cedida do aluno"
     sql: ${TABLE}."ALU_CONTRATO" ;;
   }
