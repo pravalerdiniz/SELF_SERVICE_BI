@@ -36,9 +36,7 @@ explore: comunicacao_conversao {
   }
 }
 
-explore: base_carteira_renovacao {
-  label: "Carteira Renovação - Homologação"
-}
+
 
 explore: orcamento {
   label: "Orçamento - Histórico"

@@ -1,12 +1,17 @@
+# The name of this view in Looker is "Base Carteira Renovacao"
 view: alunos_gerencial_renovacao_carteira_elegibilidade {
-  derived_table: {
-    sql: select * from stage.public.base_carteira_renovacao
-      ;;
-  }
+  # The sql_table_name parameter indicates the underlying database table
+  # to be used for all fields in this view.
+  sql_table_name: "RISCO"."BASE_CARTEIRA_RENOVACAO"
+    ;;
+  drill_fields: [id]
+  # This primary key is the unique key for this table in the underlying database.
+  # You need to define a primary key in a view in order to join to other views.
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+  dimension: id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}."ID" ;;
   }
 
   measure: count_cpf {
@@ -15,31 +20,106 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${tdt_cpf} ;;
   }
 
-  dimension: chave_primaria {
-    type: string
-    primary_key: yes
-    sql: CONCAT(${tdt_ano_mes},${tdt_cpf},${data_visao_raw}) ;;
-    hidden: yes
+  # Here's what a typical dimension looks like in LookML.
+  # A dimension is a groupable field that can be used to filter query results.
+  # This dimension will be called "Alu Contrato" in Explore.
 
-
-  }
-
-  dimension: tdt_ano_mes {
+  dimension: alu_contrato {
     type: number
-    label: "Carteira - Ano e mês"
-    sql: ${TABLE}."TDT_ANO_MES" ;;
+    group_label: "Dados de Renovação"
+    label: "ID Proposta"
+    description: "Indica a última proposta cedida do aluno"
+    sql: ${TABLE}."ALU_CONTRATO" ;;
   }
 
-  dimension: tdt_cpf {
+  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
+  # measures for this dimension, but you can also add measures of many different aggregates.
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
+  measure: total_alu_contrato {
+    type: sum
+    sql: ${alu_contrato} ;;
+  }
+
+  measure: average_alu_contrato {
+    type: average
+    sql: ${alu_contrato} ;;
+  }
+
+  dimension: blacklist {
     type: number
-    label: "CPF"
-    sql: ${TABLE}."TDT_CPF" ;;
+    group_label: "Filtros de Elegibilidade"
+    label: "Blacklist?"
+    sql: ${TABLE}."BLACKLIST" ;;
   }
 
-  dimension: modalidade {
-    type: string
-    label: "Modalidade"
-    sql: ${TABLE}."MODALIDADE" ;;
+  dimension: boleto_0_900 {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "W.O?"
+    sql: ${TABLE}."BOLETO_0_900" ;;
+  }
+
+  dimension: calendario_operacional {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Calendário Operacional?"
+    sql: ${TABLE}."CALENDARIO_OPERACIONAL" ;;
+  }
+
+  dimension: cd_rnv_status {
+    type: number
+    group_label: "Dados de Status - Renovação"
+    label: "Último Status Renovação - Geral"
+    sql: ${TABLE}."CD_RNV_STATUS" ;;
+  }
+
+  dimension: cd_rnv_status_detalhe {
+    type: number
+    group_label: "Dados de Status - Renovação"
+    label: "Último Status Renovação - Detalhado"
+    sql: ${TABLE}."CD_RNV_STATUS_DETALHE" ;;
+  }
+
+  dimension: cd_tipo_elegibilidade {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Tipo Elegibilidade"
+    sql: ${TABLE}."CD_TIPO_ELEGIBILIDADE" ;;
+  }
+
+  dimension: chave {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Chave"
+    sql: ${TABLE}."CHAVE" ;;
+  }
+
+  dimension: curso {
+    type: number
+    group_label: "Dados de Renovação"
+    label: "Curso"
+    sql: ${TABLE}."CURSO" ;;
+  }
+
+  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+
+  dimension_group: data_concessao {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Concessão"
+    description: "Indica a data em que o aluno foi cedido pela última vez antes de passar pela elegibilidade"
+    sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
   dimension_group: data_visao {
@@ -49,219 +129,252 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
       date,
       week,
       month,
-      month_name,
       quarter,
-      year,
-      day_of_year
+      year
     ]
     convert_tz: no
     datatype: date
-    label: "Referência"
+    label: "Visão"
     sql: ${TABLE}."DATA_VISAO" ;;
   }
 
 
-dimension: data_carga_time {
-  type: date_time
-  sql: ${TABLE}."DT_CARGA" ;;
-  hidden: yes
-
-}
 
 
-  dimension_group: data_carga {
+  dimension_group: dt_filtro {
     type: time
     timeframes: [
       raw,
       date,
       week,
       month,
-      month_name,
       quarter,
-      year,
-      day_of_year
+      year
     ]
     convert_tz: no
     datatype: date
-    label: "Carga"
-    sql: ${data_carga_time} ;;
-  }
-
-  dimension: maturidade_cpf2 {
-    type: number
-    label: "Maturidade CPF"
-    sql: ${TABLE}."MATURIDADE_CPF2" ;;
-  }
-
-  measure: valor_presente2 {
-    type: sum
-    label: "Valor Presente"
-    sql: ${TABLE}."VALOR_PRESENTE2" ;;
-  }
-
-  dimension: id_produto2 {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."ID_PRODUTO2" ;;
-  }
-
-  dimension: gh_bhv {
-    type: string
-    group_label: "Dados de Behavior"
-    label: "GH"
-    sql: ${TABLE}."GH_BHV" ;;
-  }
-
-  dimension: chave {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."CHAVE" ;;
-  }
-
-  dimension: id {
-    type: number
-   hidden: yes
-    sql: ${TABLE}."ID" ;;
-  }
-
-  dimension: prp_pro_id {
-    type: number
-    label: "ID Produto"
-    hidden: yes
-    sql: ${TABLE}."PRP_PRO_ID" ;;
-  }
-
-  dimension: instituicao {
-    type: number
-    hidden: yes
-    label: "ID Instituição"
-    sql: ${TABLE}."INSTITUICAO" ;;
-  }
-
-  dimension: curso {
-    type: number
-    hidden: yes
-    label: "Curso"
-    sql: ${TABLE}."CURSO" ;;
+    label: "Filtro"
+    sql: ${TABLE}."DT_FILTRO" ;;
   }
 
   dimension: email {
     type: string
+    group_label: "Dados de Renovação"
     label: "E-mail"
-    hidden: yes
     sql: ${TABLE}."EMAIL" ;;
   }
 
-  dimension: alu_contrato {
+  dimension: esta_em_recontratacao {
     type: number
-    group_label: "Dados de Contrato"
-    label: "ID do contrato"
-    sql: ${TABLE}."ALU_CONTRATO" ;;
+    group_label: "Filtros de Elegibilidade"
+    label: "Em recontratação?"
+    sql: ${TABLE}."ESTA_EM_RECONTRATACAO" ;;
   }
 
-  dimension: data_concessao {
-    type: date
-    sql: ${TABLE}."DATA_CONCESSAO" ;;
+  dimension: funil_elegibilidade {
+    type: string
+    group_label: "Funil"
+    label: "Geral"
+    sql: ${TABLE}."FUNIL_ELEGIBILIDADE" ;;
   }
 
-  dimension: safra_ult_cont {
-    type: number
-    group_label: "Dados de Contrato"
-    label: "Ultimo Contrato - Safra"
-    sql: ${TABLE}."SAFRA_ULT_CONT" ;;
+  dimension: funil_elegibilidade_resumo {
+    type: string
+    group_label: "Funil"
+    label: "Resumo"
+    sql: ${TABLE}."FUNIL_ELEGIBILIDADE_RESUMO" ;;
   }
 
-  measure: qtd_boletos_0_900 {
-    type: sum
-    group_label: "Boleto"
-    label: "Quantidade"
-    sql: ${TABLE}."QTD_BOLETOS_0_900" ;;
+  dimension: gh_bhv {
+    type: string
+    group_label: "Dados de Renovação"
+    label: "GH"
+    sql: ${TABLE}."GH_BHV" ;;
   }
 
-  dimension: safra_fim_finan {
-    type: number
-    group_label: "Dados de Contrato"
-    label: "Fim do Contrato - Safra"
-    sql: ${TABLE}."SAFRA_FIM_FINAN" ;;
-  }
-
-  measure: qtd_parc_finan {
-    type: sum
-    group_label: "Financiamento"
-    label: "Parcelas"
-    description: "Indica a quantidade de parcelas financiado no contrato do aluno"
-    sql: ${TABLE}."QTD_PARC_FINAN" ;;
-  }
-
-  measure: qtd_calendario_ies {
-    type: sum
-    group_label: "Calendário - IES"
-    label: "Quantidade"
-    sql: ${TABLE}."QTD_CALENDARIO_IES" ;;
-  }
-
-  dimension: blacklist {
-    type: number
-    group_label: "Dados de Behavior"
-    label: "Blacklist?"
-    sql: ${TABLE}."BLACKLIST" ;;
+  dimension: id_produto2 {
+    type: string
+    group_label: "Dados de Renovação"
+    label: "Nome do Produto - Resumo"
+    sql: ${TABLE}."ID_PRODUTO2" ;;
   }
 
   dimension: ies_descadastrada {
     type: number
-    group_label: "Dados de Calendário"
+    group_label: "Filtros de Elegibilidade"
     label: "IES Descadastrada?"
     sql: ${TABLE}."IES_DESCADASTRADA" ;;
   }
 
-  dimension: safra_ref_calendario {
+  dimension: instituicao {
     type: number
-    group_label: "Dados de Calendário"
-    label: "Calendário - Safra"
-    sql: ${TABLE}."SAFRA_REF_CALENDARIO" ;;
+    group_label: "Dados de Renovação"
+    label: "IES"
+    sql: ${TABLE}."INSTITUICAO" ;;
+  }
+
+  dimension: ja_esta_no_fluxo {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Já está no fluxo?"
+    sql: ${TABLE}."JA_ESTA_NO_FLUXO" ;;
+  }
+
+  dimension: ja_financiou {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Já financiou?"
+    sql: ${TABLE}."JA_FINANCIOU" ;;
+  }
+
+  dimension: maturidade_cpf2 {
+    type: number
+    group_label: "Dados de Renovação"
+    label: "Maturidade - CPF"
+    sql: ${TABLE}."MATURIDADE_CPF2" ;;
+  }
+
+  dimension: modalidade {
+    type: string
+    group_label: "Dados de Renovação"
+    label: "Modalidade"
+    sql: ${TABLE}."MODALIDADE" ;;
+  }
+
+  dimension: prp_pro_id {
+    type: number
+    group_label: "Dados de Renovação"
+    label: "ID do Produto"
+    sql: ${TABLE}."PRP_PRO_ID" ;;
+  }
+
+  measure: qtd_boletos_0_900 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade de Boletos W.O"
+    sql: ${TABLE}."QTD_BOLETOS_0_900" ;;
   }
 
   measure: qtd_calendario {
     type: sum
-    group_label: "Calendário"
-    label: "Quantidade"
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade de Calendário"
     sql: ${TABLE}."QTD_CALENDARIO" ;;
   }
 
-  dimension: cd_tipo_elegibilidade {
-    type: number
-    group_label: "Dados de Behavior"
-    label: "Código - Tipo Elegibilidade"
-    sql: ${TABLE}."CD_TIPO_ELEGIBILIDADE" ;;
+  measure: qtd_calendario_ies {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade de Calendário IES"
+    sql: ${TABLE}."QTD_CALENDARIO_IES" ;;
   }
 
-  set: detail {
-    fields: [
-      tdt_ano_mes,
-      tdt_cpf,
-      modalidade,
-      maturidade_cpf2,
-      valor_presente2,
-      id_produto2,
-      gh_bhv,
-      chave,
-      id,
-      prp_pro_id,
-      instituicao,
-      curso,
-      email,
-      alu_contrato,
-      data_concessao,
-      safra_ult_cont,
-      qtd_boletos_0_900,
-      safra_fim_finan,
-      qtd_parc_finan,
-      qtd_calendario_ies,
-      blacklist,
-      ies_descadastrada,
-      safra_ref_calendario,
-      qtd_calendario,
-      cd_tipo_elegibilidade
-    ]
+  measure: qtd_contratos_n_cedido {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade de Contratos Cedidos"
+    sql: ${TABLE}."QTD_CONTRATOS_N_CEDIDO" ;;
+  }
+
+  measure: qtd_etapa_proc_1_2 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade - Etapa de Processamento 1 e 2"
+    sql: ${TABLE}."QTD_ETAPA_PROC_1_2" ;;
+  }
+
+  measure: qtd_parc_finan {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Quantidade de Parcelas no Financiamento"
+    sql: ${TABLE}."QTD_PARC_FINAN" ;;
+  }
+
+  dimension: safra_fim_finan {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Safra - Semestre Final - Proposta"
+    sql: ${TABLE}."SAFRA_FIM_FINAN" ;;
+  }
+
+  dimension: safra_ref_calendario {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Safra - Semestre Referencia - Calendário"
+    sql: ${TABLE}."SAFRA_REF_CALENDARIO" ;;
+  }
+
+  dimension: safra_ult_cont {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Safra - o"
+    sql: ${TABLE}."SAFRA_ULT_CONT" ;;
+  }
+
+  dimension: sl_status {
+    type: number
+    group_label: "Dados de Status - Renovação"
+    label: "Último Status Novo - Geral"
+    sql: ${TABLE}."SL_STATUS" ;;
+  }
+
+  dimension: sl_status_detalhe {
+    type: number
+    group_label: "Dados de Status - Renovação"
+    label: "Último Status Novo - Detalhado"
+    sql: ${TABLE}."SL_STATUS_DETALHE" ;;
+  }
+
+  dimension: st_aluno_novo {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Aluno Novo?"
+    sql: ${TABLE}."ST_ALUNO_NOVO" ;;
+  }
+
+  dimension: st_aluno_renov {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Aluno Renovação?"
+    sql: ${TABLE}."ST_ALUNO_RENOV" ;;
+  }
+
+  dimension: tdt_ano_mes {
+    type: number
+    group_label: "Dados de Renovação"
+    label: "Ano Mês - Carteira"
+    sql: ${TABLE}."TDT_ANO_MES" ;;
+  }
+
+  dimension: tdt_cpf {
+    type: number
+    group_label: "Dados de Renovação"
+    label: "CPF do Aluno"
+    sql: ${TABLE}."TDT_CPF" ;;
+  }
+
+  measure: valor_presente2 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Valor Presente"
+    sql: ${TABLE}."VALOR_PRESENTE2" ;;
+  }
+
+  dimension: vp_zero {
+    type: number
+    group_label: "Filtros de Elegibilidade"
+    label: "Valor Presente Zero?"
+    sql: ${TABLE}."VP_ZERO" ;;
+  }
+
+  dimension: flg_semestre_atual_financiado {
+    type: yesno
+    group_label: "Filtros de Elegibilidade"
+    label: "Semestre Atual Financiado?"
+    sql: ${TABLE}."FLG_SEMESTRE_ATUAL_FINANCIADO" ;;
+  }
+  measure: count {
+    type: count
+    drill_fields: [id]
   }
 }
