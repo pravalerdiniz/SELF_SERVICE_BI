@@ -36,10 +36,6 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_alu_contrato {
-    type: sum
-    sql: ${alu_contrato} ;;
-  }
 
   measure: average_alu_contrato {
     type: average
@@ -307,7 +303,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   dimension: safra_ult_cont {
     type: number
     group_label: "Filtros de Elegibilidade"
-    label: "Safra - o"
+    label: "Safra - Ultimo Semestre Financiado"
     sql: ${TABLE}."SAFRA_ULT_CONT" ;;
   }
 
