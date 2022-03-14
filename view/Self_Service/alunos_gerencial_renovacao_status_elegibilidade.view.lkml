@@ -71,6 +71,7 @@ measure: count_distinct {
       month_name,
       quarter,
       year,
+      day_of_month,
       day_of_year
     ]
     convert_tz: no
