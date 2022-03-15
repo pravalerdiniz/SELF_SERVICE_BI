@@ -217,19 +217,19 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
       }
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Já financiou' ;;
-        label: "3"
+        label: "5"
       }
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Em formalização' ;;
-        label: "4"
+        label: "6"
       }
 
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
-        label: "5"
+        label: "7"
       }
 
-      else: "6"
+      else: "8"
     }
     hidden: yes
   }
