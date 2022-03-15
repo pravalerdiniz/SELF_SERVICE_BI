@@ -15,6 +15,7 @@ view: atribuicao_urls {
     label: "URL de Descoberta"
     description: "Indica a URL de Descoberta do aluno."
     sql: ${TABLE}."URL_DESCOBERTA" ;;
+    group_label: "Dados de Descoberta"
   }
 
   dimension: url_finalizacao {
@@ -22,6 +23,7 @@ view: atribuicao_urls {
     label: "URL de Finalização"
     description: "Indica a URL de Finalização do aluno."
     sql: ${TABLE}."URL_FINALIZACAO" ;;
+    group_label: "Dados de Finalização"
   }
 
   dimension: id_cpf {
