@@ -869,4 +869,50 @@ view: interacoes {
     label: "Quantidade de Tickets"
     drill_fields: []
   }
+
+  dimension: mudou_etapa_3 {
+    type: string
+    case: {
+      when: {
+        sql: ${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 3, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou Etapa - 3 dias"
+    description: "Indicador de mudança de status em até 3 dias depois da finalização do ticket"
+  }
+
+  dimension: mudou_etapa_2 {
+    type: string
+    case: {
+      when: {
+        sql:${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 2, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou de Etapa - 2 dias"
+    description: "Indicador de mudança de status em até 2 dias depois da finalização do ticket"
+  }
+
+  dimension: mudou_etapa_1 {
+    type: string
+    case: {
+      when: {
+        sql:  ${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 1, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou de Etapa - 1 dia"
+    description: "Indicador de mudança de status em até 1 dias depois da finalização do ticket"
+  }
+
 }
