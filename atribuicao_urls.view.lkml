@@ -23,4 +23,9 @@ view: atribuicao_urls {
     description: "Indica a URL de Finalização do aluno."
     sql: ${TABLE}."URL_FINALIZACAO" ;;
   }
+
+  dimension: id_cpf {
+    sql: ${TABLE}."ID_CPF" ;;
+    hidden:  yes
+  }
 }
