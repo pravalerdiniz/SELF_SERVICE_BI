@@ -6,8 +6,8 @@ view: atribuicao_urls {
             B.DS_URL AS URL_DESCOBERTA,
             C.DS_URL AS URL_FINALIZACAO
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a
-            left join VETERANO.FATO.DIM_URL B ON A.ID_URL_DESCOBERTA = B.ID_URL
-            LEFT JOIN VETERANO.FATO.DIM_URL C ON A.ID_URL_FINALIZACAO = C.ID_URL ;;
+            left join "VETERANO"."DIMENSAO"."DIM_URL" B ON A.ID_URL_DESCOBERTA = B.ID_URL
+            LEFT JOIN "VETERANO"."DIMENSAO"."DIM_URL" C ON A.ID_URL_FINALIZACAO = C.ID_URL ;;
   }
 
   dimension: url_descoberta {

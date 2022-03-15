@@ -3804,11 +3804,6 @@ measure: ultima_data_etapa {
   sql: ${dt_status_date} ;;
 }
 
-dimension: ultima_data_etapa2 {
-  type: date
-  sql: max(${dt_status_date} ;;
-}
-
   measure: tempo_na_etapa {
     type: number
     sql: datediff('day',${ultima_data_etapa},current_date) ;;
@@ -3819,7 +3814,7 @@ dimension: ultima_data_etapa2 {
 
 dimension: flg_ultima_etapa {
   type:  string
-  sql: case when ${dt_status_date} = ${ultima_data_etapa2}
+  sql: case when ${dt_status_date} = ${data_ultimo_status_date}
   and (${status_etapa} = 1) then 1 else 0 end;;
   label: "Flag Última Etapa"
 }
