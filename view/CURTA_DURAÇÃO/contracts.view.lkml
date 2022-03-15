@@ -767,7 +767,6 @@ view: contracts {
     description: "VALOR TOTAL DO CONTRATO COM AS TAXAS"
     group_item_label: "Valor Total do Contrato"
     group_label: "Dados do Contrato"
-    hidden: yes
   }
 
   dimension: vl_net_taxa_externa {

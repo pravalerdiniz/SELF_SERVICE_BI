@@ -347,6 +347,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: atribuicao_urls {
+    view_label: "1.1. Atribuição"
+    sql_on:  ${atribuicao_urls.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;

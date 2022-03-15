@@ -82,6 +82,14 @@ measure: count_distinct {
 
 
 
+  dimension:data_ins  {
+    type: date
+    convert_tz: no
+    label: "Inserção - Elegibilidade"
+    sql: ${TABLE}."DT_USUARIO_INS" ;;
+  }
+
+
 
   dimension: status_origem {
     type: string

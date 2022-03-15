@@ -180,8 +180,61 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     type: string
     group_label: "Funil"
     label: "Resumo"
+    order_by_field: etapa_ordem
     sql: ${TABLE}."FUNIL_ELEGIBILIDADE_RESUMO" ;;
   }
+
+  dimension: etapa_ordem {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_funil_elegibilidade} AS INT) ;;
+  }
+
+
+  dimension: ordem_etapa_funil_elegibilidade {
+    type: string
+    case: {
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'WO' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Cancelados' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Recusado pela IES' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Outros'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Tela da IES'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Já financiou' ;;
+        label: "3"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Em formalização' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
+        label: "5"
+      }
+
+      else: "6"
+    }
+    hidden: yes
+  }
+
+
 
   dimension: gh_bhv {
     type: string
