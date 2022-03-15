@@ -881,7 +881,7 @@ view: interacoes {
       else: "0"
     }
     group_label: "Dados do Aluno"
-    label: "Mudou Etapa - 3 dias"
+    label: "Mudou de Etapa - 3 dias"
     description: "Indicador de mudança de status em até 3 dias depois da finalização do ticket"
   }
 
