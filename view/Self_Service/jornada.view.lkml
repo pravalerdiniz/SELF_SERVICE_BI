@@ -3799,4 +3799,23 @@ dimension: qtd_dias_iniciados {
     ]
   }
 
+measure: ultima_data_etapa {
+  type: max
+  sql: ${dt_status_date} ;;
+}
+
+  measure: tempo_na_etapa {
+    type: number
+    sql: datediff('day',${ultima_data_etapa},current_date) ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo na Último Etapa"
+    description: "Indica a quantidade de dias que o aluno está parado na última etapa."
+  }
+
+dimension: flg_ultima_etapa {
+  type:  string
+  sql: case when ${dt_status_date} = ${data_ultimo_status_date}
+  and (${status_etapa} = 1) then 1 else 0 end;;
+  label: "Flag Última Etapa"
+}
 }
