@@ -22,7 +22,7 @@ view: prv_log {
   # This dimension will be called "Data" in Explore.
 
   dimension: data {
-    type: string
+    type: date
     sql: ${TABLE}."DATA" ;;
     label: "Data"
   }
@@ -34,7 +34,7 @@ view: prv_log {
   }
 
   dimension: hora {
-    type: string
+    type: date_hour
     sql: ${TABLE}."HORA" ;;
     label: "Hora"
   }
