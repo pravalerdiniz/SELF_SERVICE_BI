@@ -1678,52 +1678,6 @@ view: proposta {
   }
 
 
-  dimension: faixa_aging_vencidos {
-    type: string
-    case: {
-      when: {
-        sql: ${max_boleto_atrasado} <= 30 ;;
-        label: "Até 30 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 60 ;;
-        label: "De 31 a 60 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 90 ;;
-        label: "De 61 a 90 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 120 ;;
-        label: "De 91 a 120 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 150 ;;
-        label: "De 121 a 150 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 180 ;;
-        label: "De 151 a 180 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 360 ;;
-        label: "De 181 a 360 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 720 ;;
-        label: "De 361 a 720 dias"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 1080 ;;
-        label: "De 721 a 1080 dias"
-      }
-      else: "Acima de 1080 dias"
-    }
-    group_label: "Dados do Contrato"
-    group_item_label: "Aging List - Vencidos"
-    description: "Indica a faixa de tempo detalhada dos títulos a receber em atraso, elencados em ordem cronológica de acordo com sua data de vencimento."
-  }
-
   dimension: nivel_curso {
     type: string
     group_label: "Dados do Curso"
