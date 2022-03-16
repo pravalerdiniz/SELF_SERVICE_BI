@@ -1669,3 +1669,7 @@ explore: instituicao_taxas_antecipacao{
     label: "Tetris (Without Product)"
 
 }
+
+explore: prv_log {
+  label: "PRV LOG"
+  }
