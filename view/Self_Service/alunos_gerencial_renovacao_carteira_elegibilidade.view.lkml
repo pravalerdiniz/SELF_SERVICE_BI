@@ -404,11 +404,18 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
-  measure: valor_presente2 {
-    type: sum
+  dimension: valor_presente2 {
+    type: number
     group_label: "Filtros de Elegibilidade"
     label: "Valor Presente"
     sql: ${TABLE}."VALOR_PRESENTE2" ;;
+  }
+
+  measure: sum_valor_presente2 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Valor Presente"
+    sql: ${valor_presente2} ;;
   }
 
   dimension: vp_zero {
