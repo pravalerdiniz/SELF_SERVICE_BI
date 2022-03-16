@@ -51,7 +51,37 @@ view: crm_customer {
     sql: ${TABLE}."NOME" ;;
   }
 
+  dimension: email {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Email do Aluno"
+    description: "Indica o email do Aluno"
+    sql: ${TABLE}."EMAIL" ;;
+  }
 
+  dimension: ddi {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "DDI do telefone do Aluno"
+    description: "Indica o DDI do telefone do Aluno"
+    sql: ${TABLE}."DDI" ;;
+  }
+
+  dimension: ddd {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "DDD do telefone do Aluno"
+    description: "Indica o DDD do telefone do Aluno"
+    sql: ${TABLE}."DDD" ;;
+  }
+
+  dimension: numero_celular {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Número celular do Aluno"
+    description: "Indica o número do celular do Aluno"
+    sql: ${TABLE}."NUMERO_CELULAR" ;;
+  }
 
   dimension: id_cpf {
     type: number

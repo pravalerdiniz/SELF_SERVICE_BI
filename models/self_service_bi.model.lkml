@@ -347,6 +347,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: atribuicao_urls {
+    view_label: "1.1. Atribuição"
+    sql_on:  ${atribuicao_urls.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
@@ -1345,17 +1352,8 @@ explore: interacoes {
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
   fields: [ALL_FIELDS *,
-    - jornada.cpf_aluno_proposta,
-    - jornada.aluno_email,
-    - jornada.aluno_nome,
-    - jornada.aluno_celular,
-    - jornada.grupo_instituicao,
-    - jornada.ds_instituicao,
-    - jornada.ds_campus,
-    - jornada.nm_modalidade_produto,
-    - jornada.nm_produto,
-    - jornada.ds_curso,
-    - jornada.total_renov
+     - alunos *,
+    alunos.id_proposta_atual
   ]
   access_filter: {
     field: EMPRESA_AGENTE
@@ -1382,15 +1380,31 @@ explore: interacoes {
   join: dim_cpf {
     view_label: "CPF"
     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
-    relationship: many_to_one
+    relationship: one_to_many
     type: left_outer
   }
 
-  join: jornada {
-    view_label: "Jornada"
-    sql_on: ${dim_cpf.id_cpf} = ${jornada.id_cpf};;
+
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
     type: left_outer
     relationship: one_to_many
+  }
+
+#  join: jornada {
+ #   view_label: "Jornada"
+  #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
+   # type: left_outer
+  #  relationship: one_to_many
+  #}
+
+  join: dados_jornada_interacoes {
+    from: dados_jornada_interacoes
+    view_label: "1. Jornada"
+    sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
   }
 
 

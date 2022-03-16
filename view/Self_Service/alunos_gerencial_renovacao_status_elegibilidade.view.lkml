@@ -71,6 +71,7 @@ measure: count_distinct {
       month_name,
       quarter,
       year,
+      day_of_month,
       day_of_year
     ]
     convert_tz: no
@@ -79,6 +80,14 @@ measure: count_distinct {
     sql: ${TABLE}."DT_USUARIO_INS" ;;
   }
 
+
+
+  dimension:data_ins  {
+    type: date
+    convert_tz: no
+    label: "Inserção - Elegibilidade"
+    sql: ${TABLE}."DT_USUARIO_INS" ;;
+  }
 
 
 

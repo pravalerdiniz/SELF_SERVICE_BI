@@ -4,13 +4,15 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   # to be used for all fields in this view.
   sql_table_name: "RISCO"."BASE_CARTEIRA_RENOVACAO"
     ;;
-  drill_fields: [id]
+  drill_fields: [id, tdt_cpf, funil_elegibilidade,funil_elegibilidade_resumo,data_concessao_date, data_visao_date,dt_filtro_date]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
     primary_key: yes
     type: number
+    group_label: "Dados de Renovação"
+    label: "ID Proposta - Atual"
     sql: ${TABLE}."ID" ;;
   }
 
@@ -27,7 +29,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   dimension: alu_contrato {
     type: number
     group_label: "Dados de Renovação"
-    label: "ID Proposta"
+    label: "ID do Último Contrato Cedido"
     description: "Indica a última proposta cedida do aluno"
     sql: ${TABLE}."ALU_CONTRATO" ;;
   }
@@ -178,8 +180,61 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     type: string
     group_label: "Funil"
     label: "Resumo"
+    order_by_field: etapa_ordem
     sql: ${TABLE}."FUNIL_ELEGIBILIDADE_RESUMO" ;;
   }
+
+  dimension: etapa_ordem {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_funil_elegibilidade} AS INT) ;;
+  }
+
+
+  dimension: ordem_etapa_funil_elegibilidade {
+    type: string
+    case: {
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'WO' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Cancelados' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Recusado pela IES' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Outros'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Tela da IES'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Já financiou' ;;
+        label: "5"
+      }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Em formalização' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
+        label: "7"
+      }
+
+      else: "8"
+    }
+    hidden: yes
+  }
+
+
 
   dimension: gh_bhv {
     type: string
@@ -349,11 +404,18 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
-  measure: valor_presente2 {
-    type: sum
+  dimension: valor_presente2 {
+    type: number
     group_label: "Filtros de Elegibilidade"
     label: "Valor Presente"
     sql: ${TABLE}."VALOR_PRESENTE2" ;;
+  }
+
+  measure: sum_valor_presente2 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Valor Presente"
+    sql: ${valor_presente2} ;;
   }
 
   dimension: vp_zero {
