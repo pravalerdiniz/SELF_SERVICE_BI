@@ -144,6 +144,7 @@ view: jornada {
     sql: ${dim_cpf.celular} ;;
     group_label: "Dados do Aluno"
     group_item_label: "Celular"
+    value_format: "0"
     description: "Indica o celular do aluno"
   }
 
@@ -3810,7 +3811,7 @@ measure: ultima_data_etapa {
     sql: datediff('day',${ultima_data_etapa},current_date) ;;
     group_label: "Telemetria"
     hidden: yes
-    group_item_label: "Tempo na Último Etapa"
+    group_item_label: "Tempo na Última Etapa"
     description: "Indica a quantidade de dias que o aluno está parado na última etapa."
   }
 
