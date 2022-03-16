@@ -4,7 +4,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   # to be used for all fields in this view.
   sql_table_name: "RISCO"."BASE_CARTEIRA_RENOVACAO"
     ;;
-  drill_fields: [id]
+  drill_fields: [id, tdt_cpf, funil_elegibilidade,funil_elegibilidade_resumo,data_concessao_date, data_visao_date,dt_filtro_date]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
