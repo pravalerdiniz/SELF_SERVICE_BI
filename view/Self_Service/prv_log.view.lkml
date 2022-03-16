@@ -34,7 +34,7 @@ view: prv_log {
   }
 
   dimension: hora {
-    type: date_hour
+    type: string
     sql: ${TABLE}."HORA" ;;
     label: "Hora"
   }
