@@ -21,7 +21,7 @@ view: amigo_edu {
     label: "YTD?"
     description: "Indica o acumulado no ano mês a mês."
     sql:
-       ${dt} = 0 < EXTRACT(DOY FROM CURRENT_DATE());;
+       ${data_raw} = 0 < EXTRACT(DOY FROM CURRENT_DATE());;
   }
 
   dimension_group: data {
