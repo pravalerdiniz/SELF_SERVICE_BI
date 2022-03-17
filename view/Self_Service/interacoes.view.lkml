@@ -915,4 +915,13 @@ view: interacoes {
     description: "Indicador de mudança de status em até 1 dias depois da finalização do ticket"
   }
 
+  dimension: tempo_finalizacao {
+    type: number
+    sql:  coalesce(diff_days(${interacoes.data_criacao_date},${interacoes.data_finalizacao_date}),0) ;;
+    group_label: "Dados do Ticket"
+    label: "Qtd de dias para finalização"
+    description: "Diferença de dias entre a data de criação do chamado e a data de finalização do chamado"
+  }
+
+
 }
