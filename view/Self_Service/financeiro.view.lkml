@@ -113,48 +113,39 @@ dimension: data_trunc  {
     type: string
     case: {
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 30;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 30;;
         label: "Até 30 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 60;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 60;;
         label: "De 31 a 60 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 90;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 90;;
         label: "De 61 a 90 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 120;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 120;;
         label: "De 91 a 120 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 150;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 150;;
         label: "De 121 a 150 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 180;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 180;;
         label: "De 151 a 180 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 360;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 360;;
         label: "De 181 a 360 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 720;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 720;;
         label: "De 361 a 720 dias"
       }
       when: {
-        sql:
-        CASE WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 1080;;
+        sql: ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 1080;;
         label: "De 721 a 1080 dias"
       }
       else: "Acima de 1080 dias"
