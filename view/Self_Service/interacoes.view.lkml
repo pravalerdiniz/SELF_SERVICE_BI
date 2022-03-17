@@ -917,7 +917,7 @@ view: interacoes {
 
   dimension: tempo_finalizacao {
     type: number
-    sql:  coalesce(date_diff(day,${interacoes.data_criacao_date},${interacoes.data_finalizacao_date}),0) ;;
+    sql:  coalesce(datediff(day,${interacoes.data_criacao_date},${interacoes.data_finalizacao_date}),0) ;;
     group_label: "Dados do Ticket"
     label: "Qtd de dias para finalização"
     description: "Diferença de dias entre a data de criação do chamado e a data de finalização do chamado"
