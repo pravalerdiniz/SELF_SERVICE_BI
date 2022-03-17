@@ -642,7 +642,6 @@ view: instituicao {
     group_label: "Instituição"
     group_item_label: "Quantidade de Grupos"
     description: "Quantidade de Grupos"
-    sql_distinct_key: ${id_instituicao};;
     sql: ${grupo} ;;
 
 
