@@ -4,7 +4,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
   # to be used for all fields in this view.
   sql_table_name: "RISCO"."BASE_CARTEIRA_RENOVACAO"
     ;;
-  drill_fields: [id]
+  drill_fields: [id, tdt_cpf, funil_elegibilidade,funil_elegibilidade_resumo,data_concessao_date, data_visao_date,dt_filtro_date]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
@@ -217,19 +217,19 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
       }
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Já financiou' ;;
-        label: "3"
+        label: "5"
       }
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Em formalização' ;;
-        label: "4"
+        label: "6"
       }
 
       when: {
         sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
-        label: "5"
+        label: "7"
       }
 
-      else: "6"
+      else: "8"
     }
     hidden: yes
   }
@@ -404,11 +404,18 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
-  measure: valor_presente2 {
-    type: sum
+  dimension: valor_presente2 {
+    type: number
     group_label: "Filtros de Elegibilidade"
     label: "Valor Presente"
     sql: ${TABLE}."VALOR_PRESENTE2" ;;
+  }
+
+  measure: sum_valor_presente2 {
+    type: sum
+    group_label: "Filtros de Elegibilidade"
+    label: "Valor Presente"
+    sql: ${valor_presente2} ;;
   }
 
   dimension: vp_zero {
