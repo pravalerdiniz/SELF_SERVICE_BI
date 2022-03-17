@@ -15,6 +15,15 @@ view: amigo_edu {
     hidden: yes
   }
 
+  dimension: analise_ytd {
+    type: yesno
+    group_label: "Filtros para Análise de Período"
+    label: "YTD?"
+    description: "Indica o acumulado no ano mês a mês."
+    sql:
+       ${dt} = 0 < EXTRACT(DOY FROM CURRENT_DATE());;
+  }
+
   dimension_group: data {
     type: time
     timeframes: [
