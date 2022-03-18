@@ -401,6 +401,7 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
     type: number
     group_label: "Dados de Renovação"
     label: "CPF do Aluno"
+    value_format: "0"
     sql: ${TABLE}."TDT_CPF" ;;
   }
 
