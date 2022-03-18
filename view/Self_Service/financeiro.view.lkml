@@ -107,6 +107,30 @@ dimension: data_trunc  {
     sql: datediff('day',${data_vencimento_raw}, ${data_pagamento_raw}) ;;
   }
 
+
+
+  dimension: faixa_aging_a_vencer {
+    type: string
+    sql:
+    CASE
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) <= 30 THEN "Até 30 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 31 AND datediff('day',${data_vencimento_raw}, current_date) <= 60 THEN "De 31 a 60 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 61 AND datediff('day',${data_vencimento_raw}, current_date) <= 90 THEN "De 61 a 90 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 91 AND datediff('day',${data_vencimento_raw}, current_date) <= 120 THEN "De 91 a 120 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 121 AND datediff('day',${data_vencimento_raw}, current_date) <= 150 THEN "De 121 a 150 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 151 AND datediff('day',${data_vencimento_raw}, current_date) <= 180 THEN "De 151 a 180 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 181 AND datediff('day',${data_vencimento_raw}, current_date) <= 360 THEN "De 181 a 360 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 361 AND datediff('day',${data_vencimento_raw}, current_date) <= 720 THEN "De 361 a 720 dias"
+        WHEN ${flg_boleto_pago} = FALSE AND datediff('day',${data_vencimento_raw}, current_date) >= 7211 AND datediff('day',${data_vencimento_raw}, current_date) <= 1080 THEN "De 721 a 1080 dias"
+      ELSE "Acima de 1080 dias"
+      END ;;
+    group_label: "Dados do Boleto"
+    group_item_label: "Aging List - A Vencer"
+    description: "Indica a faixa de tempo detalhada dos títulos a vencer, elencados em ordem cronológica de acordo com sua data de vencimento."
+
+    }
+
+
   dimension: faixa_adimple {
     type: string
     sql:
@@ -134,11 +158,6 @@ dimension: data_trunc  {
     group_item_label: "Faixa de Adimplência 2"
     description: "Indica a faixa de adimplência do aluno"
   }
-
-
-
-
-
 
   dimension_group: data_vencimento {
     type: time

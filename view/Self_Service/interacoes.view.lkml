@@ -284,6 +284,17 @@ view: interacoes {
     description: "Indica a data de finalização do ticket."
   }
 
+  dimension: analise_ytd {
+    type: yesno
+    group_label: "Filtros para Análise de Período"
+    label: "YTD?"
+    description: "Indica o acumulado no ano mês a mês."
+    sql:
+       (EXTRACT(DOY FROM ${data_finalizacao_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_finalizacao_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+  }
+
   dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
