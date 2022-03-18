@@ -860,8 +860,6 @@ view: interacoes {
     sql: ${total_abandono};;
 
 
-
-
   }
 
   measure: count {
@@ -923,5 +921,38 @@ view: interacoes {
     description: "Diferença de dias entre a data de criação do chamado e a data de finalização do chamado"
   }
 
+  dimension: id_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "ID Usuário"
+    description: "Indica o ID do Usuário (aluno) na Zendesk"
+    sql: ${TABLE}."ID_USUARIO" ;;
+  }
+
+  dimension: nome_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome Usuário"
+    description: "Indica o Nome do Usuário (aluno) na Zendesk"
+    hidden: yes
+    sql: ${TABLE}."NOME_USUARIO" ;;
+  }
+
+  dimension: email_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Email Usuário"
+    description: "Indica o Email do Usuário (aluno) na Zendesk"
+    sql: ${TABLE}."EMAIL_USUARIO" ;;
+  }
+
+  dimension: infos_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Infos Usuário"
+    description: "Indica o Email do Usuário (aluno) na Zendesk"
+    hidden: yes
+    sql: ${TABLE}."INFOS_USUARIO" ;;
+  }
 
 }
