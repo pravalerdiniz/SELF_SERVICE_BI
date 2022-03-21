@@ -1508,7 +1508,7 @@ foi gerado por um pagamento menor do boleto anterior."
 
   dimension: st_importacao_bradesco {
     type: string
-    group_label: "Dados do Titulo"
+    group_label: "Dados do Título"
     label: "Situação - Importação Bradesco"
     description: "Este campo é uma regra de negócio*. Indica qual é a situação da importação dos boletos do bradesco."
     sql: ${TABLE}."ST_IMPORTACAO_BRADESCO" ;;
