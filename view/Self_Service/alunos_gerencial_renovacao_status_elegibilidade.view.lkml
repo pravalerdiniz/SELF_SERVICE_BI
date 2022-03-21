@@ -39,6 +39,7 @@ measure: count_distinct {
   dimension: cpf {
     type: number
     label: "CPF"
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 
