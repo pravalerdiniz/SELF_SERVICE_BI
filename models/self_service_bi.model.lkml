@@ -363,14 +363,14 @@ explore: jornada {
 
 join: flag_unico_aluno {
   view_label: "2. Proposta"
-  sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id} ;;
+  sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
   relationship: one_to_one
   type: left_outer
 }
 
   join: flag_unico_garantidor {
     view_label: "2. Proposta"
-    sql_on: ${jornada.id_proposta} = ${flag_unico_garantidor.id} ;;
+    sql_on: ${jornada.id_proposta} = ${flag_unico_garantidor.id_proposta} ;;
     relationship: one_to_one
     type: left_outer
   }
