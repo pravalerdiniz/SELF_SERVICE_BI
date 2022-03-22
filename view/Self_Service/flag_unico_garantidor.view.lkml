@@ -27,13 +27,13 @@ view: flag_unico_garantidor {
 
   dimension: flg_aluno {
     type: yesno
-    sql: ${TABLE}."FLG_ALUNO" ;;
+    sql: ${TABLE}."FLG_ALUNO" = 'TRUE' ;;
     hidden: yes
   }
 
   dimension: flg_garantidor {
     type: yesno
-    sql: ${TABLE}."FLG_GARANTIDOR" ;;
+    sql: ${TABLE}."FLG_GARANTIDOR" = 'TRUE' ;;
     group_label: "Dados - Biometria Facial"
     label: "Flag Biometria Facial - Garantidor"
     hidden: no
