@@ -361,7 +361,19 @@ explore: jornada {
     type: left_outer
   }
 
+join: flag_unico_aluno {
+  view_label: "2. Proposta"
+  sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
+  relationship: one_to_one
+  type: left_outer
+}
 
+  join: flag_unico_garantidor {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_unico_garantidor.id_proposta} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
 
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
@@ -935,6 +947,20 @@ join: proposta_docs_pendentes {
     sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: flag_unico_aluno {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_unico_garantidor {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_garantidor.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
 }
