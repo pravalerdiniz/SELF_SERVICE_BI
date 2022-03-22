@@ -78,7 +78,7 @@ view: flag_unico_aluno {
     type: string
     sql: ${TABLE}."STATUS" ;;
     group_label: "Dados - Biometria Facial"
-    label: "Status"
+    label: "Status - Aluno"
   }
 
   dimension: tipo {

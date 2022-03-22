@@ -79,7 +79,7 @@ view: flag_unico_garantidor {
     type: string
     sql: ${TABLE}."STATUS" ;;
     group_label: "Dados - Biometria Facial"
-    label: "Status"
+    label: "Status - Garantidor"
   }
 
   dimension: tipo {
