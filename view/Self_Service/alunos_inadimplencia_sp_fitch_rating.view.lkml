@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_sp_fitch_rating {
   derived_table: {
-    sql: select * from stage.public.SP_fitch_Ratings
+    sql: select * from GRADUADO.RISCO.VW_SP_FITCH_RATINGS
       ;;
   }
 
@@ -119,7 +119,7 @@ view: alunos_inadimplencia_sp_fitch_rating {
 
 
   dimension: qtd_dias_atraso {
-   type: number
+  type: number
   label: "Dias de Atraso"
   description: "Indica os dias de atraso referente ao último vencimento aberto do aluno."
    sql:  ${TABLE}."QT_DIAS_ATRASO";;
