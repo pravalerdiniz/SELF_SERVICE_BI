@@ -937,6 +937,20 @@ join: proposta_docs_pendentes {
     relationship: many_to_one
   }
 
+  join: flag_unico_aluno {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_unico_garantidor {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
 }
 
 explore: alunos {

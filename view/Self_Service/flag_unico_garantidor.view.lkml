@@ -1,8 +1,8 @@
 # The name of this view in Looker is "Flag Aluno"
-view: flag_unico_aluno {
+view: flag_unico_garantidor {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: (SELECT * FROM "KYC"."FLAG_ALUNO" WHERE ROLE = 'ALUNO')
+  sql_table_name: (SELECT * FROM "KYC"."FLAG_ALUNO" WHERE ROLE = 'GARANTIDOR')
     ;;
   drill_fields: [id]
   # This primary key is the unique key for this table in the underlying database.
@@ -28,14 +28,15 @@ view: flag_unico_aluno {
   dimension: flg_aluno {
     type: string
     sql: ${TABLE}."FLG_ALUNO" ;;
-    group_label: "Dados - Biometria Facial"
-    label: "Flag Biometria Facial - Aluno"
+    hidden: yes
   }
 
   dimension: flg_garantidor {
     type: string
     sql: ${TABLE}."FLG_GARANTIDOR" ;;
-    hidden: yes
+    group_label: "Dados - Biometria Facial"
+    label: "Flag Biometria Facial - Garantidor"
+    hidden: no
   }
 
   dimension: id_proposta {
