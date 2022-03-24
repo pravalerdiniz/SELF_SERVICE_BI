@@ -1259,6 +1259,15 @@ view: inep {
       description: "Total Ingressantes"
       sql: ${INGRESSO_TOTAL};;
     }
+
+  measure:COUNT_INGRESSO_TOTAL {
+    type: count_distinct
+    group_label: "Ingressantes"
+    label: "Ingressantes (Contagem Distinta)"
+    description: "Contagem distinta de Ingressantes (ID_ALUNO)"
+    sql: ${INGRESSO_TOTAL};;
+  }
+
     measure:SOMA_MATRICULA {
       type: sum
       group_label: "Matricula (Total)"
