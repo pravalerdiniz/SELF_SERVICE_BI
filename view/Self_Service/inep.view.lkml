@@ -1265,7 +1265,7 @@ view: inep {
     group_label: "Ingressantes"
     label: "Ingressantes (Contagem Distinta)"
     description: "Contagem distinta de Ingressantes (ID_ALUNO)"
-    sql: ${INGRESSO_TOTAL};;
+    sql: ${TABLE}."ID_ALUNO";;
   }
 
     measure:SOMA_MATRICULA {
