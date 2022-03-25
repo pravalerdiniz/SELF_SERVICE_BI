@@ -165,6 +165,14 @@ explore: instituicao_metas_gc {
     relationship: many_to_one
   }
 
+  join: meta_conv_grupo_ies_new
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
+             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: meta_sla_comercial
   {
     sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
