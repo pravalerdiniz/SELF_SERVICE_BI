@@ -1,8 +1,9 @@
-view: meta_conversao_grupo_ies2 {
+view: meta_conv_grupo_ies_new {
   derived_table: {
     sql: select * from GRADUADO.AD_HOC.META_CONVERSAO_GRUPO_IES
       ;;
   }
+
 
   measure: count {
     type: count
@@ -21,27 +22,6 @@ view: meta_conversao_grupo_ies2 {
     label: "DATA REFERENCIA META"
     sql: ${TABLE}."DATA" ;;
     description: "Data de referencia da Meta"
-  }
-
-  dimension_group: data_meta {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      time_of_day,
-      month_name,
-      day_of_year,
-      hour_of_day,
-      month_num
-    ]
-    sql: ${TABLE}."DATA" ;;
-    label: "Data Referencia"
-    description: "Data de referencia da meta"
   }
 
   dimension: mes {
@@ -72,10 +52,26 @@ view: meta_conversao_grupo_ies2 {
     description: "Grupo da Instituição Estudantil"
   }
 
+  dimension: simulado {
+    type: number
+    label: "META CONVERSAO - SIMULADO"
+    value_format: "0.00%"
+    sql: ${TABLE}."SIMULADO" ;;
+    description: "Meta da Conversão da etapa Lead para Simulado"
+  }
+
+  dimension: iniciado {
+    type: number
+    label: "META CONVERSAO - INICIADO"
+    value_format: "0.00%"
+    sql: ${TABLE}."INICIADO" ;;
+    description: "Meta da Conversão da etapa Simulado para Iniciado"
+  }
+
   dimension: finalizado {
     type: number
-    value_format: "0.00%"
     label: "META CONVERSAO - FINALIZADO"
+    value_format: "0.00%"
     sql: ${TABLE}."FINALIZADO" ;;
     description: "Meta da Conversão da etapa Iniciado para Finalizado"
   }
@@ -90,7 +86,6 @@ view: meta_conversao_grupo_ies2 {
 
   dimension: aprovado_ies {
     type: number
-
     label: "META CONVERSAO - APROVADO IES"
     value_format: "0.00%"
     sql: ${TABLE}."APROVADO_IES" ;;
@@ -121,12 +116,34 @@ view: meta_conversao_grupo_ies2 {
     description: "Meta da Conversão da etapa Aguardando Assinatura para Formalizado"
   }
 
-  dimension: conv_global {
-    type: number
-    label: "Conversão Global"
+  measure:avg_simulado {
+    type:average
+    label: "Média - Simulado"
     value_format: "0.00%"
-    sql: ${TABLE}."CONV_GLOBAL" ;;
-    description: "Conversão global entre todas as etapas"
+    group_label: "Simulado"
+    sql: ${simulado};;
+
+  }
+
+  dimension_group: data_meta {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num
+    ]
+    sql: ${TABLE}."DATA" ;;
+    label: "Data Referencia"
+    description: "Data de referencia da meta"
   }
 
   set: detail {
@@ -136,13 +153,14 @@ view: meta_conversao_grupo_ies2 {
       ano,
       gerente,
       grupo,
+      simulado,
+      iniciado,
       finalizado,
       aprovado_risco,
       aprovado_ies,
       aguardando_documento,
       aguardando_assinatura,
-      formalizado,
-      conv_global
+      formalizado
     ]
   }
 }
