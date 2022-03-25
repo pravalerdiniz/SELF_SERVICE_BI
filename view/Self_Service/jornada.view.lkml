@@ -93,7 +93,7 @@ view: jornada {
     sql: ${TABLE}."ETAPA" ;;
     group_label: "Dados da Etapa"
     group_item_label: "Etapa"
-    description: "Etapas da esteira de contratação do Pravaler"
+    description: "Etapas da esteira de contratação do Pravaler. Deve ser usado com o campo Status Etapa para identificar por quais o aluno já passou."
     link: {label:"Documentação - Etapa"
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/741638196/ETAPA"}
     order_by_field: ordem_etapa
@@ -210,7 +210,7 @@ view: jornada {
     sql: ${TABLE}."STATUS_ETAPA" ;;
     group_label: "Dados da Etapa"
     group_item_label: "Status Etapa"
-    description: "Indica se o aluno passou pela etapa ou não. 1 = Sim; 0 = Não"
+    description: "Indica se o aluno passou pela etapa ou não. 1 = Sim; 0 = Não. Deve ser usado junto ao campo de Etapa."
   }
 
 
