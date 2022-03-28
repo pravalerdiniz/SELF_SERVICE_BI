@@ -604,6 +604,22 @@ view: jornada {
         sql: ${ultimo_status_geral} = 2010 ;;
         label: "Aguardando Análise Behavior"
       }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.1', '2019.10', '2019.12') ;;
+        label: "Reprovado por Risco"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.15') ;;
+        label: "Reprovado por duas ou mais parcelas em atraso"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.16') ;;
+        label: "Reprovado Behavior"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.13','2019.18', '2019.19') ;;
+        label: "Reprovado BV"
+      }
 
       when: {
         sql: ${ultimo_status_geral} in (2011,2013,2014,2015) ;;
