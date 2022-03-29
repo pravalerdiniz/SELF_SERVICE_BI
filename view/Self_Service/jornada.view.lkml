@@ -246,6 +246,29 @@ view: jornada {
     description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
   }
 
+  dimension_group: data_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      week_of_year
+    ]
+    sql: ${TABLE}."DT_ELEGIVEL" ;;
+    label: "Elegíbilidade"
+    description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta de renovação"
+  }
+
+
   dimension: wtd_only_inicio {
     group_label: "Filtros para Análise de Períodos"
     label: "Week to Date - Data de Início da Proposta"
