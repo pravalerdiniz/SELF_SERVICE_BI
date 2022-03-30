@@ -645,7 +645,7 @@ view: jornada {
       }
 
       when: {
-        sql: ${ultimo_status_geral} in (101) ;;
+        sql: ${ultimo_status_detalhado} in ('2039.1', '101.0') ;;
         label: "Formado"
       }
       when: {
