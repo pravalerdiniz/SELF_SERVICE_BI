@@ -383,6 +383,20 @@ join: flag_unico_aluno {
     type: left_outer
   }
 
+  join: flag_renda_presumida {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_renda_presumida.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_renda_presumida_garant {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
     sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
