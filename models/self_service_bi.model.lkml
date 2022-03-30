@@ -1015,6 +1015,20 @@ join: proposta_docs_pendentes {
     relationship: one_to_one
   }
 
+  join: flag_renda_presumida {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_renda_presumida.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_renda_presumida_garant {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
 }
 
 explore: alunos {
