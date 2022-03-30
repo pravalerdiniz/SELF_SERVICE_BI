@@ -36,7 +36,7 @@ view: aproveitamento_estoque_nok {
 
   measure: iniciado {
     type: average
-    sql: ${etapa} ;;
+    sql: ${aproveitamento_estoque} ;;
     filters: {
       field: etapa
       value: "Iniciado"
@@ -49,7 +49,7 @@ view: aproveitamento_estoque_nok {
 
   measure: aprov_ies {
     type: average
-    sql: ${etapa} ;;
+    sql: ${aproveitamento_estoque} ;;
     filters: {
       field: etapa
       value: "Aprovado Instituicao"
@@ -62,7 +62,7 @@ view: aproveitamento_estoque_nok {
 
   measure: agg_doc {
     type: average
-    sql: ${etapa} ;;
+    sql: ${aproveitamento_estoque} ;;
     filters: {
       field: etapa
       value: "Aguardando Documento"
@@ -75,7 +75,7 @@ view: aproveitamento_estoque_nok {
 
   measure: agg_ass {
     type: average
-    sql: ${etapa} ;;
+    sql: ${aproveitamento_estoque} ;;
     filters: {
       field: etapa
       value: "Aguardando Assinatura"
