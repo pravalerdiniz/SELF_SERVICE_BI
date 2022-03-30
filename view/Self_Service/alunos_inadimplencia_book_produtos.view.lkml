@@ -79,8 +79,31 @@ view: alunos_inadimplencia_book_produtos {
         label: "6"
       }
 
-
-      else: "8"
+      when: {
+        sql: ${faixa_atraso} = '7 - 151-180' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${faixa_atraso} = '8 - 181-210' ;;
+        label: "8"
+      }
+      when: {
+        sql: ${faixa_atraso} = '9 - 211-240' ;;
+        label: "9"
+      }
+      when: {
+        sql: ${faixa_atraso} = '10 - 241-270' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${faixa_atraso} = '11 - 271-300' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${faixa_atraso} = '12 - 301-330' ;;
+        label: "12"
+      }
+      else: "13"
     }
     hidden: yes
   }
