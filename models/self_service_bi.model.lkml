@@ -90,9 +90,8 @@ explore: beneficiados {
              proposta.canal_acesso_descoberta,
              proposta.ds_url_conversao,
              proposta.ds_url_descoberta,
-
-             proposta.cpf_aluno
-
+             proposta.cpf_aluno,
+            proposta.nm_produto_comercial
 
              ]
 

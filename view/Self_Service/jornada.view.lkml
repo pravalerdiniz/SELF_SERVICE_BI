@@ -246,6 +246,29 @@ view: jornada {
     description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta"
   }
 
+  dimension_group: data_elegivel {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      week_of_year
+    ]
+    sql: ${TABLE}."DT_ELEGIVEL" ;;
+    label: "Elegíbilidade"
+    description: "Esse campo pode ser utilizado como filtro para visualizar o funil safrado, ou seja, acompanhar a jornada por proposta de renovação"
+  }
+
+
   dimension: wtd_only_inicio {
     group_label: "Filtros para Análise de Períodos"
     label: "Week to Date - Data de Início da Proposta"
@@ -603,6 +626,22 @@ view: jornada {
       when: {
         sql: ${ultimo_status_geral} = 2010 ;;
         label: "Aguardando Análise Behavior"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.1', '2019.10', '2019.12') ;;
+        label: "Reprovado por Risco"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.15') ;;
+        label: "Reprovado por duas ou mais parcelas em atraso"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.16') ;;
+        label: "Reprovado Behavior"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2019.13','2019.18', '2019.19') ;;
+        label: "Reprovado BV"
       }
 
       when: {
@@ -1459,7 +1498,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_segundo_repasse_date}) ;;
     label: "Segundo Repasse"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Segundo Repasse"
     value_format: "0"
   }
@@ -1487,7 +1526,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_cessao_date}) ;;
     label: "Cessão"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Cessão"
     value_format: "0"
   }
@@ -1515,7 +1554,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cedido_date}) ;;
     label: "Cedido"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cedido"
     value_format: "0"
   }
@@ -1543,7 +1582,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cancelado_date}) ;;
     label: "Cancelado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cancelado"
     value_format: "0"
   }
@@ -1571,7 +1610,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_cadastro_finalizado_date}) ;;
     label: "Cadastro Finalizado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Cadastro Finalizado"
     value_format: "0"
   }
@@ -1599,7 +1638,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_elegivel_date}) ;;
     label: "Elegível"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de ELegível"
     value_format: "0"
   }
@@ -1627,7 +1666,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_risco_date}) ;;
     label: "Aprovado Risco"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Risco"
     value_format: "0"
   }
@@ -1655,7 +1694,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_formalizado_date}) ;;
     label: "Formalizado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Formalizado"
     value_format: "0"
   }
@@ -1683,7 +1722,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
     label: "Aprovado Behavior"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Behavior"
     value_format: "0"
   }
@@ -1711,7 +1750,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_assinatura_date}) ;;
     label: "Aguardando Assinatura"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Assinatura"
     value_format: "0"
   }
@@ -1739,7 +1778,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_elegivel_date}) ;;
     label: "Iniciado / Elegível"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado / Elegível"
     value_format: "0"
   }
@@ -1767,7 +1806,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_iniciado_date}) ;;
     label: "Iniciado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Iniciado"
     value_format: "0"
   }
@@ -1795,7 +1834,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documento_date}) ;;
     label: "Aguardando Documento"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documento"
     value_format: "0"
   }
@@ -1824,7 +1863,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_lead_date}) ;;
     label: "Lead"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Lead"
     value_format: "0"
   }
@@ -1852,7 +1891,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aguardando_documentos_date}) ;;
     label: "Aguardando Documentos"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aguardando Documentos"
     value_format: "0"
   }
@@ -1880,7 +1919,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_instituicao_date}) ;;
     label: "Aprovado Instituição"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Aprovado Instituição"
     value_format: "0"
   }
@@ -1908,7 +1947,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_simulado_date}) ;;
     label: "Simulado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Simulado"
     value_format: "0"
   }
@@ -1936,7 +1975,7 @@ dimension: flg_d1 {
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_finalizado_date}) ;;
     label: "Finalizado"
     group_label: "Média de dias até a Etapa"
-    hidden: no
+    hidden: yes
     description: "Média em dias da diferença entre o início da proposta até a etapa de Finalizado"
     value_format: "0"
   }
@@ -2905,11 +2944,11 @@ coalesce(${sla_ced_novos},0);;
 
 dimension: qtd_dias_iniciados {
   type: number
-  sql: ${TABLE}."QTD_DIAS_INICIADOS" ;;
+  sql: ${TABLE}."QTD_DIAS_INICIADOS"/ 86400.0 ;;
   hidden: no
   group_label: "Quantidade de Dias da Proposta na Etapa"
   group_item_label: "Novos - Iniciados"
-  value_format: "0"
+  value_format: "0.0"
 }
 
   measure: average_qtd_dias_iniciados {
@@ -2917,7 +2956,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_iniciados} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
@@ -2927,7 +2966,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_iniciados} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
@@ -2937,7 +2976,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_iniciados} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
@@ -2947,18 +2986,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_iniciados} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Iniciados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Iniciados, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_finalizados {
     type: number
-    sql: ${TABLE}."QTD_DIAS_FINALIZADOS" ;;
+    sql: ${TABLE}."QTD_DIAS_FINALIZADOS"/ 86400.0 ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_finalizados {
@@ -2966,7 +3005,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_finalizados} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
@@ -2976,7 +3015,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_finalizados} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
@@ -2986,7 +3025,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_finalizados} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
@@ -2996,18 +3035,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_finalizados} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Finalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Finalizados, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_apr_risco {
     type: number
-    sql: ${TABLE}."QTD_DIAS_APR_RISCO" ;;
+    sql: ${TABLE}."QTD_DIAS_APR_RISCO"/ 86400.0 ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_apr_risco {
@@ -3015,7 +3054,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_risco} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
   }
@@ -3025,7 +3064,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_risco} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
   }
@@ -3035,7 +3074,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_risco} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
   }
@@ -3045,18 +3084,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_risco} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação Risco"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Aprovação Risco, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_apr_ies {
     type: number
-    sql: ${TABLE}."QTD_DIAS_APR_IES" ;;
+    sql: ${TABLE}."QTD_DIAS_APR_IES"/ 86400.0 ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_apr_ies {
@@ -3064,7 +3103,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_ies} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
   }
@@ -3074,7 +3113,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_ies} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
   }
@@ -3084,7 +3123,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_ies} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
   }
@@ -3094,18 +3133,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_apr_ies} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aprovação IES"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Aprovação IES, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_agg_doc {
     type: number
-    sql: ${TABLE}."QTD_DIAS_AGG_DOC" ;;
+    sql: ${TABLE}."QTD_DIAS_AGG_DOC"/ 86400.0 ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_agg_doc {
@@ -3113,7 +3152,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
   }
@@ -3123,7 +3162,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
   }
@@ -3133,7 +3172,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
   }
@@ -3143,18 +3182,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa Aguardando Documentos, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_agg_ass {
     type: number
-    sql: ${TABLE}."QTD_DIAS_AGG_ASS" ;;
+    sql: ${TABLE}."QTD_DIAS_AGG_ASS"/ 86400.0 ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_agg_ass {
@@ -3162,7 +3201,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_ass} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
   }
@@ -3172,7 +3211,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_ass} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
   }
@@ -3182,7 +3221,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_ass} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
   }
@@ -3192,7 +3231,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_ass} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa Aguardando Assinatura, em todas as vezes que passou por ela"
   }
@@ -3203,7 +3242,7 @@ dimension: qtd_dias_iniciados {
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_form {
@@ -3211,7 +3250,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
@@ -3221,17 +3260,17 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
 
   measure: median_qtd_dias_form_old {
     type: median
-    sql: ${TABLE}."QTD_DIAS_FORM" ;;
+    sql: ${TABLE}."QTD_DIAS_FORM"/ 86400.0 ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados (Antigo)"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
@@ -3241,7 +3280,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
@@ -3251,18 +3290,18 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_agg_doc}+${qtd_dias_agg_ass} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Formalizados"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Formalizados, em todas as vezes que passou por ela"
   }
 
   dimension: qtd_dias_cedido {
     type: number
-    sql: ${TABLE}."QTD_DIAS_CEDIDO" ;;
+    sql: ${TABLE}."QTD_DIAS_CEDIDO"/ 86400.0;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
   }
 
   measure: average_qtd_dias_cedido {
@@ -3270,7 +3309,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_cedido} ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
@@ -3280,7 +3319,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_cedido} ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mediana da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
@@ -3290,7 +3329,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_cedido} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
@@ -3300,7 +3339,7 @@ dimension: qtd_dias_iniciados {
     sql: ${qtd_dias_cedido} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade de dias que a proposta ficou parada na etapa de Cedidos, em todas as vezes que passou por ela"
   }
@@ -3318,6 +3357,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${qtd_dias_agg_ass},0)+
     coalesce(${qtd_dias_cedido},0);;
     hidden:  no
+    value_format: "0.0"
     }
 
   measure: max_qtd_dias_novo {
@@ -3325,7 +3365,7 @@ dimension: qtd_dias_iniciados {
     sql: ${total_qtd_dias_novo} ;;
     group_label: "Máxima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a máxima da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
   }
@@ -3335,7 +3375,7 @@ dimension: qtd_dias_iniciados {
     sql: ${total_qtd_dias_novo} ;;
     group_label: "Mínima - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a mínima da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
   }
@@ -3352,7 +3392,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${average_qtd_dias_cedido},0) ;;
     group_label: "Média - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
     }
@@ -3368,7 +3408,7 @@ dimension: qtd_dias_iniciados {
     coalesce(${median_qtd_dias_cedido},0) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Total"
-    value_format: "0"
+    value_format: "0.0"
     hidden: no
     description: "Indica a média da quantidade total de dias em que a proposta levou entre Iniciado e Cessão"
   }

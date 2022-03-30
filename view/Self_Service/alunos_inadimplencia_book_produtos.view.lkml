@@ -31,6 +31,14 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."CPF" ;;
   }
 
+  dimension: faixa_atraso {
+    type: string
+    label: "Faixa de Atraso"
+    sql: ${TABLE}."ATRASO_FUNDO" ;;
+  }
+
+
+
 
   dimension: produtos {
     type: string
