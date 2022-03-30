@@ -50,32 +50,32 @@ view: alunos_inadimplencia_book_produtos {
     type: string
     case: {
       when: {
-        sql: ${faixa_atraso} = '1 - Em dia' ;;
+        sql: ${faixa_atraso} = '0 - Em dia' ;;
         label: "0"
       }
       when: {
-        sql: ${faixa_atraso} = '2 - Entre 6 e 14' ;;
+        sql: ${faixa_atraso} = '1 - 1-14' ;;
         label: "1"
       }
 
       when: {
-        sql: ${faixa_atraso} = '3 - Entre 15 e 30' ;;
+        sql: ${faixa_atraso} = '2 - 15-30' ;;
         label: "2"
       }
       when: {
-        sql: ${faixa_atraso} = '4 - Entre 30 e 60'  ;;
+        sql: ${faixa_atraso} = '3 - 31-60'  ;;
         label: "3"
       }
       when: {
-        sql: ${faixa_atraso} = '5 - Entre 61 e 90'  ;;
+        sql: ${faixa_atraso} = '4 - 61-90'  ;;
         label: "4"
       }
       when: {
-        sql: ${faixa_atraso} = '6 - Entre 91 e 120'  ;;
+        sql: ${faixa_atraso} = '5 - 91-120'  ;;
         label: "5"
       }
       when: {
-        sql: ${faixa_atraso} = '7 - Entre 121 e 150' ;;
+        sql: ${faixa_atraso} = '6 - 121-150' ;;
         label: "6"
       }
 
