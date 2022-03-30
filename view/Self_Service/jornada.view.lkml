@@ -636,7 +636,7 @@ view: jornada {
         label: "Reprovado por duas ou mais parcelas em atraso"
       }
       when: {
-        sql: ${ultimo_status_detalhado} in ('2019.16') ;;
+        sql: ${ultimo_status_detalhado} in ('2019.15''2019.16') ;;
         label: "Reprovado Behavior"
       }
       when: {
@@ -649,8 +649,15 @@ view: jornada {
         label: "Formado"
       }
       when: {
-        sql: ${ultimo_status_geral} in (102) ;;
+        sql: ${ultimo_status_detalhado} in ('102.0','2009.0',
+        '2029.1','2046.2','2048.0','2048.1','2058.0') ;;
         label: "Não Renovado"
+      }
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2040.0','2042.1','2042.2','2042.3',
+        '2044.1','2044.13'
+) ;;
+        label: "Pendente de Renovação - Pravaler"
       }
       when: {
         sql: ${ultimo_status_geral} in (2039) ;;
