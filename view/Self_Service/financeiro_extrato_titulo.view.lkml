@@ -1,6 +1,7 @@
 view: financeiro_extrato_titulo {
   derived_table: {
     persist_for: "1 hour"
+
     sql: select
       id_titulo,
       f.key as id_extrato_titulo,
@@ -19,6 +20,7 @@ view: financeiro_extrato_titulo {
 
   dimension: id_titulo {
     type: number
+    primary_key: yes
     sql: ${TABLE}."ID_TITULO" ;;
     label: "ID Título"
     description: "Indica o ID referência da tabela Financeiro"
