@@ -6,7 +6,15 @@ view: aproveitamento_estoque_nok {
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: [detail*]
+  }
+
+  dimension: gerente_etapa {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql:concat(${gerente},${etapa}) ;;
   }
 
   dimension: gerente {
