@@ -628,7 +628,7 @@ view: jornada {
         label: "Aguardando Análise Behavior"
       }
       when: {
-        sql: ${ultimo_status_detalhado} in ('2019.1', '2019.10', '2019.12') ;;
+        sql: ${ultimo_status_detalhado} in ('2019.1', '2019.10', '2019.12', '2019.3') ;;
         label: "Reprovado por Risco"
       }
       when: {
@@ -644,6 +644,18 @@ view: jornada {
         label: "Reprovado BV"
       }
 
+      when: {
+        sql: ${ultimo_status_detalhado} in ('2039.1', '101.0') ;;
+        label: "Formado"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (102) ;;
+        label: "Não Renovado"
+      }
+      when: {
+        sql: ${ultimo_status_geral} in (2039) ;;
+        label: "Reprovado pela IES"
+      }
       when: {
         sql: ${ultimo_status_geral} in (2011,2013,2014,2015) ;;
         label: "Tela da Instituição"

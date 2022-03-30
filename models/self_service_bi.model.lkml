@@ -178,6 +178,7 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
 }
 
 explore: status {
@@ -481,6 +482,13 @@ join: flag_unico_aluno {
   join: alunos {
     view_label: "6. Alunos"
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one}
+
+  join: aproveitamento_estoque_nok {
+    view_label: "7. Aproveitamento Estoque NOK"
+    sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
+            ${jornada.etapa} = ${aproveitamento_estoque_nok.etapa};;
     type: left_outer
     relationship: many_to_one}
 }
@@ -1765,3 +1773,7 @@ explore: instituicao_taxas_antecipacao{
 explore: prv_log {
   label: "PRV LOG"
   }
+
+explore: aproveitamento_estoque_nok{
+  label: "Aproveitamento Estoque"
+}
