@@ -1,6 +1,6 @@
 view: alunos_inadimplencia_book_produtos {
   derived_table: {
-    sql: select distinct* from stage.public.book_inadimplencia_produtos
+    sql: select distinct* from GRADUADO.RISCO.VW_BOOK_INADIMPLENCIA_PRODUTOS
       ;;
   }
 
@@ -30,6 +30,92 @@ view: alunos_inadimplencia_book_produtos {
     value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
+
+  dimension: faixa_atraso {
+    type: string
+    label: "Faixa de Atraso"
+    order_by_field: faixa_ordem
+    sql: ${TABLE}."ATRASO_FUNDO" ;;
+  }
+
+  dimension: faixa_ordem {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_faixa_atraso} AS INT) ;;
+  }
+
+
+
+  dimension: ordem_etapa_faixa_atraso {
+    type: string
+    case: {
+      when: {
+        sql: ${faixa_atraso} = '0 - Em dia' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${faixa_atraso} = '1 - 1-14' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '2 - 15-30' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${faixa_atraso} = '3 - 31-60'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${faixa_atraso} = '4 - 61-90'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${faixa_atraso} = '5 - 91-120'  ;;
+        label: "5"
+      }
+      when: {
+        sql: ${faixa_atraso} = '6 - 121-150' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '7 - 151-180' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${faixa_atraso} = '8 - 181-210' ;;
+        label: "8"
+      }
+      when: {
+        sql: ${faixa_atraso} = '9 - 211-240' ;;
+        label: "9"
+      }
+      when: {
+        sql: ${faixa_atraso} = '10 - 241-270' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${faixa_atraso} = '11 - 271-300' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${faixa_atraso} = '12 - 301-330' ;;
+        label: "12"
+      }
+      else: "13"
+    }
+    hidden: yes
+  }
+
+
+  dimension: produtos {
+    type: string
+    label: "Produto"
+    sql: ${TABLE}."PRODUTOS" ;;
+  }
+
+
 
   dimension: tdt_ano_mes {
     type: number
@@ -81,7 +167,7 @@ view: alunos_inadimplencia_book_produtos {
 
   dimension: produtos_novos {
     type: string
-    label: "Produto"
+    label: "Produtos - Novos"
     sql: ${TABLE}."PRODUTOS_NOVOS" ;;
   }
 
@@ -159,6 +245,12 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."OVER_05" ;;
   }
 
+  dimension: over_15 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."OVER_15" ;;
+  }
+
   dimension: over_30 {
     type: number
     hidden: yes
@@ -175,6 +267,12 @@ view: alunos_inadimplencia_book_produtos {
     type: number
     hidden: yes
     sql: ${TABLE}."OVER_90" ;;
+  }
+
+  dimension: over_15_90 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."OVER_15_90" ;;
   }
 
   dimension: cpf_fpd {
@@ -242,6 +340,20 @@ view: alunos_inadimplencia_book_produtos {
     group_label: "PDD"
     label: "MOB 6 (Nova) - Soma"
     sql: ${pdd_new_mob6} ;;
+  }
+
+  measure:sum_pdd_over_15  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 15 - Soma"
+    sql: ${over_15} ;;
+  }
+
+  measure:sum_pdd_over_15_90  {
+    type: sum
+    group_label: "PDD"
+    label: "OVER 15 a 90 - Soma"
+    sql: ${over_15_90} ;;
   }
 
   measure:sum_pdd_over_5  {

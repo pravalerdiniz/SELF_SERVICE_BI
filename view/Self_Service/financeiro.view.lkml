@@ -107,6 +107,66 @@ dimension: data_trunc  {
     sql: datediff('day',${data_vencimento_raw}, ${data_pagamento_raw}) ;;
   }
 
+  dimension: dias_a_vencer {
+    type: number
+    group_label: "Dados do Boleto"
+    label: "Dias até vencimento"
+    description: "Este campo é uma regra de negócio.* Indica o número de dias para pagamento até a data de vencimento do boleto. Conta apenas dias de boletos não pagos e que não estão em atraso"
+    sql: CASE WHEN ${flg_boleto_pago} = FALSE AND ${flg_boleto_atrasado} = FALSE THEN
+        datediff('day', current_date,${data_vencimento_raw})
+        ELSE 0
+        END;;
+  }
+
+
+  dimension: faixa_aging_a_vencer {
+    type: string
+    case: {
+      when: {
+        sql: ${dias_a_vencer} <= 30 ;;
+        label: "Até 30 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 60 ;;
+        label: "De 31 a 60 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 90 ;;
+        label: "De 61 a 90 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 120;;
+        label: "De 91 a 120 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 150;;
+        label: "De 121 a 150 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 180 ;;
+        label: "De 151 a 180 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 360 ;;
+        label: "De 181 a 360 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 720 ;;
+        label: "De 361 a 720 dias"
+      }
+      when: {
+        sql: ${dias_a_vencer} <= 1080 ;;
+        label: "De 721 a 1080 dias"
+      }
+      else: "Acima de 1080 dias"
+    }
+    group_label: "Dados do Boleto"
+    group_item_label: "Aging List - A Vencer"
+    description: "Indica a faixa de tempo detalhada dos títulos a vencer, elencados em ordem cronológica de acordo com sua data de vencimento."
+
+    }
+
+
   dimension: faixa_adimple {
     type: string
     sql:
@@ -135,11 +195,6 @@ dimension: data_trunc  {
     description: "Indica a faixa de adimplência do aluno"
   }
 
-
-
-
-
-
   dimension_group: data_vencimento {
     type: time
     timeframes: [
@@ -158,6 +213,36 @@ dimension: data_trunc  {
     label: "Vencimento"
     description: "Indica a data de vencimento do boleto"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
+  }
+
+  dimension: wtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Week to Date"
+    type: yesno
+    sql:  (EXTRACT(DOW FROM ${data_vencimento_raw}) < EXTRACT(DOW FROM GETDATE())
+                OR
+          (EXTRACT(DOW FROM ${data_vencimento_raw}) = EXTRACT(DOW FROM GETDATE())))  ;;
+    description: "Ou WTD. Use esse campo para realizar análises entre semanas diferentes usando como base o dia da semana da data corrente."
+  }
+
+  dimension: mtd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Month to Date"
+    type: yesno
+    sql:  (EXTRACT(DAY FROM ${data_vencimento_raw}) < EXTRACT(DAY FROM GETDATE())
+                OR
+          (EXTRACT(DAY FROM ${data_vencimento_raw}) = EXTRACT(DAY FROM GETDATE())))  ;;
+    description: "Ou MTD. Use esse campo para realizar análises entre meses diferentes usando como base o dia do mês da data corrente."
+  }
+
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
+    label: "Year to Date"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_vencimento_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_vencimento_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Ou YTD. Use esse campo para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
 
@@ -201,6 +286,52 @@ dimension: safra_vencimento {
       group_label: "Dados do Boleto"
     label: "Pagou no prazo"
     description: "Indica se boleto foi pago no prazo ou em atraso"
+  }
+
+  dimension: faixa_aging_vencidos {
+    type: string
+    case: {
+      when: {
+        sql: ${dias_atraso} <= 30 ;;
+        label: "Até 30 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 60 ;;
+        label: "De 31 a 60 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 90 ;;
+        label: "De 61 a 90 dias"
+      }
+      when: {
+        sql: ${dias_atraso}<= 120 ;;
+        label: "De 91 a 120 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 150 ;;
+        label: "De 121 a 150 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 180 ;;
+        label: "De 151 a 180 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 360 ;;
+        label: "De 181 a 360 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 720 ;;
+        label: "De 361 a 720 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 1080 ;;
+        label: "De 721 a 1080 dias"
+      }
+      else: "Acima de 1080 dias"
+    }
+    group_label: "Dados do Boleto"
+    group_item_label: "Aging List - Vencidos"
+    description: "Indica a faixa de tempo detalhada dos títulos a receber em atraso, elencados em ordem cronológica de acordo com sua data de vencimento."
   }
 
   dimension_group: data_writeoff {
@@ -469,7 +600,7 @@ dimension: safra_vencimento {
     type: number
     group_label: "Dados do Boleto"
     label: "Percentual de IPCA"
-    value_format: "0.00\%"
+    value_format: "0.00%"
     description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
@@ -710,7 +841,11 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Quantidade de titulos"
     drill_fields: [
 
-      cpf_aluno, aluno_nome,id_contrato,
+      id_titulo,
+      id_nossonum,
+      cpf_aluno,
+      aluno_nome,
+      id_contrato,
       aluno_email,
       aluno_celular,
       ds_curso,
@@ -719,7 +854,6 @@ foi gerado por um pagamento menor do boleto anterior."
       ds_campus,
       nm_modalidade_produto,
       nm_produto,
-      id_titulo,
       dias_atraso,
       vl_boleto,
       data_pagamento_date,
@@ -741,7 +875,11 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Valor"
     description: "Contagem de ID_CPFs únicos"
     drill_fields: [
-      cpf_aluno, aluno_nome,id_contrato,
+      id_titulo,
+      id_nossonum,
+      cpf_aluno,
+      aluno_nome,
+      id_contrato,
       aluno_email,
       aluno_celular,
       ds_curso,
@@ -750,7 +888,7 @@ foi gerado por um pagamento menor do boleto anterior."
       ds_campus,
       nm_modalidade_produto,
       nm_produto,
-      id_boleto,
+      id_titulo,
       dias_atraso,
       vl_boleto,
       data_pagamento_date,
@@ -1375,7 +1513,13 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
 
-
+  dimension: st_importacao_bradesco {
+    type: string
+    group_label: "Dados do Título"
+    label: "Situação - Importação Bradesco"
+    description: "Este campo é uma regra de negócio*. Indica qual é a situação da importação dos boletos do bradesco."
+    sql: ${TABLE}."ST_IMPORTACAO_BRADESCO" ;;
+  }
 
   dimension_group: data_ultimo_collection {
     type: time
@@ -1411,6 +1555,22 @@ foi gerado por um pagamento menor do boleto anterior."
     ;;
   }
 
+  dimension_group: data_reajuste_ipca {
+    type: time
+      timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Data de reajuste de IPCA"
+    description: "Data em que o boleto foi reajustado de acordo com o IPCA"
+    datatype: date
+    sql: ${TABLE}."DATA_TIT_IPCA" ;;
+  }
 
 
 

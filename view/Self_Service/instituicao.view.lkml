@@ -637,6 +637,16 @@ view: instituicao {
 
   }
 
+  measure: qtd_grupos {
+    type: count_distinct
+    group_label: "Instituição"
+    group_item_label: "Quantidade de Grupos"
+    description: "Quantidade de Grupos"
+    sql: ${grupo} ;;
+
+
+  }
+
 
 measure: qtd_ies_descadastrada {
   type: count_distinct

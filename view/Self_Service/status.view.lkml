@@ -458,7 +458,7 @@ view: status {
 
   measure: count {
     type: count
-    drill_fields: [id, id_proposta, status_origem_geral,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
+    drill_fields: [id, id_proposta, status_origem_geral, status_origem_detalhado ,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
   }
 
   measure: cont_cpf {
@@ -483,11 +483,12 @@ nm_produto
     sql: ${id_cpf} ;;
     group_label: "Fluxo Status"
     label: "Quantidade de CPFs para fluxo status"
-    drill_fields: [id_cpf,
+    drill_fields: [cpf_aluno,
       id_proposta,
       motivo_alteracao,
-      status_origem_geral,
-      status_destino_geral,nm_usuario,
+      status_origem_detalhado,
+      status_destino_detalhado,
+      nm_usuario,
       id_usuario,dt_status_date]
     description: "Contagem de CPFs únicos para fluxo dos status"
   }
@@ -875,34 +876,183 @@ nm_produto
     hidden: yes
   }
 
-  dimension: estoque_produtivo {
+  dimension: fx_estoque_produtivo_iniciados {
     type: string
     case: {
       when: {
         sql: ${status_destino_detalhado}='1.1'
-             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: "Estoque Produtivo Iniciados"
+             and ${dt_status_date} >= dateadd(day,-45,current_date())
+             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='1.1'
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
+             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='1.1'
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
+             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
+        label: "3. NOK/Abandono"
+      }
+      else: "Outros"
+ }
+    group_label: "Estoque Produtivo"
+    group_item_label: "Faixa Estoque Produtivo Iniciado"
+    description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
+}
+
+  dimension: fx_estoque_produtivo_tela_ies {
+      type: string
+    case: {
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
+        label: "1. Andamento no Prazo"
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
-        label: "Estoque Produtivo Tela IES"
+          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
+        label: "3. NOK/Abandono"
+      }
+      else: "Outros"
+      }
+    group_label: "Estoque Produtivo"
+    group_item_label: "Faixa Estoque Produtivo Tela IES"
+    description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
+  }
+
+ dimension: fx_estoque_produtivo_documento {
+  type: string
+  case: {
+    when: {
+      sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+        AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
+      label: "1. Andamento no Prazo"
+    }
+    when: {
+      sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
+      label: "2. Andamento Atuação"
+    }
+    when: {
+      sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+        AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
+      label: "3. NOK/Abandono"
+    }
+    else: "Outros"
+  }
+  group_label: "Estoque Produtivo"
+  group_item_label: "Faixa Estoque Produtivo Agg Documento"
+  description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
+
+ }
+
+dimension: fx_estoque_produtivo_assinatura {
+  type: string
+  case: {
+    when: {
+      sql: ${status_destino_detalhado}='40.5'
+        AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
+      label: "1. Andamento no Prazo"
+    }
+    when: {
+      sql: ${status_destino_detalhado}='40.5'
+        AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
+      label: "2. Andamento Atuação"
+    }
+    when: {
+      sql: ${status_destino_detalhado}='40.5'
+        AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
+      label: "3. NOK/Abandono"
+    }
+    else: "Outros"
+  }
+  group_label: "Estoque Produtivo"
+  group_item_label: "Faixa Estoque Produtivo Agg Assinatura"
+  description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
+
+ }
+  dimension: fx_estoque_produtivo {
+
+    type: string
+    case: {
+      when: {
+        sql: ${status_destino_detalhado}='1.1'
+             and ${dt_status_date} >= dateadd(day,-45,current_date())
+             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='1.1'
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
+             and (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='1.1'
+             and ${dt_status_date}>=dateadd(day,-45,current_date())
+             AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
+        label: "3. NOK/Abandono"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE TELA DA INSTITUIÇÃO'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
+        label: "3. NOK/Abandono"
       }
       when: {
         sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=20 ;;
-        label: "Estoque Produtivo Documentos"
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+                  AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 9 and 20);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${grupo_status_destino}='ESTOQUE DOCUMENTOS'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>20;;
+        label: "3. NOK/Abandono"
       }
       when: {
         sql: ${status_destino_detalhado}='40.5'
-          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=8;;
-        label: " Estoque Produtivo Assinatura "
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}<=2;;
+        label: "1. Andamento no Prazo"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='40.5'
+          AND (${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} between 3 and 8);;
+        label: "2. Andamento Atuação"
+      }
+      when: {
+        sql: ${status_destino_detalhado}='40.5'
+          AND ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS}>8;;
+        label: "3. NOK/Abandono"
       }
       else: "Outros"
     }
     group_label: "Estoque Produtivo"
-    group_item_label: " Estoque Produtivo"
-    description: "Marcação dos Alunos em Estoque Produtivo"
+    group_item_label: "Faixa Estoque Produtivo"
+    description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
+
 
 }

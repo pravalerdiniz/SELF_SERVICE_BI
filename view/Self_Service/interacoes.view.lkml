@@ -284,6 +284,17 @@ view: interacoes {
     description: "Indica a data de finalização do ticket."
   }
 
+  dimension: analise_ytd {
+    type: yesno
+    group_label: "Filtros para Análise de Período"
+    label: "YTD?"
+    description: "Indica o acumulado no ano mês a mês."
+    sql:
+       (EXTRACT(DOY FROM ${data_finalizacao_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_finalizacao_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+  }
+
   dimension: data_monitoria {
     type: string
     group_label: "Dados de Monitoria"
@@ -860,8 +871,6 @@ view: interacoes {
     sql: ${total_abandono};;
 
 
-
-
   }
 
   measure: count {
@@ -869,4 +878,92 @@ view: interacoes {
     label: "Quantidade de Tickets"
     drill_fields: []
   }
+
+  dimension: mudou_etapa_3 {
+    type: string
+    case: {
+      when: {
+        sql: ${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 3, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou de Etapa - 3 dias"
+    description: "Indicador de mudança de status em até 3 dias depois da finalização do ticket"
+  }
+
+  dimension: mudou_etapa_2 {
+    type: string
+    case: {
+      when: {
+        sql:${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 2, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou de Etapa - 2 dias"
+    description: "Indicador de mudança de status em até 2 dias depois da finalização do ticket"
+  }
+
+  dimension: mudou_etapa_1 {
+    type: string
+    case: {
+      when: {
+        sql:  ${dados_jornada_interacoes.DT_STATUS_date}> ${data_finalizacao_date}
+          AND ${dados_jornada_interacoes.DT_STATUS_date} <= DATEADD(day, 1, ${data_finalizacao_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Dados do Aluno"
+    label: "Mudou de Etapa - 1 dia"
+    description: "Indicador de mudança de status em até 1 dias depois da finalização do ticket"
+  }
+
+  dimension: tempo_finalizacao {
+    type: number
+    sql:  coalesce(datediff(day,${interacoes.data_criacao_date},${interacoes.data_finalizacao_date}),0) ;;
+    group_label: "Dados do Ticket"
+    label: "Qtd de dias para finalização"
+    description: "Diferença de dias entre a data de criação do chamado e a data de finalização do chamado"
+  }
+
+  dimension: id_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "ID Usuário"
+    description: "Indica o ID do Usuário (aluno) na Zendesk"
+    sql: ${TABLE}."ID_USUARIO" ;;
+  }
+
+  dimension: nome_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome Usuário"
+    description: "Indica o Nome do Usuário (aluno) na Zendesk"
+    hidden: yes
+    sql: ${TABLE}."NOME_USUARIO" ;;
+  }
+
+  dimension: email_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Email Usuário"
+    description: "Indica o Email do Usuário (aluno) na Zendesk"
+    sql: ${TABLE}."EMAIL_USUARIO" ;;
+  }
+
+  dimension: infos_usuario {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Infos Usuário"
+    description: "Indica o Email do Usuário (aluno) na Zendesk"
+    hidden: yes
+    sql: ${TABLE}."INFOS_USUARIO" ;;
+  }
+
 }

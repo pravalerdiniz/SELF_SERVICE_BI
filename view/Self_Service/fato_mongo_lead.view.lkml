@@ -1,14 +1,7 @@
-# The name of this view in Looker is "Fato Mongo Lead"
 view: fato_mongo_lead {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
+
   sql_table_name: "VETERANO"."FATO"."FATO_MONGO_LEAD"
     ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data_acesso {
     type: time
@@ -24,7 +17,8 @@ view: fato_mongo_lead {
     sql: ${TABLE}."DATA_ACESSO" ;;
     description: "Data em que o aluno realizou etapa correspondente do cadastro"
     label: "Data de Acesso"
-    group_label: "Dados Mongo"
+    group_item_label: "Data de Acesso"
+    group_label: "Dados Etapa de Cadastro"
   }
 
   dimension_group: data_carga {
@@ -50,8 +44,9 @@ view: fato_mongo_lead {
   dimension: ds_status_proposta {
     type: string
     sql: ${TABLE}."DS_STATUS_PROPOSTA" ;;
-    group_label: "Dados Mongo"
-    label: "Etapa - Cadastro"
+    group_label: "Dados Etapa de Cadastro"
+    label: "Subetapa"
+    hidden:  yes
     description: "Etapa em que o aluno está de acordo com o fluxo de cadastro"
   }
 

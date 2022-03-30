@@ -141,6 +141,10 @@ explore: base_forecast_cs {
   label: "Forecast Contatos"
 }
 
+explore: taxa_de_contato{
+  label: "Taxa de Contato"
+}
+
 explore: campanha_valoriza {
   label: "Campanha Valoriza"
 }
@@ -231,6 +235,12 @@ explore: cruzeiro_inadimplentes {}
 
 explore: csat_nuvem_palavras_bad {}
 
+explore: nps_nuvem_palavras_detratores {}
+
+explore: nps_nuvem_palavras_neutros {}
+
+explore: nps_nuvem_palavras_promotores {}
+
 explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}
@@ -250,3 +260,15 @@ explore: base_ot_analise {
 }
 
 explore: watson {}
+
+explore: amigo_edu {
+  label: "Amigo Edu"
+}
+
+explore: kpi_financeiro {
+  label: "KPI Financeiro"
+}
+
+explore: kpi_controladoria {
+  label: "KPI Controladoria"
+}

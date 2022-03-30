@@ -94,10 +94,11 @@ view: solucx {
   }
 
   dimension: cpf_aluno {
-    type: string
+    type: number
     group_label: "Dados do Aluno"
     group_item_label: "CPF do Aluno"
     description: "Número do CPF do aluno."
+    value_format: "0"
     sql: ${TABLE}."CPF_ALUNO" ;;
   }
 

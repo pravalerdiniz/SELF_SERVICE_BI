@@ -1,4 +1,4 @@
-view: atribuicao {
+view: atribuicao_old {
   sql_table_name: veterano."FATO"."ATRIBUICAO"
     ;;
 

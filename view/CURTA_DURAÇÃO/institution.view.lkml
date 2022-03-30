@@ -323,6 +323,14 @@ view: institution {
   }
 
 
+  dimension: email {
+    type: string
+    sql: ${TABLE}."EMAIL";;
+    description:"E-MAIL DE CONTATO DA ESCOLA."
+    group_item_label: "E-mail"
+    group_label: "Dados da Instituição"
+  }
+
 
 
 

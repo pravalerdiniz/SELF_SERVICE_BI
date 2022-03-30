@@ -107,7 +107,55 @@ view: alunos_inadimplencia_3_book {
     label: "Faixa de Atraso"
     description: "Indica a faixa de atraso no pagamento do aluno"
     sql: ${TABLE}."FX_ATRASO" ;;
+    order_by_field: faixa_ordem
   }
+
+  dimension: faixa_ordem {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_faixa_atraso} AS INT) ;;
+  }
+
+
+  dimension: ordem_etapa_faixa_atraso {
+    type: string
+    case: {
+      when: {
+        sql: ${fx_atraso} = '1 - Em dia' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${fx_atraso} = '2 - Entre 6 e 14' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${fx_atraso} = '3 - Entre 15 e 30' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${fx_atraso} = '4 - Entre 30 e 60'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${fx_atraso} = '5 - Entre 61 e 90'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${fx_atraso} = '6 - Entre 91 e 120'  ;;
+        label: "5"
+      }
+      when: {
+        sql: ${fx_atraso} = '7 - Entre 121 e 150' ;;
+        label: "6"
+      }
+
+
+      else: "8"
+    }
+    hidden: yes
+  }
+
 
   dimension: aluno_novo {
     type: string
