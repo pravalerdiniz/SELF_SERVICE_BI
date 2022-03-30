@@ -3525,10 +3525,20 @@ view: proposta {
   measure: sum_desagio {
     type: sum
     group_label: "Valores Cessão"
-    group_item_label: "Desagio - Soma"
+    group_item_label: "Deságio - Soma"
     sql:${vl_financiamento} - ${vl_repasse_ies}-${vl_comissao_ideal};;
     description: "Soma de valor do deságio (Comissão + Juros)"
     value_format: "$ #,###.00"
+  }
+
+  measure: taxa_desagio {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Deságio %"
+    sql:( ${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1);;
+    description: "Taxa de Deságio "
+    value_format: "0.00%"
+
   }
 
   measure: sum_perc_desagio {
