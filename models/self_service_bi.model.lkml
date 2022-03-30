@@ -179,6 +179,7 @@ explore: instituicao_metas_gc {
     type: left_outer
     relationship: many_to_one
   }
+
 }
 
 explore: status {
@@ -1752,3 +1753,7 @@ explore: instituicao_taxas_antecipacao{
 explore: prv_log {
   label: "PRV LOG"
   }
+
+explore: aproveitamento_estoque_nok{
+  label: "Aproveitamento Estoque"
+}
