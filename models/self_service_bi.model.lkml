@@ -90,9 +90,8 @@ explore: beneficiados {
              proposta.canal_acesso_descoberta,
              proposta.ds_url_conversao,
              proposta.ds_url_descoberta,
-
-             proposta.cpf_aluno
-
+             proposta.cpf_aluno,
+            proposta.nm_produto_comercial
 
              ]
 
@@ -165,12 +164,21 @@ explore: instituicao_metas_gc {
     relationship: many_to_one
   }
 
+  join: meta_conv_grupo_ies_new
+  {
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
+             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: meta_sla_comercial
   {
     sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
     type: left_outer
     relationship: many_to_one
   }
+
 }
 
 explore: status {
@@ -361,7 +369,33 @@ explore: jornada {
     type: left_outer
   }
 
+join: flag_unico_aluno {
+  view_label: "2. Proposta"
+  sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
+  relationship: one_to_one
+  type: left_outer
+}
 
+  join: flag_unico_garantidor {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_unico_garantidor.id_proposta} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: flag_renda_presumida {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_renda_presumida.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_renda_presumida_garant {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
 
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
@@ -462,6 +496,13 @@ explore: jornada {
   join: alunos {
     view_label: "6. Alunos"
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one}
+
+  join: aproveitamento_estoque_nok {
+    view_label: "7. Aproveitamento Estoque NOK"
+    sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
+            ${jornada.etapa} = ${aproveitamento_estoque_nok.etapa};;
     type: left_outer
     relationship: many_to_one}
 }
@@ -687,7 +728,52 @@ explore: financeiro {
     type: left_outer
   }
 
-  join: proposta_projeto_decola {
+  join: instituicao {
+    view_label: "3. Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}  ;;
+    relationship: many_to_one
+    type:left_outer
+
+  }
+
+  join: instituicao_contrato_produto_info {
+    view_label: "3.1. Contrato da Instituição por Produto"
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: produto_ies_snapshot {
+    view_label: "3.1. Contrato da Instituição por Produto - (Histórico)"
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: instituicao_taxas_antecipacao {
+    view_label: "3.2. Taxas da Instituição por Produto Antecipação"
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+        --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+      ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: instituicao_taxas_gestao {
+    view_label: "3.3. Taxas da Instituição por Produto Gestão"
+    sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
+      and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+
+join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
           ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
@@ -935,6 +1021,34 @@ join: proposta_docs_pendentes {
     sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: flag_unico_aluno {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_unico_garantidor {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_unico_garantidor.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_renda_presumida {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_renda_presumida.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_renda_presumida_garant {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
 }
@@ -1673,3 +1787,7 @@ explore: instituicao_taxas_antecipacao{
 explore: prv_log {
   label: "PRV LOG"
   }
+
+explore: aproveitamento_estoque_nok{
+  label: "Aproveitamento Estoque"
+}

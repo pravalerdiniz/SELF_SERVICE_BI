@@ -841,7 +841,11 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Quantidade de titulos"
     drill_fields: [
 
-      cpf_aluno, aluno_nome,id_contrato,
+      id_titulo,
+      id_nossonum,
+      cpf_aluno,
+      aluno_nome,
+      id_contrato,
       aluno_email,
       aluno_celular,
       ds_curso,
@@ -850,7 +854,6 @@ foi gerado por um pagamento menor do boleto anterior."
       ds_campus,
       nm_modalidade_produto,
       nm_produto,
-      id_titulo,
       dias_atraso,
       vl_boleto,
       data_pagamento_date,
@@ -872,7 +875,11 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Valor"
     description: "Contagem de ID_CPFs únicos"
     drill_fields: [
-      cpf_aluno, aluno_nome,id_contrato,
+      id_titulo,
+      id_nossonum,
+      cpf_aluno,
+      aluno_nome,
+      id_contrato,
       aluno_email,
       aluno_celular,
       ds_curso,
@@ -881,7 +888,7 @@ foi gerado por um pagamento menor do boleto anterior."
       ds_campus,
       nm_modalidade_produto,
       nm_produto,
-      id_boleto,
+      id_titulo,
       dias_atraso,
       vl_boleto,
       data_pagamento_date,
@@ -1506,7 +1513,13 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."ULTIMO_COLLECTION" ;;
   }
 
-
+  dimension: st_importacao_bradesco {
+    type: string
+    group_label: "Dados do Título"
+    label: "Situação - Importação Bradesco"
+    description: "Este campo é uma regra de negócio*. Indica qual é a situação da importação dos boletos do bradesco."
+    sql: ${TABLE}."ST_IMPORTACAO_BRADESCO" ;;
+  }
 
   dimension_group: data_ultimo_collection {
     type: time

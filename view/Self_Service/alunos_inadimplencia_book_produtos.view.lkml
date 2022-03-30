@@ -31,6 +31,83 @@ view: alunos_inadimplencia_book_produtos {
     sql: ${TABLE}."CPF" ;;
   }
 
+  dimension: faixa_atraso {
+    type: string
+    label: "Faixa de Atraso"
+    order_by_field: faixa_ordem
+    sql: ${TABLE}."ATRASO_FUNDO" ;;
+  }
+
+  dimension: faixa_ordem {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_faixa_atraso} AS INT) ;;
+  }
+
+
+
+  dimension: ordem_etapa_faixa_atraso {
+    type: string
+    case: {
+      when: {
+        sql: ${faixa_atraso} = '0 - Em dia' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${faixa_atraso} = '1 - 1-14' ;;
+        label: "1"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '2 - 15-30' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${faixa_atraso} = '3 - 31-60'  ;;
+        label: "3"
+      }
+      when: {
+        sql: ${faixa_atraso} = '4 - 61-90'  ;;
+        label: "4"
+      }
+      when: {
+        sql: ${faixa_atraso} = '5 - 91-120'  ;;
+        label: "5"
+      }
+      when: {
+        sql: ${faixa_atraso} = '6 - 121-150' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${faixa_atraso} = '7 - 151-180' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${faixa_atraso} = '8 - 181-210' ;;
+        label: "8"
+      }
+      when: {
+        sql: ${faixa_atraso} = '9 - 211-240' ;;
+        label: "9"
+      }
+      when: {
+        sql: ${faixa_atraso} = '10 - 241-270' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${faixa_atraso} = '11 - 271-300' ;;
+        label: "11"
+      }
+      when: {
+        sql: ${faixa_atraso} = '12 - 301-330' ;;
+        label: "12"
+      }
+      else: "13"
+    }
+    hidden: yes
+  }
+
 
   dimension: produtos {
     type: string
