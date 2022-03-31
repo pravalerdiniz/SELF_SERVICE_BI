@@ -1669,6 +1669,11 @@ explore: projecao_formalizados {
   view_label: "Projeção Formalizados Jornada"
 }
 
+explore: projecao_formalizados_grupo_ies {
+  label: "Projeção Formalizados - Grupo IES"
+  view_label: "Projeção Formalizados - Grupo IES"
+}
+
 explore: crm_customer {
   label: "CRM - Customer io"
 
