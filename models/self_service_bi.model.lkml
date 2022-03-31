@@ -1803,3 +1803,8 @@ explore: prv_log {
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
+
+explore: gupy_candidaturas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
