@@ -1,0 +1,1630 @@
+# The name of this view in Looker is "Inep Lgpd"
+view: inep_lgpd {
+  # The sql_table_name parameter indicates the underlying database table
+  # to be used for all fields in this view.
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INEP_LGPD"
+    ;;
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
+
+  # Here's what a typical dimension looks like in LookML.
+  # A dimension is a groupable field that can be used to filter query results.
+  # This dimension will be called "Aluno Deficiente" in Explore.
+
+  dimension: aluno_deficiente {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."ALUNO_DEFICIENTE" ;;
+  }
+
+  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
+  # measures for this dimension, but you can also add measures of many different aggregates.
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
+  measure: total_aluno_deficiente {
+    type: sum
+    sql: ${aluno_deficiente} ;;
+  }
+
+  measure: average_aluno_deficiente {
+    type: average
+    sql: ${aluno_deficiente} ;;
+  }
+
+  dimension: aluno_parfor {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."ALUNO_PARFOR" ;;
+  }
+
+  dimension: apoio_social {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."APOIO_SOCIAL" ;;
+  }
+
+  dimension: ativ_extracurricular {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."ATIV_EXTRACURRICULAR" ;;
+  }
+
+  dimension: co_cine_area_detalhada {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."CO_CINE_AREA_DETALHADA" ;;
+  }
+
+  dimension: co_cine_area_especifica {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."CO_CINE_AREA_ESPECIFICA" ;;
+  }
+
+  dimension: co_cine_area_geral {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."CO_CINE_AREA_GERAL" ;;
+  }
+
+  dimension: co_cine_rotulo {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."CO_CINE_ROTULO" ;;
+  }
+
+  dimension: co_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_IES" ;;
+  }
+
+  dimension: co_mantenedora {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_MANTENEDORA" ;;
+  }
+
+  dimension: co_mesorregiao_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_MESORREGIAO_IES" ;;
+  }
+
+  dimension: co_microrregiao_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_MICRORREGIAO_IES" ;;
+  }
+
+  dimension: co_municipio {
+    type: number
+    sql: ${TABLE}."CO_MUNICIPIO" ;;
+  }
+
+  dimension: co_municipio_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_MUNICIPIO_IES" ;;
+  }
+
+  dimension: co_regiao {
+    type: number
+    sql: ${TABLE}."CO_REGIAO" ;;
+  }
+
+  dimension: co_regiao_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_REGIAO_IES" ;;
+  }
+
+  dimension: co_uf {
+    type: number
+    sql: ${TABLE}."CO_UF" ;;
+  }
+
+  dimension: co_uf_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."CO_UF_IES" ;;
+  }
+
+  dimension: conc_0_17 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_0_17" ;;
+  }
+
+  dimension: conc_18_24 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_18_24" ;;
+  }
+
+  dimension: conc_25_29 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_25_29" ;;
+  }
+
+  dimension: conc_30_34 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_30_34" ;;
+  }
+
+  dimension: conc_35_39 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_35_39" ;;
+  }
+
+  dimension: conc_40_49 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_40_49" ;;
+  }
+
+  dimension: conc_50_59 {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_50_59" ;;
+  }
+
+  dimension: conc_60_mais {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_60_MAIS" ;;
+  }
+
+  dimension: conc_aluno_deficiente {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_ALUNO_DEFICIENTE" ;;
+  }
+
+  dimension: conc_aluno_parfor {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_ALUNO_PARFOR" ;;
+  }
+
+  dimension: conc_amarela {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_AMARELA" ;;
+  }
+
+  dimension: conc_apoio_social {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_APOIO_SOCIAL" ;;
+  }
+
+  dimension: conc_ativ_extracurricular {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_ATIV_EXTRACURRICULAR" ;;
+  }
+
+  dimension: conc_branca {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_BRANCA" ;;
+  }
+
+  dimension: conc_cornd {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_CORND" ;;
+  }
+
+  dimension: conc_diurno {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_DIURNO" ;;
+  }
+
+  dimension: conc_fem {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FEM" ;;
+  }
+
+  dimension: conc_fies {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FIES" ;;
+  }
+
+  dimension: conc_financ {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FINANC" ;;
+  }
+
+  dimension: conc_financ_nreemb {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FINANC_NREEMB" ;;
+  }
+
+  dimension: conc_financ_nreemb_outros {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FINANC_NREEMB_OUTROS" ;;
+  }
+
+  dimension: conc_financ_reemb {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FINANC_REEMB" ;;
+  }
+
+  dimension: conc_financ_reemb_outros {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_FINANC_REEMB_OUTROS" ;;
+  }
+
+  dimension: conc_indigena {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_INDIGENA" ;;
+  }
+
+  dimension: conc_masc {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_MASC" ;;
+  }
+
+  dimension: conc_mob_academica {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_MOB_ACADEMICA" ;;
+  }
+
+  dimension: conc_nacbras {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_NACBRAS" ;;
+  }
+
+  dimension: conc_nacestrang {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_NACESTRANG" ;;
+  }
+
+  dimension: conc_noturno {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_NOTURNO" ;;
+  }
+
+  dimension: conc_nrpfies {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_NRPFIES" ;;
+  }
+
+  dimension: conc_parda {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PARDA" ;;
+  }
+
+  dimension: conc_preta {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PRETA" ;;
+  }
+
+  dimension: conc_procescprivada {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PROCESCPRIVADA" ;;
+  }
+
+  dimension: conc_procescpublica {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PROCESCPUBLICA" ;;
+  }
+
+  dimension: conc_procnaoinformada {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PROCNAOINFORMADA" ;;
+  }
+
+  dimension: conc_prounii {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PROUNII" ;;
+  }
+
+  dimension: conc_prounip {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_PROUNIP" ;;
+  }
+
+  dimension: conc_reserva_vaga {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RESERVA_VAGA" ;;
+  }
+
+  dimension: conc_rpfies {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RPFIES" ;;
+  }
+
+  dimension: conc_rvetinico {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RVETINICO" ;;
+  }
+
+  dimension: conc_rvoutros {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RVOUTROS" ;;
+  }
+
+  dimension: conc_rvpdef {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RVPDEF" ;;
+  }
+
+  dimension: conc_rvredepublica {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RVREDEPUBLICA" ;;
+  }
+
+  dimension: conc_rvsocial_rf {
+    group_label: "Dados quantitativos de Alunos"
+    type: number
+    sql: ${TABLE}."CONC_RVSOCIAL_RF" ;;
+  }
+
+  dimension: doc_ex_0_29 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_0_29" ;;
+  }
+
+  dimension: doc_ex_30_34 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_30_34" ;;
+  }
+
+  dimension: doc_ex_35_39 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_35_39" ;;
+  }
+
+  dimension: doc_ex_40_44 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_40_44" ;;
+  }
+
+  dimension: doc_ex_45_49 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_45_49" ;;
+  }
+
+  dimension: doc_ex_50_54 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_50_54" ;;
+  }
+
+  dimension: doc_ex_55_59 {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_55_59" ;;
+  }
+
+  dimension: doc_ex_60_mais {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_60_MAIS" ;;
+  }
+
+  dimension: doc_ex_amarela {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_AMARELA" ;;
+  }
+
+  dimension: doc_ex_bra {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_BRA" ;;
+  }
+
+  dimension: doc_ex_branca {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_BRANCA" ;;
+  }
+
+  dimension: doc_ex_com_deficiencia {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_COM_DEFICIENCIA" ;;
+  }
+
+  dimension: doc_ex_cor_nd {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_COR_ND" ;;
+  }
+
+  dimension: doc_ex_dout {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_DOUT" ;;
+  }
+
+  dimension: doc_ex_esp {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_ESP" ;;
+  }
+
+  dimension: doc_ex_est {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_EST" ;;
+  }
+
+  dimension: doc_ex_femi {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_FEMI" ;;
+  }
+
+  dimension: doc_ex_grad {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_GRAD" ;;
+  }
+
+  dimension: doc_ex_hor {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_HOR" ;;
+  }
+
+  dimension: doc_ex_indigena {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_INDIGENA" ;;
+  }
+
+  dimension: doc_ex_int {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_INT" ;;
+  }
+
+  dimension: doc_ex_int_de {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_INT_DE" ;;
+  }
+
+  dimension: doc_ex_int_sem_de {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_INT_SEM_DE" ;;
+  }
+
+  dimension: doc_ex_masc {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_MASC" ;;
+  }
+
+  dimension: doc_ex_mest {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_MEST" ;;
+  }
+
+  dimension: doc_ex_parc {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_PARC" ;;
+  }
+
+  dimension: doc_ex_parda {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_PARDA" ;;
+  }
+
+  dimension: doc_ex_preta {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_PRETA" ;;
+  }
+
+  dimension: doc_ex_sem_grad {
+    group_label: "Dados quantitativos dos Docentes IES"
+    type: number
+    sql: ${TABLE}."DOC_EX_SEM_GRAD" ;;
+  }
+
+  dimension: ds_complemento_endereco_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."DS_COMPLEMENTO_ENDERECO_IES" ;;
+  }
+
+  dimension: ds_endereco_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."DS_ENDERECO_IES" ;;
+  }
+
+  dimension: ds_numero_endereco_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."DS_NUMERO_ENDERECO_IES" ;;
+  }
+
+  dimension: in_acesso_outras_bases {
+    type: yesno
+    sql: ${TABLE}."IN_ACESSO_OUTRAS_BASES" ;;
+  }
+
+  dimension: in_acesso_portal_capes {
+    type: yesno
+    sql: ${TABLE}."IN_ACESSO_PORTAL_CAPES" ;;
+  }
+
+  dimension: in_assina_outra_base {
+    type: yesno
+    sql: ${TABLE}."IN_ASSINA_OUTRA_BASE" ;;
+  }
+
+  dimension: in_busca_integrada {
+    type: yesno
+    sql: ${TABLE}."IN_BUSCA_INTEGRADA" ;;
+  }
+
+  dimension: in_capital {
+    type: yesno
+    sql: ${TABLE}."IN_CAPITAL" ;;
+  }
+
+  dimension: in_capital_ies {
+    group_label: "Dados IES"
+    type: yesno
+    sql: ${TABLE}."IN_CAPITAL_IES" ;;
+  }
+
+  dimension: in_catalogo_online {
+    type: yesno
+    sql: ${TABLE}."IN_CATALOGO_ONLINE" ;;
+  }
+
+  dimension: in_participa_rede_social {
+    type: yesno
+    sql: ${TABLE}."IN_PARTICIPA_REDE_SOCIAL" ;;
+  }
+
+  dimension: in_repositorio_institucional {
+    type: yesno
+    sql: ${TABLE}."IN_REPOSITORIO_INSTITUCIONAL" ;;
+  }
+
+  dimension: in_servico_internet {
+    type: yesno
+    sql: ${TABLE}."IN_SERVICO_INTERNET" ;;
+  }
+
+  dimension: ing_0_17 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_0_17" ;;
+  }
+
+  dimension: ing_18_24 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_18_24" ;;
+  }
+
+  dimension: ing_25_29 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_25_29" ;;
+  }
+
+  dimension: ing_30_34 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_30_34" ;;
+  }
+
+  dimension: ing_35_39 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_35_39" ;;
+  }
+
+  dimension: ing_40_49 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_40_49" ;;
+  }
+
+  dimension: ing_50_59 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_50_59" ;;
+  }
+
+  dimension: ing_aluno_deficiente {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_ALUNO_DEFICIENTE" ;;
+  }
+
+  dimension: ing_aluno_parfor {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_ALUNO_PARFOR" ;;
+  }
+
+  dimension: ing_amarela {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_AMARELA" ;;
+  }
+
+  dimension: ing_apoio_social {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_APOIO_SOCIAL" ;;
+  }
+
+  dimension: ing_ativ_extracurricular {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_ATIV_EXTRACURRICULAR" ;;
+  }
+
+  dimension: ing_avaliacao_seriada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_AVALIACAO_SERIADA" ;;
+  }
+
+  dimension: ing_branca {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_BRANCA" ;;
+  }
+
+  dimension: ing_cornd {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_CORND" ;;
+  }
+
+  dimension: ing_diurno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_DIURNO" ;;
+  }
+
+  dimension: ing_egr {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_EGR" ;;
+  }
+
+  dimension: ing_enem {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_ENEM" ;;
+  }
+
+  dimension: ing_fem {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FEM" ;;
+  }
+
+  dimension: ing_fies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FIES" ;;
+  }
+
+  dimension: ing_financ {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FINANC" ;;
+  }
+
+  dimension: ing_financ_nreemb {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FINANC_NREEMB" ;;
+  }
+
+  dimension: ing_financ_nreemb_outros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FINANC_NREEMB_OUTROS" ;;
+  }
+
+  dimension: ing_financ_reemb {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FINANC_REEMB" ;;
+  }
+
+  dimension: ing_financ_reemb_outros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_FINANC_REEMB_OUTROS" ;;
+  }
+
+  dimension: ing_indigena {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_INDIGENA" ;;
+  }
+
+  dimension: ing_masc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_MASC" ;;
+  }
+
+  dimension: ing_mob_academica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_MOB_ACADEMICA" ;;
+  }
+
+  dimension: ing_nacbras {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_NACBRAS" ;;
+  }
+
+  dimension: ing_nacestrang {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_NACESTRANG" ;;
+  }
+
+  dimension: ing_noturno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_NOTURNO" ;;
+  }
+
+  dimension: ing_nrpfies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_NRPFIES" ;;
+  }
+
+  dimension: ing_outra_forma {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_OUTRA_FORMA" ;;
+  }
+
+  dimension: ing_parda {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PARDA" ;;
+  }
+
+  dimension: ing_preta {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PRETA" ;;
+  }
+
+  dimension: ing_procescprivada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PROCESCPRIVADA" ;;
+  }
+
+  dimension: ing_procescpublica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PROCESCPUBLICA" ;;
+  }
+
+  dimension: ing_procnaoinformada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PROCNAOINFORMADA" ;;
+  }
+
+  dimension: ing_prounii {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PROUNII" ;;
+  }
+
+  dimension: ing_prounip {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_PROUNIP" ;;
+  }
+
+  dimension: ing_reserva_vaga {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RESERVA_VAGA" ;;
+  }
+
+  dimension: ing_rpfies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RPFIES" ;;
+  }
+
+  dimension: ing_rvetinico {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RVETINICO" ;;
+  }
+
+  dimension: ing_rvoutros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RVOUTROS" ;;
+  }
+
+  dimension: ing_rvpdef {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RVPDEF" ;;
+  }
+
+  dimension: ing_rvredepublica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RVREDEPUBLICA" ;;
+  }
+
+  dimension: ing_rvsocial_rf {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_RVSOCIAL_RF" ;;
+  }
+
+  dimension: ing_selecao_simplifica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_SELECAO_SIMPLIFICA" ;;
+  }
+
+  dimension: ing_vestibular {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_VESTIBULAR" ;;
+  }
+
+  dimension: ing_vg_nova {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_VG_NOVA" ;;
+  }
+
+  dimension: ing_vg_prog_especial {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_VG_PROG_ESPECIAL" ;;
+  }
+
+  dimension: ing_vg_remanesc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."ING_VG_REMANESC" ;;
+  }
+
+  dimension: mat_0_17 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_0_17" ;;
+  }
+
+  dimension: mat_18_24 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_18_24" ;;
+  }
+
+  dimension: mat_25_29 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_25_29" ;;
+  }
+
+  dimension: mat_30_34 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_30_34" ;;
+  }
+
+  dimension: mat_35_39 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_35_39" ;;
+  }
+
+  dimension: mat_40_49 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_40_49" ;;
+  }
+
+  dimension: mat_50_59 {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_50_59" ;;
+  }
+
+  dimension: mat_60_mais {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_60_MAIS" ;;
+  }
+
+  dimension: mat_aluno_deficiente {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_ALUNO_DEFICIENTE" ;;
+  }
+
+  dimension: mat_aluno_parfor {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_ALUNO_PARFOR" ;;
+  }
+
+  dimension: mat_amarela {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_AMARELA" ;;
+  }
+
+  dimension: mat_apoio_social {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_APOIO_SOCIAL" ;;
+  }
+
+  dimension: mat_ativ_extracurricular {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_ATIV_EXTRACURRICULAR" ;;
+  }
+
+  dimension: mat_branca {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_BRANCA" ;;
+  }
+
+  dimension: mat_cornd {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_CORND" ;;
+  }
+
+  dimension: mat_fies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FIES" ;;
+  }
+
+  dimension: mat_financ {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FINANC" ;;
+  }
+
+  dimension: mat_financ_nreemb {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FINANC_NREEMB" ;;
+  }
+
+  dimension: mat_financ_nreemb_outros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FINANC_NREEMB_OUTROS" ;;
+  }
+
+  dimension: mat_financ_reemb {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FINANC_REEMB" ;;
+  }
+
+  dimension: mat_financ_reemb_outros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_FINANC_REEMB_OUTROS" ;;
+  }
+
+  dimension: mat_indigena {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_INDIGENA" ;;
+  }
+
+  dimension: mat_mob_academica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_MOB_ACADEMICA" ;;
+  }
+
+  dimension: mat_nacbras {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_NACBRAS" ;;
+  }
+
+  dimension: mat_nacestrang {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_NACESTRANG" ;;
+  }
+
+  dimension: mat_nrpfies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_NRPFIES" ;;
+  }
+
+  dimension: mat_parda {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PARDA" ;;
+  }
+
+  dimension: mat_preta {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PRETA" ;;
+  }
+
+  dimension: mat_procescprivada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PROCESCPRIVADA" ;;
+  }
+
+  dimension: mat_procescpublica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PROCESCPUBLICA" ;;
+  }
+
+  dimension: mat_procnaoinformada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PROCNAOINFORMADA" ;;
+  }
+
+  dimension: mat_prounii {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PROUNII" ;;
+  }
+
+  dimension: mat_prounip {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_PROUNIP" ;;
+  }
+
+  dimension: mat_reserva_vaga {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RESERVA_VAGA" ;;
+  }
+
+  dimension: mat_rpfies {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RPFIES" ;;
+  }
+
+  dimension: mat_rvetinico {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RVETINICO" ;;
+  }
+
+  dimension: mat_rvoutros {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RVOUTROS" ;;
+  }
+
+  dimension: mat_rvpdef {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RVPDEF" ;;
+  }
+
+  dimension: mat_rvredepublica {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RVREDEPUBLICA" ;;
+  }
+
+  dimension: mat_rvsocial_rf {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."MAT_RVSOCIAL_RF" ;;
+  }
+
+  dimension: mob_academica {
+    type: number
+    sql: ${TABLE}."MOB_ACADEMICA" ;;
+  }
+
+  dimension: no_bairro_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_BAIRRO_IES" ;;
+  }
+
+  dimension: no_cine_area_detalhada {
+    type: string
+    sql: ${TABLE}."NO_CINE_AREA_DETALHADA" ;;
+  }
+
+  dimension: no_cine_area_especifica {
+    type: string
+    sql: ${TABLE}."NO_CINE_AREA_ESPECIFICA" ;;
+  }
+
+  dimension: no_cine_area_geral {
+    type: string
+    sql: ${TABLE}."NO_CINE_AREA_GERAL" ;;
+  }
+
+  dimension: no_cine_rotulo {
+    type: string
+    sql: ${TABLE}."NO_CINE_ROTULO" ;;
+  }
+
+  dimension: no_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_IES" ;;
+  }
+
+  dimension: no_mantenedora {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_MANTENEDORA" ;;
+  }
+
+  dimension: no_mesorregiao_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_MESORREGIAO_IES" ;;
+  }
+
+  dimension: no_microrregiao_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_MICRORREGIAO_IES" ;;
+  }
+
+  dimension: no_municipio {
+    type: string
+    sql: ${TABLE}."NO_MUNICIPIO" ;;
+  }
+
+  dimension: no_municipio_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_MUNICIPIO_IES" ;;
+  }
+
+  dimension: no_organizacao_academica {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_ORGANIZACAO_ACADEMICA" ;;
+  }
+
+  dimension: no_regiao {
+    type: string
+    sql: ${TABLE}."NO_REGIAO" ;;
+  }
+
+  dimension: no_regiao_ies {
+    type: string
+    sql: ${TABLE}."NO_REGIAO_IES" ;;
+  }
+
+  dimension: no_tp_categoria_administrativa {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_TP_CATEGORIA_ADMINISTRATIVA" ;;
+  }
+
+  dimension: no_tp_grau_academico {
+    type: string
+    sql: ${TABLE}."NO_TP_GRAU_ACADEMICO" ;;
+  }
+
+  dimension: no_tp_modalidade_ensino {
+    type: string
+    sql: ${TABLE}."NO_TP_MODALIDADE_ENSINO" ;;
+  }
+
+  dimension: no_tp_nivel_academico {
+    type: string
+    sql: ${TABLE}."NO_TP_NIVEL_ACADEMICO" ;;
+  }
+
+  dimension: no_tp_rede {
+    type: string
+    sql: ${TABLE}."NO_TP_REDE" ;;
+  }
+
+  dimension: no_uf {
+    type: string
+    sql: ${TABLE}."NO_UF" ;;
+  }
+
+  dimension: no_uf_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."NO_UF_IES" ;;
+  }
+
+  dimension: nu_ano_censo {
+    type: number
+    sql: ${TABLE}."NU_ANO_CENSO" ;;
+  }
+
+  dimension: nu_cep_ies {
+    group_label: "Dados IES"
+    type: number
+    sql: ${TABLE}."NU_CEP_IES" ;;
+  }
+
+  dimension: qt_conc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_CONC" ;;
+  }
+
+  dimension: qt_curso {
+    type: number
+    sql: ${TABLE}."QT_CURSO" ;;
+  }
+
+  dimension: qt_docente_exe {
+    type: number
+    sql: ${TABLE}."QT_DOCENTE_EXE" ;;
+  }
+
+  dimension: qt_docente_total {
+    type: number
+    sql: ${TABLE}."QT_DOCENTE_TOTAL" ;;
+  }
+
+  dimension: qt_ing {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_ING" ;;
+  }
+
+  dimension: qt_ing_60_mais {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_ING_60_MAIS" ;;
+  }
+
+  dimension: qt_insc_vg_nova {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSC_VG_NOVA" ;;
+  }
+
+  dimension: qt_insc_vg_prog_especial {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSC_VG_PROG_ESPECIAL" ;;
+  }
+
+  dimension: qt_insc_vg_remanesc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSC_VG_REMANESC" ;;
+  }
+
+  dimension: qt_inscrito_total {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSCRITO_TOTAL" ;;
+  }
+
+  dimension: qt_inscrito_total_diurno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSCRITO_TOTAL_DIURNO" ;;
+  }
+
+  dimension: qt_inscrito_total_ead {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSCRITO_TOTAL_EAD" ;;
+  }
+
+  dimension: qt_inscrito_total_noturno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_INSCRITO_TOTAL_NOTURNO" ;;
+  }
+
+  dimension: qt_livro_eletronico {
+
+    type: number
+    sql: ${TABLE}."QT_LIVRO_ELETRONICO" ;;
+  }
+
+  dimension: qt_mat {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_MAT" ;;
+  }
+
+  dimension: qt_mat_diurno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_MAT_DIURNO" ;;
+  }
+
+  dimension: qt_mat_fem {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_MAT_FEM" ;;
+  }
+
+  dimension: qt_mat_masc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_MAT_MASC" ;;
+  }
+
+  dimension: qt_mat_noturno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_MAT_NOTURNO" ;;
+  }
+
+  dimension: qt_periodico_eletronico {
+    type: number
+    sql: ${TABLE}."QT_PERIODICO_ELETRONICO" ;;
+  }
+
+  dimension: qt_tec_doutorado_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_DOUTORADO_FEM" ;;
+  }
+
+  dimension: qt_tec_doutorado_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_DOUTORADO_MASC" ;;
+  }
+
+  dimension: qt_tec_especializacao_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_ESPECIALIZACAO_FEM" ;;
+  }
+
+  dimension: qt_tec_especializacao_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_ESPECIALIZACAO_MASC" ;;
+  }
+
+  dimension: qt_tec_fundamental_comp_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_FUNDAMENTAL_COMP_FEM" ;;
+  }
+
+  dimension: qt_tec_fundamental_comp_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_FUNDAMENTAL_COMP_MASC" ;;
+  }
+
+  dimension: qt_tec_fundamental_incomp_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_FUNDAMENTAL_INCOMP_FEM" ;;
+  }
+
+  dimension: qt_tec_fundamental_incomp_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_FUNDAMENTAL_INCOMP_MASC" ;;
+  }
+
+  dimension: qt_tec_medio_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_MEDIO_FEM" ;;
+  }
+
+  dimension: qt_tec_medio_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_MEDIO_MASC" ;;
+  }
+
+  dimension: qt_tec_mestrado_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_MESTRADO_FEM" ;;
+  }
+
+  dimension: qt_tec_mestrado_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_MESTRADO_MASC" ;;
+  }
+
+  dimension: qt_tec_superior_fem {
+    type: number
+    sql: ${TABLE}."QT_TEC_SUPERIOR_FEM" ;;
+  }
+
+  dimension: qt_tec_superior_masc {
+    type: number
+    sql: ${TABLE}."QT_TEC_SUPERIOR_MASC" ;;
+  }
+
+  dimension: qt_tec_total {
+    type: number
+    sql: ${TABLE}."QT_TEC_TOTAL" ;;
+  }
+
+  dimension: qt_vaga_total {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VAGA_TOTAL" ;;
+  }
+
+  dimension: qt_vaga_total_diurno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VAGA_TOTAL_DIURNO" ;;
+  }
+
+  dimension: qt_vaga_total_ead {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VAGA_TOTAL_EAD" ;;
+  }
+
+  dimension: qt_vaga_total_noturno {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VAGA_TOTAL_NOTURNO" ;;
+  }
+
+  dimension: qt_vg_nova {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VG_NOVA" ;;
+  }
+
+  dimension: qt_vg_prog_especial {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VG_PROG_ESPECIAL" ;;
+  }
+
+  dimension: qt_vg_remanesc {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."QT_VG_REMANESC" ;;
+  }
+
+  dimension: sg_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."SG_IES" ;;
+  }
+
+  dimension: sg_uf {
+    type: string
+    sql: ${TABLE}."SG_UF" ;;
+  }
+
+  dimension: sg_uf_ies {
+    group_label: "Dados IES"
+    type: string
+    sql: ${TABLE}."SG_UF_IES" ;;
+  }
+
+  dimension: sit_desvinculado {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."SIT_DESVINCULADO" ;;
+  }
+
+  dimension: sit_falecido {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."SIT_FALECIDO" ;;
+  }
+
+  dimension: sit_trancada {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."SIT_TRANCADA" ;;
+  }
+
+  dimension: sit_transferido {
+    group_label: "Dados quantitativos por Curso"
+    type: number
+    sql: ${TABLE}."SIT_TRANSFERIDO" ;;
+  }
+
+  dimension: tp_categoria_administrativa {
+    type: number
+    sql: ${TABLE}."TP_CATEGORIA_ADMINISTRATIVA" ;;
+  }
+
+  dimension: tp_grau_academico {
+    type: number
+    sql: ${TABLE}."TP_GRAU_ACADEMICO" ;;
+  }
+
+  dimension: tp_modalidade_ensino {
+    type: number
+    sql: ${TABLE}."TP_MODALIDADE_ENSINO" ;;
+  }
+
+  dimension: tp_nivel_academico {
+    type: number
+    sql: ${TABLE}."TP_NIVEL_ACADEMICO" ;;
+  }
+
+  dimension: tp_organizacao_academica {
+    type: number
+    sql: ${TABLE}."TP_ORGANIZACAO_ACADEMICA" ;;
+  }
+
+  dimension: tp_rede {
+    type: number
+    sql: ${TABLE}."TP_REDE" ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+}
