@@ -306,7 +306,7 @@ view: gupy_candidaturas {
   }
 
   dimension: escolaridade_candidato {
-    group_label: "Dados da Candidato"
+    group_label: "Dados do Candidato"
     label: "Escolaridade"
     type: string
     sql:
@@ -344,77 +344,77 @@ view: gupy_candidaturas {
   }
 
   dimension: estado_candidato {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "Estado"
     type: string
     sql: ${TABLE}."ESTADO_CANDIDATO" ;;
   }
 
   dimension: estado_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Estado"
     type: string
     sql: ${TABLE}."ESTADO_VAGA" ;;
   }
 
   dimension: etapas_vagas {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Lista de Etapas"
     type: string
     sql: ${TABLE}."ETAPAS_VAGAS" ;;
   }
 
   dimension: flg_cadastro_completo {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Cadastro Completo?"
     type: yesno
     sql: ${TABLE}."FLG_CADASTRO_COMPLETO" ;;
   }
 
   dimension: flg_deficiencia {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "Possui deficiência?"
     type: yesno
     sql: ${TABLE}."FLG_DEFICIENCIA" ;;
   }
 
   dimension: flg_feedback {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Houve Feedback?"
     type: yesno
     sql: ${TABLE}."FLG_FEEDBACK" ;;
   }
 
   dimension: flg_funcionario {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "É funcionário?"
     type: yesno
     sql: ${TABLE}."FLG_FUNCIONARIO" ;;
   }
 
   dimension: flg_indicacao {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "É indicação?"
     type: yesno
     sql: ${TABLE}."FLG_INDICACAO" ;;
   }
 
   dimension: flg_vaga_deficiencia {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Vaga para Deficiente?"
     type: yesno
     sql: ${TABLE}."FLG_VAGA_DEFICIENCIA" ;;
   }
 
   dimension: genero_candidato {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "Genêro"
     type: string
     sql: ${TABLE}."GENERO_CANDIDATO" ;;
   }
 
   dimension: id_candidato {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "Código Identificador Único"
     type: number
     sql: ${TABLE}."ID_CANDIDATO" ;;
@@ -435,189 +435,189 @@ view: gupy_candidaturas {
   #}
 
   dimension: id_candidatura {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Código Identificador Único"
     type: number
     sql: ${TABLE}."ID_CANDIDATURA" ;;
   }
 
   dimension: id_etapa_atual {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Código da Etapa Atual"
     type: number
     sql: ${TABLE}."ID_ETAPA_ATUAL" ;;
   }
 
   dimension: id_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Código Identificador Único"
     type: number
     sql: ${TABLE}."ID_VAGA" ;;
   }
 
   dimension: indicado_por {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Indicado por"
     type: string
     sql: ${TABLE}."INDICADO_POR" ;;
   }
 
   dimension: metodo_fluxo_requerido {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Método do Fluxo"
     type: string
     sql: ${TABLE}."METODO_FLUXO_REQUERIDO" ;;
   }
 
   dimension: motivo_cancelamento_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Motivo do Cancelamento"
     type: string
     sql: ${TABLE}."MOTIVO_CANCELAMENTO_VAGA" ;;
   }
 
   dimension: motivo_declinio {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Motivo do Declínio"
     type: string
     sql: ${TABLE}."MOTIVO_DECLINIO" ;;
   }
 
   dimension: motivo_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Motivador"
     type: string
     sql: ${TABLE}."MOTIVO_VAGA" ;;
   }
 
   dimension: nm_candidato {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "Nome"
     type: string
     sql: ${TABLE}."NM_CANDIDATO" ;;
   }
 
   dimension: nm_criador {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Nome do Criador"
     type: string
     sql: ${TABLE}."NM_CRIADOR" ;;
   }
 
   dimension: nm_depto {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Departamento"
     type: string
     sql: ${TABLE}."NM_DEPTO" ;;
   }
 
   dimension: nm_etapa_atual {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Etapa Atual"
     type: string
     sql: ${TABLE}."NM_ETAPA_ATUAL" ;;
   }
 
   dimension: nm_funcao {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Função"
     type: string
     sql: ${TABLE}."NM_FUNCAO" ;;
   }
 
   dimension: nm_gerente {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Gerente"
     type: string
     sql: ${TABLE}."NM_GERENTE" ;;
   }
 
   dimension: nm_parceiro {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Parceiro"
     type: string
     sql: ${TABLE}."NM_PARCEIRO" ;;
   }
 
   dimension: nm_recrutador {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Recrutador"
     type: string
     sql: ${TABLE}."NM_RECRUTADOR" ;;
   }
 
   dimension: nm_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Nome da Vaga"
     type: string
     sql: ${TABLE}."NM_VAGA" ;;
   }
 
   dimension: nota_cancelamento_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Nota de Cancelamento"
     type: string
     sql: ${TABLE}."NOTA_CANCELAMENTO_VAGA" ;;
   }
 
   dimension: nro_vagas {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Número de Vagas"
     type: number
     sql: ${TABLE}."NRO_VAGAS" ;;
   }
 
   dimension: origem_candidatura {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Origem"
     type: string
     sql: ${TABLE}."ORIGEM_CANDIDATURA" ;;
   }
 
   dimension: pais_candidato {
-    group_label: "Dados Candidato"
+    group_label: "Dados do Candidato"
     label: "País"
     type: string
     sql: ${TABLE}."PAIS_CANDIDATO" ;;
   }
 
   dimension: pais_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "País"
     type: string
     sql: ${TABLE}."PAIS_VAGA" ;;
   }
 
   dimension: perguntas_adicionais {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Perguntas Adicionais"
     type: string
     sql: ${TABLE}."PERGUNTAS_ADICIONAIS" ;;
   }
 
   dimension: salario_estimativa_final {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Estimativa Salarial Final"
     type: number
     sql: ${TABLE}."SALARIO_ESTIMATIVA_FINAL" ;;
   }
 
   dimension: salario_estimativa_inicial {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Estimativa Salarial Inicial"
     type: number
     sql: ${TABLE}."SALARIO_ESTIMATIVA_INICIAL" ;;
   }
 
   dimension: salario_moeda {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Moeda"
     type: string
     sql: ${TABLE}."SALARIO_MOEDA" ;;
   }
 
   dimension: status_candidatura {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Status"
     type: string
     sql: case ${TABLE}."STATUS_CANDIDATURA"
@@ -631,21 +631,21 @@ view: gupy_candidaturas {
   }
 
   dimension: status_etapa_atual {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Status da Etapa Atual"
     type: string
     sql: ${TABLE}."STATUS_ETAPA_ATUAL" ;;
   }
 
   dimension: status_indicacao {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Status da Indicação"
     type: string
     sql: ${TABLE}."STATUS_INDICACAO" ;;
   }
 
   dimension: status_vaga {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Status"
     type: string
     sql: case ${TABLE}."STATUS_VAGA"
@@ -660,35 +660,35 @@ view: gupy_candidaturas {
   }
 
   dimension: tags {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Lista de Tags"
     type: string
     sql: ${TABLE}."TAGS" ;;
   }
 
   dimension: tipo {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Tipo"
     type: string
     sql: ${TABLE}."TIPO" ;;
   }
 
   dimension: tipo_contratacao {
-    group_label: "Dados Candidatura"
+    group_label: "Dados da Candidatura"
     label: "Tipo Contratação"
     type: string
     sql: ${TABLE}."TIPO_CONTRATACAO" ;;
   }
 
   dimension: tipo_publicacao {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Tipo Publicação"
     type: string
     sql: ${TABLE}."TIPO_PUBLICACAO" ;;
   }
 
   dimension: trabalho_remoto {
-    group_label: "Dados Vaga"
+    group_label: "Dados da Vaga"
     label: "Trabalho Remoto?"
     type: yesno
     sql: ${TABLE}."TRABALHO_REMOTO" ;;
