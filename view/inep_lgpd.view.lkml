@@ -13,6 +13,7 @@ view: inep_lgpd {
 
   dimension: aluno_deficiente {
     group_label: "Dados quantitativos de Alunos"
+    label: "Qtd. alunos com deficiência"
     type: number
     sql: ${TABLE}."ALUNO_DEFICIENTE" ;;
   }
@@ -118,7 +119,7 @@ view: inep_lgpd {
 
   dimension: co_municipio {
     group_label: "Dados do curso - Local de Oferta"
-    label: "Código IBGE do Município - Local de oferta"
+    label: "Código IBGE do Município"
     description: "Código do IBGE do municipio do local de oferta do curso"
     type: number
     sql: ${TABLE}."CO_MUNICIPIO" ;;
@@ -133,7 +134,7 @@ view: inep_lgpd {
 
   dimension: co_regiao {
     group_label: "Dados do curso - Local de Oferta"
-    label: "Região - Local de oferta"
+    label: "Código da Região"
     description: "Código da região geográfica do local de oferta do curso"
     type: number
     sql: ${TABLE}."CO_REGIAO" ;;
@@ -141,7 +142,7 @@ view: inep_lgpd {
 
   dimension: co_regiao_ies {
     group_label: "Dados IES"
-    label: "Código da região da IES"
+    label: "Código da Região"
     type: number
     sql: ${TABLE}."CO_REGIAO_IES" ;;
   }
@@ -156,7 +157,7 @@ view: inep_lgpd {
 
   dimension: co_uf_ies {
     group_label: "Dados IES"
-    label: "Código UF da IES"
+    label: "Código UF"
     description: "Código da UF da sede administrativa ou reitoria da IES"
     type: number
     sql: ${TABLE}."CO_UF_IES" ;;
@@ -413,7 +414,7 @@ view: inep_lgpd {
 
   dimension: conc_procnaoinformada {
     group_label: "Dados quantitativos de Alunos"
-    label: "Qtrd. concluintes ensino médio não informado"
+    label: "Qtd. concluintes ensino médio não informado"
     description: "Quantidade de concluinte que não informaram o tipo de escola que terminaram o médio"
     type: number
     sql: ${TABLE}."CONC_PROCNAOINFORMADA" ;;
@@ -699,14 +700,14 @@ view: inep_lgpd {
 
   dimension: ds_complemento_endereco_ies {
     group_label: "Dados IES"
-    label: "Complemento IES"
+    label: "Endereço/Complemento"
     type: string
     sql: ${TABLE}."DS_COMPLEMENTO_ENDERECO_IES" ;;
   }
 
   dimension: ds_endereco_ies {
     group_label: "Dados IES"
-    label: "Endereço IES"
+    label: "Endereço"
     description: "Endereço da sede administrativa/reitoria da IES"
     type: string
     sql: ${TABLE}."DS_ENDERECO_IES" ;;
@@ -714,14 +715,14 @@ view: inep_lgpd {
 
   dimension: ds_numero_endereco_ies {
     group_label: "Dados IES"
-    label: "Número/Endereço IES"
+    label: "Endereço/Número"
     type: string
     sql: ${TABLE}."DS_NUMERO_ENDERECO_IES" ;;
   }
 
   dimension: in_acesso_outras_bases {
     group_label: "Dados IES"
-    label: "IES - Acessa outras bases"
+    label: "Acessa outras bases?"
     description: "Informa se as bibliotecas da IES tem acesso a outras bases de dados licenciadas ou compradas"
     type: yesno
     sql: ${TABLE}."IN_ACESSO_OUTRAS_BASES" ;;
@@ -729,7 +730,7 @@ view: inep_lgpd {
 
   dimension: in_acesso_portal_capes {
     group_label: "Dados IES"
-    label: "IES - Acessa portal capes"
+    label: "Acessa portal capes?"
     description: "Informa se as bibliotecas da IES tem acesso ao portal Capes de periódicos"
     type: yesno
     sql: ${TABLE}."IN_ACESSO_PORTAL_CAPES" ;;
@@ -737,7 +738,7 @@ view: inep_lgpd {
 
   dimension: in_assina_outra_base {
     group_label: "Dados IES"
-    label: "IES - Assina outra base"
+    label: "Assina outra base?"
     description: "Informa se as bibliotecas da IES assina outras bases de dados licenciadas ou compradas"
     type: yesno
     sql: ${TABLE}."IN_ASSINA_OUTRA_BASE" ;;
@@ -745,7 +746,7 @@ view: inep_lgpd {
 
   dimension: in_busca_integrada {
     group_label: "Dados IES"
-    label: "IES - Busca integrada"
+    label: "Busca integrada?"
     description: "Informa se as bibliotecas da IES oferecem serviços pela internet"
     type: yesno
     sql: ${TABLE}."IN_BUSCA_INTEGRADA" ;;
@@ -769,7 +770,7 @@ view: inep_lgpd {
 
   dimension: in_catalogo_online {
     group_label: "Dados IES"
-    label: "IES - Catalogo online"
+    label: "Possui Catalogo online?"
     description: "Informa se a IES possui ferramenta de recuperação de informação que permite ao usuário consultar, de forma local ou remota, a existência e disponibilidade de itens do acervo da(s) biblioteca(s)."
     type: yesno
     sql: ${TABLE}."IN_CATALOGO_ONLINE" ;;
@@ -777,7 +778,7 @@ view: inep_lgpd {
 
   dimension: in_participa_rede_social {
     group_label: "Dados IES"
-    label: "IES - Participa rede social"
+    label: "Participa de rede social?"
     description: "Informa se a biblioteca participam de Redes Sociais"
     type: yesno
     sql: ${TABLE}."IN_PARTICIPA_REDE_SOCIAL" ;;
@@ -785,7 +786,7 @@ view: inep_lgpd {
 
   dimension: in_repositorio_institucional {
     group_label: "Dados IES"
-    label: "IES - Repositório institucional"
+    label: "Possui repositório institucional?"
     description: "Informa se a IES possui base de dados online que reúne de maneira organizada a produção científica da instituição."
     type: yesno
     sql: ${TABLE}."IN_REPOSITORIO_INSTITUCIONAL" ;;
@@ -793,7 +794,7 @@ view: inep_lgpd {
 
   dimension: in_servico_internet {
     group_label: "Dados IES"
-    label: "IES - Servico internet"
+    label: "Possui servico de internet?"
     description: "Informa se as bibliotecas da IES oferecem serviços pela internet"
     type: yesno
     sql: ${TABLE}."IN_SERVICO_INTERNET" ;;
@@ -1482,13 +1483,15 @@ view: inep_lgpd {
   }
 
   dimension: mob_academica {
+    label: "Mobilidade Acadêmica"
+    hidden: yes
     type: number
     sql: ${TABLE}."MOB_ACADEMICA" ;;
   }
 
   dimension: no_bairro_ies {
     group_label: "Dados IES"
-    label: "Bairro IES"
+    label: "Bairro"
     type: string
     sql: ${TABLE}."NO_BAIRRO_IES" ;;
   }
@@ -1527,28 +1530,28 @@ view: inep_lgpd {
 
   dimension: no_ies {
     group_label: "Dados IES"
-    label: "IES"
+    label: "Nome da Instituição de Ensino"
     type: string
     sql: ${TABLE}."NO_IES" ;;
   }
 
   dimension: no_mantenedora {
     group_label: "Dados IES"
-    label: "Mantenedora IES"
+    label: "Mantenedora"
     type: string
     sql: ${TABLE}."NO_MANTENEDORA" ;;
   }
 
   dimension: no_mesorregiao_ies {
     group_label: "Dados IES"
-    label: "Messoregião IES"
+    label: "Messoregião"
     type: string
     sql: ${TABLE}."NO_MESORREGIAO_IES" ;;
   }
 
   dimension: no_microrregiao_ies {
     group_label: "Dados IES"
-    label: "Microrregião IES"
+    label: "Microrregião"
     type: string
     sql: ${TABLE}."NO_MICRORREGIAO_IES" ;;
   }
@@ -1577,7 +1580,7 @@ view: inep_lgpd {
 
   dimension: no_regiao {
     group_label: "Dados do curso - Local de Oferta"
-    label: "Região - Local de oferta"
+    label: "Região"
     description: "Nome da região geográfica do local de oferta do curso"
     type: string
     sql: ${TABLE}."NO_REGIAO" ;;
@@ -1592,7 +1595,7 @@ view: inep_lgpd {
 
   dimension: no_tp_categoria_administrativa {
     group_label: "Dados IES"
-    label: "Categoria administrativa IES"
+    label: "Categoria Administrativa"
     type: string
     sql: ${TABLE}."NO_TP_CATEGORIA_ADMINISTRATIVA" ;;
   }
@@ -1614,21 +1617,21 @@ view: inep_lgpd {
 
   dimension: no_tp_nivel_academico {
     group_label: "Dados do curso"
-    label: "Tipo de nível acadêmico do curso"
+    label: "Nível acadêmico do curso"
     type: string
     sql: ${TABLE}."NO_TP_NIVEL_ACADEMICO" ;;
   }
 
   dimension: no_tp_rede {
     group_label: "Dados IES"
-    label: "Rede de Ensino IES"
+    label: "Rede de Ensino"
     type: string
     sql: ${TABLE}."NO_TP_REDE" ;;
   }
 
   dimension: no_uf {
     group_label: "Dados do curso - Local de Oferta"
-    label: "UF - Local de oferta"
+    label: "UF"
     description: "Nome da Unidade da Federação do local de oferta do curso"
     type: string
     sql: ${TABLE}."NO_UF" ;;
@@ -1636,7 +1639,7 @@ view: inep_lgpd {
 
   dimension: no_uf_ies {
     group_label: "Dados IES"
-    label: "UF - IES"
+    label: "UF"
     type: string
     sql: ${TABLE}."NO_UF_IES" ;;
   }
@@ -1663,21 +1666,22 @@ view: inep_lgpd {
 
   dimension: qt_curso {
     group_label: "Dados quantitativos do Curso"
-    label: "Número de cursos"
+    label: "Qtd. de cursos"
+    description: "Quantidade de cursos da insituição"
     type: number
     sql: ${TABLE}."QT_CURSO" ;;
   }
 
   dimension: qt_docente_exe {
     group_label: "Dados quantitativos dos Docentes IES"
-    label: "Total docentes em exercício"
+    label: "Qtd. total de docentes em exercício"
     type: number
     sql: ${TABLE}."QT_DOCENTE_EXE" ;;
   }
 
   dimension: qt_docente_total {
     group_label: "Dados quantitativos dos Docentes IES"
-    label: "Total docentes"
+    label: "Qtd. total de docentes"
     type: number
     sql: ${TABLE}."QT_DOCENTE_TOTAL" ;;
   }
@@ -1973,7 +1977,7 @@ view: inep_lgpd {
 
   dimension: sg_uf {
     group_label: "Dados do curso - Local de Oferta"
-    label: "Sigla UF - Local de oferta"
+    label: "Sigla UF"
     description: "Sigla da Unidade da Federação do local de oferta do curso"
     type: string
     sql: ${TABLE}."SG_UF" ;;
@@ -1981,6 +1985,7 @@ view: inep_lgpd {
 
   dimension: sg_uf_ies {
     group_label: "Dados IES"
+    label: "Sigla UF"
     type: string
     sql: ${TABLE}."SG_UF_IES" ;;
   }
@@ -2024,35 +2029,35 @@ view: inep_lgpd {
 
   dimension: tp_grau_academico {
     group_label: "Dados IES"
-    label: "Código do Grau Acadêmico da IES"
+    label: "Código do Grau Acadêmico"
     type: number
     sql: ${TABLE}."TP_GRAU_ACADEMICO" ;;
   }
 
   dimension: tp_modalidade_ensino {
     group_label: "Dados IES"
-    label: "Código da Modalidade de Ensino IES"
+    label: "Código da Modalidade de Ensino"
     type: number
     sql: ${TABLE}."TP_MODALIDADE_ENSINO" ;;
   }
 
   dimension: tp_nivel_academico {
     group_label: "Dados IES"
-    label: "Código do Nível Acadêmico IES"
+    label: "Código do Nível Acadêmico"
     type: number
     sql: ${TABLE}."TP_NIVEL_ACADEMICO" ;;
   }
 
   dimension: tp_organizacao_academica {
     group_label: "Dados IES"
-    label: "Código da Organização Acadêmica IES"
+    label: "Código da Organização Acadêmica"
     type: number
     sql: ${TABLE}."TP_ORGANIZACAO_ACADEMICA" ;;
   }
 
   dimension: tp_rede {
     group_label: "Dados IES"
-    label: "Código da Rede de  Ensino IES"
+    label: "Código da Rede de  Ensino"
     type: number
     sql: ${TABLE}."TP_REDE" ;;
   }
