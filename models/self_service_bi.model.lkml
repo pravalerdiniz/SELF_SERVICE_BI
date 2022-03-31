@@ -144,7 +144,7 @@ explore: inep {
 explore: inep_lgpd {
   label: "Inep - Estrutura LGPD"
   view_label: "Inep - Estrutura LGPD"
-  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)"
+  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)."
 }
 
 explore: instituicao_metas_gc {
