@@ -167,7 +167,7 @@ explore: instituicao_metas_gc {
   {
     sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
              ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
