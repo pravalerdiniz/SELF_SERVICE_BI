@@ -140,6 +140,13 @@ explore: inep {
 
   }
 }
+
+explore: inep_lgpd {
+  label: "Inep - Estrutura LGPD"
+  view_label: "Inep - Estrutura LGPD"
+  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)."
+}
+
 explore: instituicao_metas_gc {
 
   join: dias_uteis
@@ -1795,4 +1802,9 @@ explore: prv_log {
 
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
+}
+
+explore: gupy_candidaturas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
 }
