@@ -144,7 +144,7 @@ explore: inep {
 explore: inep_lgpd {
   label: "Inep - Estrutura LGPD"
   view_label: "Inep - Estrutura LGPD"
-  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)"
+  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)."
 }
 
 explore: instituicao_metas_gc {
@@ -165,9 +165,9 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+    sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
              ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
@@ -1804,6 +1804,12 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
-explore: dados_intake {
-  label: "Dados Intake"
+explore: gupy_candidaturas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
+
+explore: google_analytics {
+  label: "Google Analytics"
+  description: "Informações sobre o site do Pravaler pelo Google Analytics"
 }
