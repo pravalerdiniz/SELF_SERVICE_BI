@@ -29,7 +29,12 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0,15','
        ;;
   }
 
-  measure: count {
+ dimension: date {
+   type: date
+  sql: ${TABLE}."MesAno" ;;
+ }
+
+ measure: count {
     type: count
     drill_fields: [detail*]
   }
