@@ -57,7 +57,7 @@ view: google_analytics {
       year
     ]
     convert_tz: no
-    datatype: date
+
     sql: ${TABLE}."DATE" ;;
     label: "Data da sessão"
     description: "Data considerada para análise do site"
