@@ -63,25 +63,25 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0,15','
     value_format: "0"
   }
 
-  dimension: sazonalidade {
+  measure: sazonalidade {
     type: string
     sql: ${TABLE}."sazonalidade" ;;
     value_format: "0"
   }
 
-  dimension: intake_prv_ae {
+  measure: intake_prv_ae {
     type: string
     sql: ${TABLE}."intake_prv_ae" ;;
     value_format: "0"
   }
 
-  dimension: intake_prv {
+  measure: intake_prv {
     type: string
     sql: ${TABLE}."intake_prv" ;;
     value_format: "0"
   }
 
-  dimension: intake_ae {
+  measure: intake_ae {
     type: string
     sql: ${TABLE}."intake_ae" ;;
     value_format: "0"
