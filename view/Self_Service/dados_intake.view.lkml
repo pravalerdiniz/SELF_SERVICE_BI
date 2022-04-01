@@ -30,7 +30,7 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0,15','
   }
 
  dimension: date {
-   type: date
+   type: string
   sql: ${TABLE}."MesAno" ;;
  }
 
@@ -66,25 +66,25 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0,15','
   dimension: sazonalidade {
     type: string
     sql: ${TABLE}."sazonalidade" ;;
-    value_format: "0.0%"
+    value_format: "0"
   }
 
   dimension: intake_prv_ae {
     type: string
     sql: ${TABLE}."intake_prv_ae" ;;
-    value_format: "0.0%"
+    value_format: "0"
   }
 
   dimension: intake_prv {
     type: string
     sql: ${TABLE}."intake_prv" ;;
-    value_format: "0.0%"
+    value_format: "0"
   }
 
   dimension: intake_ae {
     type: string
     sql: ${TABLE}."intake_ae" ;;
-    value_format: "0.0%"
+    value_format: "0"
   }
 
   set: detail {
