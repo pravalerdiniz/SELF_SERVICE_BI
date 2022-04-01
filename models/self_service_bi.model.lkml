@@ -1803,3 +1803,7 @@ explore: prv_log {
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
+
+explore: dados_intake {
+  label: "Dados Intake"
+}
