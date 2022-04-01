@@ -1813,3 +1813,7 @@ explore: google_analytics {
   label: "Google Analytics"
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
 }
+
+explore: dados_intake {
+  label: "Dados Intake"
+}
