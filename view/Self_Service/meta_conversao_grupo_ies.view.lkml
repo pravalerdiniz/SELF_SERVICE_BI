@@ -13,7 +13,7 @@ view: meta_conversao_grupo_ies {
     type: string
     primary_key: yes
     hidden: yes
-    sql:concat(${data},${grupo}) ;;
+    sql:concat(${data},${gerente},${grupo}) ;;
   }
 
   dimension: data {
