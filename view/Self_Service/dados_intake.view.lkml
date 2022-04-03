@@ -78,19 +78,19 @@ union select '2022-02-01' ,'4822226,370552' ,'3349','6076','217000,18667484','0.
   measure: intake_prv_ae {
     type: sum
     sql: ${TABLE}."intake_prv_ae" ;;
-    value_format: "0"
+    value_format: "0.0%"
   }
 
   measure: intake_prv {
     type: sum
     sql: ${TABLE}."intake_prv" ;;
-    value_format: "0"
+    value_format: "0.0%"
   }
 
   measure: intake_ae {
     type: sum
     sql: ${TABLE}."intake_ae" ;;
-    value_format: "0"
+    value_format: "0.0%"
   }
 
   set: detail {
