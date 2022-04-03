@@ -66,7 +66,7 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0.15','
   measure: sazonalidade {
     type: sum
     sql: ${TABLE}."sazonalidade" ;;
-    value_format: "0"
+    value_format: "0.0%"
   }
 
   measure: intake_prv_ae {
