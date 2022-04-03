@@ -64,25 +64,25 @@ union select '44593' ,'4822226,370552' ,'3349','6076','217000,18667484','0,15','
   }
 
   measure: sazonalidade {
-    type: string
+    type: sum
     sql: ${TABLE}."sazonalidade" ;;
     value_format: "0"
   }
 
   measure: intake_prv_ae {
-    type: string
+    type: sum
     sql: ${TABLE}."intake_prv_ae" ;;
     value_format: "0"
   }
 
   measure: intake_prv {
-    type: string
+    type: sum
     sql: ${TABLE}."intake_prv" ;;
     value_format: "0"
   }
 
   measure: intake_ae {
-    type: string
+    type: sum
     sql: ${TABLE}."intake_ae" ;;
     value_format: "0"
   }
