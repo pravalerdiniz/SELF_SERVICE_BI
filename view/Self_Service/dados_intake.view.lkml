@@ -45,26 +45,26 @@ union select '2022-02-01' ,'4822226,370552' ,'3349','6076','217000,18667484','0.
     drill_fields: [detail*]
   }
 
-  dimension: matriculados {
-    type: string
+  measure: matriculados {
+    type: sum
     sql: ${TABLE}."matriculados" ;;
     value_format: "0"
   }
 
-  dimension: graduacao {
-    type: string
+  measure: graduacao {
+    type: sum
     sql: ${TABLE}."graduacao" ;;
     value_format: "0"
   }
 
-  dimension: amigoedu {
-    type: string
+  measure: amigoedu {
+    type: sum
     sql: ${TABLE}."amigoedu" ;;
     value_format: "0"
   }
 
-  dimension: captcao {
-    type: string
+  measure: captcao {
+    type: sum
     sql: ${TABLE}."captcao" ;;
     value_format: "0"
   }
