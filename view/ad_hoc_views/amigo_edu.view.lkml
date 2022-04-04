@@ -123,6 +123,27 @@ view: amigo_edu {
     sql: ${d_inscritos_que_fizeram_a_prova_enae} ;;
   }
 
+  dimension: d_receita_provas_dig {
+    type: string
+    sql: ${TABLE}."RECEITA_PROVAS_DIG" ;;
+    hidden: yes
+  }
+
+  measure: receita_provas_dig {
+    type: sum
+    sql: ${d_receita_provas_dig} ;;
+  }
+
+  dimension: d_total_de_vestibulares_realizados {
+    type: string
+    sql: ${TABLE}."TOTAL_DE_VESTIBULARES_REALIZADOS" ;;
+    hidden: yes
+  }
+
+  measure: total_de_vestibulares_realizados {
+    type: sum
+    sql: ${d_total_de_vestibulares_realizados} ;;
+  }
 
     set: detail {
     fields: [
@@ -135,7 +156,9 @@ view: amigo_edu {
       d_produto_de_atracao_usuarios_preparae_total,
       d_produto_de_atracao_usuarios_ativos_preparae_total,
       d_conversao_busca_nota,
-      d_inscritos_que_fizeram_a_prova_enae
+      d_inscritos_que_fizeram_a_prova_enae,
+      d_receita_provas_dig,
+      d_total_de_vestibulares_realizados
       ]
   }
 }
