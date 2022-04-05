@@ -2,13 +2,13 @@ view: ga_origem_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
-
+    f.key as origem,
     f.value:FINALIZADO::int as FINALIZADO,
     f.value:GOALCOMPLETE::int as GOALCOMPLETE,
     f.value:INICIADO::int as INICIADO,
     f.value:LEAD::int as LEAD,
     f.value:NEWUSERS::int as NEWUSERS,
-    f.value:ORIGEM::int as ORIGEM_OBJ,
+    f.value:ORIGEM::varchar as ORIGEM_OBJ,
     f.value:SESSIONS::int as SESSIONS,
     f.value:SIMULADO::int as SIMULADO,
     f.value:USERS::int as USERS
