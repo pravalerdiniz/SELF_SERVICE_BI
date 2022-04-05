@@ -1812,6 +1812,14 @@ explore: gupy_candidaturas {
 explore: google_analytics {
   label: "Google Analytics"
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
+
+  join: ga_origem_aquisicao_conversao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {
