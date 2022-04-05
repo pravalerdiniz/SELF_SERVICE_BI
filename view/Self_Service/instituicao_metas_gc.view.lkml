@@ -102,6 +102,15 @@ view: instituicao_metas_gc {
     sql: ${TABLE}."DATA" ;;
   }
 
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "YTD"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_meta_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_meta_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+  }
+
   dimension: dia{
     type: number
     label: "Dia"

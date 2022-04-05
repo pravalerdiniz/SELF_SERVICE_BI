@@ -165,9 +165,9 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+    sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
              ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
@@ -1807,4 +1807,13 @@ explore: aproveitamento_estoque_nok{
 explore: gupy_candidaturas {
   label: "Dados GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
+
+explore: google_analytics {
+  label: "Google Analytics"
+  description: "Informações sobre o site do Pravaler pelo Google Analytics"
+}
+
+explore: dados_intake {
+  label: "Dados Intake"
 }
