@@ -607,6 +607,14 @@ explore: instituicao {
     type: left_outer
 
   }
+  join: taxa_instituicao_simplificada {
+    view_label: "1.4. Taxas da Instituição Simplificada"
+    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
+      and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
 
   join: instituicao_metas_gc {
     view_label: "1.4 Metas - GC"
@@ -774,6 +782,16 @@ explore: financeiro {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+
+  join: taxa_instituicao_simplificada {
+    view_label: "3.4. Taxas da Instituição Simplificada"
+    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
+      and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
     relationship: one_to_many
     type: left_outer
 
