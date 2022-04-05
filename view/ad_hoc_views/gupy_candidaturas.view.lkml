@@ -480,7 +480,31 @@ view: gupy_candidaturas {
     group_label: "Dados da Candidatura"
     label: "Motivo do Declínio"
     type: string
-    sql: ${TABLE}."MOTIVO_DECLINIO" ;;
+    sql: case ${TABLE}."MOTIVO_DECLINIO"
+          when 'candidate_outside_required_location' then 'candidato_fora_localizacao_requerida'
+          when 'elevated_wage_expectation' then 'alta_expectativa_salario'
+          when 'fulfilled_vacancy' then 'vagas_preenchidas'
+          when 'gave_up_for_personal_reasons' then 'desistencia_motivos_pessoais'
+          when 'hired_by_another_company' then 'contratado_outra_empresa'
+          when 'hired_in_another_job' then 'contratado_outro_trabalho'
+          when 'incompatible_curriculum' then 'curriculo_incompativel'
+          when 'insufficient_academic_background' then 'background_academico_insuficiente'
+          when 'insufficient_knowledge' then 'conhecimento_insuficiente'
+          when 'insufficient_seniority' then 'senioridade_insuficiente'
+          when 'invited_to_another_process' then 'convidado_outro_processo'
+          when 'lack_of_culture_alignment' then 'falta_alinhamento_cultural'
+          when 'lack_of_professional_experience' then 'falta_experiencia_profissional'
+          when 'little_stability_in_previous_companies' then 'pouca_estabilidade_enmpresas_anteriores'
+          when 'missed_steps_of_process' then 'perdeu_etapas_processo'
+          when 'no_potential_for_growth' then 'sem_potencial_crescimento'
+          when 'not_respond_to_contacts' then 'nao_responde_contatos'
+          when 'other_reason' then 'outras_razoes'
+          when 'overqualified' then 'muito_qualificado'
+          when 'proposal_not_accepted' then 'proposta_nao_aceita'
+          when 'test_result_below_cutoff' then 'resultado_teste_abaixo'
+      else ${TABLE}."MOTIVO_DECLINIO"
+    end
+    ;;
   }
 
   dimension: motivo_vaga {
