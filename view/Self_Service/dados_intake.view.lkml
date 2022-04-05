@@ -1,6 +1,6 @@
 view: dados_intake {
   derived_table: {
-    sql:select '2020-01-01' as MesAno,'4258972' as Matriculados,'1225' as Graduacao,'479' as AmigoEdu,'114992,244' as Captcao,'0.09' as Sazonalidade,'0.0148183907081594' as Intake_PRV_AE,'0.0106528923811592' as Intake_PRV,'0.00416549832700021' as Intake_AE,'0.012' as Retencao,'0' as Grupos IES,'0' as Conv_Renov
+    sql:select '2020-01-01' as MesAno,'4258972' as Matriculados,'1225' as Graduacao,'479' as AmigoEdu,'114992,244' as Captcao,'0.09' as Sazonalidade,'0.0148183907081594' as Intake_PRV_AE,'0.0106528923811592' as Intake_PRV,'0.00416549832700021' as Intake_AE,'0.012' as Retencao,'0' as Grupos_IES,'0' as Conv_Renov
 union select '2020-02-01' ,'4258972' ,'2270','1156','191653,74','0.15','0.0178759882275191','0.0118442770801133','0.00603171114740573','0.01','0','0'
 union select '2020-03-01' ,'4258972' ,'2460','1159','204430,656','0.16','0.0177028243748335','0.0120334202713706','0.00566940410346284','0.009','0','0'
 union select '2020-04-01' ,'4258972' ,'629','157','89438,412','0.07','0.00878817034452713','0.00703277245128189','0.00175539789324524','0.006','0','0'
