@@ -5,7 +5,7 @@ view: ga_campanha_aquisicao_conversao {
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
-          f.value:ID_CAMPANHA::int as ID_CAMPANHA,
+          f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
           f.value:NEWUSERS::int as NEWUSERS,
           f.value:SESSIONS::int as SESSIONS,
           f.value:USERS::int as USERS
@@ -58,7 +58,7 @@ view: ga_campanha_aquisicao_conversao {
     label: "5. Soma das etapas"
     description: "Soma das etapas de Lead, Simulado, Iniciado e Finalizado no site."
     sql: ${TABLE}."GOALCOMPLETE";;
-    group_label: "Etapas | CAMPANHA"
+    group_label: "Etapas"
   }
 
   measure: total_new_users {
@@ -66,7 +66,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."NEWUSERS" ;;
     label: "Soma Novos usuários"
     description: "Soma total de novos usuarios no site de acordo com CANAL."
-    group_label: "Aquisição | CAMPANHA"
+    group_label: "Aquisição"
   }
 
   measure: total_sessions{
@@ -74,7 +74,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."SESSIONS" ;;
     label: "Soma das Sessões"
     description: "Soma das sessões no site de acordo com CANAL."
-    group_label: "Aquisição | CAMPANHA"
+    group_label: "Aquisição"
   }
 
   measure: total_users {
@@ -82,7 +82,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."USERS" ;;
     label: "Soma dos Usuários"
     description: "Soma total dos usuários do site de acordo com CANAL."
-    group_label: "Aquisição | CAMPANHA"
+    group_label: "Aquisição"
   }
 
 }

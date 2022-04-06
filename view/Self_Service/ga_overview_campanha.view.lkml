@@ -46,35 +46,35 @@ view: ga_overview_campanha {
   dimension: campanha {
     type: string
     sql: ${TABLE}."CAMPANHA" ;;
-    label: "Campanha | Overview"
+    label: "Campanha"
     description: "São os nomes das campanhas de anúncios on-line."
   }
 
   dimension: grupo_anuncio {
     type: string
     sql: ${TABLE}."GRUPO_ANUNCIO" ;;
-    label: "Grupo de anúncio | Overview"
+    label: "Grupo de anúncio"
     description: "O nome do grupo de anúncios do AdWords."
   }
 
   dimension: id_grupo_anuncio {
     type: string
     sql: ${TABLE}."ID_GRUPO_ANUNCIO" ;;
-    label: "ID Grupo de anúncio | Overview"
+    label: "ID Grupo de anúncio"
     description: "ID do grupo de anúncios do AdWords."
   }
 
   dimension: id_campanha {
     type: string
     sql: ${TABLE}."ID_CAMPANHA" ;;
-    label: "ID Campanha | Overview"
+    label: "ID Campanha"
     description: "ID da Campanha pelo AdWords."
   }
 
   measure: total_clicks_anuncio {
     type: sum
     sql: ${TABLE}."CLICKS_ANUNCIO" ;;
-    label: "Cliques | Anúncio"
+    label: "Cliques"
     description: "Número total de vezes que os usuários clicaram em um anúncio."
   }
 
@@ -95,7 +95,7 @@ view: ga_overview_campanha {
   measure: total_custo_anuncio {
     type: sum
     sql: ${TABLE}."CUSTO_ANUNCIO" ;;
-    label: "Custo | Anúncio"
+    label: "Custo"
     description: "Custo derivado da campanha publicitária."
   }
 
