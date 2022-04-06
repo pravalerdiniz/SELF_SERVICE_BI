@@ -15,6 +15,7 @@ view: financeiro_extrato_titulo {
       f.value:id_produto::varchar id_produto
       from GRADUADO.SELF_SERVICE_BI.FINANCEIRO a,
       lateral flatten (input => id_extrato_titulo_info) f
+      where id_titulo is not null
        ;;
   }
 

@@ -1397,14 +1397,14 @@ join: financeiro {
   view_label: "3. Financeiro"
   sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
   type: left_outer
-  relationship: one_to_many
+  relationship: one_to_one
 }
 
   join: financeiro_extrato_titulo {
     view_label: "3.1. Extrato Titulo - Gestão"
-    sql_on: ${alunos.id_cpf} =  ${financeiro_extrato_titulo.id_cpf} and ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
     type: left_outer
-    relationship: one_to_many
+    relationship: one_to_one
   }
 
 
