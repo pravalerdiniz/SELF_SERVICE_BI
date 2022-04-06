@@ -1888,6 +1888,13 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_overview_campanha {
+    view_label: "Overview Campanha"
+    sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {
