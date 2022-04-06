@@ -192,6 +192,7 @@ view: interacoes {
     group_label: "Dados do Solicitante"
     group_item_label: "CPF Num"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
+    value_format: "0"
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
 

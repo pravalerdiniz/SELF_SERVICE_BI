@@ -1422,14 +1422,14 @@ join: financeiro {
   view_label: "3. Financeiro"
   sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
   type: left_outer
-  relationship: one_to_many
+  relationship: one_to_one
 }
 
   join: financeiro_extrato_titulo {
     view_label: "3.1. Extrato Titulo - Gestão"
-    sql_on: ${alunos.id_cpf} =  ${financeiro_extrato_titulo.id_cpf} and ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
     type: left_outer
-    relationship: one_to_many
+    relationship: one_to_one
   }
 
 
@@ -1700,12 +1700,20 @@ explore: projecao_formalizados_grupo_ies {
 }
 
 explore: crm_customer {
-  label: "CRM - Customer io"
+  label: "1. CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
-    view_label: "Jornada"
+    view_label: "2. Dados da Jornada"
     sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: crm_dados_zendesk {
+    from: crm_dados_zendesk
+    view_label: "3. Dados da Zendesk"
+    sql_on: ${crm_customer.id_envio}= ${crm_dados_zendesk.ID_TICKET} ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -1838,6 +1846,26 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_ads_conversao_hora {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_ads_conversao_hora.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_origem_midia_aquisicao_conversao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_midia_aquisicao_conversao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 }
 
 explore: dados_intake {
