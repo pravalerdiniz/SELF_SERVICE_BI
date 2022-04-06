@@ -1830,6 +1830,18 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
+explore: tela_atendimento{
+  label: "1. Tela de Atendimento"
+  description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
+
+  join: tela_atendimento_jornada {
+    view_label: "2. Jornada"
+    sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+}
+
 explore: gupy_candidaturas {
   label: "Dados GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
