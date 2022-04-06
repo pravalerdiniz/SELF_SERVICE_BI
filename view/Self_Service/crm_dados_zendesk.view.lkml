@@ -2,7 +2,6 @@ view: crm_dados_zendesk {
     derived_table: {
       persist_for: "1 hour"
       sql: select
-            id_cpf,
             f.value:CONTATO_FEITO_POR::varchar as CONTATO_FEITO_POR,
             f.value:DATA_FIM::timestamp as DATA_FIM,
             f.value:DATA_INICIO::timestamp as DATA_INICIO,
