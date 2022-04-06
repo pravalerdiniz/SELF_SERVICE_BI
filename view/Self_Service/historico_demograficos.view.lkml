@@ -276,7 +276,7 @@ view: historico_demograficos {
     label: "TOTAL DE DESLIGADOS VOLUNTÁRIOS"
     view_label: "MÉTRICAS"
     filters: [situacao: "DESLIGADO",
-              tipo_rescisao: "Voluntário"]
+              tipo_rescisao: "Voluntário, VOLUNTÁRIO"]
     sql: ${nome};;
     type: count_distinct
     drill_fields: []
