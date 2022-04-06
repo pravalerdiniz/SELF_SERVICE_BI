@@ -1874,6 +1874,13 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_url_destino_aquisicao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {
