@@ -38,7 +38,7 @@ view: ga_midia_aquisicao_conversao {
     type: string
     label: "Midia Aquisicao"
     description: "O tipo de referências."
-    sql: ${TABLE}."midia" ;;
+    sql: ${TABLE}."midia_aquisicao" ;;
   }
 
   measure: total_goalcomplete {
