@@ -15,6 +15,13 @@ view: ga_ads_conversao_hora {
        ;;
   }
 
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."chave" ;;
+    hidden: yes
+  }
+
   dimension_group: date {
     type: time
     timeframes: [ week_of_year,

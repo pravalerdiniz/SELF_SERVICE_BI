@@ -39,6 +39,7 @@ view: ga_origem_aquisicao_conversao {
     type: string
     label: "Origem"
     description: "A origem das referências."
+    primary_key: yes
     sql: ${TABLE}."origem" ;;
   }
 

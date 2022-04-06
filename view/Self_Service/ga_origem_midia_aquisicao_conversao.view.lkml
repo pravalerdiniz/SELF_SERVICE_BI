@@ -39,6 +39,7 @@ view: ga_origem_midia_aquisicao_conversao {
     label: "Origem Midia"
     description: "O URL para o qual os anúncios do AdWords direcionaram o tráfego."
     sql: ${TABLE}."origem_midia" ;;
+    primary_key: yes
   }
 
   measure: total_goalcomplete {
