@@ -57,6 +57,8 @@ view: ga_url_destino_aquisicao {
   dimension: midia {
     type: string
     sql: ${TABLE}."MIDIA" ;;
+    label: "Mídia"
+    description: "O tipo de referências."
   }
 
   dimension: url_destino {
