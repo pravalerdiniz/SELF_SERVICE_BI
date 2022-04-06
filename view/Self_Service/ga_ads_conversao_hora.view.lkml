@@ -9,7 +9,7 @@ view: ga_ads_conversao_hora {
           f.value:ID_GRUPO_ANUNCIO::int as ID_GRUPO_ANUNCIO,
           f.value:INICIADO::int as INICIADO,
           f.value:LEAD::int as LEAD,
-          f.value:SIMULADO::int as SIMULADO,
+          f.value:SIMULADO::int as SIMULADO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => ADS_CONVERSAO_HORA) f
        ;;
