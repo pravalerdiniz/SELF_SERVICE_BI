@@ -41,6 +41,13 @@ view: ga_midia_aquisicao_conversao {
     sql: ${TABLE}."midia_aquisicao" ;;
   }
 
+  dimension: data_midia {
+    type: string
+    sql: concat(${date_date},${midia_aquisicao}) ;;
+    primary_key: yes
+    hidden: yes
+  }
+
   measure: total_goalcomplete {
     type: sum
     label: "Soma das etapas"

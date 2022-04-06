@@ -6,13 +6,20 @@ view: ga_ads_conversao_hora {
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:HORA::varchar as HORA,
-          f.value:ID_GRUPO_ANUNCIO::int as ID_GRUPO_ANUNCIO,
+          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
           f.value:INICIADO::int as INICIADO,
           f.value:LEAD::int as LEAD,
           f.value:SIMULADO::int as SIMULADO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => ADS_CONVERSAO_HORA) f
        ;;
+  }
+
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."chave" ;;
+    hidden: yes
   }
 
   dimension_group: date {
