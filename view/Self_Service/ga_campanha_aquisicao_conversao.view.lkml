@@ -10,7 +10,7 @@ view: ga_campanha_aquisicao_conversao {
           f.value:SESSIONS::int as SESSIONS,
           f.value:USERS::int as USERS
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => CANAL_AQUISICAO_CONVERSAO) f
+          lateral flatten (input => CAMPANHA_AQUISICAO_CONV) f
        ;;
   }
 

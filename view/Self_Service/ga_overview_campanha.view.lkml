@@ -14,7 +14,7 @@ view: ga_overview_campanha {
           f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO
           f.value:IMPRESSOES::int as IMPRESSOES
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => CANAL_AQUISICAO_CONVERSAO) f
+          lateral flatten (input => OVERVIEW_CAMPANHA) f
        ;;
   }
 

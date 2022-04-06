@@ -13,7 +13,7 @@ view: ga_origem_aquisicao_conversao {
     f.value:SIMULADO::int as SIMULADO,
     f.value:USERS::int as USERS
     from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-    lateral flatten (input => origem_aquisicao_conversao) f
+    lateral flatten (input => ORIGEM_AQUISICAO_CONVERSAO) f
  ;;
   }
 

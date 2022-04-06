@@ -11,7 +11,7 @@ view: ga_url_destino_aquisicao {
           f.value:MIDIA::int as MIDIA,
           f.value:URL_DESTINO::int as URL_DESTINO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => CANAL_AQUISICAO_CONVERSAO) f
+          lateral flatten (input => URLDESTINO_AQUISICAO) f
        ;;
   }
 
