@@ -3570,7 +3570,7 @@ view: proposta {
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Deságio %"
-    sql:( ${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1);;
+    sql:IF((${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1) < 0,0,(${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1)) ;;
     description: "Taxa de Deságio "
     value_format: "0.00%"
 
