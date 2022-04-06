@@ -1840,49 +1840,49 @@ explore: google_analytics {
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
 
   join: ga_origem_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "Origem x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_ads_conversao_hora {
-    view_label: "Google Analytics"
+    view_label: "Google Ads x Conversão por hora"
     sql_on: ${google_analytics.date_date} = ${ga_ads_conversao_hora.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_origem_midia_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "Origem/mídia x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_midia_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "Mídia x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_canal_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "Canal x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_canal_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_url_destino_aquisicao {
-    view_label: "Google Analytics"
+    view_label: "URL destino x Campanha x Anúncio"
     sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_campanha_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "Campanha x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_campanha_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
