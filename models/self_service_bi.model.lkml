@@ -140,6 +140,13 @@ explore: inep {
 
   }
 }
+
+explore: inep_lgpd {
+  label: "Inep - Estrutura LGPD"
+  view_label: "Inep - Estrutura LGPD"
+  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)."
+}
+
 explore: instituicao_metas_gc {
 
   join: dias_uteis
@@ -158,9 +165,9 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conversao_grupo_ies.data_meta_date} and
+    sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
              ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
@@ -600,6 +607,14 @@ explore: instituicao {
     type: left_outer
 
   }
+  join: taxa_instituicao_simplificada {
+    view_label: "1.4. Taxas da Instituição Simplificada"
+    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
+      and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
 
   join: instituicao_metas_gc {
     view_label: "1.4 Metas - GC"
@@ -767,6 +782,16 @@ explore: financeiro {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+
+  join: taxa_instituicao_simplificada {
+    view_label: "3.4. Taxas da Instituição Simplificada"
+    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
+      and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
     relationship: one_to_many
     type: left_outer
 
@@ -1669,6 +1694,11 @@ explore: projecao_formalizados {
   view_label: "Projeção Formalizados Jornada"
 }
 
+explore: projecao_formalizados_grupo_ies {
+  label: "Projeção Formalizados - Grupo IES"
+  view_label: "Projeção Formalizados - Grupo IES"
+}
+
 explore: crm_customer {
   label: "CRM - Customer io"
 
@@ -1790,4 +1820,26 @@ explore: prv_log {
 
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
+}
+
+explore: gupy_candidaturas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
+
+explore: google_analytics {
+  label: "Google Analytics"
+  description: "Informações sobre o site do Pravaler pelo Google Analytics"
+
+  join: ga_origem_aquisicao_conversao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+}
+
+explore: dados_intake {
+  label: "Dados Intake"
 }

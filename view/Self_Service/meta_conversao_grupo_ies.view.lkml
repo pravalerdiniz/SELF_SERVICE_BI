@@ -13,7 +13,7 @@ view: meta_conversao_grupo_ies {
     type: string
     primary_key: yes
     hidden: yes
-    sql:concat(${data},${grupo}) ;;
+    sql:concat(${data},${gerente},${grupo}) ;;
   }
 
   dimension: data {
@@ -119,9 +119,65 @@ view: meta_conversao_grupo_ies {
     type:average
     label: "Média - Simulado"
     value_format: "0.00%"
-    group_label: "Simulado"
+    group_label: "Média Metas por Etapa"
     sql: ${simulado};;
 
+  }
+
+  measure:avg_iniciado {
+    type:average
+    label: "Média - Iniciado"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${iniciado};;
+  }
+
+  measure:avg_finalizado {
+    type:average
+    label: "Média - Finalizado"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${finalizado};;
+  }
+
+  measure:avg_apr_risco {
+    type:average
+    label: "Média - Aprovado Risco"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${aprovado_risco};;
+  }
+
+  measure:avg_apr_ies {
+    type:average
+    label: "Média - Aprovado Instituição"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${aprovado_ies};;
+  }
+
+  measure:avg_agg_doc {
+    type:average
+    label: "Média - Aguardando Documento"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${aguardando_documento};;
+  }
+
+  measure:avg_agg_ass {
+    type:average
+    label: "Média - Aguardando Assinatura"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${aguardando_assinatura};;
+  }
+
+  measure:avg_formalizado {
+    type:average
+    label: "Média - Fomalizado"
+    value_format: "0.00%"
+    group_label: "Média Metas por Etapa"
+    sql: ${formalizado};;
   }
 
   dimension_group: data_meta {

@@ -40,6 +40,15 @@ view: kpi_controladoria {
     label: "Data"
   }
 
+  dimension: ytd_only {
+    group_label: "Filtros para Análise de Períodos"
+    label: "YTD"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${data_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${data_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+  }
+
   dimension: pilar {
     type: string
     sql: ${TABLE}."PILAR" ;;

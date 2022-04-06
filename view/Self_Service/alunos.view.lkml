@@ -1692,4 +1692,13 @@ dimension:  ultimo_acordo_decola{
     label: "Última Proposta - Acordo Decola"
   }
 
+  dimension: tipo_aluno_etapa {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Tipo Etapa do Aluno"
+    description: "Indica a etapa atual do aluno na data de hoje"
+    sql: ${TABLE}."TIPO_ALUNO_NPS" ;;
+  }
+
+
 }
