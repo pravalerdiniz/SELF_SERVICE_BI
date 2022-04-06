@@ -1836,7 +1836,7 @@ explore: gupy_candidaturas {
 }
 
 explore: google_analytics {
-  label: "Google Analytics"
+  label: "1. Google Analytics | Site"
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
 
   join: ga_origem_aquisicao_conversao {
