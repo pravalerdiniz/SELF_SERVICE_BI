@@ -57,7 +57,6 @@ view: ga_url_destino_aquisicao {
   dimension: midia {
     type: string
     sql: ${TABLE}."MIDIA" ;;
-    hidden: yes
   }
 
   dimension: url_destino {
@@ -72,6 +71,7 @@ view: ga_url_destino_aquisicao {
     sql: ${TABLE}."CPC" ;;
     label: "CPC"
     description: "Custo para o anuncio por clique."
+    group_label: "Aquisição | URL"
   }
 
   measure: custo {
@@ -79,6 +79,7 @@ view: ga_url_destino_aquisicao {
     sql: ${TABLE}."CUSTO";;
     label: "Custo"
     description: "Custo derivado da campanha publicitária."
+    group_label: "Aquisição | URL"
   }
 
 }
