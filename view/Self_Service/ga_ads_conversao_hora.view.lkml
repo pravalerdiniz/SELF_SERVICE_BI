@@ -48,7 +48,7 @@ view: ga_ads_conversao_hora {
   }
 
   dimension: hora_conversao {
-    type: number
+    type: string
     sql: ${TABLE}."HORA" ;;
     label: "Hora"
     description: "Uma hora do dia de dois dígitos variando de 00 a 23."
