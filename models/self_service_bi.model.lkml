@@ -1700,11 +1700,11 @@ explore: projecao_formalizados_grupo_ies {
 }
 
 explore: crm_customer {
-  label: "CRM - Customer io"
+  label: "1. CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
-    view_label: "1. Dados da Jornada"
+    view_label: "2. Dados da Jornada"
     sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
     relationship: many_to_many
     type: left_outer
@@ -1712,7 +1712,7 @@ explore: crm_customer {
 
   join: crm_dados_zendesk {
     from: crm_dados_zendesk
-    view_label: "2. Dados da Zendesk"
+    view_label: "3. Dados da Zendesk"
     sql_on: ${crm_customer.id_envio}= ${crm_dados_zendesk.ID_TICKET} ;;
     relationship: many_to_many
     type: left_outer
