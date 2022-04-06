@@ -35,11 +35,17 @@ view: ga_origem_aquisicao_conversao {
       hidden: yes
     }
 
+  dimension: data_origem {
+    type: string
+    primary_key: yes
+    sql: concat(${date_date},${origem}) ;;
+    hidden: yes
+  }
+
   dimension: origem {
     type: string
     label: "Origem"
     description: "A origem das referências."
-    primary_key: yes
     sql: ${TABLE}."origem" ;;
   }
 
