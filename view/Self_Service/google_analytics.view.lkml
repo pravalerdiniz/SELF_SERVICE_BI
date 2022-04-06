@@ -13,6 +13,13 @@ view: google_analytics {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Ads Conversao Hora" in Explore.
 
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."date" ;;
+    hidden: yes
+  }
+
   dimension: ads_conversao_hora {
     type: string
     sql: ${TABLE}."ADS_CONVERSAO_HORA" ;;

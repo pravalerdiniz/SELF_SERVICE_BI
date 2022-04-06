@@ -34,11 +34,18 @@ view: ga_midia_aquisicao_conversao {
     hidden: yes
   }
 
-  dimension: midia_aquisicao {
+  dimension: midia {
     type: string
-    label: "Midia Aquisicao"
+    label: "Midia"
     description: "O tipo de referências."
-    sql: ${TABLE}."midia" ;;
+    sql: ${TABLE}."midia_aquisicao" ;;
+  }
+
+  dimension: data_midia {
+    type: string
+    sql: concat(${date_date},${midia}) ;;
+    primary_key: yes
+    hidden: yes
   }
 
   measure: total_goalcomplete {
@@ -46,7 +53,7 @@ view: ga_midia_aquisicao_conversao {
     label: "Soma das etapas"
     description: "Soma das etapas de Lead, Simulado, Iniciado e Finalizado no site."
     sql: ${TABLE}."GOALCOMPLETE";;
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_lead {
@@ -54,7 +61,7 @@ view: ga_midia_aquisicao_conversao {
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com ORIGEM."
     sql: ${TABLE}."LEAD";;
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_simulado {
@@ -62,7 +69,7 @@ view: ga_midia_aquisicao_conversao {
     label: "2. Soma Simulados"
     description: "Soma da etapa Simulado no site de acordo com ORIGEM."
     sql: ${TABLE}."SIMULADO";;
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_iniciado {
@@ -70,7 +77,7 @@ view: ga_midia_aquisicao_conversao {
     label: "3. Soma Iniciados"
     description: "Soma da etapa Iniciado no site de acordo com ORIGEM."
     sql: ${TABLE}."INICIADO";;
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_finalizado {
@@ -78,7 +85,7 @@ view: ga_midia_aquisicao_conversao {
     label: "4. Soma Finalizados"
     description: "Soma da etapa Finalizado no site de acordo com ORIGEM."
     sql: ${TABLE}."FINALIZADO";;
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_new_users {
@@ -86,7 +93,7 @@ view: ga_midia_aquisicao_conversao {
     sql: ${TABLE}."NEWUSERS" ;;
     label: "Soma Novos usuários"
     description: "Soma total de novos usuarios no site de acordo com ORIGEM."
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_sessions{
@@ -94,7 +101,7 @@ view: ga_midia_aquisicao_conversao {
     sql: ${TABLE}."SESSIONS" ;;
     label: "Soma das Sessões"
     description: "Soma das sessões no site de acordo com ORIGEM."
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
   measure: total_users {
@@ -102,7 +109,7 @@ view: ga_midia_aquisicao_conversao {
     sql: ${TABLE}."USERS" ;;
     label: "Soma dos Usuários"
     description: "Soma total dos usuários do site de acordo com ORIGEM."
-    group_label: "Métricas de origem"
+    group_label: "Métricas Midia Aquisicao"
   }
 
 }

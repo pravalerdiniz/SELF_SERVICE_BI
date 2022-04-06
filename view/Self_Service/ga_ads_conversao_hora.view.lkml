@@ -6,13 +6,20 @@ view: ga_ads_conversao_hora {
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:HORA::varchar as HORA,
-          f.value:ID_GRUPO_ANUNCIO::int as ID_GRUPO_ANUNCIO,
+          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
           f.value:INICIADO::int as INICIADO,
           f.value:LEAD::int as LEAD,
           f.value:SIMULADO::int as SIMULADO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => ADS_CONVERSAO_HORA) f
        ;;
+  }
+
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."chave" ;;
+    hidden: yes
   }
 
   dimension_group: date {
@@ -59,7 +66,7 @@ view: ga_ads_conversao_hora {
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_simulado {
@@ -67,7 +74,7 @@ view: ga_ads_conversao_hora {
     label: "2. Soma Simulados"
     description: "Soma da etapa Simulado no site de acordo com a HORA."
     sql: ${TABLE}."SIMULADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_iniciado {
@@ -75,7 +82,7 @@ view: ga_ads_conversao_hora {
     label: "3. Soma Iniciados"
     description: "Soma da etapa Iniciado no site de acordo com a HORA."
     sql: ${TABLE}."INICIADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_finalizado {
@@ -83,6 +90,6 @@ view: ga_ads_conversao_hora {
     label: "4. Soma Finalizados"
     description: "Soma da etapa Finalizado no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 }
