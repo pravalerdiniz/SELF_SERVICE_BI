@@ -1846,9 +1846,9 @@ explore: google_analytics {
     type: left_outer
   }
 
-  join: ga_origem_midia_aquisicao_conversao {
+  join: ga_ads_conversao_hora {
     view_label: "Google Analytics"
-    sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
+    sql_on: ${google_analytics.date_date} = ${ga_ads_conversao_hora.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
