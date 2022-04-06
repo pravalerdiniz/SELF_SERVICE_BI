@@ -1907,6 +1907,13 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_etapas {
+    view_label: "2. Etapas | Site"
+    sql_on: ${google_analytics.date_date} = ${ga_etapas.date_date} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {
