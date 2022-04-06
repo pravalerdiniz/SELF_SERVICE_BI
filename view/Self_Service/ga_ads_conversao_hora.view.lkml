@@ -66,7 +66,7 @@ view: ga_ads_conversao_hora {
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_simulado {
@@ -74,7 +74,7 @@ view: ga_ads_conversao_hora {
     label: "2. Soma Simulados"
     description: "Soma da etapa Simulado no site de acordo com a HORA."
     sql: ${TABLE}."SIMULADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_iniciado {
@@ -82,7 +82,7 @@ view: ga_ads_conversao_hora {
     label: "3. Soma Iniciados"
     description: "Soma da etapa Iniciado no site de acordo com a HORA."
     sql: ${TABLE}."INICIADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 
   measure: total_finalizado {
@@ -90,6 +90,6 @@ view: ga_ads_conversao_hora {
     label: "4. Soma Finalizados"
     description: "Soma da etapa Finalizado no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Métricas de conversão por HORA"
+    group_label: "Etapas | HORA"
   }
 }
