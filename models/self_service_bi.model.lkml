@@ -1860,6 +1860,12 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_midia_aquisicao_conversao {
+    view_label: "Google Analytics"
+    sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 }
 
 explore: dados_intake {
