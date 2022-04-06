@@ -1700,7 +1700,7 @@ explore: projecao_formalizados_grupo_ies {
 }
 
 explore: crm_customer {
-  label: "1. CRM - Customer io"
+  label: "CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
@@ -1831,7 +1831,7 @@ explore: aproveitamento_estoque_nok{
 }
 
 explore: tela_atendimento{
-  label: "1. Tela de Atendimento"
+  label: "Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
 
   join: tela_atendimento_jornada {
