@@ -23,6 +23,7 @@ view: taxa_instituicao_simplificada {
   measure: count {
     type: count
     drill_fields: [detail*]
+    hidden:  yes
 
   }
 
@@ -67,7 +68,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_JUROS_MENSAL" ;;
     label: "Taxa de Juros Mensal"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
@@ -75,7 +76,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_ADESAO" ;;
     label: "Taxa de Adesão"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
@@ -83,7 +84,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_ADM" ;;
     label: "Taxa Administrativa"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
@@ -91,7 +92,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_COMISSAO" ;;
     label: "Taxa de Comissão"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
@@ -99,7 +100,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_FEE_MENSAL" ;;
     label: "Taxa de Fee Mensal"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
@@ -107,7 +108,7 @@ view: taxa_instituicao_simplificada {
     type: number
     sql: ${TABLE}."TAXA_FEE_UNICO" ;;
     label: "Taxa de Fee Unico"
-    group_label: "Dados do Contrato"
+    group_label: "Taxas"
     value_format: "0.00\%"
   }
 
