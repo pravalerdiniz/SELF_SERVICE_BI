@@ -1830,6 +1830,11 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
+explore: tela_atendimento{
+  label: "Tela de Atendimento"
+  description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
+}
+
 explore: gupy_candidaturas {
   label: "Dados GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
