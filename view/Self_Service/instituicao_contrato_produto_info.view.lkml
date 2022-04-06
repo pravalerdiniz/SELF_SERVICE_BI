@@ -1,7 +1,7 @@
 view: instituicao_contrato_produto_info {
   derived_table: {
     persist_for: "1 hour"
-    sql: select
+    sql: select distinct
         id_instituicao
       ,f.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO
       ,f.value:BANCO::varchar as BANCO
