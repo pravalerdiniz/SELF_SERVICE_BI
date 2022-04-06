@@ -34,16 +34,16 @@ view: ga_midia_aquisicao_conversao {
     hidden: yes
   }
 
-  dimension: midia_aquisicao {
+  dimension: midia {
     type: string
-    label: "Midia Aquisicao"
+    label: "Midia"
     description: "O tipo de referências."
     sql: ${TABLE}."midia_aquisicao" ;;
   }
 
   dimension: data_midia {
     type: string
-    sql: concat(${date_date},${midia_aquisicao}) ;;
+    sql: concat(${date_date},${midia}) ;;
     primary_key: yes
     hidden: yes
   }
