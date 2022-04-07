@@ -2,6 +2,8 @@ view: crm_dados_zendesk {
     derived_table: {
       persist_for: "1 hour"
       sql: select
+            EMAIL,
+            CPF,
             f.value:CONTATO_FEITO_POR::varchar as CONTATO_FEITO_POR,
             f.value:DATA_FIM::timestamp as DATA_FIM,
             f.value:DATA_INICIO::timestamp as DATA_INICIO,
@@ -54,6 +56,20 @@ view: crm_dados_zendesk {
     group_label: "Data Fim Ticket"
     sql: ${TABLE}.DATA_FIM ;;
     label: "Data Fim Ticket"
+  }
+
+  dimension: cpf {
+    type: number
+    label: "CPF do Aluno"
+    description: "Indica o CPF do Aluno"
+    sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: email {
+    type: string
+    label: "Email do Aluno"
+    description: "Indica o email do Aluno"
+    sql: ${TABLE}."EMAIL" ;;
   }
 
     dimension: ID_TICKET {
