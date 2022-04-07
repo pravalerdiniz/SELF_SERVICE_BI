@@ -75,6 +75,11 @@ explore: orcamento_frente {
 
 }
 
+
+explore: orcameto_cc {
+  label: "Orçamento CAC"
+}
+
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"

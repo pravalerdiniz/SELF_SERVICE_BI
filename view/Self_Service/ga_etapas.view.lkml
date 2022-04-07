@@ -69,4 +69,36 @@ view: ga_etapas {
       group_label: "Etapas"
     }
 
+  measure: media_lead {
+    type: average
+    label: "1. Média Leads"
+    description: "Soma total da etapa Lead no site."
+    sql: ${TABLE}."LEAD" ;;
+    group_label: "Etapas | Média"
+  }
+
+  measure: media_simulado {
+    type: average
+    label: "2. Média Simulados"
+    description: "Soma total da etapa Simulado no site."
+    sql: ${TABLE}."SIMULADO" ;;
+    group_label: "Etapas | Média"
+  }
+
+  measure: media_iniciado {
+    type: average
+    label: "3. Média Iniciados"
+    description: "Soma total da etapa Iniciado no site."
+    sql: ${TABLE}."INICIADO" ;;
+    group_label: "Etapas | Média"
+  }
+
+  measure: media_finalizado {
+    type: average
+    label: "4. Média Finalizados"
+    description: "Soma total da etapa Finalizado no site."
+    sql: ${TABLE}."FINALIZADO" ;;
+    group_label: "Etapas | Média"
+  }
+
   }

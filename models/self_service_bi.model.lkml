@@ -1499,8 +1499,7 @@ explore: interacoes {
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
   fields: [ALL_FIELDS *,
-     - alunos *,
-    alunos.id_proposta_atual
+    - ano_mes_carteira_ativa *
   ]
   access_filter: {
     field: EMPRESA_AGENTE
@@ -1539,6 +1538,12 @@ explore: interacoes {
     relationship: one_to_many
   }
 
+  join: ano_mes_carteira_ativa {
+    view_label: "Ano Mes Carteira Ativa"
+    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 #  join: jornada {
  #   view_label: "Jornada"
   #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
@@ -1709,6 +1714,7 @@ explore: projecao_formalizados_grupo_ies {
 
 explore: crm_customer {
   label: "CRM - Customer io"
+  view_label: "1. CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
@@ -1721,7 +1727,7 @@ explore: crm_customer {
   join: crm_dados_zendesk {
     from: crm_dados_zendesk
     view_label: "3. Dados da Zendesk"
-    sql_on: ${crm_customer.id_envio}= ${crm_dados_zendesk.ID_TICKET} ;;
+    sql_on: ${crm_customer.email}= ${crm_dados_zendesk.email} ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -1859,30 +1865,51 @@ explore: google_analytics {
   label: "Google Analytics"
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
 
-  join: ga_origem_aquisicao_conversao {
-    view_label: "8. Origem x Aquisição x Conversão"
-    sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
+  join: ga_etapas {
+    view_label: "2. Etapas | Site"
+    sql_on: ${google_analytics.date_date} = ${ga_etapas.date_date} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: ga_campanha_ads_etapas {
+    view_label: "3.1 Campanha x ADS x Etapas"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_etapas.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_campanha_aquisicao_conversao {
+    view_label: "3.2 Campanha x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_campanha_ads_cost {
+    view_label: "3.3 Campanha x Custo por etapa"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_cost.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_overview_campanha {
+    view_label: "3.4 Campanha x Ads x Custo"
+    sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_url_destino_aquisicao {
+    view_label: "3.5 URL destino x Campanha x Anúncio"
+    sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_ads_conversao_hora {
-    view_label: "6. Google Ads x Conversão por hora"
+    view_label: "4. Google Ads x Conversão por hora"
     sql_on: ${google_analytics.date_date} = ${ga_ads_conversao_hora.date_date} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: ga_origem_midia_aquisicao_conversao {
-    view_label: "9. Origem/mídia x Aquisição x Conversão"
-    sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: ga_midia_aquisicao_conversao {
-    view_label: "7. Mídia x Aquisição x Conversão"
-    sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1894,44 +1921,23 @@ explore: google_analytics {
     type: left_outer
   }
 
-  join: ga_url_destino_aquisicao {
-    view_label: "URL destino x Campanha x Anúncio"
-    sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
+  join: ga_origem_midia_aquisicao_conversao {
+    view_label: "6. Origem/mídia x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
-  join: ga_campanha_aquisicao_conversao {
-    view_label: "4. Campanha x Aquisição x Conversão"
-    sql_on: ${google_analytics.date_date} = ${ga_campanha_aquisicao_conversao.date_date} ;;
+  join: ga_origem_aquisicao_conversao {
+    view_label: "7. Origem x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
-  join: ga_overview_campanha {
-    view_label: "Overview Campanha"
-    sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: ga_etapas {
-    view_label: "2. Etapas | Site"
-    sql_on: ${google_analytics.date_date} = ${ga_etapas.date_date} ;;
-    relationship: one_to_one
-    type: left_outer
-  }
-
-  join: ga_campanha_ads_cost {
-    view_label: "3. Campanha x ADS x Cost"
-    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_cost.date_date} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: ga_campanha_ads_etapas {
-    view_label: "Campanha x ADS x Etapas"
-    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_etapas.date_date} ;;
+  join: ga_midia_aquisicao_conversao {
+    view_label: "8. Mídia x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
