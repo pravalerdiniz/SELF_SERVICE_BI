@@ -15,7 +15,7 @@ view: ga_campanha_aquisicao_conversao {
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => CAMPANHA_AQUISICAO_CONV) f
           left join VETERANO.GA.FLATTENED_OVERVIEW_CAMPANHA b
-          on f.CAMPANHA = b.overview_campanha and f.ID_CAMPANHA = f.id_campanha and f.date = b.date
+          on a.CAMPANHA = b.overview_campanha and a.ID_CAMPANHA = a.id_campanha and a.date = b.date
        ;;
   }
 
