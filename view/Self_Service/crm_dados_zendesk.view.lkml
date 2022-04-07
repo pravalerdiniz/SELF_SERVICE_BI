@@ -14,7 +14,7 @@ view: crm_dados_zendesk {
             f.value:MOTIVO_CONTATO_RECEPTIVO::varchar as MOTIVO_CONTATO_RECEPTIVO,
             f.value:STATUS_TICKET::varchar as STATUS_TICKET,
             f.value:TIPO::varchar as TIPO,
-            f.value:TITULO_TICKET::varchar as TITULO_TICKET,
+            f.value:TITULO_TICKET::varchar as TITULO_TICKET
 
         from GRADUADO.CRM.CUSTOMER a,
         lateral flatten (input => INFOS_ZENDESK) f
