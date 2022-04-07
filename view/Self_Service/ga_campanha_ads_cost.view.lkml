@@ -11,7 +11,6 @@ view: ga_campanha_ads_cost {
           f.value:CPL::int as CPL,
           f.value:CPS::int as CPS,
           f.value:CPI::int as CPI,
-          f.value:CPS::int as CPS,
           F.value:CPF::int as CPF
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => CAMPANHA_ADS_COST) f
