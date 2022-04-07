@@ -36,6 +36,7 @@ view: vw_elegibilidade_comercial {
   dimension: cd_cpf {
     type: number
     label: "CPF"
+    primary_key: yes
     sql: ${TABLE}."CD_CPF" ;;
   }
 
