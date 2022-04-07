@@ -4,7 +4,7 @@ view: google_analytics {
   # to be used for all fields in this view.
   sql_table_name: "SELF_SERVICE_BI"."GOOGLE_ANALYTICS"
     ;;
-    label: "Google Analytics"
+    label: "1. Google Analytics | Site"
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -12,6 +12,13 @@ view: google_analytics {
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Ads Conversao Hora" in Explore.
+
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."date" ;;
+    hidden: yes
+  }
 
   dimension: ads_conversao_hora {
     type: string

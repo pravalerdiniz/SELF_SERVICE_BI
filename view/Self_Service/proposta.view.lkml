@@ -3566,14 +3566,27 @@ view: proposta {
     value_format: "$ #,###.00"
   }
 
-  measure: taxa_desagio {
+  measure: taxa_desagio_geral {
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Deságio %"
-    sql:( ${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1);;
+    sql:(${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1) ;;
     description: "Taxa de Deságio "
     value_format: "0.00%"
+    hidden: yes
+  }
 
+  measure: taxa_desagio_ajustada {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Deságio %"
+    sql: CASE WHEN
+         ${taxa_desagio_geral} < 0
+        THEN 0
+        ELSE ${taxa_desagio_geral}
+        END ;;
+    description: "Taxa de Deságio "
+    value_format: "0.00%"
   }
 
   measure: sum_perc_desagio {
