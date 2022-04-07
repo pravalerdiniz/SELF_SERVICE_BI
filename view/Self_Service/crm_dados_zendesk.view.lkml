@@ -8,13 +8,13 @@ view: crm_dados_zendesk {
             f.value:DATA_FIM::timestamp as DATA_FIM,
             f.value:DATA_INICIO::timestamp as DATA_INICIO,
             f.value:DESCRICAO_TICKET::varchar as DESCRICAO_TICKET,
-            f.value:DURACAO::float as DURACAO
+            f.value:DURACAO::float as DURACAO,
             f.value:FILA::varchar as FILA,
             f.value:ID_TICKET::int as ID_TICKET,
             f.value:MOTIVO_CONTATO_RECEPTIVO::varchar as MOTIVO_CONTATO_RECEPTIVO,
             f.value:STATUS_TICKET::varchar as STATUS_TICKET,
             f.value:TIPO::varchar as TIPO,
-            f.value:TITULO_TICKET::varchar as TITULO_TICKET,
+            f.value:TITULO_TICKET::varchar as TITULO_TICKET
 
         from GRADUADO.CRM.CUSTOMER a,
         lateral flatten (input => INFOS_ZENDESK) f
