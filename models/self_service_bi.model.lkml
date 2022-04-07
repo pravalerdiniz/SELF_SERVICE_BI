@@ -1141,6 +1141,7 @@ join: alunos_produtos_aprovados {
   }
 
 
+
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
     sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
@@ -1250,6 +1251,13 @@ join: alunos_inadimplencia_2 {
   join: alunos_gerencial_renovacao_status_elegibilidade{
     view_label: "1.4.1 Renovação - Status de Elegibilidade"
     sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: vw_elegibilidade_comercial{
+    view_label: "1.4.2 Renovação - Potencial Renovação"
+    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -1700,7 +1708,8 @@ explore: projecao_formalizados_grupo_ies {
 }
 
 explore: crm_customer {
-  label: "1. CRM - Customer io"
+  label: "CRM - Customer io"
+  view_label: "1. CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
@@ -1713,7 +1722,7 @@ explore: crm_customer {
   join: crm_dados_zendesk {
     from: crm_dados_zendesk
     view_label: "3. Dados da Zendesk"
-    sql_on: ${crm_customer.id_envio}= ${crm_dados_zendesk.ID_TICKET} ;;
+    sql_on: ${crm_customer.email}= ${crm_dados_zendesk.email} ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -1830,6 +1839,18 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
+explore: tela_atendimento{
+  label: "Tela de Atendimento"
+  description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
+
+  join: tela_atendimento_jornada {
+    view_label: "2. Jornada"
+    sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+}
+
 explore: gupy_candidaturas {
   label: "Dados GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
@@ -1840,32 +1861,82 @@ explore: google_analytics {
   description: "Informações sobre o site do Pravaler pelo Google Analytics"
 
   join: ga_origem_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "8. Origem x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_origem_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_ads_conversao_hora {
-    view_label: "Google Analytics"
+    view_label: "6. Google Ads x Conversão por hora"
     sql_on: ${google_analytics.date_date} = ${ga_ads_conversao_hora.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_origem_midia_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "9. Origem/mídia x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_origem_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_midia_aquisicao_conversao {
-    view_label: "Google Analytics"
+    view_label: "7. Mídia x Aquisição x Conversão"
     sql_on: ${google_analytics.date_date} = ${ga_midia_aquisicao_conversao.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
+
+  join: ga_canal_aquisicao_conversao {
+    view_label: "5. Canal x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_canal_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_url_destino_aquisicao {
+    view_label: "URL destino x Campanha x Anúncio"
+    sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_campanha_aquisicao_conversao {
+    view_label: "4. Campanha x Aquisição x Conversão"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_aquisicao_conversao.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_overview_campanha {
+    view_label: "Overview Campanha"
+    sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_etapas {
+    view_label: "2. Etapas | Site"
+    sql_on: ${google_analytics.date_date} = ${ga_etapas.date_date} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: ga_campanha_ads_cost {
+    view_label: "3. Campanha x ADS x Cost"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_cost.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: ga_campanha_ads_etapas {
+    view_label: "Campanha x ADS x Etapas"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_etapas.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {

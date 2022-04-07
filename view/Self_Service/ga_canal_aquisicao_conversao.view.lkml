@@ -1,24 +1,26 @@
-view: ga_ads_conversao_hora {
+view: ga_canal_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
           f.key as chave,
+          f.value:CANAL::varchar as CANAL,
           f.value:FINALIZADO::int as FINALIZADO,
-          f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
-          f.value:HORA::varchar as HORA,
-          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
+          f.value:GOALCOMPLETE::int as GOALCOMPLETE,
           f.value:INICIADO::int as INICIADO,
           f.value:LEAD::int as LEAD,
-          f.value:SIMULADO::int as SIMULADO
+          f.value:NEWUSERS::int as NEWUSERS,
+          f.value:SESSIONS::int as SESSIONS,
+          f.value:SIMULADO::int as SIMULADO,
+          f.value:USERS::int as USERS
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => ADS_CONVERSAO_HORA) f
+          lateral flatten (input => CANAL_AQUISICAO_CONVERSAO) f
        ;;
   }
 
   dimension: chave {
     type: string
-    primary_key: yes
     sql: ${TABLE}."chave" ;;
+    primary_key: yes
     hidden: yes
   }
 
@@ -40,32 +42,18 @@ view: ga_ads_conversao_hora {
     hidden: yes
   }
 
-  dimension: grupo_anuncio {
+  dimension: canal {
     type: string
-    sql: ${TABLE}."GRUPO_ANUNCIO" ;;
-    label: "Grupo de Anúncio"
-    description: "O nome do grupo de anúncios do AdWords."
-  }
-
-  dimension: id_grupo_anuncio {
-    type: number
-    sql: ${TABLE}."ID_GRUPO_ANUNCIO" ;;
-    label: "ID do Grupo de Anúncio"
-    description: "O ID do grupo de anúncios do AdWords."
-  }
-
-  dimension: hora_conversao {
-    type: string
-    sql: ${TABLE}."HORA" ;;
-    label: "Hora"
-    description: "Uma hora do dia de dois dígitos variando de 00 a 23."
+    sql: ${TABLE}."CANAL" ;;
+    label: "Canal"
+    description: "O grupo de canal associado à sessão de um usuário final"
   }
 
   measure: total_lead {
     type: sum
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com a HORA."
-    sql: ${TABLE}."FINALIZADO" ;;
+    sql: ${TABLE}."LEAD" ;;
     group_label: "Etapas"
   }
 
@@ -92,4 +80,37 @@ view: ga_ads_conversao_hora {
     sql: ${TABLE}."FINALIZADO" ;;
     group_label: "Etapas"
   }
+
+  measure: total_goalcomplete {
+    type: sum
+    label: "5. Soma das etapas"
+    description: "Soma das etapas de Lead, Simulado, Iniciado e Finalizado no site."
+    sql: ${TABLE}."GOALCOMPLETE";;
+    group_label: "Etapas"
+  }
+
+ measure: total_new_users {
+  type: sum
+  sql: ${TABLE}."NEWUSERS" ;;
+  label: "Soma Novos usuários"
+  description: "Soma total de novos usuarios no site de acordo com CANAL."
+  group_label: "Aquisição"
 }
+
+measure: total_sessions{
+  type: sum
+  sql: ${TABLE}."SESSIONS" ;;
+  label: "Soma das Sessões"
+  description: "Soma das sessões no site de acordo com CANAL."
+  group_label: "Aquisição"
+}
+
+measure: total_users {
+  type: sum
+  sql: ${TABLE}."USERS" ;;
+  label: "Soma dos Usuários"
+  description: "Soma total dos usuários do site de acordo com CANAL."
+  group_label: "Aquisição"
+}
+
+  }
