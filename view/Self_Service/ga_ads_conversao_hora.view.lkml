@@ -43,14 +43,14 @@ view: ga_ads_conversao_hora {
   dimension: grupo_anuncio {
     type: string
     sql: ${TABLE}."GRUPO_ANUNCIO" ;;
-    label: "Grupo de Anúncio - Ads"
+    label: "Grupo de Anúncio"
     description: "O nome do grupo de anúncios do AdWords."
   }
 
   dimension: id_grupo_anuncio {
     type: number
     sql: ${TABLE}."ID_GRUPO_ANUNCIO" ;;
-    label: "ID do Grupo de Anúncio - Ads"
+    label: "ID do Grupo de Anúncio"
     description: "O ID do grupo de anúncios do AdWords."
   }
 
@@ -66,7 +66,7 @@ view: ga_ads_conversao_hora {
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Etapas | HORA"
+    group_label: "Etapas"
   }
 
   measure: total_simulado {
@@ -74,7 +74,7 @@ view: ga_ads_conversao_hora {
     label: "2. Soma Simulados"
     description: "Soma da etapa Simulado no site de acordo com a HORA."
     sql: ${TABLE}."SIMULADO" ;;
-    group_label: "Etapas | HORA"
+    group_label: "Etapas"
   }
 
   measure: total_iniciado {
@@ -82,7 +82,7 @@ view: ga_ads_conversao_hora {
     label: "3. Soma Iniciados"
     description: "Soma da etapa Iniciado no site de acordo com a HORA."
     sql: ${TABLE}."INICIADO" ;;
-    group_label: "Etapas | HORA"
+    group_label: "Etapas"
   }
 
   measure: total_finalizado {
@@ -90,6 +90,6 @@ view: ga_ads_conversao_hora {
     label: "4. Soma Finalizados"
     description: "Soma da etapa Finalizado no site de acordo com a HORA."
     sql: ${TABLE}."FINALIZADO" ;;
-    group_label: "Etapas | HORA"
+    group_label: "Etapas"
   }
 }

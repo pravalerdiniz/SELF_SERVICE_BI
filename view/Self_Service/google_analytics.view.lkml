@@ -4,7 +4,7 @@ view: google_analytics {
   # to be used for all fields in this view.
   sql_table_name: "SELF_SERVICE_BI"."GOOGLE_ANALYTICS"
     ;;
-    label: "Google Analytics"
+    label: "1. Google Analytics | Site"
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.

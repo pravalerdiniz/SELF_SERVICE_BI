@@ -8,10 +8,10 @@ view: ga_url_destino_aquisicao {
           f.value:CPC::int as CPC,
           f.value:CUSTO::int as CUSTO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
-          f.value:MIDIA::int as MIDIA,
-          f.value:URL_DESTINO::int as URL_DESTINO
+          f.value:MIDIA::varchar as MIDIA,
+          f.value:URL_DESTINO::varchar as URL_DESTINO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => CANAL_AQUISICAO_CONVERSAO) f
+          lateral flatten (input => URLDESTINO_AQUISICAO) f
        ;;
   }
 
@@ -73,7 +73,6 @@ view: ga_url_destino_aquisicao {
     sql: ${TABLE}."CPC" ;;
     label: "CPC"
     description: "Custo para o anuncio por clique."
-    group_label: "Aquisição | URL"
   }
 
   measure: custo {
@@ -81,7 +80,6 @@ view: ga_url_destino_aquisicao {
     sql: ${TABLE}."CUSTO";;
     label: "Custo"
     description: "Custo derivado da campanha publicitária."
-    group_label: "Aquisição | URL"
   }
 
 }

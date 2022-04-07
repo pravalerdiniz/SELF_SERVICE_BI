@@ -1,20 +1,19 @@
-view: ga_overview_campanha {
+view: ga_campanha_ads_etapas {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
-          f.value:CLICKS_ANUNCIO::int as CLICKS_ANUNCIO,
-          f.value:CPC::int as CPC,
-          f.value:CTR::int as CTR,
-          f.value:CUSTO_ANUNCIO::int as CUSTO_ANUNCIO,
-          f.value:CUSTO_CONVERSAO::int as CUSTO_CONVERSAO,
+          f.value:LEAD::int as LEAD,
+          f.value:SIMULADO::int as SIMULADO,
+          f.value:INICIADO::int as INICIADO,
+          f.value:FINALIZADO::int as FINALIZADO,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
           f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO
           f.value:IMPRESSOES::int as IMPRESSOES
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
-          lateral flatten (input => OVERVIEW_CAMPANHA) f
+          lateral flatten (input => CAMPANHA_ADS_ETAPAS) f
        ;;
   }
 
@@ -71,39 +70,32 @@ view: ga_overview_campanha {
     description: "ID da Campanha pelo AdWords."
   }
 
-  measure: total_clicks_anuncio {
+  measure: total_lead {
     type: sum
-    sql: ${TABLE}."CLICKS_ANUNCIO" ;;
-    label: "Cliques"
-    description: "Número total de vezes que os usuários clicaram em um anúncio."
+    label: "Soma Leads"
+    description: "Soma total da etapa Lead no site."
+    sql: ${TABLE}."LEAD" ;;
   }
 
-  measure: total_cpc {
+  measure: total_simulado {
     type: sum
-    sql: ${TABLE}."CPC" ;;
-    label: "CPC"
-    description: "Custo para o anunciante por clique."
+    label: "Soma Simulados"
+    description: "Soma total da etapa Simulado no site."
+    sql: ${TABLE}."SIMULADO" ;;
   }
 
-  measure: total_ctr {
+  measure: total_iniciado {
     type: sum
-    sql: ${TABLE}."CTR" ;;
-    label: "CTR"
-    description: "Taxa de cliques para o anúncio."
+    label: "Soma Iniciados"
+    description: "Soma total da etapa Iniciado no site."
+    sql: ${TABLE}."INICIADO" ;;
   }
 
-  measure: total_custo_anuncio {
+  measure: total_finalizado {
     type: sum
-    sql: ${TABLE}."CUSTO_ANUNCIO" ;;
-    label: "Custo"
-    description: "Custo derivado da campanha publicitária."
-  }
-
-  measure: total_custo_conversao {
-    type: sum
-    sql: ${TABLE}."CUSTO_CONVERSAO" ;;
-    label: "Custo | Conversão"
-    description: "O custo por conversão (incluindo comércio eletrônico e conversões de meta) do site."
+    label: "Soma Finalizados"
+    description: "Soma total da etapa Finalizado no site."
+    sql: ${TABLE}."FINALIZADO" ;;
   }
 
   measure: total_impressoes {
@@ -113,4 +105,4 @@ view: ga_overview_campanha {
     description: "Número total de impressões da campanha."
   }
 
-  }
+}

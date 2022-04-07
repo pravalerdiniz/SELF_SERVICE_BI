@@ -658,7 +658,11 @@ view: gupy_candidaturas {
     group_label: "Dados da Candidatura"
     label: "Status da Etapa Atual"
     type: string
-    sql: ${TABLE}."STATUS_ETAPA_ATUAL" ;;
+    sql: case ${TABLE}."STATUS_ETAPA_ATUAL"
+          when 'done' then 'concluída'
+          when 'not_started' then 'nao_iniciada'
+          else ${TABLE}."STATUS_ETAPA_ATUAL"
+    end;;
   }
 
   dimension: status_indicacao {
