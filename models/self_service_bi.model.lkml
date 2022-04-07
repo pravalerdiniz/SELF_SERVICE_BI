@@ -1141,6 +1141,7 @@ join: alunos_produtos_aprovados {
   }
 
 
+
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
     sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
@@ -1250,6 +1251,13 @@ join: alunos_inadimplencia_2 {
   join: alunos_gerencial_renovacao_status_elegibilidade{
     view_label: "1.4.1 Renovação - Status de Elegibilidade"
     sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: vw_elegibilidade_comercial{
+    view_label: "1.4.2 Renovação - Potencial Renovação"
+    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
