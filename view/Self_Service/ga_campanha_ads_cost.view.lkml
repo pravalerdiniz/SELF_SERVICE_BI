@@ -4,14 +4,13 @@ view: ga_campanha_ads_cost {
     sql: select a.date,
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
-          f.value:ID_CAMPANHA::int as ID_CAMPANHA,
-          f.value:GRUPO_ANUNCIO::int as GRUPO_ANUNCIO,
-          f.value:ID_GRUPO_ANUNCIO::int as ID_GRUPO_ANUNCIO,
+          f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
+          f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
+          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
           f.value:CUSTO::int as CUSTO,
           f.value:CPL::int as CPL,
           f.value:CPS::int as CPS,
           f.value:CPI::int as CPI,
-          f.value:CPS::int as CPS,
           F.value:CPF::int as CPF
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => CAMPANHA_ADS_COST) f
