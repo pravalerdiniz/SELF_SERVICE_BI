@@ -1255,6 +1255,13 @@ join: alunos_inadimplencia_2 {
     relationship: one_to_many
   }
 
+  join: vw_elegibilidade_comercial{
+    view_label: "1.4.2 Renovação - Potencial Renovação"
+    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
