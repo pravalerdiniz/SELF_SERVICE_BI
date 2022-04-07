@@ -2,6 +2,9 @@ view: ga_campanha_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
+          b.custo_anuncio::int as custo,
+          b.impressoes::int as impressoes,
+          b.custo_conversao::int as custo_conversao,
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
@@ -11,6 +14,8 @@ view: ga_campanha_aquisicao_conversao {
           f.value:USERS::int as USERS
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => CAMPANHA_AQUISICAO_CONV) f
+          left join VETERANO.GA.FLATTENED_OVERVIEW_CAMPANHA b
+          on f.CAMPANHA = b.overview_campanha and f.ID_CAMPANHA = f.id_campanha and f.date = b.date
        ;;
   }
 
@@ -83,6 +88,27 @@ view: ga_campanha_aquisicao_conversao {
     label: "Soma dos Usuários"
     description: "Soma total dos usuários do site de acordo com CANAL."
     group_label: "Aquisição"
+  }
+
+  measure: total_custo {
+    type: sum
+    sql: ${TABLE}."custo" ;;
+    label: "Custo"
+    description: "Custo derivado da campanha publicitária."
+  }
+
+  measure: total_impressoes {
+    type: sum
+    sql: ${TABLE}."impressoes" ;;
+    label: "Impressões"
+    description: "Número total de impressões da campanha."
+  }
+
+  measure: total_custo_conversao {
+    type: sum
+    sql: ${TABLE}."custo_conversao" ;;
+    label: "Custo | Conversão"
+    description: "O custo por conversão (incluindo comércio eletrônico e conversões de meta) do site."
   }
 
 }
