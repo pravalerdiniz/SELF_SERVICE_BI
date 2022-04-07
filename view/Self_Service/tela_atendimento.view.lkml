@@ -11,6 +11,9 @@ view: tela_atendimento {
 
   dimension: id_chamado {
     type: number
+    group_label: "Dados Chamado"
+    label: "ID do chamado"
+    description: "Indica o ID do chamado registrado na Tela de Atendimento"
     primary_key: yes
     sql: ${TABLE}."ID_CHAMADO" ;;
   }
@@ -36,7 +39,7 @@ view: tela_atendimento {
       quarter,
       year
     ]
-    group_label: "Dados Chamado"
+    group_label: "Data Chamado"
     label: "Data Chamado"
     description: "Indica a data que foi iniciado o chamado"
     sql: ${TABLE}."DATA_CHAMADO" ;;
@@ -84,6 +87,7 @@ view: tela_atendimento {
 
   dimension: ds_sub_titulo_chamado {
     type: string
+    group_label: "Dados Chamado"
     label: "Descrição do subtítulo do chamado"
     description: "Indica o subtítulo do chamado"
     sql: ${TABLE}."DS_SUB_TITULO_CHAMADO" ;;
