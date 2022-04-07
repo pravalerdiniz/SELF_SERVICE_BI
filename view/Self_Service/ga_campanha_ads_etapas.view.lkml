@@ -10,7 +10,7 @@ view: ga_campanha_ads_etapas {
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
-          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO
+          f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
           f.value:IMPRESSOES::int as IMPRESSOES
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => CAMPANHA_ADS_ETAPAS) f
