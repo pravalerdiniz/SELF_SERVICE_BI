@@ -1498,9 +1498,7 @@ explore: interacoes {
   label: "Interações - Tickets"
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
-  fields: [ALL_FIELDS *,
-     - alunos *,
-    alunos.id_proposta_atual
+  fields: [ALL_FIELDS *
   ]
   access_filter: {
     field: EMPRESA_AGENTE
@@ -1539,6 +1537,12 @@ explore: interacoes {
     relationship: one_to_many
   }
 
+  join: ano_mes_carteira_ativa {
+    view_label: "Ano Mes Carteira Ativa"
+    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 #  join: jornada {
  #   view_label: "Jornada"
   #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
