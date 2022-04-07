@@ -8,7 +8,7 @@ view: crm_dados_zendesk {
             f.value:DATA_FIM::timestamp as DATA_FIM,
             f.value:DATA_INICIO::timestamp as DATA_INICIO,
             f.value:DESCRICAO_TICKET::varchar as DESCRICAO_TICKET,
-            f.value:DURACAO::float as DURACAO
+            f.value:DURACAO::float as DURACAO,
             f.value:FILA::varchar as FILA,
             f.value:ID_TICKET::int as ID_TICKET,
             f.value:MOTIVO_CONTATO_RECEPTIVO::varchar as MOTIVO_CONTATO_RECEPTIVO,
