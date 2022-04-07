@@ -1,24 +1,15 @@
 # The name of this view in Looker is "Orcameto Cc"
 view: orcameto_cc {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: "AD_HOC"."ORCAMETO_CC"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Ano" in Explore.
-
   dimension: ano {
     type: number
     sql: ${TABLE}."ANO" ;;
+    hidden: yes
   }
-
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
   measure: total_ano {
     type: sum
@@ -79,22 +70,38 @@ view: orcameto_cc {
   }
 
   dimension: folha_aquisicao {
-    type: string
+    type: number
+    label: "% Folha Aquisição"
+    group_label: "% Folha"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para folha aquisição"
     sql: ${TABLE}."FOLHA_AQUISICAO" ;;
   }
 
   dimension: folha_investimento {
-    type: string
+    type: number
+    label: "% Folha Investimento"
+    group_label: "% Folha"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para folha investimento"
     sql: ${TABLE}."FOLHA_INVESTIMENTO" ;;
   }
 
   dimension: folha_manutencao {
-    type: string
+    type: number
+    label: "% Folha Manutenção"
+    group_label: "% Folha"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para folha manutenção"
     sql: ${TABLE}."FOLHA_MANUTENCAO" ;;
   }
 
   dimension: folha_renovacao {
-    type: string
+    type: number
+    label: "% Folha Renovação"
+    group_label: "% Folha"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para folha renovação"
     sql: ${TABLE}."FOLHA_RENOVACAO" ;;
   }
 
@@ -114,22 +121,38 @@ view: orcameto_cc {
   }
 
   dimension: operacional_aquisicao {
-    type: string
+    type: number
+    label: "% Operacional Aquisição"
+    group_label: "% Operacional"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para operacional aquisição"
     sql: ${TABLE}."OPERACIONAL_AQUISICAO" ;;
   }
 
   dimension: operacional_investimento {
-    type: string
+    type: number
+    label: "% Operacional Investimento"
+    group_label: "% Operacional"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para operacional investimento"
     sql: ${TABLE}."OPERACIONAL_INVESTIMENTO" ;;
   }
 
   dimension: operacional_manutencao {
-    type: string
+    type: number
+    label: "% Operacional Manutenção"
+    group_label: "% Operacional"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para operacional aquisição"
     sql: ${TABLE}."OPERACIONAL_MANUTENCAO" ;;
   }
 
   dimension: operacional_renovacao {
-    type: string
+    type: number
+    label: "% Operacional Renovação"
+    group_label: "% Operacional"
+    value_format: "0.00%"
+    description: "Porcentagem do custo para operacional renovação"
     sql: ${TABLE}."OPERACIONAL_RENOVACAO" ;;
   }
 
