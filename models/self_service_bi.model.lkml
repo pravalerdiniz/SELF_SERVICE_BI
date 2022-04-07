@@ -1921,6 +1921,13 @@ explore: google_analytics {
     type: left_outer
   }
 
+  join: ga_campanha_ads_etapas {
+    view_label: "Campanha x ADS x Etapas"
+    sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_etapas.date_date} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 }
 
 explore: dados_intake {
