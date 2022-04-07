@@ -1498,7 +1498,8 @@ explore: interacoes {
   label: "Interações - Tickets"
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
-  fields: [ALL_FIELDS *
+  fields: [ALL_FIELDS *,
+    - ano_mes_carteira_ativa *
   ]
   access_filter: {
     field: EMPRESA_AGENTE
