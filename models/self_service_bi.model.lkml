@@ -1709,6 +1709,7 @@ explore: projecao_formalizados_grupo_ies {
 
 explore: crm_customer {
   label: "CRM - Customer io"
+  view_label: "1. CRM - Customer io"
 
   join: dados_jornada_crm {
     from: dados_jornada_crm
@@ -1721,7 +1722,7 @@ explore: crm_customer {
   join: crm_dados_zendesk {
     from: crm_dados_zendesk
     view_label: "3. Dados da Zendesk"
-    sql_on: ${crm_customer.id_envio}= ${crm_dados_zendesk.ID_TICKET} ;;
+    sql_on: ${crm_customer.email}= ${crm_dados_zendesk.email} ;;
     relationship: many_to_many
     type: left_outer
   }
