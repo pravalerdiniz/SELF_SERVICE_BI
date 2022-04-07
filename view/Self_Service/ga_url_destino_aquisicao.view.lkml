@@ -8,8 +8,8 @@ view: ga_url_destino_aquisicao {
           f.value:CPC::int as CPC,
           f.value:CUSTO::int as CUSTO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
-          f.value:MIDIA::int as MIDIA,
-          f.value:URL_DESTINO::int as URL_DESTINO
+          f.value:MIDIA::varchar as MIDIA,
+          f.value:URL_DESTINO::varchar as URL_DESTINO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => URLDESTINO_AQUISICAO) f
        ;;
