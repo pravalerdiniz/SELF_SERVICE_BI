@@ -243,6 +243,14 @@ view: tela_atendimento {
     hidden: yes
   }
 
+  measure: count_id_chamado {
+    type: count_distinct
+    sql: ${id_chamado} ;;
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Valor"
+    description: "Contagem de ID's de chamados únicos"
+  }
+
   set: detail {
     fields: [
       id_chamado,
