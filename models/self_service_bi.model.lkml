@@ -1882,14 +1882,14 @@ explore: google_analytics {
   }
 
   join: ga_campanha_ads_cost {
-    view_label: "3.3 Campanha x ADS x Cost"
+    view_label: "3.3 Campanha x Custo por etapa"
     sql_on: ${google_analytics.date_date} = ${ga_campanha_ads_cost.date_date} ;;
     relationship: one_to_many
     type: left_outer
   }
 
   join: ga_overview_campanha {
-    view_label: "3.4 Overview Campanha"
+    view_label: "3.4 Campanha x Ads x Custo"
     sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
     relationship: one_to_many
     type: left_outer
