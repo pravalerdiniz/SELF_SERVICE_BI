@@ -68,15 +68,15 @@ view: ga_url_destino_aquisicao {
     description: "O URL para o qual os anúncios do AdWords direcionaram o tráfego."
   }
 
-  measure: cpc {
-    type: number
+  measure: total_cpc {
+    type: sum
     sql: ${TABLE}."CPC" ;;
     label: "CPC"
     description: "Custo para o anuncio por clique."
   }
 
-  measure: custo {
-    type: number
+  measure: total_custo {
+    type: sum
     sql: ${TABLE}."CUSTO";;
     label: "Custo"
     description: "Custo derivado da campanha publicitária."
