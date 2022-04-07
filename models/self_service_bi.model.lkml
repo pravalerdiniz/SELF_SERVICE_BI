@@ -1123,6 +1123,7 @@ join: alunos_produtos_aprovados {
   }
 
 
+
   join: alunos_inadimplencia_1 {
     view_label: "1.2 Inadimplência"
     sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
