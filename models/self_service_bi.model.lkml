@@ -1887,7 +1887,7 @@ explore: google_analytics {
   }
 
   join: ga_url_destino_aquisicao {
-    view_label: "1.1. URL destino x Campanha x Anúncio"
+    view_label: "URL destino x Campanha x Anúncio"
     sql_on: ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date} ;;
     relationship: one_to_many
     type: left_outer
@@ -1901,7 +1901,7 @@ explore: google_analytics {
   }
 
   join: ga_overview_campanha {
-    view_label: "1.0. Overview Campanha"
+    view_label: "Overview Campanha"
     sql_on: ${google_analytics.date_date} = ${ga_overview_campanha.date_date} ;;
     relationship: one_to_many
     type: left_outer
