@@ -14,6 +14,7 @@ view: tela_atendimento_jornada {
         lateral flatten (input => INFOS_JORNADA) f
         ;;
     }
+
     dimension_group: DATA_INICIO_PROPOSTA{
       type: time
       timeframes: [
@@ -54,6 +55,7 @@ view: tela_atendimento_jornada {
     dimension: ID_PROPOSTA {
       type: string
       label: "ID Proposta"
+      primary_key: yes
       sql: ${TABLE}."ID_PROPOSTA" ;;
     }
     dimension: id_cpf {

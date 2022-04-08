@@ -31,6 +31,7 @@ view: proposta_docs_pendentes {
     label: "Documentos Pendentes"
   }
 
+
   set: detail {
     fields: [id_proposta, docs_pendentes]
   }
