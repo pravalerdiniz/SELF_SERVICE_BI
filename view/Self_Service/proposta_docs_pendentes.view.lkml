@@ -25,11 +25,12 @@ view: proposta_docs_pendentes {
   }
 
   dimension: docs_pendentes {
-    type: number
+    type: string
     sql: ${TABLE}."DOCS_PENDENTES" ;;
     description: "Indica todos os documentos pendentes por proposta"
     label: "Documentos Pendentes"
   }
+
 
   set: detail {
     fields: [id_proposta, docs_pendentes]
