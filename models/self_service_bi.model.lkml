@@ -1846,6 +1846,7 @@ explore: aproveitamento_estoque_nok{
 
 explore: tela_atendimento{
   label: "Tela de Atendimento"
+  view_label: "1. Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
 
   join: tela_atendimento_jornada {
