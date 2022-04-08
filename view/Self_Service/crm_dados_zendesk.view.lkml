@@ -2,17 +2,19 @@ view: crm_dados_zendesk {
     derived_table: {
       persist_for: "1 hour"
       sql: select
+            EMAIL,
+            CPF,
             f.value:CONTATO_FEITO_POR::varchar as CONTATO_FEITO_POR,
             f.value:DATA_FIM::timestamp as DATA_FIM,
             f.value:DATA_INICIO::timestamp as DATA_INICIO,
             f.value:DESCRICAO_TICKET::varchar as DESCRICAO_TICKET,
-            f.value:DURACAO::float as DURACAO
+            f.value:DURACAO::float as DURACAO,
             f.value:FILA::varchar as FILA,
             f.value:ID_TICKET::int as ID_TICKET,
             f.value:MOTIVO_CONTATO_RECEPTIVO::varchar as MOTIVO_CONTATO_RECEPTIVO,
             f.value:STATUS_TICKET::varchar as STATUS_TICKET,
             f.value:TIPO::varchar as TIPO,
-            f.value:TITULO_TICKET::varchar as TITULO_TICKET,
+            f.value:TITULO_TICKET::varchar as TITULO_TICKET
 
         from GRADUADO.CRM.CUSTOMER a,
         lateral flatten (input => INFOS_ZENDESK) f
@@ -54,6 +56,20 @@ view: crm_dados_zendesk {
     group_label: "Data Fim Ticket"
     sql: ${TABLE}.DATA_FIM ;;
     label: "Data Fim Ticket"
+  }
+
+  dimension: cpf {
+    type: number
+    label: "CPF do Aluno"
+    description: "Indica o CPF do Aluno"
+    sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: email {
+    type: string
+    label: "Email do Aluno"
+    description: "Indica o email do Aluno"
+    sql: ${TABLE}."EMAIL" ;;
   }
 
     dimension: ID_TICKET {

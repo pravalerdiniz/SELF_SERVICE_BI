@@ -8,8 +8,8 @@ view: ga_url_destino_aquisicao {
           f.value:CPC::int as CPC,
           f.value:CUSTO::int as CUSTO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
-          f.value:MIDIA::int as MIDIA,
-          f.value:URL_DESTINO::int as URL_DESTINO
+          f.value:MIDIA::varchar as MIDIA,
+          f.value:URL_DESTINO::varchar as URL_DESTINO
           from GRADUADO.SELF_SERVICE_BI.GOOGLE_ANALYTICS a,
           lateral flatten (input => URLDESTINO_AQUISICAO) f
        ;;
@@ -68,15 +68,15 @@ view: ga_url_destino_aquisicao {
     description: "O URL para o qual os anúncios do AdWords direcionaram o tráfego."
   }
 
-  measure: cpc {
-    type: number
+  measure: total_cpc {
+    type: sum
     sql: ${TABLE}."CPC" ;;
     label: "CPC"
     description: "Custo para o anuncio por clique."
   }
 
-  measure: custo {
-    type: number
+  measure: total_custo {
+    type: sum
     sql: ${TABLE}."CUSTO";;
     label: "Custo"
     description: "Custo derivado da campanha publicitária."

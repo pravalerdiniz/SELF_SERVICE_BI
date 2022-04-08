@@ -11,6 +11,9 @@ view: tela_atendimento {
 
   dimension: id_chamado {
     type: number
+    group_label: "Dados Chamado"
+    label: "ID do chamado"
+    description: "Indica o ID do chamado registrado na Tela de Atendimento"
     primary_key: yes
     sql: ${TABLE}."ID_CHAMADO" ;;
   }
@@ -18,8 +21,8 @@ view: tela_atendimento {
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno"
-    label: "CPF do Aluno"
-    description: "Indica o CPF do Aluno vindo do BO"
+    label: "ID_CPF do Aluno"
+    description: "Indica o ID_CPF do Aluno vindo do BO"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -36,7 +39,7 @@ view: tela_atendimento {
       quarter,
       year
     ]
-    group_label: "Dados Chamado"
+    group_label: "Data Chamado"
     label: "Data Chamado"
     description: "Indica a data que foi iniciado o chamado"
     sql: ${TABLE}."DATA_CHAMADO" ;;
@@ -84,6 +87,7 @@ view: tela_atendimento {
 
   dimension: ds_sub_titulo_chamado {
     type: string
+    group_label: "Dados Chamado"
     label: "Descrição do subtítulo do chamado"
     description: "Indica o subtítulo do chamado"
     sql: ${TABLE}."DS_SUB_TITULO_CHAMADO" ;;
@@ -237,6 +241,29 @@ view: tela_atendimento {
     type: string
     sql: ${TABLE}."INFOS_JORNADA" ;;
     hidden: yes
+  }
+
+  dimension: mudou_etapa {
+    type: string
+    case: {
+      when: {
+        sql: ${tela_atendimento_jornada.DT_STATUS_date} >= ${data_chamado_date}
+          AND ${tela_atendimento_jornada.DT_STATUS_date} <= DATEADD(day, 3, ${data_chamado_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Mudou Etapa"
+    label: "Mudou Etapa"
+    description: "Indicador de mudança de status na jornada"
+  }
+
+  measure: count_id_chamado {
+    type: count_distinct
+    sql: ${id_chamado} ;;
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Valor"
+    description: "Contagem de ID's de chamados únicos"
   }
 
   set: detail {
