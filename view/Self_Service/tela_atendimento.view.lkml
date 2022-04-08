@@ -21,8 +21,8 @@ view: tela_atendimento {
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno"
-    label: "CPF do Aluno"
-    description: "Indica o CPF do Aluno vindo do BO"
+    label: "ID_CPF do Aluno"
+    description: "Indica o ID_CPF do Aluno vindo do BO"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
