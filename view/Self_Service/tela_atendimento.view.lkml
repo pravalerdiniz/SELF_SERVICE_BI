@@ -243,6 +243,21 @@ view: tela_atendimento {
     hidden: yes
   }
 
+  dimension: mudou_etapa {
+    type: string
+    case: {
+      when: {
+        sql: ${tela_atendimento_jornada.DT_STATUS_date} >= ${data_chamado_date}
+          AND ${tela_atendimento_jornada.DT_STATUS_date} <= DATEADD(day, 3, ${data_chamado_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Mudou Etapa"
+    label: "Mudou Etapa"
+    description: "Indicador de mudança de status na jornada"
+  }
+
   measure: count_id_chamado {
     type: count_distinct
     sql: ${id_chamado} ;;
