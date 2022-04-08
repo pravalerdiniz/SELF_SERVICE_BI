@@ -150,7 +150,7 @@ view: vw_elegibilidade_comercial {
         label: "Reprovado por duas ou mais parcelas em atraso"
       }
       when: {
-        sql: ${status_renov}  im ('2019.16', '2019.18', '2019.19')
+        sql: ${status_renov}  in ('2019.16', '2019.18', '2019.19')
 
 ;;
         label: "Reprovado Behavior"
