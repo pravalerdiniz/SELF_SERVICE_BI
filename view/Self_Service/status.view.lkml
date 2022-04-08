@@ -320,6 +320,28 @@ view: status {
     description: "Indica a faixa de tempo, em dias, que o aluno ficou parado no status de origem."
   }
 
+  dimension: faixa_tempo_ultimo_status{
+    type: string
+    case: {
+      when: {
+        sql: ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 5 ;;
+        label: "< 5"
+      }
+      when: {
+        sql: ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 15 ;;
+        label: "5 - 15"
+      }
+      when: {
+        sql: ${QTD_DIAS_PRIMEIRA_VEZ_ULTIMO_STATUS} <= 30 ;;
+        label: "15 - 30"
+      }
+      else: "30 >"
+    }
+    group_label: "Dados do Status"
+    group_item_label: "Faixa de Tempo - Último Status"
+    description: "Indica a faixa de tempo, em dias, que o aluno ficou parado no ultimo status pela primeira vez."
+  }
+
 
   dimension: QTD_DIAS_STATUS {
     type: number
