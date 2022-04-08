@@ -173,7 +173,7 @@ view: vw_elegibilidade_comercial {
         sql: ${status_renov} in ('2040.0','2042.1','2042.2','2042.3',
                   '2044.1','2044.13'
           ) ;;
-        label: "Pendente de Renovação - Pravaler"
+        label: "Pend. Envio de Documento"
       }
       when: {
         sql: ${status_renov}  ilike '%2039%' ;;
