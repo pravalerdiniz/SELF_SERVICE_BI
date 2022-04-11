@@ -7,7 +7,7 @@ view: ga_campanha_ads_cost {
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
-          f.value:CUSTO::int as CUSTO,
+          f.value:CUSTO::number(38,2) as CUSTO,
           f.value:CPL::int as CPL,
           f.value:CPS::int as CPS,
           f.value:CPI::int as CPI,
