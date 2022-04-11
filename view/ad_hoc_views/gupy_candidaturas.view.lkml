@@ -13,21 +13,21 @@ view: gupy_candidaturas {
 
   dimension: avaliadores_vaga {
     group_label: "Dados da Vaga"
-    label: "Lista de Avaliadores"
+    label: "Lista de Avaliadores da Vaga"
     type: string
     sql: ${TABLE}."AVALIADORES_VAGA" ;;
   }
 
   dimension: campos_personalizados_vaga {
     group_label: "Dados da Vaga"
-    label: "Lista de Campos Personalizados"
+    label: "Lista de Campos Personalizados da Vaga"
     type: string
     sql: ${TABLE}."CAMPOS_PERSONALIZADOS_VAGA" ;;
   }
 
   dimension: cd_vaga {
     group_label: "Dados da Vaga"
-    label: "Código Identificador Único"
+    label: "Código Interno da Vaga"
     type: string
     sql: ${TABLE}."CD_VAGA" ;;
   }
@@ -48,7 +48,7 @@ view: gupy_candidaturas {
 
   dimension: codigos_vaga {
     group_label: "Dados da Vaga"
-    label: "Códigos Internos"
+    label: "Códigos Internos da Vaga"
     type: string
     sql: ${TABLE}."CODIGOS_VAGA" ;;
   }
@@ -289,7 +289,7 @@ view: gupy_candidaturas {
 
   dimension_group: dt_registro_entrada_etapa {
     group_label: "Dados da Candidatura"
-    label: "Data de Entrada Registrada para essa Etapa"
+    label: "Etapa Atual - Data de Entrada Registrada pela Carga"
     description: "Ao fazer a ingestão dos dados, registramos a data e etapa na qual a candidatura se encontra naquele momento. Caso ocorra o avanço de mais de uma etapa por dia, essa informação poderá não ser encontrada"
     type: time
     timeframes: [
@@ -415,7 +415,7 @@ view: gupy_candidaturas {
 
   dimension: id_candidato {
     group_label: "Dados do Candidato"
-    label: "Código Identificador Único"
+    label: "Código do Candidato"
     type: number
     sql: ${TABLE}."ID_CANDIDATO" ;;
   }
@@ -436,21 +436,20 @@ view: gupy_candidaturas {
 
   dimension: id_candidatura {
     group_label: "Dados da Candidatura"
-    label: "Código Identificador Único"
+    label: "Código da Candidatura"
     type: number
     sql: ${TABLE}."ID_CANDIDATURA" ;;
   }
-
   dimension: id_etapa_atual {
     group_label: "Dados da Candidatura"
-    label: "Código da Etapa Atual"
+    label: "Etapa Atual - Código"
     type: number
     sql: ${TABLE}."ID_ETAPA_ATUAL" ;;
   }
 
   dimension: id_vaga {
     group_label: "Dados da Vaga"
-    label: "Código Identificador Único"
+    label: "Código da Vaga"
     type: number
     sql: ${TABLE}."ID_VAGA" ;;
   }
@@ -537,10 +536,63 @@ view: gupy_candidaturas {
 
   dimension: nm_etapa_atual {
     group_label: "Dados da Candidatura"
-    label: "Etapa Atual"
+    label: "Etapa Atual - Nome"
     type: string
     sql: ${TABLE}."NM_ETAPA_ATUAL" ;;
   }
+
+  dimension: nm_etapa_atual_tratada {
+    group_label: "Dados da Candidatura"
+    label: "Etapa Atual - Nome Tratado"
+    description: "Nome da etapa atual, tratada para padrão Gente & Gestão"
+    type: string
+    sql: case ${TABLE}."NM_ETAPA_ATUAL"
+          when 'CADASTRO' then 'Cadastro'
+          when 'CANDIDATURA_INTERNA' then 'Candidatura Interna'
+          when 'CASE' then 'Caso'
+          when 'CASE_STUDY' then 'Caso de Estudo'
+          when 'CONHECA_PRAVALER' then 'Conheça o Pravaler'
+          when 'CONTRATACAO' then 'Contratação'
+          when 'DINAMICAS_GRUPO' then 'Dinâmicas em Grupo'
+          when 'ENTREVISTA_ALTA_LIDERANCA' then 'Entrevista com alta liderança'
+          when 'ENTREVISTA_CFO' then 'Entrevista com CFO'
+          when 'ENTREVISTA_CTO' then 'Entrevista com CTO'
+          when 'ENTREVISTA_DIRETOR_NEGOCIOS' then 'Entrevista com Diretor de Negócios'
+          when 'ENTREVISTA_EXTRA' then 'Entrevista Extra'
+          when 'ENTREVISTA_FINAL' then 'Entrevista Final'
+          when 'ENTREVISTA_GEG' then 'Entrevista Gente & Gestão'
+          when 'ENTREVISTA_GENTE_GESTAO' then 'Entrevista Gente & Gestão'
+          when 'ENTREVISTA_GERENTE' then 'Entrevista com Gerente'
+          when 'ENTREVISTA_GERENTE_ENGENHARIA' then 'Entrevista com Gerente de Engenharia'
+          when 'ENTREVISTA_GESTOR' then 'Entrevista gestor (a)'
+          when 'ENTREVISTA_GESTOR_AREA' then 'Entrevista gestor (a)'
+          when 'ENTREVISTA_GESTOR_VAGA' then 'Entrevista gestor (a)'
+          when 'ENTREVISTA_GG' then 'Entrevista Gente & Gestão'
+          when 'ENTREVISTA_HEAD_PRODUTOS' then 'Entrevista com Head de Produtos'
+          when 'ENTREVISTA_PO_TRIBE_LEADER' then 'Entrevista com PO Tribe Leader'
+          when 'ENTREVISTA_RECRUTAMENTO' then 'Entrevista Recrutamento'
+          when 'ENTREVISTA_RH' then 'Entrevista com RH'
+          when 'ENTREVISTA_TECH_LEAD' then 'Entrevista com Tech Lead'
+          when 'ENTREVISTA_TIME' then 'Entrevista com Time'
+          when 'ENVIO_OFERTA' then 'Proposta!'
+          when 'ENVIO_PROPOSTA' then 'Proposta!'
+          when 'ESTUDO_CASO_COMPRAS_SUPRIMENTOS' then 'Estudo de Caso Compras de Suprimentos'
+          when 'ETAPA_TECNICA' then 'Etapa técnica'
+          when 'GENTE_GESTAO' then 'Entrevista Gente & Gestão'
+          when 'PAINEL_EXECUTIVOS' then 'Painel Executivos'
+          when 'PORPOSTA' then 'Proposta!'
+          when 'PROPOSTA' then 'Proposta!'
+          when 'QUESTIONARIO_RECRUTAMENTO_INTERNO' then 'Questionário de Recrutamento Interno'
+          when 'REDACAO_LIVRE' then 'Redação Livre'
+          when 'TESTE_FIT_CULTURAL' then 'Teste Fit Cultural'
+          when 'TESTE_LOGICA' then 'Teste de Lógica'
+          when 'TESTE_ONLINE' then 'Teste Online'
+          when 'VIDEO' then 'Vídeo'
+          else ${TABLE}."NM_ETAPA_ATUAL"
+    end
+    ;;
+  }
+
 
   dimension: nm_funcao {
     group_label: "Dados da Vaga"
@@ -551,7 +603,7 @@ view: gupy_candidaturas {
 
   dimension: nm_gerente {
     group_label: "Dados da Vaga"
-    label: "Gerente"
+    label: "Gerente da Vaga"
     type: string
     sql: ${TABLE}."NM_GERENTE" ;;
   }
@@ -642,7 +694,8 @@ view: gupy_candidaturas {
 
   dimension: status_candidatura {
     group_label: "Dados da Candidatura"
-    label: "Status"
+    label: "Status da Candidatura"
+    description: "Status geral da candidatura"
     type: string
     sql: case ${TABLE}."STATUS_CANDIDATURA"
           when 'give_up' then 'desistiu'
@@ -656,7 +709,7 @@ view: gupy_candidaturas {
 
   dimension: status_etapa_atual {
     group_label: "Dados da Candidatura"
-    label: "Status da Etapa Atual"
+    label: "Etapa Atual - Status"
     type: string
     sql: case ${TABLE}."STATUS_ETAPA_ATUAL"
           when 'done' then 'concluída'

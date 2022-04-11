@@ -21,8 +21,8 @@ view: tela_atendimento {
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno"
-    label: "CPF do Aluno"
-    description: "Indica o CPF do Aluno vindo do BO"
+    label: "ID_CPF do Aluno"
+    description: "Indica o ID_CPF do Aluno vindo do BO"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -241,6 +241,21 @@ view: tela_atendimento {
     type: string
     sql: ${TABLE}."INFOS_JORNADA" ;;
     hidden: yes
+  }
+
+  dimension: mudou_etapa {
+    type: string
+    case: {
+      when: {
+        sql: ${tela_atendimento_jornada.DT_STATUS_date} >= ${data_chamado_date}
+          AND ${tela_atendimento_jornada.DT_STATUS_date} <= DATEADD(day, 3, ${data_chamado_date}) ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Mudou Etapa"
+    label: "Mudou Etapa"
+    description: "Indicador de mudança de status na jornada"
   }
 
   measure: count_id_chamado {

@@ -65,7 +65,7 @@ view: ga_ads_conversao_hora {
     type: sum
     label: "1. Soma Leads"
     description: "Soma da etapa Lead no site de acordo com a HORA."
-    sql: ${TABLE}."FINALIZADO" ;;
+    sql: ${TABLE}."LEAD" ;;
     group_label: "Etapas"
   }
 
