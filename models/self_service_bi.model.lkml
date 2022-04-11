@@ -452,6 +452,15 @@ join: flag_unico_aluno {
 
   }
 
+  join: financeiro {
+    view_label: "8. Financeiro"
+    sql_on: ${jornada.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
+  }
+
 
   join: alunos_hotlead {
     view_label: "5. Campanhas DBM"
