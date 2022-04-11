@@ -60,7 +60,7 @@ view: aproveitamento_estoque_nok {
     sql: ${aproveitamento_estoque} ;;
     filters: {
       field: etapa
-      value: "Aprovado Instituição"
+      value: "Aprovado Instituicao"
     }
     group_label: "Aproveitamento por Etapa"
     group_item_label: "Aproveitamento Aprov IES"
