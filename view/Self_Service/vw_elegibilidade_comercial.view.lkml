@@ -150,7 +150,9 @@ view: vw_elegibilidade_comercial {
         label: "Reprovado por duas ou mais parcelas em atraso"
       }
       when: {
-        sql: ${status_renov}  ilike '%2019%';;
+        sql: ${status_renov}  in ('2019.16', '2019.18', '2019.19')
+
+;;
         label: "Reprovado Behavior"
       }
       when: {
@@ -171,7 +173,7 @@ view: vw_elegibilidade_comercial {
         sql: ${status_renov} in ('2040.0','2042.1','2042.2','2042.3',
                   '2044.1','2044.13'
           ) ;;
-        label: "Pendente de Renovação - Pravaler"
+        label: "Pend. Envio de Documento"
       }
       when: {
         sql: ${status_renov}  ilike '%2039%' ;;

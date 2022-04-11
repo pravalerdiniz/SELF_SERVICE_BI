@@ -670,6 +670,12 @@ view: farol {
     sql: ${TABLE}."FLG_ULTIMA_CARGA" ;;
   }
 
+  dimension: flg_ult_dia {
+    type: yesno
+
+    sql: ${TABLE}."FLG_ULT_DIA" ;;
+  }
+
 
 dimension: tempo_status {
   type: number
