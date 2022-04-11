@@ -17,7 +17,7 @@ view: ga_url_destino_aquisicao {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave", ${date_date}) ;;
     primary_key: yes
     hidden: yes
   }
