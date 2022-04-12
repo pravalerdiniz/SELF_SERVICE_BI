@@ -155,6 +155,10 @@ explore: taxa_de_contato_alunos_ativos{
   label: "Taxa de Contato de Alunos Ativos"
 }
 
+explore: taxa_de_contato_motivo_de_contato{
+  label: "Taxa de Contato por Motivo de Contato"
+}
+
 explore: campanha_valoriza {
   label: "Campanha Valoriza"
 }
