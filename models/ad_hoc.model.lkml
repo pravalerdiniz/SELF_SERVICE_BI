@@ -150,6 +150,11 @@ explore: taxa_de_contato{
   label: "Taxa de Contato"
 }
 
+
+explore: taxa_de_contato_alunos_ativos{
+  label: "Taxa de Contato de Alunos Ativos"
+}
+
 explore: campanha_valoriza {
   label: "Campanha Valoriza"
 }
