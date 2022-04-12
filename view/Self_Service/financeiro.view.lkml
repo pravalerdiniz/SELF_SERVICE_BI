@@ -248,8 +248,10 @@ dimension: data_trunc  {
 
   measure: ultimo_vencimento {
     type: date
-    label: "Último Vencimento - Mais antigo"
+    group_label: "Vencimento"
+    label: "Vencimento mais antigo"
     sql: MIN(${data_vencimento_raw}) ;;
+    description: "Indica a data mais antiga do vencimento do boleto da proposta do aluno. MIN(DATA_VENCIMENTO)."
     convert_tz: no
   }
 
@@ -257,8 +259,10 @@ dimension: data_trunc  {
 
   measure: ultimo_vencimento_mais_recente {
     type: date
-    label: "Último Vencimento - Mais Recente"
+    group_label: "Vencimento"
+    label: "Último Vencimento"
     sql: MAX(${data_vencimento_raw}) ;;
+    description: "Indica a última data do vencimento do boleto da proposta do aluno. MAX(DATA_VENCIMENTO)."
     convert_tz: no
   }
 
