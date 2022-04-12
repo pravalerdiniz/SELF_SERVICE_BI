@@ -515,6 +515,13 @@ join: flag_unico_aluno {
     type: left_outer
     relationship: many_to_one}
 
+  join: alunos_painel_risco {
+    view_label: "6. Alunos"
+    sql_on:${jornada.id_cpf} = ${alunos_painel_risco.id_cpf} and ${jornada.id_proposta} = ${alunos_painel_risco.proposta}  ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
     sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
