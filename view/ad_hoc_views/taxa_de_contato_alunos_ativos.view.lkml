@@ -62,14 +62,14 @@ view: taxa_de_contato_alunos_ativos {
     sql: ${TABLE}."ANO_MES" ;;
   }
 
-  dimension: qtd_aluno_ativo {
-    type: number
+  measure: qtd_aluno_ativo {
+    type: sum
     group_item_label: "QTD Alunos Ativos"
     sql: ${TABLE}."QTD_ALUNO_ATIVO" ;;
   }
 
-  dimension: qtd_tickets_alunos_ativos {
-    type: number
+  measure: qtd_tickets_alunos_ativos {
+    type: sum
     group_item_label: "QTD Tickets de Alunos Ativos"
     sql: ${TABLE}."QTD_TICKETS_ALUNOS_ATIVOS" ;;
   }
