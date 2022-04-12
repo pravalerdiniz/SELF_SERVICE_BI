@@ -57,16 +57,20 @@ view: taxa_de_contato_alunos_ativos {
 
   dimension: ano_mes {
     type: string
+    group_item_label: "Data"
+    description: "Mês referente à taxa de contato"
     sql: ${TABLE}."ANO_MES" ;;
   }
 
   dimension: qtd_aluno_ativo {
     type: number
+    group_item_label: "QTD Alunos Ativos"
     sql: ${TABLE}."QTD_ALUNO_ATIVO" ;;
   }
 
   dimension: qtd_tickets_alunos_ativos {
     type: number
+    group_item_label: "QTD Tickets de Alunos Ativos"
     sql: ${TABLE}."QTD_TICKETS_ALUNOS_ATIVOS" ;;
   }
 
