@@ -452,6 +452,15 @@ join: flag_unico_aluno {
 
   }
 
+  join: financeiro {
+    view_label: "8. Financeiro"
+    sql_on: ${jornada.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+
+
+  }
+
 
   join: alunos_hotlead {
     view_label: "5. Campanhas DBM"
@@ -505,6 +514,13 @@ join: flag_unico_aluno {
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
     relationship: many_to_one}
+
+  join: alunos_painel_risco {
+    view_label: "6. Alunos"
+    sql_on:${jornada.id_cpf} = ${alunos_painel_risco.id_cpf} and ${jornada.id_proposta} = ${alunos_painel_risco.proposta}  ;;
+    type: left_outer
+    relationship: many_to_one
+  }
 
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
