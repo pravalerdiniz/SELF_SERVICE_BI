@@ -578,8 +578,7 @@ explore: instituicao {
 
   join: instituicao_contrato_produto_info {
     view_label: "1.1. Contrato da Instituição por Produto"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} and
-    ${instituicao_taxas_antecipacao.id_produto}=${instituicao_contrato_produto_info.id_produto};;
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao};;
     relationship: one_to_many
     type: left_outer
 
