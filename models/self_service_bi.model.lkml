@@ -565,7 +565,7 @@ explore: instituicao {
     - proposta.flg_curso_ativo,
     - proposta.qtd_semestre_curso,
     - proposta.enfase_curso,
-    - proposta.perc_comissao,
+    ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
     - proposta.tipo_original,
