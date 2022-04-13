@@ -1789,6 +1789,7 @@ view: proposta {
     label: "Porcentagem de Comissão da Instituição"
     description: "Indica a porcentagem de comissão recebida da instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
+    value_format: "0.00%"
 
   }
 
