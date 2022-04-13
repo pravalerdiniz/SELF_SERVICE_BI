@@ -1,5 +1,6 @@
 connection: "graduado"
 
+
 include: "/**/*.view.lkml"
 
 explore: ga_campanha_ads_cost {
