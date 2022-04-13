@@ -1,5 +1,9 @@
 connection: "graduado"
 
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
 
 include: "/**/*.view.lkml"
 
