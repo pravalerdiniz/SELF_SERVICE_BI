@@ -17,7 +17,7 @@ view: ga_url_destino_aquisicao {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave", ${date_date}) ;;
     primary_key: yes
     hidden: yes
   }
@@ -79,6 +79,13 @@ view: ga_url_destino_aquisicao {
     type: sum
     sql: ${TABLE}."CUSTO";;
     label: "Custo"
+    description: "Custo derivado da campanha publicitária."
+  }
+
+  measure: total_cliques {
+    type: sum
+    sql: ${TABLE}."CLIQUES";;
+    label: "Cliques"
     description: "Custo derivado da campanha publicitária."
   }
 
