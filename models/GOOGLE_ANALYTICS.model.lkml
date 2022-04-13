@@ -1,14 +1,12 @@
 connection: "graduado"
 
-access_grant: grupo_cpf {
-  user_attribute: grupo_cpf
-  allowed_values: ["grupo_cpf"]
-}
+
 
 include: "/**/*.view.lkml"
 
 explore: ga_campanha_ads_cost {
   label: "Campanhas | Google Analytics"
+  view_label: "Ga do lucas"
   description: "Informações das campanhas vindas do Google Analytics"
 
   join: google_analytics {
