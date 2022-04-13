@@ -13,7 +13,7 @@ explore: ga_campanha_ads_cost {
 
   join: google_analytics {
     view_label: "Tabela principal"
-    sql_on: ${ga_campanha_ads_cost.date_date} = ${google_analytics.date_date};;
+    sql_on: ${ga_campanha_ads_cost.date_date} = ${google_analytics.date_date} and ${ga_overview_campanha.date_date} = ${google_analytics.date_date};;
     relationship: many_to_one
     type: left_outer
   }
