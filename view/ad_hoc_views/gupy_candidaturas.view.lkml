@@ -792,12 +792,12 @@ view: gupy_candidaturas {
     sql: ${TABLE}."DT_INICIO_PROX_ETAPA" ;;
   }
 
-  dimension:  qtd_dias_etapa{
+  dimension:  qtd_dias_corridos_etapa{
     group_label: "Dados da Candidatura"
     label: "Quantidade de dias corridos nesta etapa"
     description: "Indica a quantidade de dias corridos que o candidato está parado nesta etapa"
     type: number
-    sql: datediff(days, coalesce(${dt_inicio_prox_etapa_date}, ${dt_finalizacao_candidatura_date}, current_date), ${dt_registro_entrada_etapa_date}) + 1
+    sql: datediff(days, ${dt_registro_entrada_etapa_date}, coalesce(${dt_inicio_prox_etapa_date}, ${dt_finalizacao_candidatura_date}, current_date)) + 1
     ;;
   }
 
