@@ -19,7 +19,7 @@ view: ga_campanha_ads_cost {
 
   dimension: chave {
     type: string
-    sql: {TABLE}."chave";;
+    sql: ${TABLE}."chave";;
     primary_key: yes
     hidden: yes
   }
