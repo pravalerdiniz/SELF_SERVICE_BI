@@ -41,7 +41,6 @@ explore: ga_campanha_ads_cost {
     and ${ga_campanha_ads_cost.date_date} = ${ga_overview_campanha.date_date};;
     relationship: many_to_many
     type: full_outer
-
   }
 
   join: ga_campanha_ads_etapas {
@@ -60,3 +59,30 @@ explore: ga_campanha_ads_cost {
     type: full_outer
   }
 }
+
+  explore: ga_origem_midia_aquisicao_conversao {
+    label: "Origem/Mídia"
+    view_label: "4. Origem e Mídia"
+    description: "Informações sobre Origem e Mídia do Google Analytics"
+
+    join: google_analytics {
+      view_label: "1. Site | Geral"
+      sql_on: ${ga_origem_midia_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+      relationship: many_to_one
+      type: full_outer
+    }
+
+    join: ga_origem_aquisicao_conversao {
+      view_label: "2. Origem"
+      sql_on: and ${ga_origem_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+      relationship: many_to_many
+      type: full_outer
+    }
+
+    join: ga_midia_aquisicao_conversao {
+      view_label: "3. Mídia"
+      sql_on: and ${ga_midia_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+      relationship: many_to_many
+      type: full_outer
+    }
+  }

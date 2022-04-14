@@ -3,7 +3,7 @@ view: ga_origem_midia_aquisicao_conversao {
     persist_for: "1 hour"
     sql: select a.date,
           f.key as chave,
-          f.value:ORIGEM_MIDIA::varchar as ORIGEM_MIDIA
+          f.value:ORIGEM_MIDIA::varchar as ORIGEM_MIDIA,
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
           f.value:INICIADO::int as INICIADO,
