@@ -775,6 +775,32 @@ view: gupy_candidaturas {
     sql: ${TABLE}."TRABALHO_REMOTO" ;;
   }
 
+  dimension_group: dt_inicio_prox_etapa {
+    group_label: "Dados da Candidatura"
+    label: "Data de Início na próxima Etapa"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DT_INICIO_PROX_ETAPA" ;;
+  }
+
+  dimension:  qtd_dias_corridos_etapa{
+    group_label: "Dados da Candidatura"
+    label: "Quantidade de dias corridos nesta etapa"
+    description: "Indica a quantidade de dias corridos que o candidato está parado nesta etapa"
+    type: number
+    sql: datediff(days, ${dt_registro_entrada_etapa_date}, coalesce(${dt_inicio_prox_etapa_date}, ${dt_finalizacao_candidatura_date}, current_date)) + 1
+    ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []

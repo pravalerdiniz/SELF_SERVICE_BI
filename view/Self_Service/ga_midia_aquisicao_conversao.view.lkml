@@ -2,7 +2,8 @@ view: ga_midia_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
-          f.key as midia_aquisicao,
+          f.key as chave,
+          f.value:MIDIA_AQUISICAO::varchar as MIDIA
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
           f.value:INICIADO::int as INICIADO,
@@ -34,18 +35,19 @@ view: ga_midia_aquisicao_conversao {
     hidden: yes
   }
 
+  dimension: chave {
+    type: string
+    sql: concat(${TABLE}."chave",${date_date}) ;;
+    primary_key: yes
+    hidden: yes
+  }
+
+
   dimension: midia {
     type: string
     label: "Midia"
     description: "O tipo de referências."
-    sql: ${TABLE}."midia_aquisicao" ;;
-  }
-
-  dimension: data_midia {
-    type: string
-    sql: concat(${date_date},${midia}) ;;
-    primary_key: yes
-    hidden: yes
+    sql: ${TABLE}."MIDIA" ;;
   }
 
   measure: total_goalcomplete {
