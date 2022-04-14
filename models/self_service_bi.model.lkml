@@ -1862,6 +1862,10 @@ explore: aproveitamento_estoque_nok{
 
 explore: tela_atendimento{
   label: "Tela de Atendimento"
+  fields: [ALL_FIELDS *,
+    - alunos.id_cpf,
+    - alunos.ativo_ano_mes,
+  ]
   view_label: "1. Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
 
@@ -1871,6 +1875,14 @@ explore: tela_atendimento{
     relationship: one_to_many
     type: left_outer
   }
+
+  join: alunos {
+    view_label: "3. Dados Aluno"
+    sql_on: ${tela_atendimento.id_cpf}=${alunos.id_cpf};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 }
 
 explore: gupy_candidaturas {
