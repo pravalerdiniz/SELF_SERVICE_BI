@@ -20,7 +20,7 @@ view: ga_overview_campanha {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${campanha}) ;;
     primary_key: yes
     hidden: yes
   }
