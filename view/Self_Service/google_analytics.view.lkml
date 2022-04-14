@@ -94,7 +94,7 @@ view: google_analytics {
 
   measure: total_new_users {
     type: sum
-    sql: ${new_users} ;;
+    sql: ${TABLE}."NEW_USERS" ;;
     label: "Soma"
     description: "Soma total de novos usuarios no site"
     group_label: "Novos Usuarios"
@@ -102,7 +102,7 @@ view: google_analytics {
 
   measure: average_new_users {
     type: average
-    sql: ${new_users} ;;
+    sql: ${TABLE}."NEW_USERS" ;;
     label: "Média"
     description: "Média de novos usuarios"
     group_label: "Novos Usuarios"
@@ -134,7 +134,7 @@ view: google_analytics {
 
   measure: total_sessions{
     type: sum
-    sql: ${sessions} ;;
+    sql: ${TABLE}."SESSIONS" ;;
     label: "Soma"
     description: "Soma das sessões no site"
     group_label: "Sessões"
@@ -142,7 +142,7 @@ view: google_analytics {
 
   measure: average_sessions {
     type: average
-    sql: ${sessions} ;;
+    sql: ${TABLE}."SESSIONS" ;;
     label: "Média"
     description: "Média das sessões no site"
     group_label: "Sessões"
@@ -161,7 +161,7 @@ view: google_analytics {
 
   measure: total_users {
   type: sum
-  sql: ${users} ;;
+  sql: ${TABLE}."USERS" ;;
   label: "Soma"
   description: "Soma total dos usuários do site"
   group_label: "Usuários"
@@ -169,7 +169,7 @@ view: google_analytics {
 
   measure: average_users {
   type: average
-  sql: ${users} ;;
+  sql: ${TABLE}."USERS" ;;
   label: "Média"
   description: "Média dos usuários do site"
   group_label: "Usuários"
