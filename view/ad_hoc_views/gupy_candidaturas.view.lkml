@@ -775,6 +775,23 @@ view: gupy_candidaturas {
     sql: ${TABLE}."TRABALHO_REMOTO" ;;
   }
 
+  dimension_group: dt_inicio_prox_etapa {
+    group_label: "Dados da Candidatura"
+    label: "Data de Início na próxima Etapa"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DT_INICIO_PROX_ETAPA" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
