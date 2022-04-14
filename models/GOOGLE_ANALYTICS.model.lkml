@@ -74,14 +74,14 @@ explore: ga_campanha_ads_cost {
 
     join: ga_origem_aquisicao_conversao {
       view_label: "2. Origem"
-      sql_on: and ${ga_origem_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+      sql_on: ${ga_origem_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
       relationship: many_to_many
       type: full_outer
     }
 
     join: ga_midia_aquisicao_conversao {
       view_label: "3. Mídia"
-      sql_on: and ${ga_midia_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+      sql_on: ${ga_midia_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
       relationship: many_to_many
       type: full_outer
     }
