@@ -154,10 +154,10 @@ view: instituicao {
   }
 
   dimension: curso_ativo {
-    type: yesno
+    type: number
     group_label: "Dados do Curso - IE"
     label: "Curso Ativo?"
-    description:"Indica se o curso está ativo no sistema."
+    description:"Indica se o curso está ativo no sistema. 1 = Ativo e 0 = Não Ativo"
     sql: ${TABLE}."CURSO_ATIVO";;
   }
 
