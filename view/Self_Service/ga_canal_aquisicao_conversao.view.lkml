@@ -19,7 +19,7 @@ view: ga_canal_aquisicao_conversao {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     primary_key: yes
     hidden: yes
   }

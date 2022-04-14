@@ -2,13 +2,13 @@ view: ga_origem_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
-    f.key as origem,
+    f.key as chave,
     f.value:FINALIZADO::int as FINALIZADO,
     f.value:GOALCOMPLETE::int as GOALCOMPLETE,
     f.value:INICIADO::int as INICIADO,
     f.value:LEAD::int as LEAD,
     f.value:NEWUSERS::int as NEWUSERS,
-    f.value:ORIGEM::varchar as ORIGEM_OBJ,
+    f.value:ORIGEM::varchar as ORIGEM,
     f.value:SESSIONS::int as SESSIONS,
     f.value:SIMULADO::int as SIMULADO,
     f.value:USERS::int as USERS
@@ -35,10 +35,10 @@ view: ga_origem_aquisicao_conversao {
       hidden: yes
     }
 
-  dimension: data_origem {
+  dimension: chave {
     type: string
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     primary_key: yes
-    sql: concat(${date_date},${origem}) ;;
     hidden: yes
   }
 
@@ -46,15 +46,7 @@ view: ga_origem_aquisicao_conversao {
     type: string
     label: "Origem"
     description: "A origem das referências."
-    sql: ${TABLE}."origem" ;;
-  }
-
-  dimension: origem_obj {
-    type: string
-    label: "Origem (objeto)"
-    description: "A origem das referências (objeto)."
-    sql: ${TABLE}."ORIGEM_OBJ" ;;
-    hidden: yes
+    sql: ${TABLE}."ORIGEM" ;;
   }
 
   measure: total_goalcomplete {
