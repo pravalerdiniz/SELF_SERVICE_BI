@@ -1428,7 +1428,7 @@ join: alunos_inadimplencia_2 {
 
   join: status {
     view_label: "5. Status"
-    sql_on: ${alunos.id_cpf} = ${status.id_cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} and ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1459,7 +1459,7 @@ join: financeiro {
 
   join: jornada {
     view_label: "4. Jornada"
-    sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} ;;
+    sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} and ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     type: left_outer
     relationship: one_to_many
   }
