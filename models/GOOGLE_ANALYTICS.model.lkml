@@ -73,7 +73,6 @@ explore: ga_campanha_ads_cost {
     relationship: many_to_many
     type: full_outer
   }
-
 }
 
   explore: ga_origem_midia_aquisicao_conversao {
@@ -114,6 +113,10 @@ explore: ga_campanha_ads_cost {
       label: "Google Ads"
       view_label: "2. Grupo de Anúncio"
       description: "Informações sobre os Grupos de anúncios do Google Ads."
+      fields: [ALL_FIELDS *,
+        - ga_overview_campanha.grupo_anuncio,
+        - ga_overview_campanha.id_grupo_anuncio
+      ]
 
       join: google_analytics {
         view_label: "1. Site | Geral"
@@ -133,14 +136,6 @@ explore: ga_campanha_ads_cost {
         view_label: "2. Grupo de Anúncio"
         sql_on: ${ga_ads_conversao_hora.id_grupo_anuncio} = ${ga_overview_campanha.id_grupo_anuncio}
           and ${ga_ads_conversao_hora.date_date} = ${ga_overview_campanha.date_date};;
-        relationship: many_to_many
-        type: full_outer
-      }
-
-      join: ga_campanha_ads_etapas {
-        view_label: "2. Grupo de Anúncio"
-        sql_on: ${ga_ads_conversao_hora.id_grupo_anuncio} = ${ga_campanha_ads_etapas.id_grupo_anuncio}
-          and ${ga_ads_conversao_hora.date_date} = ${ga_campanha_ads_etapas.date_date};;
         relationship: many_to_many
         type: full_outer
       }
