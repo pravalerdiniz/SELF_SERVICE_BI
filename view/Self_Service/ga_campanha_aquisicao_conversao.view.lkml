@@ -16,7 +16,7 @@ view: ga_campanha_aquisicao_conversao {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     primary_key: yes
     hidden: yes
   }
@@ -55,10 +55,10 @@ view: ga_campanha_aquisicao_conversao {
 
   measure: total_goalcomplete {
     type: sum
-    label: "5. Soma das etapas"
+    label: "Soma das etapas"
     description: "Soma das etapas de Lead, Simulado, Iniciado e Finalizado no site."
     sql: ${TABLE}."GOALCOMPLETE";;
-    group_label: "Etapas"
+    hidden: yes
   }
 
   measure: total_new_users {
@@ -66,7 +66,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."NEWUSERS" ;;
     label: "Soma Novos usuários"
     description: "Soma total de novos usuarios no site de acordo com CANAL."
-    group_label: "Aquisição"
+    group_label: "2. Aquisição"
   }
 
   measure: total_sessions{
@@ -74,7 +74,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."SESSIONS" ;;
     label: "Soma das Sessões"
     description: "Soma das sessões no site de acordo com CANAL."
-    group_label: "Aquisição"
+    group_label: "2. Aquisição"
   }
 
   measure: total_users {
@@ -82,7 +82,7 @@ view: ga_campanha_aquisicao_conversao {
     sql: ${TABLE}."USERS" ;;
     label: "Soma dos Usuários"
     description: "Soma total dos usuários do site de acordo com CANAL."
-    group_label: "Aquisição"
+    group_label: "2. Aquisição"
   }
 
 }

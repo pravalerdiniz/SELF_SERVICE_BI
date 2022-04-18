@@ -18,7 +18,7 @@ view: ga_ads_conversao_hora {
   dimension: chave {
     type: string
     primary_key: yes
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     hidden: yes
   }
 

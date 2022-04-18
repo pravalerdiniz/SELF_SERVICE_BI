@@ -286,3 +286,7 @@ explore: kpi_financeiro {
 explore: kpi_controladoria {
   label: "KPI Controladoria"
 }
+
+explore: titulos_cnpj {
+  label: "Titulos CNPJ"
+}

@@ -2,7 +2,8 @@ view: ga_origem_midia_aquisicao_conversao {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
-          f.key as origem_midia,
+          f.key as chave,
+          f.value:ORIGEM_MIDIA::varchar as ORIGEM_MIDIA,
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
           f.value:INICIADO::int as INICIADO,
@@ -34,12 +35,18 @@ view: ga_origem_midia_aquisicao_conversao {
     hidden: yes
   }
 
+  dimension: chave {
+    type: string
+    sql: concat(${TABLE}."chave",${date_date}) ;;
+    primary_key: yes
+    hidden: yes
+  }
+
   dimension: origem_midia {
     type: string
     label: "Origem/Midia"
     description: "O URL para o qual os anúncios do AdWords direcionaram o tráfego."
-    sql: ${TABLE}."origem_midia" ;;
-    primary_key: yes
+    sql: ${TABLE}."ORIGEM_MIDIA" ;;
   }
 
   measure: total_goalcomplete {
