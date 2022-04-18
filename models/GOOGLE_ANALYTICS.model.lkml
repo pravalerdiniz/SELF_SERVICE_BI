@@ -68,8 +68,8 @@ explore: ga_campanha_ads_cost {
 
   join: ga_url_destino_aquisicao {
     view_label: "3. URL de Destino | Campanha | Mídia"
-    sql_on: ${ga_campanha_aquisicao_conversao.id_campanha} = ${ga_campanha_ads_etapas.id_campanha}
-      and ${google_analytics.date_date} = ${ga_campanha_aquisicao_conversao.date_date};;
+    sql_on: ${ga_url_destino_aquisicao.id_campanha} = ${ga_campanha_ads_etapas.id_campanha}
+      and ${google_analytics.date_date} = ${ga_url_destino_aquisicao.date_date};;
     relationship: many_to_many
     type: full_outer
   }
