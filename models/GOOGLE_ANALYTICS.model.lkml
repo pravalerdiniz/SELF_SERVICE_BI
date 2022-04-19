@@ -11,8 +11,6 @@ explore: ga_campanha_ads_cost {
     - ga_overview_campanha.grupo_anuncio,
     - ga_overview_campanha.id_grupo_anuncio,
     - ga_overview_campanha.id_campanha,
-    - ga_overview_campanha.total_custo_anuncio,
-    - ga_overview_campanha.total_impressoes,
     - ga_campanha_ads_cost.total_cpl,
     - ga_campanha_ads_cost.total_cps,
     - ga_campanha_ads_cost.total_cpi,
@@ -24,8 +22,11 @@ explore: ga_campanha_ads_cost {
     - ga_campanha_ads_etapas.grupo_anuncio,
     - ga_campanha_ads_etapas.id_grupo_anuncio,
     - ga_campanha_aquisicao_conversao.campanha,
-    - ga_campanha_aquisicao_conversao.id_campanha
-
+    - ga_campanha_aquisicao_conversao.id_campanha,
+    - ga_url_destino_aquisicao.campanha,
+    - ga_url_destino_aquisicao.id_campanha,
+    - ga_overview_campanha.total_cpc,
+    - ga_url_destino_aquisicao.total_custo
   ]
 
   join: google_analytics {
@@ -67,7 +68,7 @@ explore: ga_campanha_ads_cost {
   }
 
   join: ga_url_destino_aquisicao {
-    view_label: "3. URL de Destino | Campanha | Mídia"
+    view_label: "2. Campanhas | Grupo de Anúncio"
     sql_on: ${ga_url_destino_aquisicao.id_campanha} = ${ga_campanha_ads_cost.id_campanha}
       and ${ga_campanha_ads_cost.date_date} = ${ga_url_destino_aquisicao.date_date};;
     relationship: many_to_many
