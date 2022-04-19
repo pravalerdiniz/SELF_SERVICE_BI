@@ -1,4 +1,4 @@
-view: solicitaoes_para_prevencao {
+view: solicitacoes_para_prevencao {
     derived_table: {
       sql: select NUMERO_CHAMADO
       ,max(coalesce(T.VALUE:"Balanço Patrimonial:"::varchar,T.VALUE:"Balanço Patrimonial:"::varchar)) balanco_patrimonial
