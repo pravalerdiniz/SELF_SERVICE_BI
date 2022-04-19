@@ -130,7 +130,7 @@ explore: orquestra {
     sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Facilities - Processo P37"
+    view_label: "Processo P37"
   }
 
   join: solicitacoes_para_facilities_p51 {
@@ -138,7 +138,15 @@ explore: orquestra {
     sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_facilities_p51.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Facilities - Processo P51"
+    view_label: "Processo P51"
+  }
+
+  join: solicitacoes_para_prevencao {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado}=${solicitacoes_para_prevencao.numero_chamado};;
+    #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
+    relationship: one_to_one
+    view_label: "Processo P28"
   }
 }
 
