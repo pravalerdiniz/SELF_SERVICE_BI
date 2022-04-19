@@ -26,7 +26,12 @@ explore: ga_campanha_ads_cost {
     - ga_url_destino_aquisicao.campanha,
     - ga_url_destino_aquisicao.id_campanha,
     - ga_overview_campanha.total_cpc,
-    - ga_url_destino_aquisicao.total_custo
+    - ga_url_destino_aquisicao.total_custo,
+    - ga_overview_campanha.total_clicks_anuncio,
+    - ga_overview_campanha.total_ctr,
+    - ga_overview_campanha.total_custo_anuncio,
+    - ga_overview_campanha.total_custo_conversao,
+    - ga_overview_campanha.total_impressoes
   ]
 
   join: google_analytics {
