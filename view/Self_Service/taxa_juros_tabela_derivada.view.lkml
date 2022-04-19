@@ -96,6 +96,7 @@ view: taxa_instituicao_simplificada {
     value_format: "0.00\%"
   }
 
+
   dimension: taxa_fee_mensal {
     type: number
     sql: ${TABLE}."TAXA_FEE_MENSAL" ;;
@@ -118,6 +119,9 @@ view: taxa_instituicao_simplificada {
     label: "Modalidade"
     group_label: "Dados do Contrato"
   }
+
+
+
 
   set: detail {
     fields: [

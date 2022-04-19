@@ -72,30 +72,34 @@ view: ga_campanha_ads_etapas {
 
   measure: total_lead {
     type: sum
-    label: "Soma Leads"
+    label: "1. Soma Leads"
     description: "Soma total da etapa Lead no site."
     sql: ${TABLE}."LEAD" ;;
+    group_label: "1. Etapas"
   }
 
   measure: total_simulado {
     type: sum
-    label: "Soma Simulados"
+    label: "2. Soma Simulados"
     description: "Soma total da etapa Simulado no site."
     sql: ${TABLE}."SIMULADO" ;;
+    group_label: "1. Etapas"
   }
 
   measure: total_iniciado {
     type: sum
-    label: "Soma Iniciados"
+    label: "3. Soma Iniciados"
     description: "Soma total da etapa Iniciado no site."
     sql: ${TABLE}."INICIADO" ;;
+    group_label: "1. Etapas"
   }
 
   measure: total_finalizado {
     type: sum
-    label: "Soma Finalizados"
+    label: "4. Soma Finalizados"
     description: "Soma total da etapa Finalizado no site."
     sql: ${TABLE}."FINALIZADO" ;;
+    group_label: "1. Etapas"
   }
 
   measure: total_impressoes {
