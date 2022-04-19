@@ -139,7 +139,26 @@ explore: ga_campanha_ads_cost {
         relationship: many_to_many
         type: full_outer
       }
+    }
 
+      explore: ga_canal_aquisicao_conversao {
+        label: "Canais"
+        view_label: "2. Canal"
+        description: "Informações sobre os canais do Google Analytics"
+
+        join: google_analytics {
+          view_label: "1. Site | Geral"
+          sql_on: ${ga_canal_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
+          relationship: many_to_one
+          type: full_outer
+        }
+
+        join: ga_etapas {
+          view_label: "1. Site | Geral"
+          sql_on: ${ga_canal_aquisicao_conversao.date_date} = ${ga_etapas.date_date};;
+          relationship: many_to_one
+          type: full_outer
+        }
 
 
   }
