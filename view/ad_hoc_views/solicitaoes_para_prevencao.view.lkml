@@ -41,7 +41,7 @@ view: solicitacoes_para_prevencao {
       ,max(coalesce(T.VALUE:"Retorno do banco:"::varchar,T.VALUE:"Retorno do banco:"::varchar)) retorno_banco
       ,max(coalesce(T.VALUE:"Site da Escola"::varchar,T.VALUE:"Site da Escola"::varchar)) site_escola
       ,max(coalesce(T.VALUE:"Unidades/Franquias:"::varchar,T.VALUE:"Unidades/Franquias:"::varchar)) unidades_franquias
-
+          from GRADUADO.AD_HOC.ORQUESTRA A,
     lateral flatten (input=>OBJ_CAMPOS) T
      where nome_fila ilike 'P28%'
     group by 1
@@ -71,6 +71,7 @@ view: solicitacoes_para_prevencao {
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
     group_item_label: "Solicitação está correta?"
     group_label: "Informações Solicitante"
+    hidden: yes
     }
 
   dimension: balanco_patrimonial {
