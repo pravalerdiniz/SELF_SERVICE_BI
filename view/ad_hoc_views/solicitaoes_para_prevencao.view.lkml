@@ -1,4 +1,4 @@
-view: solicitaoes_para_prevencao {
+view: solicitacoes_para_prevencao {
     derived_table: {
       sql: select NUMERO_CHAMADO
       ,max(coalesce(T.VALUE:"Balanço Patrimonial:"::varchar,T.VALUE:"Balanço Patrimonial:"::varchar)) balanco_patrimonial
@@ -7,7 +7,7 @@ view: solicitaoes_para_prevencao {
       ,max(coalesce(T.VALUE:"Evidencia de contrato assinado (QItech):"::varchar,T.VALUE:"Evidencia de contrato assinado (QItech):"::varchar)) evidencia_contrato_assinado_qitech
       ,max(coalesce(T.VALUE:"Nome da IES/Escola:"::varchar,T.VALUE:"Nome da IES/Escola:"::varchar)) nome_ies_escola
       ,max(coalesce(T.VALUE:"Nome do banco:"::varchar,T.VALUE:"Nome do banco:"::varchar)) nome_banco
-      ,max(coalesce(T.VALUE:"Observações análise de antifraude:"::varchar,T.VALUE:"Observações análise de antifraude:"::varchar)) obs_análise_antifraude
+      ,max(coalesce(T.VALUE:"Observações análise de antifraude:"::varchar,T.VALUE:"Observações análise de antifraude:"::varchar)) obs_analise_antifraude
       ,max(coalesce(T.VALUE:"Quem assinou?"::varchar,T.VALUE:"Quem assinou?"::varchar)) quem_assinou
       ,max(coalesce(T.VALUE:"Tabela de Cursos:"::varchar,T.VALUE:"Tabela de Cursos:"::varchar)) tabela_cursos
       ,max(coalesce(T.VALUE:"Agência:"::varchar,T.VALUE:"Agência:"::varchar)) agencia
@@ -17,7 +17,7 @@ view: solicitaoes_para_prevencao {
       ,max(coalesce(T.VALUE:"Análise de Risco Portfólio:"::varchar,T.VALUE:"Análise de Risco Portfólio:"::varchar)) analise_risco_portfolio
       ,max(coalesce(T.VALUE:"Anexo Contrato (Ajustes IES):"::varchar,T.VALUE:"Anexo Contrato (Ajustes IES):"::varchar)) anexo_contrato_ajuste_ies
       ,max(coalesce(T.VALUE:"Anexo contrato:"::varchar,T.VALUE:"Anexo contrato:"::varchar)) anexo_contrato
-      ,max(coalesce(T.VALUE:"Anexo documentação pessoal Representante Legal:"::varchar,T.VALUE:"Anexo documentação pessoal Representante Legal:"::varchar)) anexo_documentação_pessoal_representante_legal
+      ,max(coalesce(T.VALUE:"Anexo documentação pessoal Representante Legal:"::varchar,T.VALUE:"Anexo documentação pessoal Representante Legal:"::varchar)) anexo_documentacao_pessoal_representante_legal
       ,max(coalesce(T.VALUE:"Anexo Extra:"::varchar,T.VALUE:"Anexo Extra:"::varchar)) anexo_extra
       ,max(coalesce(T.VALUE:"Conta:"::varchar,T.VALUE:"Conta:"::varchar)) conta
       ,max(coalesce(T.VALUE:"Contrato Social da IES:"::varchar,T.VALUE:"Contrato Social da IES:"::varchar)) contrato_social_ies
@@ -41,7 +41,7 @@ view: solicitaoes_para_prevencao {
       ,max(coalesce(T.VALUE:"Retorno do banco:"::varchar,T.VALUE:"Retorno do banco:"::varchar)) retorno_banco
       ,max(coalesce(T.VALUE:"Site da Escola"::varchar,T.VALUE:"Site da Escola"::varchar)) site_escola
       ,max(coalesce(T.VALUE:"Unidades/Franquias:"::varchar,T.VALUE:"Unidades/Franquias:"::varchar)) unidades_franquias
-
+          from GRADUADO.AD_HOC.ORQUESTRA A,
     lateral flatten (input=>OBJ_CAMPOS) T
      where nome_fila ilike 'P28%'
     group by 1
@@ -71,6 +71,7 @@ view: solicitaoes_para_prevencao {
     sql: ${TABLE}."FLG_SOLICITACAO_CORRETA" ;;
     group_item_label: "Solicitação está correta?"
     group_label: "Informações Solicitante"
+    hidden: yes
     }
 
   dimension: balanco_patrimonial {
@@ -103,7 +104,7 @@ view: solicitaoes_para_prevencao {
     sql: ${TABLE}."NOME_BANCO" ;;
   }
 
-  dimension: obs_análise_antifraude {
+  dimension: obs_analise_antifraude {
     type: string
     sql: ${TABLE}."OBS_ANALISE_ANTIFRAUDE" ;;
   }
@@ -139,9 +140,9 @@ view: solicitaoes_para_prevencao {
     type: string
     sql: ${TABLE}."ANEXO_CONTRATO" ;;
   }
-  dimension: anexo_documentação_pessoal_representante_legal {
+  dimension: anexo_documentacao_pessoal_representante_legal {
     type: string
-    sql: ${TABLE}."ANEXO_DOCUMENTAÇÃO_PESSOAL_REPRESENTANTE_LEGAL" ;;
+    sql: ${TABLE}."ANEXO_DOCUMENTACAO_PESSOAL_REPRESENTANTE_LEGAL" ;;
   }
   dimension: anexo_extra {
     type: string
@@ -248,7 +249,7 @@ view: solicitaoes_para_prevencao {
       evidencia_contrato_assinado_qitech,
       nome_ies_escola,
       nome_banco,
-      obs_análise_antifraude,
+      obs_analise_antifraude,
       quem_assinou,
       tabela_cursos,
       agencia,
@@ -257,7 +258,7 @@ view: solicitaoes_para_prevencao {
       analise_risco_portfolio,
       anexo_contrato_ajuste_ies,
       anexo_contrato,
-      anexo_documentação_pessoal_representante_legal,
+      anexo_documentacao_pessoal_representante_legal,
       anexo_extra,
       conta,
       contrato_social_ies,
@@ -284,7 +285,3 @@ view: solicitaoes_para_prevencao {
     ]
   }
   }
-
-
-
-
