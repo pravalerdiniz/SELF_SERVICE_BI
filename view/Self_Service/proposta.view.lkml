@@ -1378,6 +1378,22 @@ view: proposta {
     sql: ${TABLE}."GERENTE_ORIGINAL" ;;
   }
 
+  dimension: rve_original {
+    type: string
+    group_label: "Dados da Regional"
+    label: "RVE - Original"
+    description: "Indica o nome do Representante de vendas original responsável pela regional"
+    sql: ${TABLE}."RVE_ORIGINAL" ;;
+  }
+
+  dimension: rve_atual {
+    type: string
+    group_label: "Dados da Regional"
+    label: "RVE - Atual"
+    description: "Indica o nome do Representante de vendas atual responsável pela regional"
+    sql: ${TABLE}."RVE_ATUAL" ;;
+  }
+
   dimension: aprovadores_tela_ies {
     type: string
     group_label: "Dados da Regional"
@@ -1789,6 +1805,7 @@ view: proposta {
     label: "Porcentagem de Comissão da Instituição"
     description: "Indica a porcentagem de comissão recebida da instituição por produto contratado"
     sql: ${TABLE}."PERC_COMISSAO" ;;
+    value_format: "0.00%"
 
   }
 

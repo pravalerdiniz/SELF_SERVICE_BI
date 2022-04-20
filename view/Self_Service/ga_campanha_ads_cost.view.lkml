@@ -19,7 +19,7 @@ view: ga_campanha_ads_cost {
 
   dimension: chave {
     type: string
-    sql: concat(${TABLE}."chave", ${date_date});;
+    sql: concat(${TABLE}."chave",${date_date});;
     primary_key: yes
     hidden: yes
   }
@@ -72,7 +72,7 @@ view: ga_campanha_ads_cost {
 
   measure: total_custo_anuncio {
     type: sum
-    label: "custo"
+    label: "Custo"
     description: "Custo derivado da campanha publicitária."
     sql: ${TABLE}."CUSTO" ;;
     }

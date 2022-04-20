@@ -5,10 +5,10 @@ view: ga_overview_campanha {
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
           f.value:CLICKS_ANUNCIO::int as CLICKS_ANUNCIO,
-          f.value:CPC::int as CPC,
-          f.value:CTR::int as CTR,
-          f.value:CUSTO_ANUNCIO::int as CUSTO_ANUNCIO,
-          f.value:CUSTO_CONVERSAO::int as CUSTO_CONVERSAO,
+          f.value:CPC::number(38,2) as CPC,
+          f.value:CTR::number(38,2) as CTR,
+          f.value:CUSTO_ANUNCIO::number(38,2) as CUSTO_ANUNCIO,
+          f.value:CUSTO_CONVERSAO::number(38,2) as CUSTO_CONVERSAO,
           f.value:GRUPO_ANUNCIO::varchar as GRUPO_ANUNCIO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
           f.value:ID_GRUPO_ANUNCIO::varchar as ID_GRUPO_ANUNCIO,
@@ -20,7 +20,7 @@ view: ga_overview_campanha {
 
   dimension: chave {
     type: string
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     primary_key: yes
     hidden: yes
   }

@@ -18,7 +18,7 @@ view: ga_ads_conversao_hora {
   dimension: chave {
     type: string
     primary_key: yes
-    sql: ${TABLE}."chave" ;;
+    sql: concat(${TABLE}."chave",${date_date}) ;;
     hidden: yes
   }
 
@@ -50,7 +50,7 @@ view: ga_ads_conversao_hora {
   dimension: id_grupo_anuncio {
     type: number
     sql: ${TABLE}."ID_GRUPO_ANUNCIO" ;;
-    label: "ID do Grupo de Anúncio"
+    label: "ID Grupo de Anúncio"
     description: "O ID do grupo de anúncios do AdWords."
   }
 
