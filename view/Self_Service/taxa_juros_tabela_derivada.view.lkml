@@ -108,8 +108,10 @@ view: taxa_instituicao_simplificada {
     type: average
     group_label: "Taxas"
     group_item_label: "Taxa de Comissão Média"
+    sql_distinct_key: ${taxa_comissao} ;;
     sql: ${taxa_comissao};;
     description: "Média da Taxa de Comissão"
+    value_format: "0.00\%"
   }
 
   dimension: taxa_fee_mensal {
