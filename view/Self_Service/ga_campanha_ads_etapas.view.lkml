@@ -106,7 +106,7 @@ view: ga_campanha_ads_etapas {
     type: sum
     sql: ${TABLE}."IMPRESSOES" ;;
     label: "Impressões"
-    description: "Número total de impressões da campanha."
+    description: "Número de vezes que os anúncios de pesquisa da campanha foram apresentados."
   }
 
 }
