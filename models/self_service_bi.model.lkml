@@ -369,6 +369,15 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: alunos_interacoes_crm {
+    view_label: "1.11 Interações CRM"
+    sql_on: ${jornada.id_cpf} = ${alunos_interacoes_crm.id_cpf}
+    --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+    --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
