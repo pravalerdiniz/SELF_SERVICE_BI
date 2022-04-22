@@ -703,9 +703,6 @@ explore: instituicao {
     sql_on: ${instituicao.grupo}=${inep_instituicao.grupo} and ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} ;;
     relationship: one_to_many
     type: left_outer
-
-
-
   }
 
   join: inep {
@@ -713,6 +710,16 @@ explore: instituicao {
     relationship: one_to_many
     type: left_outer
     view_label: "Inep - Instituição"
+  }
+
+  join: financeiro {
+    view_label: "6. Financeiro"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}  ;;
+    relationship: many_to_one
+    type:left_outer
+
   }
 
 

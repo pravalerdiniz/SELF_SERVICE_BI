@@ -28,7 +28,6 @@ view: taxa_instituicao_simplificada {
   }
 
   dimension: id_instituicao {
-    primary_key: yes
     type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     label: "ID Instituição"
@@ -94,6 +93,30 @@ view: taxa_instituicao_simplificada {
     sql: ${TABLE}."TAXA_COMISSAO" ;;
     label: "Taxa de Comissão"
     group_label: "Taxas"
+    value_format: "0.00\%"
+  }
+
+  dimension: id_contrato {
+    type: string
+    sql: ${financeiro.id_contrato} ;;
+    hidden: yes
+  }
+
+  measure: somarprodutotaxa_comissao {
+    type: sum
+    group_label: "Taxas"
+    group_item_label: "Somaproduto Taxa Comissão"
+    sql: ${financeiro.id_contrato}  * ${taxa_comissao} ;;
+    description: "Count ID contrato * Comissão Percentual"
+    hidden: yes
+  }
+
+  measure: taxa_media_ponderada{
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Taxa - Média % Ponderada"
+    description: "Valor percentual da taxa média ponderada da Cessão"
+    sql: NULLIF(${somarprodutotaxa_comissao},0) / NULLIF(${financeiro.id_contrato},0);;
     value_format: "0.00\%"
   }
 
