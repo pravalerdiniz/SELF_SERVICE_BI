@@ -28,6 +28,7 @@ view: taxa_instituicao_simplificada {
   }
 
   dimension: id_instituicao {
+    primary_key: yes
     type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     label: "ID Instituição"
@@ -94,6 +95,14 @@ view: taxa_instituicao_simplificada {
     label: "Taxa de Comissão"
     group_label: "Taxas"
     value_format: "0.00\%"
+  }
+
+  measure: avg_taxa_comissao  {
+    type: average
+    group_label: "Taxas"
+    group_item_label: "Taxa de Comissão Média"
+    sql: ${taxa_comissao};;
+    description: "Média da Taxa de Comissão"
   }
 
 
