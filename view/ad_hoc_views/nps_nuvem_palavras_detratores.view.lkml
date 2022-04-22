@@ -17,7 +17,7 @@ view: nps_nuvem_palavras_detratores {
                         (SELECT
                             trim(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(upper(solucx."RATING_COMMENT"),'!',''),'.',''),',',''),'Ã','A'),'Ó','O'),'Ú','U'),'Á','A'),'Ç','C'),'Ê','E'),'É','E'),'À','A'),'Ô','O'),'(',''),')',''),'"',''),'Í','I')) AS "COMENTARIO"
                         FROM veterano."FATO"."SOLUCX_TRANSACTION" AS solucx
-                        WHERE (solucx."STORE_NAME") = 'Relacional' AND (solucx."RATING_COMMENT") <> 'False' AND (solucx."CLASS_NOTA") = 'DETRATOR' AND (((solucx."TIMESTAMP") >= ((DATE_TRUNC('year', CURRENT_DATE()))) AND (solucx."TIMESTAMP") < ((DATEADD('year', 1, DATE_TRUNC('year', CURRENT_DATE())))))) AND (((( solucx."RATING_TIMESTAMP")) IS NOT NULL))
+                        WHERE (solucx."STORE_NAME") IN ('ALUNOS FORMADOS - RELACIONAL', 'ALUNOS NOVOS - RELACIONAL', 'ALUNOS RENOVAÇÃO - RELACIONAL', 'Relacional') AND (solucx."RATING_COMMENT") <> 'False' AND (solucx."CLASS_NOTA") = 'DETRATOR' AND (((solucx."TIMESTAMP") >= ((DATE_TRUNC('year', CURRENT_DATE()))) AND (solucx."TIMESTAMP") < ((DATEADD('year', 1, DATE_TRUNC('year', CURRENT_DATE())))))) AND (((( solucx."RATING_TIMESTAMP")) IS NOT NULL))
                         GROUP BY
                             1
                         ORDER BY

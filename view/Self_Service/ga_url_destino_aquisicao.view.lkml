@@ -4,9 +4,9 @@ view: ga_url_destino_aquisicao {
     sql: select a.date,
           f.key as chave,
           f.value:CAMPANHA::varchar as CAMPANHA,
-          f.value:CLIQUES::int as CLIQUES,
-          f.value:CPC::int as CPC,
-          f.value:CUSTO::int as CUSTO,
+          f.value:CLIQUES::number(38,2) as CLIQUES,
+          f.value:CPC::number(38,2) as CPC,
+          f.value:CUSTO::number(38,2) as CUSTO,
           f.value:ID_CAMPANHA::varchar as ID_CAMPANHA,
           f.value:MIDIA::varchar as MIDIA,
           f.value:URL_DESTINO::varchar as URL_DESTINO
