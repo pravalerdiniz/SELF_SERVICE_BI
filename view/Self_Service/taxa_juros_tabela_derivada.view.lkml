@@ -111,7 +111,7 @@ view: taxa_instituicao_simplificada {
     sql_distinct_key: ${taxa_comissao} ;;
     sql: ${taxa_comissao};;
     description: "Média da Taxa de Comissão"
-    value_format: "0.00%"
+    value_format: "0.00\%"
   }
 
   dimension: taxa_fee_mensal {
