@@ -32,7 +32,7 @@ view: taxa_instituicao_simplificada {
     type: string
     group_label: "Dados do Contrato"
     sql: ${instituicao.id} ;;
-    hidden: yes
+
   }
 
   dimension: id_instituicao {
@@ -111,41 +111,6 @@ view: taxa_instituicao_simplificada {
     sql: ${taxa_comissao};;
     description: "Média da Taxa de Comissão"
   }
-
-  dimension: id_contrato {
-    type: string
-    group_label: "Taxas"
-    sql: ${financeiro.id_contrato} ;;
-    hidden: yes
-  }
-
-  measure: count_id {
-    type: count_distinct
-    group_label: "Taxas"
-    sql: ${id_contrato} ;;
-    hidden: yes
-  }
-
-  measure: somarprodutotaxa_comissao {
-    type: number
-    group_label: "Taxas"
-    group_item_label: "Somaproduto Taxa Comissão"
-    sql: ${count_id} * ${taxa_comissao} ;;
-    description: "Count ID contrato * Comissão Percentual"
-    hidden: yes
-  }
-
-  measure: taxa_media_ponderada{
-    type: number
-    group_label: "Taxas"
-    group_item_label: "Taxa Comissão - Média % Ponderada"
-    description: "Valor percentual da taxa média ponderada da Comissão"
-    sql: NULLIF(${somarprodutotaxa_comissao},0) / NULLIF(${count_id},0);;
-    value_format: "0.00\%"
-  }
-
-
-
 
   dimension: taxa_fee_mensal {
     type: number
