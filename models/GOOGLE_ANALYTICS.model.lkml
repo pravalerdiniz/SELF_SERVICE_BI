@@ -2,7 +2,7 @@ connection: "graduado"
 
 include: "/**/*.view.lkml"
 
-explore: ga_campanha_ads_cost {
+explore: ga_campanha_aquisicao_conversao {
   label: "Campanhas"
   view_label: "2. Campanhas | Grupo de Anúncio"
   description: "Informações das campanhas vindas do Google Analytics"
@@ -21,8 +21,8 @@ explore: ga_campanha_ads_cost {
     - ga_campanha_ads_etapas.id_campanha,
     - ga_campanha_ads_etapas.grupo_anuncio,
     - ga_campanha_ads_etapas.id_grupo_anuncio,
-    - ga_campanha_aquisicao_conversao.campanha,
-    - ga_campanha_aquisicao_conversao.id_campanha,
+    - ga_campanha_ads_cost.campanha,
+    - ga_campanha_ads_cost.id_campanha,
     - ga_url_destino_aquisicao.campanha,
     - ga_url_destino_aquisicao.id_campanha,
     - ga_overview_campanha.total_cpc,
@@ -36,37 +36,37 @@ explore: ga_campanha_ads_cost {
 
   join: google_analytics {
     view_label: "1. Site | Geral"
-    sql_on: ${ga_campanha_ads_cost.date_date} = ${google_analytics.date_date};;
+    sql_on: ${ga_campanha_aquisicao_conversao.date_date} = ${google_analytics.date_date};;
     relationship: many_to_one
     type: full_outer
   }
 
   join: ga_etapas {
     view_label: "1. Site | Geral"
-    sql_on: ${ga_campanha_ads_cost.date_date} = ${ga_etapas.date_date};;
+    sql_on: ${ga_campanha_aquisicao_conversao.date_date} = ${ga_etapas.date_date};;
     relationship: many_to_one
     type: full_outer
   }
 
   join: ga_overview_campanha {
     view_label: "2. Campanhas | Grupo de Anúncio"
-    sql_on: ${ga_campanha_ads_cost.id_campanha} = ${ga_overview_campanha.id_campanha}
-    and ${ga_campanha_ads_cost.date_date} = ${ga_overview_campanha.date_date};;
+    sql_on: ${ga_campanha_aquisicao_conversao.campanha} = ${ga_overview_campanha.campanha}
+    and ${ga_campanha_aquisicao_conversao.date_date} = ${ga_overview_campanha.date_date};;
     relationship: many_to_many
     type: full_outer
   }
 
   join: ga_campanha_ads_etapas {
     view_label: "2. Campanhas | Grupo de Anúncio"
-    sql_on: ${ga_campanha_ads_cost.id_campanha} = ${ga_campanha_ads_etapas.id_campanha}
-    and ${ga_campanha_ads_cost.date_date} = ${ga_campanha_ads_etapas.date_date};;
+    sql_on: ${ga_campanha_aquisicao_conversao.campanha} = ${ga_campanha_ads_etapas.campanha}
+    and ${ga_campanha_aquisicao_conversao.date_date} = ${ga_campanha_ads_etapas.date_date};;
     relationship: many_to_many
     type: full_outer
   }
 
-  join: ga_campanha_aquisicao_conversao {
+  join: ga_campanha_ads_cost {
     view_label: "2. Campanhas | Grupo de Anúncio"
-    sql_on: ${ga_campanha_aquisicao_conversao.id_campanha} = ${ga_campanha_ads_cost.id_campanha}
+    sql_on: ${ga_campanha_aquisicao_conversao.campanha} = ${ga_campanha_ads_cost.campanha}
       and ${ga_campanha_ads_cost.date_date} = ${ga_campanha_aquisicao_conversao.date_date};;
     relationship: many_to_many
     type: full_outer
@@ -74,11 +74,12 @@ explore: ga_campanha_ads_cost {
 
   join: ga_url_destino_aquisicao {
     view_label: "2. Campanhas | Grupo de Anúncio"
-    sql_on: ${ga_url_destino_aquisicao.id_campanha} = ${ga_campanha_ads_cost.id_campanha}
-      and ${ga_campanha_ads_cost.date_date} = ${ga_url_destino_aquisicao.date_date};;
+    sql_on: ${ga_url_destino_aquisicao.campanha} = ${ga_campanha_aquisicao_conversao.campanha}
+      and ${ga_campanha_aquisicao_conversao.date_date} = ${ga_url_destino_aquisicao.date_date};;
     relationship: many_to_many
     type: full_outer
   }
+
 }
 
   explore: ga_origem_midia_aquisicao_conversao {
