@@ -780,7 +780,7 @@ explore: financeiro {
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            and ${financeiro.id_contrato} = ${instituicao_contrato_produto_info.id_ies_contrato}
+            --and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_contrato}
             ;;
     relationship: one_to_many
     type: left_outer
