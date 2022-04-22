@@ -642,7 +642,7 @@ explore: instituicao {
   }
 
   join: instituicao_metas_gc {
-    view_label: "1.4 Metas - GC"
+    view_label: "1.5 Metas - GC"
     sql_on: ${instituicao_metas_gc.grupo_instituicao}=${instituicao.grupo} ;;
     relationship: many_to_one
     type: left_outer
@@ -712,9 +712,6 @@ explore: instituicao {
     sql_on: ${instituicao.grupo}=${inep_instituicao.grupo} and ${instituicao.id_instituicao} = ${inep_instituicao.id_ies} ;;
     relationship: one_to_many
     type: left_outer
-
-
-
   }
 
   join: inep {
@@ -722,6 +719,16 @@ explore: instituicao {
     relationship: one_to_many
     type: left_outer
     view_label: "Inep - Instituição"
+  }
+
+  join: financeiro {
+    view_label: "6. Financeiro"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
+    relationship: many_to_one
+    type:left_outer
+
   }
 
 
@@ -772,7 +779,8 @@ explore: financeiro {
     view_label: "3. Instituicao"
     sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
           AND  ${instituicao.id_campus} = ${proposta.id_campus}
-          AND    ${instituicao.id_curso} =  ${proposta.id_curso}  ;;
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}
+          ;;
     relationship: many_to_one
     type:left_outer
 
@@ -780,7 +788,9 @@ explore: financeiro {
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+    sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
+            --and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_contrato}
+            ;;
     relationship: one_to_many
     type: left_outer
 
@@ -816,7 +826,8 @@ explore: financeiro {
   join: taxa_instituicao_simplificada {
     view_label: "3.4. Taxas da Instituição Simplificada"
     sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
-      and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
+      --and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}
+      ;;
     relationship: one_to_many
     type: left_outer
 
