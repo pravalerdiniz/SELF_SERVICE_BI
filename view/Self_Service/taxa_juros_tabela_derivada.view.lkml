@@ -2,6 +2,7 @@ view: taxa_instituicao_simplificada {
   derived_table: {
     persist_for: "1 hour"
     sql: select
+        b.id,
         b.id_instituicao,
         g.value:ID_PRODUTO::varchar as id_produto,
         g.value:NOME_PRODUTO::varchar as nome_produto,
@@ -24,7 +25,14 @@ view: taxa_instituicao_simplificada {
     type: count
     drill_fields: [detail*]
     hidden:  yes
+  }
 
+  dimension: id {
+    primary_key: yes
+    type: string
+    group_label: "Dados do Contrato"
+    sql: ${instituicao.id} ;;
+    hidden: yes
   }
 
   dimension: id_instituicao {
@@ -96,30 +104,6 @@ view: taxa_instituicao_simplificada {
     value_format: "0.00\%"
   }
 
-  dimension: id_contrato {
-    type: string
-    sql: ${financeiro.id_contrato} ;;
-    hidden: yes
-  }
-
-  measure: somarprodutotaxa_comissao {
-    type: sum
-    group_label: "Taxas"
-    group_item_label: "Somaproduto Taxa Comissão"
-    sql: ${financeiro.id_contrato}  * ${taxa_comissao} ;;
-    description: "Count ID contrato * Comissão Percentual"
-    hidden: yes
-  }
-
-  measure: taxa_media_ponderada{
-    type: number
-    group_label: "Valores Cessão"
-    group_item_label: "Taxa - Média % Ponderada"
-    description: "Valor percentual da taxa média ponderada da Cessão"
-    sql: NULLIF(${somarprodutotaxa_comissao},0) / NULLIF(${financeiro.id_contrato},0);;
-    value_format: "0.00\%"
-  }
-
   measure: avg_taxa_comissao  {
     type: average
     group_label: "Taxas"
@@ -127,6 +111,40 @@ view: taxa_instituicao_simplificada {
     sql: ${taxa_comissao};;
     description: "Média da Taxa de Comissão"
   }
+
+  dimension: id_contrato {
+    type: string
+    group_label: "Taxas"
+    sql: ${financeiro.id_contrato} ;;
+    hidden: yes
+  }
+
+  measure: count_id {
+    type: count_distinct
+    group_label: "Taxas"
+    sql: ${id_contrato} ;;
+    hidden: yes
+  }
+
+  measure: somarprodutotaxa_comissao {
+    type: number
+    group_label: "Taxas"
+    group_item_label: "Somaproduto Taxa Comissão"
+    sql: ${count_id} * ${taxa_comissao} ;;
+    description: "Count ID contrato * Comissão Percentual"
+    hidden: yes
+  }
+
+  measure: taxa_media_ponderada{
+    type: number
+    group_label: "Taxas"
+    group_item_label: "Taxa Comissão - Média % Ponderada"
+    description: "Valor percentual da taxa média ponderada da Comissão"
+    sql: NULLIF(${somarprodutotaxa_comissao},0) / NULLIF(${count_id},0);;
+    value_format: "0.00\%"
+  }
+
+
 
 
   dimension: taxa_fee_mensal {
