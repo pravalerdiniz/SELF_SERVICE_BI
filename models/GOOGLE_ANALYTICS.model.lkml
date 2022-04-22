@@ -7,16 +7,14 @@ explore: ga_campanha_aquisicao_conversao {
   view_label: "2. Campanhas | Grupo de Anúncio"
   description: "Informações das campanhas vindas do Google Analytics"
   fields: [ALL_FIELDS *,
+    - ga_campanha_ads_cost.grupo_anuncio,
     - ga_overview_campanha.campanha,
-    - ga_overview_campanha.grupo_anuncio,
     - ga_overview_campanha.id_grupo_anuncio,
     - ga_overview_campanha.id_campanha,
     - ga_campanha_ads_cost.total_cpl,
     - ga_campanha_ads_cost.total_cps,
     - ga_campanha_ads_cost.total_cpi,
     - ga_campanha_ads_cost.total_cpf,
-    - ga_overview_campanha.grupo_anuncio,
-    - ga_overview_campanha.grupo_anuncio,
     - ga_campanha_ads_etapas.campanha,
     - ga_campanha_ads_etapas.id_campanha,
     - ga_campanha_ads_etapas.grupo_anuncio,
@@ -51,7 +49,9 @@ explore: ga_campanha_aquisicao_conversao {
   join: ga_overview_campanha {
     view_label: "2. Campanhas | Grupo de Anúncio"
     sql_on: ${ga_campanha_aquisicao_conversao.campanha} = ${ga_overview_campanha.campanha}
-    and ${ga_campanha_aquisicao_conversao.date_date} = ${ga_overview_campanha.date_date};;
+    and ${ga_campanha_aquisicao_conversao.date_date} = ${ga_overview_campanha.date_date}
+    and ${ga_campanha_ads_etapas.grupo_anuncio} = ${ga_overview_campanha.grupo_anuncio};;
+
     relationship: many_to_many
     type: full_outer
   }
