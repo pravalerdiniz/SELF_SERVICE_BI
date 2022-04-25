@@ -13,6 +13,17 @@ view: ra_reclame_aqui {
 
   dimension: avaliacao {
     type: string
+    group_label: "Dados da Avaliação"
+    group_item_label: "Nota Avaliação"
+    description: "Nota da Avaliação em Texto"
+    sql: ${TABLE}."AVALIACAO" ;;
+  }
+
+  measure: avaliacao_num {
+    type: sum
+    group_label: "Dados da Avaliação"
+    group_item_label: "Nota Avaliação"
+    description: "Nota da Avaliação Valor Numérico"
     sql: ${TABLE}."AVALIACAO" ;;
   }
 
@@ -32,6 +43,7 @@ view: ra_reclame_aqui {
     ]
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
+
 
   dimension: avaliacao_tempo {
     type: string
