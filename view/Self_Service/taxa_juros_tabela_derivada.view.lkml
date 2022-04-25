@@ -2,6 +2,7 @@ view: taxa_instituicao_simplificada {
   derived_table: {
     persist_for: "1 hour"
     sql: select
+        b.id,
         b.id_instituicao,
         g.value:ID_PRODUTO::varchar as id_produto,
         g.value:NOME_PRODUTO::varchar as nome_produto,
@@ -24,6 +25,13 @@ view: taxa_instituicao_simplificada {
     type: count
     drill_fields: [detail*]
     hidden:  yes
+  }
+
+  dimension: id {
+    primary_key: yes
+    type: string
+    group_label: "Dados do Contrato"
+    sql: ${instituicao.id} ;;
 
   }
 
@@ -96,6 +104,15 @@ view: taxa_instituicao_simplificada {
     value_format: "0.00\%"
   }
 
+  measure: avg_taxa_comissao  {
+    type: average
+    group_label: "Taxas"
+    group_item_label: "Taxa de Comissão Média"
+    sql_distinct_key: ${taxa_comissao} ;;
+    sql: ${taxa_comissao};;
+    description: "Média da Taxa de Comissão"
+    value_format: "0.00\%"
+  }
 
   dimension: taxa_fee_mensal {
     type: number
