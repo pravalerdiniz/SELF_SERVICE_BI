@@ -1186,6 +1186,15 @@ join: alunos_produtos_aprovados {
 
  }
 
+  join: alunos_inadimplencia_1_homolog {
+    view_label: "1.2 Inadimplência - Homologação - MOB"
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1_homolog.id_cpf}  and ${alunos_inadimplencia_1_homolog.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
+
+
 join: alunos_inadimplencia_2 {
   view_label: "1.2.1 Inadimplência (Outras Informações)"
   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
