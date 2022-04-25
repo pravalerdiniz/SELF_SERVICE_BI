@@ -150,7 +150,7 @@ explore: orquestra {
   }
 }
 
-explore: ra_reclame_aqui {
+explore: reclame_aqui {
   label: "Reclame Aqui"
 }
 

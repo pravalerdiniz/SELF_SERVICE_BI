@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Ra Tickets"
-view: ra_reclame_aqui {
+view: reclame_aqui {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: "SELF_SERVICE_BI"."RA_TICKETS"
