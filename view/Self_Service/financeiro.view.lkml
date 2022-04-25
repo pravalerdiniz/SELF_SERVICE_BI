@@ -1525,6 +1525,15 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."ST_IMPORTACAO_BRADESCO" ;;
   }
 
+
+  dimension: st_registrado_starKbank {
+    type: yesno
+    group_label: "Dados do Título"
+    label: "Registrado na StarKbank?"
+    description: "Indica se o título foi registrado na Starkbank,ou seja, na API de Boletos."
+    sql: ${TABLE}."ST_REGISTRADO_STARKBANK" ;;
+  }
+
   dimension_group: data_ultimo_collection {
     type: time
     timeframes: [
