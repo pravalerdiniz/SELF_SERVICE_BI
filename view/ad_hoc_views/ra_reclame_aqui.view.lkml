@@ -38,6 +38,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Avaliação"
     label: "Avaliação"
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
@@ -106,7 +107,7 @@ view: reclame_aqui {
   dimension: cliente_tags {
     type: string
     group_label: "Dados do Cliente"
-    group_item_label: "Tags do Cliente"
+    group_item_label: "Tags"
     description: "Tags do Cliente"
     sql: ${TABLE}."CLIENTE_TAGS" ;;
   }
@@ -146,7 +147,7 @@ view: reclame_aqui {
   dimension: estado_cliente {
     type: string
     group_label: "Dados do Cliente"
-    group_item_label: "Estado do Cliente"
+    group_item_label: "Estado"
     description: "Estado do Cliente"
     sql: ${TABLE}."ESTADO_CLIENTE" ;;
   }
@@ -154,7 +155,7 @@ view: reclame_aqui {
   dimension: estado_sigla_cliente {
     type: string
     group_label: "Dados do Cliente"
-    group_item_label: "UF do Cliente"
+    group_item_label: "UF"
     description: "UF do Cliente (Sigla do Estado)"
     sql: ${TABLE}."ESTADO_SIGLA_CLIENTE" ;;
   }
