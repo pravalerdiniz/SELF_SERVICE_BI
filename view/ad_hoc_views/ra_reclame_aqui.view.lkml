@@ -84,6 +84,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados do Cliente"
     label: "Consideração do Cliente"
     sql: ${TABLE}."CLIENTE_DATA_CONSIDERACAO" ;;
   }
@@ -178,6 +179,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados do Cliente"
     label: "Nascimento Cliente"
     convert_tz: no
     datatype: date
@@ -217,6 +219,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Reclamação"
     label: "Criação da Reclamação"
     sql: ${TABLE}."DATA_CRIACAO" ;;
   }
@@ -232,6 +235,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Reclamação"
     label: "Última Modificação da Reclamação "
     sql: ${TABLE}."DATA_ULTIMA_MODIFICACAO" ;;
   }
@@ -247,6 +251,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Reclamação"
     label: "Última Replica da Reclamação"
     sql: ${TABLE}."DATA_ULTIMA_REPLICA" ;;
   }
@@ -300,6 +305,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Empresa"
     label: "Consideração da Empresa"
     sql: ${TABLE}."EMPRESA_DATA_CONSIDERACAO" ;;
   }
@@ -315,6 +321,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Empresa"
     label: "Resposta da Empresa"
     sql: ${TABLE}."EMPRESA_DATA_RESPOSTA" ;;
   }
@@ -438,6 +445,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Moderação"
     label: "Pedido de Moderação"
     sql: ${TABLE}."MODERACAO_DATA_PEDIDO" ;;
   }
@@ -453,6 +461,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Dados da Moderação"
     label: "Resposta da Moderação"
     sql: ${TABLE}."MODERACAO_DATA_RESPOSTA" ;;
   }
@@ -592,6 +601,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Outros Dados"
     label: "Desativação"
     sql: ${TABLE}."RA_DATA_DESATIVACAO" ;;
   }
@@ -636,6 +646,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    group_label: "Outros Dados"
     label: "Expiração"
     convert_tz: no
     datatype: date
@@ -676,6 +687,7 @@ view: reclame_aqui {
 
   measure: count {
     type: count
+    label: "Quantidade de Registros"
     drill_fields: []
   }
 }
