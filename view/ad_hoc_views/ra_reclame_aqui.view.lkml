@@ -30,8 +30,6 @@ view: reclame_aqui {
   dimension_group: avaliacao_data {
     type: time
     group_label: "Dados da Avaliação"
-    group_item_label: "Data Avaliação"
-    description: "Data da Avaliação"
     timeframes: [
       raw,
       time,
@@ -41,6 +39,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Data da Avaliação"
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
 
