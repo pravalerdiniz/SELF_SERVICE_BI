@@ -38,7 +38,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
-    label: "Data da Avaliação"
+    label: "Avaliação"
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
 
@@ -74,9 +74,6 @@ view: reclame_aqui {
 
   dimension_group: cliente_data_consideracao {
     type: time
-    group_label: "Dados do Cliente"
-    group_item_label: "Data da Consideração"
-    description: "Data da Consideração do Cliente"
     timeframes: [
       raw,
       time,
@@ -86,6 +83,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Consideração do Cliente"
     sql: ${TABLE}."CLIENTE_DATA_CONSIDERACAO" ;;
   }
 
@@ -171,9 +169,6 @@ view: reclame_aqui {
 
   dimension_group: nascimento_cliente {
     type: time
-    group_label: "Dados do Cliente"
-    group_item_label: "Data de Nascimento"
-    description: "Data de Nascimento do Cliente"
     timeframes: [
       raw,
       date,
@@ -182,6 +177,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Nascimento Cliente"
     convert_tz: no
     datatype: date
     sql: ${TABLE}."NASCIMENTO_CLIENTE" ;;
@@ -211,9 +207,6 @@ view: reclame_aqui {
 
   dimension_group: data_criacao {
     type: time
-    group_label: "Dados da Reclamação"
-    group_item_label: "Data de Criação da Reclamação"
-    description: "Data de Criação da Reclamação"
     timeframes: [
       raw,
       time,
@@ -223,14 +216,12 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Criação da Reclamação"
     sql: ${TABLE}."DATA_CRIACAO" ;;
   }
 
   dimension_group: data_ultima_modificacao {
     type: time
-    group_label: "Dados da Reclamação"
-    group_item_label: "Data da Última Modificação da Reclamação"
-    description: "Data da Última Modificação da Reclamação"
     timeframes: [
       raw,
       time,
@@ -240,14 +231,12 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Última Modificação da Reclamação "
     sql: ${TABLE}."DATA_ULTIMA_MODIFICACAO" ;;
   }
 
   dimension_group: data_ultima_replica {
     type: time
-    group_label: "Dados da Reclamação"
-    group_item_label: "Data da Última Replica da Reclamação"
-    description: "Data da Última Replica da Reclamação"
     timeframes: [
       raw,
       time,
@@ -257,6 +246,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Última Replica da Reclamação"
     sql: ${TABLE}."DATA_ULTIMA_REPLICA" ;;
   }
 
@@ -300,9 +290,6 @@ view: reclame_aqui {
 
   dimension_group: empresa_data_consideracao {
     type: time
-    group_label: "Dados da Empresa"
-    group_item_label: "Data da Consideração"
-    description: "Data da Consideração da Empresa"
     timeframes: [
       raw,
       time,
@@ -312,14 +299,12 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Consideração da Empresa"
     sql: ${TABLE}."EMPRESA_DATA_CONSIDERACAO" ;;
   }
 
   dimension_group: empresa_data_resposta {
     type: time
-    group_label: "Dados da Empresa"
-    group_item_label: "Data da Resposta"
-    description: "Data da Resposta da Empresa"
     timeframes: [
       raw,
       time,
@@ -329,6 +314,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Resposta da Empresa"
     sql: ${TABLE}."EMPRESA_DATA_RESPOSTA" ;;
   }
 
@@ -442,9 +428,6 @@ view: reclame_aqui {
 
   dimension_group: moderacao_data_pedido {
     type: time
-    group_label: "Dados da Moderação"
-    group_item_label: "Data Pedido de Moderação"
-    description: "Data Pedido de Moderação? (Yes/No)"
     timeframes: [
       raw,
       time,
@@ -454,14 +437,12 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Pedido de Moderação"
     sql: ${TABLE}."MODERACAO_DATA_PEDIDO" ;;
   }
 
   dimension_group: moderacao_data_resposta {
     type: time
-    group_label: "Dados da Moderação"
-    group_item_label: "Data Resposta da Moderação"
-    description: "Data Resposta da Moderação"
     timeframes: [
       raw,
       time,
@@ -471,6 +452,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Resposta da Moderação"
     sql: ${TABLE}."MODERACAO_DATA_RESPOSTA" ;;
   }
 
@@ -600,7 +582,6 @@ view: reclame_aqui {
 
   dimension_group: ra_data_desativacao {
     type: time
-    group_label: "Outros Dados"
     timeframes: [
       raw,
       time,
@@ -610,6 +591,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Desativação"
     sql: ${TABLE}."RA_DATA_DESATIVACAO" ;;
   }
 
@@ -645,7 +627,6 @@ view: reclame_aqui {
 
   dimension_group: rafone_data_expiracao {
     type: time
-    group_label: "Outros Dados"
     timeframes: [
       raw,
       date,
@@ -654,6 +635,7 @@ view: reclame_aqui {
       quarter,
       year
     ]
+    label: "Expiração"
     convert_tz: no
     datatype: date
     sql: ${TABLE}."RAFONE_DATA_EXPIRACAO" ;;
