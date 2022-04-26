@@ -29,7 +29,6 @@ view: reclame_aqui {
 
   dimension_group: avaliacao_data {
     type: time
-    group_label: "Dados da Avaliação"
     timeframes: [
       raw,
       time,
