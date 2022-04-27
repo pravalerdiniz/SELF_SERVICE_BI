@@ -76,7 +76,7 @@ view: tela_atendimento {
       month_num,
       day_of_month
     ]
-    sql: ${data_chamado_date}&${horario_chamado} ;;
+    sql: concat(${data_chamado_date},${horario_chamado}) ;;
     label: "Data Hora Chamado"
     description: "Data e Hora do Chamado"
   }
