@@ -51,11 +51,34 @@ view: tela_atendimento {
   }
 
   dimension: horario_chamado {
-    type: date_hour
+    type: string
     group_label: "Dados Chamado"
     label: "Horário do chamado"
     description: "Indica o horário que foi iniciado o chamado"
     sql: ${TABLE}."HORARIO_CHAMADO" ;;
+  }
+
+  dimension_group: data_hora_chamado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      day_of_week,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      day_of_month
+    ]
+    sql: ${data_chamado_date}&${horario_chamado} ;;
+    label: "Data Hora Chamado"
+    description: "Data e Hora do Chamado"
   }
 
   dimension: id_titulo_chamado {
