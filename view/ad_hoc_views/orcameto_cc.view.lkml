@@ -35,7 +35,7 @@ view: orcameto_cc {
     type: string
     label: "Categoria de Custo"
     group_label: "Detalhe das Despesas"
-    description: "Descreve o motivo do gasto"
+    description: "Detalha a descrição do motivo do gasto"
     sql: ${TABLE}."CLASS_FRENTE" ;;
   }
 
@@ -50,7 +50,7 @@ view: orcameto_cc {
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
-  dimension_group: data {
+  dimension_group: data_lancamento {
     type: time
     timeframes: [
       raw,
@@ -62,7 +62,7 @@ view: orcameto_cc {
     ]
     convert_tz: no
     datatype: date
-    label: "Data"
+    label: "Lançamento"
     group_label: "Data"
     description: "Indica a Data que a despesa foi lançada"
     sql: ${TABLE}."DATA" ;;
@@ -80,7 +80,7 @@ view: orcameto_cc {
     type: string
     label: "Descrição do Centro de Custo"
     group_label: "Detalhe das Despesas"
-    description: "Descrição do Centro de Custo"
+    description: "Detalha o nome do centro de custo que o valor foi alocado"
     sql: ${TABLE}."DESCRICAO_CC" ;;
   }
 
@@ -88,7 +88,7 @@ view: orcameto_cc {
     type: string
     label: "Descrição da Despesa"
     group_label: "Detalhe das Despesas"
-    description: "Descrição da Despesa"
+    description: "Detalha a descrição da despesa"
     sql: ${TABLE}."DESCRICAO_DESPESA" ;;
   }
 
@@ -156,6 +156,33 @@ view: orcameto_cc {
     sql: ${TABLE}."MONTANTE" ;;
   }
 
+  measure: sum_montante {
+    type: sum
+    sql: ${montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor"
+    group_item_label: "Soma do Valor"
+    description: "Soma do valor Orçado ou Gasto"
+  }
+
+  measure: avg_montante {
+    type: average
+    sql: ${montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor"
+    group_item_label: "Média do Valor"
+    description: "Valor médio Orçado ou Gasto"
+  }
+
+  measure: ltm {
+    type: sum
+    sql: ${montante} ;;
+    filters: [data_lancamento_month: "last 12 months"]
+    value_format: "$#,##0.00"
+    group_label: "Valor"
+    group_item_label: "LTM"
+  }
+
   dimension: operacional_aquisicao {
     type: number
     label: "% Operacional Aquisição"
@@ -200,7 +227,7 @@ view: orcameto_cc {
     type: string
     label: "Tipo de Despesa"
     group_label: "Detalhe das Despesas"
-    description: "Descrição do tipo da despesa"
+    description: "Detalha a descrição do tipo da despesa"
     sql: ${TABLE}."TIPO_DESPESA" ;;
   }
 
@@ -208,14 +235,14 @@ view: orcameto_cc {
     type: string
     label: "Tipo de Orçamento"
     group_label: "Detalhe do Orçamento"
-    description: "Descrição do tipo de orçamento. Ex: Operacionaç, Folha, Não considerar e Investimento"
+    description: "Detalha o tipo de orçamento. Ex: Operacional, Folha, Não considerar e Investimento"
     sql: ${TABLE}."TIPO_ORCAMENTO" ;;
   }
 
   dimension: visao {
     type: string
     label: "Visão do Gasto"
-    description: "Se foi Orçado ou Realizado"
+    description: "Categoriza valor em orçado e realizado"
     sql: ${TABLE}."VISAO" ;;
   }
 

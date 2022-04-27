@@ -4021,6 +4021,14 @@ dimension: produto_preaprovado {
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
 
+  dimension: flg_titulos_gerados {
+    type: yesno
+    group_label: "Dados do Contrato"
+    label: "Boleto Gerado?"
+    description: "Indica se algum título já foi gerado para o contrato"
+    sql: ${TABLE}."FLG_TITULOS_GERADOS" ;;
+    }
+
 
   set: detail {
     fields: [
