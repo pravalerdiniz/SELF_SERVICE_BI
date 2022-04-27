@@ -105,7 +105,7 @@ view: crm_customer {
     group_label: "Dados do Aluno"
     label: "CPF do Aluno CIO"
     description: "Indica o CPF do Aluno vindo da CIO"
-    hidden: no
+    hidden: yes
     sql: ${TABLE}."CPF_CIO" ;;
   }
 
