@@ -54,7 +54,7 @@ view: reclame_aqui {
   dimension: flg_avaliacao_sem_resposta {
     type: yesno
     group_label: "Dados da Avaliação"
-    group_item_label: "Flag Avaliação Sem Resposta?"
+    group_item_label: "Avaliação Sem Resposta?"
     description: "Flag Avaliação Sem Resposta? (Yes/No)"
     sql: ${TABLE}."FLG_AVALIACAO_SEM_RESPOSTA" ;;
   }
@@ -240,7 +240,7 @@ view: reclame_aqui {
     sql: ${TABLE}."RG_CLIENTE" ;;
   }
 
-    dimension: email_cliente {
+  dimension: email_cliente {
     type: string
     group_label: "Dados do Cliente"
     group_item_label: "E-mail do Cliente"
@@ -439,6 +439,46 @@ view: reclame_aqui {
     sql: ${TABLE}."RA_ORIGEM" ;;
   }
 
+  dimension_group: ra_data_desativacao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    group_label: "Dados da Reclamação"
+    label: "Desativação"
+    sql: ${TABLE}."RA_DATA_DESATIVACAO" ;;
+  }
+
+  dimension: ra_motivo_desativacao {
+    type: string
+    group_label: "Dados da Reclamação"
+    group_item_label: "Motivo Desativação"
+    description: "Motivo Desativação"
+    sql: ${TABLE}."RA_MOTIVO_DESATIVACAO" ;;
+  }
+
+  dimension: qtd_interacoes_cliente {
+    type: number
+    group_label: "Dados da Reclamação"
+    group_item_label: "Quantidade Interações Cliente"
+    description: "Quantidade Interações Cliente"
+    sql: ${TABLE}."QTD_INTERACOES_CLIENTE" ;;
+  }
+
+  dimension: qtd_interacoes_empresa {
+    type: number
+    group_label: "Dados da Reclamação"
+    group_item_label: "Quantidade Interações Empresa"
+    description: "Quantidade Interações Empresa"
+    sql: ${TABLE}."QTD_INTERACOES_EMPRESA" ;;
+  }
+
 
 
   ## DADOS DA EMPRESA ##
@@ -452,16 +492,6 @@ view: reclame_aqui {
     description: "Nome da Empresa"
     sql: ${TABLE}."EMPRESA" ;;
   }
-
-
-
-  #dimension: empresa_resposta {
-    #type: string
-    #group_label: "Dados da Empresa"
-    #group_item_label: "Resposta da Empresa"
-    #description: "Resposta da Empresa"
-    #sql: ${TABLE}."EMPRESA_RESPOSTA" ;;
-  #}
 
 
 
@@ -583,18 +613,6 @@ view: reclame_aqui {
     sql: ${TABLE}."QTD_INTERACOES" ;;
   }
 
-  dimension: qtd_interacoes_cliente {
-    type: number
-    group_label: "Outros Dados"
-    sql: ${TABLE}."QTD_INTERACOES_CLIENTE" ;;
-  }
-
-  dimension: qtd_interacoes_empresa {
-    type: number
-    group_label: "Outros Dados"
-    sql: ${TABLE}."QTD_INTERACOES_EMPRESA" ;;
-  }
-
   dimension: qtd_interacoes_nao_lidas {
     type: number
     group_label: "Outros Dados"
@@ -617,28 +635,6 @@ view: reclame_aqui {
     type: number
     group_label: "Outros Dados"
     sql: ${TABLE}."QTD_TICKETS_PENDENTES_CLIENTE" ;;
-  }
-
-  dimension_group: ra_data_desativacao {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    group_label: "Outros Dados"
-    label: "Desativação"
-    sql: ${TABLE}."RA_DATA_DESATIVACAO" ;;
-  }
-
-  dimension: ra_motivo_desativacao {
-    type: string
-    group_label: "Outros Dados"
-    sql: ${TABLE}."RA_MOTIVO_DESATIVACAO" ;;
   }
 
   dimension: ra_razao {
@@ -682,17 +678,11 @@ view: reclame_aqui {
     sql: ${TABLE}."TAGS" ;;
   }
 
-
-
-
-
   dimension: ticket_id_interno {
     type: string
     group_label: "Outros Dados"
     sql: ${TABLE}."TICKET_ID_INTERNO" ;;
   }
-
-
 
   measure: count {
     type: count
