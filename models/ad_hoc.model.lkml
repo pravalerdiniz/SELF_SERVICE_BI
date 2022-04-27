@@ -150,6 +150,10 @@ explore: orquestra {
   }
 }
 
+explore: reclame_aqui {
+  label: "Reclame Aqui"
+}
+
 explore: base_forecast_cs {
   label: "Forecast Contatos"
 }

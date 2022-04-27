@@ -86,7 +86,7 @@ view: ga_url_destino_aquisicao {
     type: sum
     sql: ${TABLE}."CLIQUES";;
     label: "Cliques"
-    description: "Custo derivado da campanha publicitária."
+    description: "O número de vezes que os utilizadores clicam no anúncio."
   }
 
 }
