@@ -51,7 +51,7 @@ view: tela_atendimento {
   }
 
   dimension: horario_chamado {
-    type: string
+    type: date_hour
     group_label: "Dados Chamado"
     label: "Horário do chamado"
     description: "Indica o horário que foi iniciado o chamado"
