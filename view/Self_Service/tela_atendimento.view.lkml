@@ -78,6 +78,7 @@ view: tela_atendimento {
     ]
     sql: concat(${data_chamado_date},${horario_chamado}) ;;
     group_label: "Dados Chamado"
+    hidden: yes
     label: "Data Hora Chamado"
     description: "Data e Hora do Chamado"
   }
