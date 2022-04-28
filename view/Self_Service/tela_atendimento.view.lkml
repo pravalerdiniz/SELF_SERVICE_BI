@@ -294,7 +294,7 @@ view: tela_atendimento {
       when: {
         sql: ${tela_atendimento_jornada.DT_STATUS_date} >= ${data_chamado_date}
           AND ${tela_atendimento_jornada.DT_STATUS_date} <= DATEADD(day, 3, ${data_chamado_date})
-          and ${tela_atendimento_jornada.ETAPA="Formalizado"}
+          and ${tela_atendimento_jornada.ETAPA} = 'Formalizado'
           ;;
         label: "1"
       }
