@@ -183,6 +183,40 @@ view: orcameto_cc {
     group_item_label: "LTM"
   }
 
+  dimension: grupo_canais {
+    type: string
+    case: {
+      when: {
+        sql: ${descricao_cc} in ('Trade Marketing','Comercial - B2B') ;;
+        label: "Faculdade"
+      }
+      when:{
+        sql: ${descricao_cc} in ('Central CX', 'Estratégia de Crédito','Estratégia de crédito','  Formalização','Planejamento e Conversão')  ;;
+        label: "Jornada"
+      }
+      when: {
+        sql: ${descricao_cc} in ('Marca');;
+        label: "Organico"
+      }
+      when: {
+        sql: ${descricao_cc} in ('Social','Online');;
+        label: "Pago"
+      }
+      when: {
+        sql: ${descricao_cc} in ('Online RV');;
+        label: "RV"
+      }
+      when: {
+        sql: ${descricao_cc} in ('Investimentos Marketing');;
+        label: "TV"
+      }
+      else: "Outros"
+    }
+    label: "Grupo de Canais"
+    group_label: "Detalhe das Despesas"
+    description: "Grupo de Canais"
+    }
+
   dimension: operacional_aquisicao {
     type: number
     label: "% Operacional Aquisição"
