@@ -4021,6 +4021,14 @@ dimension: produto_preaprovado {
     sql: ${TABLE}."METODO_AUTENTICACAO" ;;
   }
 
+  dimension: metodo_autenticacao_garantidor {
+    type: string
+    group_label: "Dados do Contrato"
+    group_item_label: "Método de Autenticação - Assinatura (Garantidor)"
+    description: "Indica o método de autenticação da proposta, de acordo com a assinatura do Garantidor. Ex: WhatsApp, SMS ou e-mail."
+    sql: ${TABLE}."METODO_AUTENTICACAO_FIADOR" ;;
+  }
+
   dimension: flg_titulos_gerados {
     type: yesno
     group_label: "Dados do Contrato"
