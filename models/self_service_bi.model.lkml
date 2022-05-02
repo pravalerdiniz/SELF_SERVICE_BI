@@ -387,7 +387,7 @@ explore: jornada {
 
   join: proposta_vl_financiamento {
     view_label: "2. Proposta"
-    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    sql_on: ${proposta_vl_financiamento.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
   }
