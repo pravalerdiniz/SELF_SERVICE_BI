@@ -5,6 +5,7 @@ view: proposta_vl_financiamento {
       from "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA" PROP1
       left join "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA" PROP2 on prop1.id_proposta = prop2.id_contrato_conjunto
       where prop1.id_contrato_conjunto = 'BOF-0'
+      and prop1.tipo_proposta = 'NOVO'
       group by 1;;
       }
 
@@ -18,7 +19,7 @@ view: proposta_vl_financiamento {
     value_format: "0"
   }
 
-  dimension: vl_financiamento {
+  dimension: vl_mat_contr {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor do Financiamento"
@@ -28,12 +29,32 @@ view: proposta_vl_financiamento {
     hidden:  yes
   }
 
-  measure: sum_vl_financiamento {
+  dimension: vl_financiamento {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Valor do Financiamento"
+    value_format: "$ #,###.00"
+    description: "Indica o valor total do financiamento do contrato"
+    sql: ${proposta.vl_financiamento} ;;
+    hidden:  yes
+  }
+
+  dimension: vl_financiamento_final {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Valor do Financiamento"
+    value_format: "$ #,###.00"
+    description: "Indica o valor total do financiamento do contrato"
+    sql: coalesce(${vl_mat_contr},${vl_financiamento}) ;;
+    hidden:  yes
+  }
+
+  measure: sum_vl_mat_contr {
     type: sum
     group_label: "Financiamento (Matrícula + Contrato)"
     value_format: "$ #,###.00"
     group_item_label: "Soma"
-    sql:${vl_financiamento};;
+    sql:${vl_financiamento_final} ;;
     description: "Soma do valor total do financiamento do contrato"
   }
 
