@@ -2660,7 +2660,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Comprometimento de Renda"
-    value_format: "0.00%"
+    value_format: "0.00\%"
     description: "Este campo é uma regra de negócio*. Indica o percentual de comprometimento de renda do aluno em relação ao boleto do contrato que está sendo pago."
     sql: ${TABLE}."COMPROMETIMENTO_RENDA" ;;
   }
@@ -2670,6 +2670,15 @@ view: proposta {
     group_label: "Dados do Aluno"
     label: "Faixa de Comprometimento de Renda"
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
+    sql: ${TABLE}."FAIXA_COMPROMETIMENTO_RENDA" ;;
+    }
+
+  dimension: faixa_comp_de_renda {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "Faixa de Comprometimento de Renda"
+    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
+    hidden: yes
     case: {
       when: {
         sql: ${comprometimento_renda} <= 0.1 ;;
