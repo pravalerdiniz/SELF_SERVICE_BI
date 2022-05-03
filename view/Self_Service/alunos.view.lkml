@@ -1700,5 +1700,11 @@ dimension:  ultimo_acordo_decola{
     sql: ${TABLE}."TIPO_ALUNO_NPS" ;;
   }
 
+dimension: cpf_hash {
+  type: string
+  sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno})) ;;
+  group_label: "Dados do Aluno"
+  label: "CPF Criptografado (MD5)"
+}
 
 }

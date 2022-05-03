@@ -479,6 +479,13 @@ view: reclame_aqui {
     sql: ${TABLE}."QTD_INTERACOES_EMPRESA" ;;
   }
 
+  dimension: origem_externa {
+    type: string
+    group_label: "Dados da Reclamação"
+    group_item_label: "ID Origem RA"
+    description: "ID Origem RA"
+      sql: ${TABLE}."ORIGEM_EXTERNA" ;;
+}
 
 
   ## DADOS DA EMPRESA ##
@@ -565,12 +572,6 @@ view: reclame_aqui {
     type: string
     group_label: "Outros Dados"
     sql: ${TABLE}."ORIGEM" ;;
-  }
-
-  dimension: origem_externa {
-    type: string
-    group_label: "Outros Dados"
-    sql: ${TABLE}."ORIGEM_EXTERNA" ;;
   }
 
   dimension: origem_informacao {

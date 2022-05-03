@@ -78,6 +78,7 @@ view: tela_atendimento {
     ]
     sql: concat(${data_chamado_date},${horario_chamado}) ;;
     group_label: "Dados Chamado"
+    hidden: yes
     label: "Data Hora Chamado"
     description: "Data e Hora do Chamado"
   }
@@ -285,6 +286,23 @@ view: tela_atendimento {
     group_label: "Mudou Etapa"
     label: "Mudou Etapa"
     description: "Indicador de mudança de status na jornada"
+  }
+
+  dimension: Formalizou {
+    type: string
+    case: {
+      when: {
+        sql: ${tela_atendimento_jornada.DT_STATUS_date} >= ${data_chamado_date}
+          AND ${tela_atendimento_jornada.DT_STATUS_date} <= DATEADD(day, 3, ${data_chamado_date})
+          and ${tela_atendimento_jornada.ETAPA} = 'Formalizado'
+          ;;
+        label: "1"
+      }
+      else: "0"
+    }
+    group_label: "Mudou Etapa"
+    label: "Formalizou"
+    description: "Indicador se o aluno formalizou a proposta"
   }
 
   measure: count_id_chamado {

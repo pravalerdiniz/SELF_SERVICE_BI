@@ -122,6 +122,13 @@ view: jornada {
     description: "Indica o CPF do aluno"
   }
 
+  dimension: cpf_hash {
+    type: string
+    sql: md5(CONCAT('IYwAR6jHKzAq',${aluno_cpf})) ;;
+    group_label: "Dados do Aluno"
+    label: "CPF Criptografado (MD5)"
+  }
+
 
   dimension: email_aluno{
     type: string
