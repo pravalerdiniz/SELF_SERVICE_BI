@@ -2654,7 +2654,7 @@ view: proposta {
     type: number
     group_label: "Dados do Aluno"
     label: "Comprometimento de Renda"
-    value_format: "0.00000\%"
+    value_format: "0.00\%"
     description: "Este campo é uma regra de negócio*. Indica o percentual de comprometimento de renda do aluno em relação ao boleto do contrato que está sendo pago."
     sql: ${TABLE}."COMPROMETIMENTO_RENDA" ;;
   }
