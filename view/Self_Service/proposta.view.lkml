@@ -449,56 +449,49 @@ view: proposta {
   }
 
 
-  dimension:comprometimento_renda_curso {
-    type: number
-    group_label: "Dados do Curso"
-    label: "Comprometimento de Renda - Curso"
-    value_format: "0.00%"
-    hidden: yes
-    description: "Indica qual a porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor da mensalidade do curso."
-    sql: (IFNULL(${vl_mensalidade},0)/2)/(IFNULL(${aluno_renda},0)+IFNULL(${fia_renda},0)) ;;
-  }
+  #dimension:comprometimento_renda_curso {
+    #type: number
+    #group_label: "Dados do Curso"
+    #label: "Comprometimento de Renda - Curso"
+    #value_format: "0.00%"
+    #hidden: yes
+    #description: "Indica qual a porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor da mensalidade do curso."
+    #sql: (IFNULL(${vl_mensalidade},0)/2)/(IFNULL(${aluno_renda},0)+IFNULL(${fia_renda},0)) ;;
+  #}
 
 
 
-  dimension: faixa_comprometimento_renda_curso {
-    type: string
-    group_label: "Dados do Curso"
-    label: "Faixa de Comprometimento de Renda - Curso"
-    hidden: yes
-    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
-    case: {
-      when: {
-        sql: ${comprometimento_renda_curso} <= 0.15 ;;
-        label: "< 15%"
-      }
-      when: {
-        sql:  ${comprometimento_renda_curso} <= 0.25 ;;
-        label: "15% - 25%"
-      }
-      when: {
-        sql:  ${comprometimento_renda_curso}<= 0.3 ;;
-        label: "25% - 30%"
-      }
-      when: {
-        sql:  ${comprometimento_renda_curso}<= 0.4 ;;
-        label: "30% - 40%"
-      }
-      when: {
-        sql:  ${comprometimento_renda_curso}<= 0.5 ;;
-        label: "40% - 50%"
-      }
-      else: "50% >"
-    }
+  #dimension: faixa_comprometimento_renda_curso {
+    #type: string
+    #group_label: "Dados do Curso"
+    #label: "Faixa de Comprometimento de Renda - Curso"
+    #hidden: yes
+    #description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e fiador) em relação ao valor da mensalidade do curso."
+    #case: {
+      #when: {
+        #sql: ${comprometimento_renda_curso} <= 0.15 ;;
+        #label: "< 15%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda_curso} <= 0.25 ;;
+        #label: "15% - 25%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda_curso}<= 0.3 ;;
+        #label: "25% - 30%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda_curso}<= 0.4 ;;
+        #label: "30% - 40%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda_curso}<= 0.5 ;;
+        #label: "40% - 50%"
+      #}
+      #else: "50% >"
+    #}
 
-
-
-
-
-  }
-
-
-
+  #}
 
   dimension: cp_atual {
     type: string
@@ -2674,45 +2667,41 @@ view: proposta {
     sql: ${TABLE}."FAIXA_COMPROMETIMENTO_RENDA" ;;
     }
 
-  dimension: faixa_comp_de_renda {
-    type: string
-    group_label: "Dados do Aluno"
-    label: "Faixa de Comprometimento de Renda"
-    description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
-    hidden: yes
-    case: {
-      when: {
-        sql: ${comprometimento_renda} <= 0.1 ;;
-        label: "< 10%"
-      }
-      when: {
-        sql:  ${comprometimento_renda} <= 0.2 ;;
-        label: "10% - 20%"
-      }
-      when: {
-        sql:  ${comprometimento_renda}<= 0.3 ;;
-        label: "20% - 30%"
-      }
-      when: {
-        sql:  ${comprometimento_renda}<= 0.4 ;;
-        label: "30% - 40%"
-      }
-      when: {
-        sql:  ${comprometimento_renda}<= 0.5 ;;
-        label: "40% - 50%"
-      }
-      when: {
-        sql:  ${comprometimento_renda} is NULL ;;
-        label: "Sem Comprometimento de Renda"
-      }
-      else: "50% >"
-    }
+  #dimension: faixa_comp_de_renda {
+    #type: string
+    #group_label: "Dados do Aluno"
+    #label: "Faixa de Comprometimento de Renda"
+    #description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
+    #hidden: yes
+    #case: {
+      #when: {
+        #sql: ${comprometimento_renda} <= 0.1 ;;
+        #label: "< 10%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda} <= 0.2 ;;
+        #label: "10% - 20%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda}<= 0.3 ;;
+        #label: "20% - 30%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda}<= 0.4 ;;
+        #label: "30% - 40%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda}<= 0.5 ;;
+        #label: "40% - 50%"
+      #}
+      #when: {
+        #sql:  ${comprometimento_renda} is NULL ;;
+        #label: "Sem Comprometimento de Renda"
+      #}
+      #else: "50% >"
+    #}
 
-
-
-
-
-  }
+  #}
 
 
 
