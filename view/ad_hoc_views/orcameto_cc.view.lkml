@@ -217,6 +217,16 @@ view: orcameto_cc {
     description: "Grupo de Canais"
     }
 
+  measure: porcentagem_aquisicao {
+    type: number
+    sql: ${operacional_aquisicao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor"
+    group_item_label: "Porcentagem de Aquisição"
+    description: ""
+  }
+
+
   dimension: operacional_aquisicao {
     type: number
     label: "% Operacional Aquisição"
@@ -225,6 +235,15 @@ view: orcameto_cc {
     value_format: "0.00%"
     description: "Porcentagem do custo para operacional aquisição"
     sql: ${TABLE}."OPERACIONAL_AQUISICAO" ;;
+  }
+
+  measure: perc_operacional_aquisicao {
+    type: sum
+    sql: ${operacional_aquisicao} ;;
+
+    group_label: "Percentuais"
+    group_item_label: "% Operacional Aquisição"
+    description: ""
   }
 
   dimension: operacional_investimento {
