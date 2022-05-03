@@ -11,6 +11,27 @@ view: orcameto_cc {
     hidden: yes
   }
 
+# Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+
+  dimension_group: data_lancamento {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Lançamento"
+    group_label: "Data"
+    description: "Indica a Data que a despesa foi lançada"
+    sql: ${TABLE}."DATA" ;;
+  }
+
   measure: total_ano {
     type: sum
     sql: ${ano} ;;
@@ -47,27 +68,6 @@ view: orcameto_cc {
     sql: ${TABLE}."CONTA_CONTABIL" ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
-  dimension_group: data_lancamento {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    label: "Lançamento"
-    group_label: "Data"
-    description: "Indica a Data que a despesa foi lançada"
-    sql: ${TABLE}."DATA" ;;
-  }
-
   dimension: desc_fornecedor {
     type: string
     label: "Descrição do Fornecedor"
@@ -92,6 +92,8 @@ view: orcameto_cc {
     sql: ${TABLE}."DESCRICAO_DESPESA" ;;
   }
 
+   # Porcentagem de alocação para CAC Folha (Medidas e Dimensões)
+
   dimension: folha_aquisicao {
     type: number
     label: "% Folha Aquisição"
@@ -100,6 +102,15 @@ view: orcameto_cc {
     value_format: "0.00%"
     description: "Porcentagem do custo para folha aquisição"
     sql: ${TABLE}."FOLHA_AQUISICAO" ;;
+  }
+
+  measure: measure_folha_aquisicao {
+    type: average
+    sql: ${folha_aquisicao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Folha Aquisição"
+    description: ""
   }
 
   dimension: folha_investimento {
@@ -112,6 +123,15 @@ view: orcameto_cc {
     sql: ${TABLE}."FOLHA_INVESTIMENTO" ;;
   }
 
+  measure: measure_folha_investimento {
+    type: average
+    sql: ${folha_investimento} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Folha Investimento"
+    description: ""
+  }
+
   dimension: folha_manutencao {
     type: number
     label: "% Folha Manutenção"
@@ -122,6 +142,15 @@ view: orcameto_cc {
     sql: ${TABLE}."FOLHA_MANUTENCAO" ;;
   }
 
+  measure: measure_folha_manutencao {
+    type: average
+    sql: ${folha_manutencao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Folha Manutenção"
+    description: ""
+  }
+
   dimension: folha_renovacao {
     type: number
     label: "% Folha Renovação"
@@ -130,6 +159,15 @@ view: orcameto_cc {
     value_format: "0.00%"
     description: "Porcentagem do custo para folha renovação"
     sql: ${TABLE}."FOLHA_RENOVACAO" ;;
+  }
+
+  measure: measure_folha_renovacao {
+    type: average
+    sql: ${folha_renovacao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Folha Renovação"
+    description: ""
   }
 
   dimension: frente {
@@ -217,6 +255,156 @@ view: orcameto_cc {
     description: "Grupo de Canais"
     }
 
+   # Cálculo da porcentagem de CAC no Montante para Operacional
+
+  measure: calculo_porcentagem_operacional_aquisicao {
+    type: number
+    sql: ${measure_operacional_aquisicao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Operacional Aquisição"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_aquisicao_ltm {
+    type: number
+    sql: ${measure_operacional_aquisicao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Operacional Aquisição LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_investimento {
+    type: number
+    sql: ${measure_operacional_investimento} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Operacional Investimento"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_investimento_ltm {
+    type: number
+    sql: ${measure_operacional_investimento} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Operacional Investimento LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_manutencao {
+    type: number
+    sql: ${measure_operacional_manutencao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Operacional Manutenção"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_manutencao_ltm {
+    type: number
+    sql: ${measure_operacional_manutencao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Operacional Manutenção LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_renovacao {
+    type: number
+    sql: ${measure_operacional_renovacao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Operacional Renovação"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_operacional_renovacao_ltm {
+    type: number
+    sql: ${measure_operacional_renovacao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Operacional Renovação LTM"
+    description: ""
+  }
+
+   # Cálculo da porcentagem de CAC no Montante para Folha
+
+  measure: calculo_porcentagem_folha_aquisicao {
+    type: number
+    sql: ${measure_folha_aquisicao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Folha Aquisição"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_aquisicao_ltm {
+    type: number
+    sql: ${measure_operacional_aquisicao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Folha Aquisição LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_investimento {
+    type: number
+    sql: ${measure_folha_investimento} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Folha Investimento"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_investimento_ltm {
+    type: number
+    sql: ${measure_operacional_investimento} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Folha Investimento LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_manutencao {
+    type: number
+    sql: ${measure_folha_manutencao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Folha Manutenção"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_manutencao_ltm {
+    type: number
+    sql: ${measure_operacional_manutencao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Folha Manutenção LTM"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_renovacao {
+    type: number
+    sql: ${measure_folha_renovacao} * ${sum_montante} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual"
+    group_item_label: "Valor Perc Folha Renovação"
+    description: ""
+  }
+
+  measure: calculo_porcentagem_folha_renovacao_ltm {
+    type: number
+    sql: ${measure_operacional_renovacao} * ${ltm} ;;
+    value_format: "$#,##0.00"
+    group_label: "Valor Percentual LTM"
+    group_item_label: "Perc Folha Renovação LTM"
+    description: ""
+  }
+
+   # Porcentagem de alocação para CAC Operacional (Medidas e Dimensões)
+
   dimension: operacional_aquisicao {
     type: number
     label: "% Operacional Aquisição"
@@ -225,6 +413,15 @@ view: orcameto_cc {
     value_format: "0.00%"
     description: "Porcentagem do custo para operacional aquisição"
     sql: ${TABLE}."OPERACIONAL_AQUISICAO" ;;
+  }
+
+  measure: measure_operacional_aquisicao {
+    type: average
+    sql: ${operacional_aquisicao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Operacional Aquisição"
+    description: ""
   }
 
   dimension: operacional_investimento {
@@ -237,6 +434,15 @@ view: orcameto_cc {
     sql: ${TABLE}."OPERACIONAL_INVESTIMENTO" ;;
   }
 
+  measure: measure_operacional_investimento {
+    type: average
+    sql: ${operacional_investimento} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Operacional Investimento"
+    description: ""
+  }
+
   dimension: operacional_manutencao {
     type: number
     label: "% Operacional Manutenção"
@@ -247,6 +453,15 @@ view: orcameto_cc {
     sql: ${TABLE}."OPERACIONAL_MANUTENCAO" ;;
   }
 
+  measure: measure_operacional_manutencao {
+    type: average
+    sql: ${operacional_manutencao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Operacional Manutenção"
+    description: ""
+  }
+
   dimension: operacional_renovacao {
     type: number
     label: "% Operacional Renovação"
@@ -255,6 +470,15 @@ view: orcameto_cc {
     value_format: "0.00%"
     description: "Porcentagem do custo para operacional renovação"
     sql: ${TABLE}."OPERACIONAL_RENOVACAO" ;;
+  }
+
+  measure: measure_operacional_renovacao {
+    type: average
+    sql: ${operacional_renovacao} ;;
+    value_format: "0.00%"
+    group_label: "Percentuais"
+    group_item_label: "% Operacional Renovação"
+    description: ""
   }
 
   dimension: tipo_despesa {
