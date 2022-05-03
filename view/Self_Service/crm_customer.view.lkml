@@ -345,6 +345,13 @@ view: crm_customer {
     description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
   }
 
+  dimension: erros {
+    type: string
+    group_label: "Dados do Envio"
+    label: "Erros"
+    description: "Indica o tipo de erro que houve no envio"
+    sql: ${TABLE}."ERROS" ;;
+  }
 
   set: detail {
     fields: [
