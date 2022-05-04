@@ -26,8 +26,7 @@ view: alunos_inadimplencia_2 {
 
   dimension: cpf {
     type: number
-    label: "Safra da Cessão - CPF"
-    hidden: yes
+    label: "CPF"
     description: "Indica a safra (ano e mês) que o aluno foi cedido"
     sql: ${TABLE}."CPF" ;;
   }
@@ -130,6 +129,11 @@ view: alunos_inadimplencia_2 {
     sql: ${TABLE}."QTD" ;;
   }
 
+  dimension: fundo {
+    type: number
+    sql: ${TABLE}."FUNDO" ;;
+  }
+
   set: detail {
     fields: [
       safra_cessao_cpf,
@@ -146,7 +150,8 @@ view: alunos_inadimplencia_2 {
       over15,
       over30,
       over60,
-      qtd
+      qtd,
+      fundo
     ]
   }
 }
