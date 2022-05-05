@@ -23,9 +23,9 @@ explore: ga_campanha_aquisicao_conversao {
     - ga_campanha_ads_cost.id_campanha,
     - ga_url_destino_aquisicao.campanha,
     - ga_url_destino_aquisicao.id_campanha,
-    - ga_overview_campanha.total_cpc,
+    - ga_url_destino_aquisicao.total_cpc,
     - ga_url_destino_aquisicao.total_custo,
-    - ga_overview_campanha.total_clicks_anuncio,
+    - ga_url_destino_aquisicao.total_cliques,
     - ga_overview_campanha.total_ctr,
     - ga_overview_campanha.total_custo_anuncio,
     - ga_overview_campanha.total_custo_conversao,
@@ -67,7 +67,8 @@ explore: ga_campanha_aquisicao_conversao {
   join: ga_campanha_ads_cost {
     view_label: "2. Campanhas | Grupo de Anúncio"
     sql_on: ${ga_campanha_aquisicao_conversao.campanha} = ${ga_campanha_ads_cost.campanha}
-      and ${ga_campanha_ads_cost.date_date} = ${ga_campanha_aquisicao_conversao.date_date};;
+      and ${ga_campanha_ads_cost.date_date} = ${ga_campanha_aquisicao_conversao.date_date}
+      and ${ga_campanha_ads_cost.grupo_anuncio} = ${ga_overview_campanha.grupo_anuncio};;
     relationship: many_to_many
     type: full_outer
   }
