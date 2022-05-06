@@ -21,6 +21,11 @@ view: perfil_usuarios {
     sql: ${TABLE}."DESCRICAO_MODULO" ;;
   }
 
+  dimension: id_usuario {
+    type: number
+    sql: ${TABLE}."ID_USUARIO" ;;
+  }
+
   dimension: email_usuario {
     type: string
     sql: ${TABLE}."EMAIL_USUARIO" ;;
