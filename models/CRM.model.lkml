@@ -64,6 +64,13 @@ explore: tela_atendimento{
     type: left_outer
   }
 
+  join: obj_persona_tela {
+    view_label: "4. Persona - Germina"
+    sql_on:  ${tela_atendimento.id_cpf}=${obj_persona_tela.id_cpf};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
 }
 
 explore: crm_customer {

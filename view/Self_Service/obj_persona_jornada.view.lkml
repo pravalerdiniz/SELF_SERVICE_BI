@@ -4,8 +4,8 @@ view: obj_persona_jornada {
     sql: select
             id_cpf,
             f.value:CONTROL_GROUP::int as CONTROL_GROUP,
-            f.value:FIRST_ACTION_TIMESTAMP::timestamp as FIRST_ACTION,
-            f.value:LAST_ACTION_TIMESTAMP::timestamp as LAST_ACTION,
+            f.value:FIRST_ACTION_TIMESTAMP::timestamp as FIRST_ACTION_TIMESTAMP,
+            f.value:LAST_ACTION_TIMESTAMP::timestamp as LAST_ACTION_TIMESTAMP,
             f.value:PERSONA::varchar as PERSONA,
             f.value:PERSON_ID::int as PERSON_ID,
             f.value:PROPENSITY::float as PROPENSITY
