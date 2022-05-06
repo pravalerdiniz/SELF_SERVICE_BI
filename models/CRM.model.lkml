@@ -65,3 +65,25 @@ explore: tela_atendimento{
   }
 
 }
+
+explore: crm_customer {
+  label: "CRM - Customer io"
+  view_label: "1. CRM - Customer io"
+
+  join: dados_jornada_crm {
+    from: dados_jornada_crm
+    view_label: "2. Dados da Jornada"
+    sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: crm_dados_zendesk {
+    from: crm_dados_zendesk
+    view_label: "3. Dados da Zendesk"
+    sql_on: ${crm_customer.email}= ${crm_dados_zendesk.email} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+}
