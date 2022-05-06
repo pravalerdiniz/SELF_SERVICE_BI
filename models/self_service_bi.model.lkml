@@ -544,6 +544,13 @@ explore: jornada {
       ${jornada.etapa} = ${aproveitamento_estoque_nok.etapa};;
     type: left_outer
     relationship: many_to_one}
+
+  join: obj_persona_jornada {
+    view_label: "9. Persona - Germina"
+    sql_on:  ${jornada.id_cpf} = ${obj_persona_jornada.id_cpf};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: instituicao {
