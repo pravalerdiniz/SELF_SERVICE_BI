@@ -9,7 +9,7 @@ view: obj_persona_tela {
             f.value:PERSONA::varchar as PERSONA,
             f.value:PERSON_ID::int as PERSON_ID,
             f.value:PROPENSITY::float as PROPENSITY
-            from GRADUADO.SELF_SERVICE_BI.JORNADA a,
+            from GRADUADO.CRM.CHAMADOS_TELA_ATENDIMENTO a,
             lateral flatten (input => persona) f
  ;;
   }
