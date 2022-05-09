@@ -98,4 +98,30 @@ view: obj_persona_tela {
     label: "Persona"
     description: "Persona atribuída, via modelo, ao aluno"
   }
+
+  dimension: faixa_propensao {
+    type: string
+    case: {
+      when: {
+        sql: ${propensity} <= 0.1 ;;
+        label: "1. < 10%"
+      }
+      when: {
+        sql: ${propensity} <= 0.3 ;;
+        label: "2. 10% - 30%"
+      }
+      when: {
+        sql: ${propensity} <= 0.5 ;;
+        label: "3. 30% - 50%"
+      }
+      when: {
+        sql: ${propensity} <= 0.7 ;;
+        label: "4. 50% - 70%"
+      }
+      else: "5. > 70%"
+    }
+    label: "Faixa Propensão"
+    description: "Este campo mostra a propensão quebrada por faixas"
+  }
+
  }
