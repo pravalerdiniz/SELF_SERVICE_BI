@@ -41,7 +41,7 @@ view: obj_persona_tela {
   dimension: propensity {
     type: number
     sql: ${TABLE}."PROPENSITY" ;;
-    value_format: "0"
+    value_format: "0.000"
     label: "Propensão"
     description: "Indica a propensão do aluno converter no funil (Formalizar)"
   }
