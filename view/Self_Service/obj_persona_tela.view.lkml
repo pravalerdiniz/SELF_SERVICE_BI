@@ -118,7 +118,11 @@ view: obj_persona_tela {
         sql: ${propensity} <= 0.7 ;;
         label: "4. 50% - 70%"
       }
-      else: "5. > 70%"
+      when: {
+        sql: ${propensity} > 0.7 ;;
+        label: "5. > 70%"
+      }
+      else: "6. Sem Propensão"
     }
     label: "Faixa Propensão"
     description: "Este campo mostra a propensão quebrada por faixas"
