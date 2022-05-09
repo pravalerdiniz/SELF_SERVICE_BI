@@ -122,9 +122,19 @@ view: jornada {
     description: "Indica o CPF do aluno"
   }
 
+  dimension: cpf_aluno_ajustado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF do Aluno Ajustado"
+    description: "Indica o CPF do Aluno, com o formato padrão de 11 dígitos"
+    sql: cast(right(concat('000000',${aluno_cpf}),11) AS VARCHAR) ;;
+    required_access_grants: [grupo_cpf]
+  }
+
+
   dimension: cpf_hash {
     type: string
-    sql: md5(CONCAT('IYwAR6jHKzAq',${aluno_cpf})) ;;
+    sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno_ajustado})) ;;
     group_label: "Dados do Aluno"
     label: "CPF Criptografado (MD5)"
   }
