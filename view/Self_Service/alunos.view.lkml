@@ -195,6 +195,22 @@ view: alunos {
 
   }
 
+  dimension: cpf_aluno_ajustado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF do Aluno Ajustado"
+    description: "Indica o CPF do Aluno, com o formato padrão de 11 dígitos"
+    sql: cast(right(concat('000000',${cpf_aluno}),11) AS VARCHAR) ;;
+    required_access_grants: [grupo_cpf]
+  }
+
+  dimension: cpf_hash {
+    type: string
+    sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno_ajustado})) ;;
+    group_label: "Dados do Aluno"
+    label: "CPF Criptografado (MD5)"
+  }
+
 
 
   dimension: nacionalidade {
@@ -1700,11 +1716,5 @@ dimension:  ultimo_acordo_decola{
     sql: ${TABLE}."TIPO_ALUNO_NPS" ;;
   }
 
-dimension: cpf_hash {
-  type: string
-  sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno})) ;;
-  group_label: "Dados do Aluno"
-  label: "CPF Criptografado (MD5)"
-}
 
 }

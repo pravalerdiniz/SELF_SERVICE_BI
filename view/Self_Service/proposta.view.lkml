@@ -1478,6 +1478,13 @@ view: proposta {
     required_access_grants: [grupo_cpf]
   }
 
+  dimension: cpf_hash {
+    type: string
+    sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno_ajustado})) ;;
+    group_label: "Dados do Aluno"
+    label: "CPF Criptografado (MD5)"
+  }
+
 
   dimension: id_curso {
     type: string
