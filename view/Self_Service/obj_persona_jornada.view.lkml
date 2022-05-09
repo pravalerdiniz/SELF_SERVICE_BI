@@ -104,21 +104,21 @@ view: obj_persona_jornada {
     case: {
       when: {
         sql: ${propensity} <= 0.1 ;;
-        label: "< 10%"
+        label: "1. < 10%"
       }
       when: {
         sql: ${propensity} <= 0.3 ;;
-        label: "10% - 30%"
+        label: "2. 10% - 30%"
       }
       when: {
         sql: ${propensity} <= 0.5 ;;
-        label: "30% - 50%"
+        label: "3. 30% - 50%"
       }
       when: {
         sql: ${propensity} <= 0.7 ;;
-        label: "50% - 70%"
+        label: "4. 50% - 70%"
       }
-      else: "> 70%"
+      else: "5. > 70%"
     }
     label: "Faixa Propensão"
     description: "Este campo mostra a propensão quebrada por faixas"
