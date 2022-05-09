@@ -1,8 +1,12 @@
 view: crm_customer {
-  derived_table: {
-    sql: SELECT * FROM GRADUADO.CRM.CUSTOMER
-      ;;
-  }
+  sql_table_name:GRADUADO.CRM.CUSTOMER
+    ;;
+
+#view: crm_customer {
+ # derived_table: {
+  #  sql: SELECT * FROM GRADUADO.CRM.CUSTOMER
+   #   ;;
+  #}
 
   measure: count {
     type: count
