@@ -850,6 +850,14 @@ join: proposta_projeto_decola {
     type: left_outer
   }
 
+join: sql_runner_query_range_boleto {
+  view_label: "1.Financeiro"
+  sql_on: ${financeiro.id_cpf} = ${sql_runner_query_range_boleto.financeiro_id_cpf} and
+  ${financeiro.id_contrato} = ${sql_runner_query_range_boleto.financeiro_id_contrato}
+  ;;
+  relationship: one_to_one
+}
+
 }
 
 explore: proposta {
