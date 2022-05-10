@@ -1478,6 +1478,13 @@ view: proposta {
     required_access_grants: [grupo_cpf]
   }
 
+  dimension: cpf_hash {
+    type: string
+    sql: md5(CONCAT('IYwAR6jHKzAq',${cpf_aluno_ajustado})) ;;
+    group_label: "Dados do Aluno"
+    label: "CPF Criptografado (MD5)"
+  }
+
 
   dimension: id_curso {
     type: string
@@ -2666,44 +2673,6 @@ view: proposta {
     description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
     sql: ${TABLE}."FAIXA_COMPROMETIMENTO_RENDA" ;;
     }
-
-  #dimension: faixa_comp_de_renda {
-    #type: string
-    #group_label: "Dados do Aluno"
-    #label: "Faixa de Comprometimento de Renda"
-    #description: "Indica qual a faixa de porcentagem da renda comprometida (do aluno e garantidor) em relação ao valor do boleto que está sendo pago referente ao contrato."
-    #hidden: yes
-    #case: {
-      #when: {
-        #sql: ${comprometimento_renda} <= 0.1 ;;
-        #label: "< 10%"
-      #}
-      #when: {
-        #sql:  ${comprometimento_renda} <= 0.2 ;;
-        #label: "10% - 20%"
-      #}
-      #when: {
-        #sql:  ${comprometimento_renda}<= 0.3 ;;
-        #label: "20% - 30%"
-      #}
-      #when: {
-        #sql:  ${comprometimento_renda}<= 0.4 ;;
-        #label: "30% - 40%"
-      #}
-      #when: {
-        #sql:  ${comprometimento_renda}<= 0.5 ;;
-        #label: "40% - 50%"
-      #}
-      #when: {
-        #sql:  ${comprometimento_renda} is NULL ;;
-        #label: "Sem Comprometimento de Renda"
-      #}
-      #else: "50% >"
-    #}
-
-  #}
-
-
 
   dimension: vl_acordo {
     type: number

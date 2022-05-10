@@ -66,34 +66,34 @@ explore: beneficiados {
     type: left_outer
     relationship: one_to_many
     fields: [proposta.carteira_atual,
-             proposta.carteira_original,
-             proposta.regional_atual,
-             proposta.regional_original,
-             proposta.cp_atual,
-             proposta.cp_original,
-             proposta.gerente_atual,
-             proposta.gerente_original,
-             proposta.conversao_atual,
-             proposta.conversao_original,
-             proposta.representante_atual,
-             proposta.representante_original,
-             proposta.regional_atual,
-             proposta.regional_original,
-             proposta.tipo_atual,
-             proposta.tipo_original,
-             proposta.id_fundo_investimento,
-             proposta.ds_fundo_investimento,
-             proposta.nm_originador,
-             proposta.canal_detalhado_conversao,
-             proposta.canal_detalhado_descoberta,
-             proposta.canal_acesso_conversao,
-             proposta.canal_acesso_descoberta,
-             proposta.ds_url_conversao,
-             proposta.ds_url_descoberta,
-             proposta.cpf_aluno,
-            proposta.nm_produto_comercial
+      proposta.carteira_original,
+      proposta.regional_atual,
+      proposta.regional_original,
+      proposta.cp_atual,
+      proposta.cp_original,
+      proposta.gerente_atual,
+      proposta.gerente_original,
+      proposta.conversao_atual,
+      proposta.conversao_original,
+      proposta.representante_atual,
+      proposta.representante_original,
+      proposta.regional_atual,
+      proposta.regional_original,
+      proposta.tipo_atual,
+      proposta.tipo_original,
+      proposta.id_fundo_investimento,
+      proposta.ds_fundo_investimento,
+      proposta.nm_originador,
+      proposta.canal_detalhado_conversao,
+      proposta.canal_detalhado_descoberta,
+      proposta.canal_acesso_conversao,
+      proposta.canal_acesso_descoberta,
+      proposta.ds_url_conversao,
+      proposta.ds_url_descoberta,
+      proposta.cpf_aluno,
+      proposta.nm_produto_comercial
 
-             ]
+    ]
 
   }
 
@@ -166,7 +166,7 @@ explore: instituicao_metas_gc {
   join: meta_conversao_grupo_ies
   {
     sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
-             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
+      ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: full_outer
     relationship: many_to_one
   }
@@ -174,7 +174,7 @@ explore: instituicao_metas_gc {
   join: meta_conv_grupo_ies_new
   {
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
-             ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
+      ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
     type: left_outer
     relationship: many_to_one
   }
@@ -270,86 +270,86 @@ explore: jornada {
     - status.flg_proposta_atual,
     - status.tipo_proposta,
     - alunos.id_cpf,
-- alunos.id_proposta_atual,
-- alunos.aluno_nome,
-- alunos.aluno_idade,
-- alunos.aluno_genero,
-- alunos.email,
-- alunos.celular,
-- alunos.escolaridade,
-- alunos.numero_dependentes,
-- alunos.cep,
-- alunos.bairro,
-- alunos.cidade,
-- alunos.uf,
-- alunos.tipo_residencia,
-- alunos.estado_civil,
-- alunos.tempo_empresa,
-- alunos.natureza_ocupacao,
-- alunos.profissao,
-- alunos.nacionalidade,
-- alunos.renda_mensal,
-- alunos.renda_fam_mensal,
-- alunos.ds_trabalha,
-- alunos.ano_termino_ensino_medio,
-- alunos.flg_pai_falecido,
-- alunos.flg_mae_falecida,
-- alunos.id_fia_cpf_atual,
-- alunos.fia_nome,
-- alunos.fia_email,
-- alunos.fia_celular,
-- alunos.fia_escolaridade,
-- alunos.fia_numero_dependentes,
-- alunos.fia_cep,
-- alunos.fia_bairro,
-- alunos.fia_cidade,
-- alunos.fia_uf,
-- alunos.fia_tipo_residencia,
-- alunos.fia_estado_civil,
-- alunos.fia_tempo_empresa,
-- alunos.fia_natureza_ocupacao,
-- alunos.fia_profissao,
-- alunos.fia_nacionalidade,
-- alunos.fia_renda_mensal,
-- alunos.fia_parentesco,
-- alunos.fia_idade,
-- alunos.cpf_fiador,
-- alunos.qtd_cursos_procurados,
-- alunos.id_curso,
-- alunos.ds_curso,
-- alunos.flg_curso_ativo,
-- alunos.periodo_curso,
-- alunos.area_conhecimento_curso,
-- alunos.enfase_curso,
-- alunos.qtd_semestre_curso,
-- alunos.nivel_curso,
-- alunos.id_instituicao,
-- alunos.ds_instituicao,
-- alunos.grupo_instituicao,
-- alunos.cidade_instituicao,
-- alunos.uf_instituicao,
-- alunos.flg_instituicao_ativa,
-- alunos.qtd_campus_procurados,
-- alunos.id_campus,
-- alunos.ds_campus,
-- alunos.flg_campus_ativo,
-- alunos.cidade_campus,
-- alunos.uf_campus,
-- alunos.id_produto,
-- alunos.nm_produto,
-- alunos.flg_produto_ativo,
-- alunos.nm_modalidade_produto,
-- alunos.tipo_produto,
-- alunos.fia_endereco,
-- alunos.mapa_uf_fiador,
-- alunos.mapa_uf_aluno,
-- alunos.mapa_uf_campus,
-- alunos.mapa_uf_instituicao,
-- alunos.cpf_aluno,
-- alunos.endereco,
-- alunos.ds_fundo_investimento,
-- alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes
+    - alunos.id_proposta_atual,
+    - alunos.aluno_nome,
+    - alunos.aluno_idade,
+    - alunos.aluno_genero,
+    - alunos.email,
+    - alunos.celular,
+    - alunos.escolaridade,
+    - alunos.numero_dependentes,
+    - alunos.cep,
+    - alunos.bairro,
+    - alunos.cidade,
+    - alunos.uf,
+    - alunos.tipo_residencia,
+    - alunos.estado_civil,
+    - alunos.tempo_empresa,
+    - alunos.natureza_ocupacao,
+    - alunos.profissao,
+    - alunos.nacionalidade,
+    - alunos.renda_mensal,
+    - alunos.renda_fam_mensal,
+    - alunos.ds_trabalha,
+    - alunos.ano_termino_ensino_medio,
+    - alunos.flg_pai_falecido,
+    - alunos.flg_mae_falecida,
+    - alunos.id_fia_cpf_atual,
+    - alunos.fia_nome,
+    - alunos.fia_email,
+    - alunos.fia_celular,
+    - alunos.fia_escolaridade,
+    - alunos.fia_numero_dependentes,
+    - alunos.fia_cep,
+    - alunos.fia_bairro,
+    - alunos.fia_cidade,
+    - alunos.fia_uf,
+    - alunos.fia_tipo_residencia,
+    - alunos.fia_estado_civil,
+    - alunos.fia_tempo_empresa,
+    - alunos.fia_natureza_ocupacao,
+    - alunos.fia_profissao,
+    - alunos.fia_nacionalidade,
+    - alunos.fia_renda_mensal,
+    - alunos.fia_parentesco,
+    - alunos.fia_idade,
+    - alunos.cpf_fiador,
+    - alunos.qtd_cursos_procurados,
+    - alunos.id_curso,
+    - alunos.ds_curso,
+    - alunos.flg_curso_ativo,
+    - alunos.periodo_curso,
+    - alunos.area_conhecimento_curso,
+    - alunos.enfase_curso,
+    - alunos.qtd_semestre_curso,
+    - alunos.nivel_curso,
+    - alunos.id_instituicao,
+    - alunos.ds_instituicao,
+    - alunos.grupo_instituicao,
+    - alunos.cidade_instituicao,
+    - alunos.uf_instituicao,
+    - alunos.flg_instituicao_ativa,
+    - alunos.qtd_campus_procurados,
+    - alunos.id_campus,
+    - alunos.ds_campus,
+    - alunos.flg_campus_ativo,
+    - alunos.cidade_campus,
+    - alunos.uf_campus,
+    - alunos.id_produto,
+    - alunos.nm_produto,
+    - alunos.flg_produto_ativo,
+    - alunos.nm_modalidade_produto,
+    - alunos.tipo_produto,
+    - alunos.fia_endereco,
+    - alunos.mapa_uf_fiador,
+    - alunos.mapa_uf_aluno,
+    - alunos.mapa_uf_campus,
+    - alunos.mapa_uf_instituicao,
+    - alunos.cpf_aluno,
+    - alunos.endereco,
+    - alunos.ds_fundo_investimento,
+    - alunos.id_fundo_investimento,
+    - alunos.ativo_ano_mes
 
 
   ]
@@ -372,8 +372,8 @@ explore: jornada {
   join: alunos_interacoes_crm {
     view_label: "1.11 Interações CRM"
     sql_on: ${jornada.id_cpf} = ${alunos_interacoes_crm.id_cpf}
-    --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
-    --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -392,12 +392,12 @@ explore: jornada {
     type: left_outer
   }
 
-join: flag_unico_aluno {
-  view_label: "2. Proposta"
-  sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
-  relationship: one_to_one
-  type: left_outer
-}
+  join: flag_unico_aluno {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
 
   join: flag_unico_garantidor {
     view_label: "2. Proposta"
@@ -427,7 +427,7 @@ join: flag_unico_aluno {
     type: left_outer
   }
 
- # join: instituicao {
+  # join: instituicao {
 #    view_label: "3. Instituição "
   #  sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
   #  relationship: many_to_many
@@ -454,7 +454,7 @@ join: flag_unico_aluno {
   join: meta_sla_comercial
   {
     sql_on: ${jornada.etapa} = ${meta_sla_comercial.etapa_funil} and
-            ${proposta.gerente_atual}=${meta_sla_comercial.gerente};;
+      ${proposta.gerente_atual}=${meta_sla_comercial.gerente};;
     type: left_outer
     relationship: many_to_one
   }
@@ -541,9 +541,16 @@ join: flag_unico_aluno {
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
     sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
-            ${jornada.etapa} = ${aproveitamento_estoque_nok.etapa};;
+      ${jornada.etapa} = ${aproveitamento_estoque_nok.etapa};;
     type: left_outer
     relationship: many_to_one}
+
+  join: obj_persona_jornada {
+    view_label: "9. Persona - Germina"
+    sql_on:  ${jornada.id_cpf} = ${obj_persona_jornada.id_cpf};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: instituicao {
@@ -753,13 +760,13 @@ explore: financeiro {
   view_label: "1. Financeiro"
   description: "Apresenta os dados de todos os títulos gerados para os Alunos no PRAVALER"
   fields: [ ALL_FIELDS *,
-          - proposta.id_cpf,
-          - proposta.id_proposta,
-          - financeiro_extrato_titulo.id_contrato,
-          - financeiro_extrato_titulo.id_cpf,
-          - financeiro_extrato_titulo.id_titulo,
-          - proposta.max_boleto_atrasado
-          ]
+    - proposta.id_cpf,
+    - proposta.id_proposta,
+    - financeiro_extrato_titulo.id_contrato,
+    - financeiro_extrato_titulo.id_cpf,
+    - financeiro_extrato_titulo.id_titulo,
+    - proposta.max_boleto_atrasado
+  ]
 
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
@@ -841,7 +848,7 @@ explore: financeiro {
   }
 
 
-join: proposta_projeto_decola {
+  join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
           ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
@@ -870,105 +877,105 @@ explore: proposta {
   label: "Proposta"
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
-fields: [ALL_FIELDS *,
-        - status.flg_proposta_atual,
-        - status.id_cpf,
-        - status.id_elegivel,
-        - status.id_proposta,
-        - status.tipo_proposta,
-        - alunos.id_cpf,
-- alunos.id_proposta_atual,
-- alunos.aluno_nome,
-- alunos.aluno_idade,
-- alunos.aluno_genero,
-- alunos.email,
-- alunos.celular,
-- alunos.escolaridade,
-- alunos.numero_dependentes,
-- alunos.cep,
-- alunos.bairro,
-- alunos.cidade,
-- alunos.uf,
-- alunos.tipo_residencia,
-- alunos.estado_civil,
-- alunos.tempo_empresa,
-- alunos.natureza_ocupacao,
-- alunos.profissao,
-- alunos.nacionalidade,
-- alunos.renda_mensal,
-- alunos.renda_fam_mensal,
-- alunos.ds_trabalha,
-- alunos.ano_termino_ensino_medio,
-- alunos.flg_pai_falecido,
-- alunos.flg_mae_falecida,
-- alunos.ds_cal_vet,
-- alunos.id_fia_cpf_atual,
-- alunos.fia_nome,
-- alunos.fia_email,
-- alunos.fia_celular,
-- alunos.fia_escolaridade,
-- alunos.fia_numero_dependentes,
-- alunos.fia_cep,
-- alunos.fia_bairro,
-- alunos.fia_cidade,
-- alunos.fia_uf,
-- alunos.fia_tipo_residencia,
-- alunos.fia_estado_civil,
-- alunos.fia_tempo_empresa,
-- alunos.fia_natureza_ocupacao,
-- alunos.fia_profissao,
-- alunos.fia_nacionalidade,
-- alunos.fia_renda_mensal,
-- alunos.fia_parentesco,
-- alunos.fia_idade,
-- alunos.cpf_fiador,
-- alunos.qtd_cursos_procurados,
-- alunos.id_curso,
-- alunos.ds_curso,
-- alunos.flg_curso_ativo,
-- alunos.periodo_curso,
-- alunos.area_conhecimento_curso,
-- alunos.enfase_curso,
-- alunos.qtd_semestre_curso,
-- alunos.nivel_curso,
-- alunos.id_instituicao,
-- alunos.ds_instituicao,
-- alunos.grupo_instituicao,
-- alunos.cidade_instituicao,
-- alunos.uf_instituicao,
-- alunos.flg_instituicao_ativa,
-- alunos.qtd_campus_procurados,
-- alunos.id_campus,
-- alunos.ds_campus,
-- alunos.flg_campus_ativo,
-- alunos.cidade_campus,
-- alunos.uf_campus,
-- alunos.id_produto,
-- alunos.nm_produto,
-- alunos.flg_produto_ativo,
-- alunos.nm_modalidade_produto,
-- alunos.tipo_produto,
-- alunos.fia_endereco,
-- alunos.mapa_uf_fiador,
-- alunos.mapa_uf_aluno,
-- alunos.mapa_uf_campus,
-- alunos.mapa_uf_instituicao,
-- alunos.cpf_aluno,
-- alunos.endereco,
-- alunos.ds_fundo_investimento,
-- alunos.id_fundo_investimento,
-- alunos.ativo_ano_mes,
-- jornada.aluno_cpf,
-- jornada.email_aluno,
-- jornada.nome_aluno,
-- jornada.celular_aluno,
-- jornada.total_renov
+  fields: [ALL_FIELDS *,
+    - status.flg_proposta_atual,
+    - status.id_cpf,
+    - status.id_elegivel,
+    - status.id_proposta,
+    - status.tipo_proposta,
+    - alunos.id_cpf,
+    - alunos.id_proposta_atual,
+    - alunos.aluno_nome,
+    - alunos.aluno_idade,
+    - alunos.aluno_genero,
+    - alunos.email,
+    - alunos.celular,
+    - alunos.escolaridade,
+    - alunos.numero_dependentes,
+    - alunos.cep,
+    - alunos.bairro,
+    - alunos.cidade,
+    - alunos.uf,
+    - alunos.tipo_residencia,
+    - alunos.estado_civil,
+    - alunos.tempo_empresa,
+    - alunos.natureza_ocupacao,
+    - alunos.profissao,
+    - alunos.nacionalidade,
+    - alunos.renda_mensal,
+    - alunos.renda_fam_mensal,
+    - alunos.ds_trabalha,
+    - alunos.ano_termino_ensino_medio,
+    - alunos.flg_pai_falecido,
+    - alunos.flg_mae_falecida,
+    - alunos.ds_cal_vet,
+    - alunos.id_fia_cpf_atual,
+    - alunos.fia_nome,
+    - alunos.fia_email,
+    - alunos.fia_celular,
+    - alunos.fia_escolaridade,
+    - alunos.fia_numero_dependentes,
+    - alunos.fia_cep,
+    - alunos.fia_bairro,
+    - alunos.fia_cidade,
+    - alunos.fia_uf,
+    - alunos.fia_tipo_residencia,
+    - alunos.fia_estado_civil,
+    - alunos.fia_tempo_empresa,
+    - alunos.fia_natureza_ocupacao,
+    - alunos.fia_profissao,
+    - alunos.fia_nacionalidade,
+    - alunos.fia_renda_mensal,
+    - alunos.fia_parentesco,
+    - alunos.fia_idade,
+    - alunos.cpf_fiador,
+    - alunos.qtd_cursos_procurados,
+    - alunos.id_curso,
+    - alunos.ds_curso,
+    - alunos.flg_curso_ativo,
+    - alunos.periodo_curso,
+    - alunos.area_conhecimento_curso,
+    - alunos.enfase_curso,
+    - alunos.qtd_semestre_curso,
+    - alunos.nivel_curso,
+    - alunos.id_instituicao,
+    - alunos.ds_instituicao,
+    - alunos.grupo_instituicao,
+    - alunos.cidade_instituicao,
+    - alunos.uf_instituicao,
+    - alunos.flg_instituicao_ativa,
+    - alunos.qtd_campus_procurados,
+    - alunos.id_campus,
+    - alunos.ds_campus,
+    - alunos.flg_campus_ativo,
+    - alunos.cidade_campus,
+    - alunos.uf_campus,
+    - alunos.id_produto,
+    - alunos.nm_produto,
+    - alunos.flg_produto_ativo,
+    - alunos.nm_modalidade_produto,
+    - alunos.tipo_produto,
+    - alunos.fia_endereco,
+    - alunos.mapa_uf_fiador,
+    - alunos.mapa_uf_aluno,
+    - alunos.mapa_uf_campus,
+    - alunos.mapa_uf_instituicao,
+    - alunos.cpf_aluno,
+    - alunos.endereco,
+    - alunos.ds_fundo_investimento,
+    - alunos.id_fundo_investimento,
+    - alunos.ativo_ano_mes,
+    - jornada.aluno_cpf,
+    - jornada.email_aluno,
+    - jornada.nome_aluno,
+    - jornada.celular_aluno,
+    - jornada.total_renov
 
 
 
 
 
-        ]
+  ]
 
 
   join: proposta_produtos_aprovados {
@@ -985,12 +992,12 @@ fields: [ALL_FIELDS *,
     type: left_outer
   }
 
-join: proposta_docs_pendentes {
-  view_label: "1.2 Documentos Pendentes"
-  sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
-  relationship: one_to_many
-  type: left_outer
-}
+  join: proposta_docs_pendentes {
+    view_label: "1.2 Documentos Pendentes"
+    sql_on: ${proposta_docs_pendentes.id_proposta} = ${proposta.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: proposta_docs_entregues {
     view_label: "1.3 Documentos Entregues"
@@ -1015,8 +1022,8 @@ join: proposta_docs_pendentes {
   join: proposta_projeto_decola {
     view_label: "1.6 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
-    ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
-    ;;
+          ${proposta_projeto_decola.id_cpf} = ${proposta.id_cpf}
+          ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1024,8 +1031,8 @@ join: proposta_docs_pendentes {
   join: proposta_datas_interfile {
     view_label: "1.7 Dados Interfile"
     sql_on: ${proposta_datas_interfile.id_proposta} = ${proposta.id_proposta} and
-    ${proposta.release_contrato} = ${proposta_datas_interfile.release_contrato}
-          ;;
+          ${proposta.release_contrato} = ${proposta_datas_interfile.release_contrato}
+                ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1140,55 +1147,55 @@ explore: alunos {
   fields: [ALL_FIELDS *,
     - financeiro.id_cpf,
     - jornada.id_cpf,
-- proposta.aluno_celular,
-- proposta.aluno_cidade,
-- proposta.aluno_email,
-- proposta.aluno_escolaridade,
-- proposta.aluno_genero,
-- proposta.aluno_idade,
-- proposta.aluno_nome,
-- proposta.aluno_renda,
-- proposta.aluno_uf,
-- proposta.uf_instituicao,
-- proposta.id_campus,
-- proposta.ds_campus,
-- proposta.flg_campus_ativo,
-- proposta.cidade_campus,
-- proposta.uf_campus,
-- proposta.fia_email,
-- proposta.fia_celular,
-- proposta.fia_genero,
-- proposta.fia_escolaridade,
-- proposta.ds_fia_trabalha,
-- proposta.fia_idade,
-- proposta.fia_renda,
-- proposta.fia_cidade,
-- proposta.fia_uf,
-- proposta.cpf_aluno,
-- proposta.fia_uf,
-- proposta.regional_atual,
-- proposta.carteira_atual,
-- proposta.gerente_atual,
-- proposta.conversao_atual,
-- proposta.representante_atual,
-- proposta.cargo_atual,
-- proposta.tipo_atual,
-- proposta.cp_atual,
-- proposta.nivel_curso,
-- proposta.flg_produto_ativo,
-- proposta.tipo_produto,
-- proposta.sum_qtd_mensalidade_contrato
+    - proposta.aluno_celular,
+    - proposta.aluno_cidade,
+    - proposta.aluno_email,
+    - proposta.aluno_escolaridade,
+    - proposta.aluno_genero,
+    - proposta.aluno_idade,
+    - proposta.aluno_nome,
+    - proposta.aluno_renda,
+    - proposta.aluno_uf,
+    - proposta.uf_instituicao,
+    - proposta.id_campus,
+    - proposta.ds_campus,
+    - proposta.flg_campus_ativo,
+    - proposta.cidade_campus,
+    - proposta.uf_campus,
+    - proposta.fia_email,
+    - proposta.fia_celular,
+    - proposta.fia_genero,
+    - proposta.fia_escolaridade,
+    - proposta.ds_fia_trabalha,
+    - proposta.fia_idade,
+    - proposta.fia_renda,
+    - proposta.fia_cidade,
+    - proposta.fia_uf,
+    - proposta.cpf_aluno,
+    - proposta.fia_uf,
+    - proposta.regional_atual,
+    - proposta.carteira_atual,
+    - proposta.gerente_atual,
+    - proposta.conversao_atual,
+    - proposta.representante_atual,
+    - proposta.cargo_atual,
+    - proposta.tipo_atual,
+    - proposta.cp_atual,
+    - proposta.nivel_curso,
+    - proposta.flg_produto_ativo,
+    - proposta.tipo_produto,
+    - proposta.sum_qtd_mensalidade_contrato
 
 
 
 
-    ]
+  ]
 
-join: alunos_produtos_aprovados {
-  view_label: "1.1 Produtos Aprovados"
-  sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-  type: left_outer
-  relationship: one_to_many
+  join: alunos_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
   }
 
 
@@ -1199,7 +1206,7 @@ join: alunos_produtos_aprovados {
     type: left_outer
     relationship: one_to_many
 
- }
+  }
 
   join: alunos_inadimplencia_1_homolog {
     view_label: "1.2 Inadimplência - Homologação - MOB"
@@ -1210,12 +1217,12 @@ join: alunos_produtos_aprovados {
   }
 
 
-join: alunos_inadimplencia_2 {
-  view_label: "1.2.1 Inadimplência (Outras Informações)"
-  sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
-  type: left_outer
-  relationship: one_to_many
-}
+  join: alunos_inadimplencia_2 {
+    view_label: "1.2.1 Inadimplência (Outras Informações)"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: alunos_inadimplencia_3_book {
     view_label: "1.2.2 Book Inadimplência"
@@ -1339,8 +1346,8 @@ join: alunos_inadimplencia_2 {
   join: alunos_acordo_renegociacao {
     view_label: "1.5.2 Acordo Renegociação Informações"
     sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
-    AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
-    ;;
+          AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
+          ;;
     type: left_outer
     relationship: one_to_many
   }
@@ -1462,8 +1469,8 @@ join: alunos_inadimplencia_2 {
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
     sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
-    and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
-    and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
+          and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
+          and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
     relationship: many_to_one
     type: left_outer
 
@@ -1486,12 +1493,12 @@ join: alunos_inadimplencia_2 {
 
 
 
-join: financeiro {
-  view_label: "3. Financeiro"
-  sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
-  type: left_outer
-  relationship: one_to_one
-}
+  join: financeiro {
+    view_label: "3. Financeiro"
+    sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
+    type: left_outer
+    relationship: one_to_one
+  }
 
   join: financeiro_extrato_titulo {
     view_label: "3.1. Extrato Titulo - Gestão"
@@ -1545,13 +1552,13 @@ explore: solucx {
   label: "SoluCX - NPS"
 
 
-join: depara_respondentes_ies {
-  view_label: "Solucx"
-  type: left_outer
-  sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
-  relationship: many_to_one
-}
+  join: depara_respondentes_ies {
+    view_label: "Solucx"
+    type: left_outer
+    sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
+    relationship: many_to_one
   }
+}
 
 
 explore: interacoes {
@@ -1605,9 +1612,9 @@ explore: interacoes {
     relationship: one_to_many
   }
 #  join: jornada {
- #   view_label: "Jornada"
+  #   view_label: "Jornada"
   #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
-   # type: left_outer
+  # type: left_outer
   #  relationship: one_to_many
   #}
 
@@ -1620,9 +1627,9 @@ explore: interacoes {
   }
 
 
-  }
+}
 
- explore: crx_agentes{
+explore: crx_agentes{
   label: "Interações - Métricas do agente"
   view_label: "Interações - Métricas do agente"
   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
@@ -1633,31 +1640,31 @@ explore: crx_agentes_detalhes_pausas{
   view_label: "Interações - Métricas de pausa"
   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
   fields: [ALL_FIELDS * ,
-          - crx_agentes.count,
-          - crx_agentes.nome_data ,
-          - crx_agentes.dias_logados ,
-          - crx_agentes.sum_dias_logados,
-          - crx_agentes.media_tempo_logado_dia ,
-          - crx_agentes.media_tempo_logado_sessao ,
-          - crx_agentes.media_tempo_pausado_dia ,
-          - crx_agentes.pausas ,
-          - crx_agentes.produtividade ,
-          - crx_agentes.qtd_atendimento_ativo ,
-          - crx_agentes.qtd_atendimento_receptivo ,
-          - crx_agentes.qtd_ligacoes_atendidas ,
-          - crx_agentes.qtd_ligacoes_nao_atendidas ,
-          - crx_agentes.qtd_pausas ,
-          - crx_agentes.qtd_recusa ,
-          - crx_agentes.sla_atendimento ,
-          - crx_agentes.tempo_maximo_ligacao ,
-          - crx_agentes.tempo_medio_falado ,
-          - crx_agentes.tempo_medio_pausado ,
-          - crx_agentes.tempo_minimo_ligacao ,
-          - crx_agentes.tempo_ociosidade ,
-          - crx_agentes.tempo_total_falado ,
-          - crx_agentes.tempo_total_logado ,
-          - crx_agentes.tempo_total_pausado ,
-          - crx_agentes.media_sla_atendimento
+    - crx_agentes.count,
+    - crx_agentes.nome_data ,
+    - crx_agentes.dias_logados ,
+    - crx_agentes.sum_dias_logados,
+    - crx_agentes.media_tempo_logado_dia ,
+    - crx_agentes.media_tempo_logado_sessao ,
+    - crx_agentes.media_tempo_pausado_dia ,
+    - crx_agentes.pausas ,
+    - crx_agentes.produtividade ,
+    - crx_agentes.qtd_atendimento_ativo ,
+    - crx_agentes.qtd_atendimento_receptivo ,
+    - crx_agentes.qtd_ligacoes_atendidas ,
+    - crx_agentes.qtd_ligacoes_nao_atendidas ,
+    - crx_agentes.qtd_pausas ,
+    - crx_agentes.qtd_recusa ,
+    - crx_agentes.sla_atendimento ,
+    - crx_agentes.tempo_maximo_ligacao ,
+    - crx_agentes.tempo_medio_falado ,
+    - crx_agentes.tempo_medio_pausado ,
+    - crx_agentes.tempo_minimo_ligacao ,
+    - crx_agentes.tempo_ociosidade ,
+    - crx_agentes.tempo_total_falado ,
+    - crx_agentes.tempo_total_logado ,
+    - crx_agentes.tempo_total_pausado ,
+    - crx_agentes.media_sla_atendimento
 
 
   ]
@@ -1737,12 +1744,12 @@ explore: atribuicao_nova {
     - jornada.total_renov,
     - alunos.ativo_ano_mes]
 
-join: proposta {
-  view_label: "Proposta"
-  sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
-  type: left_outer
-  relationship: one_to_many
-}
+  join: proposta {
+    view_label: "Proposta"
+    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: jornada {
     view_label: "Jornada"
@@ -1772,27 +1779,7 @@ explore: projecao_formalizados_grupo_ies {
   view_label: "Projeção Formalizados - Grupo IES"
 }
 
-explore: crm_customer {
-  label: "CRM - Customer io"
-  view_label: "1. CRM - Customer io"
 
-  join: dados_jornada_crm {
-    from: dados_jornada_crm
-    view_label: "2. Dados da Jornada"
-    sql_on: ${crm_customer.id_cpf}= ${dados_jornada_crm.id_cpf} ;;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-  join: crm_dados_zendesk {
-    from: crm_dados_zendesk
-    view_label: "3. Dados da Zendesk"
-    sql_on: ${crm_customer.email}= ${crm_dados_zendesk.email} ;;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-}
 
 explore: mgm_lista_resgate {
   label: "MGM - Lista Resgate"
@@ -1879,7 +1866,7 @@ explore: mgm_usuario {
     relationship: one_to_many
     type: left_outer
   }
-  }
+}
 
 explore: instituicao_contrato_produto_info{
   label: "Instituicao contrato produto"
@@ -1891,43 +1878,19 @@ explore: instituicao_taxas_antecipacao{
   hidden: yes
 }
 
-  explore: tetris_withoutproducts {
-    label: "Tetris (Without Product)"
+explore: tetris_withoutproducts {
+  label: "Tetris (Without Product)"
 
 }
 
 explore: prv_log {
   label: "PRV LOG"
-  }
+}
 
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
-explore: tela_atendimento{
-  label: "Tela de Atendimento"
-  fields: [ALL_FIELDS *,
-    - alunos.id_cpf,
-    - alunos.ativo_ano_mes,
-  ]
-  view_label: "1. Tela de Atendimento"
-  description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
-
-  join: tela_atendimento_jornada {
-    view_label: "2. Jornada"
-    sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: alunos {
-    view_label: "3. Dados Aluno"
-    sql_on: ${tela_atendimento.id_cpf}=${alunos.id_cpf};;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-}
 
 explore: gupy_candidaturas {
   label: "Dados GUPY"
