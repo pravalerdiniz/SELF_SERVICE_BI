@@ -92,5 +92,8 @@ explore: crm_customer {
     relationship: many_to_many
     type: left_outer
   }
+  }
 
-}
+explore: semestre_financiado {
+    label: "Semestre Financiado Validação"
+  }
