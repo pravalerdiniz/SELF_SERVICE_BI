@@ -105,7 +105,7 @@ view: comparacao_ot {
     sql: ${TABLE}."NOME_FUNDO" ;;
   }
 
-  ## Números
+  ## NÚMEROS BOLETOS ##
 
   dimension: qtd_boletos_dif {
     type: number
@@ -121,6 +121,15 @@ view: comparacao_ot {
     sql: ${qtd_boletos_dif} ;;
     group_label: "Valores de Boleto"
     label: "Soma de Boletos diferentes"
+    description: "Soma da quantidade de Boletos diferentes"
+    value_format: "#"
+  }
+
+  measure: avg_qtd_boletos_dif {
+    type: average
+    sql: ${qtd_boletos_dif} ;;
+    group_label: "Valores de Boleto"
+    label: "Média de Boletos diferentes"
     description: "Soma da quantidade de Boletos diferentes"
     value_format: "#"
   }
@@ -143,6 +152,15 @@ view: comparacao_ot {
     value_format: "#"
   }
 
+  measure: avg_qtd_boletos_ot {
+    type: average
+    sql: ${qtd_boletos_ot} ;;
+    group_label: "Valores de Boleto"
+    label: "Média de Boletos OT"
+    description: "Soma da quantidade de Boletos OT"
+    value_format: "#"
+  }
+
   dimension: qtd_boletos_pdd {
     type: number
     group_label: "Dados de Boleto"
@@ -161,6 +179,15 @@ view: comparacao_ot {
     value_format: "#"
   }
 
+  measure: avg_qtd_boletos_pdd {
+    type: average
+    sql: ${qtd_boletos_pdd} ;;
+    group_label: "Valores de Boleto"
+    label: "Média de Boletos PDD"
+    description: "Soma da quantidade de Boletos PDD"
+    value_format: "#"
+  }
+
   dimension: qtd_dias_dif_vencimento {
     type: number
     group_label: ""
@@ -168,6 +195,15 @@ view: comparacao_ot {
     description: ""
     sql: ${TABLE}."QTD_DIAS_DIF_VENCIMENTO" ;;
     value_format: "#"
+  }
+
+  measure: sum_dias_dif_vencimento {
+    type: sum
+    sql: ${qtd_dias_dif_vencimento} ;;
+    group_label: ""
+    label: ""
+    description: ""
+    value_format: ""
   }
 
   measure: avg_dias_dif_vencimento {
@@ -179,13 +215,13 @@ view: comparacao_ot {
     value_format: ""
   }
 
-  ## Valores
+  ## Valores ##
 
   ## face_dif
   dimension: vl_face_dif {
     type: number
     group_label: "Valores"
-    label: ""
+    label: "vl_face_dif"
     description: ""
     sql: ${TABLE}."VL_FACE_DIF" ;;
   }
@@ -193,7 +229,7 @@ view: comparacao_ot {
   measure: sum_vl_face_dif {
     type: sum
     group_label: "Valores"
-    label: ""
+    label: "sum vl_face_dif"
     description: ""
     sql: ${vl_face_dif} ;;
   }
@@ -201,7 +237,7 @@ view: comparacao_ot {
   measure: avg_vl_face_dif {
     type: average
     group_label: "Valores"
-    label: ""
+    label: "avg_vl_face_dif"
     description: ""
     sql: ${vl_face_dif} ;;
   }
