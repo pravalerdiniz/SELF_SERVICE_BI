@@ -80,6 +80,10 @@ explore: orcameto_cc {
   label: "Orçamento CAC"
 }
 
+explore: comparacao_ot {
+  label: "Base Comparação PDD_OT"
+}
+
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"
