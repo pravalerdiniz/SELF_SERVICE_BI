@@ -306,3 +306,5 @@ explore: kpi_controladoria {
 explore: titulos_cnpj {
   label: "Titulos CNPJ"
 }
+
+explore: ipca_bv {}
