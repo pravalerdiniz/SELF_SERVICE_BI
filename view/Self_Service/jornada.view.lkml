@@ -316,6 +316,16 @@ view: jornada {
     description: "Use esse campo, em conjunto com o campo de Data de Início da Proposta, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
   }
 
+  dimension: ytd_only_apr_behavior {
+    group_label: "Filtros para Análise de Períodos"
+    label: "Year to Date - Data de Aprovado Behavior"
+    type: yesno
+    sql:  (EXTRACT(DOY FROM ${dt_aprovado_behavior_raw}) < EXTRACT(DOY FROM GETDATE())
+                OR
+            (EXTRACT(DOY FROM ${dt_aprovado_behavior_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
+    description: "Use esse campo, em conjunto com o campo de Data de Aprovado Behavior, para realizar análises entre anos diferentes usando como base o dia do ano da data corrente."
+  }
+
   #dimension_group: data_status { -- dimensão duplicada
   #  type: time
   #  timeframes: [
@@ -1744,7 +1754,8 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      month_name
     ]
     sql: ${TABLE}."DT_APROVADO_BEHAVIOR" ;;
     label: "Data Aprovado Behavior"

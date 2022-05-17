@@ -80,6 +80,10 @@ explore: orcameto_cc {
   label: "Orçamento CAC"
 }
 
+explore: comparacao_ot {
+  label: "Base Comparação PDD_OT"
+}
+
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"
@@ -302,3 +306,5 @@ explore: kpi_controladoria {
 explore: titulos_cnpj {
   label: "Titulos CNPJ"
 }
+
+explore: ipca_bv {}

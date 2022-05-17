@@ -427,13 +427,6 @@ explore: jornada {
     type: left_outer
   }
 
-  # join: instituicao {
-#    view_label: "3. Instituição "
-  #  sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
-  #  relationship: many_to_many
-  #  type: left_outer
-
-  #}
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
@@ -858,7 +851,7 @@ explore: financeiro {
   }
 
 join: sql_runner_query_range_boleto {
-  view_label: "1.Financeiro"
+  view_label: "1. Financeiro"
   sql_on: ${financeiro.id_cpf} = ${sql_runner_query_range_boleto.financeiro_id_cpf} and
   ${financeiro.id_contrato} = ${sql_runner_query_range_boleto.financeiro_id_contrato}
   ;;
