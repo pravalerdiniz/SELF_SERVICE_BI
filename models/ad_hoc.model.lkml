@@ -82,6 +82,29 @@ explore: orcameto_cc {
 
 explore: comparacao_ot {
   label: "Base Comparação PDD_OT"
+  view_label:"1. Comparação PDD_OT"
+  fields: [ ALL_FIELDS *,
+    -financeiro.aluno_email,
+    -financeiro.cpf_aluno,
+    -financeiro.grupo_instituicao,
+    -financeiro.aluno_celular,
+    -financeiro.ds_campus,
+    -financeiro.nm_modalidade_produto,
+    -financeiro.nm_produto,
+    -financeiro.ds_instituicao,
+    -financeiro.ds_curso,
+    -financeiro.aluno_nome
+  ]
+
+  join: financeiro {
+    from: financeiro
+    view_label: "2. Financeiro"
+    sql_on: ${comparacao_ot.id_cpf} = ${financeiro.id_cpf}
+    and ${comparacao_ot.nome_fundo} = ${financeiro.ds_fundo_investimento};;
+    relationship: one_to_many
+    type: left_outer
+
+  }
 }
 
 explore: fato_swap {

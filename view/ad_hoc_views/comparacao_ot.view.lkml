@@ -32,7 +32,7 @@ view: comparacao_ot {
     convert_tz: no
     datatype: date
     label: "Menor Vencimento OT"
-    description: ""
+    description: "Data de Menor Vencimento da OT"
     sql: ${TABLE}."DATA_MENOR_VENCIMENTO_OT" ;;
   }
 
@@ -49,7 +49,7 @@ view: comparacao_ot {
     convert_tz: no
     datatype: date
     label: "Menor Vencimento PDD"
-    description: ""
+    description: "Data de Menor Vencimento da PDD"
     sql: ${TABLE}."DATA_MENOR_VENCIMENTO_PDD" ;;
   }
 
@@ -66,7 +66,7 @@ view: comparacao_ot {
     convert_tz: no
     datatype: date
     label: "Modificação"
-    description: ""
+    description: "Data que a OT modificou o arquivo"
     sql: ${TABLE}."DATA_MODIFICACAO" ;;
   }
 
@@ -82,8 +82,8 @@ view: comparacao_ot {
     ]
     convert_tz: no
     datatype: date
-    label: "Título Calcular"
-    description: ""
+    label: "Cálculo do Título"
+    description: "Data que a base foi calculada pela OT"
     sql: ${TABLE}."DATA_TITULO_CALCULAR" ;;
   }
 
@@ -91,17 +91,17 @@ view: comparacao_ot {
 
   dimension: nome_arquivo_origem {
     type: string
-    group_label: "Dados de Boleto"
+    group_label: "Dados do Título"
     label: "Nome do Arquivo de Origem"
-    description: ""
+    description: "Arquivo de origem da OT no qual a linha se refere"
     sql: ${TABLE}."NOME_ARQUIVO_ORIGEM" ;;
   }
 
   dimension: nome_fundo {
     type: string
-    group_label: "Dados do Fundo de Investimento"
+    group_label: "Dados do Título"
     label: "Nome do Fundo de Investimento"
-    description: ""
+    description: "Nome do fundo de investimento que o financiamento está alocado"
     sql: ${TABLE}."NOME_FUNDO" ;;
   }
 
@@ -109,8 +109,8 @@ view: comparacao_ot {
 
   dimension: qtd_boletos_dif {
     type: number
-    group_label: "Dados de Boleto"
-    label: "Quantidade de Boletos Diferentes"
+    group_label: "Dados de Comparação"
+    label: "Diferença entre as Quantidade de Boletos"
     description: "Indica o número de boletos diferentes ressultantes da comparação entre a PDD e a OT"
     sql: ${TABLE}."QTD_BOLETOS_DIF" ;;
     value_format: "#"
@@ -119,24 +119,15 @@ view: comparacao_ot {
   measure: sum_qtd_boletos_dif {
     type: sum
     sql: ${qtd_boletos_dif} ;;
-    group_label: "Valores de Boleto"
+    group_label: "Dados de Comparação"
     label: "Soma de Boletos diferentes"
-    description: "Soma da quantidade de Boletos diferentes"
-    value_format: "#"
-  }
-
-  measure: avg_qtd_boletos_dif {
-    type: average
-    sql: ${qtd_boletos_dif} ;;
-    group_label: "Valores de Boleto"
-    label: "Média de Boletos diferentes"
     description: "Soma da quantidade de Boletos diferentes"
     value_format: "#"
   }
 
   dimension: qtd_boletos_ot {
     type: number
-    group_label: "Dados de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Quantidade de Boletos OT"
     description: "Indica a Quantidade de Boletos da Base OT"
     sql: ${TABLE}."QTD_BOLETOS_OT" ;;
@@ -146,7 +137,7 @@ view: comparacao_ot {
   measure: sum_qtd_boletos_ot {
     type: sum
     sql: ${qtd_boletos_ot} ;;
-    group_label: "Valores de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Soma de Boletos OT"
     description: "Soma da quantidade de Boletos OT"
     value_format: "#"
@@ -155,7 +146,7 @@ view: comparacao_ot {
   measure: avg_qtd_boletos_ot {
     type: average
     sql: ${qtd_boletos_ot} ;;
-    group_label: "Valores de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Média de Boletos OT"
     description: "Soma da quantidade de Boletos OT"
     value_format: "#"
@@ -163,7 +154,7 @@ view: comparacao_ot {
 
   dimension: qtd_boletos_pdd {
     type: number
-    group_label: "Dados de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Quantidade de Boletos PDD"
     description: "Indica a Quantidade de Boletos da tabela PDD"
     sql: ${TABLE}."QTD_BOLETOS_PDD" ;;
@@ -173,7 +164,7 @@ view: comparacao_ot {
   measure: sum_qtd_boletos_pdd {
     type: sum
     sql: ${qtd_boletos_pdd} ;;
-    group_label: "Valores de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Soma de Boletos PDD"
     description: "Soma da quantidade de Boletos PDD"
     value_format: "#"
@@ -182,7 +173,7 @@ view: comparacao_ot {
   measure: avg_qtd_boletos_pdd {
     type: average
     sql: ${qtd_boletos_pdd} ;;
-    group_label: "Valores de Boleto"
+    group_label: "Quantidade de Boleto"
     label: "Média de Boletos PDD"
     description: "Soma da quantidade de Boletos PDD"
     value_format: "#"
@@ -190,9 +181,9 @@ view: comparacao_ot {
 
   dimension: qtd_dias_dif_vencimento {
     type: number
-    group_label: ""
-    label: "qtd_dias_dif_vencimento"
-    description: ""
+    group_label: "Dados de Comparação"
+    label: "Diferença entre vencimentos"
+    description: "Esse campo é o resultado da comparação entre o menor vencimento da OT e o menor vencimento da PDD"
     sql: ${TABLE}."QTD_DIAS_DIF_VENCIMENTO" ;;
     value_format: "#"
   }
@@ -200,19 +191,10 @@ view: comparacao_ot {
   measure: sum_dias_dif_vencimento {
     type: sum
     sql: ${qtd_dias_dif_vencimento} ;;
-    group_label: ""
-    label: ""
-    description: ""
-    value_format: ""
-  }
-
-  measure: avg_dias_dif_vencimento {
-    type: average
-    sql: ${qtd_dias_dif_vencimento} ;;
-    group_label: ""
-    label: ""
-    description: ""
-    value_format: ""
+    group_label: "Dados de Comparação"
+    label: "Soma Dias de Diferença entre vencimentos"
+    description: "Soma da comparação entre os menor vencimentos da OT e da PDD"
+    value_format: "#"
   }
 
   ## Valores ##
@@ -220,25 +202,17 @@ view: comparacao_ot {
   ## face_dif
   dimension: vl_face_dif {
     type: number
-    group_label: "Valores"
-    label: "vl_face_dif"
-    description: ""
+    group_label: "Dados de Comparação"
+    label: "Diferença entre Valores de Face"
+    description: "Valor resultado da comparação do valor de face da OT e valor de face da PDD"
     sql: ${TABLE}."VL_FACE_DIF" ;;
   }
 
   measure: sum_vl_face_dif {
     type: sum
-    group_label: "Valores"
-    label: "sum vl_face_dif"
-    description: ""
-    sql: ${vl_face_dif} ;;
-  }
-
-  measure: avg_vl_face_dif {
-    type: average
-    group_label: "Valores"
-    label: "avg_vl_face_dif"
-    description: ""
+    group_label: "Dados de Comparação"
+    label: "Soma Diferença Valor de Face"
+    description: "A soma da diferença dos valores de comparação de face"
     sql: ${vl_face_dif} ;;
   }
 
@@ -246,7 +220,7 @@ view: comparacao_ot {
   dimension: vl_face_total_ot {
     type: number
     group_label: "Valores"
-    label: ""
+    label: "Valor de Face OT"
     description: ""
     sql: ${TABLE}."VL_FACE_TOTAL_OT" ;;
   }
@@ -254,7 +228,7 @@ view: comparacao_ot {
   measure: sum_vl_face_total_ot {
     type: sum
     group_label: "Valores"
-    label: ""
+    label: "Soma Valor de Face OT"
     description: ""
     sql: ${vl_face_total_ot} ;;
   }
@@ -262,7 +236,7 @@ view: comparacao_ot {
   measure: avg_vl_face_total_ot {
     type: average
     group_label: "Valores"
-    label: ""
+    label: "Média Valor de Face OT"
     description: ""
     sql: ${vl_face_total_ot}  ;;
   }
@@ -271,7 +245,7 @@ view: comparacao_ot {
   dimension: vl_face_total_pdd {
     type: number
     group_label: "Valores"
-    label: ""
+    label: "Valor de Face PDD"
     description: ""
     sql: ${TABLE}."VL_FACE_TOTAL_PDD" ;;
   }
@@ -279,7 +253,7 @@ view: comparacao_ot {
   measure: sum_vl_face_total_pdd {
     type: sum
     group_label: "Valores"
-    label: ""
+    label: "Soma Valor de Face PDD"
     description: ""
     sql: ${vl_face_total_pdd};;
   }
@@ -287,7 +261,7 @@ view: comparacao_ot {
   measure: avg_vl_face_total_pdd {
     type: average
     group_label: "Valores"
-    label: ""
+    label: "Média Valor de Face PDD"
     description: ""
     sql: ${vl_face_total_pdd} ;;
   }
@@ -295,33 +269,25 @@ view: comparacao_ot {
   ## vl_presente_dif
   dimension: vl_presente_dif {
     type: number
-    group_label: "Valores"
-    label: ""
-    description: ""
+    group_label: "Dados de Comparação"
+    label: "Diferença entre Valor Presente"
+    description: "Valor resultado da comparação do valor presente da OT e valor presente da PDD"
     sql: ${TABLE}."VL_PRESENTE_DIF" ;;
   }
 
   measure: sum_vl_presente_dif{
     type: sum
-    group_label: "Valores"
-    label: ""
+    group_label: "Dados de Comparação"
+    label: "Soma Diferença Valor Presente"
     description: ""
     sql: ${vl_presente_dif};;
-  }
-
-  measure: avg_vl_presente_dif{
-    type: average
-    group_label: "Valores"
-    label: ""
-    description: ""
-    sql: ${vl_presente_dif} ;;
   }
 
   ## vl_presente_total_ot
   dimension: vl_presente_total_ot {
     type: number
     group_label: "Valores"
-    label: ""
+    label: "Valor Presente OT"
     description: ""
     sql: ${TABLE}."VL_PRESENTE_TOTAL_OT" ;;
   }
@@ -329,7 +295,7 @@ view: comparacao_ot {
   measure: sum_vl_presente_total_ot{
     type: sum
     group_label: "Valores"
-    label: ""
+    label: "Soma Valor Presente OT"
     description: ""
     sql: ${vl_presente_total_ot};;
   }
@@ -337,7 +303,7 @@ view: comparacao_ot {
   measure: avg_vl_presente_total_ot{
     type: average
     group_label: "Valores"
-    label: ""
+    label: "Média Valor Presente OT"
     description: ""
     sql: ${vl_presente_total_ot} ;;
   }
@@ -346,7 +312,7 @@ view: comparacao_ot {
   dimension: vl_presente_total_pdd {
     type: number
     group_label: "Valores"
-    label: ""
+    label: "Valor Presente PDD"
     description: ""
     sql: ${TABLE}."VL_PRESENTE_TOTAL_PDD" ;;
   }
@@ -354,7 +320,7 @@ view: comparacao_ot {
   measure: sum_vl_presente_total_pdd{
     type: sum
     group_label: "Valores"
-    label: ""
+    label: "Soma Valor Presente PDD"
     description: ""
     sql: ${vl_presente_total_pdd};;
   }
@@ -362,7 +328,7 @@ view: comparacao_ot {
   measure: avg_vl_presente_total_pdd{
     type: average
     group_label: "Valores"
-    label: ""
+    label: "Média Valor Presente PDD"
     description: ""
     sql: ${vl_presente_total_pdd} ;;
   }
