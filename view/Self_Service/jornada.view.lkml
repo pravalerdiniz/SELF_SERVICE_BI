@@ -109,7 +109,6 @@ view: jornada {
     group_label: "Dados do Aluno"
     group_item_label: "ID CPF do Aluno"
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
-
   }
 
 

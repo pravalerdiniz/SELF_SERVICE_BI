@@ -1,6 +1,7 @@
 connection: "graduado"
 
 include: "/**/*.dashboard.lookml"
+include: "/**/*.view.lkml"
 
 access_grant: grupo_nome {
   user_attribute: grupo_nome
@@ -40,7 +41,7 @@ map_layer: MAPA_ESTADO_ALUNO {
 map_layer: MAPA_CIDADE_ALUNO {
   file: "/MAPAS/municipio.json"
 }
-include: "/**/*.view.lkml"
+
 
 datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -50,6 +51,7 @@ datagroup: self_service_bi_default_datagroup {
 persist_with: self_service_bi_default_datagroup
 
 explore: beneficiados {
+  from: beneficiados
   persist_for: "24 hours"
   label: "Histórico de Beneficiados"
   view_label: "Histórico de Beneficiados"
@@ -240,7 +242,12 @@ explore: status {
     type: left_outer
   }
 
-
+  join: ano_mes_carteira_ativa {
+    view_label: "5. Dados Aluno Ativo"
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${status.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 
 
 }
@@ -543,6 +550,13 @@ explore: jornada {
     sql_on:  ${jornada.id_cpf} = ${obj_persona_jornada.id_cpf};;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: ano_mes_carteira_ativa {
+    view_label: "10. Dados Aluno Ativo"
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${jornada.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
   }
 }
 
@@ -1125,6 +1139,19 @@ explore: proposta {
     sql_on: ${proposta.id_contrato} = ${flag_renda_presumida_garant.id_proposta} ;;
     type: left_outer
     relationship: one_to_one
+  }
+
+  join: ano_mes_carteira_ativa {
+    view_label: "2. Alunos"
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${proposta.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dim_cpf {
+    sql_on: ${dim_cpf.id_cpf} = ${proposta.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
   }
 
 }
@@ -1758,6 +1785,17 @@ explore: atribuicao_nova {
     relationship: many_to_one
     type: left_outer
   }
+
+  join: dim_cpf {
+  sql_on: ${dim_cpf.id_cpf} = ${atribuicao_nova.id_cpf};;
+  relationship: many_to_one
+  type: left_outer
+}
+  join: ano_mes_carteira_ativa {
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${atribuicao_nova.id_cpf};;
+    relationship: many_to_one
+    type: left_outer
+}
 }
 
 explore: alunos_ativos_carteira {}
@@ -1816,6 +1854,12 @@ explore: mgm_publico_alvo {
     type: left_outer
   }
 
+  join: ano_mes_carteira_ativa {
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${dim_cpf.id_cpf};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 }
 
 explore: mgm_publico_alvo_jornada {
@@ -1835,6 +1879,12 @@ explore: mgm_publico_alvo_jornada {
   join: alunos {
     view_label: "1.Alunos"
     sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: ano_mes_carteira_ativa {
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${dim_cpf.id_cpf};;
     relationship: many_to_one
     type: left_outer
   }

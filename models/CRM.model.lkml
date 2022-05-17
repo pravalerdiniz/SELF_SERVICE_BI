@@ -58,6 +58,7 @@ explore: tela_atendimento{
   }
 
   join: alunos {
+    from: alunos
     view_label: "3. Dados Aluno"
     sql_on: ${tela_atendimento.id_cpf}=${alunos.id_cpf};;
     relationship: many_to_one
@@ -69,6 +70,13 @@ explore: tela_atendimento{
     sql_on:  ${tela_atendimento.id_cpf}=${obj_persona_tela.id_cpf};;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: ano_mes_carteira_ativa {
+    view_label: "5. Dados Aluno Ativo"
+    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${tela_atendimento.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
   }
 
 }
