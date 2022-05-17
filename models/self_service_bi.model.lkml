@@ -437,7 +437,9 @@ explore: jornada {
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
-    sql_on: ${jornada.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao} ;;
+    sql_on: ${jornada.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
+            AND  ${instituicao.id_campus} = ${proposta.id_campus}
+            AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
     relationship: many_to_many
     type: left_outer
   }
@@ -499,7 +501,9 @@ explore: jornada {
   join: instituicao {
     from: instituicao
     view_label: "3. Instituição"
-    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao} ;;
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
+            AND  ${instituicao.id_campus} = ${proposta.id_campus}
+            AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
     relationship: many_to_many
     type: left_outer
   }
