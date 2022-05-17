@@ -697,4 +697,9 @@ explore: status_curta {
     type: left_outer
     relationship: one_to_many
     fields: []
-  }}
+  }
+  }
+
+  explore: dim_date {
+    view_label: "Calendário"
+  }
