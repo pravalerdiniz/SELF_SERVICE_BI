@@ -117,7 +117,7 @@ view: crm_customer {
     type: number
     group_label: "Dados da Campanha"
     label: "ID da Campanha"
-    description: "Indica o ID do Grupo da CAmpanha disparada"
+    description: "Indica o ID do Grupo da Campanha disparada"
     sql: ${TABLE}."CAMPAIGN_ID" ;;
   }
   dimension: name_campaign {
