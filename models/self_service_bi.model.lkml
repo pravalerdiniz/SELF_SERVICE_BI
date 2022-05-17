@@ -427,13 +427,6 @@ explore: jornada {
     type: left_outer
   }
 
-  # join: instituicao {
-#    view_label: "3. Instituição "
-  #  sql_on: ${proposta.id_instituicao} = ${instituicao.id_instituicao} and ${proposta.id_proposta} = ${jornada.id_proposta};;
-  #  relationship: many_to_many
-  #  type: left_outer
-
-  #}
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
