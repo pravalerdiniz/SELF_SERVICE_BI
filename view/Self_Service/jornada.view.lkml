@@ -1754,7 +1754,8 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      month_name
     ]
     sql: ${TABLE}."DT_APROVADO_BEHAVIOR" ;;
     label: "Data Aprovado Behavior"
