@@ -90,9 +90,8 @@ view: crm_customer {
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno BO"
-    label: "CPF do Aluno"
-    description: "Indica o CPF do Aluno vindo do BO"
-    hidden: yes
+    label: "ID CPF do Aluno"
+    description: "Indica o ID CPF do Aluno vindo do BO"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
@@ -109,7 +108,7 @@ view: crm_customer {
     group_label: "Dados do Aluno"
     label: "CPF do Aluno CIO"
     description: "Indica o CPF do Aluno vindo da CIO"
-    hidden: yes
+    hidden: no
     sql: ${TABLE}."CPF_CIO" ;;
   }
 
