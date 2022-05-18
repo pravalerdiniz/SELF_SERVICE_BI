@@ -288,50 +288,50 @@ view: crm_customer {
     sql: ${TABLE}."BODY_NEWSLETTER" ;;
   }
 
-  dimension: mudou_etapa {
-    type: string
-    case: {
-      when: {
-        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
-             AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
-        label: "1"
-      }
-      else: "0"
-    }
-    group_label: "Dados do Evento"
-    label: "Mudou Etapa"
-    description: "Indicador de mudança de status"
-  }
+#  dimension: mudou_etapa {
+#    type: string
+#    case: {
+#      when: {
+#       sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
+#             AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
+#        label: "1"
+#      }
+#      else: "0"
+#    }
+#    group_label: "Dados do Evento"
+#    label: "Mudou Etapa"
+#    description: "Indicador de mudança de status"
+#  }
 
-  dimension: mudou_etapa_2 {
-    type: string
-    case: {
-      when: {
-        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
-          AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 2, ${data_evento_date}) ;;
-        label: "1"
-      }
-      else: "0"
-    }
-    group_label: "Dados do Evento"
-    label: "Mudou de Etapa - 2 dias"
-    description: "Indicador de mudança de status - 2 dias"
-  }
+#  dimension: mudou_etapa_2 {
+#    type: string
+#    case: {
+#      when: {
+#        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
+#          AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 2, ${data_evento_date}) ;;
+#        label: "1"
+#      }
+#      else: "0"
+#    }
+#    group_label: "Dados do Evento"
+#    label: "Mudou de Etapa - 2 dias"
+#    description: "Indicador de mudança de status - 2 dias"
+#  }
 
-  dimension: mudou_etapa_1 {
-    type: string
-    case: {
-      when: {
-        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
-          AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 1, ${data_evento_date}) ;;
-        label: "1"
-      }
-      else: "0"
-    }
-    group_label: "Dados do Evento"
-    label: "Mudou de Etapa - 1 dia"
-    description: "Indicador de mudança de status - 1 dia"
-  }
+#  dimension: mudou_etapa_1 {
+#   type: string
+#    case: {
+#      when: {
+#        sql: ${dados_jornada_crm.DT_STATUS_date} > ${data_evento_date}
+#          AND ${dados_jornada_crm.DT_STATUS_date} <= DATEADD(day, 1, ${data_evento_date}) ;;
+#        label: "1"
+#      }
+#      else: "0"
+#    }
+#    group_label: "Dados do Evento"
+#    label: "Mudou de Etapa - 1 dia"
+#    description: "Indicador de mudança de status - 1 dia"
+#  }
 
   dimension: zendesk {
     type: string
