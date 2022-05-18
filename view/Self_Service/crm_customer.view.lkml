@@ -22,12 +22,12 @@ view: crm_customer {
     description: "Contagem de eventos únicos"
   }
 
-  measure: count_cpf_cio {
+  measure: count_cpf {
     type: count_distinct
-    sql: ${cpf_cio} ;;
+    sql: ${cpf} ;;
     group_label: "Quantidade de Alunos"
     group_item_label: "Quantidade de Alunos"
-    description: "Contagem de alunos unicos pelo cpf que vem da CIO"
+    description: "Contagem de alunos unicos pelo campo cpf"
   }
 
   dimension: id_envio {
