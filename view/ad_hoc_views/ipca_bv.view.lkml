@@ -168,6 +168,11 @@ view: ipca_bv {
     sql: ${TABLE}."VL_BOLETO_CENARIO_D_5_PRC" ;;
   }
 
+  dimension: perc_provisao {
+    type: number
+    sql: ${TABLE}."PERC_PROVISAO" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
