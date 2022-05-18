@@ -173,6 +173,11 @@ view: ipca_bv {
     sql: ${TABLE}."PERC_PROVISAO" ;;
   }
 
+  dimension: faixa_provisao {
+    type: number
+    sql: ${TABLE}."FAIXA_PROVISAO" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
