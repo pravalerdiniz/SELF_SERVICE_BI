@@ -173,6 +173,11 @@ view: ipca_bv {
     sql: ${TABLE}."PERC_PROVISAO" ;;
   }
 
+  measure: perc_provisao_medida {
+    type: average
+    sql: ${perc_provisao} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
