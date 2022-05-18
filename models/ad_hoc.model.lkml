@@ -94,10 +94,20 @@ explore: comparacao_ot {
     from: financeiro
     view_label: "2. Financeiro"
     sql_on: ${comparacao_ot.id_cpf} = ${financeiro.id_cpf}
-    and ${comparacao_ot.nome_fundo} = ${financeiro.ds_fundo_investimento};;
+    and ${comparacao_ot.id_fundo} = ${financeiro.id_fundo_investimento};;
     relationship: one_to_many
     type: left_outer
 
+  }
+
+  join: base_ot {
+    from: base_ot
+    view_label: "3. Base OT"
+    sql_on: ${comparacao_ot.cpf_cliente} = ${base_ot.cpf_cliente}
+    and ${comparacao_ot.nome_fundo} = ${base_ot.nome_fundo}
+    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem};;
+    relationship: one_to_many
+    type: left_outer
   }
 }
 
@@ -284,16 +294,10 @@ explore: uni_prv {}
 
 explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
-
-
-
 }
 
 explore: base_ot_analise {
   label: "Análise - Oliveira Trust"
-
-
-
 }
 
 explore: watson {}

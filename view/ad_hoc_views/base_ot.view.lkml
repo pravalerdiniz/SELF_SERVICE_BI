@@ -1,25 +1,14 @@
-# The name of this view in Looker is "Base Ot"
-view: base_ot {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
-  sql_table_name: "VETERANO"."FATO"."BASE_OT"
-    ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Boleto" in Explore.
+view: base_ot {
+  sql_table_name: "VETERANO"."FATO"."BASE_OT";;
+
 
   dimension: boleto {
     type: number
+    group_label: "Boleto"
     label: "Boleto -  Quantidade"
     sql: ${TABLE}."BOLETO" ;;
   }
-
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
   measure: total_boleto {
     type: sum
@@ -48,26 +37,29 @@ view: base_ot {
     group_label: "Dados do Fundo de Investimento"
     label: "CNPJ"
     sql: ${TABLE}."CNPJ_FUNDO" ;;
+    hidden: yes
   }
 
   dimension: codigo_cedente {
     type: number
     group_label: "Dados Bancários"
     label: "Código Cedente"
-
     sql: ${TABLE}."CODIGO_CEDENTE" ;;
+    hidden: yes
   }
 
   dimension: contrato {
     type: number
     label: "ID do Contrato"
     sql: ${TABLE}."CONTRATO" ;;
+    hidden: yes
   }
 
   dimension: contrato_1 {
     type: string
     label: "Contrato 1"
     sql: ${TABLE}."CONTRATO_1" ;;
+    hidden: yes
   }
 
   dimension: cpf_cliente {
@@ -76,9 +68,6 @@ view: base_ot {
     label: "CPF do Aluno"
     sql: ${TABLE}."CPF_CLIENTE" ;;
   }
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data_emissao {
     type: time
@@ -94,6 +83,7 @@ view: base_ot {
     datatype: date
     label: "Emissão"
     sql: ${TABLE}."DATA_EMISSAO" ;;
+    hidden: yes
   }
 
   dimension_group: data_entrada {
@@ -109,6 +99,7 @@ view: base_ot {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."DATA_ENTRADA" ;;
+    hidden: yes
   }
 
   dimension_group: data_modificacao {
@@ -141,6 +132,7 @@ view: base_ot {
     datatype: date
     label: "Protesto"
     sql: ${TABLE}."DATA_PROTESTO" ;;
+    hidden: yes
   }
 
   dimension_group: data_referencia {
@@ -156,8 +148,8 @@ view: base_ot {
     convert_tz: no
     datatype: date
     label: "Referência"
-
     sql: ${TABLE}."DATA_REFERENCIA" ;;
+    hidden: yes
   }
 
   dimension_group: data_vencimento {
@@ -174,6 +166,7 @@ view: base_ot {
     datatype: date
     label: "Vencimento"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
+    hidden: yes
   }
 
   dimension: flg_base_recente {
@@ -188,6 +181,7 @@ view: base_ot {
     type: string
     label: "ID de Liquidação"
     sql: ${TABLE}."ID_LIQUIDACAO" ;;
+    hidden: yes
   }
 
   dimension: indice {
@@ -210,6 +204,7 @@ view: base_ot {
     group_label: "Dados Bancários"
     label: "Código de Modelo"
     sql: ${TABLE}."MODELO" ;;
+    hidden: yes
   }
 
   dimension: nf {
@@ -218,6 +213,7 @@ view: base_ot {
     label: "Nota Fiscal"
     description: "Indica o número de nota fiscal gerado"
     sql: ${TABLE}."NF" ;;
+    hidden: yes
   }
 
   dimension: nome_cedente {
@@ -225,6 +221,7 @@ view: base_ot {
     group_label: "Dados Bancários"
     label: "Nome do Cedente - Banco"
     sql: ${TABLE}."NOME_CEDENTE" ;;
+    hidden: yes
   }
 
   dimension: nome_cliente {
@@ -248,6 +245,7 @@ view: base_ot {
     label: "Nome do Fundo de Investimento"
     description: "Indica o nome do fundo de investimento"
     sql: ${TABLE}."NOME_FUNDO" ;;
+    hidden: yes
   }
 
   dimension: numero_parcela {
@@ -262,6 +260,7 @@ view: base_ot {
     type: number
     group_label: "Org"
     sql: ${TABLE}."ORG" ;;
+    hidden: yes
   }
 
   dimension: origem {
@@ -276,12 +275,14 @@ view: base_ot {
     type: string
     label: "Prazo"
     sql: ${TABLE}."PRAZO" ;;
+    hidden: yes
   }
 
   dimension: protesto {
     type: string
     label: "Protesto"
     sql: ${TABLE}."PROTESTO" ;;
+    hidden: yes
   }
 
   dimension: qtde_parcelas {
@@ -295,19 +296,22 @@ view: base_ot {
     type: string
     label: "Risco?"
     sql: ${TABLE}."RISCO" ;;
+    hidden: yes
   }
 
   dimension: seguro {
     type: string
     group_label: "Seguro?"
     sql: ${TABLE}."SEGURO" ;;
+    hidden: yes
   }
 
   dimension: seu_numero {
     type: string
-    group_label: "Dados do Boleto"
-    label: "SEUNUM - Código"
+    group_label: "Boleto"
+    label: "SEUNUM - OT"
     sql: ${TABLE}."SEU_NUMERO" ;;
+    primary_key: yes
   }
 
   dimension: taxa_cessao {
@@ -386,5 +390,6 @@ view: base_ot {
   measure: count {
     type: count
     drill_fields: []
+    hidden: yes
   }
 }
