@@ -178,9 +178,14 @@ view: ipca_bv {
     sql: ${TABLE}."FAIXA_PROVISAO" ;;
 }
   measure: perc_provisao_medida {
-    type: average
+    type: number
     sql: ${perc_provisao} ;;
 
+  }
+
+  dimension: faixa {
+    type: number
+    sql: ${TABLE}."FAIXA" ;;
   }
 
   measure: count {
