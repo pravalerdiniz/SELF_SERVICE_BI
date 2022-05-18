@@ -10,6 +10,7 @@ view: comparacao_ot {
     value_format: "#"
   }
 
+
   dimension: id_cpf {
     type: number
     group_label: "Dados do Aluno"
