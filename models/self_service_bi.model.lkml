@@ -141,13 +141,17 @@ explore: inep {
     relationship: many_to_one
 
   }
+
+  join: inep_lgpd {
+    view_label: "INEP - Estrutura LGPD"
+    type: left_outer
+    sql_on: ${inep.id_ies} = ${inep_lgpd.co_ies} ;;
+    relationship: many_to_many
+
+  }
 }
 
-explore: inep_lgpd {
-  label: "Inep - Estrutura LGPD"
-  view_label: "Inep - Estrutura LGPD"
-  description: "Censo da Educacional Superior de 2020 em diante (Readequação dos dados disponibilizados pelo INEP)."
-}
+
 
 explore: instituicao_metas_gc {
 
@@ -996,12 +1000,7 @@ explore: proposta {
     type: left_outer
   }
 
-  join: fato_ies_aval {
-    view_label: "1. Proposta"
-    sql_on: ${proposta.id_proposta} = ${fato_ies_aval.id_proposta} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+
 
   join: proposta_docs_pendentes {
     view_label: "1.2 Documentos Pendentes"
@@ -1712,14 +1711,9 @@ explore: historico_demograficos {
 
 explore: new_relic {}
 
-explore: log_negativacao {
-  view_label: "Log de Negativação"
-}
 
 
-explore: documentos_solicitados {
-  view_label: "Documentos Solicitados"
-}
+
 
 explore:  fato_lead_mgm {
   view_label: "Leads MGM"
@@ -1756,53 +1750,9 @@ explore:  fato_lead_mgm {
   }
 }
 
-explore: atribuicao_nova {
-  view_label: "Atribuição"
-  fields: [ALL_FIELDS * ,
-    - proposta.vl_acordo,
-    - proposta.data_acordo,
-    - jornada.aluno_cpf,
-    - jornada.email_aluno,
-    - jornada.nome_aluno,
-    - jornada.celular_aluno,
-    - jornada.total_renov,
-    - alunos.ativo_ano_mes]
 
-  join: proposta {
-    view_label: "Proposta"
-    sql_on:  ${atribuicao_nova.id_cpf} = ${proposta.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-  join: jornada {
-    view_label: "Jornada"
-    sql_on:  ${atribuicao_nova.id_cpf} = ${jornada.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
 
-  }
-
-  join: alunos {
-    view_label: "Alunos"
-    sql_on: ${alunos.id_cpf} = ${atribuicao_nova.id_cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-  join: dim_cpf {
-  sql_on: ${dim_cpf.id_cpf} = ${atribuicao_nova.id_cpf};;
-  relationship: many_to_one
-  type: left_outer
-}
-  join: ano_mes_carteira_ativa {
-    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${atribuicao_nova.id_cpf};;
-    relationship: many_to_one
-    type: left_outer
-}
-}
-
-explore: alunos_ativos_carteira {}
 
 explore: projecao_formalizados {
   label: "Projeção Formalizados Jornada"
@@ -1932,6 +1882,7 @@ explore: tetris_withoutproducts {
 
 explore: prv_log {
   label: "PRV LOG"
+  hidden: yes
 }
 
 explore: aproveitamento_estoque_nok{
