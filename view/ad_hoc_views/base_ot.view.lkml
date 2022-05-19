@@ -164,9 +164,9 @@ view: base_ot {
     ]
     convert_tz: no
     datatype: date
-    label: "Vencimento"
+    label: "Vencimento - OT"
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
-    hidden: yes
+
   }
 
   dimension: flg_base_recente {
