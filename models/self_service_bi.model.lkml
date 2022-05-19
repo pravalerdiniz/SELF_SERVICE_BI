@@ -157,6 +157,7 @@ explore: instituicao_metas_gc {
 
   join: dias_uteis
   {
+    view_label: "5. Dias Úteis"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
     type: left_outer
     relationship: many_to_one
@@ -164,6 +165,7 @@ explore: instituicao_metas_gc {
 
   join: engajometro
   {
+    view_label: "4. Engajometro"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${engajometro.data};;
     type: left_outer
     relationship: many_to_one
@@ -171,6 +173,7 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
+    view_label: "1. Meta Grupo IES"
     sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: full_outer
@@ -179,6 +182,7 @@ explore: instituicao_metas_gc {
 
   join: meta_conv_grupo_ies_new
   {
+    view_label: "3. Meta Conversão Grupo IES"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
     type: left_outer
@@ -187,7 +191,24 @@ explore: instituicao_metas_gc {
 
   join: meta_sla_comercial
   {
+    view_label: "2. Meta SLA"
     sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: meta_comercial_grupo
+  {
+    view_label: "6. Meta Mensal Grupo (Simulador)"
+    sql_on: ${instituicao_metas_gc.grupo_instituicao} = ${meta_comercial_grupo.grupo};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: sazonalidade_mensal_meta
+  {
+    view_label: "7. Sazonalidade (Simulador)"
+    sql_on: ${instituicao_metas_gc.data_meta_date} = ${sazonalidade_mensal_meta.date};;
     type: left_outer
     relationship: many_to_one
   }
