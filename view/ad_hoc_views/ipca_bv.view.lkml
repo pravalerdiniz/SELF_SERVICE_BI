@@ -173,6 +173,27 @@ view: ipca_bv {
     sql: ${TABLE}."PERC_PROVISAO" ;;
   }
 
+  dimension: faixa_provisao {
+    type: string
+    sql: ${TABLE}."FAIXA_PROVISAO" ;;
+}
+
+  dimension: aniversario {
+    type: number
+    sql: ${TABLE}."ANIVERSARIO" ;;
+  }
+
+  measure: perc_provisao_medida {
+    type: average
+    sql: ${perc_provisao} ;;
+
+  }
+
+  dimension: faixa {
+    type: string
+    sql: ${TABLE}."FAIXA" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []

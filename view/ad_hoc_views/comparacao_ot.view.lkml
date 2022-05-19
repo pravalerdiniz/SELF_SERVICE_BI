@@ -87,8 +87,6 @@ view: comparacao_ot {
     sql: ${TABLE}."DATA_TITULO_CALCULAR" ;;
   }
 
-## Campos que precisam de definição
-
   dimension: nome_arquivo_origem {
     type: string
     group_label: "Dados do Título"
@@ -103,6 +101,15 @@ view: comparacao_ot {
     label: "Nome do Fundo de Investimento"
     description: "Nome do fundo de investimento que o financiamento está alocado"
     sql: ${TABLE}."NOME_FUNDO" ;;
+  }
+
+  dimension: id_fundo {
+    type: number
+    group_label: "Dados do Título"
+    label: "Id Fundo de Investimento"
+    description: "Indica o ID do Fundo de Investimento"
+    sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
+    value_format: "#"
   }
 
   ## NÚMEROS BOLETOS ##

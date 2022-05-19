@@ -19,11 +19,13 @@ where DOCUMENTOS_SOLICITADOS is not null
 
   dimension: id_proposta {
     type: string
+    hidden: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
   dimension: data_envio_documento {
     type: date
+
     sql: ${TABLE}."DATA_ENVIO_DOCUMENTO" ;;
   }
 
