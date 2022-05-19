@@ -154,7 +154,7 @@ explore: inep {
 
 
 explore: instituicao_metas_gc {
-
+  view_label: "1. Meta Grupo IES"
   join: dias_uteis
   {
     view_label: "5. Dias Úteis"
@@ -173,7 +173,7 @@ explore: instituicao_metas_gc {
 
   join: meta_conversao_grupo_ies
   {
-    view_label: "1. Meta Grupo IES"
+    view_label: "3. Meta Conversão Grupo IES"
     sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
     type: full_outer
@@ -182,7 +182,7 @@ explore: instituicao_metas_gc {
 
   join: meta_conv_grupo_ies_new
   {
-    view_label: "3. Meta Conversão Grupo IES"
+    view_label: "3. Meta Conversão Grupo IES Novo"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
     type: left_outer
