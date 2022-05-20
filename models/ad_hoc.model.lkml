@@ -17,6 +17,10 @@ access_grant: grupo_cpf {
   allowed_values: ["grupo_cpf"]
 }
 
+datagroup: painel_de_carga {
+   sql_trigger: SELECT max(dt_conclusao) data_carga FROM GRADUADO.MONITORIA_BANCO.PAINEL_CARGA;;
+  max_cache_age: "1 hour"
+}
 
 
 explore: comunicacao_conversao {
@@ -320,3 +324,7 @@ explore: titulos_cnpj {
 }
 
 explore: ipca_bv {}
+
+explore: painel_de_carga{
+  persist_with: painel_de_carga
+}
