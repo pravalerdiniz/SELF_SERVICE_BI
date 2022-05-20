@@ -168,6 +168,26 @@ view: ipca_bv {
     sql: ${TABLE}."VL_BOLETO_CENARIO_D_5_PRC" ;;
   }
 
+  dimension: vl_boleto_cenario_e_10_prc {
+    type: number
+    sql: ${TABLE}."VL_BOLETO_CENARIO_E_10_PRC" ;;
+  }
+
+  dimension: vl_boleto_cenario_e_15_prc {
+    type: number
+    sql: ${TABLE}."VL_BOLETO_CENARIO_E_15_PRC" ;;
+  }
+
+  dimension: vl_boleto_cenario_e_5_prc {
+    type: number
+    sql: ${TABLE}."VL_BOLETO_CENARIO_E_5_PRC" ;;
+  }
+
+dimension: flg_writeoff {
+  type: yesno
+  sql: ${TABLE}."FLG_WRITEOFF" ;;
+}
+
   dimension: perc_provisao {
     type: number
     sql: ${TABLE}."PERC_PROVISAO" ;;

@@ -17,6 +17,10 @@ access_grant: grupo_cpf {
   allowed_values: ["grupo_cpf"]
 }
 
+datagroup: painel_de_carga {
+   sql_trigger: SELECT max(dt_conclusao) data_carga FROM GRADUADO.MONITORIA_BANCO.PAINEL_CARGA;;
+  max_cache_age: "1 hour"
+}
 
 
 explore: comunicacao_conversao {
@@ -105,7 +109,8 @@ explore: comparacao_ot {
     view_label: "3. Base OT"
     sql_on: ${comparacao_ot.cpf_cliente} = ${base_ot.cpf_cliente}
     and ${comparacao_ot.nome_fundo} = ${base_ot.nome_fundo}
-    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem};;
+    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem}
+    and ${base_ot.data_vencimento_raw} = ${financeiro.data_vencimento_raw} ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -319,3 +324,7 @@ explore: titulos_cnpj {
 }
 
 explore: ipca_bv {}
+
+explore: painel_de_carga{
+  persist_with: painel_de_carga
+}

@@ -1,5 +1,5 @@
 view: meta_comercial_grupo {
-  sql_table_name:  "BICHO"."SHAREPOINT"."TABELA_GRUPOS"
+  sql_table_name:  GRADUADO.AD_HOC.VW_TABELA_GRUPOS
       ;;
 
   dimension: grupo_data {
