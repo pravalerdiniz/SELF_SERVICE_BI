@@ -527,8 +527,8 @@ explore: jornada {
     from: instituicao
     view_label: "3. Instituição"
     sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
-            AND  ${instituicao.id_campus} = ${proposta.id_campus}
-            AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
+   --         AND  ${instituicao.id_campus} = ${proposta.id_campus}
+   --         AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
     relationship: many_to_many
     type: left_outer
   }
