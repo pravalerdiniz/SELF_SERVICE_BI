@@ -319,3 +319,5 @@ explore: titulos_cnpj {
 }
 
 explore: ipca_bv {}
+
+explore: painel_de_carga{}
