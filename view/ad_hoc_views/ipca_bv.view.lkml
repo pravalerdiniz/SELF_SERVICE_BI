@@ -123,6 +123,13 @@ view: ipca_bv {
     sql: ${TABLE}."VL_BOLETO" ;;
   }
 
+  measure: soma_boleto {
+    type: sum
+    sql: ${vl_boleto} ;;
+    group_label: "Valor Boleto"
+    label: "Soma do Valor do Boleto"
+  }
+
   dimension: vl_boleto_cenario_a {
     type: number
     sql: ${TABLE}."VL_BOLETO_CENARIO_A" ;;
@@ -214,8 +221,64 @@ dimension: flg_writeoff {
     sql: ${TABLE}."FAIXA" ;;
   }
 
+  dimension: dias_atraso {
+    type: number
+    label: "Dias de Atraso do Boleto"
+    sql: (datediff('day', current_date,${data_vencimento_boleto_raw})*-1)
+     ;;
+  }
+
+
+  dimension: faixa_aging_vencidos {
+    type: string
+    case: {
+      when: {
+        sql: ${dias_atraso} <= 30;;
+        label: "Até 30 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 60 ;;
+        label: "De 31 a 60 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 90 ;;
+        label: "De 61 a 90 dias"
+      }
+      when: {
+        sql: ${dias_atraso}<= 120 ;;
+        label: "De 91 a 120 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 150 ;;
+        label: "De 121 a 150 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 180 ;;
+        label: "De 151 a 180 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 360 ;;
+        label: "De 181 a 360 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 720 ;;
+        label: "De 361 a 720 dias"
+      }
+      when: {
+        sql: ${dias_atraso} <= 1080 ;;
+        label: "De 721 a 1080 dias"
+      }
+      else: "Acima de 1080 dias"
+    }
+    group_label: "Aging"
+    group_item_label: "Aging List - Vencidos"
+    description: "Indica a faixa de tempo detalhada dos títulos a receber em atraso, elencados em ordem cronológica de acordo com sua data de vencimento."
+  }
+
   measure: count {
     type: count
     drill_fields: []
   }
+
+
 }
