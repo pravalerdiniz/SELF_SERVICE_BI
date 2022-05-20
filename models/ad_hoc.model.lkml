@@ -105,7 +105,8 @@ explore: comparacao_ot {
     view_label: "3. Base OT"
     sql_on: ${comparacao_ot.cpf_cliente} = ${base_ot.cpf_cliente}
     and ${comparacao_ot.nome_fundo} = ${base_ot.nome_fundo}
-    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem};;
+    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem}
+    and ${base_ot.data_vencimento_raw} = ${financeiro.data_vencimento_raw} ;;
     relationship: one_to_many
     type: left_outer
   }
