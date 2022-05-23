@@ -589,6 +589,12 @@ explore: jornada {
   }
 }
 
+explore: instituicai_ies {
+  persist_for: "1 hour"
+  view_label: "Instituição IES"
+
+}
+
 explore: instituicao {
   persist_for: "24 hours"
   access_filter: {
