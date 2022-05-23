@@ -1,4 +1,4 @@
-view: instituicai_ies {
+view: instituicao_ies {
   derived_table: {
     persist_for: "1 hour"
     sql: select distinct ID_INSTITUICAO,

@@ -589,7 +589,7 @@ explore: jornada {
   }
 }
 
-explore: instituicai_ies {
+explore: instituicao_ies {
   persist_for: "1 hour"
   view_label: "Instituição IES"
 
@@ -1924,8 +1924,4 @@ explore: gupy_candidaturas {
 
 explore: dados_intake {
   label: "Dados Intake"
-}
-
-explore: instituicao_ie {
-  label: "Instituição IES"
 }
