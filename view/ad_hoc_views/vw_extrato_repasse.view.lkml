@@ -60,5 +60,6 @@ view: vw_extrato_repasse {
   measure: count {
     type: count
     drill_fields: []
+    hidden: yes
   }
 }
