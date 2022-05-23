@@ -43,6 +43,11 @@ view: jornada {
     hidden: yes
   }
 
+  dimension: proposta_mais_recente {
+    type: number
+    sql: ${TABLE}."MAIS_RECENTE_BO" ;;
+  }
+
   dimension: mtd_only {
     group_label: "Filtros para Análise de Períodos"
     label: "Month to Date - Data da Etapa"
