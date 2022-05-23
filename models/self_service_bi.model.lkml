@@ -1919,3 +1919,7 @@ explore: gupy_candidaturas {
 explore: dados_intake {
   label: "Dados Intake"
 }
+
+explore: instituicao_ie {
+  label: "Instituição IES"
+}
