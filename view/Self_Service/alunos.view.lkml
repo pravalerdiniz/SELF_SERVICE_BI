@@ -898,7 +898,7 @@ view: alunos {
     ]
     sql: TO_DATE(${ativo_ano_mes});;
     description: "Indica o Ano e o Mês em que o status do aluno é financeiramente ativo"
-
+    label: "Aluno Ativo - Ano e Mês"
 
   }
 
