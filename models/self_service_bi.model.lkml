@@ -523,10 +523,10 @@ explore: jornada {
 
   }
 
-    join: instituicao_ies {
+    join: instituicao {
     from: instituicao
     view_label: "3. Instituição"
-    sql_on: ${jornada.id_instituicao} = ${instituicao_ies.id_instituicao};;
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao};;
     relationship: many_to_one
     type: left_outer
   }
