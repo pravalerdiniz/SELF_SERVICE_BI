@@ -463,8 +463,8 @@ explore: jornada {
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
     sql_on: ${jornada.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            AND  ${instituicao.id_campus} = ${proposta.id_campus}
-            AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
+            AND  ${instituicao_contrato_produto_info.id_campus} = ${proposta.id_campus}
+            AND    ${instituicao_contrato_produto_info.id_curso} =  ${proposta.id_curso};;
     relationship: many_to_many
     type: left_outer
   }
@@ -523,15 +523,14 @@ explore: jornada {
 
   }
 
-  join: instituicao {
+    join: instituicao_ies {
     from: instituicao
     view_label: "3. Instituição"
-    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
-  --          AND  ${instituicao.id_campus} = ${proposta.id_campus}
-  --         AND    ${instituicao.id_curso} =  ${proposta.id_curso};;
-    relationship: many_to_many
+    sql_on: ${jornada.id_instituicao} = ${instituicao_ies.id_instituicao};;
+    relationship: many_to_one
     type: left_outer
   }
+
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -587,6 +586,12 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+}
+
+explore: instituicao_ies {
+  persist_for: "1 hour"
+  view_label: "Instituição IES"
+
 }
 
 explore: instituicao {
@@ -897,6 +902,14 @@ join: sql_runner_query_range_boleto {
   view_label: "1. Financeiro"
   sql_on: ${financeiro.id_cpf} = ${sql_runner_query_range_boleto.financeiro_id_cpf} and
   ${financeiro.id_contrato} = ${sql_runner_query_range_boleto.financeiro_id_contrato}
+  ;;
+  relationship: one_to_one
+}
+
+join: vw_extrato_repasse {
+  view_label: "4. Extrato Repasse - Gestão Corrigido"
+  sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
+          ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
   ;;
   relationship: one_to_one
 }
