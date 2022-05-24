@@ -1223,7 +1223,7 @@ view: alunos {
     sql: ${TABLE}."VL_TOTAL_FINANCIADO" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor Total do Financiamento"
-    description: "Este campo é uma regra de negócio*. Indica o valor total do financiamento do contrato do aluno"
+    description: "Este campo é uma regra de negócio*. Indica o valor total do financiamento do aluno junto ao PRAVALER"
     link: {
       label: "Documentação - Valor de Financiamento"
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/945487904/VALOR+DE+FINANCIAMENTO"
@@ -1235,7 +1235,7 @@ view: alunos {
     sql: ${TABLE}."VL_TOTAL_FINANCIAMENTO_ALUNO" ;;
     group_label: "Dados Financeiros"
     group_item_label: "Valor Total do Financiamento do Aluno"
-    description: "Este campo é uma regra de negócio*. Indica o valor de financiamento pago pelo aluno referente ao contrato"
+    description: "Este campo é uma regra de negócio*. Indica o valor de financiamento que será pago pelo aluno referente ao contrato"
     link: {
       label: "Documentação - Valor de Financiamento - Aluno"
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/950927364/VALOR+DE+FINANCIAMENTO+-+ALUNO"
