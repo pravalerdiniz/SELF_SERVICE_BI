@@ -1192,23 +1192,10 @@ view: alunos {
     }
   }
 
-  dimension: val_presente {
-    type: number
-    sql: ${TABLE}."VL_PRESENTE" ;;
-    group_label: "Dados Financeiros"
-    group_item_label: "Valor Presente"
-    description: "Indica o valor presente"
-    hidden: yes
-  }
 
 
-  measure: vl_presente {
-    type: sum
-    sql: ${TABLE}."VL_PRESENTE" ;;
-    group_label: "Dados Financeiros"
-    group_item_label: "Valor Presente"
-    description: "Indica o valor presente"
-  }
+
+
 
   dimension: vl_total_financiado {
     type: number
@@ -1754,6 +1741,24 @@ measure: porc_evasao {
     description: "Nome da Empresa para qual o aluno deve"
     hidden: yes
     sql: ${TABLE}."NOME_EMPRESA_COBRANCA" ;;
+  }
+
+  dimension: val_presente {
+    type: number
+    sql: ${TABLE}."VL_PRESENTE" ;;
+    group_label: "Dados Financeiros"
+    group_item_label: "Valor Presente"
+    description: "Indica o valor presente"
+    hidden: yes
+  }
+
+  measure: vl_presente {
+    type: sum
+    sql: ${TABLE}."VL_PRESENTE" ;;
+    group_label: "Dados Financeiros"
+    hidden: yes
+    group_item_label: "Valor Presente"
+    description: "Indica o valor presente"
   }
 
 
