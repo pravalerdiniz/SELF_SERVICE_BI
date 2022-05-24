@@ -22,6 +22,60 @@ view: alunos {
   }
 
 
+
+  dimension: flg_promessa {
+    type: yesno
+    group_label: "Dados Financeiros"
+    label: "Promessa Ativa?"
+    description: "Indica se o aluno possui promessa de pagamentos atrasados (Yes/No)"
+    sql: ${TABLE}."FLG_PROMESSA" ;;
+  }
+
+  dimension: gh_final {
+    type: string
+    group_label: "Dados Financeiros"
+    label: "GH - PPP"
+    description: "Indica o Grupo Homogêneo (GH) de propensão à pagamento da promessa do comportamento de pagamento dos alunos inadimplentes"
+    sql: ${TABLE}."GH_FINAL" ;;
+  }
+
+  dimension: gh_collection {
+    type: string
+    group_label: "Dados Financeiros"
+    label: "GH - Collection"
+    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento dos alunos inadimplentes. A classificação dos GHs estão da seguinte forma: GH A>0.967, GH B<=0.967, GH C<=0.277, GH D<=0,023. Para a classificação deste campo, é realizado o calculo da probabilidade do aluno pagar o boleto atrasado em até 30 dias. Sendo assim, quanto maior a probabilidade, maior a chance do aluno pagar o boleto em atraso dentro do prazo de 30 dias."
+    sql: ${TABLE}."GH_COLLECTION" ;;
+  }
+
+  dimension: status_promessa {
+    type: string
+    group_label: "Dados Financeiros"
+    label: "Promessa - Status"
+    description: "Indica qual é o Status da Promessa de pagamento de dívida do Aluno. Ex: Quitada, Aberta ou Quebrada."
+    sql: ${TABLE}."STATUS_PROMESSA" ;;
+  }
+
+
+  dimension_group: geracao_collection {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Geração Collection"
+    description: "Indica a data de geração do collection"
+    sql: ${TABLE}."DATA_GERACAO_COLLECTION" ;;
+  }
+
+
+
   dimension: faixa_atraso {
     type: string
     group_label: "Dados Financeiros"
@@ -1436,63 +1490,7 @@ dimension: faixa_tempo_meses_evasao {
     description: "Valor máximo de mensalidade que foi cedida na proposta atual do aluno"
   }
 
-  dimension: gh_final {
-    type: string
-    sql: ${TABLE}."GH_FINAL" ;;
-    group_label: "1.5 Acordo Informações"
-    group_item_label: "GH PPP"
-    description: "Indica o Grupo Homogêneo (GH) de propensão à pagamento da promessa do comportamento de pagamento dos alunos inadimplentes"
-  }
 
-  dimension: gh_collection {
-    type: string
-    sql: ${TABLE}."GH_COLLECTION" ;;
-    group_label: "1.5 Acordo Informações"
-    group_item_label: "Collection"
-    description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo do comportamento de pagamento dos alunos inadimplentes. A classificação dos GHs estão da seguinte forma: GH A>0.967, GH B<=0.967, GH C<=0.277, GH D<=0,023. Para a classificação deste campo, é realizado o calculo da probabilidade do aluno pagar o boleto atrasado em até 30 dias. Sendo assim, quanto maior a probabilidade, maior a chance do aluno pagar o boleto em atraso dentro do prazo de 30 dias."
-    link: {
-      label: "Documentação - GH Collection"
-      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/976060579/GH+-+Collection"
-    }
-  }
-
-  dimension: flg_promessa {
-    type: yesno
-    sql: ${TABLE}."FLG_PROMESSA" ;;
-    group_label: "1.5 Acordo Informações"
-    group_item_label: "Promessa Ativa?"
-    description: "Indica se o aluno possui promessa de pagamentos atrasados (Yes/No)"
-    link: {
-      label: "Documentação - Promessa Ativa"
-      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1013612684/FLG+PROMESSA"
-    }
-  }
-
-
-
-  dimension: status_promessa {
-    type: string
-    sql: ${TABLE}."STATUS_PROMESSA" ;;
-    group_label: "1.5 Acordo Informações"
-    group_item_label: "Status da Promessa"
-    description: "Indica qual é o Status da Promessa de pagamento de dívida do Aluno. Ex: Quitada, Aberta ou Quebrada."
-  }
-
-  dimension_group: data_geracao_collection {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}."DATA_GERACAO_COLLECTION" ;;
-    label: "Data Geração Collection"
-    description: "Indica a data de geração do collection"
-  }
 
   dimension_group: data_nascimento {
     type: time
@@ -1643,17 +1641,6 @@ measure: porc_evasao {
   drill_fields: [cpf_aluno,data_primeira_cessao_date,data_ultimo_status_proposta_date,ultimo_status_proposta]
 }
 
-dimension:  ultimo_acordo_decola{
-  type: string
-  sql: ${TABLE}."ULTIMO_ACORDO" ;;
-  label: "Último Acordo Decola"
-}
-
-  dimension:  ultimo_acordo_proposta{
-    type: string
-    sql: ${TABLE}."ULT_ACO_PROPOSTA" ;;
-    label: "Última Proposta - Acordo Decola"
-  }
 
   dimension: tipo_aluno_etapa {
     type: string
@@ -1746,6 +1733,21 @@ dimension:  ultimo_acordo_decola{
     hidden: yes
     group_item_label: "Dívida - Valor Presente (DC_PDD)"
     description: "Indica o valor presente da dívida do aluno com PRAVALER."
+  }
+
+
+  dimension:  ultimo_acordo_decola{
+    type: string
+    sql: ${TABLE}."ULTIMO_ACORDO" ;;
+    hidden: yes
+    label: "Último Acordo Decola"
+  }
+
+  dimension:  ultimo_acordo_proposta{
+    type: string
+    sql: ${TABLE}."ULT_ACO_PROPOSTA" ;;
+    hidden: yes
+    label: "Última Proposta - Acordo Decola"
   }
 
 }
