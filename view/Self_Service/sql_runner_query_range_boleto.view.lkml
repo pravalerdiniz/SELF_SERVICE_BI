@@ -8,13 +8,9 @@ view: sql_runner_query_range_boleto {
            AS financeiro
       LEFT JOIN "GRADUADO"."SELF_SERVICE_BI"."PROPOSTA"
            AS proposta ON (proposta."ID_PROPOSTA")=(financeiro."ID_CONTRATO")
-      WHERE (((((( financeiro."DATA_VENCIMENTO"  ))) >= (TO_DATE(TO_TIMESTAMP('2021-01-01'))) AND ((( financeiro."DATA_VENCIMENTO"  ))) < (TO_DATE(TO_TIMESTAMP('2024-12-31')))))) AND ((( proposta."DATA_CONCESSAO"  ) >= ((TO_DATE(TO_TIMESTAMP('2021-01-01')))) AND ( proposta."DATA_CONCESSAO"  ) < ((TO_DATE(DATEADD('year', 1, TO_TIMESTAMP('2021-01-01'))))))) AND (proposta."TIPO_PROPOSTA" ) = 'NOVO'
-      GROUP BY
-          1,
-          2
-      ORDER BY
-          3
-       ;;
+  GROUP BY
+        1,
+        2 ;;
   }
 
   measure: count {
@@ -43,6 +39,15 @@ view: sql_runner_query_range_boleto {
     label: "Contagem de Títulos"
     description: "Indica a contagem de Títulos por Aluno e por contrato"
     sql: ${TABLE}."FINANCEIRO.COUNT_TITULO" ;;
+    value_format: "#"
+  }
+
+  measure: avg_count_titulos {
+    type: average_distinct
+    group_label: "Dados do Título"
+    label: "Média da Contagem de Títulos"
+    description: "Indica a média do número de títulos por contrato de cada aluno"
+    sql: ${financeiro_count_titulo} ;;
     value_format: "#"
   }
 
