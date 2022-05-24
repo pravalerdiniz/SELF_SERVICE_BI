@@ -358,21 +358,6 @@ view: alunos {
 
   }
 
-  dimension: nm_empresa {
-    type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Nome da Empresa Devedora"
-    description: "Nome da Empresa para qual o aluno deve"
-    sql: ${TABLE}."NOME_EMPRESA_COBRANCA" ;;
-  }
-
-  dimension: inibido {
-    type: number
-    group_label: "Dados do Aluno"
-    group_item_label: "Aluno Inibido como Devedor"
-    description: "Aluno Inibido como Devedor"
-    sql: ${TABLE}."INIBIDO" ;;
-  }
 
 
 
@@ -1749,5 +1734,27 @@ measure: porc_evasao {
     hidden: yes
     label: "Última Proposta - Acordo Decola"
   }
+
+  #duplicado
+  dimension: inibido {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "Aluno Inibido como Devedor"
+    description: "Aluno Inibido como Devedor"
+    hidden: yes
+    sql: ${TABLE}."INIBIDO" ;;
+  }
+
+
+
+  dimension: nm_empresa {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome da Empresa Devedora"
+    description: "Nome da Empresa para qual o aluno deve"
+    hidden: yes
+    sql: ${TABLE}."NOME_EMPRESA_COBRANCA" ;;
+  }
+
 
 }
