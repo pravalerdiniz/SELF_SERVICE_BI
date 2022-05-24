@@ -11,6 +11,7 @@ view: alunos {
 
   }
 
+ #array de objeto
   dimension: id_produtos_contratados {
     type: string
     sql: ${TABLE}."ID_PRODUTOS_CONTRATADOS" ;;
@@ -319,14 +320,7 @@ view: alunos {
     sql: ${TABLE}."INIBIDO" ;;
   }
 
-  dimension: vl_pdd {
-    type: number
-    group_label: "Dados Financeiros"
-    group_item_label: "Valor do PDD"
-    description: "PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira, e melhor está a nossa política de crédito e cobrança."
-    sql: ${TABLE}."VL_PDD" ;;
-    value_format: "#.##"
-  }
+
 
 
 
@@ -614,21 +608,9 @@ view: alunos {
     description: "Indica o período (turno) do curso (ex.: manhã, integral)"
   }
 
-  dimension: qtd_cursos_procurados {
-    type: number
-    sql: ${TABLE}."QTD_CURSOS_PROCURADOS" ;;
-    group_label: "Dados do Curso"
-    group_item_label: "Quantidade de Cursos Procurados"
-    description: "Indica a quantidade de cursos procurados pelo aluno"
-  }
 
-  dimension: qtd_campus_procurados {
-    type: number
-    sql: ${TABLE}."QTD_CAMPUS_PROCURADOS" ;;
-    group_label: "Dados do Campus"
-    group_item_label: "Quantidade de Campus Procurados"
-    description: "Indica a quantidade de campus procurados pelo aluno"
-  }
+
+
 
   dimension: cidade_campus {
     type: string
@@ -835,28 +817,25 @@ view: alunos {
   dimension: id_proposta_atual {
     type: string
     sql: ${TABLE}."ID_PROPOSTA_ATUAL" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "ID da Proposta Pai"
-    description: "Número de idenficação da proposta Pai do Aluno, ou seja, proposta inicial do aluno cedido."
+    group_label: "Dados da Última Proposta"
+    group_item_label: "ID da Proposta Atual"
+    description: "Número de idenficação da proposta Pai do Aluno, ou seja, proposta mais atual do aluno."
   }
 
+#array de objeto
   dimension: id_propostas_enviadas {
     type: string
     sql: ${TABLE}."ID_PROPOSTAS_ENVIADAS" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "ID Propostas Enviadas"
+    hidden: yes
     description: "Número de identificação das propostas enviadas pelo aluno"
   }
 
-  dimension: qtd_propostas_enviadas {
-    type: number
-    sql: ${TABLE}."QTD_PROPOSTAS_ENVIADAS" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Quantidade de Propostas Enviadas"
-    description: "Indica a quantidade de propostas enviadas pelo aluno"
-  }
 
 
+
+#array de objeto
   dimension: ativo_ano_mes {
     type: string
     sql: ${ano_mes_carteira_ativa.ano_mes};;
@@ -1042,7 +1021,7 @@ view: alunos {
   dimension: nm_originador {
     type: string
     sql: ${TABLE}."NM_ORIGINADOR" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "Originador"
     description: "Indica o banco originador do financiamento referente a última proposta do aluno"
   }
@@ -1063,23 +1042,17 @@ view: alunos {
   dimension: qtd_contratos_cedidos {
     type: number
     sql: ${TABLE}."QTD_CONTRATOS_CEDIDOS" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "Quantidade de Contratos Cedidos"
     description: "Indica a quantidade de contratos cedidos do aluno"
   }
 
-  dimension: qtd_garantidores_diferentes {
-    type: number
-    sql: ${TABLE}."QTD_GARANTIDORES_DIFERENTES" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Quantidade de Garantidores Diferentes"
-    description: "Indica a quantidade de garantidores diferentes que o aluno indicou"
-  }
+
 
   dimension: qtd_mensalidade_total {
     type: number
     sql: ${TABLE}."QTD_MENSALIDADE_TOTAL" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "Quantidade de Mensalidade"
     description: "Este campo é uma regra de negócio. Indica a quantidade de mensalidade total do aluno"
   link: {
@@ -1091,7 +1064,7 @@ view: alunos {
   dimension: qtd_parcelas_semestre {
     type: number
     sql: ${TABLE}."QTD_PARCELAS_SEMESTRE" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "Quantidade de Parcelas"
     description: "Indica a quantidade de parcelas contratadas na proposta atual preenchida pelo aluno"
   }
@@ -1104,13 +1077,7 @@ view: alunos {
     description: "Indica a quantidade de propostas de renovação do aluno"
   }
 
-  dimension: safra_cessao_semestre {
-    type: string
-    sql: ${TABLE}."SAFRA_CESSAO_SEMESTRE" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Safra Cessão Semestre"
-    description: "Indica ano e semestre da cessão (ex.:2013S02)"
-  }
+
 
   dimension: tipo_renovacao {
     type: string
@@ -1141,7 +1108,7 @@ view: alunos {
   dimension: flg_renegociacao {
     type: yesno
     sql: ${TABLE}."FLG_RENEGOCIACAO" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados do Aluno"
     group_item_label: "Renegociação?"
     description: "Este campo é uma regra de negócio*. Indica se o aluno possui proposta de renegociação. (yes/no)"
   link: {
@@ -1153,7 +1120,7 @@ view: alunos {
   dimension: gh {
     type: string
     sql: ${TABLE}."GH" ;;
-    group_label: "Dados da Proposta"
+    group_label: "Dados da Última Proposta"
     group_item_label: "Grupo Homogêneo"
     description: "Este campo é uma regra de negócio*. Indica o Grupo Homogêneo da última proposta do aluno após passar pela avaliação de análise de crédito baseado no Score de Crédito durante o processo de contratação do Aluno, ou seja, o grupo homogêneo é uma classificação dos scores, por exemplo, os alunos que possuem score maior que 9063 será classificado como GH A, GH B<=9063, GH C<=8845, GH D<=8328, GH E<=5197, GH F<=1728, GH G<=843"
     link: {
@@ -1163,13 +1130,7 @@ view: alunos {
   }
 
 
-  dimension: data_visao_diaria {
-    type: date
-    sql: ${TABLE}."DT_VISAO_DIARIA" ;;
-    group_label: "Dados Financeiros"
-    group_item_label: "Data da Visão Diária - PDD "
-    description: "Informa a data referente ao calculo diário do pdd do aluno*.PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira e melhor está a nossa política de crédito e cobrança."
-  }
+
 
   dimension: flg_inadimplente {
     type: yesno
@@ -1179,14 +1140,6 @@ view: alunos {
     description: "Indica se o aluno está inadimplente (yes / no)"
   }
 
-  dimension: vl_boleto {
-    type: number
-    sql: ${TABLE}."VL_BOLETO" ;;
-    group_label: "Dados Financeiros"
-    group_item_label: "Valor do Boleto"
-    hidden: yes
-    description: "Indica o valor do Boleto"
-  }
 
   dimension: vl_mensalidade_atual {
     type: number
@@ -1573,7 +1526,7 @@ dimension: faixa_tempo_meses_evasao {
   dimension: ds_ultimo_status_proposta {
     type: string
     sql: ${TABLE}."DESC_ST_ULT_PROPOSTA" ;;
-    group_label: "Dados de Status"
+    group_label: "Dados do Último Status"
     group_item_label: "Descrição - Último Status Detalhado Aluno"
     description: "Este campo é uma regra de negócio*. Indica o nome do último status detalhado da proposta mais atual do aluno"
   link: {
@@ -1587,7 +1540,7 @@ dimension: faixa_tempo_meses_evasao {
   dimension: ultimo_status_proposta {
     type: string
     sql: ${TABLE}."ULT_ST_ULT_PROPOSTA" ;;
-    group_label: "Dados de Status"
+    group_label: "Dados do Último Status"
     group_item_label: "Último Status Detalhado do Aluno"
     description: "Indica o número do último status detalhado da proposta mais atual do aluno"
     link: {
@@ -1599,7 +1552,7 @@ dimension: faixa_tempo_meses_evasao {
   dimension: id_status_geral {
     type: string
     sql: ${TABLE}."ID_STATUS_GERAL" ;;
-    group_label: "Dados de Status"
+    group_label: "Dados do Último Status"
     group_item_label: "Último Status Geral do Aluno"
     description: "Indica o número do último status geral da proposta mais atual do aluno"
   }
@@ -1608,7 +1561,7 @@ dimension: faixa_tempo_meses_evasao {
   dimension: ds_status_geral {
     type: string
     sql: ${TABLE}."DS_STATUS_GERAL" ;;
-    group_label: "Dados de Status"
+    group_label: "Dados do Último Status"
     group_item_label: "Descrição - Último Status Geral do Aluno"
     description: "Indica o nome do último status geral da proposta mais atual do aluno"
   }
@@ -1627,13 +1580,7 @@ dimension: faixa_tempo_meses_evasao {
   }
 
 
-  dimension: dcpdd_vl_presente {
-    type: number
-    sql: ${TABLE}."DCPDD_VL_PRESENTE" ;;
-    group_label: "Dados Financeiros"
-    group_item_label: "Dívida - Valor Presente (DC_PDD)"
-    description: "Indica o valor presente da dívida do aluno com PRAVALER."
-  }
+
 
 
 
@@ -1667,7 +1614,7 @@ dimension: faixa_tempo_meses_evasao {
       year
     ]
     sql: ${TABLE}."ULT_DATA_ST_ULT_PROPOSTA" ;;
-    label: "Data Último Status"
+    label: "Último Status"
     description: "Indica a data do último Status da Proposta mais atual do aluno"
   }
 
@@ -1716,5 +1663,89 @@ dimension:  ultimo_acordo_decola{
     sql: ${TABLE}."TIPO_ALUNO_NPS" ;;
   }
 
+
+#Campos Ocultos - Última Atualização 24/05/2022 - Lulinha
+
+  dimension: qtd_propostas_enviadas {
+    type: number
+    sql: ${TABLE}."QTD_PROPOSTAS_ENVIADAS" ;;
+    group_label: "Dados da Última Proposta"
+    hidden: yes
+    group_item_label: "Quantidade de Propostas Enviadas"
+    description: "Indica a quantidade de propostas enviadas pelo aluno"
+  }
+
+  dimension: qtd_cursos_procurados {
+    type: number
+    sql: ${TABLE}."QTD_CURSOS_PROCURADOS" ;;
+    group_label: "Dados do Curso"
+    hidden: yes
+    group_item_label: "Quantidade de Cursos Procurados"
+    description: "Indica a quantidade de cursos procurados pelo aluno"
+  }
+
+  dimension: qtd_campus_procurados {
+    type: number
+    sql: ${TABLE}."QTD_CAMPUS_PROCURADOS" ;;
+    group_label: "Dados do Campus"
+    hidden: yes
+    group_item_label: "Quantidade de Campus Procurados"
+    description: "Indica a quantidade de campus procurados pelo aluno"
+  }
+
+  dimension: qtd_garantidores_diferentes {
+    type: number
+    sql: ${TABLE}."QTD_GARANTIDORES_DIFERENTES" ;;
+    group_label: "Dados da Proposta"
+    hidden: yes
+    group_item_label: "Quantidade de Garantidores Diferentes"
+    description: "Indica a quantidade de garantidores diferentes que o aluno indicou"
+  }
+
+  dimension: vl_boleto {
+    type: number
+    sql: ${TABLE}."VL_BOLETO" ;;
+    group_label: "Dados Financeiros"
+    group_item_label: "Valor do Boleto"
+    hidden: yes
+    description: "Indica o valor do Boleto"
+  }
+
+  dimension: safra_cessao_semestre {
+    type: string
+    sql: ${TABLE}."SAFRA_CESSAO_SEMESTRE" ;;
+    group_label: "Dados da Proposta"
+    group_item_label: "Safra Cessão Semestre"
+    hidden: yes
+    description: "Indica ano e semestre da cessão (ex.:2013S02)"
+  }
+
+  dimension: vl_pdd {
+    type: number
+    group_label: "Dados Financeiros"
+    group_item_label: "Valor do PDD"
+    description: "PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira, e melhor está a nossa política de crédito e cobrança."
+    sql: ${TABLE}."VL_PDD" ;;
+    hidden: yes
+    value_format: "#.##"
+  }
+
+  dimension: data_visao_diaria {
+    type: date
+    sql: ${TABLE}."DT_VISAO_DIARIA" ;;
+    group_label: "Dados Financeiros"
+    hidden: yes
+    group_item_label: "Data da Visão Diária - PDD "
+    description: "Informa a data referente ao calculo diário do pdd do aluno*.PDD é a Provisão de Devedores Duvidosos que indica como está a nossa carteira com relação a inadimplência, ou seja, se os alunos estão pagando os boletos em dia. Para isso, é provisionado um valor para cada boleto atrasado afim de nos resguardarmos para eventuais perdas. Dica: quanto menor a PDD, menor é o risco da nossa carteira e melhor está a nossa política de crédito e cobrança."
+  }
+
+  dimension: dcpdd_vl_presente {
+    type: number
+    sql: ${TABLE}."DCPDD_VL_PRESENTE" ;;
+    group_label: "Dados Financeiros"
+    hidden: yes
+    group_item_label: "Dívida - Valor Presente (DC_PDD)"
+    description: "Indica o valor presente da dívida do aluno com PRAVALER."
+  }
 
 }
