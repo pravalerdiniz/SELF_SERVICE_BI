@@ -3,6 +3,8 @@ view: instituicao_contrato_produto_info {
     persist_for: "1 hour"
     sql: select distinct
         id_instituicao
+        ,id_campus
+        ,id_curso
       ,f.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO
       ,f.value:BANCO::varchar as BANCO
       ,f.value:AGENCIA::varchar as DS_BANCO_AGENCIA
@@ -45,6 +47,22 @@ view: instituicao_contrato_produto_info {
     label: "ID da Instituição"
     description: "Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO" ;;
+  }
+
+  dimension: id_campus {
+    type: string
+    label: "ID da Instituição"
+    description: "Indica o ID da Instituição de Ensino"
+    sql: ${TABLE}."ID_CAMPUS" ;;
+    hidden: yes
+  }
+
+  dimension: id_curso {
+    type: string
+    label: "ID da Instituição"
+    description: "Indica o ID da Instituição de Ensino"
+    sql: ${TABLE}."ID_CURSO" ;;
+    hidden: yes
   }
 
   dimension: id_ies_contrato {
