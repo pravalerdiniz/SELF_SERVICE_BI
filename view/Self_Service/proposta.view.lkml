@@ -2984,9 +2984,9 @@ view: proposta {
   measure: avg_mensalidade_atual  {
     type: average
     group_label: "Mensalidade - Atual"
-    value_format: "0"
     group_item_label: "Média"
     sql:${vl_men_corrente};;
+    value_format: "$ #,###.00"
     description: "Média do valor da mensalidade atual do aluno"
   }
 
