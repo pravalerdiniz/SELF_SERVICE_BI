@@ -1251,7 +1251,8 @@ explore: alunos {
     - financeiro.count_alunos,
     - atribuicao_nova.count_id_cpf,
     - atribuicao_nova.perc_cpf,
-    - status.cont_cpf
+    - status.cont_cpf,
+    - financeiro_extrato_titulo.alunos,
 
 
 
