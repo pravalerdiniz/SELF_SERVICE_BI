@@ -1,6 +1,6 @@
 view: taxa_instituicao_simplificada {
   derived_table: {
-    persist_for: "1 hour"
+    persist_for: "5 hour"
     sql: select
         b.id,
         b.id_instituicao,
