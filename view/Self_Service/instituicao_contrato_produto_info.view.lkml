@@ -1,6 +1,6 @@
 view: instituicao_contrato_produto_info {
   derived_table: {
-    persist_for: "1 hour"
+    persist_for: "5 hour"
     sql: select distinct
         id_instituicao
         ,id_campus
