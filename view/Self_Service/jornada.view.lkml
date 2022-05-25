@@ -2170,10 +2170,10 @@ dimension: flg_d1 {
 # Renovação
   dimension: sla_eleg_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw}) < 0
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw}) < 0
                    or ${dt_iniciado_raw} is null or ${dt_iniciado_elegivel_raw} is null)
               then null
-              else datediff(day,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw})
+              else datediff(second,${dt_iniciado_raw} , ${dt_iniciado_elegivel_raw})
          end ;;
     value_format: "0"
     hidden: yes
@@ -2181,10 +2181,10 @@ dimension: flg_d1 {
 
   dimension: sla_beha_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})  , ${dt_aprovado_behavior_raw}) < 0)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})  , ${dt_aprovado_behavior_raw}) < 0)
                    --or ${dt_iniciado_elegivel_raw} is null or ${dt_aprovado_behavior_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              else datediff(second,coalesce(${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
               ,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
     value_format: "0"
@@ -2193,10 +2193,10 @@ dimension: flg_d1 {
 
   dimension: sla_apr_ies_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}) , ${dt_aprovado_instituicao_raw}) < 0)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}) , ${dt_aprovado_instituicao_raw}) < 0)
                    --or ${dt_aprovado_behavior_raw} is null or ${dt_aprovado_instituicao_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              else datediff(second,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
               ,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
     value_format: "0"
@@ -2205,11 +2205,11 @@ dimension: flg_d1 {
 
   dimension: sla_agu_ass_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_assinatura_raw}) < 0)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,coalesce(${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_assinatura_raw}) < 0)
                    --or ${dt_aprovado_instituicao_raw} is null or ${dt_aguardando_assinatura_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
-              ,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+              else datediff(second,coalesce(${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
     value_format: "0"
     hidden: yes
@@ -2217,11 +2217,11 @@ dimension: flg_d1 {
 
   dimension: sla_agu_doc_renov {
     type: number
-    sql:  case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_documento_raw}) < 0)
+    sql:  case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_aguardando_documento_raw}) < 0)
                    --or ${dt_aguardando_assinatura_raw} is null or ${dt_aguardando_documento_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
-              ,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+              else datediff(second,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
 
     #case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_aprovado_instituicao_raw},${dt_aguardando_documento_raw}) < 0
@@ -2238,11 +2238,11 @@ dimension: flg_d1 {
 
   dimension: sla_form_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_formalizado_raw}) < 0)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(second,coalesce(${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_formalizado_raw}) < 0)
                    --or ${dt_aguardando_documento_raw} is null or ${dt_formalizado_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
-              ,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+              else datediff(second,coalesce(${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_formalizado_raw},${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
 
        #case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,${dt_aguardando_assinatura_raw},${dt_formalizado_raw}) < 0
@@ -2256,11 +2256,11 @@ dimension: flg_d1 {
 
   dimension: sla_ced_renov {
     type: number
-    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_cedido_raw}) < 0)
+    sql: case when ${tipo_proposta} = 'RENOVACAO' AND (datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}),${dt_cedido_raw}) < 0)
                    --or ${dt_formalizado_raw} is null or ${dt_cedido_raw} is null)
               then null
-              else datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
-              ,coalesce(${dt_cedido_raw},${dt_formalizado_raw},${dt_aguardando_documento_raw},${dt_aguardando_assinatura_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
+              else datediff(day,coalesce(${dt_formalizado_raw},${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
+              ,coalesce(${dt_cedido_raw},${dt_formalizado_raw},${dt_aguardando_assinatura_raw},${dt_aguardando_documento_raw},${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
     value_format: "0"
     hidden: yes
@@ -2411,11 +2411,11 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_eleg_renov} ;;
-      sql: ${sla_eleg_renov} ;;
+      sql: coalesce(${sla_eleg_renov}/86400,0) ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "1. Iniciar Proposta até Elegível"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
     }
 
@@ -2423,22 +2423,22 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_beha_renov} ;;
-      sql: ${sla_beha_renov} ;;
+      sql: ${sla_beha_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "2. Elegível até Aprovado Behavior"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno ser elegível e ser aprovado no behavior"
     }
     measure: sla_apr_ies_renov2 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-      sql: ${sla_apr_ies_renov} ;;
+      sql: ${sla_apr_ies_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
     }
 
@@ -2447,11 +2447,11 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_agu_doc_renov} ;;
-      sql: ${sla_agu_doc_renov} ;;
+      sql: ${sla_agu_doc_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "4. Aprovado Instituição até Aguardando Documento"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
     }
 
@@ -2459,11 +2459,11 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_agu_ass_renov} ;;
-      sql: ${sla_agu_ass_renov} ;;
+      sql: ${sla_agu_ass_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "6. Aguardando Document até Aguardando Assinatura"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
     }
 
@@ -2471,11 +2471,11 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_form_renov} ;;
-      sql: ${sla_form_renov} ;;
+      sql: ${sla_form_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "7. Aguardando Assinatura até Formalizado"
-      value_format: "0"
+      value_format: "0.0"
       description: "Mediana do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
     }
 
@@ -2495,7 +2495,6 @@ dimension: flg_d1 {
       type: number
       sql: coalesce(${sla_eleg_renov},0)
           +coalesce(${sla_beha_renov},0)
-          +coalesce(${sla_form_renov},0)
           +coalesce(${sla_apr_ies_renov},0)
           +coalesce(${sla_agu_doc_renov},0)
           +coalesce(${sla_agu_ass_renov},0)
@@ -2504,7 +2503,7 @@ dimension: flg_d1 {
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "Tempo Total de Jornada do Aluno de Renovação"
-      value_format: "0"
+      value_format: "0.0"
       description: "Soma da mediana do tempo de todas as etapas do aluno de renovação durante o processo de contratação no PRAVALER"
     }
 
@@ -2889,7 +2888,7 @@ coalesce(${sla_ced_novos},0);;
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_eleg_renov} ;;
-      sql: ${sla_eleg_renov} ;;
+      sql: coalesce(${sla_eleg_renov}/86400,0) ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "1. Iniciar Proposta até Elegível"
@@ -2901,22 +2900,22 @@ coalesce(${sla_ced_novos},0);;
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_beha_renov} ;;
-      sql: ${sla_beha_renov} ;;
+      sql: ${sla_beha_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "2. Elegível até Aprovado Behavior"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno ser elegível e ser aprovado no behavior"
     }
     measure: sla_apr_ies_renov23 {
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-      sql: ${sla_apr_ies_renov} ;;
+      sql: ${sla_apr_ies_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno ser aprovado no behavior e ser aprovado pela instituição"
     }
 
@@ -2924,11 +2923,11 @@ coalesce(${sla_ced_novos},0);;
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_agu_doc_renov} ;;
-      sql: ${sla_agu_doc_renov} ;;
+      sql: ${sla_agu_doc_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "4. Aprovado Instituição até Aguardando Documento"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno ser aprovado pela instituição e aguardar o envio dos documentos"
     }
 
@@ -2936,11 +2935,11 @@ coalesce(${sla_ced_novos},0);;
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_agu_ass_renov} ;;
-      sql: ${sla_agu_ass_renov} ;;
+      sql: ${sla_agu_ass_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "6. Aguardando Documento até Aguardando Assinatura"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno ter o contrato gerado e aguardar a assinatura do contrato"
     }
 
@@ -2948,11 +2947,11 @@ coalesce(${sla_ced_novos},0);;
       type: average
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_form_renov} ;;
-      sql: ${sla_form_renov} ;;
+      sql: ${sla_form_renov}/86400 ;;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "7. Aguardando Assinatura até Formalizado"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno ter seu contrato assinado e ter todos seus documentos aprovados pela formalização"
     }
 
@@ -2980,7 +2979,7 @@ coalesce(${sla_ced_novos},0);;
 
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "Tempo Total de Jornada do Aluno Novo"
-      value_format: "0"
+      value_format: "0.0"
       drill_fields: [id_cpf,id_proposta,data_inicio_da_proposta_date,etapa,status_etapa,data_ultimo_status_date,average_total_novos]
       description: "Soma da Média do tempo de todas as etapas do aluno novo durante o processo de contratação no PRAVALER"
     }
