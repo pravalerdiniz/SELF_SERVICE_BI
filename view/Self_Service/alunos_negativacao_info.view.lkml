@@ -1,6 +1,6 @@
 view: alunos_negativacao_info {
     derived_table: {
-      persist_for: "5 hour"
+      persist_for: "24 hours"
       sql: select * from (
       select
                   id_cpf,

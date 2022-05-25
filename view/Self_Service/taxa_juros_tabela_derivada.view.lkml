@@ -1,6 +1,7 @@
 view: taxa_instituicao_simplificada {
   derived_table: {
-    persist_for: "8 hours"
+    persist_for: "24 hours"
+##>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
     sql: select
         b.id,
         b.id_instituicao,
