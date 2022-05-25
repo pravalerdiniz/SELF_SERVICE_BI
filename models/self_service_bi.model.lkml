@@ -523,13 +523,16 @@ explore: jornada {
 
   }
 
-    join: instituicao {
-    from: instituicao
+    join: instituicao_resumo {
     view_label: "3. Instituição"
-    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao};;
+    sql_on: ${jornada.id_instituicao} = ${instituicao_resumo.id_instituicao};;
     relationship: many_to_one
     type: left_outer
   }
+
+
+
+
 
 
   join: dim_cpf {
@@ -588,11 +591,7 @@ explore: jornada {
   }
 }
 
-explore: instituicao_ies {
-  persist_for: "1 hour"
-  view_label: "Instituição IES"
 
-}
 
 explore: instituicao {
   persist_for: "24 hours"
