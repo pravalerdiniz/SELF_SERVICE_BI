@@ -1241,7 +1241,18 @@ explore: alunos {
     - proposta.nivel_curso,
     - proposta.flg_produto_ativo,
     - proposta.tipo_produto,
-    - proposta.sum_qtd_mensalidade_contrato
+    - proposta.sum_qtd_mensalidade_contrato,
+    - alunos_gerencial_renovacao_status_elegibilidade.count_distinct,
+    - alunos_gerencial_renovacao_carteira_elegibilidade.count_cpf,
+    - alunos_acordo_renegociacao.count_id_cpf,
+    - alunos_acordo.count_id_cpf,
+    - proposta.cont_cpf,
+    - proposta.perc_cpf,
+    - financeiro.count_alunos,
+    - atribuicao_nova.count_id_cpf,
+    - atribuicao_nova.perc_cpf,
+    - status.cont_cpf
+
 
 
 
@@ -1265,13 +1276,7 @@ explore: alunos {
 
   }
 
-  join: alunos_inadimplencia_1_homolog {
-    view_label: "1.2 Inadimplência - Homologação - MOB"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1_homolog.id_cpf}  and ${alunos_inadimplencia_1_homolog.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
 
-  }
 
 
   join: alunos_inadimplencia_2 {

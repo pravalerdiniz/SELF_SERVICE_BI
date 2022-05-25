@@ -381,13 +381,6 @@ dimension: tipo_investimento {
     drill_fields: [detail*]
   }
 
-  measure: count {
-    type: count
-    #sql: ${id_cpf} ;;
-    label: "Quantidade de Alunos"
-    description: "Contagem de ID CPFs"
-    drill_fields: [detail*]
-  }
 
   measure: count_acordos {
     type: count_distinct

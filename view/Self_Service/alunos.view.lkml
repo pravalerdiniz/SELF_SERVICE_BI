@@ -1400,32 +1400,32 @@ dimension: faixa_tempo_meses_evasao {
 
   measure: sum_valor_fin {
     type: sum
-    sql: ${vl_mensalidade_atual} ;;
-    group_label: "Valor Financiado"
+    sql: ${vl_total_financiado} ;;
+    group_label: "Valor Total Financiado"
     group_item_label: "Soma"
     description: "Soma dos valores efetivamente financiados pelo PRAVALER"
   }
 
   measure: avg_valor_fin {
     type: average
-    sql: ${vl_mensalidade_atual} ;;
-    group_label: "Valor Financiado"
+    sql: ${vl_total_financiado} ;;
+    group_label: "Valor Total Financiado"
     group_item_label: "Média"
     description: "Valor médio efetivamente financiado pelo PRAVALER"
   }
 
   measure: min_valor_fin {
     type: min
-    sql: ${vl_mensalidade_atual} ;;
-    group_label: "Valor Financiado"
+    sql: ${vl_total_financiado} ;;
+    group_label: "Valor Total Financiado"
     group_item_label: "Mínimo"
     description: "Valor mínimo efetivamente financiado pelo PRAVALER"
   }
 
   measure: max_valor_fin {
     type: max
-    sql: ${vl_mensalidade_atual} ;;
-    group_label: "Valor Financiado"
+    sql: ${vl_total_financiado} ;;
+    group_label: "Valor Total Financiado"
     group_item_label: "Máximo"
     description: "Valor máximo efetivamente financiado pelo PRAVALER"
   }
