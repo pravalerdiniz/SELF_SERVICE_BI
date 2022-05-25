@@ -521,7 +521,29 @@ view: instituicao {
     sql: ${TABLE}."VALOR_MENSALIDADE";;
   }
 
+  dimension: ies_amigoedu_array {
+    sql: ${TABLE}."DADOS_IES_AMIGOEDU" ;;
+    type: string
+    group_label: "Dados da IES Amigoedu"
+    group_item_label: "Array amigoedu"
+    description: "Indica o conjunto de dados da IES nos dados do amigoedu"
+  }
 
+  dimension: ies_amigoedu_nome {
+    sql: ${TABLE}.DADOS_IES_AMIGOEDU[0]:"nome"::varchar;;
+    type: string
+    group_label: "Dados da IES Amigoedu"
+    group_item_label: "nome da IES amigoedu"
+    description: "Indica o nome da IES nos dados do amigoedu"
+  }
+
+  dimension: ies_amigoedu_grupo {
+    sql: ${TABLE}.DADOS_IES_AMIGOEDU[0]:"grupo"::varchar;;
+    type: string
+    group_label: "Dados da IES Amigoedu"
+    group_item_label: "grupo da IES amigoedu"
+    description: "Indica o grupo da IES nos dados do amigoedu"
+  }
 
 
 
