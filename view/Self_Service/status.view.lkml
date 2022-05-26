@@ -591,25 +591,25 @@ nm_produto
 
   measure: avg_qtd_dias_status_anterior{
     type: average
-    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    sql: ${TABLE}."QTD_DIAS_STATUS"/86400 ;;
     label: "Tempo médio de Transição no Status"
-    value_format: "0"
+    value_format: "0.0"
     description: "Indica a média de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
   measure: sum_qtd_dias_status_anterior{
     type: sum
-    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    sql: ${TABLE}."QTD_DIAS_STATUS"/86400 ;;
     label: "Tempo de Transição no Status"
-    value_format: "0"
+    value_format: "0.0"
     description: "Indica a quantidade de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
 
   measure: med_qtd_dias_status_anterior{
     type: median
-    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    sql: ${TABLE}."QTD_DIAS_STATUS"/86400 ;;
     label: "Tempo de Transição no Status - Mediana"
-    value_format: "0"
+    value_format: "0.0"
     hidden:  yes
     description: "Indica a mediana de dias que o aluno ficou no status. A partir dele, conseguimos identificar a transição de dias de um status para outro."
   }
@@ -617,9 +617,9 @@ nm_produto
 
     measure: median_qtd_dias_status_anterior{
     type: median
-    sql: ${TABLE}."QTD_DIAS_STATUS" ;;
+    sql: ${TABLE}."QTD_DIAS_STATUS"/86400 ;;
     label: "Mediana de quantidade de Dias - Status Anterior"
-    value_format: "0"
+    value_format: "0.0"
     description: "Indica a mediana de quantidade dias que o aluno ficou parado no status de origem"
     hidden:yes
   }
