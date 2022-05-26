@@ -229,7 +229,7 @@ view: orcameto_cc {
         label: "Faculdade"
       }
       when:{
-        sql: ${descricao_cc} in ('Central CX', 'Estratégia de Crédito','Estratégia de crédito','  Formalização','Planejamento e Conversão')  ;;
+        sql: ${descricao_cc} in ('Central CX', 'Estratégia de Crédito','Estratégia de crédito','Formalização','Planejamento e Conversão','Operações Financeiras')  ;;
         label: "Jornada"
       }
       when: {
@@ -237,11 +237,11 @@ view: orcameto_cc {
         label: "Organico"
       }
       when: {
-        sql: ${descricao_cc} in ('Social','Online');;
+        sql: ${descricao_cc} in ('Social','Online','Aquisição');;
         label: "Pago"
       }
       when: {
-        sql: ${descricao_cc} in ('Online RV');;
+        sql: ${descricao_cc} in ('Online RV','Aquisição RV');;
         label: "RV"
       }
       when: {
