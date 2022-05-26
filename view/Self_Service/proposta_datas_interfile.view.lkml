@@ -1,6 +1,6 @@
 view: proposta_datas_interfile {
   derived_table: {
-    persist_for: "1 hour"
+    persist_for: "24 hours"
     sql: select
       id_cpf,
       id_proposta,
