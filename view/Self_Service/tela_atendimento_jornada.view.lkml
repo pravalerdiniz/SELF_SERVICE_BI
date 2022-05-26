@@ -1,6 +1,6 @@
 view: tela_atendimento_jornada {
     derived_table: {
-      persist_for: "1 hour"
+      persist_for: "24 hours"
       sql: select
             id_cpf,
             f.value:ID_PROPOSTA::varchar as ID_PROPOSTA,
