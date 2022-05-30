@@ -327,7 +327,7 @@ explore: ipca_bv {
   label: "IPCA BV"
   join: ipca_bv_cpf {
     view_label: "Status CPF"
-    sql: ${ipca_bv.cpf_aluno} = ${ipca_bv_cpf.cpf_aluno} ;;
+    sql_on: ${ipca_bv.cpf_aluno} = ${ipca_bv_cpf.cpf_aluno} ;;
     type: left_outer
     relationship: many_to_one
   }
