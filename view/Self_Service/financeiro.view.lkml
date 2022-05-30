@@ -635,7 +635,7 @@ dimension: safra_vencimento {
     value_format: "$ #,##0.00"
     label: "Valor Total"
     description: "Indica o valor total do boleto. Considerando: Valor de Boleto + Juros + Multa + Despesa de Cobrança"
-    sql: CASE WHEN ${dias_atraso} = 0 THEN ${vl_boleto}
+    sql: CASE WHEN ${dias_atraso} <= 0 THEN ${vl_boleto}
           WHEN ${dias_atraso} > 0 AND ${dias_atraso} < 11 THEN (${dias_atraso} * ${vl_juros}) + ${vl_boleto} +  ${vl_multa}
           WHEN ${dias_atraso} > 10 THEN (${dias_atraso} * ${vl_juros}) + ${vl_boleto} + ${vl_multa} + ${vl_despesa}
           ELSE 0 END;;
