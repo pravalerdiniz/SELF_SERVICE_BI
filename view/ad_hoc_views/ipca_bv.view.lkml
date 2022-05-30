@@ -108,6 +108,12 @@ view: ipca_bv {
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
+  dimension: id_boleto {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}."ID_BOLETO" ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}."STATUS" ;;

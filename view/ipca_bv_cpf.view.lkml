@@ -12,6 +12,8 @@ view: ipca_bv_cpf {
   # This dimension will be called "Cpf Aluno" in Explore.
 
   dimension: cpf_aluno {
+    label: "CPF_ALUNO"
+    description: "CPF do aluno"
     primary_key: yes
     type: number
     sql: ${TABLE}."CPF_ALUNO" ;;
@@ -41,26 +43,32 @@ view: ipca_bv_cpf {
   }
 
   dimension: faixa_atraso {
+    label: "Faixa de atraso"
+    description: "Faixa de atraso do primeiro vencimento"
     type: string
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
   dimension: flg_writeoff {
+    description: "Flag que sinaliza que o CPF entrou em WO"
     type: yesno
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
 
   dimension: id_cpf {
+    description: "Identificador único para o CPF"
     type: number
     sql: ${TABLE}."ID_CPF" ;;
   }
 
   dimension: st_geral {
+    description: "Status do CPF junto a instituição"
     type: string
     sql: ${TABLE}."ST_GERAL" ;;
   }
 
   dimension: status_atraso {
+    description: "Status do atraso"
     type: string
     sql: ${TABLE}."STATUS_ATRASO" ;;
   }
@@ -72,6 +80,7 @@ view: ipca_bv_cpf {
 
   measure: quantidade_cpf {
     label: "Quantidade de CPFs"
+    description: "Contagem distinta de CPFs"
     type: count_distinct
     sql: ${cpf_aluno} ;;
 
