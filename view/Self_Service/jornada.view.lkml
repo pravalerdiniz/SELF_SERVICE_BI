@@ -2892,7 +2892,7 @@ coalesce(${sla_ced_novos},0);;
       drill_fields: [detail*]
       group_label: "Média do tempo de Jornada - Renovação"
       group_item_label: "1. Iniciar Proposta até Elegível"
-      value_format: "0"
+      value_format: "0.0"
       description: "Média do tempo entre o aluno iniciar uma id_proposta e se tornar elegível"
     }
 

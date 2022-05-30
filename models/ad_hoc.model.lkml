@@ -323,7 +323,16 @@ explore: titulos_cnpj {
   label: "Titulos CNPJ"
 }
 
-explore: ipca_bv {}
+explore: ipca_bv {
+  label: "IPCA BV"
+  join: ipca_bv_cpf {
+    view_label: "Status CPF"
+    sql_on: ${ipca_bv.cpf_aluno} = ${ipca_bv_cpf.cpf_aluno} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+}
 
 explore: painel_de_carga{
   persist_with: painel_de_carga
