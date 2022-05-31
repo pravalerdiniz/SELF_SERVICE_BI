@@ -155,6 +155,14 @@ view: reclame_aqui {
     sql: ${TABLE}."CLIENTE_DATA_CONSIDERACAO" ;;
   }
 
+  dimension: avaliacao_favoravel {
+    type: string
+    group_label: "Dados da Avaliação"
+    group_item_label: "Avaliação Favorável"
+    description: "Avaliação Favorável"
+    sql: ${TABLE}."AVALIACAO_FAVORAVEL" ;;
+  }
+
   dimension: empresa_consideracao {
     type: string
     group_label: "Dados da Avaliação"
@@ -306,8 +314,8 @@ view: reclame_aqui {
   dimension: conteudo_reclamacao {
     type: string
     group_label: "Dados da Reclamação"
-    group_item_label: "Conteúdo da Reclamação"
-    description: "Conteúdo da Reclamação"
+    group_item_label: "Texto da Reclamação"
+    description: "Texto da Reclamação"
     sql: ${TABLE}."CONTEUDO_RECLAMACAO" ;;
   }
 
@@ -381,6 +389,14 @@ view: reclame_aqui {
     group_item_label: "Tempo primeira resposta (público)"
     description: "Tempo primeira resposta (público)"
     sql: ${TABLE}."TEMPO_ATENDIMENTO_PUBLICO" ;;
+  }
+
+  dimension: tempo_atendimento_privado {
+    type: string
+    group_label: "Dados da Reclamação"
+    group_item_label: "Tempo primeira resposta (privada)"
+    description: "Tempo primeira resposta (privada)"
+    sql: ${TABLE}."TEMPO_ATENDIMENTO_PRIVADO" ;;
   }
 
   dimension: ticket_id {
@@ -484,8 +500,9 @@ view: reclame_aqui {
     group_label: "Dados da Reclamação"
     group_item_label: "ID Origem RA"
     description: "ID Origem RA"
-      sql: ${TABLE}."ORIGEM_EXTERNA" ;;
-}
+    sql: ${TABLE}."ORIGEM_EXTERNA" ;;
+  }
+
 
 
   ## DADOS DA EMPRESA ##
