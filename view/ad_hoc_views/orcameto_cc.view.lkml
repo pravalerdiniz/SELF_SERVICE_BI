@@ -215,7 +215,7 @@ view: orcameto_cc {
   measure: ltm {
     type: sum
     sql: ${montante} ;;
-    filters: [data_lancamento_month: "last 12 months"]
+    filters: [data_lancamento_month: "last 13 months"]
     value_format: "$#,##0.00"
     group_label: "Valor"
     group_item_label: "LTM"
