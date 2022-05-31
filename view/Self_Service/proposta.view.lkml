@@ -66,7 +66,7 @@ view: proposta {
     link: {label:"Documentação - Idade do Aluno"
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/882540633/IDADE+DO+ALUNO"}
     value_format_name: id
-    sql: ${TABLE}."ALUNO_IDADE" ;;
+    sql: coalesce(${TABLE}."ALUNO_IDADE",0) ;;
   }
 
   dimension: grupo_aluno_idade {
