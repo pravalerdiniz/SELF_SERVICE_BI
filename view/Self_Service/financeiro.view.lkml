@@ -1456,7 +1456,7 @@ foi gerado por um pagamento menor do boleto anterior."
 
 
 
-
+# Esse campo não existe na tabela Financeiro
   dimension_group: data_transferencia {
     type: time
     timeframes: [
@@ -1469,7 +1469,7 @@ foi gerado por um pagamento menor do boleto anterior."
     ]
     convert_tz: no
     datatype: date
-
+    hidden: yes
     label: "Data de Transferência"
     description: "Indica a Data de Transferência do Valor"
     sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
