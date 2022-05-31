@@ -375,6 +375,14 @@ view: reclame_aqui {
     sql: ${TABLE}."FLG_ARQUIVADA" ;;
   }
 
+  dimension: flg_ativo {
+    type: yesno
+    group_label: "Dados da Reclamação"
+    group_item_label: "Flag Ativo?"
+    description: "Flag Ativo? (Yes/No)"
+    sql: ${TABLE}."FLG_ATIVO" ;;
+  }
+
   dimension: titulo_reclamacao {
     type: string
     group_label: "Dados da Reclamação"
