@@ -64,13 +64,7 @@ view: ipca_bv_cpf {
   dimension: st_geral {
     description: "Status do CPF junto a instituição"
     type: string
-    sql: ${TABLE}."ST_GERAL" ;;
-  }
-
-  dimension: status_atraso {
-    description: "Status do atraso"
-    type: string
-    sql: ${TABLE}."STATUS_ATRASO" ;;
+    sql: ${TABLE}."STATUS" ;;
   }
 
   measure: count {
