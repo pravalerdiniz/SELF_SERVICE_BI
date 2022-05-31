@@ -26,6 +26,33 @@ view: interacoes {
     sql: ${TABLE}."TAGS" ;;
   }
 
+  dimension: atendente_grupo_ies {
+    type: string
+    case: {
+      when: {
+        sql: ${tags} like '%jessica_dos_santos_cerqueira%' ;;
+        label: "Cerqueira"
+      }
+      when: {
+        sql: ${tags} like '%jessica_da_silva_marques%' ;;
+        label: "Marques"
+      }
+      when: {
+        sql: ${tags} like '%beatriz_cunha%' ;;
+        label: "Beatriz"
+      }
+      when: {
+        sql: ${tags} like '%gisele_de_fatima_santana_silva%' ;;
+        label: "Gisele"
+      }
+
+      else: "Outros"
+    }
+    group_label: "Nome Atendentes Grupo IES"
+    group_item_label: "Nome Atendente"
+    description: "Nome da Atendente do grupo IES"
+  }
+
   dimension: chat_agentes {
     type: string
     group_label: "Dados de Chat"
