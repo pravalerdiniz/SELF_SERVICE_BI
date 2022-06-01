@@ -365,20 +365,20 @@ view: crm_customer {
     sql: ${TABLE}."EFICIENCIA_3_ZENDESK" ;;
   }
 
-  dimension: zendesk {
-    type: string
-    case: {
-      when: {
-        sql: ${crm_dados_zendesk.DATA_INICIO_date} >= ${data_evento_date}
-          AND ${crm_dados_zendesk.DATA_INICIO_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
-        label: "1"
-      }
-      else: "0"
-    }
-    group_label: "Dados do Evento"
-    label: "Passou pela Zendesk"
-    description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
-  }
+ # dimension: zendesk {
+  #  type: string
+   # case: {
+    #  when: {
+     #   sql: ${crm_dados_zendesk.DATA_INICIO_date} >= ${data_evento_date}
+      #    AND ${crm_dados_zendesk.DATA_INICIO_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
+       # label: "1"
+      #}
+      #else: "0"
+    #}
+    #group_label: "Dados do Evento"
+    #label: "Passou pela Zendesk"
+    #description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
+  #}
 
   dimension: erros {
     type: string
