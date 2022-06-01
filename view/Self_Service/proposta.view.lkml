@@ -1965,6 +1965,19 @@ dimension: vl_tarifa_cadastro {
     sql: NULLIF(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
+  dimension: vl_mensalidade_ajustado {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Mensalidade Ajustado"
+    value_format: "$ #,###.00"
+    description: "Indica o valor da mensalidade descrita no contrato"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    hidden: no
+    sql: round(NULLIF(${TABLE}."VL_MENSALIDADE",0),0) ;;
+  }
+
+
   dimension: vl_parcela {
     type: number
     group_label: "Dados da Cessão"
@@ -2807,6 +2820,17 @@ dimension: vl_tarifa_cadastro {
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     sql:${vl_mensalidade};;
+    description: "Média do valor da mensalidade descrita no contrato"
+  }
+
+  measure: avg_mensalidade_contrato_ajustado  {
+    type: average
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Média Ajustada"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    sql:${vl_mensalidade_ajustado};;
     description: "Média do valor da mensalidade descrita no contrato"
   }
 
