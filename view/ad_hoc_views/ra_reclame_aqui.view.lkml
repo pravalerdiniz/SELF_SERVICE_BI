@@ -43,8 +43,8 @@ view: reclame_aqui {
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
 
-  dimension: avaliacao_tempo {
-    type: string
+  measure: avaliacao_tempo {
+    type: sum
     group_label: "Dados da Avaliação"
     group_item_label: "Tempo Avaliação"
     description: "Tempo da avaliação em minutos"
@@ -391,16 +391,16 @@ view: reclame_aqui {
     sql: ${TABLE}."TITULO_RECLAMACAO" ;;
   }
 
-  dimension: tempo_atendimento_publico {
-    type: string
+  measure: tempo_atendimento_publico {
+    type: sum
     group_label: "Dados da Reclamação"
     group_item_label: "Tempo primeira resposta (público)"
     description: "Tempo primeira resposta (público)"
     sql: ${TABLE}."TEMPO_ATENDIMENTO_PUBLICO" ;;
   }
 
-  dimension: tempo_atendimento_privado {
-    type: string
+  measure: tempo_atendimento_privado {
+    type: sum
     group_label: "Dados da Reclamação"
     group_item_label: "Tempo primeira resposta (privada)"
     description: "Tempo primeira resposta (privada)"
