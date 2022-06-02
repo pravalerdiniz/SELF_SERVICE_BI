@@ -1298,7 +1298,7 @@ explore: alunos {
 
   ]
 
-#Excluido - Duplicidade | Objeto igual ao da Proposta proposta_produtos_aprovados
+#Excluido - Duplicidade | Objeto igual ao da Proposta proposta_produtos_aprovados - Lulinha 02/06/2022
   #join: alunos_produtos_aprovados {
     #view_label: "1.1 Produtos Aprovados"
     #sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
@@ -1396,7 +1396,7 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  #Excluido - Última Atualização  2022-01-27
+  #Excluido - Dados Desatualizados 2022-01-27 | Lulinha 02/06/2022
 
   #join: alunos_negativacao_info{
    # view_label: "1.3 Negativação Informações"

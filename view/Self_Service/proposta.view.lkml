@@ -3745,7 +3745,7 @@ dimension: vl_tarifa_cadastro {
     ]
   }
 
-#Excluir
+#Campos Ocultos - Última Atualização 02/06/2022 - Lulinha
 
   dimension: canal_acesso_conversao {
     type: string
