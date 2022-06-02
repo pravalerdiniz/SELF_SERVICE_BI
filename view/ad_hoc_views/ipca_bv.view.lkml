@@ -148,7 +148,7 @@ view: ipca_bv {
     group_label: "Soma do boleto"
     type: sum
     sql: ${vl_boleto_cenario_c_10_prc} ;;
-    label: "TETO 5%"
+    label: "TETO 10%"
     description: "Soma dos valores dos boletos no cenário C 10%."
   }
 
@@ -156,7 +156,7 @@ view: ipca_bv {
     group_label: "Soma do boleto"
     type: sum
     sql: ${vl_boleto_cenario_c_15_prc} ;;
-    label: "TETO 5%"
+    label: "TETO 15%"
     description: "Soma dos valores dos boletos no cenário C 15%."
   }
 
