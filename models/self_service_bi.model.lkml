@@ -1014,12 +1014,50 @@ explore: proposta {
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
+    - alunos.tipo_aluno_etapa,
+    - alunos.tipo_renovacao,
+    - alunos.num_da_renovacao,
+    - alunos.qtd_renovacao,
+    - alunos.vl_score,
+    - alunos.count_id_cpf,
+    - alunos.perc_cpf,
+    - alunos.avg_renda_alu,
+    - alunos.sum_renda_alu,
+    - alunos.avg_renda_fia,
+    - alunos.sum_renda_fia,
+    - alunos.avg_renda_fam,
+    - alunos.max_mensalidade,
+    - alunos.avg_mensalidade,
+    - alunos.min_mensalidade,
+    - alunos.sum_mensalidade,
+    - alunos.max_valor_fin,
+    - alunos.avg_valor_fin,
+    - alunos.min_valor_fin,
+    - alunos.sum_valor_fin,
     - jornada.aluno_cpf,
     - jornada.email_aluno,
     - jornada.nome_aluno,
     - jornada.celular_aluno,
-    - jornada.total_renov
-
+    - jornada.total_renov,
+    - jornada.id_elegivel,
+    - jornada.id_proposta,
+    - jornada.cpf_hash,
+    - jornada.cpf_aluno_ajustado,
+    - jornada.id_cpf,
+    - jornada.perc_cpf,
+    - jornada.count_cpf,
+    - jornada.perc_proposta,
+    - jornada.count_proposta,
+    - financeiro.count_alunos,
+    - financeiro.perc_alunos,
+    - status.cont_cpf,
+    - status.cont_proposta,
+    - instituicao.sum_mensalidade,
+    - instituicao.min_mensalidade,
+    - instituicao.avg_mensalidade,
+    - instituicao.max_mensalidade,
+    - atribuicao_nova.perc_cpf,
+    - atribuicao_nova.count_id_cpf,
 
 
 
@@ -1260,12 +1298,13 @@ explore: alunos {
 
   ]
 
-  join: alunos_produtos_aprovados {
-    view_label: "1.1 Produtos Aprovados"
-    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Excluido - Duplicidade | Objeto igual ao da Proposta proposta_produtos_aprovados - Lulinha 02/06/2022
+  #join: alunos_produtos_aprovados {
+    #view_label: "1.1 Produtos Aprovados"
+    #sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    #type: left_outer
+    #relationship: one_to_many
+ # }
 
 
 
@@ -1357,15 +1396,17 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: alunos_negativacao_info{
-    view_label: "1.3 Negativação Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  #Excluido - Dados Desatualizados 2022-01-27 | Lulinha 02/06/2022
+
+  #join: alunos_negativacao_info{
+   # view_label: "1.3 Negativação Informações"
+    #sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
+    #type: left_outer
+    #relationship: one_to_many
+ # }
 
   join: alunos_log_negativacao{
-    view_label: "1.3.1 Negativação Logs"
+    view_label: "1.3 Negativação Logs"
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
