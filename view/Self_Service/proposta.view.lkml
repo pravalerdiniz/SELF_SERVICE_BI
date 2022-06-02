@@ -1420,19 +1420,7 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."ID_PRODUTO" ;;
   }
 
-  dimension: id_produtos_preaprovados {
-    type: string
-    group_label: "Dados do Produto"
-    label: "ID Produtos Pré Aprovados"
-    description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
-    sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
-    html:
-    {% assign words = value | split: ',' %}
-    <ul>
-    {% for word in words %}
-    <li>{{ word }}</li>
-    {% endfor %} ;;
-  }
+
 
   dimension: id_proposta {
     type: string
@@ -3757,7 +3745,7 @@ dimension: vl_tarifa_cadastro {
     ]
   }
 
-#Excluir
+#Campos Ocultos - Última Atualização 02/06/2022 - Lulinha
 
   dimension: canal_acesso_conversao {
     type: string
@@ -4034,6 +4022,22 @@ dimension: vl_tarifa_cadastro {
     group_item_label: "Ciclo de Renovação"
     description: "Informa o ciclo da proposta de renovação do aluno."
     sql: ${TABLE}."CICLO" ;;
+  }
+
+
+  dimension: id_produtos_preaprovados {
+    type: string
+    group_label: "Dados do Produto"
+    hidden: yes
+    label: "ID Produtos Pré Aprovados"
+    description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
+    sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
+    html:
+    {% assign words = value | split: ',' %}
+    <ul>
+    {% for word in words %}
+    <li>{{ word }}</li>
+    {% endfor %} ;;
   }
 
 
