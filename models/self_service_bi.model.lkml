@@ -1456,12 +1456,13 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: pdd {
-    view_label: "1.6 PDD"
-    sql_on: ${alunos.id_cpf} = ${pdd.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Excluido - Não Utilizado | Lulinha 02/06/2022
+ # join: pdd {
+    #view_label: "1.6 PDD"
+    #sql_on: ${alunos.id_cpf} = ${pdd.id_cpf} ;;
+    #type: left_outer
+    #relationship: one_to_many
+  #}
 
   join: alunos_painel_risco {
     view_label: "1.7 Análise de Risco e Crédito - Decisão"
