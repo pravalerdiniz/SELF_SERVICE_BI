@@ -87,7 +87,8 @@ join: proposta {
     proposta.flg_contrato_cedido,
     proposta.ds_fundo_investimento,
     proposta.nm_produto,
-    proposta.tipo_produto
+    proposta.tipo_produto,
+    proposta.cpf_aluno
   ]
   relationship: one_to_one
   type: left_outer
