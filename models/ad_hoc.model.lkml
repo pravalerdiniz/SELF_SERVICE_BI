@@ -76,6 +76,31 @@ explore: orcamento_frente {
 
 explore: orcameto_cc {
   label: "Orçamento CAC"
+  view_label: "1. Orçamento CAC"
+
+join: proposta {
+  from: proposta
+  view_label: "2. Proposta"
+  sql_on:  ${proposta.data_concessao_month} = ${orcameto_cc.data_lancamento_month} ;;
+  fields: [
+    proposta.data_concessao_date,
+    proposta.flg_contrato_cedido,
+    proposta.ds_fundo_investimento,
+    proposta.nm_produto,
+    proposta.tipo_produto,
+    proposta.cpf_aluno,
+    proposta.tipo_proposta,
+    proposta.data_concessao_date,
+    proposta.data_concessao_day_of_year,
+    proposta.data_concessao_month,
+    proposta.data_concessao_month_name,
+    proposta.data_concessao_quarter,
+    proposta.data_concessao_week,
+    proposta.data_concessao_year
+  ]
+  relationship: many_to_one
+  type: left_outer
+}
 }
 
 explore: comparacao_ot {
