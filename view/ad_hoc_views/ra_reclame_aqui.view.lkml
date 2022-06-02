@@ -43,8 +43,8 @@ view: reclame_aqui {
     sql: ${TABLE}."AVALIACAO_DATA" ;;
   }
 
-  dimension: avaliacao_tempo {
-    type: string
+  measure: avaliacao_tempo {
+    type: sum
     group_label: "Dados da Avaliação"
     group_item_label: "Tempo Avaliação"
     description: "Tempo da avaliação em minutos"
@@ -153,6 +153,14 @@ view: reclame_aqui {
     group_label: "Dados da Avaliação"
     label: "Consideração do Cliente"
     sql: ${TABLE}."CLIENTE_DATA_CONSIDERACAO" ;;
+  }
+
+  dimension: avaliacao_favoravel {
+    type: string
+    group_label: "Dados da Avaliação"
+    group_item_label: "Avaliação Favorável"
+    description: "Avaliação Favorável"
+    sql: ${TABLE}."AVALIACAO_FAVORAVEL" ;;
   }
 
   dimension: empresa_consideracao {
@@ -306,8 +314,8 @@ view: reclame_aqui {
   dimension: conteudo_reclamacao {
     type: string
     group_label: "Dados da Reclamação"
-    group_item_label: "Conteúdo da Reclamação"
-    description: "Conteúdo da Reclamação"
+    group_item_label: "Texto da Reclamação"
+    description: "Texto da Reclamação"
     sql: ${TABLE}."CONTEUDO_RECLAMACAO" ;;
   }
 
@@ -367,6 +375,14 @@ view: reclame_aqui {
     sql: ${TABLE}."FLG_ARQUIVADA" ;;
   }
 
+  dimension: flg_ativo {
+    type: yesno
+    group_label: "Dados da Reclamação"
+    group_item_label: "Flag Ativo?"
+    description: "Flag Ativo? (Yes/No)"
+    sql: ${TABLE}."FLG_ATIVO" ;;
+  }
+
   dimension: titulo_reclamacao {
     type: string
     group_label: "Dados da Reclamação"
@@ -375,12 +391,20 @@ view: reclame_aqui {
     sql: ${TABLE}."TITULO_RECLAMACAO" ;;
   }
 
-  dimension: tempo_atendimento_publico {
-    type: string
+  measure: tempo_atendimento_publico {
+    type: sum
     group_label: "Dados da Reclamação"
     group_item_label: "Tempo primeira resposta (público)"
     description: "Tempo primeira resposta (público)"
     sql: ${TABLE}."TEMPO_ATENDIMENTO_PUBLICO" ;;
+  }
+
+  measure: tempo_atendimento_privado {
+    type: sum
+    group_label: "Dados da Reclamação"
+    group_item_label: "Tempo primeira resposta (privada)"
+    description: "Tempo primeira resposta (privada)"
+    sql: ${TABLE}."TEMPO_ATENDIMENTO_PRIVADO" ;;
   }
 
   dimension: ticket_id {
@@ -484,8 +508,9 @@ view: reclame_aqui {
     group_label: "Dados da Reclamação"
     group_item_label: "ID Origem RA"
     description: "ID Origem RA"
-      sql: ${TABLE}."ORIGEM_EXTERNA" ;;
-}
+    sql: ${TABLE}."ORIGEM_EXTERNA" ;;
+  }
+
 
 
   ## DADOS DA EMPRESA ##

@@ -333,20 +333,52 @@ view: crm_customer {
 #    description: "Indicador de mudança de status - 1 dia"
 #  }
 
-  dimension: zendesk {
-    type: string
-    case: {
-      when: {
-        sql: ${crm_dados_zendesk.DATA_INICIO_date} >= ${data_evento_date}
-          AND ${crm_dados_zendesk.DATA_INICIO_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
-        label: "1"
-      }
-      else: "0"
-    }
-    group_label: "Dados do Evento"
-    label: "Passou pela Zendesk"
-    description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
+  dimension: eficiencia_1_dia {
+    type: yesno
+    group_label: "Eficiencia"
+    label: "Eficiência - 1 dia"
+    description: "Indica se o aluno mudou de etapa até 1 dia depois do evento"
+    sql: ${TABLE}."EFICIENCIA_1_DIA" ;;
   }
+
+  dimension: eficiencia_2_dia {
+    type: yesno
+    group_label: "Eficiencia"
+    label: "Eficiência - 2 diaS"
+    description: "Indica se o aluno mudou de etapa até 2 dias após o evento"
+    sql: ${TABLE}."EFICIENCIA_2_DIA" ;;
+  }
+
+  dimension: eficiencia_3_dia {
+    type: yesno
+    group_label: "Eficiencia"
+    label: "Eficiência - 3 dias"
+    description: "Indica se o aluno mudou de etapa até 3 dias após o evento"
+    sql: ${TABLE}."EFICIENCIA_3_DIA" ;;
+  }
+
+  dimension: eficiencia_zen {
+    type: yesno
+    group_label: "Eficiencia"
+    label: "Eficiência Zendesk - 3 dias"
+    description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
+    sql: ${TABLE}."EFICIENCIA_3_ZENDESK" ;;
+  }
+
+ # dimension: zendesk {
+  #  type: string
+   # case: {
+    #  when: {
+     #   sql: ${crm_dados_zendesk.DATA_INICIO_date} >= ${data_evento_date}
+      #    AND ${crm_dados_zendesk.DATA_INICIO_date} <= DATEADD(day, 3, ${data_evento_date}) ;;
+       # label: "1"
+      #}
+      #else: "0"
+    #}
+    #group_label: "Dados do Evento"
+    #label: "Passou pela Zendesk"
+    #description: "Indicador que o aluno entrou em contato com nosso atendimento até 3 dias depois da comunicação"
+  #}
 
   dimension: erros {
     type: string
