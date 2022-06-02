@@ -1396,15 +1396,17 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: alunos_negativacao_info{
-    view_label: "1.3 Negativação Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  #Excluido - Última Atualização  2022-01-27
+
+  #join: alunos_negativacao_info{
+   # view_label: "1.3 Negativação Informações"
+    #sql_on: ${alunos.id_cpf} = ${alunos_negativacao_info.id_cpf} ;;
+    #type: left_outer
+    #relationship: one_to_many
+ # }
 
   join: alunos_log_negativacao{
-    view_label: "1.3.1 Negativação Logs"
+    view_label: "1.3 Negativação Logs"
     sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
     type: left_outer
     relationship: one_to_many
