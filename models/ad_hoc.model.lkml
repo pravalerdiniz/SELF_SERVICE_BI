@@ -98,7 +98,7 @@ join: proposta {
     proposta.data_concessao_week,
     proposta.data_concessao_year
   ]
-  relationship: many_to_one
+  relationship: one_to_one
   type: left_outer
 }
 }
