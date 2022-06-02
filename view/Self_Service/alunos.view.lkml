@@ -835,10 +835,10 @@ view: alunos {
     type: string
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
     group_label: "Dados do Fundo de Investimento"
-    group_item_label: "Nome do Fundo de Investimento referênte a última proposta do aluno"
-    description: "Indica o fundo de investimento responsável pelo financiamento do aluno"
-
+    group_item_label: "Nome do Fundo de Investimento Agrupado"
+    description: "Indica se o Produto do Aluno é Gestão ou Antecipação"
   }
+
 
   dimension: flg_aluno_ativo {
     type: yesno
