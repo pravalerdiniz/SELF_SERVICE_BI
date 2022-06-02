@@ -80,6 +80,7 @@ view: alunos {
     type: string
     group_label: "Dados Financeiros"
     label: "Faixa de Atraso"
+    hidden: yes
     description: "Indica a faixa de atraso de pagamento do Aluno"
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
