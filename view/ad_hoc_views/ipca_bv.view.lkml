@@ -20,15 +20,6 @@ view: ipca_bv {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_ano_concessao {
-    type: sum
-    sql: ${ano_concessao} ;;
-  }
-
-  measure: average_ano_concessao {
-    type: average
-    sql: ${ano_concessao} ;;
-  }
 
   dimension: ano_vencimento {
     type: number
@@ -130,10 +121,73 @@ view: ipca_bv {
   }
 
   measure: soma_boleto {
+    group_label: "Soma do boleto"
     type: sum
     sql: ${vl_boleto} ;;
-    group_label: "Valor Boleto"
-    label: "Soma do Valor do Boleto"
+    label: "Total Concessão"
+    description: "Soma do valor do boleto."
+  }
+
+  measure: soma_boleto_cenario_a {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_a} ;;
+    label: "Total Correção FULL IPCA"
+    description: "Soma do valor do boleto no cenário aplicando taxa IPCA."
+  }
+
+  measure: soma_boleto_cenario_c_5_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_c_5_prc} ;;
+    label: "TETO 5%"
+    description: "Soma dos valores dos boletos no cenário C 5%."
+  }
+
+  measure: soma_boleto_cenario_c_10_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_c_10_prc} ;;
+    label: "TETO 10%"
+    description: "Soma dos valores dos boletos no cenário C 10%."
+  }
+
+  measure: soma_boleto_cenario_c_15_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_c_15_prc} ;;
+    label: "TETO 15%"
+    description: "Soma dos valores dos boletos no cenário C 15%."
+  }
+
+  measure: soma_boleto_cenario_d_5_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_d_5_prc} ;;
+    label: "TETO 5% D"
+    description: "Soma dos valores dos boletos no cenário D 5%."
+  }
+
+  measure: soma_boleto_cenario_d_10_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_d_10_prc} ;;
+    label: "TETO 10% D"
+    description: "Soma dos valores dos boletos no cenário D 10%."
+  }
+
+  measure: soma_boleto_cenario_d_15_prc {
+    group_label: "Soma do boleto"
+    type: sum
+    sql: ${vl_boleto_cenario_d_15_prc} ;;
+    label: "TETO 15% D"
+    description: "Soma dos valores dos boletos no cenário D 15%."
+  }
+
+  measure: count_wo {
+    type: count
+    label: "Contagem de WO"
+    description: "Quantidade de títulos em WO"
   }
 
   dimension: vl_boleto_cenario_a {
