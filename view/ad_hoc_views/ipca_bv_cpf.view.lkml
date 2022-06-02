@@ -49,6 +49,13 @@ view: ipca_bv_cpf {
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
+  dimension: perc_provisao {
+    label: "Percentual provisão"
+    description: "Percentual de provisão na faixa de atraso"
+    type: number
+    sql: ${TABLE}."PERC_PROVISAO" ;;
+  }
+
   dimension: flg_writeoff {
     description: "Flag que sinaliza que o CPF entrou em WO"
     type: yesno
