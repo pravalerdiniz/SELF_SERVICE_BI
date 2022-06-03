@@ -715,6 +715,17 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
   }
 
+  dimension: fundo_investimento_agrupado {
+    type: string
+    sql: case when (${ds_fundo_investimento} = 'GESTÃO' or ${ds_fundo_investimento} = 'GESTÃO GARANTIDO') then 'GESTAO'
+              when ${ds_fundo_investimento} is NULL then 'VAZIO'
+              else 'ANTECIPACAO'
+    end;;
+    group_label: "Dados do Fundo de Investimento"
+    group_item_label: "Nome do Fundo de Investimento Agrupado"
+    description: "Indica o fundo de investimento responsável pelo financiamento do aluno"
+  }
+
   dimension: ds_instituicao {
     type: string
     group_label: "Dados da Instituição"
@@ -1535,6 +1546,15 @@ dimension: vl_tarifa_cadastro {
     description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros"
     suggestable: yes
     sql: ${TABLE}."MODALIDADE_RISCO" ;;
+  }
+
+  dimension: modalidade_curso_agrupado {
+    type: string
+    group_label: "Dados do Produto"
+    label: "Modalidade - Risco (Agrupado)"
+    description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros"
+    sql: case when ${modalidade_risco} is not null then ${modalidade_risco}
+    else 'VAZIO' end ;;
   }
 
   dimension: nm_originador {
