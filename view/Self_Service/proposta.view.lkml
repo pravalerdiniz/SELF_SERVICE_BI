@@ -1548,6 +1548,15 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."MODALIDADE_RISCO" ;;
   }
 
+  dimension: modalidade_curso_agrupado {
+    type: string
+    group_label: "Dados do Produto"
+    label: "Modalidade - Risco (Agrupado)"
+    description: "Indica a modalidade da proposta seguindo regras da área de risco. Ex: Antecipação, Gestão, Repasse Garantido, Sem Fiador, Complementar e Outros"
+    sql: case when ${modalidade_risco} is not null then ${modalidade_risco}
+    else 'VAZIO' end ;;
+  }
+
   dimension: nm_originador {
     type: string
     group_label: "Dados do Originador"

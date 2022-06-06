@@ -120,12 +120,29 @@ view: ipca_bv {
     sql: ${TABLE}."VL_BOLETO" ;;
   }
 
+  measure: perc_provisao_cpf {
+    label: "perc_provisao_cpf"
+    description: "Percentual de provisão da faixa de atraso dos CPFs"
+    type: number
+    sql: ${ipca_bv_cpf.perc_provisao_medida} ;;
+    hidden: yes
+  }
+
   measure: soma_boleto {
     group_label: "Soma do boleto"
     type: sum
     sql: ${vl_boleto} ;;
     label: "Total Concessão"
     description: "Soma do valor do boleto."
+  }
+
+  measure: PDD_0_IPCA {
+    group_label: "Soma do saldo em provisão"
+    type: number
+    sql: ${soma_boleto} * ${perc_provisao_cpf} ;;
+    label: "Total provisão"
+    description: "Soma do saldo em provisão da faixa em 0% IPCA."
+    hidden: yes
   }
 
   measure: soma_boleto_cenario_a {

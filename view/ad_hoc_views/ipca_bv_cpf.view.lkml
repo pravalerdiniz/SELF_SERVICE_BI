@@ -49,18 +49,19 @@ view: ipca_bv_cpf {
     sql: ${TABLE}."FAIXA_ATRASO" ;;
   }
 
-  dimension: perc_provisao {
-    label: "Percentual provisão"
-    description: "Percentual de provisão na faixa de atraso"
-    type: number
-    sql: ${TABLE}."PERC_PROVISAO" ;;
-  }
-
   dimension: flg_writeoff {
     description: "Flag que sinaliza que o CPF entrou em WO"
     type: yesno
     sql: ${TABLE}."FLG_WRITEOFF" ;;
   }
+
+  dimension: perc_provisao {
+    label: "Percentual provisão"
+    description: "Percentual de provisão na faixa de atraso"
+    type: number
+    sql:IFNULL(${TABLE}."PERC_PROVISAO",0)  ;;
+  }
+
 
   dimension: id_cpf {
     description: "Identificador único para o CPF"
@@ -72,6 +73,13 @@ view: ipca_bv_cpf {
     description: "Status do CPF junto a instituição"
     type: string
     sql: ${TABLE}."STATUS" ;;
+  }
+
+  measure: perc_provisao_medida {
+    label: "Percentual provisão"
+    description: "Percentual de provisão na faixa de atraso"
+    type: average
+    sql:${perc_provisao}  ;;
   }
 
   measure: count {
