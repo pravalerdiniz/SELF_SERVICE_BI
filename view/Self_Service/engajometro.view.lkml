@@ -1,8 +1,6 @@
 view: engajometro {
-  derived_table: {
-    sql: SELECT * FROM "GRADUADO"."AD_HOC".ENGAJOMETRO
+  sql_table_name: "GRADUADO"."AD_HOC"."ENGAJOMETRO"
       ;;
-  }
 
   measure: count {
     type: count
