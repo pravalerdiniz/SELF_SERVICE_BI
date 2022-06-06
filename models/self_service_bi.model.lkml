@@ -590,6 +590,13 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+  join: engajometro {
+    view_label: "11. Engajometro IES"
+    sql_on: ${proposta.grupo_instituicao}=${engajometro.grupo} and ${jornada.dt_status_date}=${engajometro.data_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 
