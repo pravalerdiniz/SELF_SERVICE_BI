@@ -1964,10 +1964,7 @@ explore: tetris_withoutproducts {
 
 }
 
-explore: prv_log {
-  label: "PRV LOG"
-  hidden: yes
-}
+
 
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
