@@ -80,11 +80,12 @@ explore: orcameto_cc {
 
 join: orcamento_cc_ltm {
   view_label: "1. Orçamento CAC"
-  sql_on: ${orcamento_cc_ltm.month_create} = ${orcameto_cc.data_lancamento_month}
-  and ${orcamento_cc_ltm.descricao_cc} = ${orcameto_cc.descricao_cc}
+  sql_on:
+   ${orcamento_cc_ltm.descricao_cc} = ${orcameto_cc.descricao_cc}
   and ${orcamento_cc_ltm.visao} = ${orcameto_cc.visao}
   and ${orcamento_cc_ltm.tipo_orcamento} = ${orcameto_cc.tipo_orcamento};;
-  fields: [orcamento_cc_ltm.sumr1_montante]
+  fields: [orcamento_cc_ltm.sumr1_montante,
+           orcamento_cc_ltm.sum_montante_ltm]
   relationship: one_to_one
   type: left_outer
 }

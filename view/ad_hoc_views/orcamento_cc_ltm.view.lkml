@@ -4,7 +4,7 @@ view: orcamento_cc_ltm {
       r1.TIPO_ORCAMENTO,
       r1.DESCRICAO_CC,
       r1.DESCRICAO_DESPESA,
-      concat(year(r1.data),('-'),month(r1.data)) as month_create,
+      r1.data,
       sum(r1.MONTANTE)
       from "GRADUADO"."AD_HOC"."ORCAMENTO" AS r1
       JOIN "GRADUADO"."AD_HOC"."ORCAMENTO" AS r2
@@ -45,9 +45,23 @@ view: orcamento_cc_ltm {
     sql: ${TABLE}."DESCRICAO_DESPESA" ;;
   }
 
-  dimension: month_create {
-    type: string
-    sql: ${TABLE}."MONTH_CREATE" ;;
+  dimension_group: data {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Lançamento"
+    group_label: "Data"
+    description: "Indica a Data que a despesa foi lançada"
+    sql: ${TABLE}."DATA" ;;
+    hidden: yes
   }
 
   dimension: sumr1_montante {
@@ -73,7 +87,6 @@ view: orcamento_cc_ltm {
       tipo_orcamento,
       descricao_cc,
       descricao_despesa,
-      month_create,
       sumr1_montante
     ]
   }
