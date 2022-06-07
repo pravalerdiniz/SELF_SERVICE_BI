@@ -19,6 +19,23 @@ view: financeiro {
     sql: ${TABLE}."DATA_BAIXA" ;;
   }
 
+  dimension_group: data_geracao_titulo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Geração Título"
+    description: "Indica a data de geração do título"
+    datatype: date
+    sql: ${TABLE}."DATA_GERACAO_TITULO" ;;
+  }
+
 dimension: data_trunc  {
   type: date
   sql:date_trunc('MONTH', DATA_VENCIMENTO );;

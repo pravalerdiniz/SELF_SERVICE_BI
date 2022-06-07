@@ -520,8 +520,6 @@ explore: jornada {
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
     relationship: many_to_one
     type: left_outer
-
-
   }
 
     join: instituicao_resumo {
@@ -530,11 +528,6 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
-
-
-
-
-
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -593,7 +586,7 @@ explore: jornada {
 
   join: engajometro {
     view_label: "11. Engajometro IES"
-    sql_on: ${proposta.grupo_instituicao}=${engajometro.grupo} and ${jornada.dt_status_date}=${engajometro.data_date} ;;
+    sql_on: ${proposta.grupo_instituicao}=${engajometro.grupo};;
     relationship: many_to_one
     type: left_outer
   }
