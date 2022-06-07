@@ -18,12 +18,6 @@ view: orcamento_cc_ltm {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-    hidden: yes
-  }
-
   dimension: visao {
     type: string
     sql: ${TABLE}."VISAO" ;;
@@ -81,13 +75,5 @@ view: orcamento_cc_ltm {
     description: "Soma do valor Orçado ou Gasto  dos últimos 12 meses"
   }
 
-  set: detail {
-    fields: [
-      visao,
-      tipo_orcamento,
-      descricao_cc,
-      descricao_despesa,
-      sumr1_montante
-    ]
-  }
+
 }
