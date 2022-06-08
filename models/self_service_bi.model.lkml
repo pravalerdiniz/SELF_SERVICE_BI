@@ -1161,12 +1161,13 @@ explore: proposta {
     relationship: one_to_many
   }
 
-  join: financeiro_parcelas_futuro {
-    view_label: "3.1 Boletos Futuros "
-    sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+#Excluido - Não utilizado 08-06-2022 / Lulinha
+  #join: financeiro_parcelas_futuro {
+    #view_label: "3.1 Boletos Futuros "
+    #sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    #relationship: one_to_many
+    #type: left_outer
+  #}
 
   join: financeiro_count_titulo {
     view_label: "3. Financeiro"
