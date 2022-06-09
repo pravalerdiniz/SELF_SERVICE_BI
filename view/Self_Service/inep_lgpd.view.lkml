@@ -1656,11 +1656,11 @@ view: inep_lgpd {
     sql: ${TABLE}."QT_CONC" ;;
   }
 
-  measure:SOMA_CONCLUINTE {
+  measure:total_concluinte {
     type: sum
     group_label: "Concluinte (Total)"
     description: "Total de concluintes"
-    sql: ${qt_conc};;
+    sql: ${TABLE}."QT_CONC";;
   }
 
   dimension: qt_curso {
