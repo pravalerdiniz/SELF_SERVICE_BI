@@ -32,6 +32,13 @@ view: inep_lgpd {
     sql: ${TABLE}."ALUNO_PARFOR" ;;
   }
 
+  dimension: ano_ies_curso {
+    label: "ano_ies_curso"
+    type: string
+    primary_key: yes
+    sql: concat(${nu_ano_censo},${co_ies},${co_cine_area_detalhada}) ;;
+  }
+
   dimension: apoio_social {
     group_label: "Dados quantitativos de Alunos"
     label: "Qtd. alunos apoio social"
