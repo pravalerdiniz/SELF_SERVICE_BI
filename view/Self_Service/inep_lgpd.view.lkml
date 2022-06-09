@@ -36,7 +36,7 @@ view: inep_lgpd {
     label: "ano_ies_curso"
     type: string
     primary_key: yes
-    sql: concat(${nu_ano_censo},${co_ies},${co_cine_area_detalhada}) ;;
+    sql: concat(${nu_ano_censo},${co_ies},${co_cine_area_detalhada},${co_uf_ies}) ;;
   }
 
   dimension: apoio_social {
