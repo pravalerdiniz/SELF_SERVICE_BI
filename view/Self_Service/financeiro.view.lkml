@@ -33,6 +33,7 @@ view: financeiro {
     label: "Geração Título"
     description: "Indica a data de geração do título"
     datatype: date
+    hidden: yes
     sql: ${TABLE}."DATA_GERACAO_TITULO" ;;
   }
 
