@@ -4,6 +4,7 @@ view: instituicao_taxas_gestao {
       sql:
       select
         b.id_instituicao,
+        g.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO,
         g.value:ID_PRODUTO::varchar as id_produto,
         g.value:NOME_PRODUTO::varchar as nome_produto,
         g.value:CONTRATACAO::int as numero_contratacao,
