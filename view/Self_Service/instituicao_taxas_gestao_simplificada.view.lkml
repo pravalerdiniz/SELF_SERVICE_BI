@@ -36,6 +36,14 @@ view: taxa_instituicao_simplificada {
 
   }
 
+  dimension: id_ies_contrato {
+    type: number
+    label: "ID IES Contrato"
+    description:"Indica o contrato da IES com o Pravaler"
+    sql: ${TABLE}."ID_IES_CONTRATO";;
+
+  }
+
   dimension: id_instituicao {
     type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;

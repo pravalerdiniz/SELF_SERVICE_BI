@@ -872,8 +872,7 @@ explore: financeiro {
   join: instituicao_taxas_gestao {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-      AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
-        and ${financeiro.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
         ;;
     relationship: one_to_many
     type: left_outer
@@ -884,7 +883,7 @@ explore: financeiro {
   join: taxa_instituicao_simplificada {
     view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
     sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
-      ;;
+     and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
 

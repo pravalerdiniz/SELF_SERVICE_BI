@@ -28,6 +28,14 @@ view: instituicao_taxas_gestao {
 
   }
 
+  dimension: id_ies_contrato {
+    type: number
+    label: "ID IES Contrato"
+    description:"Indica o contrato da IES com o Pravaler"
+    sql: ${TABLE}."ID_IES_CONTRATO";;
+
+  }
+
 
   dimension:  instituicao_contrato_numero{
     type: string
