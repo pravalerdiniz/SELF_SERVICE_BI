@@ -4,6 +4,7 @@ view: instituicao_taxas_gestao {
       sql:
       select
         b.id_instituicao,
+        g.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO,
         g.value:ID_PRODUTO::varchar as id_produto,
         g.value:NOME_PRODUTO::varchar as nome_produto,
         g.value:CONTRATACAO::int as numero_contratacao,
@@ -24,6 +25,14 @@ view: instituicao_taxas_gestao {
     label: "ID da Instituição"
     description:"Indica o ID da Instituição de Ensino"
     sql: ${TABLE}."ID_INSTITUICAO";;
+
+  }
+
+  dimension: id_ies_contrato {
+    type: number
+    label: "ID IES Contrato"
+    description:"Indica o contrato da IES com o Pravaler"
+    sql: ${TABLE}."ID_IES_CONTRATO";;
 
   }
 

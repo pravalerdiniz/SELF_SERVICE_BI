@@ -1551,6 +1551,14 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."ST_REGISTRADO_STARKBANK" ;;
   }
 
+  dimension: id_ies_contrato {
+    type: number
+    group_label: "Dados do Título"
+    label: "ID Contrato IES"
+    description: "Indica o código de contrato da ies com o pravaler para o título."
+    sql: ${TABLE}."ID_IES_CONTRATO" ;;
+  }
+
   dimension_group: data_ultimo_collection {
     type: time
     timeframes: [

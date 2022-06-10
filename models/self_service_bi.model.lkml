@@ -844,7 +844,7 @@ explore: financeiro {
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            --and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_contrato}
+            and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_ies_contrato}
             ;;
     relationship: one_to_many
     type: left_outer
@@ -853,7 +853,8 @@ explore: financeiro {
 
   join: produto_ies_snapshot {
     view_label: "3.1. Contrato da Instituição por Produto - (Histórico)"
-    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao}
+     and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
 
@@ -862,7 +863,7 @@ explore: financeiro {
   join: instituicao_taxas_antecipacao {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-        --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -871,7 +872,8 @@ explore: financeiro {
   join: instituicao_taxas_gestao {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-      and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+        ;;
     relationship: one_to_many
     type: left_outer
 
@@ -879,10 +881,9 @@ explore: financeiro {
 
 
   join: taxa_instituicao_simplificada {
-    view_label: "3.4. Taxas da Instituição Simplificada"
-    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
-      --and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}
-      ;;
+    view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+     and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
 
@@ -1161,12 +1162,13 @@ explore: proposta {
     relationship: one_to_many
   }
 
-  join: financeiro_parcelas_futuro {
-    view_label: "3.1 Boletos Futuros "
-    sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+#Excluido - Não utilizado 08-06-2022 / Lulinha
+  #join: financeiro_parcelas_futuro {
+    #view_label: "3.1 Boletos Futuros "
+    #sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    #relationship: one_to_many
+    #type: left_outer
+  #}
 
   join: financeiro_count_titulo {
     view_label: "3. Financeiro"
