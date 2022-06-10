@@ -1,15 +1,7 @@
 # The name of this view in Looker is "Inep Lgpd"
 view: inep_lgpd {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INEP_LGPD"
     ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Aluno Deficiente" in Explore.
 
   dimension: aluno_deficiente {
     group_label: "Dados quantitativos de Alunos"
@@ -39,6 +31,7 @@ view: inep_lgpd {
     type: number
     sql: ${TABLE}."ALUNO_PARFOR" ;;
   }
+
 
   dimension: apoio_social {
     group_label: "Dados quantitativos de Alunos"
@@ -92,6 +85,7 @@ view: inep_lgpd {
     group_label: "Dados IES"
     label: "Código da IES"
     type: number
+    primary_key: yes
     sql: ${TABLE}."CO_IES" ;;
   }
 
@@ -1662,6 +1656,13 @@ view: inep_lgpd {
     label: "Qtd. concluintes no curso"
     type: number
     sql: ${TABLE}."QT_CONC" ;;
+  }
+
+  measure:total_concluinte {
+    type: sum
+    group_label: "Concluinte (Total)"
+    description: "Total de concluintes"
+    sql: ${TABLE}."QT_CONC";;
   }
 
   dimension: qt_curso {
