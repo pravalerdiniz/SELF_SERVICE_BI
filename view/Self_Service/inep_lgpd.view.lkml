@@ -3,6 +3,7 @@ view: inep_lgpd {
   sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INEP_LGPD"
     ;;
 
+
   dimension: aluno_deficiente {
     group_label: "Dados quantitativos de Alunos"
     label: "Qtd. alunos com deficiência"
@@ -85,7 +86,6 @@ view: inep_lgpd {
     group_label: "Dados IES"
     label: "Código da IES"
     type: number
-    primary_key: yes
     sql: ${TABLE}."CO_IES" ;;
   }
 
@@ -1660,9 +1660,9 @@ view: inep_lgpd {
 
   measure:total_concluinte {
     type: sum
+    sql: ${TABLE}."QT_CONC";;
     group_label: "Concluinte (Total)"
     description: "Total de concluintes"
-    sql: ${TABLE}."QT_CONC";;
   }
 
   dimension: qt_curso {
