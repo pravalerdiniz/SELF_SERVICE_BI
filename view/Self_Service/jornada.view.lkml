@@ -2423,7 +2423,7 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_beha_renov} ;;
-      sql: ${sla_beha_renov}/86400 ;;
+      sql: coalesce(${sla_beha_renov}/86400),0) ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "2. Elegível até Aprovado Behavior"
@@ -2434,7 +2434,7 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-      sql: ${sla_apr_ies_renov}/86400 ;;
+      sql: coalesce(${sla_apr_ies_renov}/86400),0) ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
