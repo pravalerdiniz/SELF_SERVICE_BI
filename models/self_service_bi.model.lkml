@@ -464,8 +464,8 @@ explore: jornada {
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
     sql_on: ${jornada.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            AND  ${instituicao_contrato_produto_info.id_campus} = ${proposta.id_campus}
-            AND    ${instituicao_contrato_produto_info.id_curso} =  ${proposta.id_curso};;
+            AND  ${instituicao_contrato_produto_info.id_ies_contrato} = ${proposta.id_ies_contrato}
+          ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -636,6 +636,7 @@ explore: instituicao {
     - proposta.conversao_original,
     - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies
+
 
   ]
 
