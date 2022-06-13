@@ -671,7 +671,7 @@ explore: instituicao {
   }
 
   join: instituicao_taxas_antecipacao {
-    view_label: "1.2. Taxas da Instituição por Produto Antecipação"
+    view_label: "1.1.2 Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
         --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
@@ -680,7 +680,7 @@ explore: instituicao {
   }
 
   join: instituicao_taxas_gestao {
-    view_label: "1.3. Taxas da Instituição por Produto Gestão"
+    view_label: "1.1.3 Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
     relationship: one_to_many
@@ -688,7 +688,7 @@ explore: instituicao {
 
   }
   join: taxa_instituicao_simplificada {
-    view_label: "1.4. Taxas da Instituição Simplificada"
+    view_label: "1.1.4 Taxas da Instituição por Produto Gestão - Simplificada"
     sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
     relationship: one_to_many
@@ -697,7 +697,7 @@ explore: instituicao {
   }
 
   join: instituicao_metas_gc {
-    view_label: "1.5 Metas - GC"
+    view_label: "1.3 Metas - GC"
     sql_on: ${instituicao_metas_gc.grupo_instituicao}=${instituicao.grupo} ;;
     relationship: many_to_one
     type: left_outer
@@ -1354,56 +1354,56 @@ explore: alunos {
   }
 
   join: alunos_inadimplencia_book_wo {
-    view_label: "1.2.3 Book Inadimplência - W.O "
+    view_label: "1.2.2.2 Book Inadimplência - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_fyf {
-    view_label: "1.2.4 FYF - W.O "
+    view_label: "1.2.3 FYF - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atrasado {
-    view_label: "1.2.6 Carteira - Atrasado"
+    view_label: "1.2.5 Carteira - Atrasado"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atraso_produto {
-    view_label: "1.2.7 Carteira - Atrasado (Produto)"
+    view_label: "1.2.6 Carteira - Atrasado (Produto)"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_risco {
-    view_label: "1.2.5 Carteira"
+    view_label: "1.2.4 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_caixa_projecao_carteira {
-    view_label: "1.2.8 Carteira - Base Projeção"
+    view_label: "1.2.7 Carteira - Base Projeção"
     sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_base_recuperacao {
-    view_label: "1.2.9 Carteira - Recuperação"
+    view_label: "1.2.8 Carteira - Recuperação"
     sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "1.2.10 S&P - Fitch Rating"
+    view_label: "1.2.9 S&P - Fitch Rating"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
     type: left_outer
     relationship: one_to_many
