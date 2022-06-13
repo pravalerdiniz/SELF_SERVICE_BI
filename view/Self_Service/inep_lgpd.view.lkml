@@ -3,12 +3,6 @@ view: inep_lgpd {
   sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INEP_LGPD"
     ;;
 
-  dimension: chave {
-    type: string
-    label: "Chave"
-    primary_key: yes
-    sql: concat(${co_ies},${nu_ano_censo}, ${co_cine_area_detalhada}) ;;
-  }
 
   dimension: aluno_deficiente {
     group_label: "Dados quantitativos de Alunos"
