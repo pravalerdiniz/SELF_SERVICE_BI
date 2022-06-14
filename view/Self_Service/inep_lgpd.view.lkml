@@ -86,6 +86,7 @@ view: inep_lgpd {
     group_label: "Dados IES"
     label: "Código da IES"
     type: number
+    primary_key: yes
     sql: ${TABLE}."CO_IES" ;;
   }
 
