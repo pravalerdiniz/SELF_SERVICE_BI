@@ -16,7 +16,9 @@ view: orcamento_ltm {
     DESCRICAO_CC,
     COALESCE(SUM((MONTANTE) ), 0) AS SUM_MONTANTE,
     AVG(( OPERACIONAL_AQUISICAO ) ) AS perc_aquisicao,
-    AVG(( OPERACIONAL_AQUISICAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_perc_aquisicao
+    AVG(( OPERACIONAL_AQUISICAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_perc_aquisicao,
+    AVG(( OPERACIONAL_RENOVACAO ) ) AS perc_renovacao,
+    AVG(( OPERACIONAL_RENOVACAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_perc_renovacao
       FROM AD_HOC.ORCAMETO_CC AS orcameto_cac
       WHERE ((( DATA  ) >= (TO_DATE(TO_TIMESTAMP('2020-01-01'))) AND ( DATA ) < (TO_DATE(TO_TIMESTAMP('2040-12-31')))))
       AND (TIPO_ORCAMENTO) IN ('Folha', 'Operacional')
@@ -101,11 +103,36 @@ view: orcamento_ltm {
     sql: ${TABLE}."SUM_PERC_AQUISICAO" ;;
   }
 
-  measure: sum_valor_perc {
+  measure: sum_valor_perc_aquisicao {
     type: sum
-    label: "Soma do Valor Percentual"
+    label: "Soma do Valor Percentual Aquisição"
     value_format: "#,##0"
     sql: ${sum_perc_aquisicao} ;;
   }
+
+  dimension: perc_renovacao {
+    type: number
+    label: "Percentual de Renovação"
+    value_format: "0.00%"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."PERC_RENOVACAO" ;;
+  }
+
+  dimension: sum_perc_renovacao {
+    type: number
+    label: "Soma com Perc de Renovação"
+    value_format: "#,##0"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."SUM_PERC_AQUISICAO" ;;
+  }
+
+  measure: sum_valor_perc_renovacao {
+    type: sum
+    label: "Soma do Valor Percentual Renovação"
+    value_format: "#,##0"
+    sql: ${sum_perc_renovacao} ;;
+  }
+
+
 
   }
