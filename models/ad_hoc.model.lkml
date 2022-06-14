@@ -73,6 +73,9 @@ explore: orcamento_frente {
 
 }
 
+explore: sql_orcamento_ltm {
+  label: "Orçamento LTM"
+}
 
 explore: orcameto_cc {
   label: "Orçamento CAC"
