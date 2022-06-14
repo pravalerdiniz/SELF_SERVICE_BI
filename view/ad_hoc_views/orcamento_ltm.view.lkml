@@ -123,7 +123,7 @@ view: orcamento_ltm {
     label: "Soma com Perc de Renovação"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
-    sql: ${TABLE}."SUM_PERC_AQUISICAO" ;;
+    sql: ${TABLE}."SUM_PERC_RENOVACAO" ;;
   }
 
   measure: sum_valor_perc_renovacao {
