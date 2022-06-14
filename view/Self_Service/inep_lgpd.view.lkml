@@ -79,6 +79,7 @@ view: inep_lgpd {
     label: "Código do rótulo Cine"
     description: "Código de identificação do curso, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
+    primary_key: yes
     sql: ${TABLE}."CO_CINE_ROTULO" ;;
   }
 
