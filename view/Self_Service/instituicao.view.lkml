@@ -70,21 +70,7 @@ view: instituicao {
     sql: ${TABLE}."CAMPUS_TEM_ESTACIONAMENTO_GRATUITO";;
   }
 
-  dimension: cargo {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Cargo"
-    description: "Nome do cargo do representante Comercial na IES"
-    sql: ${TABLE}."CARGO";;
-  }
 
-  dimension: carteira_regional {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Carteira Regional"
-    description: "Indica o tipo de carteira regional do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
-    sql: ${TABLE}."CARTEIRA_REGIONAL";;
-  }
 
   dimension: cep_campus {
     type: string
@@ -137,21 +123,6 @@ view: instituicao {
 
 
 
-  dimension: conversao_regional {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Nome - Responsável pela Conversão Regional"
-    description: "Nome do responsavél pela conversão regional da IES"
-    sql: ${TABLE}."CONVERSAO_REGIONAL";;
-  }
-
-  dimension: cp {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Código do Representante (CP)"
-    description:"Indica o código do representante comercial no campus da instituição de ensino."
-    sql: ${TABLE}."CP";;
-  }
 
   dimension: curso_ativo {
     type: number
@@ -305,13 +276,6 @@ view: instituicao {
 
 
 
-  dimension: gerente_regional {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Gerente Regional"
-    description: "Indica o nome do responsável pela Regional"
-    sql: ${TABLE}."GERENTE_REGIONAL";;
-  }
 
   dimension: grupo {
     type: string
@@ -460,20 +424,6 @@ view: instituicao {
     sql: ${TABLE}."RAZAO_SOCIAL";;
   }
 
-  dimension: regional_regiao {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Região"
-    description: "Indica o nome da região que representa a regional"
-    sql: ${TABLE}."REGIONAL_REGIAO";;
-  }
-
-  dimension: representante_regional {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Nome do Representante Regional"
-    sql: ${TABLE}."REPRESENTANTE_REGIONAL";;
-  }
 
   dimension: reprova_por_score {
     type: string
@@ -485,13 +435,7 @@ view: instituicao {
 
 
 
-  dimension: tipo_regional {
-    type: string
-    group_label: "Dados da Regional - IE"
-    label: "Tipo de Representante"
-    description: "Indica o tipo de representante comercial no campus da instituição de ensino. Ex: Fixo ou Volante"
-    sql: ${TABLE}."TIPO_REGIONAL";;
-  }
+
 
   dimension: uf_campus {
     type: string
@@ -779,10 +723,81 @@ measure: qtd_ies_descadastrada {
 
 
 
+#Campos ocultos - 13/06/2022 - Lulinha
 
 
+  dimension: cargo {
+    type: string
+    group_label: "Dados da Regional - IE"
+    label: "Cargo"
+    hidden: yes
+    description: "Nome do cargo do representante Comercial na IES"
+    sql: ${TABLE}."CARGO";;
+  }
+
+  dimension: carteira_regional {
+    type: string
+    group_label: "Dados da Regional - IE"
+    label: "Carteira Regional"
+    hidden: yes
+    description: "Indica o tipo de carteira regional do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
+    sql: ${TABLE}."CARTEIRA_REGIONAL";;
+  }
 
 
+  dimension: regional_regiao {
+    type: string
+    group_label: "Dados da Regional - IE"
+    label: "Região"
+    hidden: yes
+    description: "Indica o nome da região que representa a regional"
+    sql: ${TABLE}."REGIONAL_REGIAO";;
+  }
+
+  dimension: representante_regional {
+    type: string
+    group_label: "Dados da Regional - IE"
+    label: "Nome do Representante Regional"
+    hidden: yes
+    sql: ${TABLE}."REPRESENTANTE_REGIONAL";;
+  }
+
+  dimension: tipo_regional {
+    type: string
+    hidden: yes
+    group_label: "Dados da Regional - IE"
+    label: "Tipo de Representante"
+    description: "Indica o tipo de representante comercial no campus da instituição de ensino. Ex: Fixo ou Volante"
+    sql: ${TABLE}."TIPO_REGIONAL";;
+  }
+
+
+  dimension: conversao_regional {
+    type: string
+    hidden: yes
+    group_label: "Dados da Regional - IE"
+    label: "Nome - Responsável pela Conversão Regional"
+    description: "Nome do responsavél pela conversão regional da IES"
+    sql: ${TABLE}."CONVERSAO_REGIONAL";;
+  }
+
+  dimension: cp {
+    type: string
+    group_label: "Dados da Regional - IE"
+    hidden: yes
+    label: "Código do Representante (CP)"
+    description:"Indica o código do representante comercial no campus da instituição de ensino."
+    sql: ${TABLE}."CP";;
+  }
+
+  dimension: gerente_regional {
+    type: string
+    group_label: "Dados da Regional - IE"
+    label: "Gerente Regional"
+    hidden: yes
+    description: "Indica o nome do responsável pela Regional"
+    sql: ${TABLE}."GERENTE_REGIONAL";;
+  }
 
 
 }
