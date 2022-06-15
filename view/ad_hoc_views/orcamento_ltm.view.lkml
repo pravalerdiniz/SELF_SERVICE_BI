@@ -15,10 +15,16 @@ view: orcamento_ltm {
     END AS GRUPO_CANAIS,
     DESCRICAO_CC,
     COALESCE(SUM((MONTANTE) ), 0) AS SUM_MONTANTE,
-    AVG(( OPERACIONAL_AQUISICAO ) ) AS perc_aquisicao,
-    AVG(( OPERACIONAL_AQUISICAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_perc_aquisicao,
-    AVG(( OPERACIONAL_RENOVACAO ) ) AS perc_renovacao,
-    AVG(( OPERACIONAL_RENOVACAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_perc_renovacao
+    AVG(( OPERACIONAL_AQUISICAO ) ) AS ops_perc_aquisicao,
+    AVG(( OPERACIONAL_AQUISICAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_ops_perc_aquisicao,
+    AVG(( OPERACIONAL_RENOVACAO ) ) AS ops_perc_renovacao,
+    AVG(( OPERACIONAL_RENOVACAO ) ) * COALESCE(SUM(( MONTANTE ) ), 0) AS sum_ops_perc_renovacao,
+
+    AVG(( FOLHA_AQUISICAO  ) ) AS fl_perc_aquisicao,
+    AVG(( FOLHA_AQUISICAO  ) ) * COALESCE(SUM(( MONTANTE  ) ), 0) AS sum_fl_perc_aquisicao,
+    AVG(( FOLHA_RENOVACAO  ) ) AS fl_perc_renovacao,
+    AVG(( FOLHA_RENOVACAO  ) ) * COALESCE(SUM(( MONTANTE  ) ), 0) AS sum_fl_perc_renovacao
+
       FROM AD_HOC.ORCAMETO_CC AS orcameto_cac
       WHERE ((( DATA  ) >= (TO_DATE(TO_TIMESTAMP('2020-01-01'))) AND ( DATA ) < (TO_DATE(TO_TIMESTAMP('2040-12-31')))))
       AND (TIPO_ORCAMENTO) IN ('Folha', 'Operacional')
@@ -87,50 +93,105 @@ view: orcamento_ltm {
     sql: ${sum_montante} ;;
   }
 
-  dimension: perc_aquisicao {
+  ## OPERACIONAL
+  ## Aquisição
+
+  dimension: ops_perc_aquisicao {
     type: number
-    label: "Percentual de Aquisição"
+    label: "Percentual de Aquisição Operacional"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
-    sql: ${TABLE}."PERC_AQUISICAO" ;;
+    sql: ${TABLE}."OPS_PERC_AQUISICAO" ;;
   }
 
-  dimension: sum_perc_aquisicao {
+  dimension: sum_ops_perc_aquisicao {
     type: number
-    label: "Soma com Perc de Aquisição"
+    label: "Soma com Perc de Aquisição Operacional"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
-    sql: ${TABLE}."SUM_PERC_AQUISICAO" ;;
+    sql: ${TABLE}."SUM_OPS_PERC_AQUISICAO" ;;
   }
 
-  measure: sum_valor_perc_aquisicao {
+  measure: sum_valor_ops_perc_aquisicao {
     type: sum
-    label: "Soma do Valor Percentual Aquisição"
+    label: "Soma do Valor Percentual Aquisição Operacional"
     value_format: "#,##0"
-    sql: ${sum_perc_aquisicao} ;;
+    sql: ${sum_ops_perc_aquisicao} ;;
   }
 
-  dimension: perc_renovacao {
+  ## Renovação
+
+  dimension: ops_perc_renovacao {
     type: number
-    label: "Percentual de Renovação"
+    label: "Percentual de Renovação Operacional"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
-    sql: ${TABLE}."PERC_RENOVACAO" ;;
+    sql: ${TABLE}."OPS_PERC_RENOVACAO" ;;
   }
 
-  dimension: sum_perc_renovacao {
+  dimension: sum_ops_perc_renovacao {
     type: number
-    label: "Soma com Perc de Renovação"
+    label: "Soma com Perc de Renovação Operacional"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
-    sql: ${TABLE}."SUM_PERC_RENOVACAO" ;;
+    sql: ${TABLE}."SUM_OPS_PERC_RENOVACAO" ;;
   }
 
   measure: sum_valor_perc_renovacao {
     type: sum
-    label: "Soma do Valor Percentual Renovação"
+    label: "Soma do Valor Percentual Renovação Operacional"
     value_format: "#,##0"
-    sql: ${sum_perc_renovacao} ;;
+    sql: ${sum_ops_perc_renovacao} ;;
+  }
+
+  ## FOLHA
+  ## Aquisição
+  dimension: fl_perc_aquisicao {
+    type: number
+    label: "Percentual de Aquisição Folha"
+    value_format: "0.00%"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."FL_PERC_AQUISICAO" ;;
+  }
+
+  dimension: sum_fl_perc_aquisicao {
+    type: number
+    label: "Soma com Perc de Aquisição Folha"
+    value_format: "#,##0"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."SUM_FL_PERC_AQUISICAO" ;;
+  }
+
+  measure: sum_valor_fl_perc_aquisicao {
+    type: sum
+    label: "Soma do Valor Percentual Aquisição Folha"
+    value_format: "#,##0"
+    sql: ${sum_fl_perc_aquisicao} ;;
+  }
+
+  ## Renovação
+
+  dimension: fl_perc_renovacao {
+    type: number
+    label: "Percentual de Renovação Folha"
+    value_format: "0.00%"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."FL_PERC_RENOVACAO" ;;
+  }
+
+  dimension: sum_fl_perc_renovacao {
+    type: number
+    label: "Soma com Perc de Renovação Folha"
+    value_format: "#,##0"
+    description: "Indica o montante disponivel dentro do orçamento."
+    sql: ${TABLE}."SUM_FL_PERC_RENOVACAO" ;;
+  }
+
+  measure: sum_valor_fl_perc_renovacao {
+    type: sum
+    label: "Soma do Valor Percentual Renovação Folha"
+    value_format: "#,##0"
+    sql: ${sum_fl_perc_renovacao} ;;
   }
 
 
