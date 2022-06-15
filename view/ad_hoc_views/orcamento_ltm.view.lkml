@@ -101,6 +101,7 @@ view: orcamento_ltm {
     label: "Percentual de Aquisição Operacional"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Percentual"
     sql: ${TABLE}."OPS_PERC_AQUISICAO" ;;
   }
 
@@ -109,12 +110,14 @@ view: orcamento_ltm {
     label: "Soma com Perc de Aquisição Operacional"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Soma Percentual"
     sql: ${TABLE}."SUM_OPS_PERC_AQUISICAO" ;;
   }
 
   measure: sum_valor_ops_perc_aquisicao {
     type: sum
     label: "Soma do Valor Percentual Aquisição Operacional"
+    group_label: "Soma do Valor Percentual"
     value_format: "#,##0"
     sql: ${sum_ops_perc_aquisicao} ;;
   }
@@ -126,6 +129,7 @@ view: orcamento_ltm {
     label: "Percentual de Renovação Operacional"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Percentual"
     sql: ${TABLE}."OPS_PERC_RENOVACAO" ;;
   }
 
@@ -134,12 +138,14 @@ view: orcamento_ltm {
     label: "Soma com Perc de Renovação Operacional"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Soma Percentual"
     sql: ${TABLE}."SUM_OPS_PERC_RENOVACAO" ;;
   }
 
   measure: sum_valor_perc_renovacao {
     type: sum
     label: "Soma do Valor Percentual Renovação Operacional"
+    group_label: "Soma do Valor Percentual"
     value_format: "#,##0"
     sql: ${sum_ops_perc_renovacao} ;;
   }
@@ -151,6 +157,7 @@ view: orcamento_ltm {
     label: "Percentual de Aquisição Folha"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Percentual"
     sql: ${TABLE}."FL_PERC_AQUISICAO" ;;
   }
 
@@ -159,12 +166,14 @@ view: orcamento_ltm {
     label: "Soma com Perc de Aquisição Folha"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Soma Percentual"
     sql: ${TABLE}."SUM_FL_PERC_AQUISICAO" ;;
   }
 
   measure: sum_valor_fl_perc_aquisicao {
     type: sum
     label: "Soma do Valor Percentual Aquisição Folha"
+    group_label: "Soma do Valor Percentual"
     value_format: "#,##0"
     sql: ${sum_fl_perc_aquisicao} ;;
   }
@@ -176,6 +185,7 @@ view: orcamento_ltm {
     label: "Percentual de Renovação Folha"
     value_format: "0.00%"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Percentual"
     sql: ${TABLE}."FL_PERC_RENOVACAO" ;;
   }
 
@@ -184,12 +194,14 @@ view: orcamento_ltm {
     label: "Soma com Perc de Renovação Folha"
     value_format: "#,##0"
     description: "Indica o montante disponivel dentro do orçamento."
+    group_label: "Soma Percentual"
     sql: ${TABLE}."SUM_FL_PERC_RENOVACAO" ;;
   }
 
   measure: sum_valor_fl_perc_renovacao {
     type: sum
     label: "Soma do Valor Percentual Renovação Folha"
+    group_label: "Soma do Valor Percentual"
     value_format: "#,##0"
     sql: ${sum_fl_perc_renovacao} ;;
   }
