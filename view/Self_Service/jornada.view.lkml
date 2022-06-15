@@ -1763,6 +1763,17 @@ dimension: flg_d1 {
 
   }
 
+  dimension: ciclo_aprov_behavior {
+    type: string
+    group_label: "Dados de Renovação"
+    hidden: no
+    group_item_label: "Ciclo de Renovação (Aprov Behavior)"
+    description: "Informa o ciclo da proposta de renovação do aluno de acordo com a data de Aprovação Behavior"
+    sql: case when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
+              when ${dt_aprovado_behavior_date} between '2022-06-01' and '2022-10-31' then '2022.2'
+              else 'Outro' end;;
+  }
+
   measure: avg_Aprovado_Behavior {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
