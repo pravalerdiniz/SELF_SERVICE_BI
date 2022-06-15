@@ -11,19 +11,6 @@ view: inep_lgpd {
     sql: ${TABLE}."ALUNO_DEFICIENTE" ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  #measure: total_aluno_deficiente {
-  #  type: sum
-  #  sql: ${aluno_deficiente} ;;
-  #}
-
-  #measure: average_aluno_deficiente {
-  #  type: average
-  #  sql: ${aluno_deficiente} ;;
-  #}
 
   dimension: aluno_parfor {
     group_label: "Dados quantitativos de Alunos"
@@ -1659,13 +1646,6 @@ view: inep_lgpd {
     sql: ${TABLE}."QT_CONC" ;;
   }
 
-  measure:total_concluinte {
-    type: sum
-    sql: ${TABLE}."QT_CONC";;
-    group_label: "Concluinte (Total)"
-    description: "Total de concluintes"
-  }
-
   dimension: qt_curso {
     group_label: "Dados quantitativos do Curso"
     label: "Qtd. de cursos"
@@ -2063,6 +2043,27 @@ view: inep_lgpd {
     type: number
     sql: ${TABLE}."TP_REDE" ;;
   }
+
+  measure:total_concluinte {
+    type: sum
+    sql: ${TABLE}."QT_CONC";;
+    group_label: "Medidas"
+    description: "Total de concluintes"
+  }
+  measure:total_ingressantes {
+    type: sum
+    sql: ${TABLE}."QT_ING";;
+    group_label: "Medidas"
+    description: "Total de ingressantes"
+  }
+
+  measure:total_matriculas {
+    type: sum
+    sql: ${TABLE}."QT_MAT";;
+    group_label: "Medidas"
+    description: "Total de matrículas"
+  }
+
 
   measure: count {
     type: count
