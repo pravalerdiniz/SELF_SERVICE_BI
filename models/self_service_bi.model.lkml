@@ -1991,3 +1991,7 @@ explore: gupy_candidaturas {
 explore: dados_intake {
   label: "Dados Intake"
 }
+
+explore: inep_lgpd {
+  label: "Dados INEP - LGPD"
+}
