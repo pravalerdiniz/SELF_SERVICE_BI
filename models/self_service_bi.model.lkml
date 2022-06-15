@@ -143,13 +143,13 @@ explore: inep {
 
   }
 
-  join: inep_lgpd {
-    view_label: "INEP - Estrutura LGPD"
-    type: left_outer
-    sql_on: ${inep.id_ies} = ${inep_lgpd.co_ies} ;;
-    relationship: many_to_many
+  #join: inep_lgpd {
+    #view_label: "INEP - Estrutura LGPD"
+    #type: left_outer
+    #sql_on: ${inep.id_ies} = ${inep_lgpd.co_ies} ;;
+    #relationship: many_to_many
 
-  }
+  #}
 }
 
 
