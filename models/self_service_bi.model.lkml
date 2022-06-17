@@ -577,12 +577,12 @@ explore: jornada {
     relationship: many_to_one
   }
 
- # join: germina_rcp_group {
-  #  view_label: "9.1. Germina - Grupos"
-   # sql_on: grupo;;
+ #join: germina_rcp_group {
+#    view_label: "9.1. Germina - Grupos"
+ #   sql_on: ${obj_persona_jornada.control_group}=${germina_rcp_group.GROUP_ID};;
   #  relationship: many_to_one
-  #  type: left_outer
-  #}
+#    type: left_outer
+ # }
 
   join: ano_mes_carteira_ativa {
     view_label: "10. Dados Aluno Ativo"
