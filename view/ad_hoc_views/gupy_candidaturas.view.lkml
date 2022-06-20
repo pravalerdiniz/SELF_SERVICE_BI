@@ -586,7 +586,7 @@ view: gupy_candidaturas {
           when 'REDACAO_LIVRE' then 'Redação Livre'
           when 'TESTE_FIT_CULTURAL' then 'Teste Fit Cultural'
           when 'TESTE_LOGICA' then 'Teste de Lógica'
-          when 'TESTE_ONLINE' then 'Teste Online'
+          when 'TESTE_ONLINE' then 'Etapa técnica'
           when 'VIDEO' then 'Vídeo'
           else ${TABLE}."NM_ETAPA_ATUAL"
     end
