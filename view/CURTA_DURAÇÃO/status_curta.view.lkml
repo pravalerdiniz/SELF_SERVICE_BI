@@ -534,6 +534,12 @@ dimension: tempo_evento_dias {
     sql: ${curta_lead_time.TEMPO_ETAPA}/86400.0 ;;
   }
 
+  dimension: journey_status {
+    type: string
+    sql: ${TABLE}."JOURNEY_STATUS" ;;
+    description: "Indica a etapa da jornada de contratação do aluno"
+    group_item_label: "Status da Jornada"
+  }
 
 
 
