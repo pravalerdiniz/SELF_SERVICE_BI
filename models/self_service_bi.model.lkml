@@ -1995,3 +1995,7 @@ explore: dados_intake {
 explore: inep_lgpd {
   label: "Dados INEP - LGPD"
 }
+
+explore: carteira {
+  label: "Carteira Ativa"
+}
