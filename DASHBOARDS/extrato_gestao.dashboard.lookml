@@ -76,7 +76,7 @@
     defaults_version: 1
     listen:
       Transferencia Date: financeiro_extrato_titulo.transferencia_date
-      ID Instituição: proposta.id_instituicao
+      ID Instituicao: proposta.id_instituicao
     row: 0
     col: 0
     width: 24
@@ -96,8 +96,8 @@
     explore: financeiro
     listens_to_filters: []
     field: financeiro_extrato_titulo.transferencia_date
-  - name: ID Instituição
-    title: ID Instituição
+  - name: ID Instituicao
+    title: ID Instituicao
     type: field_filter
     default_value: ''
     allow_multiple_values: true
