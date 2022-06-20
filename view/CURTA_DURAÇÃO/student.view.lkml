@@ -472,6 +472,13 @@ view: student {
   }
 
 
+  dimension: status_checkout {
+    type: string
+    sql: ${TABLE}."STATUS_CHECKOUT";;
+    description:"Indica qual etapa de checkout o estudante se encontra/percorreu"
+    group_item_label: "Status Checkout"
+  }
+
   dimension: vl_total_contrato {
     type: number
     sql: ${contracts.vl_total_contrato};;
@@ -480,6 +487,7 @@ view: student {
     group_label: "Dados do Contrato"
     hidden: yes
   }
+
 
   measure: count_cpf_aluno_distinct {
     type: count_distinct
