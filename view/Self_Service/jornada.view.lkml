@@ -662,7 +662,7 @@ view: jornada {
         label: "Reprovado por duas ou mais parcelas em atraso"
       }
       when: {
-        sql: ${ultimo_status_detalhado} in ('2019.15''2019.16') ;;
+        sql: ${ultimo_status_detalhado} in ('2019.15','2019.16') ;;
         label: "Reprovado Behavior"
       }
       when: {
