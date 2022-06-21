@@ -801,6 +801,14 @@ view: gupy_candidaturas {
     ;;
   }
 
+  dimension: score_compatibilidade {
+    group_label: "Dados da Candidatura"
+    label: "Score de compatibilidade"
+    description: "Indica a pontuação que esse candidato tem com a vaga em questão"
+    type: number
+    sql: ${TABLE}."SCORE_COMPATIBILIDADE" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
