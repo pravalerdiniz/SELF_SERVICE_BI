@@ -1268,10 +1268,6 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
-    -alunos_inadimplencia_1.count_over15,
-    -alunos_inadimplencia_1.count_over30,
-    -alunos_inadimplencia_1.count_over60,
-    -alunos_inadimplencia_fyf.qtd_rec,
     -alunos_acordo_renegociacao.count,
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
@@ -1283,13 +1279,13 @@ explore: alunos {
 
   ]
 
-#Excluido - Duplicidade | Objeto igual ao da Proposta proposta_produtos_aprovados - Lulinha 02/06/2022
-  #join: alunos_produtos_aprovados {
-    #view_label: "1.1 Produtos Aprovados"
-    #sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    #type: left_outer
-    #relationship: one_to_many
- # }
+
+  join: alunos_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
 
