@@ -2425,19 +2425,6 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FAIXA_COMPROMETIMENTO_RENDA" ;;
     }
 
-  dimension: vl_acordo {
-    type: number
-    label: "Valor do Acordo"
-    hidden: yes
-    sql: ${proposta_projeto_decola.vl_acordo} ;;
-  }
-
-  dimension: data_acordo {
-    type: number
-    label: "Data do Acordo"
-    hidden: yes
-    sql: ${proposta_projeto_decola.data_criacao} ;;
-  }
 
 
 
@@ -2475,8 +2462,7 @@ dimension: vl_tarifa_cadastro {
       sum_juros_pago_ies,
       sum_juros_subsidiado,
       tipo_proposta,
-      vl_acordo,
-      data_acordo
+
     ]
   }
 
@@ -3176,17 +3162,6 @@ dimension: vl_tarifa_cadastro {
   }
 
 
-  measure: sum_qtd_contratos_anteriores {
-    type: sum
-    group_label: "Proposta"
-    group_item_label: "Quantidade de Contratos Anteriores"
-    sql:${qtd_contratos_anteriores};;
-    value_format: "0"
-    link: {label:"Documentação - Quantidade de Contratos Anteriores"
-    url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
-      }
-    description: "Soma da quantidade contratos anteriores por proposta"
-  }
 
 
   measure: count_tipo_proposta_novo {
@@ -3268,15 +3243,7 @@ dimension: vl_tarifa_cadastro {
   }
 
 
-  measure: count_boleto_atrasado{
-    type: count_distinct
-    group_label: "Contrato"
-    sql_distinct_key: ${id_proposta} ;;
-    group_item_label: "Quantidade de Contratos - Boletos Atrasados"
-    sql:${id_proposta};;
-    filters: [flg_boleto_atrasado: "yes"]
-    description: "Soma da quantidade de contratos de alunos com boleto atrasado"
-  }
+
 
   measure: sum_repasse {
     type: sum
@@ -3767,298 +3734,329 @@ dimension: vl_tarifa_cadastro {
 
 #Campos Ocultos - Última Atualização 02/06/2022 - Lulinha
 
-  dimension: canal_acesso_conversao {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "Canal"
-    description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
-    sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
-    hidden: yes
-  }
-
-  dimension: canal_acesso_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Descoberta - Canal"
-    description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
-    sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA";;
-    hidden: yes
-  }
-
-  dimension: canal_detalhado_conversao {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Conversão - Canal Detalhado"
-    description: "Indica qual o detalhamento do canal de acesso para conversão do aluno no PRAVALER."
-    sql: ${TABLE}."CANAL_DETALHADO_CONVERSAO" ;;
-    hidden: yes
-  }
-
-  dimension: canal_detalhado_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label:  "URL Descoberta - Canal Detalhado"
-    description: "Indica qual o detalhamento do canal de acesso do aluno no PRAVALER."
-    sql: ${TABLE}."CANAL_DETALHADO_DESCOBERTA" ;;
-    hidden: yes
-  }
-
-  dimension: estado_civil_fia {
-    type: string
-    group_label: "Dados do Garantidor"
-    group_item_label: "Estado Civil"
-    description: "Indica o estado civil do Garantidor"
-    sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
-    hidden: yes
-  }
-
-  dimension: cargo_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Cargo - Atual"
-    description: "Indica o cargo atual do responsável comercial na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CARGO_ATUAL" ;;
-  }
-
-  dimension: cargo_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Cargo - Original"
-    description: "Indica o cargo original do responsável comercial na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CARGO_ORIGINAL" ;;
-  }
-
-  dimension: carteira_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Carteira - Atual"
-    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CARTEIRA_ATUAL" ;;
-  }
-
-  dimension: carteira_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Carteira - Original"
-    description: "Indica o tipo de carteira original do responsável comercial na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CARTEIRA_ORIGINAL" ;;
-  }
-
-  dimension: conversao_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Nome - Conversão Atual"
-    description: "Indica o nome do representante comercial responsável pela conversão atual na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CONVERSAO_ATUAL" ;;
-  }
-
-  dimension: conversao_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Nome - Conversão Original"
-    description: "Indica o nome do representante comercial responsável pela conversão original na instituição de ensino"
-    hidden: yes
-    sql: ${TABLE}."CONVERSAO_ORIGINAL" ;;
-  }
-
-  dimension: cp_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Código do Representante - Atual"
-    description: "Indica o código do representante comercial atual na instituição de ensino."
-    hidden: yes
-    sql: ${TABLE}."CP_ATUAL" ;;
-  }
-
-  dimension: cp_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Código do Representante - Original"
-    description: "Indica o código do representante comercial original na instituição de ensino."
-    hidden: yes
-    sql: ${TABLE}."CP_ORIGINAL" ;;
-  }
-
-  dimension: ds_url_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Descoberta - Descrição"
-    description: "Este campo é uma regra de negócio*. Indica o canal de URL associada ao primeiro acesso do aluno no site do Pravaler"
-    sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
-    hidden: yes
-  }
-
-  dimension: tipo_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Tipo de Representante - Atual"
-    description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
-    hidden: yes
-    sql: ${TABLE}."TIPO_ATUAL" ;;
-  }
-
-  dimension: tipo_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Tipo de Representante - Original"
-    description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
-    hidden: yes
-    sql: ${TABLE}."TIPO_ORIGINAL" ;;
-  }
-
-  dimension: qtd_contratos_anteriores {
-    type: number
-    group_label: "Dados do Contrato"
-    label:"Quantidade de Contratos Anteriores"
-    description:"Indica a quantidade de contrato anteriores do aluno"
-    hidden: yes
-    sql: ${TABLE}."QTD_CONTRATOS_ANTERIORES" ;;
-  }
-
-  dimension: qtd_docs_pendentes {
-    type: number
-    group_label: "Dados da Formalização"
-    label:"Quantidade de Documentos pendentes"
-    description: "Indica a quantidade de documentos pendentes por proposta durante a formalização"
-    hidden: yes
-    sql: ${TABLE}."QTD_DOCS_PENDENTES" ;;
-  }
 
 
-  dimension: regional_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Regional - Atual"
-    description: "Indica a regional atribuida ao campus atualmente"
-    hidden: yes
-    sql: ${TABLE}."REGIONAL_ATUAL" ;;
-  }
+#MEDIDAS
 
-  dimension: regional_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Regional - Original"
-    description: "Indica a regional atribuida ao campus na data de inicio da proposta"
-    hidden: yes
-    sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
-  }
+    # measure: count_boleto_atrasado{
+  #   type: count_distinct
+  #   group_label: "Contrato"
+  #   sql_distinct_key: ${id_proposta} ;;
+  #   group_item_label: "Quantidade de Contratos - Boletos Atrasados"
+  #   sql:${id_proposta};;
+  #   filters: [flg_boleto_atrasado: "yes"]
+  #   description: "Soma da quantidade de contratos de alunos com boleto atrasado"
+  # }
 
 
-  dimension: representante_atual {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Representante - Atual"
-    description: "Indica o representante comercial atribuido ao campus atualmente"
-    hidden: yes
-    sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
-  }
-
-  dimension: representante_original {
-    type: string
-    group_label: "Dados da Regional"
-    label: "Representante - Original"
-    description: "Indica o representante comercial atribuido na data de inicio da proposta"
-    hidden: yes
-    sql: ${TABLE}."REPRESENTANTE_ORIGINAL" ;;
-  }
-
-  dimension: flg_boleto_atrasado {
-    type: yesno
-    group_label: "Dados do Contrato"
-    label: "Boleto Atrasado?"
-    description: "Indica se o aluno tem algum boleto em atraso"
-    sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
-  }
-
-  dimension: max_boleto_atrasado {
-    type: number
-    group_label: "Dados do Contrato"
-    label: "Dias de atraso - Boleto"
-    hidden: yes
-    description: "Indica o número de dias de atraso de pagamento de determinado boleto"
-    sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
-  }
-
-  dimension: faixa_tempo_atraso_boleto {
-    type: string
-    case: {
-      when: {
-        sql: ${max_boleto_atrasado} <= 5 ;;
-        label: "< 5"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 15 ;;
-        label: "5 - 15"
-      }
-      when: {
-        sql: ${max_boleto_atrasado} <= 30 ;;
-        label: "15 - 30"
-      }
-      else: "30 >"
-    }
-    group_label: "Dados do Contrato"
-    hidden: yes
-    group_item_label: "Faixa de Tempo de atraso - Boleto do Aluno"
-    description: "Indica a faixa de tempo, em dias de atraso de determinado boleto"
-  }
-
-  dimension: flg_cancelado {
-    type: yesno
-    group_label: "Dados da Proposta"
-    label: "Proposta Cancelada?"
-    hidden: yes
-    description: "Indica se a proposta está cancelada ou não"
-    sql: ${TABLE}."FLG_CANCELADO" ;;
-  }
-
-  dimension: id_originadores_ativos_ies {
-    type: string
-    group_label: "Dados da Instituição"
-    label: "ID Originadores"
-    hidden: yes
-    description: "Indica o ID dos originadores ativos para determinada instituição."
-    sql: ${TABLE}."ID_ORIGINADORES_ATIVOS_IES" ;;
-  }
-
-  dimension: produto_preaprovado {
-    type: string
-    group_label: "Dados da Proposta"
-    group_item_label: "Produtos Pré Aprovados"
-    description: "Informa os produtos pré aprovados por risco para envio da IES"
-    hidden: yes
-    sql: ${TABLE}."PRODUTOS_PREAPROVADOS" ;;
-  }
+  # measure: sum_qtd_contratos_anteriores {
+  #   type: sum
+  #   group_label: "Proposta"
+  #   group_item_label: "Quantidade de Contratos Anteriores"
+  #   sql:${qtd_contratos_anteriores};;
+  #   value_format: "0"
+  #   link: {label:"Documentação - Quantidade de Contratos Anteriores"
+  #   url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
+  #     }
+  #   description: "Soma da quantidade contratos anteriores por proposta"
+  # }
 
 
-  dimension: ciclo {
-    type: number
-    group_label: "Dados de Renovação"
-    hidden: yes
-    group_item_label: "Ciclo de Renovação"
-    description: "Informa o ciclo da proposta de renovação do aluno."
-    sql: ${TABLE}."CICLO" ;;
-  }
+
+  #DIMENÃO
+
+    # dimension: canal_acesso_conversao {
+  #   type: string
+  #   group_label: "Dados de Marketing"
+  #   label: "Canal"
+  #   description: "Indica qual o canal online de acesso do aluno para conversão. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
+  #   sql: ${TABLE}."CANAL_ACESSO_CONVERSAO" ;;
+  #   hidden: yes
+  # }
+
+  # dimension: canal_acesso_descoberta {
+  #   type: string
+  #   group_label: "Dados de Marketing"
+  #   label: "URL Descoberta - Canal"
+  #   description: "Indica qual o canal online de acesso do aluno para preenchimento da proposta. Ex: Orgânico, Pago, Faculdade, Itaú, MGM, etc."
+  #   sql: ${TABLE}."CANAL_ACESSO_DESCOBERTA";;
+  #   hidden: yes
+  # }
+
+  # dimension: canal_detalhado_conversao {
+  #   type: string
+  #   group_label: "Dados de Marketing"
+  #   label: "URL Conversão - Canal Detalhado"
+  #   description: "Indica qual o detalhamento do canal de acesso para conversão do aluno no PRAVALER."
+  #   sql: ${TABLE}."CANAL_DETALHADO_CONVERSAO" ;;
+  #   hidden: yes
+  # }
+
+  # dimension: canal_detalhado_descoberta {
+  #   type: string
+  #   group_label: "Dados de Marketing"
+  #   label:  "URL Descoberta - Canal Detalhado"
+  #   description: "Indica qual o detalhamento do canal de acesso do aluno no PRAVALER."
+  #   sql: ${TABLE}."CANAL_DETALHADO_DESCOBERTA" ;;
+  #   hidden: yes
+  # }
+
+  # dimension: estado_civil_fia {
+  #   type: string
+  #   group_label: "Dados do Garantidor"
+  #   group_item_label: "Estado Civil"
+  #   description: "Indica o estado civil do Garantidor"
+  #   sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
+  #   hidden: yes
+  # }
+
+  # dimension: cargo_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Cargo - Atual"
+  #   description: "Indica o cargo atual do responsável comercial na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CARGO_ATUAL" ;;
+  # }
+
+  # dimension: cargo_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Cargo - Original"
+  #   description: "Indica o cargo original do responsável comercial na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CARGO_ORIGINAL" ;;
+  # }
+
+  # dimension: carteira_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Carteira - Atual"
+  #   description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CARTEIRA_ATUAL" ;;
+  # }
+
+  # dimension: carteira_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Carteira - Original"
+  #   description: "Indica o tipo de carteira original do responsável comercial na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CARTEIRA_ORIGINAL" ;;
+  # }
+
+  # dimension: conversao_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Nome - Conversão Atual"
+  #   description: "Indica o nome do representante comercial responsável pela conversão atual na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CONVERSAO_ATUAL" ;;
+  # }
+
+  # dimension: conversao_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Nome - Conversão Original"
+  #   description: "Indica o nome do representante comercial responsável pela conversão original na instituição de ensino"
+  #   hidden: yes
+  #   sql: ${TABLE}."CONVERSAO_ORIGINAL" ;;
+  # }
+
+  # dimension: cp_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Código do Representante - Atual"
+  #   description: "Indica o código do representante comercial atual na instituição de ensino."
+  #   hidden: yes
+  #   sql: ${TABLE}."CP_ATUAL" ;;
+  # }
+
+  # dimension: cp_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Código do Representante - Original"
+  #   description: "Indica o código do representante comercial original na instituição de ensino."
+  #   hidden: yes
+  #   sql: ${TABLE}."CP_ORIGINAL" ;;
+  # }
+
+  # dimension: ds_url_descoberta {
+  #   type: string
+  #   group_label: "Dados de Marketing"
+  #   label: "URL Descoberta - Descrição"
+  #   description: "Este campo é uma regra de negócio*. Indica o canal de URL associada ao primeiro acesso do aluno no site do Pravaler"
+  #   sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
+  #   hidden: yes
+  # }
+
+  # dimension: tipo_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Tipo de Representante - Atual"
+  #   description: "Indica se o representante atribuído ao campus atualmente é fixo ou volante"
+  #   hidden: yes
+  #   sql: ${TABLE}."TIPO_ATUAL" ;;
+  # }
+
+  # dimension: tipo_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Tipo de Representante - Original"
+  #   description: "Indica se o representante atribuído ao campus na data de início da proposta era fixo ou volante"
+  #   hidden: yes
+  #   sql: ${TABLE}."TIPO_ORIGINAL" ;;
+  # }
+
+  # dimension: qtd_contratos_anteriores {
+  #   type: number
+  #   group_label: "Dados do Contrato"
+  #   label:"Quantidade de Contratos Anteriores"
+  #   description:"Indica a quantidade de contrato anteriores do aluno"
+  #   hidden: yes
+  #   sql: ${TABLE}."QTD_CONTRATOS_ANTERIORES" ;;
+  # }
+
+  # dimension: qtd_docs_pendentes {
+  #   type: number
+  #   group_label: "Dados da Formalização"
+  #   label:"Quantidade de Documentos pendentes"
+  #   description: "Indica a quantidade de documentos pendentes por proposta durante a formalização"
+  #   hidden: yes
+  #   sql: ${TABLE}."QTD_DOCS_PENDENTES" ;;
+  # }
 
 
-  dimension: id_produtos_preaprovados {
-    type: string
-    group_label: "Dados do Produto"
-    hidden: yes
-    label: "ID Produtos Pré Aprovados"
-    description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
-    sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
-    html:
-    {% assign words = value | split: ',' %}
-    <ul>
-    {% for word in words %}
-    <li>{{ word }}</li>
-    {% endfor %} ;;
-  }
+  # dimension: regional_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Regional - Atual"
+  #   description: "Indica a regional atribuida ao campus atualmente"
+  #   hidden: yes
+  #   sql: ${TABLE}."REGIONAL_ATUAL" ;;
+  # }
+
+  # dimension: regional_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Regional - Original"
+  #   description: "Indica a regional atribuida ao campus na data de inicio da proposta"
+  #   hidden: yes
+  #   sql: ${TABLE}."REGIONAL_ORIGINAL" ;;
+  # }
+
+
+  # dimension: representante_atual {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Representante - Atual"
+  #   description: "Indica o representante comercial atribuido ao campus atualmente"
+  #   hidden: yes
+  #   sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
+  # }
+
+  # dimension: representante_original {
+  #   type: string
+  #   group_label: "Dados da Regional"
+  #   label: "Representante - Original"
+  #   description: "Indica o representante comercial atribuido na data de inicio da proposta"
+  #   hidden: yes
+  #   sql: ${TABLE}."REPRESENTANTE_ORIGINAL" ;;
+  # }
+
+  # dimension: flg_boleto_atrasado {
+  #   type: yesno
+  #   group_label: "Dados do Contrato"
+  #   label: "Boleto Atrasado?"
+  #   description: "Indica se o aluno tem algum boleto em atraso"
+  #   sql: ${TABLE}."FLG_BOLETO_ATRASADO" ;;
+  # }
+
+  # dimension: max_boleto_atrasado {
+  #   type: number
+  #   group_label: "Dados do Contrato"
+  #   label: "Dias de atraso - Boleto"
+  #   hidden: yes
+  #   description: "Indica o número de dias de atraso de pagamento de determinado boleto"
+  #   sql: ${TABLE}."MAX_BOLETO_ATRASADO" ;;
+  # }
+
+  # dimension: faixa_tempo_atraso_boleto {
+  #   type: string
+  #   case: {
+  #     when: {
+  #       sql: ${max_boleto_atrasado} <= 5 ;;
+  #       label: "< 5"
+  #     }
+  #     when: {
+  #       sql: ${max_boleto_atrasado} <= 15 ;;
+  #       label: "5 - 15"
+  #     }
+  #     when: {
+  #       sql: ${max_boleto_atrasado} <= 30 ;;
+  #       label: "15 - 30"
+  #     }
+  #     else: "30 >"
+  #   }
+  #   group_label: "Dados do Contrato"
+  #   hidden: yes
+  #   group_item_label: "Faixa de Tempo de atraso - Boleto do Aluno"
+  #   description: "Indica a faixa de tempo, em dias de atraso de determinado boleto"
+  # }
+
+  # dimension: flg_cancelado {
+  #   type: yesno
+  #   group_label: "Dados da Proposta"
+  #   label: "Proposta Cancelada?"
+  #   hidden: yes
+  #   description: "Indica se a proposta está cancelada ou não"
+  #   sql: ${TABLE}."FLG_CANCELADO" ;;
+  # }
+
+  # dimension: id_originadores_ativos_ies {
+  #   type: string
+  #   group_label: "Dados da Instituição"
+  #   label: "ID Originadores"
+  #   hidden: yes
+  #   description: "Indica o ID dos originadores ativos para determinada instituição."
+  #   sql: ${TABLE}."ID_ORIGINADORES_ATIVOS_IES" ;;
+  # }
+
+  # dimension: produto_preaprovado {
+  #   type: string
+  #   group_label: "Dados da Proposta"
+  #   group_item_label: "Produtos Pré Aprovados"
+  #   description: "Informa os produtos pré aprovados por risco para envio da IES"
+  #   hidden: yes
+  #   sql: ${TABLE}."PRODUTOS_PREAPROVADOS" ;;
+  # }
+
+
+  # dimension: ciclo {
+  #   type: number
+  #   group_label: "Dados de Renovação"
+  #   hidden: yes
+  #   group_item_label: "Ciclo de Renovação"
+  #   description: "Informa o ciclo da proposta de renovação do aluno."
+  #   sql: ${TABLE}."CICLO" ;;
+  # }
+
+
+  # dimension: id_produtos_preaprovados {
+  #   type: string
+  #   group_label: "Dados do Produto"
+  #   hidden: yes
+  #   label: "ID Produtos Pré Aprovados"
+  #   description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
+  #   sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
+  #   html:
+  #   {% assign words = value | split: ',' %}
+  #   <ul>
+  #   {% for word in words %}
+  #   <li>{{ word }}</li>
+  #   {% endfor %} ;;
+  # }
 
 
 }

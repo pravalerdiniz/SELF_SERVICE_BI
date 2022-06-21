@@ -68,35 +68,7 @@ explore: beneficiados {
     sql_on: ${beneficiados.id_proposta} = ${proposta.id_proposta} ;;
     type: left_outer
     relationship: one_to_many
-    fields: [proposta.carteira_atual,
-      proposta.carteira_original,
-      proposta.regional_atual,
-      proposta.regional_original,
-      proposta.cp_atual,
-      proposta.cp_original,
-      proposta.gerente_atual,
-      proposta.gerente_original,
-      proposta.conversao_atual,
-      proposta.conversao_original,
-      proposta.representante_atual,
-      proposta.representante_original,
-      proposta.regional_atual,
-      proposta.regional_original,
-      proposta.tipo_atual,
-      proposta.tipo_original,
-      proposta.id_fundo_investimento,
-      proposta.ds_fundo_investimento,
-      proposta.nm_originador,
-      proposta.canal_detalhado_conversao,
-      proposta.canal_detalhado_descoberta,
-      proposta.canal_acesso_conversao,
-      proposta.canal_acesso_descoberta,
-      proposta.ds_url_conversao,
-      proposta.ds_url_descoberta,
-      proposta.cpf_aluno,
-      proposta.nm_produto_comercial
 
-    ]
 
   }
 
@@ -300,7 +272,6 @@ explore: jornada {
     - proposta.count_tipo_proposta_renovacao,
     - proposta.count_tipo_proposta_seg_repasse,
     - status.id_cpf,
-    - status.flg_proposta_atual,
     - status.tipo_proposta,
     - alunos.id_cpf,
     - alunos.id_proposta_atual,
@@ -617,7 +588,6 @@ explore: instituicao {
     - proposta.flg_instituicao_ativa,
     - proposta.cidade_instituicao,
     - proposta.uf_instituicao,
-    - proposta.id_originadores_ativos_ies,
     - proposta.grupo_instituicao,
     - proposta.flg_contrato_ies_ativo,
     - proposta.flg_wo_ies,
@@ -627,11 +597,6 @@ explore: instituicao {
     - proposta.flg_campus_ativo,
     - proposta.id_campus,
     - proposta.uf_campus,
-    - proposta.regional_atual,
-    - proposta.representante_original,
-    - proposta.cargo_original,
-    - proposta.cp_original,
-    - proposta.carteira_original,
     - proposta.id_curso,
     - proposta.area_conhecimento_curso,
     - proposta.ds_curso,
@@ -641,9 +606,6 @@ explore: instituicao {
     ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
-    - proposta.tipo_original,
-    - proposta.conversao_original,
-    - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies
 
 
@@ -816,7 +778,6 @@ explore: financeiro {
     - financeiro_extrato_titulo.id_contrato,
     - financeiro_extrato_titulo.id_cpf,
     - financeiro_extrato_titulo.id_titulo,
-    - proposta.max_boleto_atrasado,
     - financeiro_extrato_titulo.alunos,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
@@ -949,7 +910,7 @@ explore: proposta {
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
   fields: [ALL_FIELDS *,
-    - status.flg_proposta_atual,
+
     - status.id_cpf,
     - status.id_elegivel,
     - status.id_proposta,
@@ -1291,14 +1252,7 @@ explore: alunos {
     - proposta.fia_uf,
     - proposta.cpf_aluno,
     - proposta.fia_uf,
-    - proposta.regional_atual,
-    - proposta.carteira_atual,
     - proposta.gerente_atual,
-    - proposta.conversao_atual,
-    - proposta.representante_atual,
-    - proposta.cargo_atual,
-    - proposta.tipo_atual,
-    - proposta.cp_atual,
     - proposta.nivel_curso,
     - proposta.flg_produto_ativo,
     - proposta.tipo_produto,
