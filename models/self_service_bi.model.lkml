@@ -1314,6 +1314,14 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
+    -alunos_inadimplencia_1.count_over15,
+    -alunos_inadimplencia_1.count_over30,
+    -alunos_inadimplencia_1.count_over60,
+    -alunos_inadimplencia_fyf.qtd_rec,
+    -alunos_acordo_renegociacao.count,
+    -financeiro.perc_alunos,
+    -jornada.perc_cpf,
+    -jornada.count_cpf,
 
 
 
@@ -1572,14 +1580,14 @@ explore: alunos {
   }
 
   join: custo_bv {
-    view_label: "1.10 Custos BV"
+    view_label: "1.9.9 Custos BV"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: custo_bv_aluno {
-    view_label: "1.10.1 Custos BV Aluno"
+    view_label: "1.9.9.1 Custos BV Aluno"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
     type: left_outer
     relationship: one_to_many
