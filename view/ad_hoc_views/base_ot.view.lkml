@@ -1,6 +1,6 @@
 
 view: base_ot {
-  sql_table_name: "VETERANO"."FATO"."BASE_OT";;
+  sql_table_name: "VETERANO"."FATO"."CARTEIRA";;
 
 
   dimension: boleto {
