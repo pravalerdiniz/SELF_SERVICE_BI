@@ -6,7 +6,7 @@ view: carteira {
     primary_key: yes
     label: "Chave Única"
     type: string
-    sql: CONCAT(${id_boleto},${tdt_ano_mes} ;;
+    sql: CONCAT(${id_boleto},${tdt_ano_mes} );;
   }
 
   dimension: boleto {
