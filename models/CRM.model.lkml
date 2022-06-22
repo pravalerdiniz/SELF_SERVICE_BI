@@ -83,21 +83,21 @@ explore: tela_atendimento{
     view_label: "7. Proposta"
     sql_on: ${tela_atendimento_jornada.ID_PROPOSTA}=${proposta.id_proposta} ;;
     relationship: many_to_many
-    type: left_outer
+    type: full_outer
   }
 
   join: status {
     view_label: "6. Status"
     sql_on: ${tela_atendimento.id_cpf}=${status.id_cpf} ;;
     relationship: many_to_many
-    type: left_outer
+    type: full_outer
   }
 
   join: jornada {
     view_label: "8. Jornada"
     sql_on: ${tela_atendimento.id_cpf}=${jornada.id_cpf} ;;
     relationship: many_to_many
-    type: left_outer
+    type: full_outer
   }
 
   join: dim_cpf {
