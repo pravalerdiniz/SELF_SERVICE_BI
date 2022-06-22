@@ -93,6 +93,26 @@ explore: tela_atendimento{
     type: left_outer
   }
 
+  join: jornada {
+    view_label: "8. Jornada"
+    sql_on: ${tela_atendimento.id_cpf}=${jornada.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: dim_cpf {
+    view_label: "9. Dim cpf"
+    sql_on: ${tela_atendimento.id_cpf}=${dim_cpf.id_cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada_pivot {
+    view_label: "10. Jornada Pivot "
+    sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 explore: crm_customer {
