@@ -339,6 +339,10 @@ explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
 }
 
+explore: final_pdd {
+  label: "Final PDD"
+}
+
 explore: base_ot_analise {
   label: "Análise - Oliveira Trust"
 }
