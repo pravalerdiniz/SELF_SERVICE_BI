@@ -223,13 +223,16 @@ view: alunos_gerencial_renovacao_carteira_elegibilidade {
         sql: ${funil_elegibilidade_resumo} = 'Em formalização' ;;
         label: "6"
       }
-
       when: {
-        sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
+        sql: ${funil_elegibilidade_resumo} = 'Calendário Operacional' ;;
         label: "7"
       }
+      when: {
+        sql: ${funil_elegibilidade_resumo} = 'Elegível' ;;
+        label: "8"
+      }
 
-      else: "8"
+      else: "9"
     }
     hidden: yes
   }
