@@ -1022,7 +1022,6 @@ explore: proposta {
     - jornada.nome_aluno,
     - jornada.celular_aluno,
     - jornada.total_renov,
-    - jornada.id_elegivel,
     - jornada.id_proposta,
     - jornada.cpf_hash,
     - jornada.cpf_aluno_ajustado,

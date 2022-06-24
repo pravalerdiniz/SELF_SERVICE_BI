@@ -174,13 +174,7 @@ view: jornada {
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 
-  dimension: id_elegivel {
-    type: number
-    sql: ${TABLE}."ID_ELEGIVEL" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "ID Elegivel"
-    description: "Indica o código de elegibilidade"
-  }
+
 
   dimension: id_proposta {
     type: string
@@ -191,14 +185,6 @@ view: jornada {
     description: "Número de identificação da proposta"
   }
 
-  dimension: flg_proposta_atual {
-    type: string
-    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
-    group_label: "Dados da Proposta"
-    hidden: yes
-    group_item_label: "Proposta Atual?"
-    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
-  }
 
 
   dimension: flg_continuacao{
@@ -212,14 +198,7 @@ view: jornada {
   }
 
 
-  dimension: semestre_financiamento {
-    type: string
-    sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Semestre Financiado"
-    hidden: yes
-    description: "Indica o semestre financiado"
-  }
+
 
   dimension: status_etapa {
     type: number
@@ -3884,7 +3863,6 @@ dimension: qtd_dias_iniciados {
       id_proposta,
       etapa,
       status_etapa,
-      flg_proposta_atual,
       tipo_proposta,
       descricao_geral_ultimo_status,
       data_inicio_da_proposta_date,
@@ -3914,6 +3892,41 @@ measure: ultima_data_etapa {
 dimension: flg_ultima_etapa {
   type:  yesno
   sql: ${TABLE}."FLG_ULTIMA_ETAPA";;
-  label: "Flag Última Etapa"
+  label: "Última Etapa"
+  description: "Indica se o registro é a ultima etapa de contratação daquela proposta"
 }
+
+#Campos Ocultos - Lulinha 22/06/2022
+
+
+  # dimension: id_elegivel {
+  #   type: number
+  #   sql: ${TABLE}."ID_ELEGIVEL" ;;
+  #   group_label: "Dados da Proposta"
+  #   group_item_label: "ID Elegivel"
+  #   description: "Indica o código de elegibilidade"
+  # }
+
+
+  # dimension: flg_proposta_atual {
+  #   type: string
+  #   sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
+  #   group_label: "Dados da Proposta"
+  #   hidden: yes
+  #   group_item_label: "Proposta Atual?"
+  #   description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
+  # }
+
+
+  # dimension: semestre_financiamento {
+  #   type: string
+  #   sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
+  #   group_label: "Dados da Proposta"
+  #   group_item_label: "Semestre Financiado"
+  #   hidden: yes
+  #   description: "Indica o semestre financiado"
+  # }
+
+
+
 }
