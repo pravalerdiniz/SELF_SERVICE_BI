@@ -1286,6 +1286,13 @@ explore: alunos {
     relationship: one_to_many
   }
 
+  join: vw_contratos_inadimplencia {
+    view_label: "Inadimplência Nova"
+    sql_on: ${alunos.id_cpf} = ${vw_contratos_inadimplencia.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
 
   join: alunos_inadimplencia_1 {
