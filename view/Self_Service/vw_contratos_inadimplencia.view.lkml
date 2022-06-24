@@ -32,66 +32,79 @@ view: vw_contratos_inadimplencia {
 
   dimension: atraso_mob0 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB0" ;;
   }
 
   dimension: atraso_mob1 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB1" ;;
   }
 
   dimension: atraso_mob10 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB10" ;;
   }
 
   dimension: atraso_mob11 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB11" ;;
   }
 
   dimension: atraso_mob12 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB12" ;;
   }
 
   dimension: atraso_mob2 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB2" ;;
   }
 
   dimension: atraso_mob3 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB3" ;;
   }
 
   dimension: atraso_mob4 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB4" ;;
   }
 
   dimension: atraso_mob5 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB5" ;;
   }
 
   dimension: atraso_mob6 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB6" ;;
   }
 
   dimension: atraso_mob7 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB7" ;;
   }
 
   dimension: atraso_mob8 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB8" ;;
   }
 
   dimension: atraso_mob9 {
     type: number
+    group_label: "Dados Atraso MOB"
     sql: ${TABLE}."ATRASO_MOB9" ;;
   }
 
@@ -130,6 +143,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB0" ;;
   }
 
@@ -145,6 +159,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB1" ;;
   }
 
@@ -160,6 +175,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB10" ;;
   }
 
@@ -175,6 +191,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB11" ;;
   }
 
@@ -190,6 +207,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB12" ;;
   }
 
@@ -205,6 +223,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB2" ;;
   }
 
@@ -220,6 +239,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB3" ;;
   }
 
@@ -235,6 +255,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB4" ;;
   }
 
@@ -250,6 +271,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB5" ;;
   }
 
@@ -265,6 +287,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB6" ;;
   }
 
@@ -280,6 +303,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB7" ;;
   }
 
@@ -295,6 +319,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB8" ;;
   }
 
@@ -310,6 +335,7 @@ view: vw_contratos_inadimplencia {
     ]
     convert_tz: no
     datatype: date
+    group_label: "Data MOB"
     sql: ${TABLE}."DATA_MOB9" ;;
   }
 
@@ -330,131 +356,157 @@ view: vw_contratos_inadimplencia {
 
   dimension: over30_0 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_0" ;;
   }
 
   dimension: over30_1 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_1" ;;
   }
 
   dimension: over30_10 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_10" ;;
   }
 
   dimension: over30_11 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_11" ;;
   }
 
   dimension: over30_12 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_12" ;;
   }
 
   dimension: over30_2 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_2" ;;
   }
 
   dimension: over30_3 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_3" ;;
   }
 
   dimension: over30_4 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_4" ;;
   }
 
   dimension: over30_5 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_5" ;;
   }
 
   dimension: over30_6 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_6" ;;
   }
 
   dimension: over30_7 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_7" ;;
   }
 
   dimension: over30_8 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_8" ;;
   }
 
   dimension: over30_9 {
     type: number
+    group_label: "Dados Over 30"
     sql: ${TABLE}."OVER30_9" ;;
   }
 
   dimension: over60_0 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_0" ;;
   }
 
   dimension: over60_1 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_1" ;;
   }
 
   dimension: over60_10 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_10" ;;
   }
 
   dimension: over60_11 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_11" ;;
   }
 
   dimension: over60_12 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_12" ;;
   }
 
   dimension: over60_2 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_2" ;;
   }
 
   dimension: over60_3 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_3" ;;
   }
 
   dimension: over60_4 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_4" ;;
   }
 
   dimension: over60_5 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_5" ;;
   }
 
   dimension: over60_6 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_6" ;;
   }
 
   dimension: over60_7 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_7" ;;
   }
 
   dimension: over60_8 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_8" ;;
   }
 
   dimension: over60_9 {
     type: number
+    group_label: "Dados Over 60"
     sql: ${TABLE}."OVER60_9" ;;
   }
 
@@ -464,72 +516,85 @@ view: vw_contratos_inadimplencia {
   }
 
   dimension: safra {
-    type: number
+    type: string
     sql: ${TABLE}."SAFRA" ;;
   }
 
   dimension: safra_mob0 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB0" ;;
   }
 
   dimension: safra_mob1 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB1" ;;
   }
 
   dimension: safra_mob10 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB10" ;;
   }
 
   dimension: safra_mob11 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB11" ;;
   }
 
   dimension: safra_mob12 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB12" ;;
   }
 
   dimension: safra_mob2 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB2" ;;
   }
 
   dimension: safra_mob3 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB3" ;;
   }
 
   dimension: safra_mob4 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB4" ;;
   }
 
   dimension: safra_mob5 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB5" ;;
   }
 
   dimension: safra_mob6 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB6" ;;
   }
 
   dimension: safra_mob7 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB7" ;;
   }
 
   dimension: safra_mob8 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB8" ;;
   }
 
   dimension: safra_mob9 {
-    type: number
+    type: string
+    group_label: "Dados Safra MOB"
     sql: ${TABLE}."SAFRA_MOB9" ;;
   }
 
