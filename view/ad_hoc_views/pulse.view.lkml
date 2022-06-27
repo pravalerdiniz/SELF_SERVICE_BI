@@ -54,26 +54,26 @@ view: pulse {
     case: {
       when: {
         sql: ${grau_concordancia} = 'Concordo totalmente' ;;
-        label: "1"
+        label: "0"
       }
       when: {
         sql: ${grau_concordancia} = 'Concordo' ;;
-        label: "2"
+        label: "1"
       }
       when: {
         sql: ${grau_concordancia} = 'Não concordo, nem discordo' ;;
-        label: "3"
+        label: "2"
       }
 
       when: {
         sql: ${grau_concordancia} = 'Discordo' ;;
-        label: "4"
+        label: "3"
       }
       when: {
         sql: ${grau_concordancia} = 'Discordo totalmente' ;;
-        label: "5"
+        label: "4"
       }
-      else: "0"
+      else: "5"
     }
     hidden: yes
   }
