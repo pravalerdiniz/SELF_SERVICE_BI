@@ -2247,6 +2247,15 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR_PROPOSTA" ;;
   }
 
+  dimension: estado_civil_fia {
+     type: string
+     group_label: "Dados do Garantidor"
+     group_item_label: "Estado Civil"
+     description: "Indica o estado civil do Garantidor"
+     sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
+     hidden: no
+   }
+
   dimension: grupo_estado_civil_fia {
     type: string
     case: {
@@ -3801,14 +3810,7 @@ dimension: vl_tarifa_cadastro {
   #   hidden: yes
   # }
 
-  # dimension: estado_civil_fia {
-  #   type: string
-  #   group_label: "Dados do Garantidor"
-  #   group_item_label: "Estado Civil"
-  #   description: "Indica o estado civil do Garantidor"
-  #   sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
-  #   hidden: yes
-  # }
+
 
   # dimension: cargo_atual {
   #   type: string
