@@ -100,35 +100,33 @@ view: pulse {
     label: "Ordem - Tempo de Casa"
     hidden: yes
     sql: CAST(${ordem_tempo} AS INT) ;;
-
   }
-
 
   dimension: ordem_tempo {
     type: string
     case: {
       when: {
         sql: ${tempo_casa} = '3 meses ou menos' ;;
-        label: "1"
+        label: "0"
       }
       when: {
         sql: ${tempo_casa} = 'Entre 4 e 6 meses' ;;
-        label: "2"
+        label: "1"
       }
       when: {
         sql: ${tempo_casa} = 'Entre 7 e 11 meses' ;;
-        label: "3"
+        label: "2"
       }
 
       when: {
         sql: ${tempo_casa} = 'Entre 1 ano e 1 ano e 11 meses' ;;
-        label: "4"
+        label: "3"
       }
       when: {
         sql: ${tempo_casa} = '2 anos ou mais' ;;
-        label: "5"
+        label: "4"
       }
-      else: "0"
+      else: "5"
     }
     hidden: yes
   }
