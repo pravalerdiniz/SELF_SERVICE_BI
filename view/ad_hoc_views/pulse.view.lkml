@@ -54,26 +54,26 @@ view: pulse {
     case: {
       when: {
         sql: ${grau_concordancia} = 'Concordo totalmente' ;;
-        label: "0"
-      }
-      when: {
-        sql: ${grau_concordancia} = 'Concordo' ;;
         label: "1"
       }
       when: {
-        sql: ${grau_concordancia} = 'Não concordo, nem discordo' ;;
+        sql: ${grau_concordancia} = 'Concordo' ;;
         label: "2"
+      }
+      when: {
+        sql: ${grau_concordancia} = 'Não concordo, nem discordo' ;;
+        label: "3"
       }
 
       when: {
         sql: ${grau_concordancia} = 'Discordo' ;;
-        label: "3"
+        label: "4"
       }
       when: {
         sql: ${grau_concordancia} = 'Discordo totalmente' ;;
-        label: "4"
+        label: "5"
       }
-      else: "5"
+      else: "6"
     }
     hidden: yes
   }
@@ -107,26 +107,26 @@ view: pulse {
     case: {
       when: {
         sql: ${tempo_casa} = '3 meses ou menos' ;;
-        label: "0"
-      }
-      when: {
-        sql: ${tempo_casa} = 'Entre 4 e 6 meses' ;;
         label: "1"
       }
       when: {
-        sql: ${tempo_casa} = 'Entre 7 e 11 meses' ;;
+        sql: ${tempo_casa} = 'Entre 4 e 6 meses' ;;
         label: "2"
+      }
+      when: {
+        sql: ${tempo_casa} = 'Entre 7 e 11 meses' ;;
+        label: "3"
       }
 
       when: {
         sql: ${tempo_casa} = 'Entre 1 ano e 1 ano e 11 meses' ;;
-        label: "3"
+        label: "4"
       }
       when: {
         sql: ${tempo_casa} = '2 anos ou mais' ;;
-        label: "4"
+        label: "5"
       }
-      else: "5"
+      else: "6"
     }
     hidden: yes
   }
