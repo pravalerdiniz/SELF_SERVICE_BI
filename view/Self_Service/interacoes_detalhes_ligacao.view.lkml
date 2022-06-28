@@ -130,7 +130,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: id_ligacao {
       type: string
-      hidden: yes
+      hidden: no
       primary_key: yes
       sql: ${TABLE}."ID_LIGACAO" ;;
     }
