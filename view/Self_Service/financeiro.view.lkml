@@ -19,6 +19,24 @@ view: financeiro {
     sql: ${TABLE}."DATA_BAIXA" ;;
   }
 
+  dimension_group: data_geracao_titulo {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    label: "Geração Título"
+    description: "Indica a data de geração do título"
+    datatype: date
+    hidden: yes
+    sql: ${TABLE}."DATA_GERACAO_TITULO" ;;
+  }
+
 dimension: data_trunc  {
   type: date
   sql:date_trunc('MONTH', DATA_VENCIMENTO );;
@@ -1581,6 +1599,14 @@ foi gerado por um pagamento menor do boleto anterior."
     label: "Registrado na StarKbank?"
     description: "Indica se o título foi registrado na Starkbank,ou seja, na API de Boletos."
     sql: ${TABLE}."ST_REGISTRADO_STARKBANK" ;;
+  }
+
+  dimension: id_ies_contrato {
+    type: number
+    group_label: "Dados do Título"
+    label: "ID Contrato IES"
+    description: "Indica o código de contrato da ies com o pravaler para o título."
+    sql: ${TABLE}."ID_IES_CONTRATO" ;;
   }
 
   dimension_group: data_ultimo_collection {

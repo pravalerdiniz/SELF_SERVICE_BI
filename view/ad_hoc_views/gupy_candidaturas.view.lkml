@@ -586,7 +586,7 @@ view: gupy_candidaturas {
           when 'REDACAO_LIVRE' then 'Redação Livre'
           when 'TESTE_FIT_CULTURAL' then 'Teste Fit Cultural'
           when 'TESTE_LOGICA' then 'Teste de Lógica'
-          when 'TESTE_ONLINE' then 'Teste Online'
+          when 'TESTE_ONLINE' then 'Etapa técnica'
           when 'VIDEO' then 'Vídeo'
           else ${TABLE}."NM_ETAPA_ATUAL"
     end
@@ -799,6 +799,14 @@ view: gupy_candidaturas {
     type: number
     sql: datediff(days, ${dt_registro_entrada_etapa_date}, coalesce(${dt_inicio_prox_etapa_date}, ${dt_finalizacao_candidatura_date}, current_date)) + 1
     ;;
+  }
+
+  dimension: score_compatibilidade {
+    group_label: "Dados da Candidatura"
+    label: "Score de compatibilidade"
+    description: "Indica a pontuação que esse candidato tem com a vaga em questão"
+    type: number
+    sql: ${TABLE}."SCORE_COMPATIBILIDADE" ;;
   }
 
   measure: count {

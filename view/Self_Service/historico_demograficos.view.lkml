@@ -242,6 +242,14 @@ view: historico_demograficos {
     sql: ${TABLE}."NIVEL" ;;
   }
 
+  dimension: empresa {
+    label: "EMPRESA"
+    view_label: "DADOS PROFISSIONAIS"
+    description: "Informa de qual empresa inicial o Pravalente é proveniente"
+    type: string
+    sql: ${TABLE}."EMPRESA" ;;
+  }
+
   measure: count {
     label: "CONTAGEM DE OCORRÊNCIAS"
     view_label: "MÉTRICAS"

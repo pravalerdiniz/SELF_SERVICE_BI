@@ -3,8 +3,8 @@ view: taxa_instituicao_simplificada {
     persist_for: "24 hours"
 ##>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
     sql: select
-        b.id,
         b.id_instituicao,
+        g.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO,
         g.value:ID_PRODUTO::varchar as id_produto,
         g.value:NOME_PRODUTO::varchar as nome_produto,
         g.value:CONTRATACAO::int as numero_contratacao,
@@ -33,6 +33,14 @@ view: taxa_instituicao_simplificada {
     type: string
     group_label: "Dados do Contrato"
     sql: ${instituicao.id} ;;
+
+  }
+
+  dimension: id_ies_contrato {
+    type: number
+    label: "ID IES Contrato"
+    description:"Indica o contrato da IES com o Pravaler"
+    sql: ${TABLE}."ID_IES_CONTRATO";;
 
   }
 

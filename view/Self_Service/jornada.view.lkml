@@ -174,13 +174,7 @@ view: jornada {
     description: "Indica o ID do CPF correspondente ao CPF do aluno"
   }
 
-  dimension: id_elegivel {
-    type: number
-    sql: ${TABLE}."ID_ELEGIVEL" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "ID Elegivel"
-    description: "Indica o código de elegibilidade"
-  }
+
 
   dimension: id_proposta {
     type: string
@@ -191,14 +185,6 @@ view: jornada {
     description: "Número de identificação da proposta"
   }
 
-  dimension: flg_proposta_atual {
-    type: string
-    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
-    group_label: "Dados da Proposta"
-    hidden: yes
-    group_item_label: "Proposta Atual?"
-    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
-  }
 
 
   dimension: flg_continuacao{
@@ -212,14 +198,7 @@ view: jornada {
   }
 
 
-  dimension: semestre_financiamento {
-    type: string
-    sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
-    group_label: "Dados da Proposta"
-    group_item_label: "Semestre Financiado"
-    hidden: yes
-    description: "Indica o semestre financiado"
-  }
+
 
   dimension: status_etapa {
     type: number
@@ -662,7 +641,7 @@ view: jornada {
         label: "Reprovado por duas ou mais parcelas em atraso"
       }
       when: {
-        sql: ${ultimo_status_detalhado} in ('2019.15''2019.16') ;;
+        sql: ${ultimo_status_detalhado} in ('2019.15','2019.16') ;;
         label: "Reprovado Behavior"
       }
       when: {
@@ -1763,6 +1742,17 @@ dimension: flg_d1 {
 
   }
 
+  dimension: ciclo_aprov_behavior {
+    type: string
+    group_label: "Dados de Renovação"
+    hidden: no
+    group_item_label: "Ciclo de Renovação (Aprov Behavior)"
+    description: "Informa o ciclo da proposta de renovação do aluno de acordo com a data de Aprovação Behavior"
+    sql: case when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
+              when ${dt_aprovado_behavior_date} between '2022-06-01' and '2022-10-31' then '2022.2'
+              else 'Outro' end;;
+  }
+
   measure: avg_Aprovado_Behavior {
     type: average
     sql: datediff(day, ${data_inicio_da_proposta_date}, ${dt_aprovado_behavior_date}) ;;
@@ -2423,7 +2413,7 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_beha_renov} ;;
-      sql: ${sla_beha_renov}/86400 ;;
+      sql: coalesce(${sla_beha_renov}/86400,0) ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "2. Elegível até Aprovado Behavior"
@@ -2434,7 +2424,7 @@ dimension: flg_d1 {
       type: median
       #sql_distinct_key: ${id_proposta};;
       #sql: ${jornada_pivot.sla_apr_ies_renov} ;;
-      sql: ${sla_apr_ies_renov}/86400 ;;
+      sql: coalesce(${sla_apr_ies_renov}/86400,0) ;;
       drill_fields: [detail*]
       group_label: "Mediana do Tempo de Jornada - Renovação"
       group_item_label: "3. Aprovado Behavior até Aprovado Instituição"
@@ -3873,7 +3863,6 @@ dimension: qtd_dias_iniciados {
       id_proposta,
       etapa,
       status_etapa,
-      flg_proposta_atual,
       tipo_proposta,
       descricao_geral_ultimo_status,
       data_inicio_da_proposta_date,
@@ -3903,6 +3892,41 @@ measure: ultima_data_etapa {
 dimension: flg_ultima_etapa {
   type:  yesno
   sql: ${TABLE}."FLG_ULTIMA_ETAPA";;
-  label: "Flag Última Etapa"
+  label: "Última Etapa"
+  description: "Indica se o registro é a ultima etapa de contratação daquela proposta"
 }
+
+#Campos Ocultos - Lulinha 22/06/2022
+
+
+  # dimension: id_elegivel {
+  #   type: number
+  #   sql: ${TABLE}."ID_ELEGIVEL" ;;
+  #   group_label: "Dados da Proposta"
+  #   group_item_label: "ID Elegivel"
+  #   description: "Indica o código de elegibilidade"
+  # }
+
+
+dimension: flg_proposta_atual {
+  type: string
+  sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
+  group_label: "Dados da Proposta"
+  hidden: yes
+  group_item_label: "Proposta Atual?"
+   description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status (Sim - Não)"
+  }
+
+
+  # dimension: semestre_financiamento {
+  #   type: string
+  #   sql: ${TABLE}."SEMESTRE_FINANCIAMENTO" ;;
+  #   group_label: "Dados da Proposta"
+  #   group_item_label: "Semestre Financiado"
+  #   hidden: yes
+  #   description: "Indica o semestre financiado"
+  # }
+
+
+
 }

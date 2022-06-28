@@ -767,69 +767,7 @@ view: alunos {
     description: "Indica a UF da instituição de ensino, pode ser usado em gráficos de mapa"
   }
 
-  dimension: cargo_atual {
-    type: string
-    sql: ${TABLE}."CARGO_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Cargo - Atual"
-    description: "Indica o cargo atual do responsável comercial na instituição de ensino"
-  }
 
-  dimension: gerente_atual {
-    type: string
-    sql: ${TABLE}."GERENTE_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Gerente Atual"
-    description: "Indica quem é o gerente atual"
-  }
-
-  dimension: representante_atual {
-    type: string
-    sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Representante Atual"
-    description: "Indica quem é o representante atual"
-  }
-
-  dimension: regional_atual {
-    type: string
-    sql: ${TABLE}."REGIONAL_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Regional Atual"
-    description: "Indica a regional atual. Ex: Minas, RJ, ES, CO..."
-  }
-
-  dimension: tipo_atual {
-    type: string
-    sql: ${TABLE}."TIPO_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Tipo de Representante Atual"
-    description: "Indica o tipo de representante atual. Ex: Fixo, Volante."
-  }
-
-  dimension: carteira_atual {
-    type: string
-    sql: ${TABLE}."CARTEIRA_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Carteira - Atual"
-    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
-  }
-
-  dimension: conversao_atual {
-    type: string
-    sql: ${TABLE}."CONVERSAO_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "Conversão - Atual"
-    description: "Indica qual o nome do agente de conversão atribuído ao campus atualmente"
-  }
-
-  dimension: cp_atual {
-    type: string
-    sql: ${TABLE}."CP_ATUAL" ;;
-    group_label: "Dados Comerciais"
-    group_item_label: "CP - Atual"
-    description: " Indica o código do representante comercial atual na IES"
-  }
 
 
   dimension: ds_fundo_investimento {
@@ -1760,6 +1698,78 @@ measure: porc_evasao {
     hidden: yes
     group_item_label: "Valor Presente"
     description: "Indica o valor presente"
+  }
+
+  dimension: cargo_atual {
+    type: string
+    sql: ${TABLE}."CARGO_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "Cargo - Atual"
+    hidden: yes
+    description: "Indica o cargo atual do responsável comercial na instituição de ensino"
+  }
+
+  dimension: gerente_atual {
+    type: string
+    sql: ${TABLE}."GERENTE_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "Gerente Atual"
+    hidden: yes
+    description: "Indica quem é o gerente atual"
+  }
+
+  dimension: representante_atual {
+    type: string
+    sql: ${TABLE}."REPRESENTANTE_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    hidden: yes
+    group_item_label: "Representante Atual"
+    description: "Indica quem é o representante atual"
+  }
+
+  dimension: regional_atual {
+    type: string
+    sql: ${TABLE}."REGIONAL_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "Regional Atual"
+    hidden: yes
+    description: "Indica a regional atual. Ex: Minas, RJ, ES, CO..."
+  }
+
+  dimension: tipo_atual {
+    type: string
+    sql: ${TABLE}."TIPO_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    hidden: yes
+    group_item_label: "Tipo de Representante Atual"
+    description: "Indica o tipo de representante atual. Ex: Fixo, Volante."
+  }
+
+  dimension: carteira_atual {
+    type: string
+    sql: ${TABLE}."CARTEIRA_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "Carteira - Atual"
+    hidden: yes
+    description: "Indica o tipo de carteira atual do responsável comercial na instituição de ensino. Ex: Varejo, DN, Outros"
+  }
+
+  dimension: conversao_atual {
+    type: string
+    sql: ${TABLE}."CONVERSAO_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "Conversão - Atual"
+    hidden: yes
+    description: "Indica qual o nome do agente de conversão atribuído ao campus atualmente"
+  }
+
+  dimension: cp_atual {
+    type: string
+    sql: ${TABLE}."CP_ATUAL" ;;
+    group_label: "Dados Comerciais"
+    group_item_label: "CP - Atual"
+    hidden: yes
+    description: " Indica o código do representante comercial atual na IES"
   }
 
 

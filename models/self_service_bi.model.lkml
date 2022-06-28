@@ -68,35 +68,7 @@ explore: beneficiados {
     sql_on: ${beneficiados.id_proposta} = ${proposta.id_proposta} ;;
     type: left_outer
     relationship: one_to_many
-    fields: [proposta.carteira_atual,
-      proposta.carteira_original,
-      proposta.regional_atual,
-      proposta.regional_original,
-      proposta.cp_atual,
-      proposta.cp_original,
-      proposta.gerente_atual,
-      proposta.gerente_original,
-      proposta.conversao_atual,
-      proposta.conversao_original,
-      proposta.representante_atual,
-      proposta.representante_original,
-      proposta.regional_atual,
-      proposta.regional_original,
-      proposta.tipo_atual,
-      proposta.tipo_original,
-      proposta.id_fundo_investimento,
-      proposta.ds_fundo_investimento,
-      proposta.nm_originador,
-      proposta.canal_detalhado_conversao,
-      proposta.canal_detalhado_descoberta,
-      proposta.canal_acesso_conversao,
-      proposta.canal_acesso_descoberta,
-      proposta.ds_url_conversao,
-      proposta.ds_url_descoberta,
-      proposta.cpf_aluno,
-      proposta.nm_produto_comercial
 
-    ]
 
   }
 
@@ -143,13 +115,13 @@ explore: inep {
 
   }
 
-  join: inep_lgpd {
-    view_label: "INEP - Estrutura LGPD"
-    type: left_outer
-    sql_on: ${inep.id_ies} = ${inep_lgpd.co_ies} ;;
-    relationship: many_to_many
+  #join: inep_lgpd {
+    #view_label: "INEP - Estrutura LGPD"
+    #type: left_outer
+    #sql_on: ${inep.id_ies} = ${inep_lgpd.co_ies} ;;
+    #relationship: many_to_many
 
-  }
+  #}
 }
 
 
@@ -300,7 +272,6 @@ explore: jornada {
     - proposta.count_tipo_proposta_renovacao,
     - proposta.count_tipo_proposta_seg_repasse,
     - status.id_cpf,
-    - status.flg_proposta_atual,
     - status.tipo_proposta,
     - alunos.id_cpf,
     - alunos.id_proposta_atual,
@@ -464,8 +435,8 @@ explore: jornada {
   join: instituicao_contrato_produto_info {
     view_label: "3.1 Instituição - Contrato por Produto"
     sql_on: ${jornada.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            AND  ${instituicao_contrato_produto_info.id_campus} = ${proposta.id_campus}
-            AND    ${instituicao_contrato_produto_info.id_curso} =  ${proposta.id_curso};;
+            AND  ${instituicao_contrato_produto_info.id_ies_contrato} = ${proposta.id_ies_contrato}
+          ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -520,8 +491,6 @@ explore: jornada {
     sql_on: ${jornada.id_cpf} = ${proposta_projeto_decola.id_cpf} and ${jornada.id_proposta} = ${proposta_projeto_decola.id_proposta};;
     relationship: many_to_one
     type: left_outer
-
-
   }
 
     join: instituicao_resumo {
@@ -530,11 +499,6 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
-
-
-
-
-
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -584,12 +548,28 @@ explore: jornada {
     relationship: many_to_one
   }
 
+ #join: germina_rcp_group {
+#    view_label: "9.1. Germina - Grupos"
+ #   sql_on: ${obj_persona_jornada.control_group}=${germina_rcp_group.GROUP_ID};;
+  #  relationship: many_to_one
+#    type: left_outer
+ # }
+
   join: ano_mes_carteira_ativa {
     view_label: "10. Dados Aluno Ativo"
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${jornada.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
+
+  join: engajometro {
+    view_label: "11. Engajometro IES"
+    sql_on: ${proposta.grupo_instituicao}=${engajometro.grupo};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
 }
 
 
@@ -608,7 +588,6 @@ explore: instituicao {
     - proposta.flg_instituicao_ativa,
     - proposta.cidade_instituicao,
     - proposta.uf_instituicao,
-    - proposta.id_originadores_ativos_ies,
     - proposta.grupo_instituicao,
     - proposta.flg_contrato_ies_ativo,
     - proposta.flg_wo_ies,
@@ -618,11 +597,6 @@ explore: instituicao {
     - proposta.flg_campus_ativo,
     - proposta.id_campus,
     - proposta.uf_campus,
-    - proposta.regional_atual,
-    - proposta.representante_original,
-    - proposta.cargo_original,
-    - proposta.cp_original,
-    - proposta.carteira_original,
     - proposta.id_curso,
     - proposta.area_conhecimento_curso,
     - proposta.ds_curso,
@@ -632,10 +606,8 @@ explore: instituicao {
     ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
-    - proposta.tipo_original,
-    - proposta.conversao_original,
-    - proposta.vl_dias_wo_ies,
     - proposta.perc_tx_subsidiado_ies
+
 
   ]
 
@@ -671,7 +643,7 @@ explore: instituicao {
   }
 
   join: instituicao_taxas_antecipacao {
-    view_label: "1.2. Taxas da Instituição por Produto Antecipação"
+    view_label: "1.1.2 Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
         --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
       ;;
@@ -680,7 +652,7 @@ explore: instituicao {
   }
 
   join: instituicao_taxas_gestao {
-    view_label: "1.3. Taxas da Instituição por Produto Gestão"
+    view_label: "1.1.3 Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
     relationship: one_to_many
@@ -688,7 +660,7 @@ explore: instituicao {
 
   }
   join: taxa_instituicao_simplificada {
-    view_label: "1.4. Taxas da Instituição Simplificada"
+    view_label: "1.1.4 Taxas da Instituição por Produto Gestão - Simplificada"
     sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
       and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}  ;;
     relationship: one_to_many
@@ -697,7 +669,7 @@ explore: instituicao {
   }
 
   join: instituicao_metas_gc {
-    view_label: "1.5 Metas - GC"
+    view_label: "1.3 Metas - GC"
     sql_on: ${instituicao_metas_gc.grupo_instituicao}=${instituicao.grupo} ;;
     relationship: many_to_one
     type: left_outer
@@ -806,7 +778,15 @@ explore: financeiro {
     - financeiro_extrato_titulo.id_contrato,
     - financeiro_extrato_titulo.id_cpf,
     - financeiro_extrato_titulo.id_titulo,
-    - proposta.max_boleto_atrasado
+    - financeiro_extrato_titulo.alunos,
+    - proposta.cont_cpf,
+    - proposta.perc_cpf,
+    - vw_extrato_repasse.cpf,
+    - vw_extrato_repasse.id_cpf,
+    - vw_extrato_repasse.id_contrato,
+    - proposta.flg_instituicao_ativa,
+    - financeiro_log_titulo.id_titulo,
+
   ]
 
   join: financeiro_extrato_titulo {
@@ -844,7 +824,7 @@ explore: financeiro {
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
-            --and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_contrato}
+            and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_ies_contrato}
             ;;
     relationship: one_to_many
     type: left_outer
@@ -853,7 +833,8 @@ explore: financeiro {
 
   join: produto_ies_snapshot {
     view_label: "3.1. Contrato da Instituição por Produto - (Histórico)"
-    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao} ;;
+    sql_on: ${instituicao.id_instituicao} = ${produto_ies_snapshot.id_instituicao}
+     and ${instituicao_contrato_produto_info.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
 
@@ -862,7 +843,7 @@ explore: financeiro {
   join: instituicao_taxas_antecipacao {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-        --AND ${instituicao_contrato_produto_info.id_ies_contrato} = ${instituicao_taxas_antecipacao.id_contrato_instituicao}
+      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -871,7 +852,8 @@ explore: financeiro {
   join: instituicao_taxas_gestao {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-      and ${instituicao_contrato_produto_info.id_produto} = ${instituicao_taxas_gestao.id_produto}  ;;
+      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+        ;;
     relationship: one_to_many
     type: left_outer
 
@@ -879,14 +861,15 @@ explore: financeiro {
 
 
   join: taxa_instituicao_simplificada {
-    view_label: "3.4. Taxas da Instituição Simplificada"
-    sql_on: ${taxa_instituicao_simplificada.id_instituicao} = ${instituicao.id_instituicao}
-      --and ${instituicao_contrato_produto_info.id_produto} = ${taxa_instituicao_simplificada.id_produto}
-      ;;
+    view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+     and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
 
   }
+
+
 
 
   join: proposta_projeto_decola {
@@ -927,7 +910,7 @@ explore: proposta {
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
   fields: [ALL_FIELDS *,
-    - status.flg_proposta_atual,
+
     - status.id_cpf,
     - status.id_elegivel,
     - status.id_proposta,
@@ -1039,7 +1022,6 @@ explore: proposta {
     - jornada.nome_aluno,
     - jornada.celular_aluno,
     - jornada.total_renov,
-    - jornada.id_elegivel,
     - jornada.id_proposta,
     - jornada.cpf_hash,
     - jornada.cpf_aluno_ajustado,
@@ -1159,12 +1141,13 @@ explore: proposta {
     relationship: one_to_many
   }
 
-  join: financeiro_parcelas_futuro {
-    view_label: "3.1 Boletos Futuros "
-    sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+#Excluido - Não utilizado 08-06-2022 / Lulinha
+  #join: financeiro_parcelas_futuro {
+    #view_label: "3.1 Boletos Futuros "
+    #sql_on: ${proposta.id_proposta} = ${financeiro_parcelas_futuro.contrato} ;;
+    #relationship: one_to_many
+    #type: left_outer
+  #}
 
   join: financeiro_count_titulo {
     view_label: "3. Financeiro"
@@ -1268,14 +1251,7 @@ explore: alunos {
     - proposta.fia_uf,
     - proposta.cpf_aluno,
     - proposta.fia_uf,
-    - proposta.regional_atual,
-    - proposta.carteira_atual,
     - proposta.gerente_atual,
-    - proposta.conversao_atual,
-    - proposta.representante_atual,
-    - proposta.cargo_atual,
-    - proposta.tipo_atual,
-    - proposta.cp_atual,
     - proposta.nivel_curso,
     - proposta.flg_produto_ativo,
     - proposta.tipo_produto,
@@ -1291,6 +1267,10 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
+    -alunos_acordo_renegociacao.count,
+    -financeiro.perc_alunos,
+    -jornada.perc_cpf,
+    -jornada.count_cpf,
 
 
 
@@ -1298,13 +1278,20 @@ explore: alunos {
 
   ]
 
-#Excluido - Duplicidade | Objeto igual ao da Proposta proposta_produtos_aprovados - Lulinha 02/06/2022
-  #join: alunos_produtos_aprovados {
-    #view_label: "1.1 Produtos Aprovados"
-    #sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    #type: left_outer
-    #relationship: one_to_many
- # }
+
+  join: alunos_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: vw_contratos_inadimplencia {
+    view_label: "Inadimplência Nova"
+    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
 
@@ -1341,56 +1328,56 @@ explore: alunos {
   }
 
   join: alunos_inadimplencia_book_wo {
-    view_label: "1.2.3 Book Inadimplência - W.O "
+    view_label: "1.2.2.2 Book Inadimplência - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_fyf {
-    view_label: "1.2.4 FYF - W.O "
+    view_label: "1.2.3 FYF - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atrasado {
-    view_label: "1.2.6 Carteira - Atrasado"
+    view_label: "1.2.5 Carteira - Atrasado"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atraso_produto {
-    view_label: "1.2.7 Carteira - Atrasado (Produto)"
+    view_label: "1.2.6 Carteira - Atrasado (Produto)"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_risco {
-    view_label: "1.2.5 Carteira"
+    view_label: "1.2.4 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_caixa_projecao_carteira {
-    view_label: "1.2.8 Carteira - Base Projeção"
+    view_label: "1.2.7 Carteira - Base Projeção"
     sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_base_recuperacao {
-    view_label: "1.2.9 Carteira - Recuperação"
+    view_label: "1.2.8 Carteira - Recuperação"
     sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "1.2.10 S&P - Fitch Rating"
+    view_label: "1.2.9 S&P - Fitch Rating"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
     type: left_outer
     relationship: one_to_many
@@ -1549,14 +1536,14 @@ explore: alunos {
   }
 
   join: custo_bv {
-    view_label: "1.10 Custos BV"
+    view_label: "1.9.9 Custos BV"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: custo_bv_aluno {
-    view_label: "1.10.1 Custos BV Aluno"
+    view_label: "1.9.9.1 Custos BV Aluno"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
     type: left_outer
     relationship: one_to_many
@@ -1962,10 +1949,7 @@ explore: tetris_withoutproducts {
 
 }
 
-explore: prv_log {
-  label: "PRV LOG"
-  hidden: yes
-}
+
 
 explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
@@ -1979,4 +1963,12 @@ explore: gupy_candidaturas {
 
 explore: dados_intake {
   label: "Dados Intake"
+}
+
+explore: inep_lgpd {
+  label: "Dados INEP - LGPD"
+}
+
+explore: carteira {
+  label: "Carteira Ativa"
 }
