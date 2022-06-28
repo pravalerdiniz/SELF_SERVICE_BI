@@ -236,6 +236,10 @@ explore: taxa_de_contato{
   label: "Taxa de Contato"
 }
 
+explore: treinamento_data_driven {
+  label: "Capacitação - Data Driven"
+}
+
 
 explore: taxa_de_contato_alunos_ativos{
   label: "Taxa de Contato de Alunos Ativos"
