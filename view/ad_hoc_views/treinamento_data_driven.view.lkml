@@ -95,7 +95,7 @@ view: treinamento_data_driven {
 
   dimension: treinamento {
     type: number
-    label: "Teste de Conhecimento?"
+    label: "Treinamento?"
     description: "Indica se o funcionário realizou o treinamento. Ex: 1 = Sim | 0 = Não"
     sql: ${TABLE}."TREINAMENTO" ;;
   }
