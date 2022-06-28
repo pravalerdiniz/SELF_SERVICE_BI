@@ -1039,11 +1039,11 @@ foi gerado por um pagamento menor do boleto anterior."
 
   measure: sum_lucro_aquisicao_gestao {
     type: sum
-    sql: CASE WHEN  ${flg_boleto_pago} = TRUE THEN ${vl_lucro_gestao}  ELSE 0 END;;
+    sql: ${vl_lucro_gestao} ;;
     group_label: "Gestão Garantido"
     value_format: "$ #,###.00"
     group_item_label: "Soma do Lucro na Aquisição (Gestão Garantido)"
-    description: "Esta medida é uma regra de negócio. * Indica a soma do lucro da aquisiçao, no âmbito do produto Gestão Garantido"
+    description: "Esta medida é uma regra de negócio. * Indica a soma do possível lucro da aquisiçao, no âmbito do produto Gestão Garantido"
 
   }
 
