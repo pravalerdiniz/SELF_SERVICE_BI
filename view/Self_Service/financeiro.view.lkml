@@ -1269,6 +1269,42 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Soma do valor de boletos pagos"
   }
 
+  measure: sum_pago_compra {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE THEN ${vl_pago} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma valor pago (compra)"
+    description: "Soma do valor pago (compra)"
+  }
+
+  measure: sum_pago_repasse {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_pago} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma valor pago (repasse)"
+    description: "Soma do valor pago (repasse)"
+  }
+
+  measure: sum_boleto_pago_compra {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE THEN ${vl_boleto} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma pago (compra)"
+    description: "Soma do valor de boletos pagos (compra)"
+  }
+
+  measure: sum_boleto_pago_repasse {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE AND ${flg_boleto_pago} = TRUE THEN ${vl_boleto} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma pago (repasse)"
+    description: "Soma do valor de boletos pagos (repasse)"
+  }
+
 
   measure: min_pago {
     type: min
