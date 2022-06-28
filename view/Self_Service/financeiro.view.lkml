@@ -469,6 +469,14 @@ dimension: safra_vencimento {
     sql: ${TABLE}."FLG_BOLETO_PAGO" ;;
   }
 
+  dimension: flg_boleto_pago_em_dia {
+    type: yesno
+    group_label: "Gestão Garantido"
+    label: "Boleto Pago em dia?"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto foi pago em dia."
+    sql: ${TABLE}."FLG_PAGO_GESTAO_GARANTIDA" ;;
+  }
+
   dimension: flg_writeoff {
     type: yesno
     group_label: "Dados do Título"
@@ -635,6 +643,26 @@ dimension: safra_vencimento {
     description: "Indica o valor de aquisiçao do título"
     hidden: yes
     sql: ${TABLE}."VL_AQUISICAO" ;;
+  }
+
+  dimension: vl_aquisicao_gestao {
+    type: number
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    label: "Valor de Aquisição (Gestão Garantido)"
+    description: "Indica o valor de aquisiçao do título, no âmbito do produto Gestão Garantido"
+    hidden: yes
+    sql: ${TABLE}."VALOR_AQUISICAO_CALCULADO" ;;
+  }
+
+  dimension: vl_lucro_gestao {
+    type: number
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    label: "Valor de Aquisição (Gestão Garantido)"
+    description: "Indica o valor de aquisiçao do título, no âmbito do produto Gestão Garantido"
+    hidden: yes
+    sql: ${TABLE}."LUCRO_AQUISICAO" ;;
   }
 
   dimension: vl_boleto {
@@ -996,6 +1024,27 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor de Aquisição"
     group_item_label: "Soma"
     description: "Soma do valor de aquisição do titulo"
+  }
+
+  measure: sum_aquisicao_gestao {
+    type: sum
+    sql: ${vl_aquisicao_gestao} ;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Valor de Aquisição (Gestão Garantido)"
+    description: "Indica a soma do valor de aquisiçao, no âmbito do produto Gestão Garantido"
+
+  }
+
+
+  measure: sum_lucro_aquisicao_gestao {
+    type: sum
+    sql: CASE WHEN  ${flg_boleto_pago} = TRUE THEN ${vl_lucro_gestao}  ELSE 0 END;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Lucro na Aquisição (Gestão Garantido)"
+    description: "Esta medida é uma regra de negócio. * Indica a soma do lucro da aquisiçao, no âmbito do produto Gestão Garantido"
+
   }
 
 
