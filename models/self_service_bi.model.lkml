@@ -899,7 +899,8 @@ join: sql_runner_query_range_boleto {
 join: vw_extrato_repasse {
   view_label: "4. Extrato Repasse - Gestão Corrigido"
   sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
-          ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+          --${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+          ${financeiro.id_contrato} = ${vw_extrato_repasse.id_contrato}
   ;;
   relationship: one_to_one
 }
