@@ -810,6 +810,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: status {
+    view_label: "5. Status"
+    sql_on: ${financeiro.id_contrato}=${status.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
   join: instituicao {
     view_label: "3. Instituicao"
     sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
