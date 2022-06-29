@@ -545,6 +545,14 @@ view: instituicao {
     description: "Indica o grupo da IES nos dados do amigoedu"
   }
 
+  dimension: ies_amigoedu_codigo {
+    sql: ${TABLE}.DADOS_IES_AMIGOEDU[0]:"codigo"::varchar;;
+    type: string
+    group_label: "Dados da IES Amigoedu"
+    group_item_label: "codigo da IES amigoedu"
+    description: "Indica o codigo da IES nos dados do amigoedu"
+  }
+
 
 
   measure: count {
