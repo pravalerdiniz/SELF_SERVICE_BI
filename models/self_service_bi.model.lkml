@@ -851,6 +851,7 @@ explore: financeiro {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
       and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
       ;;
     relationship: one_to_many
     type: left_outer
