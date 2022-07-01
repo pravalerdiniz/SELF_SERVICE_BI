@@ -810,6 +810,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: status {
+    view_label: "5. Status"
+    sql_on: ${financeiro.id_contrato}=${status.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
   join: instituicao {
     view_label: "3. Instituicao"
     sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
@@ -844,6 +851,7 @@ explore: financeiro {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
       and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -853,6 +861,7 @@ explore: financeiro {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
         ;;
     relationship: one_to_many
     type: left_outer
@@ -900,6 +909,7 @@ join: vw_extrato_repasse {
   view_label: "4. Extrato Repasse - Gestão Corrigido"
   sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
           ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+          --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
   ;;
   relationship: one_to_one
 }
@@ -1029,7 +1039,6 @@ explore: proposta {
     - jornada.nome_aluno,
     - jornada.celular_aluno,
     - jornada.total_renov,
-    - jornada.id_elegivel,
     - jornada.id_proposta,
     - jornada.cpf_hash,
     - jornada.cpf_aluno_ajustado,
@@ -1290,6 +1299,13 @@ explore: alunos {
   join: alunos_produtos_aprovados {
     view_label: "1.1 Produtos Aprovados"
     sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: vw_contratos_inadimplencia {
+    view_label: "Inadimplência Nova"
+    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
     type: left_outer
     relationship: one_to_many
   }

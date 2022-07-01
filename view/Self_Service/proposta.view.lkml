@@ -409,6 +409,25 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  dimension_group: data_geracao_contrato {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Geração do Contrato"
+    description: "Indica a data de geração do contrato"
+    sql: ${TABLE}."DATA_GERACAO_CONTRATO" ;;
+  }
+
   dimension: safra_cessao {
     type: number
     group_label: "Dados do Contrato"
@@ -2247,6 +2266,15 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."ESTADO_CIVIL_GARANTIDOR_PROPOSTA" ;;
   }
 
+  dimension: estado_civil_fia {
+     type: string
+     group_label: "Dados do Garantidor"
+     group_item_label: "Estado Civil"
+     description: "Indica o estado civil do Garantidor"
+     sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
+     hidden: no
+   }
+
   dimension: grupo_estado_civil_fia {
     type: string
     case: {
@@ -3801,14 +3829,7 @@ dimension: vl_tarifa_cadastro {
   #   hidden: yes
   # }
 
-  # dimension: estado_civil_fia {
-  #   type: string
-  #   group_label: "Dados do Garantidor"
-  #   group_item_label: "Estado Civil"
-  #   description: "Indica o estado civil do Garantidor"
-  #   sql: ${TABLE}."ESTADO_CIVIL_FIADOR" ;;
-  #   hidden: yes
-  # }
+
 
   # dimension: cargo_atual {
   #   type: string
