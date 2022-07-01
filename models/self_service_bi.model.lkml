@@ -859,7 +859,6 @@ explore: financeiro {
 
   }
 
-
   join: taxa_instituicao_simplificada {
     view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
     sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
@@ -868,9 +867,6 @@ explore: financeiro {
     type: left_outer
 
   }
-
-
-
 
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
@@ -888,6 +884,17 @@ join: sql_runner_query_range_boleto {
   ;;
   relationship: one_to_one
 }
+
+  join: alunos {
+    from: alunos
+    view_label: "1. Financeiro"
+    sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf};;
+    fields: [
+      alunos.flg_aluno_ativo
+    ]
+    relationship: one_to_one
+    type: left_outer
+  }
 
 join: vw_extrato_repasse {
   view_label: "4. Extrato Repasse - Gestão Corrigido"
