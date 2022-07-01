@@ -868,6 +868,17 @@ explore: financeiro {
 
   }
 
+  join: taxa_produto_ies {
+    view_label: "3.5. Tabela de Taxas da Instituição Unificada"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
+      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
+        ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
 
   join: taxa_instituicao_simplificada {
     view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
