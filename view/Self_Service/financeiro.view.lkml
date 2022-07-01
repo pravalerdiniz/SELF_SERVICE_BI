@@ -477,6 +477,14 @@ dimension: safra_vencimento {
     sql: ${TABLE}."FLG_PAGO_GESTAO_GARANTIDA" ;;
   }
 
+  dimension: flg_boleto_base_gestao_garantido {
+    type: yesno
+    group_label: "Gestão Garantido"
+    label: "Boleto consta na base Gestão Garantido?"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto está na base prv_gestao_garantido."
+    sql: CASE WHEN ${TABLE}."VALOR_AQUISICAO_CALCULADO" IS NULL THEN FALSE ELSE TRUE END ;;
+  }
+
   dimension: flg_writeoff {
     type: yesno
     group_label: "Dados do Título"

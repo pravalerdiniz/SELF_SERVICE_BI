@@ -851,6 +851,7 @@ explore: financeiro {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
       and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -860,6 +861,18 @@ explore: financeiro {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
+        ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: taxa_produto_ies {
+    view_label: "3.5. Tabela de Taxas da Instituição Unificada"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
+      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
         ;;
     relationship: one_to_many
     type: left_outer
