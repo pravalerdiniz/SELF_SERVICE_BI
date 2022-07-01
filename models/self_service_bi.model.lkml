@@ -382,6 +382,16 @@ explore: jornada {
     type: left_outer
   }
 
+    join: jornada_interacoes_social {
+    view_label: "1.11 Interações Social"
+    sql_on: ${jornada.id_cpf} = ${jornada_interacoes_social.id_cpf}
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
