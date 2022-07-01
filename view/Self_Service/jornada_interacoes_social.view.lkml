@@ -8,9 +8,8 @@ view: jornada_interacoes_social {
             f.value:DT_FINAL_IMPACTO::date as DT_FINAL_IMPACTO,
             f.value:CANAL::varchar as CANAL
             from GRADUADO.SELF_SERVICE_BI.ALUNOS a,
-            lateral flatten (input => interacoes_crm) f
-
-            where CANAL = 'SOCIAL'
+            lateral flatten (input => interacoes_crm_por_canal) f
+            where f.value:CANAL = 'SOCIAL'
  ;;
     }
 

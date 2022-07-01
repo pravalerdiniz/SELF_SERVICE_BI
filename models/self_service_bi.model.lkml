@@ -383,7 +383,7 @@ explore: jornada {
   }
 
     join: jornada_interacoes_social {
-    view_label: "1.11 Interações Social"
+    view_label: "1.12 Interações Social"
     sql_on: ${jornada.id_cpf} = ${jornada_interacoes_social.id_cpf}
           --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
           --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
