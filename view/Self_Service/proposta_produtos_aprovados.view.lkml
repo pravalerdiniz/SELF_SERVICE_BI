@@ -22,6 +22,7 @@ view: proposta_produtos_aprovados {
     type: string
     label: "ID Proposta"
     hidden: yes
+    primary_key: yes
     sql: ${TABLE}."ID_PROPOSTA" ;;
   }
 
