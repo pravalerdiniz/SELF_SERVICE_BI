@@ -473,7 +473,7 @@ dimension: safra_vencimento {
     type: yesno
     group_label: "Gestão Garantido"
     label: "Boleto Pago em dia?"
-    description: "Este campo é uma regra de negócio*.Indica se o boleto foi pago em dia."
+    description: "Este campo é uma regra de negócio*.Indica se o boleto foi pago em dia. Se pago é um repasse, senão é uma compra."
     sql: ${TABLE}."FLG_PAGO_GESTAO_GARANTIDA" ;;
   }
 
@@ -1036,7 +1036,7 @@ foi gerado por um pagamento menor do boleto anterior."
 
   measure: sum_aquisicao_gestao {
     type: sum
-    sql: ${vl_aquisicao_gestao} ;;
+    sql: CASE WHEN ${flg_boleto_base_gestao_garantido} = TRUE THEN ${vl_aquisicao_gestao} ELSE 0 END;;
     group_label: "Gestão Garantido"
     value_format: "$ #,###.00"
     group_item_label: "Soma do Valor de Aquisição (Gestão Garantido)"
@@ -1052,6 +1052,26 @@ foi gerado por um pagamento menor do boleto anterior."
     value_format: "$ #,###.00"
     group_item_label: "Soma do Lucro na Aquisição (Gestão Garantido)"
     description: "Esta medida é uma regra de negócio. * Indica a soma do possível lucro da aquisiçao, no âmbito do produto Gestão Garantido"
+
+  }
+
+  measure: sum_PDD {
+    type: sum
+    sql: CASE
+      WHEN ${flg_writeoff} AND ${flg_boleto_pago} = FALSE THEN ${vl_boleto}
+      WHEN ${dias_atraso} BETWEEN 1 AND 14 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
+      WHEN ${dias_atraso} BETWEEN 15 AND 30 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
+      WHEN ${dias_atraso} BETWEEN 31 AND 60 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
+      WHEN ${dias_atraso} BETWEEN 61 AND 90 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
+      WHEN ${dias_atraso} BETWEEN 91 AND 120 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
+      WHEN ${dias_atraso} BETWEEN 121 AND 150 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
+      WHEN ${dias_atraso} BETWEEN 151 AND 180 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      ELSE 0 END
+      ;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Valor de PDD (Gestão Garantido)"
+    description: "Indica a soma do valor de PDD, no âmbito do produto Gestão Garantido"
 
   }
 
@@ -1279,7 +1299,7 @@ foi gerado por um pagamento menor do boleto anterior."
 
   measure: sum_pago_compra {
     type: sum
-    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_pago} ELSE 0 END;;
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE  THEN ${vl_pago} ELSE 0 END;;
     value_format: "$ #,###.00"
     group_label: "Gestão Garantido"
     group_item_label: "Soma valor pago (compra)"
@@ -1288,7 +1308,7 @@ foi gerado por um pagamento menor do boleto anterior."
 
   measure: sum_pago_repasse {
     type: sum
-    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE THEN ${vl_pago} ELSE 0 END;;
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE AND ${flg_boleto_base_gestao_garantido} = TRUE THEN ${vl_pago} ELSE 0 END;;
     value_format: "$ #,###.00"
     group_label: "Gestão Garantido"
     group_item_label: "Soma valor pago (repasse)"
