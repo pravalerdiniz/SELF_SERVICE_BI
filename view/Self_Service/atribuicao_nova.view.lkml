@@ -59,7 +59,7 @@ view: atribuicao_nova
     type: number
     sql: ${TABLE}."AFILIADOS" ;;
     group_label: "Quantidade de Interações por Canal"
-    group_item_label: "Call Center"
+    group_item_label: "Afiliados"
   }
 
   measure: total_afiliados {
@@ -84,7 +84,7 @@ view: atribuicao_nova
     type: number
     sql: ${TABLE}."SOCIAL" ;;
     group_label: "Quantidade de Interações por Canal"
-    group_item_label: "Call Center"
+    group_item_label: "Social"
   }
 
   measure: total_social {
@@ -109,7 +109,7 @@ view: atribuicao_nova
       type: number
       sql: ${TABLE}."BALCAO" ;;
       group_label: "Quantidade de Interações por Canal"
-      group_item_label: "Call Center"
+      group_item_label: "Balcão"
     }
 
     measure: total_balcao {
