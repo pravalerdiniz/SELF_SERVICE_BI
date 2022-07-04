@@ -205,7 +205,8 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso
   ]
 
   join: proposta
@@ -354,7 +355,8 @@ explore: jornada {
     - alunos.endereco,
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso
 
 
   ]
@@ -617,7 +619,8 @@ explore: instituicao {
     ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - financeiro.arrasto_dias_atraso
 
 
   ]
@@ -1089,6 +1092,7 @@ explore: proposta {
     - instituicao.max_mensalidade,
     - atribuicao_nova.perc_cpf,
     - atribuicao_nova.count_id_cpf,
+    - financeiro.arrasto_dias_atraso
 
 
 
@@ -1320,8 +1324,7 @@ explore: alunos {
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
     -jornada.count_cpf,
-
-
+    -financeiro.arrasto_dias_atraso
 
 
 
@@ -1334,6 +1337,7 @@ explore: alunos {
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: vw_contratos_inadimplencia {
     view_label: "Inadimplência Nova"

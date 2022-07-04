@@ -386,6 +386,13 @@ dimension: safra_vencimento {
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
+  dimension: arrasto_dias_atraso {
+    type: number
+    sql: ${financeiro_arrasto_atraso.arrasto}  ;;
+    group_label: "Gestão Garantido"
+    group_item_label: "Arrasto Dias"
+    description: "Quantidade de arrasto de dias de atraso do CPF."
+  }
 
   dimension: ds_baixa {
     type: string
