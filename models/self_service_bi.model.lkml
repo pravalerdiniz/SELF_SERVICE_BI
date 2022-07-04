@@ -839,7 +839,12 @@ explore: financeiro {
 
   }
 
-
+  join: financeiro_arrasto_atraso {
+    view_label: "1.3 Arrasto"
+    sql_on: ${financeiro_arrasto_atraso.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
