@@ -98,6 +98,7 @@ explore: beneficiados {
     type: left_outer
   }
 
+
 }
 
 explore: inep {
@@ -837,6 +838,8 @@ explore: financeiro {
     type:left_outer
 
   }
+
+
 
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"

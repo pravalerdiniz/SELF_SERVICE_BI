@@ -386,6 +386,7 @@ dimension: safra_vencimento {
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
+
   dimension: ds_baixa {
     type: string
     group_label: "Status do Boleto"
@@ -891,6 +892,8 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Indica o código de barras (linha digitavel) do boleto."
     sql: ${TABLE}."LINHA_DIGITAVEL" ;;
   }
+
+
 
 
   measure: count_titulo {
