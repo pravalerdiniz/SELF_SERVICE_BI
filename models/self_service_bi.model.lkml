@@ -846,9 +846,9 @@ explore: financeiro {
   }
 
   join: financeiro_arrasto_atraso {
-    view_label: "1.3 Arrasto"
+    view_label: "1. Financeiro"
     sql_on: ${financeiro_arrasto_atraso.id_cpf} = ${financeiro.id_cpf} ;;
-    relationship: one_to_one
+    relationship: many_to_many
     type: left_outer
   }
 
