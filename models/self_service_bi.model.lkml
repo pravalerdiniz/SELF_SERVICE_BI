@@ -98,6 +98,7 @@ explore: beneficiados {
     type: left_outer
   }
 
+
 }
 
 explore: inep {
@@ -204,7 +205,9 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
   ]
 
   join: proposta
@@ -353,7 +356,9 @@ explore: jornada {
     - alunos.endereco,
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
   ]
@@ -381,6 +386,16 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+    join: jornada_interacoes_social {
+    view_label: "1.12 Interações Social"
+    sql_on: ${jornada.id_cpf} = ${jornada_interacoes_social.id_cpf}
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
   join: proposta {
     view_label: "2. Proposta"
@@ -606,7 +621,9 @@ explore: instituicao {
     ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
   ]
@@ -826,6 +843,13 @@ explore: financeiro {
     relationship: many_to_one
     type:left_outer
 
+  }
+
+  join: financeiro_arrasto_atraso {
+    view_label: "1. Financeiro"
+    sql_on: ${financeiro_arrasto_atraso.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
   }
 
   join: instituicao_contrato_produto_info {
@@ -1071,6 +1095,8 @@ explore: proposta {
     - instituicao.max_mensalidade,
     - atribuicao_nova.perc_cpf,
     - atribuicao_nova.count_id_cpf,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
 
@@ -1302,8 +1328,8 @@ explore: alunos {
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
     -jornada.count_cpf,
-
-
+    -financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
 
@@ -1316,6 +1342,7 @@ explore: alunos {
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: vw_contratos_inadimplencia {
     view_label: "Inadimplência Nova"

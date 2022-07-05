@@ -386,6 +386,14 @@ dimension: safra_vencimento {
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
+  dimension: arrasto_dias_atraso {
+    type: number
+    sql: ${financeiro_arrasto_atraso.arrasto}  ;;
+    group_label: "Gestão Garantido"
+    group_item_label: "Arrasto Dias"
+    description: "Quantidade de arrasto de dias de atraso do CPF."
+  }
+
   dimension: ds_baixa {
     type: string
     group_label: "Status do Boleto"
@@ -893,6 +901,8 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
+
+
   measure: count_titulo {
     type: count
     value_format: "0"
@@ -1059,13 +1069,13 @@ foi gerado por um pagamento menor do boleto anterior."
     type: sum
     sql: CASE
       WHEN ${flg_writeoff} AND ${flg_boleto_pago} = FALSE THEN ${vl_boleto}
-      WHEN ${dias_atraso} BETWEEN 1 AND 14 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
-      WHEN ${dias_atraso} BETWEEN 15 AND 30 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
-      WHEN ${dias_atraso} BETWEEN 31 AND 60 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
-      WHEN ${dias_atraso} BETWEEN 61 AND 90 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
-      WHEN ${dias_atraso} BETWEEN 91 AND 120 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
-      WHEN ${dias_atraso} BETWEEN 121 AND 150 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
-      WHEN ${dias_atraso} BETWEEN 151 AND 180 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      WHEN ${arrasto_dias_atraso} BETWEEN 1 AND 14 AND ${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
+      WHEN ${arrasto_dias_atraso} BETWEEN 15 AND 30 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
+      WHEN ${arrasto_dias_atraso} BETWEEN 31 AND 60 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
+      WHEN ${arrasto_dias_atraso} BETWEEN 61 AND 90 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
+      WHEN ${arrasto_dias_atraso} BETWEEN 91 AND 120 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
+      WHEN ${arrasto_dias_atraso} BETWEEN 121 AND 150 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
+      WHEN ${arrasto_dias_atraso} BETWEEN 151 AND 180 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
       ELSE 0 END
       ;;
     group_label: "Gestão Garantido"
