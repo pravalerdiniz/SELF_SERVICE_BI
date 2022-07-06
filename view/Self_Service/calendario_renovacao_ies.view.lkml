@@ -23,15 +23,15 @@ view: calendario_renovacao_ies {
     ]
     convert_tz: no
     datatype: date
-    label: "Data subida alunos"
+    label: "Data limite para escolha do calendário de renovação"
     description: "Indica a data de subida dos alunos para renovação"
     sql: ${TABLE}."DT_SUBIDA_ALUNOS" ;;
   }
 
   dimension: flg_ativo {
     type: yesno
-    label: "Flag Ativo"
-    description: "Indica se o calendário está ativo"
+    label: "Flag Instituição Ativa"
+    description: "Indica se a Instituição está ativa"
     sql: ${TABLE}."FLG_ATIVO" ;;
   }
 
