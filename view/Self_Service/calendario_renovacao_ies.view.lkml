@@ -30,8 +30,8 @@ view: calendario_renovacao_ies {
 
   dimension: flg_ativo {
     type: yesno
-    label: "Flag Ativo"
-    description: "Indica se o calendário está ativo"
+    label: "Flag Instituição Ativa"
+    description: "Indica se a Instituição está ativa"
     sql: ${TABLE}."FLG_ATIVO" ;;
   }
 
