@@ -23,7 +23,7 @@ view: calendario_renovacao_ies {
     ]
     convert_tz: no
     datatype: date
-    label: "Data subida alunos"
+    label: "Data limite para escolha do calendário de renovação"
     description: "Indica a data de subida dos alunos para renovação"
     sql: ${TABLE}."DT_SUBIDA_ALUNOS" ;;
   }
