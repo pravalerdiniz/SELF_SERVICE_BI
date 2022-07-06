@@ -774,7 +774,13 @@ explore: instituicao {
     type:left_outer
 
   }
+  join: calendario_renovacao_ies {
+    view_label: "7. Calendário Renovação IES"
+    sql_on:   ${instituicao.id_instituicao} = ${calendario_renovacao_ies.id_ies};;
+    relationship: many_to_many
+    type:left_outer
 
+  }
 
 
 }
