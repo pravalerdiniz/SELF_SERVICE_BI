@@ -1,4 +1,4 @@
-connection: "graduado"
+connection: "farol"
 
 include: "/**/*.view.lkml"
 
