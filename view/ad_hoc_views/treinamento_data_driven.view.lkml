@@ -152,7 +152,7 @@ view: treinamento_data_driven {
     type: average
     sql: ${teste_resultado} ;;
     label: "Mèdia - Teste de Conhecimento"
-    value_format: "0%"
+
   }
 
 
