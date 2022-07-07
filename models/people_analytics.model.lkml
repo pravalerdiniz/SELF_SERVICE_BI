@@ -37,3 +37,22 @@ explore: gupy_candidaturas {
   label: "Dados GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
 }
+
+explore: pulse {
+  label: "Pulse"
+  view_label: "Pulse"
+  description: "Apresenta os resultados da pulse realizada com os pravalentes."
+}
+
+explore: enps {
+  label: "e-NPS"
+  view_label: "e-NPS"
+
+
+  join: enps_flatten {
+    view_label: "e-NPS por Palavra"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${enps.id_resposta} = ${enps_flatten.id_resposta} ;;
+  }
+}
