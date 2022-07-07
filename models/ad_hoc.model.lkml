@@ -120,7 +120,9 @@ explore: comparacao_ot {
     -financeiro.nm_produto,
     -financeiro.ds_instituicao,
     -financeiro.ds_curso,
-    -financeiro.aluno_nome
+    -financeiro.aluno_nome,
+    -financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
   ]
 
   join: financeiro {

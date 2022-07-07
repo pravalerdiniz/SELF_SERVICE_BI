@@ -233,6 +233,16 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  dimension: data_cessao_gestao {
+    group_label: "Gestão Garantido"
+    type: date
+    convert_tz: no
+    datatype: date
+    label: "Data de corte."
+    description: "Indica a data de corte do boleto no produto gestão garantido."
+    sql: CASE WHEN ${data_vencimento_day_of_month} > 5 THEN DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num}+1,5) ELSE DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num},5) END ;;
+  }
+
   dimension: wtd_only {
     group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
     label: "Week to Date"
@@ -386,6 +396,14 @@ dimension: safra_vencimento {
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
 
+  dimension: arrasto_dias_atraso {
+    type: number
+    sql: ${financeiro_arrasto_atraso.arrasto}  ;;
+    group_label: "Gestão Garantido"
+    group_item_label: "Arrasto Dias"
+    description: "Quantidade de arrasto de dias de atraso do CPF."
+  }
+
   dimension: ds_baixa {
     type: string
     group_label: "Status do Boleto"
@@ -467,6 +485,22 @@ dimension: safra_vencimento {
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/971112540/BOLETO+PAGO"
     }
     sql: ${TABLE}."FLG_BOLETO_PAGO" ;;
+  }
+
+  dimension: flg_boleto_pago_em_dia {
+    type: yesno
+    group_label: "Gestão Garantido"
+    label: "Boleto Pago em dia?"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto foi pago em dia. Se pago é um repasse, senão é uma compra."
+    sql: ${TABLE}."FLG_PAGO_GESTAO_GARANTIDA" ;;
+  }
+
+  dimension: flg_boleto_base_gestao_garantido {
+    type: yesno
+    group_label: "Gestão Garantido"
+    label: "Boleto consta na base Gestão Garantido?"
+    description: "Este campo é uma regra de negócio*.Indica se o boleto está na base prv_gestao_garantido."
+    sql: CASE WHEN ${TABLE}."VALOR_AQUISICAO_CALCULADO" IS NULL THEN FALSE ELSE TRUE END ;;
   }
 
   dimension: flg_writeoff {
@@ -635,6 +669,26 @@ dimension: safra_vencimento {
     description: "Indica o valor de aquisiçao do título"
     hidden: yes
     sql: ${TABLE}."VL_AQUISICAO" ;;
+  }
+
+  dimension: vl_aquisicao_gestao {
+    type: number
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    label: "Valor de Aquisição (Gestão Garantido)"
+    description: "Indica o valor de aquisiçao do título, no âmbito do produto Gestão Garantido"
+    hidden: yes
+    sql: ${TABLE}."VALOR_AQUISICAO_CALCULADO" ;;
+  }
+
+  dimension: vl_lucro_gestao {
+    type: number
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    label: "Valor de Aquisição (Gestão Garantido)"
+    description: "Indica o valor de aquisiçao do título, no âmbito do produto Gestão Garantido"
+    hidden: yes
+    sql: ${TABLE}."LUCRO_AQUISICAO" ;;
   }
 
   dimension: vl_boleto {
@@ -857,6 +911,8 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
+
+
   measure: count_titulo {
     type: count
     value_format: "0"
@@ -996,6 +1052,47 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor de Aquisição"
     group_item_label: "Soma"
     description: "Soma do valor de aquisição do titulo"
+  }
+
+  measure: sum_aquisicao_gestao {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_base_gestao_garantido} = TRUE THEN ${vl_aquisicao_gestao} ELSE 0 END;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Valor de Aquisição (Gestão Garantido)"
+    description: "Indica a soma do valor de aquisiçao, no âmbito do produto Gestão Garantido"
+
+  }
+
+
+  measure: sum_lucro_aquisicao_gestao {
+    type: sum
+    sql: ${vl_lucro_gestao} ;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Lucro na Aquisição (Gestão Garantido)"
+    description: "Esta medida é uma regra de negócio. * Indica a soma do possível lucro da aquisiçao, no âmbito do produto Gestão Garantido"
+
+  }
+
+  measure: sum_PDD {
+    type: sum
+    sql: CASE
+      WHEN ${flg_writeoff} AND ${flg_boleto_pago} = FALSE THEN ${vl_boleto}
+      WHEN ${arrasto_dias_atraso} BETWEEN 1 AND 14 AND ${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
+      WHEN ${arrasto_dias_atraso} BETWEEN 15 AND 30 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
+      WHEN ${arrasto_dias_atraso} BETWEEN 31 AND 60 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
+      WHEN ${arrasto_dias_atraso} BETWEEN 61 AND 90 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
+      WHEN ${arrasto_dias_atraso} BETWEEN 91 AND 120 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
+      WHEN ${arrasto_dias_atraso} BETWEEN 121 AND 150 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
+      WHEN ${arrasto_dias_atraso} BETWEEN 151 AND 180 AND ${id_titulo_status} = 2 AND ${flg_boleto_pago} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      ELSE 0 END
+      ;;
+    group_label: "Gestão Garantido"
+    value_format: "$ #,###.00"
+    group_item_label: "Soma do Valor de PDD (Gestão Garantido)"
+    description: "Indica a soma do valor de PDD, no âmbito do produto Gestão Garantido"
+
   }
 
 
@@ -1218,6 +1315,54 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Valor Pago"
     group_item_label: "Soma"
     description: "Soma do valor de boletos pagos"
+  }
+
+  measure: sum_pago_compra {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE AND ${flg_boleto_base_gestao_garantido} = TRUE  THEN ${vl_pago} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma valor pago (compra)"
+    description: "Soma do valor pago (compra)"
+  }
+
+  measure: sum_pago_repasse {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE AND ${flg_boleto_base_gestao_garantido} = TRUE THEN ${vl_pago} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma valor pago (repasse)"
+    description: "Soma do valor pago (repasse)"
+  }
+
+  measure: sum_boleto_pago_compra {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = FALSE AND ${flg_boleto_pago} = TRUE THEN ${vl_boleto} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma pago (compra)"
+    description: "Soma do valor de boletos pagos (compra)"
+  }
+
+  measure: sum_boleto_pago_repasse {
+    type: sum
+    sql: CASE WHEN ${flg_boleto_pago_em_dia} = TRUE THEN ${vl_boleto} ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma pago (repasse)"
+    description: "Soma do valor de boletos pagos (repasse)"
+  }
+
+  measure: sum_carteira_operacionalizada {
+    type: sum
+    sql: CASE
+        WHEN DATE(GETDATE()) > ${data_cessao_gestao} and ${flg_boleto_base_gestao_garantido} = TRUE  AND  ${id_titulo_status} IN (2,4) THEN ${vl_boleto}
+        WHEN DATE(GETDATE()) = (${data_cessao_gestao}) and ${flg_boleto_base_gestao_garantido} = FALSE  AND  ${id_titulo_status} = (2) THEN ${vl_boleto}
+    ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma carteira operacionalizada"
+    description: "Soma do valor dos boletos ativos e dos boletos cancelados."
   }
 
 

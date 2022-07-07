@@ -409,6 +409,43 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DATA_CONCESSAO" ;;
   }
 
+  measure: primeira_cessao {
+    type: date
+    group_label: "Proposta"
+    label: "Primeira Cessão"
+    sql: MIN(${data_concessao_raw}) ;;
+    description: "Indica a data mais antiga da cessão da proposta do aluno. MIN(DATA_VENCIMENTO)."
+    convert_tz: no
+  }
+
+  measure: ultimo_cessao {
+    type: date
+    group_label: "Proposta"
+    label: "Última Cessão"
+    sql: MAX(${data_concessao_raw}) ;;
+    description: "Indica a última data da cessão da proposta do aluno. MAX(DATA_VENCIMENTO)."
+    convert_tz: no
+  }
+
+  dimension_group: data_geracao_contrato {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Geração do Contrato"
+    description: "Indica a data de geração do contrato"
+    sql: ${TABLE}."DATA_GERACAO_CONTRATO" ;;
+  }
+
   dimension: safra_cessao {
     type: number
     group_label: "Dados do Contrato"

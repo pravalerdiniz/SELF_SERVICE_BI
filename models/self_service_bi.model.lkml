@@ -98,6 +98,7 @@ explore: beneficiados {
     type: left_outer
   }
 
+
 }
 
 explore: inep {
@@ -204,7 +205,9 @@ explore: status {
     - proposta.tipo_proposta,
     - financeiro.id_cpf,
     - alunos.id_cpf,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
   ]
 
   join: proposta
@@ -353,7 +356,9 @@ explore: jornada {
     - alunos.endereco,
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
-    - alunos.ativo_ano_mes
+    - alunos.ativo_ano_mes,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
   ]
@@ -381,6 +386,16 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+    join: jornada_interacoes_social {
+    view_label: "1.12 Interações Social"
+    sql_on: ${jornada.id_cpf} = ${jornada_interacoes_social.id_cpf}
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
   join: proposta {
     view_label: "2. Proposta"
@@ -606,7 +621,9 @@ explore: instituicao {
     ##- proposta.perc_comissao,
     - proposta.perc_desagio,
     - proposta.gerente_original,
-    - proposta.perc_tx_subsidiado_ies
+    - proposta.perc_tx_subsidiado_ies,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
   ]
@@ -757,7 +774,13 @@ explore: instituicao {
     type:left_outer
 
   }
+  join: calendario_renovacao_ies {
+    view_label: "7. Calendário Renovação IES"
+    sql_on:   ${instituicao.id_instituicao} = ${calendario_renovacao_ies.id_ies};;
+    relationship: many_to_many
+    type:left_outer
 
+  }
 
 
 }
@@ -810,6 +833,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: status {
+    view_label: "5. Status"
+    sql_on: ${financeiro.id_contrato}=${status.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
   join: instituicao {
     view_label: "3. Instituicao"
     sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
@@ -819,6 +849,13 @@ explore: financeiro {
     relationship: many_to_one
     type:left_outer
 
+  }
+
+  join: financeiro_arrasto_atraso {
+    view_label: "1. Financeiro"
+    sql_on: ${financeiro_arrasto_atraso.id_cpf} = ${financeiro.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
   }
 
   join: instituicao_contrato_produto_info {
@@ -844,6 +881,7 @@ explore: financeiro {
     view_label: "3.2. Taxas da Instituição por Produto Antecipação"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
       and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
       ;;
     relationship: one_to_many
     type: left_outer
@@ -853,13 +891,27 @@ explore: financeiro {
     view_label: "3.3. Taxas da Instituição por Produto Gestão"
     sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
       and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
         ;;
     relationship: one_to_many
     type: left_outer
 
   }
 
+###<<<<<<< HEAD
+###=======
+  join: taxa_produto_ies {
+    view_label: "3.5. Tabela de Taxas da Instituição Unificada"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
+      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
+        ;;
+    relationship: one_to_many
+    type: left_outer
 
+  }
+
+###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
   join: taxa_instituicao_simplificada {
     view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
     sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
@@ -868,9 +920,6 @@ explore: financeiro {
     type: left_outer
 
   }
-
-
-
 
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
@@ -889,10 +938,22 @@ join: sql_runner_query_range_boleto {
   relationship: one_to_one
 }
 
+  join: alunos {
+    from: alunos
+    view_label: "1. Financeiro"
+    sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf};;
+    fields: [
+      alunos.flg_aluno_ativo
+    ]
+    relationship: one_to_one
+    type: left_outer
+  }
+
 join: vw_extrato_repasse {
   view_label: "4. Extrato Repasse - Gestão Corrigido"
   sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
           ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+          --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
   ;;
   relationship: one_to_one
 }
@@ -1040,6 +1101,8 @@ explore: proposta {
     - instituicao.max_mensalidade,
     - atribuicao_nova.perc_cpf,
     - atribuicao_nova.count_id_cpf,
+    - financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
 
@@ -1271,8 +1334,8 @@ explore: alunos {
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
     -jornada.count_cpf,
-
-
+    -financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
 
 
 
@@ -1285,6 +1348,7 @@ explore: alunos {
     type: left_outer
     relationship: one_to_many
   }
+
 
   join: vw_contratos_inadimplencia {
     view_label: "Inadimplência Nova"
