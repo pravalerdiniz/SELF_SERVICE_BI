@@ -1772,5 +1772,11 @@ measure: porc_evasao {
     description: " Indica o código do representante comercial atual na IES"
   }
 
+  dimension: flg_impacto_crm {
+    type: yesno
+    sql: ${TABLE}."FLG_IMPACTO_CRM" ;;
+    label: "Flag Impacto CRM Renovação"
+    description: "Indica se o aluno interagiu (abriu, recebeu, conforme a regra) com algum evento disparado por CRM (e-mail, sms, whatsapp) nos últimos 30 dias."
+  }
 
 }

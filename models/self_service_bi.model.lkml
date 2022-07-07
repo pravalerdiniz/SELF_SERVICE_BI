@@ -80,7 +80,6 @@ explore: beneficiados {
     relationship: one_to_many
 
 
-
   }
 
   join: dim_cpf {
@@ -1835,12 +1834,7 @@ explore: crx_agentes_detalhes_pausas{
 
 
 
-explore: dados_demograficos {}
 
-explore: historico_demograficos {
-  label: "Histórico demográficos"
-  view_label: "Histórico demográficos"
-}
 
 explore: new_relic {}
 
@@ -2020,10 +2014,7 @@ explore: aproveitamento_estoque_nok{
 }
 
 
-explore: gupy_candidaturas {
-  label: "Dados GUPY"
-  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
-}
+
 
 explore: dados_intake {
   label: "Dados Intake"
