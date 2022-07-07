@@ -70,6 +70,13 @@ view: calendario_renovacao_ies {
     sql: ${TABLE}."NOME_IES" ;;
   }
 
+  dimension: flag_primeira_data {
+    type: yesno
+    label: "Flag Primeira Data"
+    description: "Indica a primeira data de renovação"
+    sql: ${TABLE}."FLAG_PRIMEIRA_DATA" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
