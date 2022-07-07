@@ -2014,10 +2014,7 @@ explore: aproveitamento_estoque_nok{
 }
 
 
-explore: gupy_candidaturas {
-  label: "Dados GUPY"
-  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
-}
+
 
 explore: dados_intake {
   label: "Dados Intake"

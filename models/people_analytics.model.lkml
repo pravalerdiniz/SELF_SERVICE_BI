@@ -20,3 +20,20 @@ include: "/**/*.view.lkml"
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+explore: dados_demograficos {
+  view_label: "Dados Demográficos"
+  description: "Informações sobre região onde residem os colaboradores do Pravaler"
+}
+
+explore: historico_demograficos {
+  view_label: "Dados Demográficos"
+  description: "Informações sobre histórico da região onde residem os colaboradores do Pravaler"
+
+
+}
+
+explore: gupy_candidaturas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
