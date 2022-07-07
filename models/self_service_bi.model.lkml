@@ -80,7 +80,6 @@ explore: beneficiados {
     relationship: one_to_many
 
 
-
   }
 
   join: dim_cpf {
@@ -1835,12 +1834,7 @@ explore: crx_agentes_detalhes_pausas{
 
 
 
-explore: dados_demograficos {}
 
-explore: historico_demograficos {
-  label: "Histórico demográficos"
-  view_label: "Histórico demográficos"
-}
 
 explore: new_relic {}
 
