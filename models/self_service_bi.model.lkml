@@ -1850,7 +1850,7 @@ explore: new_relic {}
 
 
 explore:  fato_lead_mgm {
-  view_label: "Leads MGM"
+  label: "MGM Leads"
 
   join: alunos {
     view_label: "Informações Alunos"
