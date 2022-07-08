@@ -8,6 +8,7 @@ view: zoho_reports {
     type: string
     label: "Chave"
     primary_key: yes
+    hidden: yes
     sql: concat(${cpf},${nome_evento_ies}) ;;
   }
 
