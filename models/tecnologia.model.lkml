@@ -18,3 +18,18 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+
+explore: tetris_withoutproducts {
+  label: "Tetris (Without Product)"
+  description: "Sistema de Cadastro dos Alunos no Pravaler"
+
+}
+
+
+explore: new_relic {
+  label: "New Relic"
+  description: "Sistema de Monitoramento de Aplicações do Pravaler"
+
+
+}
