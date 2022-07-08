@@ -583,6 +583,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: zoho_reports {
+    view_label: "12. Leads Eventos"
+    sql_on: ${jornada.aluno_cpf} = ${zoho_reports.cpf};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
 
 }
 
