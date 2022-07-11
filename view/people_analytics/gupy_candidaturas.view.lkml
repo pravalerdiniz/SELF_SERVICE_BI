@@ -408,7 +408,7 @@ view: gupy_candidaturas {
 
   dimension: genero_candidato {
     group_label: "Dados do Candidato"
-    label: "Genêro"
+    label: "Gênero"
     type: string
     sql: ${TABLE}."GENERO_CANDIDATO" ;;
   }
@@ -807,6 +807,27 @@ view: gupy_candidaturas {
     description: "Indica a pontuação que esse candidato tem com a vaga em questão"
     type: number
     sql: ${TABLE}."SCORE_COMPATIBILIDADE" ;;
+  }
+
+  dimension: genero_declarado {
+    group_label: "Dados da Candidatura"
+    label: "Identidade de gênero declarada"
+    type: string
+    sql: ${TABLE}."GENERO_DECLARADO" ;;
+  }
+
+  dimension: orientacao_sexual_declarada {
+    group_label: "Dados da Candidatura"
+    label: "Orientação sexual declarada"
+    type: string
+    sql: ${TABLE}."ORIENTACAO_SEXUAL_DECLARADA" ;;
+  }
+
+  dimension: etnia_declarada {
+    group_label: "Dados da Candidatura"
+    label: "Etnia declarada"
+    type: string
+    sql: ${TABLE}."ETNIA_DECLARADA" ;;
   }
 
   measure: count {
