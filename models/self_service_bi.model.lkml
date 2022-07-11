@@ -460,7 +460,7 @@ explore: jornada {
   join: instituicao_metas_gc {
     view_label: "2.1 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
-    relationship: one_to_many
+    relationship: many_to_many
     type: left_outer
   }
 
