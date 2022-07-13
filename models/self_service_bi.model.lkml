@@ -1788,8 +1788,14 @@ explore: interacoes {
     type: left_outer
   }
 
-
+  join: twoclix_detalhes_avaliacao {
+    view_label: "TwoClix Detalhes Avaliação"
+    sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
+
 
 explore: crx_agentes{
   label: "Interações - Métricas do agente"
