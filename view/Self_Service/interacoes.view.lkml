@@ -563,12 +563,20 @@ view: interacoes {
     sql: ${TABLE}."SCORE" ;;
   }
 
-  dimension: status_aluno {
+  dimension: status_atual {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Status - Atual"
+    group_item_label: "Status Atual"
     description: "Indica o código do status de última proposta do aluno."
     sql: ${TABLE}."STATUS_ALUNO" ;;
+  }
+
+  dimension: descricao_status_atual{
+    type: string
+    group_item_label: "Status Atual - Descrição"
+    group_label: "Dados do Aluno"
+    description: "Indica a descrição do status de última proposta do aluno."
+    sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
   dimension: status_ticket {
@@ -713,24 +721,24 @@ view: interacoes {
 
   dimension: status_aluno_zendesk {
     type: number
-    label: "Status do Aluno"
-    group_label: "Dados do Ticket"
+    label: "Status do Aluno no Momento do Contato"
+    group_label: "Dados do Aluno"
     description: "Indica o número do status do aluno no momento do contato."
     sql: ${TABLE}."STATUS_ALUNO_ZENDESK" ;;
   }
 
   dimension: status_detalhe_zendesk {
     type: number
-    label: "Status Detalhe do Aluno"
-    group_label: "Dados do Ticket"
+    label: "Status Detalhe do Aluno no Momento do Contato"
+    group_label: "Dados do Aluno"
     description: "Indica o número do status detalhe do aluno no momento do contato."
     sql: ${TABLE}."STATUS_DETALHE_ZENDESK" ;;
   }
 
   dimension: desc_status_detalhe_zendesk {
     type: string
-    label: "Descrição Status Detalhe do Aluno"
-    group_label: "Dados do Ticket"
+    label: "Status do Aluno no Momento do Contato - Descrição"
+    group_label: "Dados do Aluno"
     description: "Indica a descrição do status detalhe do aluno no momento do contato."
     sql: ${TABLE}."DESC_STATUS_DETALHE_ZENDESK" ;;
   }
@@ -768,14 +776,6 @@ view: interacoes {
     group_label: "Dados do Aluno"
     description: "Indica o tipo da proposta do aluno informada na Zendesk. Ex: Novo, Renovação, Segundo-Repasse, Intercâmbio."
     sql: ${TABLE}. "TIPO_PROPOSTA" ;;
-  }
-
-  dimension: descricao_status{
-    type: string
-    group_item_label: "Descrição do Status - Atual"
-    group_label: "Dados do Aluno"
-    description: "Indica a descrição do status de última proposta do aluno."
-    sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
   dimension: feedback{
