@@ -1789,7 +1789,7 @@ explore: interacoes {
   }
 
   join: twoclix_detalhes_avaliacao {
-    view_label: "TwoClix Detalhes Avaliação"
+    view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
     sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
     type: left_outer
     relationship: one_to_many
