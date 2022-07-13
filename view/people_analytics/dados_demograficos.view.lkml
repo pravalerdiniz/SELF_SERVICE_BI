@@ -214,6 +214,14 @@ view: dados_demograficos {
       sql: ${TABLE}."TEMPO_CASA" ;;
     }
 
+  dimension: empresa {
+    label: "EMPRESA"
+    view_label: "DADOS PROFISSIONAIS"
+    description: "Informa de qual empresa inicial o Pravalente é proveniente"
+    type: string
+    sql: ${TABLE}."EMPRESA" ;;
+  }
+
     dimension: tipo_rescisao {
       label: "TIPO DE RESCISÃO"
       view_label: "DADOS PROFISSIONAIS"

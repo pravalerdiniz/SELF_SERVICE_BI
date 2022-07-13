@@ -73,21 +73,13 @@ explore: orcamento_frente {
 
 }
 
+explore: orcamento_ltm {
+  label: "Orçamento LTM"
+}
 
 explore: orcameto_cc {
   label: "Orçamento CAC"
   view_label: "1. Orçamento CAC"
-
-join: orcamento_cc_ltm {
-  view_label: "1. Orçamento CAC"
-  sql_on: ${orcamento_cc_ltm.month_create} = ${orcameto_cc.data_lancamento_month}
-  and ${orcamento_cc_ltm.descricao_cc} = ${orcameto_cc.descricao_cc}
-  and ${orcamento_cc_ltm.visao} = ${orcameto_cc.visao}
-  and ${orcamento_cc_ltm.tipo_orcamento} = ${orcameto_cc.tipo_orcamento};;
-  fields: [orcamento_cc_ltm.sumr1_montante]
-  relationship: one_to_one
-  type: left_outer
-}
 
 join: proposta {
   from: proposta
@@ -111,8 +103,9 @@ join: proposta {
   ]
   relationship: one_to_one
   type: left_outer
+    }
 }
-}
+
 
 explore: comparacao_ot {
   label: "Base Comparação PDD_OT"
@@ -127,7 +120,9 @@ explore: comparacao_ot {
     -financeiro.nm_produto,
     -financeiro.ds_instituicao,
     -financeiro.ds_curso,
-    -financeiro.aluno_nome
+    -financeiro.aluno_nome,
+    -financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
   ]
 
   join: financeiro {
@@ -140,13 +135,22 @@ explore: comparacao_ot {
 
   }
 
+  join: carteira {
+    from: carteira
+    view_label: "3. Carteira Ativa"
+    sql_on: ${comparacao_ot.cpf_cliente} = ${carteira.cpf_cliente}
+    and ${comparacao_ot.nome_fundo} = ${carteira.nm_fundo}
+    and ${carteira.data_vencimento_raw} = ${financeiro.data_vencimento_raw} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: base_ot {
     from: base_ot
-    view_label: "3. Base OT"
-    sql_on: ${comparacao_ot.cpf_cliente} = ${base_ot.cpf_cliente}
+    view_label: "4. Base OT"
+    sql_on: ${comparacao_ot.cpf_cliente}  = ${base_ot.cpf_cliente}
     and ${comparacao_ot.nome_fundo} = ${base_ot.nome_fundo}
-    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem}
-    and ${base_ot.data_vencimento_raw} = ${financeiro.data_vencimento_raw} ;;
+    and ${comparacao_ot.nome_arquivo_origem} = ${base_ot.origem};;
     relationship: one_to_many
     type: left_outer
   }
@@ -232,6 +236,10 @@ explore: base_forecast_cs {
 
 explore: taxa_de_contato{
   label: "Taxa de Contato"
+}
+
+explore: treinamento_data_driven {
+  label: "Capacitação - Data Driven"
 }
 
 
@@ -337,6 +345,10 @@ explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
 }
 
+explore: final_pdd {
+  label: "Final PDD"
+}
+
 explore: base_ot_analise {
   label: "Análise - Oliveira Trust"
 }
@@ -372,4 +384,8 @@ explore: ipca_bv {
 
 explore: painel_de_carga{
   persist_with: painel_de_carga
+}
+
+explore: twoclix_detalhes_avaliacao {
+  label: "TwoClix Detalhes Avaliação"
 }

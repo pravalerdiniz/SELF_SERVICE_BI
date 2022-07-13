@@ -190,12 +190,7 @@ view: status {
       }
     }
 
-  dimension: flg_proposta_atual {
-    type: yesno
-    label: "Proposta Atual?"
-    description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
-    sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
-  }
+
 
       dimension: id_elegivel {
       type: number
@@ -1076,5 +1071,14 @@ dimension: fx_estoque_produtivo_assinatura {
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
 
+
+  #Campos Ocultos - Lulinha 20/06/2021
+
+  # dimension: flg_proposta_atual {
+  #   type: yesno
+  #   label: "Proposta Atual?"
+  #   description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
+  #   sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
+  # }
 
 }

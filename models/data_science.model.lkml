@@ -78,7 +78,6 @@ explore: s_op_previsao {
     view_label: "3. Proposta"
     sql_on: ${proposta.data_preenchimento_month} = ${s_op_previsao.mes_inicio_proposta_month}
         and ${proposta.classe_modelo_iniciado} = ${s_op_previsao.classe_modelo_iniciado}
-        and ${s_op_previsao.canal_url} = ${proposta.canal_acesso_conversao}
         and ${s_op_previsao.grupo_instituicao} = ${proposta.grupo_instituicao}
         and ${s_op_previsao.regiao_campus} = ${proposta.regiao_campus};;
     relationship: one_to_many

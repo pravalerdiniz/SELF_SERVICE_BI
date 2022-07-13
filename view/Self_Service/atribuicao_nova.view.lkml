@@ -55,6 +55,81 @@ view: atribuicao_nova
     sql: ${call_center} ;;
   }
 
+  dimension: afiliados {
+    type: number
+    sql: ${TABLE}."AFILIADOS" ;;
+    group_label: "Quantidade de Interações por Canal"
+    group_item_label: "Afiliados"
+  }
+
+  measure: total_afiliados {
+    type: sum
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${afiliados} ;;
+  }
+
+  measure: average_afiliados {
+    type: average
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${afiliados} ;;
+  }
+
+  measure: median_afiliados {
+    type: median
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${afiliados} ;;
+  }
+
+  dimension: social {
+    type: number
+    sql: ${TABLE}."SOCIAL" ;;
+    group_label: "Quantidade de Interações por Canal"
+    group_item_label: "Social"
+  }
+
+  measure: total_social {
+    type: sum
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${social} ;;
+  }
+
+  measure: average_social {
+    type: average
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${social} ;;
+  }
+
+  measure: median_social {
+    type: median
+    group_label: "Quantidade de Interações por Canal"
+    sql: ${social} ;;
+    }
+
+    dimension: balcao {
+      type: number
+      sql: ${TABLE}."BALCAO" ;;
+      group_label: "Quantidade de Interações por Canal"
+      group_item_label: "Balcão"
+    }
+
+    measure: total_balcao {
+      type: sum
+      group_label: "Quantidade de Interações por Canal"
+      sql: ${balcao} ;;
+    }
+
+    measure: average_balcao{
+      type: average
+      group_label: "Quantidade de Interações por Canal"
+      sql: ${balcao} ;;
+    }
+
+    measure: median_balcao {
+      type: median
+      group_label: "Quantidade de Interações por Canal"
+      sql: ${balcao} ;;
+      }
+
   dimension: canal_descoberta {
     type: string
     sql: ${TABLE}."CANAL_DESCOBERTA" ;;

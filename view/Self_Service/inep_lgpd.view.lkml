@@ -3,6 +3,7 @@ view: inep_lgpd {
   sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."INEP_LGPD"
     ;;
 
+
   dimension: aluno_deficiente {
     group_label: "Dados quantitativos de Alunos"
     label: "Qtd. alunos com deficiência"
@@ -10,19 +11,6 @@ view: inep_lgpd {
     sql: ${TABLE}."ALUNO_DEFICIENTE" ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  #measure: total_aluno_deficiente {
-  #  type: sum
-  #  sql: ${aluno_deficiente} ;;
-  #}
-
-  #measure: average_aluno_deficiente {
-  #  type: average
-  #  sql: ${aluno_deficiente} ;;
-  #}
 
   dimension: aluno_parfor {
     group_label: "Dados quantitativos de Alunos"
@@ -32,12 +20,6 @@ view: inep_lgpd {
     sql: ${TABLE}."ALUNO_PARFOR" ;;
   }
 
-  dimension: ano_ies_curso {
-    label: "ano_ies_curso"
-    type: string
-    primary_key: yes
-    sql: concat(${co_ies},${co_cine_area_detalhada}) ;;
-  }
 
   dimension: apoio_social {
     group_label: "Dados quantitativos de Alunos"
@@ -84,6 +66,7 @@ view: inep_lgpd {
     label: "Código do rótulo Cine"
     description: "Código de identificação do curso, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
+    primary_key: yes
     sql: ${TABLE}."CO_CINE_ROTULO" ;;
   }
 
@@ -1663,13 +1646,6 @@ view: inep_lgpd {
     sql: ${TABLE}."QT_CONC" ;;
   }
 
-  measure:total_concluinte {
-    type: sum
-    group_label: "Concluinte (Total)"
-    description: "Total de concluintes"
-    sql: ${TABLE}."QT_CONC";;
-  }
-
   dimension: qt_curso {
     group_label: "Dados quantitativos do Curso"
     label: "Qtd. de cursos"
@@ -2067,6 +2043,27 @@ view: inep_lgpd {
     type: number
     sql: ${TABLE}."TP_REDE" ;;
   }
+
+  measure:total_concluinte {
+    type: sum
+    sql: ${TABLE}."QT_CONC";;
+    group_label: "Medidas"
+    description: "Total de concluintes"
+  }
+  measure:total_ingressantes {
+    type: sum
+    sql: ${TABLE}."QT_ING";;
+    group_label: "Medidas"
+    description: "Total de ingressantes"
+  }
+
+  measure:total_matriculas {
+    type: sum
+    sql: ${TABLE}."QT_MAT";;
+    group_label: "Medidas"
+    description: "Total de matrículas"
+  }
+
 
   measure: count {
     type: count
