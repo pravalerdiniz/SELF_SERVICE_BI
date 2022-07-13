@@ -721,7 +721,7 @@ view: interacoes {
 
   dimension: status_aluno_zendesk {
     type: number
-    label: "Status do Aluno no Momento do Contato"
+    label: "Status no Contato"
     group_label: "Dados do Aluno"
     description: "Indica o número do status do aluno no momento do contato."
     sql: ${TABLE}."STATUS_ALUNO_ZENDESK" ;;
@@ -729,7 +729,7 @@ view: interacoes {
 
   dimension: status_detalhe_zendesk {
     type: number
-    label: "Status Detalhe do Aluno no Momento do Contato"
+    label: "Status Detalhe no Contato"
     group_label: "Dados do Aluno"
     description: "Indica o número do status detalhe do aluno no momento do contato."
     sql: ${TABLE}."STATUS_DETALHE_ZENDESK" ;;
@@ -737,7 +737,7 @@ view: interacoes {
 
   dimension: desc_status_detalhe_zendesk {
     type: string
-    label: "Status do Aluno no Momento do Contato - Descrição"
+    label: "Status no Contato - Descrição"
     group_label: "Dados do Aluno"
     description: "Indica a descrição do status detalhe do aluno no momento do contato."
     sql: ${TABLE}."DESC_STATUS_DETALHE_ZENDESK" ;;
