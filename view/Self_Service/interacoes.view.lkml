@@ -528,6 +528,23 @@ view: interacoes {
     sql: ${TABLE}."PRIORIDADE" ;;
   }
 
+  dimension: cpf {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "CPF"
+    description: "Indica o CPF do Solicitante do ticket."
+    sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: cpf_num {
+    type: number
+    group_label: "Dados do Ticket"
+    group_item_label: "CPF Num"
+    description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
+    value_format: "0"
+    sql: ${TABLE}."CPF" ;;
+  }
+
   dimension: requester_id {
     type: number
     group_item_label: "ID do Solicitante"
