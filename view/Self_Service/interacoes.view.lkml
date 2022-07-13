@@ -708,6 +708,36 @@ view: interacoes {
     sql: ${TABLE}."NUM_CHAMADO_ORQUESTRA" ;;
   }
 
+
+
+
+  dimension: status_aluno_zendesk {
+    type: number
+    label: "Status do Aluno"
+    group_label: "Dados do Ticket"
+    description: "Indica o número do status do aluno no momento do contato."
+    sql: ${TABLE}."STATUS_ALUNO_ZENDESK" ;;
+  }
+
+  dimension: status_detalhe_zendesk {
+    type: number
+    label: "Status Detalhe do Aluno"
+    group_label: "Dados do Ticket"
+    description: "Indica o número do status detalhe do aluno no momento do contato."
+    sql: ${TABLE}."STATUS_DETALHE_ZENDESK" ;;
+  }
+
+  dimension: desc_status_detalhe_zendesk {
+    type: string
+    label: "Descrição Status Detalhe do Aluno"
+    group_label: "Dados do Ticket"
+    description: "Indica a descrição do status detalhe do aluno no momento do contato."
+    sql: ${TABLE}."DESC_STATUS_DETALHE_ZENDESK" ;;
+  }
+
+
+
+
   dimension: area_resp_atuacao {
     type: string
     label: "Área Responsável para atuação"
