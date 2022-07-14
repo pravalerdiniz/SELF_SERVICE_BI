@@ -514,6 +514,14 @@ explore: jornada {
     type: left_outer
   }
 
+  join: instituicao {
+    view_label: "3. Instituição"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
+    and ${proposta.id_curso} = ${instituicao.id_curso};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
