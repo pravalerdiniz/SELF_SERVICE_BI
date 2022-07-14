@@ -38,6 +38,11 @@ explore: gupy_candidaturas {
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
 }
 
+explore: gupy_vagas {
+  label: "Dados GUPY"
+  description: "Informações sobre vagas cadastradas na plataforma Gupy"
+}
+
 explore: pulse {
   label: "Pulse"
   view_label: "Pulse"
