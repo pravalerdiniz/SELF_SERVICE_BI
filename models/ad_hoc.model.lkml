@@ -385,3 +385,7 @@ explore: ipca_bv {
 explore: painel_de_carga{
   persist_with: painel_de_carga
 }
+
+explore: twoclix_detalhes_avaliacao {
+  label: "TwoClix Detalhes Avaliação"
+}

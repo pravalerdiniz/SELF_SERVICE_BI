@@ -209,7 +209,7 @@ view: interacoes {
   dimension: cpf_requester {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF"
+    group_item_label: "CPF (Backoffice)"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
@@ -217,10 +217,27 @@ view: interacoes {
   dimension: cpf_requester_num {
     type: number
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF Num"
+    group_item_label: "CPF Num (Backoffice)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
     sql: ${TABLE}."CPF_REQUESTER" ;;
+  }
+
+  dimension: cpf {
+    type: string
+    group_label: "Dados do Solicitante"
+    group_item_label: "CPF (Zendesk)"
+    description: "Indica o CPF do Solicitante do ticket."
+    sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: cpf_num {
+    type: number
+    group_label: "Dados do Solicitante"
+    group_item_label: "CPF Num (Zendesk)"
+    description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
+    value_format: "0"
+    sql: ${TABLE}."CPF" ;;
   }
 
   dimension: cpf_submitter {
@@ -528,6 +545,7 @@ view: interacoes {
     sql: ${TABLE}."PRIORIDADE" ;;
   }
 
+
   dimension: requester_id {
     type: number
     group_item_label: "ID do Solicitante"
@@ -545,12 +563,20 @@ view: interacoes {
     sql: ${TABLE}."SCORE" ;;
   }
 
-  dimension: status_aluno {
+  dimension: status_atual {
     type: string
     group_label: "Dados do Aluno"
-    group_item_label: "Status - Atual"
+    group_item_label: "Status Atual"
     description: "Indica o código do status de última proposta do aluno."
     sql: ${TABLE}."STATUS_ALUNO" ;;
+  }
+
+  dimension: descricao_status_atual{
+    type: string
+    group_item_label: "Status Atual - Descrição"
+    group_label: "Dados do Aluno"
+    description: "Indica a descrição do status de última proposta do aluno."
+    sql: ${TABLE}."DESCRICAO_STATUS" ;;
   }
 
   dimension: status_ticket {
@@ -690,6 +716,36 @@ view: interacoes {
     sql: ${TABLE}."NUM_CHAMADO_ORQUESTRA" ;;
   }
 
+
+
+
+  dimension: status_aluno_zendesk {
+    type: number
+    label: "Status no Contato"
+    group_label: "Dados do Aluno"
+    description: "Indica o número do status do aluno no momento do contato."
+    sql: ${TABLE}."STATUS_ALUNO_ZENDESK" ;;
+  }
+
+  dimension: status_detalhe_zendesk {
+    type: number
+    label: "Status Detalhe no Contato"
+    group_label: "Dados do Aluno"
+    description: "Indica o número do status detalhe do aluno no momento do contato."
+    sql: ${TABLE}."STATUS_DETALHE_ZENDESK" ;;
+  }
+
+  dimension: desc_status_detalhe_zendesk {
+    type: string
+    label: "Status no Contato - Descrição"
+    group_label: "Dados do Aluno"
+    description: "Indica a descrição do status detalhe do aluno no momento do contato."
+    sql: ${TABLE}."DESC_STATUS_DETALHE_ZENDESK" ;;
+  }
+
+
+
+
   dimension: area_resp_atuacao {
     type: string
     label: "Área Responsável para atuação"
@@ -722,20 +778,13 @@ view: interacoes {
     sql: ${TABLE}. "TIPO_PROPOSTA" ;;
   }
 
-  dimension: descricao_status{
-    type: string
-    group_item_label: "Descrição do Status - Atual"
-    group_label: "Dados do Aluno"
-    description: "Indica a descrição do status de última proposta do aluno."
-    sql: ${TABLE}."DESCRICAO_STATUS" ;;
-  }
-
   dimension: feedback{
     type: string
     group_item_label: "Feedback"
     group_label: "Dados de Monitoria"
     description: "Indica a descrição do feedback de monitoria."
     sql: ${TABLE}."FEEDBACK" ;;
+    hidden: yes
   }
 
   dimension_group: data_criacao_monitoria {
@@ -752,6 +801,7 @@ view: interacoes {
     sql: ${TABLE}."DATA_CRIACAO_MONITORIA" ;;
     label: "Monitoria - Criação"
     description: "Indica a data de criação da monitoria."
+    hidden: yes
   }
 
   dimension_group: data_atualizacao_monitoria {
@@ -820,6 +870,7 @@ view: interacoes {
     }
     description: "Este campo é uma regra de negócio*.Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
+    hidden: yes
   }
 
   measure: nota_monitoramento_measure{
@@ -828,6 +879,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica a nota média de monitoria."
     sql: ${TABLE}."NOTA" ;;
+    hidden: yes
     #value_format: "#.#,00"
   }
 
@@ -846,6 +898,243 @@ view: interacoes {
     description: "Indica o nome do Avaliador de monitoria."
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
   }
+
+
+
+
+
+
+  dimension_group: data_avaliacao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_AVALIACAO" ;;
+    label: "Monitoria - Data avaliação"
+    description: "Indica a data da avaliação da monitoria."
+  }
+
+  dimension: tp_avaliacao{
+    type: string
+    group_item_label: "Tipo de Avaliação"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o tipo de avaliação. Ex: Qualidade, cliente.."
+    sql: ${TABLE}."TP_AVALIACAO" ;;
+  }
+
+  dimension: codigo_avaliacao{
+    type: number
+    group_item_label: "Codigo da Avaliação"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o codigo da avaliação. Cada avaliação possui um codigo"
+    sql: ${TABLE}."COD_AVALIACAO" ;;
+  }
+
+  dimension: nome_lider_equipe{
+    type: string
+    group_item_label: "Nome Lider Equipe"
+    group_label: "Dados de Monitoria"
+    description: "Indica o nome do lider daquela equipe"
+    sql: ${TABLE}."NM_LIDER_EQUPE" ;;
+  }
+
+  dimension_group: data_inicio_produto {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_INICIO_PRODUTO" ;;
+    label: "Monitoria - Data Inicio Produto"
+    description: "Indica a data em que o produto iniciou"
+  }
+
+  dimension_group: data_feedback {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_FEEDBACK" ;;
+    label: "Monitoria - Data Feedback"
+    description: "Indica a data do feedback da monitoria"
+  }
+
+  dimension: login_avaliado{
+    type: string
+    group_item_label: "Login do Avaliado"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o login do avaliado"
+    sql: ${TABLE}."LOGIN_AVALIADO" ;;
+  }
+
+  dimension: valor_nota_sem_ncg{
+    type: number
+    group_item_label: "Nota sem NCG"
+    group_label: "Dados de Monitoria"
+    description: "Indica o valor da Nota Sem Não Conformidade Grave"
+    sql: ${TABLE}."VL_NOTA_SEM_NCG" ;;
+  }
+
+  measure: media_nota_sem_ncg{
+    type: average
+    group_item_label: "Nota Média Sem NCG"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota média sem NCG da monitoria."
+    sql: ${TABLE}."valor_nota_sem_ncg" ;;
+    #value_format: "#.#,00"
+  }
+
+  dimension: obs_avaliado{
+    type: string
+    group_item_label: "OBS do Avaliado"
+    group_label: "Dados de Monitoria"
+    description: "Indica se tem alguma observação do avaliado"
+    sql: ${TABLE}."OBS_AVALIADO" ;;
+  }
+
+  dimension: obs_lider{
+    type: string
+    group_item_label: "OBS do Lider"
+    group_label: "Dados de Monitoria"
+    description: "Indica se tem alguma observação do lider"
+    sql: ${TABLE}."OBS_LIDER" ;;
+  }
+
+  dimension: observacao{
+    type: string
+    group_item_label: "Observação"
+    group_label: "Dados de Monitoria"
+    description: "Indica se tem alguma observação naquela monitoria"
+    sql: ${TABLE}."OBSERVACAO" ;;
+  }
+
+  dimension: qtd_arquivos_atendimento{
+    type: number
+    group_item_label: "Qtd Arquivos Atendimento"
+    group_label: "Dados de Monitoria"
+    description: "Indica a quantidade de arquivos de atendimento teve na monitoria"
+    sql: ${TABLE}."QTD_ARQUIVOS_ATENDIMENTO" ;;
+  }
+
+  dimension: resultado_feedback{
+    type: string
+    group_item_label: "Resultado Feedback"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o resultado que o feedback teve"
+    sql: ${TABLE}."RESULTADO_FDBK" ;;
+  }
+
+  dimension: status_feedback{
+    type: string
+    group_item_label: "Status Feedback"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o status do feedback"
+    sql: ${TABLE}."STATUS_FDBK" ;;
+  }
+
+  dimension: tempo_feedback {
+    type: number
+    group_item_label: "Duração do Feedback"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o tempo de duração em segundos do feedback"
+    sql: ${TABLE}."TEMPO_FDBK"/86400.0 ;;
+    value_format: "[hh]:mm:ss"
+  }
+
+
+  dimension: tipo_canal_avaliacao{
+    type: string
+    group_item_label: "Tipo de Canal Avaliação"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o tipo de canal a avaliação teve. Ex: Monitoria>Voz, Auditoria, Monitoria>WhatsApp..."
+    sql: ${TABLE}."TP_CANAL_AVALIACAO" ;;
+  }
+
+  dimension: campanha{
+    type: string
+    group_item_label: "Campanha (Area)"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual a campanha da monitoria. Ex: CRX, Negociação"
+    sql: ${TABLE}."CAMPANHA" ;;
+  }
+
+  dimension: conceito{
+    type: string
+    group_item_label: "Conceito"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o conceito da monitoria. Ex: Acima da meta, abaixo da meta"
+    sql: ${TABLE}."CONCEITO" ;;
+  }
+
+  dimension: numero_matricula{
+    type: string
+    group_item_label: "Número da Matricula"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o número da matricula do aluno"
+    sql: ${TABLE}."NUM_MATRICULA" ;;
+  }
+
+  dimension: valor_nota{
+    type: number
+    group_item_label: "Valor Nota"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual a nota da monitoria"
+    sql: ${TABLE}."VL_NOTA" ;;
+  }
+
+  measure: media_nota{
+    type: average
+    group_item_label: "Nota Média"
+    group_label: "Dados de Monitoria"
+    description: "Indica a nota média da monitoria."
+    sql: ${TABLE}."valor_nota" ;;
+    #value_format: "#.#,00"
+  }
+
+  dimension: pontos_melhorar{
+    type: string
+    group_item_label: "Pontos Melhorar"
+    group_label: "Dados de Monitoria"
+    description: "Indica se possui pontos a melhorar"
+    sql: ${TABLE}."PONTOS_MELHORAR" ;;
+  }
+
+  dimension: pontos_positivos{
+    type: string
+    group_item_label: "Pontos Positivos"
+    group_label: "Dados de Monitoria"
+    description: "Indica se possui pontos positivos"
+    sql: ${TABLE}."PONTOS_POSITIVOS" ;;
+  }
+
+  dimension: processo{
+    type: string
+    group_item_label: "Processo"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o processo da monitoria. Ex: padrão, Motivos de Contatos..."
+    sql: ${TABLE}."PROCESSO" ;;
+  }
+
+
+
+
 
   measure: media_primeiro_tempo_resposta {
     type: average

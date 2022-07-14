@@ -80,7 +80,6 @@ explore: beneficiados {
     relationship: one_to_many
 
 
-
   }
 
   join: dim_cpf {
@@ -461,7 +460,7 @@ explore: jornada {
   join: instituicao_metas_gc {
     view_label: "2.1 Metas GC"
     sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
-    relationship: one_to_many
+    relationship: many_to_many
     type: left_outer
   }
 
@@ -582,6 +581,13 @@ explore: jornada {
     sql_on: ${proposta.grupo_instituicao}=${engajometro.grupo};;
     relationship: many_to_one
     type: left_outer
+  }
+
+  join: zoho_reports {
+    view_label: "12. Leads Eventos"
+    sql_on: ${jornada.aluno_cpf} = ${zoho_reports.cpf};;
+    relationship: many_to_many
+    type: full_outer
   }
 
 
@@ -774,7 +780,13 @@ explore: instituicao {
     type:left_outer
 
   }
+  join: calendario_renovacao_ies {
+    view_label: "7. Calendário Renovação IES"
+    sql_on:   ${instituicao.id_instituicao} = ${calendario_renovacao_ies.id_ies};;
+    relationship: many_to_many
+    type:left_outer
 
+  }
 
 
 }
@@ -1776,8 +1788,14 @@ explore: interacoes {
     type: left_outer
   }
 
-
+  join: twoclix_detalhes_avaliacao {
+    view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
+    sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
+
 
 explore: crx_agentes{
   label: "Interações - Métricas do agente"
@@ -1829,53 +1847,14 @@ explore: crx_agentes_detalhes_pausas{
 
 
 
-explore: dados_demograficos {}
-
-explore: historico_demograficos {
-  label: "Histórico demográficos"
-  view_label: "Histórico demográficos"
-}
-
-explore: new_relic {}
 
 
 
 
 
-explore:  fato_lead_mgm {
-  view_label: "Leads MGM"
 
-  join: alunos {
-    view_label: "Informações Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
 
-  join: ano_mes_carteira_ativa {
-    fields: []
-    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${alunos.id_cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
 
-  join: status {
-    view_label: "Status"
-    sql_on: ${status.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-    fields: [status.status_destino_geral,
-      status.status_destino_detalhado]
-  }
-
-  join: financeiro {
-    view_label: "Financeiro"
-    sql_on: ${financeiro.id_cpf} = ${fato_lead_mgm.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-    fields: [financeiro.data_pagamento_date]
-  }
-}
 
 
 
@@ -1893,104 +1872,9 @@ explore: projecao_formalizados_grupo_ies {
 
 
 
-explore: mgm_lista_resgate {
-  label: "MGM - Lista Resgate"
-}
-explore: mgm_publico_alvo {
-  label: "MGM - Público Alvo"
-  fields: [ALL_FIELDS *,
-    - alunos.id_cpf,
-    - alunos.ativo_ano_mes,
-    - jornada.cpf_aluno_proposta,
-    - jornada.aluno_email,
-    - jornada.aluno_nome,
-    - jornada.aluno_celular,
-    - jornada.grupo_instituicao,
-    - jornada.ds_instituicao,
-    - jornada.ds_campus,
-    - jornada.nm_modalidade_produto,
-    - jornada.nm_produto,
-    - jornada.ds_curso,
-    - jornada.total_renov
-  ]
 
-  join: dim_cpf {
-    view_label: "CPF"
-    sql_on: ${mgm_publico_alvo.cpf_lead} = ${dim_cpf.cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
 
-  join: alunos {
-    view_label: "1.Alunos"
-    sql_on: ${mgm_publico_alvo.cpf_lead} = ${alunos.cpf_aluno} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
 
-  join: jornada {
-    view_label: "2.Jornada"
-    sql_on: ${mgm_publico_alvo.cpf_lead} = ${jornada.aluno_cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: ano_mes_carteira_ativa {
-    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${dim_cpf.id_cpf};;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-}
-
-explore: mgm_publico_alvo_jornada {
-  label: "MGM - Público Alvo + Jornada"
-  fields: [ALL_FIELDS *,
-    - alunos.id_cpf,
-    - alunos.ativo_ano_mes,
-  ]
-
-  join: dim_cpf {
-    view_label: "CPF"
-    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${dim_cpf.cpf} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-  join: alunos {
-    view_label: "1.Alunos"
-    sql_on: ${mgm_publico_alvo_jornada.cpf_lead} = ${alunos.cpf_aluno} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-  join: ano_mes_carteira_ativa {
-    sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${dim_cpf.id_cpf};;
-    relationship: many_to_one
-    type: left_outer
-  }
-}
-
-explore: mgm_publico_alvo_resgate{
-  label: "MGM - Público Alvo Resgate"
-}
-explore: mgm_usuario {
-  label: "MGM - Usuário"
-
-  join: mgm_lista_resgate{
-    view_label: "Solicitou resgate"
-    sql_on: ${mgm_usuario.cpf}=${mgm_lista_resgate.cpf_player} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
-  join: mgm_publico_alvo_resgate{
-    view_label: "Pagamento realizado - resgate"
-    sql_on: ${mgm_usuario.cpf}=${mgm_publico_alvo_resgate.cpf_player} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-}
 
 explore: instituicao_contrato_produto_info{
   label: "Instituicao contrato produto"
@@ -2002,10 +1886,6 @@ explore: instituicao_taxas_antecipacao{
   hidden: yes
 }
 
-explore: tetris_withoutproducts {
-  label: "Tetris (Without Product)"
-
-}
 
 
 
@@ -2014,10 +1894,7 @@ explore: aproveitamento_estoque_nok{
 }
 
 
-explore: gupy_candidaturas {
-  label: "Dados GUPY"
-  description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
-}
+
 
 explore: dados_intake {
   label: "Dados Intake"

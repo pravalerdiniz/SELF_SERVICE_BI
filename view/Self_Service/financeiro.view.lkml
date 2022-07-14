@@ -233,6 +233,16 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  dimension: data_cessao_gestao {
+    group_label: "Gestão Garantido"
+    type: date
+    convert_tz: no
+    datatype: date
+    label: "Data de corte."
+    description: "Indica a data de corte do boleto no produto gestão garantido."
+    sql: CASE WHEN ${data_vencimento_day_of_month} > 5 THEN DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num}+1,5) ELSE DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num},5) END ;;
+  }
+
   dimension: wtd_only {
     group_label: "Filtros para Análise de Períodos (Data de Vencimento)"
     label: "Week to Date"
@@ -1341,6 +1351,18 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Gestão Garantido"
     group_item_label: "Soma pago (repasse)"
     description: "Soma do valor de boletos pagos (repasse)"
+  }
+
+  measure: sum_carteira_operacionalizada {
+    type: sum
+    sql: CASE
+        WHEN DATE(GETDATE()) > ${data_cessao_gestao} and ${flg_boleto_base_gestao_garantido} = TRUE  AND  ${id_titulo_status} IN (2,4) THEN ${vl_boleto}
+        WHEN DATE(GETDATE()) = (${data_cessao_gestao}) and ${flg_boleto_base_gestao_garantido} = FALSE  AND  ${id_titulo_status} = (2) THEN ${vl_boleto}
+    ELSE 0 END;;
+    value_format: "$ #,###.00"
+    group_label: "Gestão Garantido"
+    group_item_label: "Soma carteira operacionalizada"
+    description: "Soma do valor dos boletos ativos e dos boletos cancelados."
   }
 
 
