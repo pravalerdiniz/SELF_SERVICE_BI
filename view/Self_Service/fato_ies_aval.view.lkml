@@ -68,4 +68,18 @@ view: fato_ies_aval {
     sql: ${TABLE}."QTD_PARCELAS_INFORMADA_ALUNO" ;;
   }
 
+  dimension: mensalidade_inf_alu {
+    type: number
+    sql: ${TABLE}."VL_MENS_INFORMADA_ALUNO" ;;
+    group_label: "Mensalidades"
+    label: "Valor da Mensalidade Informada pelo Aluno"
+  }
+
+  dimension: mensalidade_ies {
+    type: number
+    sql: ${TABLE}."VL_MENSAL" ;;
+    group_label: "Mensalidades"
+    label: "Valor da Mensalidade da Análise IES"
+  }
+
 }

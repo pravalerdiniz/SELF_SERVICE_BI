@@ -438,6 +438,13 @@ explore: jornada {
     relationship: one_to_one
   }
 
+  join: fato_ies_aval {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: jornada_pivot {
     view_label: "1.2 Jornada Pivot "
     sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
