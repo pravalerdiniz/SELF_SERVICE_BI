@@ -1327,6 +1327,13 @@ explore: proposta {
     type: left_outer
   }
 
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${fato_ies_aval.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
 }
 
 explore: alunos {
