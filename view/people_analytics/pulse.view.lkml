@@ -19,7 +19,7 @@ view: pulse {
   # This dimension will be called "Data Pesquisa" in Explore.
 
   dimension: data_pesquisa {
-    type: string
+    type: date
     sql: ${TABLE}."DATA_PESQUISA" ;;
   }
 
