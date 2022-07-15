@@ -357,9 +357,38 @@ explore: jornada {
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
-
+    - financeiro.sum_PDD,
+    - instituicao.cnpj_ie,
+    - instituicao.nome_fantasia,
+    - instituicao.razao_social,
+    - instituicao.ie_ativa,
+    - instituicao.qtd_ies_ativas,
+    - instituicao.ie_super_pravaler,
+    - instituicao.modelo_contrato,
+    - instituicao.reprova_por_score,
+    - instituicao.ds_mantenedor,
+    - instituicao.qtd_alunos_ie,
+    - instituicao.endereco_sede_ie,
+    - instituicao.bairro_sede_ie,
+    - instituicao.cidade_sede_ie,
+    - instituicao.estado_sede_ie,
+    - instituicao.cep_sede_ie,
+    - instituicao.grupo,
+    - instituicao.flg_descadastrada,
+    - instituicao.qtd_ies_descadastrada,
+    - instituicao.qtd_ies_possui_pdv,
+    - instituicao.flg_recebe_contrato,
+    - instituicao.qtd_ies_financia_matricula,
+    - instituicao.qtd_ies_bolsa,
+    - instituicao.qtd_ies_matricula_expressa,
+    - instituicao.flg_possi_pdv,
+    - instituicao.flg_bolsa,
+    - instituicao.flg_financia_matricula,
+    - instituicao.flg_matricula_expressa,
+    - instituicao.regional_regiao,
+    - instituicao.carteira_regional,
+    - instituicao.gerente_regional,
+    - instituicao.id_instituicao
   ]
 
 
@@ -528,6 +557,8 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+
 
   join: dim_cpf {
     view_label: "1. CPF"
