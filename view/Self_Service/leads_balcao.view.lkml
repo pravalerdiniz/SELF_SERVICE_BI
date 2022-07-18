@@ -317,6 +317,12 @@ view: leads_balcao {
     label: "Leads"
   }
 
+  measure: valor_mensalidade {
+    type: sum
+    sql: ${vl_mensalidade_curso_bruto} ;;
+    label: "Valor da Mensalidade"
+  }
+
   measure: count_propostas {
     type: count
     sql: ${id_proposta_lead_balcao_jornada} ;;
@@ -327,5 +333,6 @@ view: leads_balcao {
   measure: count_propostas_aprovadas {
     type:  count
     sql: ${id_proposta_lead_balcao_jornada} ;;
+    filters: [descricao_retorno_avaliacao: "APROVADO"]
   }
 }
