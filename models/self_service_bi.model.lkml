@@ -636,6 +636,14 @@ explore: jornada {
     type: full_outer
   }
 
+  join: leads_balcao {
+    view_label: "13. Balcão"
+    sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
+    and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
 
 }
 
