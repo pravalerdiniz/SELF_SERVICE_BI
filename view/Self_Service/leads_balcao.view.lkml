@@ -334,5 +334,6 @@ view: leads_balcao {
     type:  count
     sql: ${id_proposta_lead_balcao_jornada} ;;
     filters: [descricao_retorno_avaliacao: "APROVADO"]
+    label: "Propostas Aprovadas"
   }
 }
