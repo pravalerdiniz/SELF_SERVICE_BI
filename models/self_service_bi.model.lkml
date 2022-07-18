@@ -357,9 +357,38 @@ explore: jornada {
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
-
+    - financeiro.sum_PDD,
+    - instituicao.cnpj_ie,
+    - instituicao.nome_fantasia,
+    - instituicao.razao_social,
+    - instituicao.ie_ativa,
+    - instituicao.qtd_ies_ativas,
+    - instituicao.ie_super_pravaler,
+    - instituicao.modelo_contrato,
+    - instituicao.reprova_por_score,
+    - instituicao.ds_mantenedor,
+    - instituicao.qtd_alunos_ie,
+    - instituicao.endereco_sede_ie,
+    - instituicao.bairro_sede_ie,
+    - instituicao.cidade_sede_ie,
+    - instituicao.estado_sede_ie,
+    - instituicao.cep_sede_ie,
+    - instituicao.grupo,
+    - instituicao.flg_descadastrada,
+    - instituicao.qtd_ies_descadastrada,
+    - instituicao.qtd_ies_possui_pdv,
+    - instituicao.flg_recebe_contrato,
+    - instituicao.qtd_ies_financia_matricula,
+    - instituicao.qtd_ies_bolsa,
+    - instituicao.qtd_ies_matricula_expressa,
+    - instituicao.flg_possi_pdv,
+    - instituicao.flg_bolsa,
+    - instituicao.flg_financia_matricula,
+    - instituicao.flg_matricula_expressa,
+    - instituicao.regional_regiao,
+    - instituicao.carteira_regional,
+    - instituicao.gerente_regional,
+    - instituicao.id_instituicao
   ]
 
 
@@ -434,6 +463,13 @@ explore: jornada {
   join: flag_renda_presumida_garant {
     view_label: "2. Proposta"
     sql_on: ${jornada.id_proposta} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: fato_ies_aval {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
     type: left_outer
     relationship: one_to_one
   }
@@ -513,6 +549,16 @@ explore: jornada {
     relationship: many_to_one
     type: left_outer
   }
+
+  join: instituicao {
+    view_label: "3. Instituição"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
+    and ${proposta.id_curso} = ${instituicao.id_curso};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -1279,6 +1325,13 @@ explore: proposta {
     sql_on: ${dim_cpf.id_cpf} = ${proposta.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
+  }
+
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${fato_ies_aval.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
 }

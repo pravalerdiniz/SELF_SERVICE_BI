@@ -34,8 +34,13 @@ explore: historico_demograficos {
 }
 
 explore: gupy_candidaturas {
-  label: "Dados GUPY"
+  label: "Dados sobre as candidaturas na GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
+}
+
+explore: gupy_vagas {
+  label: "Dados sobre as vagas na GUPY"
+  description: "Informações sobre vagas cadastradas na plataforma Gupy"
 }
 
 explore: pulse {

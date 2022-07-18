@@ -253,6 +253,17 @@ view: status {
     description: "Indica a data do status"
   }
 
+  dimension: ciclo_data_status {
+    type: string
+    group_label: "Dados de Renovação"
+    hidden: no
+    group_item_label: "Ciclo de Renovação (Status)"
+    description: "Informa o ciclo da proposta de renovação do aluno de acordo com a data dos Status"
+    sql: case when ${dt_status_date} between '2021-11-01' and '2022-05-31' then '2022.1'
+              when ${dt_status_date} between '2022-06-01' and '2022-10-31' then '2022.2'
+              else 'Outro' end;;
+  }
+
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;

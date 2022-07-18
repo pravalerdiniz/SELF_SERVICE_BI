@@ -2757,7 +2757,7 @@ dimension: vl_tarifa_cadastro {
   measure: sum_mensalidade_atual {
     type: sum
     group_label: "Mensalidade - Atual"
-    value_format: "0"
+    value_format: "$0"
     group_item_label: "Soma"
     sql:${vl_men_corrente};;
     description: "Soma do valor da mensalidade atual do aluno"
