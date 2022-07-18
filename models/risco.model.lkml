@@ -60,8 +60,8 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 
 
-explore: alunos {
-  view_label: "Alunos"
+explore: base_carteira_risco {
+  view_label: "Carteira"
   label: "Portfólio"
 
   join: alunos_inadimplencia_3_book {
@@ -106,9 +106,9 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: base_carteira_risco {
-    view_label: "Carteira"
-    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
+  join: alunos {
+    view_label: "Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf} and ano_mes_carteira_ativa;;
     type: left_outer
     relationship: one_to_many
   }
@@ -152,8 +152,13 @@ explore: alunos {
   join: ano_mes_carteira_ativa {}
 
 
+}
+
+explore: alunos {
 
 
+
+  join: ano_mes_carteira_ativa {}
 
 
 }
