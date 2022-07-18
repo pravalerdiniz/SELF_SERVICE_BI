@@ -61,74 +61,90 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 
 explore: alunos {
+  view_label: "Alunos"
   label: "Portfólio"
 
   join: alunos_inadimplencia_3_book {
-    view_label: "1.2 Book Inadimplência"
+    view_label: "Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_book_produtos {
-    view_label: "1.3 Book Inadimplência (Produtos)"
+    view_label: "Book Inadimplência (Produtos)"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_book_wo {
-    view_label: "1.4 Book Inadimplência - W.O "
+    view_label: "Book Inadimplência - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_fyf {
-    view_label: "1.5 FYF - W.O "
+    view_label: "FYF - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atrasado {
-    view_label: "1.6.1 Carteira - Atrasado"
+    view_label: "Carteira - Atrasado"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atraso_produto {
-    view_label: "1.6.2 Carteira - Atrasado (Produto)"
+    view_label: "Carteira - Atrasado (Produto)"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_risco {
-    view_label: "1.6 Carteira"
+    view_label: "Carteira"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_caixa_projecao_carteira {
-    view_label: "1.6.3 Carteira - Base Projeção"
+    view_label: "Carteira - Base Projeção"
     sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_base_recuperacao {
-    view_label: "1.6.4 Carteira - Recuperação"
+    view_label: "Carteira - Recuperação"
     sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "1.7 S&P - Fitch Rating"
+    view_label: "Fitch Rating"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+  join: custo_bv {
+    view_label: "Custos BV"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: custo_bv_aluno {
+    view_label: "Custos BV Aluno"
+    sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
     type: left_outer
     relationship: one_to_many
   }
