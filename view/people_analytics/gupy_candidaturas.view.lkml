@@ -477,7 +477,7 @@ view: gupy_candidaturas {
 
   dimension: motivo_declinio {
     group_label: "Dados da Candidatura"
-    label: "Motivo do Declínio"
+    label: "Motivo do Declínio (Normalizado)"
     type: string
     sql: case ${TABLE}."MOTIVO_DECLINIO"
           when 'candidate_outside_required_location' then 'candidato_fora_localizacao_requerida'
@@ -508,7 +508,7 @@ view: gupy_candidaturas {
 
   dimension: motivo_declinio_normalizado {
     group_label: "Dados da Candidatura"
-    label: "Motivo do Declínio (Normalizado)"
+    label: "Motivo do Declínio (Traduzido)"
     type: string
     sql: case ${TABLE}."MOTIVO_DECLINIO"
           when 'candidate_outside_required_location' then 'Candidato fora da localização requerida'
