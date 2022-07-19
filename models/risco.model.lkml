@@ -113,6 +113,15 @@ explore: alunos {
 
 
   ]
+
+  join: alunos_produtos_aprovados {
+    view_label: "Alunos - Produtos Aprovados"
+    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
   join: alunos_inadimplencia_3_book {
     view_label: "Portfólio - Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
