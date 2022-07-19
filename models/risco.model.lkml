@@ -386,6 +386,14 @@ explore: alunos {
     relationship: one_to_many
   }
 
+
+  join: status {
+    view_label: "Status"
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} and ${proposta.id_proposta} = ${status.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: ano_mes_carteira_ativa {
 
     fields: []
