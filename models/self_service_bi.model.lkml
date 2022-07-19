@@ -1959,6 +1959,9 @@ explore: aproveitamento_estoque_nok{
 }
 
 
+explore: solucx_nps_ajustado {
+  label: "SoluCX - NPS Ajustado"
+}
 
 
 explore: dados_intake {
