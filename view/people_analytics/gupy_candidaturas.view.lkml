@@ -493,7 +493,7 @@ view: gupy_candidaturas {
           when 'invited_to_another_process' then 'convidado_outro_processo'
           when 'lack_of_culture_alignment' then 'falta_alinhamento_cultural'
           when 'lack_of_professional_experience' then 'falta_experiencia_profissional'
-          when 'little_stability_in_previous_companies' then 'pouca_estabilidade_enmpresas_anteriores'
+          when 'little_stability_in_previous_companies' then 'pouca_estabilidade_empresas_anteriores'
           when 'missed_steps_of_process' then 'perdeu_etapas_processo'
           when 'no_potential_for_growth' then 'sem_potencial_crescimento'
           when 'not_respond_to_contacts' then 'nao_responde_contatos'
@@ -501,6 +501,37 @@ view: gupy_candidaturas {
           when 'overqualified' then 'muito_qualificado'
           when 'proposal_not_accepted' then 'proposta_nao_aceita'
           when 'test_result_below_cutoff' then 'resultado_teste_abaixo'
+      else ${TABLE}."MOTIVO_DECLINIO"
+    end
+    ;;
+  }
+
+  dimension: motivo_declinio_normalizado {
+    group_label: "Dados da Candidatura"
+    label: "Motivo do Declínio (Normalizado)"
+    type: string
+    sql: case ${TABLE}."MOTIVO_DECLINIO"
+          when 'candidate_outside_required_location' then 'Candidato fora da localização requerida'
+          when 'elevated_wage_expectation' then 'Alta expectativa salarial'
+          when 'fulfilled_vacancy' then 'Vagas já preenchidas'
+          when 'gave_up_for_personal_reasons' then 'Desistência por motivo pessoal'
+          when 'hired_by_another_company' then 'Contratado por outra empresa'
+          when 'hired_in_another_job' then 'Contratado em outro trabalho'
+          when 'incompatible_curriculum' then 'Currículo incompatível'
+          when 'insufficient_academic_background' then 'Background acadêmico insuficiente'
+          when 'insufficient_knowledge' then 'Conhecimento insuficiente'
+          when 'insufficient_seniority' then 'Sênioridade insuficiente'
+          when 'invited_to_another_process' then 'Convidado para outro processo'
+          when 'lack_of_culture_alignment' then 'Falta alinhamento cultural'
+          when 'lack_of_professional_experience' then 'Falta experiência profissional'
+          when 'little_stability_in_previous_companies' then 'Pouca estabilidade em empresas anteriores'
+          when 'missed_steps_of_process' then 'Perdeu etapas do processo'
+          when 'no_potential_for_growth' then 'Sem potencial de crescimento'
+          when 'not_respond_to_contacts' then 'Não responde a contatos'
+          when 'other_reason' then 'Outras razões'
+          when 'overqualified' then 'Muito qualificado'
+          when 'proposal_not_accepted' then 'Proposta recusada'
+          when 'test_result_below_cutoff' then 'Resultado do teste abaixo da linha de corte'
       else ${TABLE}."MOTIVO_DECLINIO"
     end
     ;;
@@ -700,7 +731,7 @@ view: gupy_candidaturas {
     sql: case ${TABLE}."STATUS_CANDIDATURA"
           when 'give_up' then 'desistiu'
           when 'hired' then 'contratado'
-          when 'in_process' then 'em_andamento'
+          when 'in_process' then 'em andamento'
           when 'reproved' then 'reprovado'
           else ${TABLE}."STATUS_CANDIDATURA"
         end
@@ -727,7 +758,7 @@ view: gupy_candidaturas {
 
   dimension: status_vaga {
     group_label: "Dados da Vaga"
-    label: "Status"
+    label: "Status da vaga"
     type: string
     sql: case ${TABLE}."STATUS_VAGA"
           when 'approved' then 'aprovada'
@@ -735,6 +766,9 @@ view: gupy_candidaturas {
           when 'closed' then 'fechada'
           when 'frozen' then 'congelada'
           when 'published' then 'publicada'
+          when 'waiting_approval' then 'em aprovação'
+          when 'draft' then 'rascunho'
+          when 'disapproved' then 'reprovada'
           else ${TABLE}."STATUS_VAGA"
         end
     ;;
@@ -828,6 +862,22 @@ view: gupy_candidaturas {
     label: "Etnia declarada"
     type: string
     sql: ${TABLE}."ETNIA_DECLARADA" ;;
+  }
+
+  dimension: flg_funcionario_interno {
+    group_label: "Dados do Candidato"
+    label: "É funcionário interno?"
+    description: "Indica se já é um funcionário interno (Segundo o cadastro na Sênior)"
+    type: yesno
+    sql: ${TABLE}."FLG_FUNCIONARIO_INTERNO" ;;
+  }
+
+  dimension: data_admissao_interno {
+    group_label: "Dados do Candidato"
+    label: "Data de admissão (funcionário)"
+    description: "Indica a data de admissão do funcionário (Segundo o cadastro na Sênior)"
+    type: yesno
+    sql: ${TABLE}."DATA_ADMISSAO_INTERNO" ;;
   }
 
   measure: count {
