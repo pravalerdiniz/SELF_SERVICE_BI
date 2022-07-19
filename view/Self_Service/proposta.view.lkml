@@ -446,6 +446,12 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DATA_GERACAO_CONTRATO" ;;
   }
 
+  measure: max_data_geracao_contrato {
+    type: date
+    sql: MAX(${data_geracao_contrato_raw}) ;;
+    label: "Data Geração de Contrato (Máxima)"
+  }
+
   dimension: safra_cessao {
     type: number
     group_label: "Dados do Contrato"
@@ -2757,7 +2763,7 @@ dimension: vl_tarifa_cadastro {
   measure: sum_mensalidade_atual {
     type: sum
     group_label: "Mensalidade - Atual"
-    value_format: "0"
+    value_format: "$0"
     group_item_label: "Soma"
     sql:${vl_men_corrente};;
     description: "Soma do valor da mensalidade atual do aluno"

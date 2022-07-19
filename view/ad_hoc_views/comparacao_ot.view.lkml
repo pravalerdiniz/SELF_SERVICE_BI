@@ -53,22 +53,6 @@ view: comparacao_ot {
     sql: ${TABLE}."DATA_MENOR_VENCIMENTO_PDD" ;;
   }
 
-  dimension_group: data_modificacao {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    label: "Modificação"
-    description: "Data que a OT modificou o arquivo"
-    sql: ${TABLE}."DATA_MODIFICACAO" ;;
-  }
 
   dimension_group: data_titulo_calcular {
     type: time
@@ -85,14 +69,6 @@ view: comparacao_ot {
     label: "Cálculo do Título"
     description: "Data que a base foi calculada pela OT"
     sql: ${TABLE}."DATA_TITULO_CALCULAR" ;;
-  }
-
-  dimension: nome_arquivo_origem {
-    type: string
-    group_label: "Dados do Título"
-    label: "Nome do Arquivo de Origem"
-    description: "Arquivo de origem da OT no qual a linha se refere"
-    sql: ${TABLE}."NOME_ARQUIVO_ORIGEM" ;;
   }
 
   dimension: nome_fundo {
@@ -345,4 +321,40 @@ view: comparacao_ot {
     drill_fields: []
     hidden: yes
   }
+
+  ## Campos de cálculo
+
+  dimension: atraso_ot {
+    type: number
+    label: "Atraso OT"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."ATRASO_OT" ;;
+  }
+
+  dimension: atraso_prv {
+    type: number
+    label: "Atraso PRV"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."ATRASO_PRV" ;;
+  }
+
+  dimension: pct_atraso_ot {
+    type: number
+    label: "% Atraso OT"
+    value_format: "0.00%"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."PCT_ATASO_OT" ;;
+  }
+
+  dimension: pct_atraso_prv {
+    type: number
+    label: "% Atraso PRV"
+    value_format: "0.00%"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."PCT_ATASO_PRV" ;;
+  }
+
+
 }

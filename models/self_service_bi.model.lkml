@@ -357,9 +357,38 @@ explore: jornada {
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
-
+    - financeiro.sum_PDD,
+    - instituicao.cnpj_ie,
+    - instituicao.nome_fantasia,
+    - instituicao.razao_social,
+    - instituicao.ie_ativa,
+    - instituicao.qtd_ies_ativas,
+    - instituicao.ie_super_pravaler,
+    - instituicao.modelo_contrato,
+    - instituicao.reprova_por_score,
+    - instituicao.ds_mantenedor,
+    - instituicao.qtd_alunos_ie,
+    - instituicao.endereco_sede_ie,
+    - instituicao.bairro_sede_ie,
+    - instituicao.cidade_sede_ie,
+    - instituicao.estado_sede_ie,
+    - instituicao.cep_sede_ie,
+    - instituicao.grupo,
+    - instituicao.flg_descadastrada,
+    - instituicao.qtd_ies_descadastrada,
+    - instituicao.qtd_ies_possui_pdv,
+    - instituicao.flg_recebe_contrato,
+    - instituicao.qtd_ies_financia_matricula,
+    - instituicao.qtd_ies_bolsa,
+    - instituicao.qtd_ies_matricula_expressa,
+    - instituicao.flg_possi_pdv,
+    - instituicao.flg_bolsa,
+    - instituicao.flg_financia_matricula,
+    - instituicao.flg_matricula_expressa,
+    - instituicao.regional_regiao,
+    - instituicao.carteira_regional,
+    - instituicao.gerente_regional,
+    - instituicao.id_instituicao
   ]
 
 
@@ -434,6 +463,13 @@ explore: jornada {
   join: flag_renda_presumida_garant {
     view_label: "2. Proposta"
     sql_on: ${jornada.id_proposta} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: fato_ies_aval {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
     type: left_outer
     relationship: one_to_one
   }
@@ -514,6 +550,16 @@ explore: jornada {
     type: left_outer
   }
 
+  join: instituicao {
+    view_label: "3. Instituição"
+    sql_on: ${jornada.id_instituicao} = ${instituicao.id_instituicao}
+    and ${proposta.id_curso} = ${instituicao.id_curso};;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+
+
   join: dim_cpf {
     view_label: "1. CPF"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf} ;;
@@ -586,6 +632,14 @@ explore: jornada {
   join: zoho_reports {
     view_label: "12. Leads Eventos"
     sql_on: ${jornada.aluno_cpf} = ${zoho_reports.cpf};;
+    relationship: many_to_many
+    type: full_outer
+  }
+
+  join: leads_balcao {
+    view_label: "13. Balcão"
+    sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
+    and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
     relationship: many_to_many
     type: full_outer
   }
@@ -1281,6 +1335,13 @@ explore: proposta {
     type: left_outer
   }
 
+  join: fato_ies_aval {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_contrato} = ${fato_ies_aval.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
 }
 
 explore: alunos {
@@ -1325,10 +1386,6 @@ explore: alunos {
     - proposta.flg_produto_ativo,
     - proposta.tipo_produto,
     - proposta.sum_qtd_mensalidade_contrato,
-    - alunos_gerencial_renovacao_status_elegibilidade.count_distinct,
-    - alunos_gerencial_renovacao_carteira_elegibilidade.count_cpf,
-    - alunos_acordo_renegociacao.count_id_cpf,
-    - alunos_acordo.count_id_cpf,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
     - financeiro.count_alunos,
@@ -1336,7 +1393,6 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
-    -alunos_acordo_renegociacao.count,
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
     -jornada.count_cpf,
@@ -1348,110 +1404,112 @@ explore: alunos {
   ]
 
 
-  join: alunos_produtos_aprovados {
-    view_label: "1.1 Produtos Aprovados"
-    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_produtos_aprovados {
+  #   view_label: "1.1 Produtos Aprovados"
+  #   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-
-  join: vw_contratos_inadimplencia {
-    view_label: "Inadimplência Nova"
-    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-
-  join: alunos_inadimplencia_1 {
-    view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: vw_contratos_inadimplencia {
+  #   view_label: "Inadimplência Nova"
+  #   sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
 
+  # join: alunos_inadimplencia_1 {
+  #   view_label: "1.2 Inadimplência"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
 
-  join: alunos_inadimplencia_2 {
-    view_label: "1.2.1 Inadimplência (Outras Informações)"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # }
 
-  join: alunos_inadimplencia_3_book {
-    view_label: "1.2.2 Book Inadimplência"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-  join: alunos_inadimplencia_book_produtos {
-    view_label: "1.2.2.1 Book Inadimplência (Produtos)"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-  join: alunos_inadimplencia_book_wo {
-    view_label: "1.2.2.2 Book Inadimplência - W.O "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-  join: alunos_inadimplencia_fyf {
-    view_label: "1.2.3 FYF - W.O "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_inadimplencia_2 {
+  #   view_label: "1.2.1 Inadimplência (Outras Informações)"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: base_carteira_atrasado {
-    view_label: "1.2.5 Carteira - Atrasado"
-    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  #Portfólio - Novo Modelo de Dados (Risco.model) 18/07/22
 
-  join: base_carteira_atraso_produto {
-    view_label: "1.2.6 Carteira - Atrasado (Produto)"
-    sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_inadimplencia_3_book {
+  #   view_label: "1.2.2 Book Inadimplência"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: base_carteira_risco {
-    view_label: "1.2.4 Carteira"
-    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_inadimplencia_book_produtos {
+  #   view_label: "1.2.2.1 Book Inadimplência (Produtos)"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: base_caixa_projecao_carteira {
-    view_label: "1.2.7 Carteira - Base Projeção"
-    sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_inadimplencia_book_wo {
+  #   view_label: "1.2.2.2 Book Inadimplência - W.O "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_base_recuperacao {
-    view_label: "1.2.8 Carteira - Recuperação"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_inadimplencia_fyf {
+  #   view_label: "1.2.3 FYF - W.O "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "1.2.9 S&P - Fitch Rating"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: base_carteira_atrasado {
+  #   view_label: "1.2.5 Carteira - Atrasado"
+  #   sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: base_carteira_atraso_produto {
+  #   view_label: "1.2.6 Carteira - Atrasado (Produto)"
+  #   sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: base_carteira_risco {
+  #   view_label: "1.2.4 Carteira"
+  #   sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: base_caixa_projecao_carteira {
+  #   view_label: "1.2.7 Carteira - Base Projeção"
+  #   sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: alunos_base_recuperacao {
+  #   view_label: "1.2.8 Carteira - Recuperação"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: alunos_inadimplencia_sp_fitch_rating {
+  #   view_label: "1.2.9 S&P - Fitch Rating"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
   #Excluido - Dados Desatualizados 2022-01-27 | Lulinha 02/06/2022
 
@@ -1462,33 +1520,35 @@ explore: alunos {
     #relationship: one_to_many
  # }
 
-  join: alunos_log_negativacao{
-    view_label: "1.3 Negativação Logs"
-    sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_log_negativacao{
+  #   view_label: "1.3 Negativação Logs"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_gerencial_renovacao_carteira_elegibilidade{
-    view_label: "1.4 Renovação - Gerencial da Carteira"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_gerencial_renovacao_carteira_elegibilidade{
+  #   view_label: "1.4 Renovação - Gerencial da Carteira"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_gerencial_renovacao_status_elegibilidade{
-    view_label: "1.4.1 Renovação - Status de Elegibilidade"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_gerencial_renovacao_status_elegibilidade{
+  #   view_label: "1.4.1 Renovação - Status de Elegibilidade"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: vw_elegibilidade_comercial{
-    view_label: "1.4.2 Renovação - Potencial Renovação"
-    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: vw_elegibilidade_comercial{
+  #   view_label: "1.4.2 Renovação - Potencial Renovação"
+  #   sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -1497,21 +1557,22 @@ explore: alunos {
     type: left_outer
   }
 
-  join: alunos_acordo {
-    view_label: "1.5 Acordo Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Cobrança - Novo modelo de dados (risco.model) lulinha -19/07/22
+  # join: alunos_acordo {
+  #   view_label: "1.5 Acordo Informações"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_acordo_renegociacao {
-    view_label: "1.5.2 Acordo Renegociação Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
-          AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
-          ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_acordo_renegociacao {
+  #   view_label: "1.5.2 Acordo Renegociação Informações"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
+  #         AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
+  #         ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 #Excluido - Não Utilizado | Lulinha 02/06/2022
  # join: pdd {
@@ -1521,103 +1582,108 @@ explore: alunos {
     #relationship: one_to_many
   #}
 
-  join: alunos_painel_risco {
-    view_label: "1.7 Análise de Risco e Crédito - Decisão"
-    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_painel_risco {
+  #   view_label: "1.7 Análise de Risco e Crédito - Decisão"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mesa_2{
-    view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mesa_2{
+  #   view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mesa_risco_3 {
-    view_label: "1.7.2 Mesa de Risco 3 - Renda"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mesa_risco_3 {
+  #   view_label: "1.7.2 Mesa de Risco 3 - Renda"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_worthy_credit {
-    view_label: "1.7.3 Modelo - Worthy Credit"
-    sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_worthy_credit {
+  #   view_label: "1.7.3 Modelo - Worthy Credit"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_score_gh {
-    view_label: "1.7.4 GH"
-    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_score_gh {
+  #   view_label: "1.7.4 GH"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
   join: alunos_hotlead {
-    view_label: "1.8 Campanhas DBM"
+    view_label: "1.2 Campanhas DBM"
     sql_on: ${alunos.id_cpf} = ${alunos_hotlead.id_cpf} ;;
     type: left_outer
     relationship: one_to_one
   }
 
-  join: alunos_cobranca_estrategia_operacional {
-    view_label: "1.9 Cobrança - Estratégia Operacional"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
-    type: left_outer
-    relationship: many_to_one
-  }
+#Cobrança Novo Modelo de dados (risco.model) Lulinha 19/07/22
+  # join: alunos_cobranca_estrategia_operacional {
+  #   view_label: "1.9 Cobrança - Estratégia Operacional"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
+  #   type: left_outer
+  #   relationship: many_to_one
+  # }
 
-  join: alunos_cobranca_pdd {
-    view_label: "1.9.1 Cobrança - PDD "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_pdd {
+  #   view_label: "1.9.1 Cobrança - PDD "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_radar {
-    view_label: "1.9.2 Cobrança - RADAR "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_radar {
+  #   view_label: "1.9.2 Cobrança - RADAR "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_pdd_boletos {
-    view_label: "1.9.6 Cobrança - PDD Boletos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_pdd_boletos {
+  #   view_label: "1.9.6 Cobrança - PDD Boletos"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mis_meritocracia {
-    view_label: "1.9.7 Cobrança - Meritocracia"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mis_meritocracia {
+  #   view_label: "1.9.7 Cobrança - Meritocracia"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_e_risco {
-    view_label: "1.9.8 Cobrança e Risco"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_e_risco {
+  #   view_label: "1.9.8 Cobrança e Risco"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: custo_bv {
-    view_label: "1.9.9 Custos BV"
-    sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
 
-  join: custo_bv_aluno {
-    view_label: "1.9.9.1 Custos BV Aluno"
-    sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  #Portfólio - Novo Modelo de Dados (Risco.model) 18/07/22
+
+  # join: custo_bv {
+  #   view_label: "1.9.9 Custos BV"
+  #   sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
+
+  # join: custo_bv_aluno {
+  #   view_label: "1.9.9.1 Custos BV Aluno"
+  #   sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
   join: proposta {
     view_label: "2. Proposta"
@@ -1631,7 +1697,6 @@ explore: alunos {
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
     sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
-          and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
           and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
     relationship: many_to_one
     type: left_outer
