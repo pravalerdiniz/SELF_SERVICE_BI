@@ -326,14 +326,14 @@ view: leads_balcao {
 
   measure: count_propostas {
     type: count_distinct
-    sql: ${id_proposta_lead_balcao_jornada} ;;
+    sql: ${cpf_lead};;
     label: "Propostas"
     filters: [descricao_retorno_avaliacao: "APROVADO, RECUSADO"]
   }
 
   measure: count_propostas_aprovadas {
     type:  count_distinct
-    sql: ${id_proposta_lead_balcao_jornada} ;;
+    sql: ${cpf_lead} ;;
     filters: [descricao_retorno_avaliacao: "APROVADO"]
     label: "Propostas Aprovadas"
   }
