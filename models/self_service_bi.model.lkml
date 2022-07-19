@@ -1404,12 +1404,12 @@ explore: alunos {
   ]
 
 
-  join: alunos_produtos_aprovados {
-    view_label: "1.1 Produtos Aprovados"
-    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_produtos_aprovados {
+  #   view_label: "1.1 Produtos Aprovados"
+  #   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 #Crédito - Novo Modelo de dados (Risco.model) 19/07/22
   # join: vw_contratos_inadimplencia {
