@@ -641,7 +641,7 @@ explore: jornada {
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
     relationship: many_to_many
-    type: left_outer
+    type: full_outer
   }
 
 
