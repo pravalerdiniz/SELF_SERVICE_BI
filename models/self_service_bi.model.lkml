@@ -1404,12 +1404,12 @@ explore: alunos {
   ]
 
 
-  join: alunos_produtos_aprovados {
-    view_label: "1.1 Produtos Aprovados"
-    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_produtos_aprovados {
+  #   view_label: "1.1 Produtos Aprovados"
+  #   sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 #Crédito - Novo Modelo de dados (Risco.model) 19/07/22
   # join: vw_contratos_inadimplencia {
@@ -1624,46 +1624,47 @@ explore: alunos {
     relationship: one_to_one
   }
 
-  join: alunos_cobranca_estrategia_operacional {
-    view_label: "1.9 Cobrança - Estratégia Operacional"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
-    type: left_outer
-    relationship: many_to_one
-  }
+#Cobrança Novo Modelo de dados (risco.model) Lulinha 19/07/22
+  # join: alunos_cobranca_estrategia_operacional {
+  #   view_label: "1.9 Cobrança - Estratégia Operacional"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
+  #   type: left_outer
+  #   relationship: many_to_one
+  # }
 
-  join: alunos_cobranca_pdd {
-    view_label: "1.9.1 Cobrança - PDD "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_pdd {
+  #   view_label: "1.9.1 Cobrança - PDD "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_radar {
-    view_label: "1.9.2 Cobrança - RADAR "
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_radar {
+  #   view_label: "1.9.2 Cobrança - RADAR "
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_pdd_boletos {
-    view_label: "1.9.6 Cobrança - PDD Boletos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_pdd_boletos {
+  #   view_label: "1.9.6 Cobrança - PDD Boletos"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mis_meritocracia {
-    view_label: "1.9.7 Cobrança - Meritocracia"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mis_meritocracia {
+  #   view_label: "1.9.7 Cobrança - Meritocracia"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_cobranca_e_risco {
-    view_label: "1.9.8 Cobrança e Risco"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_cobranca_e_risco {
+  #   view_label: "1.9.8 Cobrança e Risco"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
   #Portfólio - Novo Modelo de Dados (Risco.model) 18/07/22

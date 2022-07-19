@@ -113,6 +113,15 @@ explore: alunos {
 
 
   ]
+
+  join: alunos_produtos_aprovados {
+    view_label: "Alunos - Produtos Aprovados"
+    sql_on: ${alunos_produtos_aprovados.id_cpf} = ${alunos.id_cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
   join: alunos_inadimplencia_3_book {
     view_label: "Portfólio - Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
@@ -375,6 +384,14 @@ explore: alunos {
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
     type: left_outer
     relationship: one_to_many
+  }
+
+
+  join: status {
+    view_label: "Status"
+    sql_on: ${alunos.id_cpf} = ${status.id_cpf} and ${proposta.id_proposta} = ${status.id_proposta} ;;
+    relationship: one_to_many
+    type: left_outer
   }
 
   join: ano_mes_carteira_ativa {
