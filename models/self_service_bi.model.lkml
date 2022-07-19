@@ -1556,21 +1556,22 @@ explore: alunos {
     type: left_outer
   }
 
-  join: alunos_acordo {
-    view_label: "1.5 Acordo Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Cobrança - Novo modelo de dados (risco.model) lulinha -19/07/22
+  # join: alunos_acordo {
+  #   view_label: "1.5 Acordo Informações"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_acordo_renegociacao {
-    view_label: "1.5.2 Acordo Renegociação Informações"
-    sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
-          AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
-          ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_acordo_renegociacao {
+  #   view_label: "1.5.2 Acordo Renegociação Informações"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
+  #         AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
+  #         ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 #Excluido - Não Utilizado | Lulinha 02/06/2022
  # join: pdd {
