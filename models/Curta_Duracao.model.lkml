@@ -320,8 +320,7 @@ explore: contracts {
     relationship: one_to_many
     fields: []
   }
-
-}
+ }
 
 explore: risk {
   label: "Risco"
