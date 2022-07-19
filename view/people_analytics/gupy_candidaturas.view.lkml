@@ -872,11 +872,18 @@ view: gupy_candidaturas {
     sql: ${TABLE}."FLG_FUNCIONARIO_INTERNO" ;;
   }
 
-  dimension: data_admissao_interno {
+  dimension_group: data_admissao_interno {
     group_label: "Dados do Candidato"
     label: "Data de admissão (funcionário)"
     description: "Indica a data de admissão do funcionário (Segundo o cadastro na Sênior)"
-    type: yesno
+    type: time
+    timeframes: [
+      date,
+      month,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}."DATA_ADMISSAO_INTERNO" ;;
   }
 
