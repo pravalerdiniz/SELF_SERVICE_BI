@@ -493,11 +493,23 @@ view: gupy_vagas {
     sql: ${TABLE}."SALARIO_MOEDA" ;;
   }
 
+
   dimension: status {
     group_label: "Dados da Vaga"
     label: "Status"
     type: string
-    sql: ${TABLE}."STATUS" ;;
+    sql: case ${TABLE}."STATUS"
+          when 'approved' then 'aprovada'
+          when 'canceled' then 'cancelada'
+          when 'closed' then 'fechada'
+          when 'frozen' then 'congelada'
+          when 'published' then 'publicada'
+          when 'waiting_approval' then 'em aprovação'
+          when 'draft' then 'rascunho'
+          when 'disapproved' then 'reprovada'
+          else ${TABLE}."STATUS"
+        end
+    ;;
   }
 
   dimension: tipo {
