@@ -237,7 +237,7 @@ view: interacoes {
     group_item_label: "CPF Num (Zendesk)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
-    sql: ${TABLE}."CPF" ;;
+    sql: ${TABLE}."CPF_NUM" ;;
   }
 
   dimension: cpf_submitter {
