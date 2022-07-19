@@ -27,6 +27,7 @@ view: leads_balcao {
 
   dimension: cpf_lead {
     type: number
+    primary_key: yes
     sql: ${TABLE}."CPF_LEAD" ;;
     group_label: "Dados do Aluno"
     group_item_label: "CPF do Aluno"
@@ -312,7 +313,7 @@ view: leads_balcao {
   }
 
   measure: count_leads {
-    type: count
+    type: count_distinct
     sql: ${cpf_lead} ;;
     label: "Leads"
   }
@@ -324,16 +325,16 @@ view: leads_balcao {
   }
 
   measure: count_propostas {
-    type: count
-    sql: ${id_proposta_lead_balcao_jornada} ;;
-    label: "Propostas Lead"
-    filters: [descricao_retorno_avaliacao: "APROVADO , RECUSADO"]
+    type: count_distinct
+    sql: ${cpf_lead};;
+    label: "Propostas"
+    filters: [descricao_retorno_avaliacao: "APROVADO, RECUSADO"]
   }
 
   measure: count_propostas_aprovadas {
-    type:  count
-    sql: ${id_proposta_lead_balcao_jornada} ;;
+    type:  count_distinct
+    sql: ${cpf_lead} ;;
     filters: [descricao_retorno_avaliacao: "APROVADO"]
-    label: "Propostas Aprovadas Lead"
+    label: "Propostas Aprovadas"
   }
 }

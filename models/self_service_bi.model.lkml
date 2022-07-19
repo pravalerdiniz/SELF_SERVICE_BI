@@ -641,7 +641,7 @@ explore: jornada {
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
     relationship: many_to_many
-    type: left_outer
+    type: full_outer
   }
 
 
@@ -1386,10 +1386,6 @@ explore: alunos {
     - proposta.flg_produto_ativo,
     - proposta.tipo_produto,
     - proposta.sum_qtd_mensalidade_contrato,
-    - alunos_gerencial_renovacao_status_elegibilidade.count_distinct,
-    - alunos_gerencial_renovacao_carteira_elegibilidade.count_cpf,
-    - alunos_acordo_renegociacao.count_id_cpf,
-    - alunos_acordo.count_id_cpf,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
     - financeiro.count_alunos,
@@ -1397,7 +1393,6 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
-    -alunos_acordo_renegociacao.count,
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
     -jornada.count_cpf,
@@ -1416,33 +1411,33 @@ explore: alunos {
     relationship: one_to_many
   }
 
-
-  join: vw_contratos_inadimplencia {
-    view_label: "Inadimplência Nova"
-    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-
-  join: alunos_inadimplencia_1 {
-    view_label: "1.2 Inadimplência"
-    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: vw_contratos_inadimplencia {
+  #   view_label: "Inadimplência Nova"
+  #   sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
 
+  # join: alunos_inadimplencia_1 {
+  #   view_label: "1.2 Inadimplência"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
 
-  join: alunos_inadimplencia_2 {
-    view_label: "1.2.1 Inadimplência (Outras Informações)"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # }
+
+
+
+
+  # join: alunos_inadimplencia_2 {
+  #   view_label: "1.2.1 Inadimplência (Outras Informações)"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
   #Portfólio - Novo Modelo de Dados (Risco.model) 18/07/22
 
@@ -1532,26 +1527,27 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: alunos_gerencial_renovacao_carteira_elegibilidade{
-    view_label: "1.4 Renovação - Gerencial da Carteira"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_gerencial_renovacao_carteira_elegibilidade{
+  #   view_label: "1.4 Renovação - Gerencial da Carteira"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_gerencial_renovacao_status_elegibilidade{
-    view_label: "1.4.1 Renovação - Status de Elegibilidade"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_gerencial_renovacao_status_elegibilidade{
+  #   view_label: "1.4.1 Renovação - Status de Elegibilidade"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: vw_elegibilidade_comercial{
-    view_label: "1.4.2 Renovação - Potencial Renovação"
-    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: vw_elegibilidade_comercial{
+  #   view_label: "1.4.2 Renovação - Potencial Renovação"
+  #   sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
   join: dim_cpf {
     view_label: "1. CPF"
@@ -1584,40 +1580,41 @@ explore: alunos {
     #relationship: one_to_many
   #}
 
-  join: alunos_painel_risco {
-    view_label: "1.7 Análise de Risco e Crédito - Decisão"
-    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_painel_risco {
+  #   view_label: "1.7 Análise de Risco e Crédito - Decisão"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mesa_2{
-    view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mesa_2{
+  #   view_label: "1.7.1 Mesa de Risco 2 - Check de Renda"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_mesa_risco_3 {
-    view_label: "1.7.2 Mesa de Risco 3 - Renda"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_mesa_risco_3 {
+  #   view_label: "1.7.2 Mesa de Risco 3 - Renda"
+  #   sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_worthy_credit {
-    view_label: "1.7.3 Modelo - Worthy Credit"
-    sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_worthy_credit {
+  #   view_label: "1.7.3 Modelo - Worthy Credit"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
-  join: alunos_score_gh {
-    view_label: "1.7.4 GH"
-    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: alunos_score_gh {
+  #   view_label: "1.7.4 GH"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
   join: alunos_hotlead {
@@ -1697,7 +1694,6 @@ explore: alunos {
   join: proposta_projeto_decola {
     view_label: "2.1 Projeto Decola"
     sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
-          and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
           and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
     relationship: many_to_one
     type: left_outer

@@ -60,75 +60,124 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 
 
-explore: base_carteira_risco {
-  view_label: "Carteira"
-  label: "Portfólio"
+explore: alunos {
+  view_label: "Alunos"
+  label: "Crédito, Cobrança e Portfólio"
 
+  fields: [ALL_FIELDS *,
+    - financeiro.id_cpf,
+    - proposta.aluno_celular,
+    - proposta.aluno_cidade,
+    - proposta.aluno_email,
+    - proposta.aluno_escolaridade,
+    - proposta.aluno_genero,
+    - proposta.aluno_idade,
+    - proposta.aluno_nome,
+    - proposta.aluno_renda,
+    - proposta.aluno_uf,
+    - proposta.uf_instituicao,
+    - proposta.id_campus,
+    - proposta.ds_campus,
+    - proposta.flg_campus_ativo,
+    - proposta.cidade_campus,
+    - proposta.uf_campus,
+    - proposta.fia_email,
+    - proposta.fia_celular,
+    - proposta.fia_genero,
+    - proposta.fia_escolaridade,
+    - proposta.ds_fia_trabalha,
+    - proposta.fia_idade,
+    - proposta.fia_renda,
+    - proposta.fia_cidade,
+    - proposta.fia_uf,
+    - proposta.cpf_aluno,
+    - proposta.fia_uf,
+    - proposta.gerente_atual,
+    - proposta.nivel_curso,
+    - proposta.flg_produto_ativo,
+    - proposta.tipo_produto,
+    - proposta.sum_qtd_mensalidade_contrato,
+    - alunos_gerencial_renovacao_status_elegibilidade.count_distinct,
+    - alunos_gerencial_renovacao_carteira_elegibilidade.count_cpf,
+    - alunos_acordo_renegociacao.count_id_cpf,
+    - alunos_acordo.count_id_cpf,
+    - proposta.cont_cpf,
+    - proposta.perc_cpf,
+    - financeiro.count_alunos,
+    - financeiro_extrato_titulo.alunos,
+    -alunos_acordo_renegociacao.count,
+    -financeiro.perc_alunos,
+    -financeiro.arrasto_dias_atraso,
+    -financeiro.sum_PDD
+
+
+
+  ]
   join: alunos_inadimplencia_3_book {
-    view_label: "Book Inadimplência"
+    view_label: "Portfólio - Book Inadimplência"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_3_book.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_book_produtos {
-    view_label: "Book Inadimplência (Produtos)"
+    view_label: "Portfólio - Book Inadimplência (Produtos)"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_produtos.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_book_wo {
-    view_label: "Book Inadimplência - W.O "
+    view_label: "Portfólio - Book Inadimplência - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_book_wo.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_fyf {
-    view_label: "FYF - W.O "
+    view_label: "Portfólio - FYF - W.O "
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_fyf.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atrasado {
-    view_label: "Carteira - Atrasado"
+    view_label: "Portfólio - Carteira - Atrasado"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atrasado.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_carteira_atraso_produto {
-    view_label: "Carteira - Atrasado (Produto)"
+    view_label: "Portfólio - Carteira - Atrasado (Produto)"
     sql_on: ${alunos.cpf_aluno} = ${base_carteira_atraso_produto.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
-  join: alunos {
-    view_label: "Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf} and ano_mes_carteira_ativa;;
+  join: base_carteira_risco {
+    view_label: "Portfólio - Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${base_carteira_risco.cpf} ;;
     type: left_outer
     relationship: one_to_many
   }
 
   join: base_caixa_projecao_carteira {
-    view_label: "Carteira - Base Projeção"
+    view_label: "Portfólio - Carteira - Base Projeção"
     sql_on: ${alunos.cpf_aluno} = ${base_caixa_projecao_carteira.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_base_recuperacao {
-    view_label: "Carteira - Recuperação"
+    view_label: "Portfólio - Carteira - Recuperação"
     sql_on: ${alunos.cpf_aluno} = ${alunos_base_recuperacao.tdt_cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: alunos_inadimplencia_sp_fitch_rating {
-    view_label: "Fitch Rating"
+    view_label: "Portfólio - Fitch Rating"
     sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_sp_fitch_rating.cpf};;
     type: left_outer
     relationship: one_to_many
@@ -136,29 +185,202 @@ explore: base_carteira_risco {
 
 
   join: custo_bv {
-    view_label: "Custos BV"
+    view_label: "Portfólio - Custos BV"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
   join: custo_bv_aluno {
-    view_label: "Custos BV Aluno"
+    view_label: "Portfólio - Custos BV Aluno"
     sql_on: ${alunos.cpf_aluno} = ${custo_bv_aluno.cpf};;
     type: left_outer
     relationship: one_to_many
   }
 
-  join: ano_mes_carteira_ativa {}
+
+  join: vw_contratos_inadimplencia {
+    view_label: "Crédito - Inadimplência Nova"
+    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 
-}
 
-explore: alunos {
+  join: alunos_inadimplencia_1 {
+    view_label: "Crédito - Inadimplência"
+    sql_on: ${alunos.id_cpf} = ${alunos_inadimplencia_1.id_cpf}  and ${alunos_inadimplencia_1.safra_cessao_cpf}  = ${alunos_inadimplencia_2.safra_cessao_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+  }
 
 
 
-  join: ano_mes_carteira_ativa {}
+
+  join: alunos_inadimplencia_2 {
+    view_label: "Crédito - Inadimplência (Outras Informações)"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_inadimplencia_2.cpf}  ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+
+  join: alunos_gerencial_renovacao_carteira_elegibilidade{
+    view_label: "Crédito - Renovação - Gerencial da Carteira"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_carteira_elegibilidade.tdt_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_gerencial_renovacao_status_elegibilidade{
+    view_label: "Crédito - Renovação - Status de Elegibilidade"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_gerencial_renovacao_status_elegibilidade.cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: vw_elegibilidade_comercial{
+    view_label: "Crédito - Renovação - Potencial Renovação"
+    sql_on: ${alunos.cpf_aluno} = ${vw_elegibilidade_comercial.cd_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+  join: alunos_painel_risco {
+    view_label: "Crédito - Análise de Risco e Crédito | Decisão"
+    sql_on: ${alunos.id_cpf} = ${alunos_painel_risco.id_cpf} and ${proposta.id_proposta} = ${alunos_painel_risco.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_mesa_2{
+    view_label: "Crédito - Mesa de Risco 2 - Check de Renda"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_2.sl_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_mesa_risco_3 {
+    view_label: "Crédito - Mesa de Risco 3 - Renda"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mesa_risco_3.cpf_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_worthy_credit {
+    view_label: "Crédito - Modelo - Worthy Credit"
+    sql_on: ${alunos.id_cpf} = ${alunos_worthy_credit.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_score_gh {
+    view_label: "Crédito - GH"
+    sql_on: ${alunos.id_cpf} = ${alunos_score_gh.id_cpf} and ${proposta.id_proposta} = ${alunos_score_gh.proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+  join: proposta {
+    view_label: "Proposta"
+    sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+
+
+  }
+
+  join: proposta_projeto_decola {
+    view_label: "Proposta - Projeto Decola"
+    sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
+          and ${proposta_projeto_decola.id_proposta} = ${alunos_painel_risco.proposta}
+          and ${alunos.ultimo_acordo_decola} = ${proposta_projeto_decola.id_acordo};;
+    relationship: many_to_one
+    type: left_outer
+
+    }
+
+  join: financeiro {
+    view_label: "Financeiro"
+    sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: financeiro_extrato_titulo {
+    view_label: "Extrato Titulo - Gestão"
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: alunos_acordo {
+    view_label: "Cobrança - Acordo Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_acordo.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_acordo_renegociacao {
+    view_label: "Cobrança - Acordo Renegociação Informações"
+    sql_on: ${alunos.id_cpf} = ${alunos_acordo_renegociacao.id_cpf}
+          AND ${proposta.id_proposta} = ${alunos_acordo_renegociacao.id_proposta_acordo}
+          ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+  join: alunos_cobranca_estrategia_operacional {
+    view_label: "Cobrança - Estratégia Operacional"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_estrategia_operacional.cpf};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: alunos_cobranca_pdd {
+    view_label: "Cobrança - PDD "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_cobranca_radar {
+    view_label: "Cobrança - RADAR "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_radar.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_cobranca_pdd_boletos {
+    view_label: "Cobrança - PDD Boletos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+    relationship: one_to_many
+  }
+
+  join: alunos_mis_meritocracia {
+    view_label: "Cobrança - Meritocracia"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_mis_meritocracia.cpf_join};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_cobranca_e_risco {
+    view_label: "Cobrança e Risco"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_e_risco.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: ano_mes_carteira_ativa {
+
+    fields: []
+  }
 
 
 }

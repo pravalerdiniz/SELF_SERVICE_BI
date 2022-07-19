@@ -446,6 +446,12 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DATA_GERACAO_CONTRATO" ;;
   }
 
+  measure: max_data_geracao_contrato {
+    type: date
+    sql: MAX(${data_geracao_contrato_raw}) ;;
+    label: "Data Geração de Contrato (Máxima)"
+  }
+
   dimension: safra_cessao {
     type: number
     group_label: "Dados do Contrato"
