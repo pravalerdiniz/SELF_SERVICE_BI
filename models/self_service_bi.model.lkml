@@ -1520,12 +1520,13 @@ explore: alunos {
     #relationship: one_to_many
  # }
 
-  join: alunos_log_negativacao{
-    view_label: "1.3 Negativação Logs"
-    sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+#Crédito - Novo Modelo de dados (Risco.model) 19/07/22
+  # join: alunos_log_negativacao{
+  #   view_label: "1.3 Negativação Logs"
+  #   sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 #Crédito - Novo Modelo de dados (Risco.model) 19/07/22
   # join: alunos_gerencial_renovacao_carteira_elegibilidade{
