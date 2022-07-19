@@ -106,6 +106,7 @@ UNION ALL
       type: number
       group_item_label: "Ano Pesquisa"
       description: "Ano que a pesquisa foi disparada"
+      value_format: "0"
       sql: ${TABLE}."ANO_PESQUISA" ;;
     }
 
