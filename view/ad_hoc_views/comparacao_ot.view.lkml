@@ -321,4 +321,40 @@ view: comparacao_ot {
     drill_fields: []
     hidden: yes
   }
+
+  ## Campos de cálculo
+
+  dimension: atraso_ot {
+    type: number
+    label: "Atraso OT"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."ATRASO_OT" ;;
+  }
+
+  dimension: atraso_prv {
+    type: number
+    label: "Atraso PRV"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."ATRASO_PRV" ;;
+  }
+
+  dimension: pct_atraso_ot {
+    type: number
+    label: "% Atraso OT"
+    value_format: "0.00%"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."PCT_ATASO_OT" ;;
+  }
+
+  dimension: pct_atraso_prv {
+    type: number
+    label: "% Atraso PRV"
+    value_format: "0.00%"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."PCT_ATASO_PRV" ;;
+  }
+
+
 }
