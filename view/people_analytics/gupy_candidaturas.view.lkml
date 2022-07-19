@@ -506,7 +506,7 @@ view: gupy_candidaturas {
     ;;
   }
 
-  dimension: motivo_declinio_normalizado {
+  dimension: motivo_declinio_traduzido {
     group_label: "Dados da Candidatura"
     label: "Motivo do Declínio (Traduzido)"
     type: string
