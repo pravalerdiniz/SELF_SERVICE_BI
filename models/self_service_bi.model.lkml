@@ -1975,3 +1975,8 @@ explore: inep_lgpd {
 explore: carteira {
   label: "Carteira Ativa"
 }
+
+
+explore: metas_distribuidas {
+  label: "Comercial - Metas Distribuídas"
+}

@@ -30,7 +30,6 @@ view: simulador_etapas {
     sql: ${meta_agg_ass} ;;
     group_label: "Metas"
     group_item_label: "Aguardando Assinatura"
-    description: "Meta Aguardando Assinatura gerada pelo Simulador"
   }
 
   measure: meta_agg_doc {
@@ -38,7 +37,6 @@ view: simulador_etapas {
     sql: ${meta_agg_doc} ;;
     group_label: "Metas"
     group_item_label: "Aguardando Documento"
-    description: "Meta Aguardando Documento gerada pelo Simulador"
   }
 
   measure: meta_aprov_ies {
@@ -46,7 +44,6 @@ view: simulador_etapas {
     sql: ${meta_aprov_ies} ;;
     group_label: "Metas"
     group_item_label: "Aprovado Instituição"
-    description: "Meta Aprovado Instituição gerada pelo Simulador"
   }
 
   measure: meta_aprov_risco {
@@ -54,7 +51,6 @@ view: simulador_etapas {
     sql: ${meta_aprov_risco} ;;
     group_label: "Metas"
     group_item_label: "Aprovado Risco"
-    description: "Meta Aprovado Risco gerada pelo Simulador"
   }
 
   measure: meta_finalizados {
@@ -62,7 +58,6 @@ view: simulador_etapas {
     sql: ${meta_finalizados} ;;
     group_label: "Metas"
     group_item_label: "Finalizado"
-    description: "Meta Finalizado gerada pelo Simulador"
   }
 
   measure: meta_iniciados {
@@ -70,7 +65,6 @@ view: simulador_etapas {
     sql: ${meta_iniciados} ;;
     group_label: "Metas"
     group_item_label: "Iniciado"
-    description: "Meta Iniciado gerada pelo Simulador"
   }
 
   measure: meta_formalizados {
@@ -78,7 +72,6 @@ view: simulador_etapas {
     sql: ${meta_formalizados} ;;
     group_label: "Metas"
     group_item_label: "Formalizado"
-    description: "Meta Formalizado gerada pela área Inteligência Comercial"
   }
 
 }
