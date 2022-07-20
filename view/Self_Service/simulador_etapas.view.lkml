@@ -1,6 +1,5 @@
 # The name of this view in Looker is "Simulador Etapas"
 view: simulador_etapas {
-
   sql_table_name: "COMERCIAL"."SIMULADOR_ETAPAS"
     ;;
 
