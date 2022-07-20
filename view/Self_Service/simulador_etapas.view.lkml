@@ -28,57 +28,50 @@ view: simulador_etapas {
   measure: meta_agg_ass {
     type: sum
     sql: ${meta_agg_ass} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aguardando Assinatura"
-    description: "Meta Aguardando Assinatura gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Aguardando Assinatura"
   }
 
   measure: meta_agg_doc {
     type: sum
     sql: ${meta_agg_doc} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aguardando Documento"
-    description: "Meta Aguardando Documento gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Aguardando Documento"
   }
 
   measure: meta_aprov_ies {
     type: sum
     sql: ${meta_aprov_ies} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aprovado Instituição"
-    description: "Meta Aprovado Instituição gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Aprovado Instituição"
   }
 
   measure: meta_aprov_risco {
     type: sum
     sql: ${meta_aprov_risco} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aprovado Risco"
-    description: "Meta Aprovado Risco gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Aprovado Risco"
   }
 
   measure: meta_finalizados {
     type: sum
     sql: ${meta_finalizados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Finalizado"
-    description: "Meta Finalizado gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Finalizado"
   }
 
   measure: meta_iniciados {
     type: sum
     sql: ${meta_iniciados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Iniciado"
-    description: "Meta Iniciado gerada pelo Simulador"
+    group_label: "Metas"
+    group_item_label: "Iniciado"
   }
 
   measure: meta_formalizados {
     type: sum
     sql: ${meta_formalizados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Formalizado"
-    description: "Meta Formalizado gerada pela área Inteligência Comercial"
+    group_label: "Metas"
+    group_item_label: "Formalizado"
   }
 
 }

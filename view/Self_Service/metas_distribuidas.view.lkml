@@ -3,6 +3,7 @@ view: metas_distribuidas {
   sql_table_name: "COMERCIAL"."METAS_DISTRIBUIDAS"
     ;;
 
+
   dimension: ano_mes {
     type: string
     label: "Ano mês"
