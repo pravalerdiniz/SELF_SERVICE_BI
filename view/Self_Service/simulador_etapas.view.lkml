@@ -28,56 +28,56 @@ view: simulador_etapas {
   measure: meta_agg_ass {
     type: sum
     sql: ${meta_agg_ass} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aguardando Assinatura"
+    group_label: "Metas"
+    group_item_label: "Aguardando Assinatura"
     description: "Meta Aguardando Assinatura gerada pelo Simulador"
   }
 
   measure: meta_agg_doc {
     type: sum
     sql: ${meta_agg_doc} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aguardando Documento"
+    group_label: "Metas"
+    group_item_label: "Aguardando Documento"
     description: "Meta Aguardando Documento gerada pelo Simulador"
   }
 
   measure: meta_aprov_ies {
     type: sum
     sql: ${meta_aprov_ies} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aprovado Instituição"
+    group_label: "Metas"
+    group_item_label: "Aprovado Instituição"
     description: "Meta Aprovado Instituição gerada pelo Simulador"
   }
 
   measure: meta_aprov_risco {
     type: sum
     sql: ${meta_aprov_risco} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Aprovado Risco"
+    group_label: "Metas"
+    group_item_label: "Aprovado Risco"
     description: "Meta Aprovado Risco gerada pelo Simulador"
   }
 
   measure: meta_finalizados {
     type: sum
     sql: ${meta_finalizados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Finalizado"
+    group_label: "Metas"
+    group_item_label: "Finalizado"
     description: "Meta Finalizado gerada pelo Simulador"
   }
 
   measure: meta_iniciados {
     type: sum
     sql: ${meta_iniciados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Iniciado"
+    group_label: "Metas"
+    group_item_label: "Iniciado"
     description: "Meta Iniciado gerada pelo Simulador"
   }
 
   measure: meta_formalizados {
     type: sum
     sql: ${meta_formalizados} ;;
-    group_label: "Métricas"
-    group_item_label: "Meta Formalizado"
+    group_label: "Metas"
+    group_item_label: "Formalizado"
     description: "Meta Formalizado gerada pela área Inteligência Comercial"
   }
 
