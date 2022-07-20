@@ -186,22 +186,6 @@ explore: instituicao_metas_gc {
     relationship: many_to_one
   }
 
-  join: simulador_etapas
-  {
-    view_label: "8. Simulador Etapas"
-    sql_on: ${instituicao_metas_gc.grupo_instituicao} = ${simulador_etapas.grupo};;
-    type: full_outer
-    relationship: many_to_many
-  }
-
-  join: metas_distribuidas
-  {
-    view_label: "8. Metas por Dia e Campus"
-    sql_on: ${instituicao_metas_gc.grupo_instituicao} = ${metas_distribuidas.grupo};;
-    type: full_outer
-    relationship: many_to_many
-  }
-
 }
 
 explore: status {
