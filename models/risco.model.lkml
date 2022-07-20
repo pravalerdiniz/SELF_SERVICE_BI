@@ -121,6 +121,13 @@ explore: alunos {
     relationship: one_to_many
   }
 
+  join: alunos_log_negativacao{
+    view_label: "Alunos - Negativação Logs"
+    sql_on: ${alunos.id_cpf} = ${alunos_log_negativacao.id_cpf} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: alunos_inadimplencia_3_book {
     view_label: "Portfólio - Book Inadimplência"
