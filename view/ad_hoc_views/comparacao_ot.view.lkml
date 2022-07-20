@@ -212,7 +212,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor de Face OT"
-    value_format: "0.00"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_face_total_ot} ;;
   }
@@ -238,7 +238,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor de Face PDD"
-    value_format: "0.00"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_face_total_pdd};;
   }
@@ -280,7 +280,7 @@ view: comparacao_ot {
   measure: sum_vl_presente_total_ot{
     type: sum
     group_label: "Valores"
-    value_format: "0.00"
+    value_format: "#,##0.00"
     label: "Soma Valor Presente OT"
     description: ""
     sql: ${vl_presente_total_ot};;
@@ -307,7 +307,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor Presente PDD"
-    value_format: "0.00"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_presente_total_pdd};;
   }
