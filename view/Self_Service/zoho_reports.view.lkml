@@ -4,13 +4,13 @@ view: zoho_reports {
   sql_table_name: "AD_HOC"."ZOHO_REPORTS"
     ;;
 
-  #dimension: cpf_evento {
-   # type: string
-  #  label: "Chave"
-   # primary_key: yes
-   # hidden: yes
-  #  sql: concat(${cpf},${nome_evento_ies}) ;;
-  #}
+  dimension: cpf_evento {
+    type: string
+    label: "Chave"
+    primary_key: yes
+    hidden: yes
+    sql: concat(${added_date},${analista},${cpf},${nome_evento_ies}) ;;
+  }
 
   dimension_group: added {
     type: time
@@ -40,7 +40,7 @@ view: zoho_reports {
   }
 
   measure: total_cpf {
-    type: count
+    type: count_distinct
     label: "Qtd de leads"
     description: "Quantidade de leads por evento"
     sql: ${cpf} ;;
