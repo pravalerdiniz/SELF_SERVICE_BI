@@ -40,7 +40,7 @@ view: zoho_reports {
   }
 
   measure: total_cpf {
-    type: sum
+    type: count
     label: "Qtd de leads"
     description: "Quantidade de leads por evento"
     sql: ${cpf} ;;
