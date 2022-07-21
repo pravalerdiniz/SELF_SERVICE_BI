@@ -1810,12 +1810,12 @@ explore: solucx {
     relationship: many_to_one
   }
 
-  join: instituicao_metas_gc {
+  join: proposta {
     view_label: "Gerente Atual"
     type: left_outer
-    sql_on:  ${instituicao_metas_gc.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+    sql_on:  ${proposta.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
     relationship: many_to_one
-    fields: [gerente]
+    fields: [proposta.gerente_atual]
   }
 
 }
