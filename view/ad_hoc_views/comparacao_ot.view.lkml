@@ -360,6 +360,34 @@ view: comparacao_ot {
     sql: ${TABLE}."PCT_ATASO_PRV" ;;
   }
 
+  dimension: vl_pdd_ot {
+    type: number
+    label: "VL pdd OT"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."VL_PDD_OT" ;;
+  }
 
+  measure: valor_pdd_ot {
+    type: number
+    label: "Valor Pdd OT"
+    group_label: "Cálculo Comparação"
+    sql: ${vl_pdd_ot} ;;
+  }
 
-}
+  dimension: vl_pdd_prv {
+    type: number
+    label: "VL PDD PRV"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."VL_PDD_PRV" ;;
+  }
+
+  measure: valor_pdd_prv {
+    type: number
+    label: "Valor PDD PRV"
+    group_label: "Cálculo Comparação"
+    sql: ${vl_pdd_prv} ;;
+  }
+
+  }
