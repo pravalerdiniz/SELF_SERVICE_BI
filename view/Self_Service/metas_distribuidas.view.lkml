@@ -3,6 +3,12 @@ view: metas_distribuidas {
   sql_table_name: "COMERCIAL"."METAS_DISTRIBUIDAS"
     ;;
 
+  dimension: chave {
+    type: string
+    hidden: yes
+    primary_key: yes
+    sql: concat(${data_meta_date},${gerente}, ${grupo}, ${id_instituicao}, ${id_campus}) ;;
+  }
 
   dimension: ano_mes {
     type: string
