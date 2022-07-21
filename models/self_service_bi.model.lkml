@@ -644,6 +644,14 @@ explore: jornada {
     type: full_outer
   }
 
+  join: metas_distribuidas {
+    view_label: "14. Metas por Campus"
+    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
+      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
+    relationship: many_to_many
+    type: full_outer
+  }
+
 
 }
 
@@ -1981,4 +1989,13 @@ explore: inep_lgpd {
 
 explore: carteira {
   label: "Carteira Ativa"
+}
+
+
+explore: metas_distribuidas {
+  label: "Comercial - Metas Distribuídas"
+}
+
+explore: simulador_etapas {
+  label: "Comercial - Simulador Etapas Funil"
 }

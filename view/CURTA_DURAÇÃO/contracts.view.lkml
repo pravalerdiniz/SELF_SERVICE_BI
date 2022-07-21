@@ -819,7 +819,13 @@ view: contracts {
     group_label: "Dados do Contrato"
   }
 
-
+  dimension: contrato_assinado_cancelado {
+    type: yesno
+    sql: ${TABLE}."FLG_CONTRATO_CAA";;
+    description: "Está FLG indica quantos alunos que assinaram contrato e cancelaram o contrato no mesmo mês."
+    group_item_label: "Assinado e Cancelado?"
+    group_label: "Dados do Contrato"
+  }
 
 
 
