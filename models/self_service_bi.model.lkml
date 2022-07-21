@@ -1980,3 +1980,7 @@ explore: carteira {
 explore: metas_distribuidas {
   label: "Comercial - Metas Distribuídas"
 }
+
+explore: simulador_etapas {
+  label: "Comercial - Simulador Etapas Funil"
+}
