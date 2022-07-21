@@ -1811,12 +1811,11 @@ explore: solucx {
   }
 
   join: instituicao_metas_gc {
-    view_label: "Solucx"
+    view_label: "Gerente Atual"
     type: left_outer
     sql_on:  ${instituicao_metas_gc.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
     relationship: many_to_one
-    fields: [grupo_instituicao,
-      gerente]
+    fields: [gerente]
   }
 
 }
