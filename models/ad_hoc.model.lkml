@@ -317,6 +317,10 @@ explore: nps_nuvem_palavras_neutros {}
 
 explore: nps_nuvem_palavras_promotores {}
 
+explore: nuvem_nps_ies {
+  label: "Nuvem Palavras NPS IES"
+}
+
 explore: alunos_inadimplencia_2 {}
 
 explore: uni_prv {}
