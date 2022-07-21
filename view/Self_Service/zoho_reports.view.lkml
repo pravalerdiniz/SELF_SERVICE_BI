@@ -67,6 +67,27 @@ view: zoho_reports {
     sql: ${TABLE}."NOME_SOBRENOME" ;;
   }
 
+  dimension: ies {
+    type: string
+    label: "Nome da Instituição"
+    description: "Indica o nome da Instituição de Ensino"
+    sql: ${TABLE}."IES" ;;
+  }
+
+  dimension: grupo_ies {
+    type: string
+    label: "Grupo da Instituição"
+    description: "Indica o nome do Grupo da Instituição de Ensino"
+    sql: ${TABLE}."GRUPO_IES" ;;
+  }
+
+  dimension: analista {
+    type: string
+    label: "Analista responsável"
+    description: "Indica o nome da analista responsável pelo evento"
+    sql: ${TABLE}."ANALISTA" ;;
+  }
+
   dimension: telefone {
     type: number
     label: "Telefone lead"
