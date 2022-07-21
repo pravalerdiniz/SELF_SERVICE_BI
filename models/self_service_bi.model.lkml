@@ -926,6 +926,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: financeiro_avg_vl_aquisicao {
+    view_label: "1. Financeiro"
+    sql_on: ${financeiro_avg_vl_aquisicao.id_contrato} = ${financeiro.id_contrato} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
