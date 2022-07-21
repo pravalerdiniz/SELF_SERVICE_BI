@@ -4,13 +4,13 @@ view: zoho_reports {
   sql_table_name: "AD_HOC"."ZOHO_REPORTS"
     ;;
 
-  dimension: cpf_evento {
-    type: string
-    label: "Chave"
-    primary_key: yes
-    hidden: yes
-    sql: concat(${cpf},${nome_evento_ies}) ;;
-  }
+  #dimension: cpf_evento {
+   # type: string
+  #  label: "Chave"
+   # primary_key: yes
+   # hidden: yes
+  #  sql: concat(${cpf},${nome_evento_ies}) ;;
+  #}
 
   dimension_group: added {
     type: time
