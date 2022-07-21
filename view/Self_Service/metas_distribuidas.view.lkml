@@ -7,7 +7,7 @@ view: metas_distribuidas {
     type: string
     hidden: yes
     primary_key: yes
-    sql: concat(${data_meta_date},${gerente}, ${grupo}, ${id_instituicao}, ${id_campus},) ;;
+    sql: concat(${data_meta_date},${gerente}, ${grupo}, ${id_instituicao}, ${id_campus}) ;;
   }
 
   dimension: ano_mes {
