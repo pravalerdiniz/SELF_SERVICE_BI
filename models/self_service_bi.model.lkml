@@ -1800,6 +1800,16 @@ explore: solucx {
     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
     relationship: many_to_one
   }
+
+  join: instituicao_metas_gc {
+    view_label: "Solucx"
+    type: left_outer
+    sql_on:  ${instituicao_metas_gc.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+    relationship: many_to_one
+    fields: [grupo_instituicao,
+      gerente]
+  }
+
 }
 
 
