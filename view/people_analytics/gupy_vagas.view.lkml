@@ -115,7 +115,7 @@ view: gupy_vagas {
 
   dimension_group: data_descongelamento {
     group_label: "Dados da Vaga"
-    label: "Data do congelamento"
+    label: "Data de descongelamento"
     type: time
     timeframes: [
       raw,
@@ -524,6 +524,30 @@ view: gupy_vagas {
     label: "Tipo de publicação"
     type: string
     sql: ${TABLE}."TIPO_PUBLICACAO" ;;
+  }
+
+  dimension: qtd_inscricoes_internas {
+    group_label: "Dados Candidaturas Internas"
+    label: "Qtd. de inscrições internas"
+    description: "Indica quantos colaborades do Pravaler se candidataram para essa vaga"
+    type: number
+    sql: ${TABLE}."QTD_INSCRICOES_INTERNAS" ;;
+  }
+
+  dimension: flg_houve_incricao_interna {
+    group_label: "Dados Candidaturas Internas"
+    label: "Houve inscrição interna?"
+    description: "Indica se houve pelo menos uma inscrição de colaborador"
+    type: yesno
+    sql: ${TABLE}."FLG_HOUVE_INSCRICAO_INTERNA" ;;
+  }
+
+  dimension: sla_dias_corridos {
+    group_label: "Dados da Vaga"
+    label: "SLA dias corridos"
+    description: "Indica a quantidade de dias corridos desde a data de publição, subtraindo os dias de congelamento (se houver)"
+    type: number
+    sql: ${TABLE}."SLA_DIAS_CORRIDOS" ;;
   }
 
   measure: count {
