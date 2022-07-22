@@ -229,7 +229,7 @@ view: comparacao_ot {
   dimension: vl_face_total_pdd {
     type: number
     group_label: "Valores"
-    label: "Valor de Face PDD"
+    label: "Valor de Face Ideal"
     description: ""
     sql: ${TABLE}."VL_FACE_TOTAL_PDD" ;;
   }
@@ -237,7 +237,7 @@ view: comparacao_ot {
   measure: sum_vl_face_total_pdd {
     type: sum
     group_label: "Valores"
-    label: "Soma Valor de Face PDD"
+    label: "Soma Valor de Face Ideal"
     value_format: "#,##0.00"
     description: ""
     sql: ${vl_face_total_pdd};;
@@ -246,7 +246,7 @@ view: comparacao_ot {
   measure: avg_vl_face_total_pdd {
     type: average
     group_label: "Valores"
-    label: "Média Valor de Face PDD"
+    label: "Média Valor de Face Ideal"
     description: ""
     sql: ${vl_face_total_pdd} ;;
   }
@@ -298,7 +298,7 @@ view: comparacao_ot {
   dimension: vl_presente_total_pdd {
     type: number
     group_label: "Valores"
-    label: "Valor Presente PDD"
+    label: "Valor Presente Ideal"
     description: ""
     sql: ${TABLE}."VL_PRESENTE_TOTAL_PDD" ;;
   }
@@ -306,7 +306,7 @@ view: comparacao_ot {
   measure: sum_vl_presente_total_pdd{
     type: sum
     group_label: "Valores"
-    label: "Soma Valor Presente PDD"
+    label: "Soma Valor Presente Ideal"
     value_format: "#,##0.00"
     description: ""
     sql: ${vl_presente_total_pdd};;
@@ -315,7 +315,7 @@ view: comparacao_ot {
   measure: avg_vl_presente_total_pdd{
     type: average
     group_label: "Valores"
-    label: "Média Valor Presente PDD"
+    label: "Média Valor Presente Ideal"
     description: ""
     sql: ${vl_presente_total_pdd} ;;
   }
@@ -338,7 +338,7 @@ view: comparacao_ot {
 
   dimension: atraso_prv {
     type: number
-    label: "Atraso PRV"
+    label: "Atraso Ideal"
     value_format: "#,##0"
     group_label: "Cálculo Comparação"
     sql: ${TABLE}."ATRASO_PRV" ;;
@@ -354,7 +354,7 @@ view: comparacao_ot {
 
   dimension: pct_atraso_prv {
     type: number
-    label: "% Atraso PRV"
+    label: "% Atraso Ideal"
     value_format: "0.00%"
     group_label: "Cálculo Comparação"
     sql: ${TABLE}."PCT_ATASO_PRV" ;;
@@ -378,7 +378,7 @@ view: comparacao_ot {
 
   dimension: vl_pdd_prv {
     type: number
-    label: "VL PDD PRV"
+    label: "VL PDD Ideal"
     value_format: "#,##0"
     group_label: "Cálculo Comparação"
     sql: ${TABLE}."VL_PDD_PRV" ;;
@@ -386,7 +386,7 @@ view: comparacao_ot {
 
   measure: valor_pdd_prv {
     type: sum
-    label: "Valor PDD PRV"
+    label: "Valor PDD Ideal"
     value_format: "#,##0"
     group_label: "Cálculo Comparação"
     sql: ${vl_pdd_prv} ;;
