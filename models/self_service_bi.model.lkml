@@ -1436,12 +1436,12 @@ explore: alunos {
   # }
 
 #Crédito - Novo Modelo de dados (Risco.model) 19/07/22
-  join: vw_contratos_inadimplencia {
-    view_label: "Inadimplência Nova"
-    sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+  # join: vw_contratos_inadimplencia {
+  #   view_label: "Inadimplência Nova"
+  #   sql_on: ${alunos.cpf_aluno} = ${vw_contratos_inadimplencia.cpf} ;;
+  #   type: left_outer
+  #   relationship: one_to_many
+  # }
 
 
 

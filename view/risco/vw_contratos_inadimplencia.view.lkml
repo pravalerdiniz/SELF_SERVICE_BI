@@ -16,6 +16,14 @@ view: vw_contratos_inadimplencia {
     sql: ${TABLE}."ALU_CONTRATO" ;;
   }
 
+
+  dimension: pk_cpf_alu_contrato {
+    type: string
+    primary_key: yes
+    hidden:  yes
+    sql: CONCAT(${cpf},${alu_contrato}) ;;
+  }
+
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
