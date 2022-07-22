@@ -29,6 +29,7 @@ view: neurotech {
     ]
     convert_tz: no
     datatype: date
+    label: "Data Criação"
     sql: ${TABLE}."CREATED_AT" ;;
   }
 
@@ -54,6 +55,7 @@ view: neurotech {
   dimension: prop_cpf_aluno {
     type: number
     label: "CPF Aluno"
+    primary_key: yes
     sql: ${TABLE}."PROP_CPF_ALUNO" ;;
   }
 
@@ -189,7 +191,8 @@ view: neurotech {
     sql: ${TABLE}."PROP_MENSALIDADE_ATIVA_IES" ;;
   }
 
-  dimension_group: data_contrato {
+
+  dimension_group: prop_data_contrato {
     type: time
     timeframes: [
       raw,
@@ -202,8 +205,10 @@ view: neurotech {
     ]
     convert_tz: no
     datatype: date
+    label: "Data Contrato"
     sql: ${TABLE}."PROP_DATA_CONTRATO" ;;
   }
+
 
   dimension: prop_escore_whorty_credit {
     type: number
@@ -430,7 +435,7 @@ view: neurotech {
       prop_aluno_titulo_ativo,
       prop_aluno_wo,
       prop_mensalidade_ativa_ies,
-      data_contrato_date,
+      prop_data_contrato_date,
       prop_escore_whorty_credit,
       prop_analise_credito_decisao_ia,
       prop_ponto_corte,
