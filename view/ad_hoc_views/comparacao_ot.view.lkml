@@ -370,7 +370,8 @@ view: comparacao_ot {
 
   measure: valor_pdd_ot {
     type: number
-    label: "Valor Pdd OT"
+    label: "Valor PDD OT"
+    value_format: "#,##0"
     group_label: "Cálculo Comparação"
     sql: ${vl_pdd_ot} ;;
   }
@@ -386,6 +387,7 @@ view: comparacao_ot {
   measure: valor_pdd_prv {
     type: number
     label: "Valor PDD PRV"
+    value_format: "#,##0"
     group_label: "Cálculo Comparação"
     sql: ${vl_pdd_prv} ;;
   }
