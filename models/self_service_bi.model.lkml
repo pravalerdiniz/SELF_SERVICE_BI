@@ -424,6 +424,15 @@ explore: jornada {
     type: left_outer
   }
 
+    join: jornada_interacoes_pago {
+    view_label: "1.13 Interações Pago"
+    sql_on: ${jornada.id_cpf} = ${jornada_interacoes_pago.id_cpf}
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
   join: proposta {
     view_label: "2. Proposta"
@@ -640,6 +649,14 @@ explore: jornada {
     view_label: "13. Balcão"
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
+    relationship: many_to_many
+    type: full_outer
+  }
+
+  join: metas_distribuidas {
+    view_label: "14. Metas por Campus"
+    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
+      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
     relationship: many_to_many
     type: full_outer
   }
@@ -915,6 +932,13 @@ explore: financeiro {
     view_label: "1. Financeiro"
     sql_on: ${financeiro_arrasto_atraso.id_cpf} = ${financeiro.id_cpf} ;;
     relationship: many_to_many
+    type: left_outer
+  }
+
+  join: financeiro_avg_vl_aquisicao {
+    view_label: "1. Financeiro"
+    sql_on: ${financeiro_avg_vl_aquisicao.id_contrato} = ${financeiro.id_contrato} ;;
+    relationship: one_to_one
     type: left_outer
   }
 
@@ -1785,6 +1809,15 @@ explore: solucx {
     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
     relationship: many_to_one
   }
+
+  join: depara_grupo_gerente {
+    view_label: "Gerente Atual"
+    type: left_outer
+    sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+    relationship: many_to_one
+    fields: [gerente]
+  }
+
 }
 
 
@@ -1974,4 +2007,13 @@ explore: inep_lgpd {
 
 explore: carteira {
   label: "Carteira Ativa"
+}
+
+
+explore: metas_distribuidas {
+  label: "Comercial - Metas Distribuídas"
+}
+
+explore: simulador_etapas {
+  label: "Comercial - Simulador Etapas Funil"
 }

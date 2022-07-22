@@ -212,6 +212,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor de Face OT"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_face_total_ot} ;;
   }
@@ -237,6 +238,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor de Face PDD"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_face_total_pdd};;
   }
@@ -278,6 +280,7 @@ view: comparacao_ot {
   measure: sum_vl_presente_total_ot{
     type: sum
     group_label: "Valores"
+    value_format: "#,##0.00"
     label: "Soma Valor Presente OT"
     description: ""
     sql: ${vl_presente_total_ot};;
@@ -304,6 +307,7 @@ view: comparacao_ot {
     type: sum
     group_label: "Valores"
     label: "Soma Valor Presente PDD"
+    value_format: "#,##0.00"
     description: ""
     sql: ${vl_presente_total_pdd};;
   }
@@ -356,5 +360,34 @@ view: comparacao_ot {
     sql: ${TABLE}."PCT_ATASO_PRV" ;;
   }
 
+  dimension: vl_pdd_ot {
+    type: number
+    label: "VL pdd OT"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."VL_PDD_OT" ;;
+  }
 
-}
+  measure: valor_pdd_ot {
+    type: number
+    label: "Valor Pdd OT"
+    group_label: "Cálculo Comparação"
+    sql: ${vl_pdd_ot} ;;
+  }
+
+  dimension: vl_pdd_prv {
+    type: number
+    label: "VL PDD PRV"
+    value_format: "#,##0"
+    group_label: "Cálculo Comparação"
+    sql: ${TABLE}."VL_PDD_PRV" ;;
+  }
+
+  measure: valor_pdd_prv {
+    type: number
+    label: "Valor PDD PRV"
+    group_label: "Cálculo Comparação"
+    sql: ${vl_pdd_prv} ;;
+  }
+
+  }

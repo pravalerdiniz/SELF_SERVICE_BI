@@ -9,7 +9,7 @@ view: zoho_reports {
     label: "Chave"
     primary_key: yes
     hidden: yes
-    sql: concat(${cpf},${nome_evento_ies}) ;;
+    sql: concat(${added_date},${analista},${cpf},${nome_evento_ies}) ;;
   }
 
   dimension_group: added {
@@ -40,7 +40,7 @@ view: zoho_reports {
   }
 
   measure: total_cpf {
-    type: sum
+    type: count_distinct
     label: "Qtd de leads"
     description: "Quantidade de leads por evento"
     sql: ${cpf} ;;
@@ -65,6 +65,27 @@ view: zoho_reports {
     label: "Nome lead"
     description: "Indica o nome do lead capturado no evento"
     sql: ${TABLE}."NOME_SOBRENOME" ;;
+  }
+
+  dimension: ies {
+    type: string
+    label: "Nome da Instituição"
+    description: "Indica o nome da Instituição de Ensino"
+    sql: ${TABLE}."IES" ;;
+  }
+
+  dimension: grupo_ies {
+    type: string
+    label: "Grupo da Instituição"
+    description: "Indica o nome do Grupo da Instituição de Ensino"
+    sql: ${TABLE}."GRUPO_IES" ;;
+  }
+
+  dimension: analista {
+    type: string
+    label: "Analista responsável"
+    description: "Indica o nome da analista responsável pelo evento"
+    sql: ${TABLE}."ANALISTA" ;;
   }
 
   dimension: telefone {
