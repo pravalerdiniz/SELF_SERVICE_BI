@@ -301,6 +301,13 @@ explore: alunos {
     relationship: one_to_many
   }
 
+  join: neurotech {
+    view_label: "Crédito - Neurotech (Motor de Credito e Repescagem)"
+    sql_on: ${alunos.cpf_aluno} = ${neurotech.prop_cpf_aluno} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 
   join: proposta {
     view_label: "Proposta"
