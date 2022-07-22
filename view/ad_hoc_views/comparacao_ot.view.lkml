@@ -369,7 +369,7 @@ view: comparacao_ot {
   }
 
   measure: valor_pdd_ot {
-    type: number
+    type: sum
     label: "Valor PDD OT"
     value_format: "#,##0"
     group_label: "Cálculo Comparação"
@@ -385,7 +385,7 @@ view: comparacao_ot {
   }
 
   measure: valor_pdd_prv {
-    type: number
+    type: sum
     label: "Valor PDD PRV"
     value_format: "#,##0"
     group_label: "Cálculo Comparação"
