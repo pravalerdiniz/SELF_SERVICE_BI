@@ -1709,6 +1709,13 @@ explore: alunos {
   #   relationship: one_to_many
   # }
 
+  join: leads_canal_entrada {
+    view_label: "1. Alunos"
+    sql_on:  ${alunos.cpf_aluno} = ${leads_canal_entrada.cd_cpf_lead} ;;
+    type: left_outer
+    relationship: one_to_many
+}
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
