@@ -3942,5 +3942,22 @@ dimension: flag_balcao {
     drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
   }
 
+  measure: median_aprovies_enviodoc {
+    type: median
+    sql: ${tempo_aprovies_enviodoc} ;;
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento - Mediana"
+    value_format: "0.0"
+    description: "Mediana de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+  }
+
+
+  measure: average_aprovies_enviodoc {
+    type: average
+    sql: ${tempo_aprovies_enviodoc} ;;
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento - Média"
+    value_format: "0.0"
+    description: "Média de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+  }
+
 
 }
