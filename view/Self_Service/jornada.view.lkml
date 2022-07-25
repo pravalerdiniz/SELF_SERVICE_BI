@@ -3933,5 +3933,57 @@ dimension: flag_balcao {
   label: "Flag Balcão"
 }
 
+  dimension: tempo_aprovies_enviodoc {
+    type: number
+    sql: datediff(second,${dt_aprovado_instituicao_raw},${proposta_datas_interfile.dt_envio_documentacao_raw})/86400 ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento"
+    description: "Indica a quantidade de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
+  measure: median_aprovies_enviodoc {
+    type: number
+    sql: median(${tempo_aprovies_enviodoc}) ;;
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento - Mediana"
+    value_format: "0.0"
+    description: "Mediana de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+  }
+
+
+  measure: average_aprovies_enviodoc {
+    type: average
+    sql: ${tempo_aprovies_enviodoc} ;;
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento - Média"
+    value_format: "0.0"
+    description: "Média de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+  }
+
+  dimension: tempo_enviodoc_aguass {
+    type: number
+    sql: datediff(second,${proposta_datas_interfile.dt_envio_documentacao_raw},${dt_aguardando_assinatura_raw})/86400 ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo entre Envio do Documento e Aguardando Assinatura"
+    description: "Indica a quantidade de dias entre o envio do primeiro documento e o momento que o aluno entra na etapa Aguardando Assinatura"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
+  measure: median_enviodoc_aguass {
+    type: number
+    sql: median(${tempo_enviodoc_aguass}) ;;
+    group_item_label: "Tempo entre Envio do Documento e Aguardando Assinatura - Mediana"
+    value_format: "0.0"
+    description: "Mediana de dias entre o envio do primeiro documento e o momento que o aluno entra na etapa Aguardando Assinatura"
+  }
+
+
+  measure: average_enviodoc_aguass {
+    type: average
+    sql: ${tempo_enviodoc_aguass} ;;
+    group_item_label: "Tempo entre Envio do Documento e Aguardando Assinatura - Média"
+    value_format: "0.0"
+    description: "Média de dias entre o envio do primeiro documento e o momento que o aluno entra na etapa Aguardando Assinatura"
+  }
+
 
 }

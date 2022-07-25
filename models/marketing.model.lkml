@@ -103,7 +103,9 @@ explore: mgm_publico_alvo {
     - jornada.nm_modalidade_produto,
     - jornada.nm_produto,
     - jornada.ds_curso,
-    - jornada.total_renov
+    - jornada.total_renov,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
   ]
 
   join: dim_cpf {

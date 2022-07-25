@@ -60,6 +60,8 @@ explore: beneficiados {
   fields: [ALL_FIELDS *,
     - jornada.id_cpf,
     - jornada.id_proposta,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -424,6 +426,15 @@ explore: jornada {
     type: left_outer
   }
 
+    join: jornada_interacoes_pago {
+    view_label: "1.13 Interações Pago"
+    sql_on: ${jornada.id_cpf} = ${jornada_interacoes_pago.id_cpf}
+          --and ${jornada.dt_status_date} => ${alunos_interacoes_crm.dt_inicio_impacto_date}
+          --and ${jornada.dt_status_date} =< ${alunos_interacoes_crm.dt_final_impacto_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
   join: proposta {
     view_label: "2. Proposta"
@@ -463,6 +474,13 @@ explore: jornada {
   join: flag_renda_presumida_garant {
     view_label: "2. Proposta"
     sql_on: ${jornada.id_proposta} = ${flag_renda_presumida_garant.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: proposta_datas_interfile {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_datas_interfile.id_proposta} ;;
     type: left_outer
     relationship: one_to_one
   }
@@ -644,13 +662,13 @@ explore: jornada {
     type: full_outer
   }
 
-  join: metas_distribuidas {
-    view_label: "14. Metas por Campus"
-    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
-      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
-    relationship: many_to_many
-    type: full_outer
-  }
+#  join: metas_distribuidas {
+#    view_label: "14. Metas por Campus"
+#    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
+#      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
+#    relationship: many_to_many
+#    type: full_outer
+#  }
 
 
 }
@@ -691,8 +709,9 @@ explore: instituicao {
     - proposta.gerente_original,
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
+    -financeiro.sum_PDD,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -973,8 +992,6 @@ explore: financeiro {
 
   }
 
-###<<<<<<< HEAD
-###=======
   join: taxa_produto_ies {
     view_label: "3.5. Tabela de Taxas da Instituição Unificada"
     sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
@@ -983,7 +1000,6 @@ explore: financeiro {
         ;;
     relationship: one_to_many
     type: left_outer
-
   }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
@@ -1412,7 +1428,9 @@ explore: alunos {
     -jornada.perc_cpf,
     -jornada.count_cpf,
     -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    -financeiro.sum_PDD,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
 
 
@@ -1700,6 +1718,13 @@ explore: alunos {
   #   relationship: one_to_many
   # }
 
+  join: leads_canal_entrada {
+    view_label: "1. Alunos"
+    sql_on:  ${alunos.cpf_aluno} = ${leads_canal_entrada.cd_cpf_lead} ;;
+    type: left_outer
+    relationship: one_to_many
+}
+
   join: proposta {
     view_label: "2. Proposta"
     sql_on:  ${alunos.id_cpf} = ${proposta.id_cpf} ;;
@@ -1800,6 +1825,15 @@ explore: solucx {
     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
     relationship: many_to_one
   }
+
+  join: depara_grupo_gerente {
+    view_label: "Gerente Atual"
+    type: left_outer
+    sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+    relationship: many_to_one
+    fields: [gerente]
+  }
+
 }
 
 
@@ -1998,4 +2032,16 @@ explore: metas_distribuidas {
 
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
+}
+
+explore: taxa_produto_ies {
+  label: "Taxa de Juros IES"
+  view_label: "1. Tabela histórica Taxa de Juros"
+
+  join: instituicao {
+    view_label: "2. Dados da Instituição"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }

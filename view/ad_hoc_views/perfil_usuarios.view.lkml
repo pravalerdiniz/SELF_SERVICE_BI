@@ -66,6 +66,28 @@ view: perfil_usuarios {
     sql: ${TABLE}."TIPO_USUARIO" ;;
   }
 
+  dimension_group: ultimo_acesso {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      day_of_week,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      day_of_month
+    ]
+    sql: ${TABLE}."ULTIMO_ACESSO" ;;
+    label: "Data ultimo acesso"
+      }
+
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
