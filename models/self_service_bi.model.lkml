@@ -60,7 +60,8 @@ explore: beneficiados {
   fields: [ALL_FIELDS *,
     - jornada.id_cpf,
     - jornada.id_proposta,
-    - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -709,7 +710,8 @@ explore: instituicao {
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
-  - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -1427,7 +1429,8 @@ explore: alunos {
     -jornada.count_cpf,
     -financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
-    - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
 
 
