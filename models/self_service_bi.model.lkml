@@ -653,13 +653,13 @@ explore: jornada {
     type: full_outer
   }
 
-  join: metas_distribuidas {
-    view_label: "14. Metas por Campus"
-    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
-      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
-    relationship: many_to_many
-    type: full_outer
-  }
+#  join: metas_distribuidas {
+#    view_label: "14. Metas por Campus"
+#    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
+#      and ${jornada.dt_status_date} >= ${metas_distribuidas.data_meta_date};;
+#    relationship: many_to_many
+#    type: full_outer
+#  }
 
 
 }
