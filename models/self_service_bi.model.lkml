@@ -60,7 +60,8 @@ explore: beneficiados {
   fields: [ALL_FIELDS *,
     - jornada.id_cpf,
     - jornada.id_proposta,
-    - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -709,7 +710,8 @@ explore: instituicao {
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
-  - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
   ]
 
@@ -990,8 +992,6 @@ explore: financeiro {
 
   }
 
-###<<<<<<< HEAD
-###=======
   join: taxa_produto_ies {
     view_label: "3.5. Tabela de Taxas da Instituição Unificada"
     sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
@@ -1000,7 +1000,6 @@ explore: financeiro {
         ;;
     relationship: one_to_many
     type: left_outer
-
   }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
@@ -1430,7 +1429,8 @@ explore: alunos {
     -jornada.count_cpf,
     -financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
-    - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
 
 
 
@@ -2032,4 +2032,16 @@ explore: metas_distribuidas {
 
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
+}
+
+explore: taxa_produto_ies {
+  label: "Taxa de Juros IES"
+  view_label: "1. Tabela histórica Taxa de Juros"
+
+  join: instituicao {
+    view_label: "2. Dados da Instituição"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }

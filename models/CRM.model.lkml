@@ -46,7 +46,8 @@ explore: tela_atendimento{
   fields: [ALL_FIELDS *,
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
-    - jornada.tempo_aprovies_enviodoc
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass
   ]
   view_label: "1. Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
