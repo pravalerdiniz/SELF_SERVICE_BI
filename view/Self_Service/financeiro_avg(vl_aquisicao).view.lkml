@@ -1,4 +1,4 @@
-# valor de aquisição médio por contrato
+# valor de aquisição médio por contrato sendo *boleto ATIVO e ORIGINAL*
 
 
 view: financeiro_avg_vl_aquisicao {
@@ -7,8 +7,9 @@ view: financeiro_avg_vl_aquisicao {
       por_contrato.ID_CONTRATO AS "ID_CONTRATO",
       AVG(por_contrato."VL_AQUISICAO") OVER (PARTITION BY por_contrato."ID_CONTRATO") AS "AVG_AQUISICAO",
       SUM(por_contrato."VL_AQUISICAO") OVER (PARTITION BY por_contrato."ID_CONTRATO") AS "SUM_AQUISICAO"
-    FROM "GRADUADO"."SELF_SERVICE_BI"."FINANCEIRO"
-           AS por_contrato;;
+    FROM "GRADUADO"."SELF_SERVICE_BI"."FINANCEIRO" AS por_contrato
+          WHERE por_contrato.ds_titulo_status = 'ATIVO'
+                AND por_contrato.ds_tipo_boleto = 'Original';;
   }
 
   dimension: avg_aquisicao {
