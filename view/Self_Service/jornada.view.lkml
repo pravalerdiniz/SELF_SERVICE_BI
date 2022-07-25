@@ -3933,5 +3933,14 @@ dimension: flag_balcao {
   label: "Flag Balcão"
 }
 
+  dimension: tempo_aprovies_enviodoc {
+    type: number
+    sql: datediff(second,${dt_aprovado_instituicao_raw},${proposta_datas_interfile.dt_envio_documentacao_raw})/86400 ;;
+    group_label: "Telemetria"
+    group_item_label: "Tempo entre Aprovação IES e Envio do Documento"
+    description: "Indica a quantidade de dias entre a Aprovação do aluno pela IES e o envio do primeiro documento"
+    drill_fields: [id_proposta,id_cpf,etapa_ultimo_status]
+  }
+
 
 }

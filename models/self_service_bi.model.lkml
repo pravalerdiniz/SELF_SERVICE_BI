@@ -60,6 +60,7 @@ explore: beneficiados {
   fields: [ALL_FIELDS *,
     - jornada.id_cpf,
     - jornada.id_proposta,
+    - jornada.tempo_aprovies_enviodoc
 
   ]
 
@@ -476,6 +477,13 @@ explore: jornada {
     relationship: one_to_one
   }
 
+  join: proposta_datas_interfile {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_datas_interfile.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: fato_ies_aval {
     view_label: "1. Jornada"
     sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
@@ -700,8 +708,8 @@ explore: instituicao {
     - proposta.gerente_original,
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
+    -financeiro.sum_PDD,
+  - jornada.tempo_aprovies_enviodoc
 
   ]
 
@@ -1421,7 +1429,8 @@ explore: alunos {
     -jornada.perc_cpf,
     -jornada.count_cpf,
     -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    -financeiro.sum_PDD,
+    - jornada.tempo_aprovies_enviodoc
 
 
 
