@@ -990,8 +990,6 @@ explore: financeiro {
 
   }
 
-###<<<<<<< HEAD
-###=======
   join: taxa_produto_ies {
     view_label: "3.5. Tabela de Taxas da Instituição Unificada"
     sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
@@ -999,8 +997,7 @@ explore: financeiro {
       and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
         ;;
     relationship: one_to_many
-    type: left_outer
-
+    type: full_outer
   }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
