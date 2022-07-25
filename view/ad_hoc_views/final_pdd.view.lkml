@@ -280,15 +280,44 @@ view: final_pdd {
     label: "Taxa PDD Nova"
     group_label: "Valores"
     description: "Taxa \"nova\" cobrada no pdd"
+    value_format: "0.00%"
     sql: ${TABLE}."TX_PDD_NOVA" ;;
+  }
+
+  measure: sum_tx_pdd_nova {
+    type: sum
+    label: "Soma Taxa PDD Nova"
+    group_label: "Valores"
+    description: "Taxa \"nova\" cobrada no pdd"
+    value_format: "0.00%"
+    sql: ${tx_pdd_nova} ;;
   }
 
   dimension: valor_presente {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor presente"
     group_label: "Valores"
     description: "Valor presente"
     sql: ${TABLE}."VALOR_PRESENTE" ;;
+  }
+
+  measure: sum_VP {
+    type: sum
+    value_format: "$#,##0.00"
+    label: "Soma Valor Presente"
+    group_label: "Valores"
+    description: "Valor presente"
+    sql: ${valor_presente} ;;
+  }
+
+  measure: avg_VP {
+    type: average
+    value_format: "$#,##0.00"
+    label: "Média Valor Presente"
+    group_label: "Valores"
+    description: "Valor presente"
+    sql: ${valor_presente} ;;
   }
 
   measure: count {
