@@ -997,7 +997,7 @@ explore: financeiro {
       and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
         ;;
     relationship: one_to_many
-    type: full_outer
+    type: left_outer
   }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
@@ -2029,4 +2029,16 @@ explore: metas_distribuidas {
 
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
+}
+
+explore: taxa_produto_ies {
+  label: "Taxa de Juros IES"
+  view_label: "1. Tabela histórica Taxa de Juros"
+
+  join: instituicao {
+    view_label: "2. Dados da Instituição"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
