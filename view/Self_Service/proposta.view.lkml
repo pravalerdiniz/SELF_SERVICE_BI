@@ -2139,7 +2139,7 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Subsidiado"
-    value_format: "0"
+    value_format: "$0.00"
     link: {label:"Documentação - Valor Subsidiado"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736952/VALOR+SUBSIDIADO"}
     description: "Indica o valor subsidiado para o originador BV (Banco Votorantim) por contrato"
