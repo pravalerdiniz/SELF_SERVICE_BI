@@ -3784,6 +3784,13 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_TITULOS_GERADOS" ;;
     }
 
+  dimension: origem_aprovacao_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    label: "Origem da Aprovação na Tela da IES"
+    description: "Indica qual foi a origem da aprovação da proposta na Tela da IES"
+    sql: ${TABLE}."DS_ORIGEM_APROVACAO" ;;
+  }
 
   set: detail {
     fields: [

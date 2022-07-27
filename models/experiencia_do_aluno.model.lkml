@@ -177,3 +177,28 @@ explore: crx_agentes_detalhes_pausas{
     relationship: many_to_one
   }
 }
+
+explore: solucx {
+  label: "SoluCX - NPS"
+
+
+  join: depara_respondentes_ies {
+    view_label: "Solucx"
+    type: left_outer
+    sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
+    relationship: many_to_one
+  }
+
+  join: depara_grupo_gerente {
+    view_label: "Gerente Atual"
+    type: left_outer
+    sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+    relationship: many_to_one
+    fields: [gerente]
+  }
+
+}
+
+explore: solucx_nps_ajustado {
+  label: "SoluCX - NPS Ajustado"
+}

@@ -3193,8 +3193,8 @@ dimension: qtd_dias_iniciados {
   }
 
   measure: median_qtd_dias_agg_doc {
-    type: median
-    sql: ${qtd_dias_agg_doc} ;;
+    type: number
+    sql: median(${qtd_dias_agg_doc}) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Documentos"
     value_format: "0.0"

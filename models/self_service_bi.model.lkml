@@ -1814,27 +1814,28 @@ explore: alunos {
 
 }
 
+#Novo modelo de dados experiencia do aluno 26/07/22 - Lulinha
 
-explore: solucx {
-  label: "SoluCX - NPS"
+# explore: solucx {
+#   label: "SoluCX - NPS"
 
 
-  join: depara_respondentes_ies {
-    view_label: "Solucx"
-    type: left_outer
-    sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
-    relationship: many_to_one
-  }
+#   join: depara_respondentes_ies {
+#     view_label: "Solucx"
+#     type: left_outer
+#     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
+#     relationship: many_to_one
+#   }
 
-  join: depara_grupo_gerente {
-    view_label: "Gerente Atual"
-    type: left_outer
-    sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
-    relationship: many_to_one
-    fields: [gerente]
-  }
+#   join: depara_grupo_gerente {
+#     view_label: "Gerente Atual"
+#     type: left_outer
+#     sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+#     relationship: many_to_one
+#     fields: [gerente]
+#   }
 
-}
+# }
 
 #Novo modelo de dados experiencia_do_aluno 26/07/22 - Lulinha
 
@@ -2008,10 +2009,11 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
+#Novo modelo de dados - Experiencia do Aluno 26/07/22 - Lulinha
 
-explore: solucx_nps_ajustado {
-  label: "SoluCX - NPS Ajustado"
-}
+# explore: solucx_nps_ajustado {
+#   label: "SoluCX - NPS Ajustado"
+# }
 
 
 explore: dados_intake {
