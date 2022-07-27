@@ -60,8 +60,8 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: desc_origem_lead {
     type: string
-    group_label: ""
-    group_item_label: "Dados Lead"
+    group_label: "Dados Lead"
+    group_item_label: "Descrição origem Lead"
     description: ""
     sql: ${TABLE}."DESC_ORIGEM_LEAD" ;;
   }
@@ -324,7 +324,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: email_criador {
     type: string
-    group_label: "Dados criador Negócio"
+    group_label: "Dados Criador Negócio"
     group_item_label: "E-mail do criador"
     description: ""
     sql: ${TABLE}."EMAIL_CRIADOR" ;;
@@ -388,7 +388,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: flg_ativo_criador {
     type: yesno
-    group_label: "Dados criador Negócio"
+    group_label: "Dados Criador Negócio"
     group_item_label: "Flag Criador Ativo"
     description: ""
     sql: ${TABLE}."FLG_ATIVO_CRIADOR" ;;
@@ -458,7 +458,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: id_criador {
     type: string
-    group_label: "Dados criador Negócio"
+    group_label: "Dados Criador Negócio"
     group_item_label: "ID Criador"
     description: ""
     sql: ${TABLE}."ID_CRIADOR" ;;
@@ -466,7 +466,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: id_etiqueta {
     type: number
-    group_label: ""
+    group_label: "Dados Negócio"
     group_item_label: "ID Etiqueta"
     description: ""
     sql: ${TABLE}."ID_ETIQUETA" ;;
@@ -622,7 +622,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: nome_criador {
     type: string
-    group_label: "Dados criador Negócio"
+    group_label: "Dados Criador Negócio"
     group_item_label: "Nome Criador"
     description: ""
     sql: ${TABLE}."NOME_CRIADOR" ;;
@@ -830,7 +830,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: sdr {
     type: string
-    group_label: "Dados do Negócio"
+    group_label: "Dados Negócio"
     group_item_label: "SDR"
     description: ""
     sql: ${TABLE}."SDR" ;;
@@ -838,7 +838,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: simbolo_moeda {
     type: string
-    group_label: "Dados do Negócio"
+    group_label: "Dados Negócio"
     group_item_label: "Símbolo Moeda"
     description: ""
     sql: ${TABLE}."SIMBOLO_MOEDA" ;;
