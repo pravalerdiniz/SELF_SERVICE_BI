@@ -91,7 +91,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    label: "Última atualização Negócio"
+    label: "Data Última atualização Negócio"
     description: ""
     sql: ${TABLE}."DT_ATUALIZACAO_NEGOCIO" ;;
   }
@@ -113,8 +113,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data criação Negócio"
-    group_item_label: "Data criação"
+    label: "Data Criação Negócio"
     description: ""
     sql: ${TABLE}."DT_CRIACAO_NEGOCIO" ;;
   }
@@ -136,8 +135,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data Fechamento Negócio"
-    group_item_label: "Data fechamento"
+    label: "Data Fechamento Negócio"
     description: ""
     sql: ${TABLE}."DT_FECHADO_EM_NEGOCIO" ;;
   }
@@ -161,8 +159,7 @@ view: vw_pipedrive_deals_pipeline {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados Negócio"
-    group_item_label: "Data esperada de fechamento"
+    label: "Data esperada de fechamento"
     description: ""
     sql: ${TABLE}."DT_FECHAMENTO_ESPERADA" ;;
   }
@@ -213,8 +210,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data perda Negócio"
-    group_item_label: "Data perda"
+    label: "Data perda Negócio"
     description: ""
     sql: ${TABLE}."DT_PERDA_NEGOCIO" ;;
   }
@@ -236,10 +232,8 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Dados Negócio"
-    group_item_label: "Data primeiro ganho"
+    label: "Data primeiro ganho"
     description: ""
-    hidden: yes
     sql: ${TABLE}."DT_PRIMEIRO_GANHO_NEGOCIO" ;;
   }
 
@@ -262,8 +256,7 @@ view: vw_pipedrive_deals_pipeline {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Data próxima atividade"
-    group_item_label: "Próxima atividade"
+    label: "Data próxima atividade"
     description: ""
     sql: ${TABLE}."DT_PROX_ATIVIDADE" ;;
   }
@@ -284,8 +277,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data última alteração Etapa"
-    group_item_label: "Aletração"
+    label: "Data última alteração Etapa"
     description: ""
     sql: ${TABLE}."DT_ULT_ALTERACAO_ETAPA" ;;
   }
@@ -306,8 +298,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data última atividade"
-    group_item_label: "Última atividade"
+    label: "Data última atividade"
     description: ""
     convert_tz: no
     datatype: date
@@ -963,8 +954,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data ultimo email enviado"
-    group_item_label: "Último email"
+    label: "Data ultimo email enviado"
     description: ""
     sql: ${TABLE}."ULT_EMAIL_ENVIADO" ;;
   }
@@ -985,8 +975,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data ultimo email recebido"
-    group_item_label: "Último email"
+    label: "Data ultimo email recebido"
     description: ""
     sql: ${TABLE}."ULT_EMAIL_RECEBIDO" ;;
   }
