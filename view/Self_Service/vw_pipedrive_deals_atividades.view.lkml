@@ -118,7 +118,7 @@ view: vw_pipedrive_deals_atividades {
 
   dimension: email_pessoa_participante {
     type: string
-    group_label: ""
+    group_label: "Pessoa Participante"
     group_item_label: "Email pessoa participante"
     #description: ""
     sql: ${TABLE}."EMAIL_PESSOA_PARTICIPANTE" ;;
