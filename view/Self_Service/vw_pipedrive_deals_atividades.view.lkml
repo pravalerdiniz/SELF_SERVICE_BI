@@ -33,8 +33,8 @@ view: vw_pipedrive_deals_atividades {
     ]
     convert_tz: no
     datatype: date
-    group_label: "Dados Atividade"
-    group_item_label: "Data atividade"
+    group_label: "Data planejada para a atividade"
+    group_item_label: "Atividade"
     #description: ""
     sql: ${TABLE}."DATA_ATIVIDADE" ;;
   }
@@ -56,8 +56,8 @@ view: vw_pipedrive_deals_atividades {
       month_num,
       week_of_year
     ]
-    group_label: "Dados Atividade"
-    group_item_label: "Data atualização da atividade"
+    group_label: "Data atualização da atividade"
+    group_item_label: "Atualização"
     #description: ""
     sql: ${TABLE}."DT_ATUALIZACAO_ATIVIDADE" ;;
   }
@@ -79,8 +79,8 @@ view: vw_pipedrive_deals_atividades {
       month_num,
       week_of_year
     ]
-    group_label: "Dados Atividade"
-    group_item_label: "Data criação da atividade"
+    group_label: "Data criação da atividade"
+    group_item_label: "Criação"
     #description: ""
     sql: ${TABLE}."DT_CRIACAO_ATIVIDADE" ;;
   }
@@ -102,8 +102,8 @@ view: vw_pipedrive_deals_atividades {
       month_num,
       week_of_year
     ]
-    group_label: "Dados Atividade"
-    group_item_label: "Data conclusão da atividade"
+    group_label: "Data conclusão da atividade"
+    group_item_label: "Conclusão"
     #description: ""
     sql: ${TABLE}."DT_MARCADO_COMO_CONCLUIDO" ;;
   }
