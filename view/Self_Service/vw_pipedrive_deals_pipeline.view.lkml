@@ -992,7 +992,7 @@ view: vw_pipedrive_deals_pipeline {
 
   measure: valor {
     type: sum
-    group_label: "Métricas"
+    group_label: "Valor Proposta"
     group_item_label: "Valor Proposta"
     description: ""
     sql: ${TABLE}."VALOR" ;;
@@ -1018,6 +1018,13 @@ view: vw_pipedrive_deals_pipeline {
     type: number
     hidden: yes
     sql: ${TABLE}."VISIVEL_PARA" ;;
+  }
+
+  measure: qtd_negocios {
+    type: count_distinct
+    group_label: "Dados Negócio"
+    group_item_label: "Qtd de negócios"
+    sql: ${id_negocio} ;;
   }
 
 }
