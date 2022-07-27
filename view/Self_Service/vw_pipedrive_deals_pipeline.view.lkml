@@ -765,11 +765,11 @@ view: vw_pipedrive_deals_pipeline {
     sql: ${TABLE}."QTD_ARQUIVOS" ;;
   }
 
-  dimension: qtd_atividades_nao_concluidas {
-    type: number
+  measure: qtd_atividades_nao_concluidas {
+    type: sum
     group_label: "Dados Atividades"
     group_item_label: "Qtd de Atividades não concluídas"
-    description: ""
+    description: "Qtd de atividades não concluídas para esse negócio"
     sql: ${TABLE}."QTD_ATIVIDADES_NAO_CONCLUIDAS" ;;
   }
 
@@ -930,11 +930,11 @@ view: vw_pipedrive_deals_pipeline {
     sql: ${TABLE}."TODOS_INTERESSES_NEGOCIOS_ID" ;;
   }
 
-  dimension: total_atividades {
-    type: number
+  measure: total_atividades {
+    type: sum
     group_label: "Dados Atividades"
     group_item_label: "Qtd total de Atividades"
-    description: ""
+    description: "Quantidade total de atividades geradas para este negócio"
     sql: ${TABLE}."TOTAL_ATIVIDADES" ;;
   }
 
