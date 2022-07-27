@@ -2048,3 +2048,15 @@ explore: taxa_produto_ies {
     relationship: one_to_many
   }
 }
+
+explore: vw_pipedrive_deals_pipeline {
+  label: "Pipedrive Graduação"
+  view_label: "1. Negócios"
+
+  join: vw_pipedrive_deals_atividades {
+    view_label: "2. Atividade"
+    sql_on: ${vw_pipedrive_deals_pipeline.id_negocio}=${vw_pipedrive_deals_atividades.id_negocio} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+}
