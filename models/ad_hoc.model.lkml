@@ -219,25 +219,29 @@ explore: base_forecast_cs {
   label: "Forecast Contatos"
 }
 
-explore: taxa_de_contato{
-  label: "Taxa de Contato"
+#Novo Modelo de Dados - Experiencia do Aluno - 26/07/22 Lulinha
+
+# explore: taxa_de_contato{
+#   label: "Taxa de Contato"
+# }
+
+
+
+
+# explore: taxa_de_contato_alunos_ativos{
+#   label: "Taxa de Contato de Alunos Ativos"
+# }
+
+# explore: taxa_de_contato_motivo_de_contato{
+#   label: "Taxa de Contato por Motivo de Contato"
+# }
+
+explore: campanha_valoriza {
+  label: "Campanha Valoriza"
 }
 
 explore: treinamento_data_driven {
   label: "Capacitação - Data Driven"
-}
-
-
-explore: taxa_de_contato_alunos_ativos{
-  label: "Taxa de Contato de Alunos Ativos"
-}
-
-explore: taxa_de_contato_motivo_de_contato{
-  label: "Taxa de Contato por Motivo de Contato"
-}
-
-explore: campanha_valoriza {
-  label: "Campanha Valoriza"
 }
 
 explore: base_trade {}

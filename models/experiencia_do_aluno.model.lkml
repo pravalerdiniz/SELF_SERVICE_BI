@@ -202,3 +202,18 @@ explore: solucx {
 explore: solucx_nps_ajustado {
   label: "SoluCX - NPS Ajustado"
 }
+
+explore: taxa_de_contato{
+  label: "Taxa de Contato"
+}
+
+
+
+
+explore: taxa_de_contato_alunos_ativos{
+  label: "Taxa de Contato de Alunos Ativos"
+}
+
+explore: taxa_de_contato_motivo_de_contato{
+  label: "Taxa de Contato por Motivo de Contato"
+}
