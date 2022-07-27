@@ -1426,7 +1426,6 @@ explore: alunos {
     - financeiro_extrato_titulo.alunos,
     -financeiro.perc_alunos,
     -jornada.perc_cpf,
-    -jornada.count_cpf,
     -financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
