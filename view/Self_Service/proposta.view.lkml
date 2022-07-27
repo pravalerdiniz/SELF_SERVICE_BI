@@ -1100,6 +1100,18 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
   }
 
+  dimension: st_contrato {
+    type: string
+    group_label: "Dados do Contrato"
+    label: "Situação"
+    description: "Indica a situação do contrato do aluno. Ex: Não concedido, Concedido ou Contrato de Acordo."
+    sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
+  }
+
+
+
+
+
   dimension: flg_contrato_gerado {
     type: yesno
     group_label: "Dados do Contrato"

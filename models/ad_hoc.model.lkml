@@ -136,6 +136,11 @@ explore: comparacao_ot {
   }
 }
 
+explore: final_pdd {
+  label: "Final PDD"
+  view_label: "Final PDD"
+}
+
 explore: fato_swap {
   label: "Swap"
   view_label: "Swap"
@@ -329,9 +334,6 @@ explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
 }
 
-explore: final_pdd {
-  label: "Final PDD"
-}
 
 explore: base_ot_analise {
   label: "Análise - Oliveira Trust"

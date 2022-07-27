@@ -137,6 +137,12 @@ view: atribuicao_nova
     group_label: "Dados de Descoberta"
   }
 
+  dimension: canal_descoberta_100d {
+    type: string
+    sql: ${TABLE}."CANAL_DCO_L100" ;;
+    label: "Canal de Descoberta (First Click) - 100 dias"
+    group_label: "Dados de Descoberta - 100 Dias"
+  }
 
   dimension: canal_finalizacao {
     type: string
@@ -167,6 +173,23 @@ view: atribuicao_nova
     label: "Data de Descoberta"
     description: "Data da primeira interação do aluno (first click) com o Pravaler"
     group_label: "Dados de Descoberta"
+  }
+
+  dimension_group: data_descoberta_100d {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DATA_DCO_L100" ;;
+    label: "Data de Descoberta - 100d"
+    description: "Data da primeira interação do aluno (first click) com o Pravaler nos últimos 100 dias"
+    group_label: "Dados de Descoberta - 100 Dias"
   }
 
   dimension_group: data_finalizacao {

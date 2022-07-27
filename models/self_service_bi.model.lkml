@@ -999,7 +999,7 @@ explore: financeiro {
       and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
         ;;
     relationship: one_to_many
-    type: full_outer
+    type: left_outer
   }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
@@ -1836,128 +1836,129 @@ explore: solucx {
 
 }
 
+#Novo modelo de dados experiencia_do_aluno 26/07/22 - Lulinha
 
-explore: interacoes {
-  label: "Interações - Tickets"
-  view_label: "Interações - Tickets"
-  description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
-  fields: [ALL_FIELDS *,
-    - ano_mes_carteira_ativa *
-  ]
-  access_filter: {
-    field: EMPRESA_AGENTE
+# explore: interacoes {
+#   label: "Interações - Tickets"
+#   view_label: "Interações - Tickets"
+#   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
+#   fields: [ALL_FIELDS *,
+#     - ano_mes_carteira_ativa *
+#   ]
+#   access_filter: {
+#     field: EMPRESA_AGENTE
 
-    user_attribute: grupo_bpo
-  }
+#     user_attribute: grupo_bpo
+#   }
 
-  join: interacoes_detalhes_ligacao {
-    view_label: "Detalhes de ligação"
+#   join: interacoes_detalhes_ligacao {
+#     view_label: "Detalhes de ligação"
 
-    type: full_outer
-    sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
-    relationship: many_to_one
-  }
-
-
-  join: interacoes_apontamentos_monitoria {
-    view_label: "Apontamentos de Monitoria"
-    type: left_outer
-    sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
-    relationship: one_to_many
-
-  }
-  join: dim_cpf {
-    view_label: "CPF"
-    sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+#     type: full_outer
+#     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
+#     relationship: many_to_one
+#   }
 
 
-  join: alunos {
-    view_label: "Alunos"
-    sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
+#   join: interacoes_apontamentos_monitoria {
+#     view_label: "Apontamentos de Monitoria"
+#     type: left_outer
+#     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
+#     relationship: one_to_many
 
-  join: ano_mes_carteira_ativa {
-    view_label: "Ano Mes Carteira Ativa"
-    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
-#  join: jornada {
-  #   view_label: "Jornada"
-  #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
-  # type: left_outer
-  #  relationship: one_to_many
-  #}
-
-  join: dados_jornada_interacoes {
-    from: dados_jornada_interacoes
-    view_label: "1. Jornada"
-    sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-  join: twoclix_detalhes_avaliacao {
-    view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
-    sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
-    type: left_outer
-    relationship: one_to_many
-  }
-}
+#   }
+#   join: dim_cpf {
+#     view_label: "CPF"
+#     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
+#     relationship: one_to_many
+#     type: left_outer
+#   }
 
 
-explore: crx_agentes{
-  label: "Interações - Métricas do agente"
-  view_label: "Interações - Métricas do agente"
-  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
-}
+#   join: alunos {
+#     view_label: "Alunos"
+#     sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
 
-explore: crx_agentes_detalhes_pausas{
-  label: "Interações - Métricas de pausa"
-  view_label: "Interações - Métricas de pausa"
-  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
-  fields: [ALL_FIELDS * ,
-    - crx_agentes.count,
-    - crx_agentes.nome_data ,
-    - crx_agentes.dias_logados ,
-    - crx_agentes.sum_dias_logados,
-    - crx_agentes.media_tempo_logado_dia ,
-    - crx_agentes.media_tempo_logado_sessao ,
-    - crx_agentes.media_tempo_pausado_dia ,
-    - crx_agentes.pausas ,
-    - crx_agentes.produtividade ,
-    - crx_agentes.qtd_atendimento_ativo ,
-    - crx_agentes.qtd_atendimento_receptivo ,
-    - crx_agentes.qtd_ligacoes_atendidas ,
-    - crx_agentes.qtd_ligacoes_nao_atendidas ,
-    - crx_agentes.qtd_pausas ,
-    - crx_agentes.qtd_recusa ,
-    - crx_agentes.sla_atendimento ,
-    - crx_agentes.tempo_maximo_ligacao ,
-    - crx_agentes.tempo_medio_falado ,
-    - crx_agentes.tempo_medio_pausado ,
-    - crx_agentes.tempo_minimo_ligacao ,
-    - crx_agentes.tempo_ociosidade ,
-    - crx_agentes.tempo_total_falado ,
-    - crx_agentes.tempo_total_logado ,
-    - crx_agentes.tempo_total_pausado ,
-    - crx_agentes.media_sla_atendimento
+#   join: ano_mes_carteira_ativa {
+#     view_label: "Ano Mes Carteira Ativa"
+#     sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+# #  join: jornada {
+#   #   view_label: "Jornada"
+#   #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
+#   # type: left_outer
+#   #  relationship: one_to_many
+#   #}
+
+#   join: dados_jornada_interacoes {
+#     from: dados_jornada_interacoes
+#     view_label: "1. Jornada"
+#     sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+#     relationship: many_to_many
+#     type: left_outer
+#   }
+
+#   join: twoclix_detalhes_avaliacao {
+#     view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
+#     sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+# }
 
 
-  ]
-  join: crx_agentes{
-    view_label: "Detalhes do Agente"
+# explore: crx_agentes{
+#   label: "Interações - Métricas do agente"
+#   view_label: "Interações - Métricas do agente"
+#   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+# }
 
-    type: inner
-    sql_on: ${crx_agentes.id} = ${crx_agentes_detalhes_pausas.id};;
-    relationship: many_to_one
-  }
-}
+# explore: crx_agentes_detalhes_pausas{
+#   label: "Interações - Métricas de pausa"
+#   view_label: "Interações - Métricas de pausa"
+#   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+#   fields: [ALL_FIELDS * ,
+#     - crx_agentes.count,
+#     - crx_agentes.nome_data ,
+#     - crx_agentes.dias_logados ,
+#     - crx_agentes.sum_dias_logados,
+#     - crx_agentes.media_tempo_logado_dia ,
+#     - crx_agentes.media_tempo_logado_sessao ,
+#     - crx_agentes.media_tempo_pausado_dia ,
+#     - crx_agentes.pausas ,
+#     - crx_agentes.produtividade ,
+#     - crx_agentes.qtd_atendimento_ativo ,
+#     - crx_agentes.qtd_atendimento_receptivo ,
+#     - crx_agentes.qtd_ligacoes_atendidas ,
+#     - crx_agentes.qtd_ligacoes_nao_atendidas ,
+#     - crx_agentes.qtd_pausas ,
+#     - crx_agentes.qtd_recusa ,
+#     - crx_agentes.sla_atendimento ,
+#     - crx_agentes.tempo_maximo_ligacao ,
+#     - crx_agentes.tempo_medio_falado ,
+#     - crx_agentes.tempo_medio_pausado ,
+#     - crx_agentes.tempo_minimo_ligacao ,
+#     - crx_agentes.tempo_ociosidade ,
+#     - crx_agentes.tempo_total_falado ,
+#     - crx_agentes.tempo_total_logado ,
+#     - crx_agentes.tempo_total_pausado ,
+#     - crx_agentes.media_sla_atendimento
+
+
+#   ]
+#   join: crx_agentes{
+#     view_label: "Detalhes do Agente"
+
+#     type: inner
+#     sql_on: ${crx_agentes.id} = ${crx_agentes_detalhes_pausas.id};;
+#     relationship: many_to_one
+#   }
+# }
 
 
 
@@ -2032,4 +2033,16 @@ explore: metas_distribuidas {
 
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
+}
+
+explore: taxa_produto_ies {
+  label: "Taxa de Juros IES"
+  view_label: "1. Tabela histórica Taxa de Juros"
+
+  join: instituicao {
+    view_label: "2. Dados da Instituição"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
