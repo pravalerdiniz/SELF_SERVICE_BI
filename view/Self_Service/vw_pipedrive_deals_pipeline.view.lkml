@@ -181,8 +181,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Data ganho Negócio"
-    group_item_label: "Data ganho"
+    label: "Data ganho Negócio"
     description: ""
     sql: ${TABLE}."DT_GANHO_NEGOCIO" ;;
   }
@@ -339,7 +338,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: email_pessoa_contato {
     type: string
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "E-mail pessoa contato"
     description: ""
     sql: ${TABLE}."EMAIL_PESSOA_CONTATO" ;;
@@ -411,7 +410,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: flg_ativo_pessoa_contato {
     type: yesno
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "Flag Pessoa Ativa"
     description: ""
     sql: ${TABLE}."FLG_ATIVO_PESSOA_CONTATO" ;;
@@ -513,7 +512,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: id_pessoa_contato {
     type: number
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "ID Pessoa"
     description: ""
     sql: ${TABLE}."ID_PESSOA_CONTATO" ;;
@@ -537,7 +536,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: id_proprietario_pessoa_contato {
     type: number
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "ID Proprietário Pessoa"
     description: ""
     sql: ${TABLE}."ID_PROPRIETARIO_PESSOA_CONTATO" ;;
@@ -645,7 +644,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: nome_pessoa_contato {
     type: string
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "Nome Pessoa Contato"
     description: ""
     sql: ${TABLE}."NOME_PESSOA_CONTATO" ;;
