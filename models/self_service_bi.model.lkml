@@ -2059,4 +2059,11 @@ explore: vw_pipedrive_deals_pipeline {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: obj_pipedrive_etapa {
+    view_label: "3. Etapas Funil"
+    sql_on: ${vw_pipedrive_deals_pipeline.id_negocio} = ${obj_pipedrive_etapa.id_negocio} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
