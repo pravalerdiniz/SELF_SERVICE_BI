@@ -91,8 +91,7 @@ view: vw_pipedrive_deals_pipeline {
       month_num,
       week_of_year
     ]
-    group_label: "Última atualização Negócio"
-    group_item_label: "Data Atualização"
+    label: "Última atualização Negócio"
     description: ""
     sql: ${TABLE}."DT_ATUALIZACAO_NEGOCIO" ;;
   }
