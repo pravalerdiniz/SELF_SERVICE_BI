@@ -844,7 +844,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: telefone_pessoa_contato {
     type: string
-    group_label: "Dados Organização"
+    group_label: "Dados Pessoa Contato Organização"
     group_item_label: "Telefone Pessoa"
     description: ""
     sql: ${TABLE}."TELEFONE_PESSOA_CONTATO" ;;
