@@ -180,6 +180,7 @@ explore: crx_agentes_detalhes_pausas{
 
 explore: solucx {
   label: "SoluCX - NPS"
+  description: "Dados da ferramenta de disparo das pesquisas de NPS Transacional e Relacional."
 
 
   join: depara_respondentes_ies {
@@ -201,10 +202,12 @@ explore: solucx {
 
 explore: solucx_nps_ajustado {
   label: "SoluCX - NPS Ajustado"
+  description: "Para o cálculo da meta do NPS, ficou decidido comparar os respondentes de 2022 seguindo a distribuição média de respondentes de 2021. Foi preciso criar um SQL personalizado para tal acompanhamento."
 }
 
 explore: taxa_de_contato{
   label: "Taxa de Contato"
+  description: " A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos e cedidos por mês a partir de 2021, e a base de tickets, com a quantidade de tickets desses alunos em cada mês. Assim é possível calcular a taxa de contato."
 }
 
 
@@ -212,8 +215,10 @@ explore: taxa_de_contato{
 
 explore: taxa_de_contato_alunos_ativos{
   label: "Taxa de Contato de Alunos Ativos"
+  description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, com a quantidade de tickets desses alunos em cada mês. Assim é possível calcular a taxa de contato."
 }
 
 explore: taxa_de_contato_motivo_de_contato{
   label: "Taxa de Contato por Motivo de Contato"
+  description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
 }
