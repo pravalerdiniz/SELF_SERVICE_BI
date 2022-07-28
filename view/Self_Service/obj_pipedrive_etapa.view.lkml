@@ -97,15 +97,15 @@ view: obj_pipedrive_etapa {
     sql: ${TABLE}."NOME_FUNIL" ;;
     label: "Nome do Funil"
   }
-  dimension: segundos_estagnado {
-    type: number
+  measure: segundos_estagnado {
+    type: sum
     sql: ${TABLE}."SEGUNDOS_ESTAGNADO" ;;
     label: "Tempo na Etapa (segundos)"
   }
 
-  dimension: tempo_etapa {
-    type: number
-    sql: (${segundos_estagnado}/60/60/24) ;;
+  measure: tempo_etapa {
+    type: sum
+    sql: (${TABLE}."SEGUNDOS_ESTAGNADO"/60/60/24) ;;
     label: "Tempo na Etapa (Dias)"
   }
 
