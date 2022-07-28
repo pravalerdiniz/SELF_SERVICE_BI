@@ -334,7 +334,7 @@ view: leads_balcao {
   measure: count_propostas_cfiador {
     type: count_distinct
     sql: ${cpf_lead};;
-    label: "Propostas"
+    label: "Propostas - Com Garantidor"
     filters: [descricao_retorno_avaliacao: "APROVADO, RECUSADO",flag_fiador: "yes"]
   }
 
