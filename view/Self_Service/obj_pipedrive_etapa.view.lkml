@@ -109,4 +109,10 @@ view: obj_pipedrive_etapa {
     label: "Tempo na Etapa (Dias)"
   }
 
+  measure: count_id_negocio {
+    type: count_distinct
+    sql: ${id_negocio} ;;
+    label: "Qtd de negócios"
+  }
+
  }
