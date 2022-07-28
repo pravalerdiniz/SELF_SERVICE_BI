@@ -101,12 +101,14 @@ view: obj_pipedrive_etapa {
     type: sum
     sql: ${TABLE}."SEGUNDOS_ESTAGNADO" ;;
     label: "Tempo na Etapa (segundos)"
+    value_format: "0"
   }
 
   measure: tempo_etapa {
     type: sum
     sql: (${TABLE}."SEGUNDOS_ESTAGNADO"/60/60/24) ;;
     label: "Tempo na Etapa (Dias)"
+    value_format: "0"
   }
 
   measure: count_id_negocio {
