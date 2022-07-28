@@ -17,6 +17,12 @@ view: obj_pipedrive_etapa {
  ;;
     }
 
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: concat(${id_negocio},${id_etapa}) ;;
+  }
+
     dimension: id_negocio {
       type: number
       sql: ${TABLE}."ID_NEGOCIO" ;;

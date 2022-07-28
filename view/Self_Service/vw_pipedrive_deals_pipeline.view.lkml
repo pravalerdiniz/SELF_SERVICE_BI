@@ -496,6 +496,7 @@ view: vw_pipedrive_deals_pipeline {
 
   dimension: id_negocio {
     type: number
+    primary_key: yes
     group_label: "Dados Negócio"
     group_item_label: "ID do Negócio"
     description: ""

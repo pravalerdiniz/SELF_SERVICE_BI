@@ -4,6 +4,13 @@ view: vw_pipedrive_deals_atividades {
   sql_table_name: "PIPEDRIVE"."VW_PIPEDRIVE_DEALS_ATIVIDADES"
     ;;
 
+  dimension: chave {
+    type: string
+    primary_key: yes
+    sql: concat(${id_negocio}, ${id_atividade}) ;;
+  }
+
+
   dimension: atribuido_id_criador_atividade {
     type: number
     group_label: "Dados Criador Atividade"
