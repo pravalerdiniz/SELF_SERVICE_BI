@@ -1975,15 +1975,15 @@ explore: alunos {
 
 
 #Novo modelo de Dados - Comercial - Lulinha - 29/07/22
-# explore: projecao_formalizados {
-#   label: "Projeção Formalizados Jornada"
-#   view_label: "Projeção Formalizados Jornada"
-# }
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
+}
 
-# explore: projecao_formalizados_grupo_ies {
-#   label: "Projeção Formalizados - Grupo IES"
-#   view_label: "Projeção Formalizados - Grupo IES"
-# }
+explore: projecao_formalizados_grupo_ies {
+  label: "Projeção Formalizados - Grupo IES"
+  view_label: "Projeção Formalizados - Grupo IES"
+}
 
 
 
@@ -2028,13 +2028,13 @@ explore: carteira {
 }
 
 #Novo Modelo de Dados - Comercial - Lulinha - 29/07/22
-# explore: metas_distribuidas {
-#   label: "Comercial - Metas Distribuídas"
-# }
+explore: metas_distribuidas {
+  label: "Comercial - Metas Distribuídas"
+}
 
-# explore: simulador_etapas {
-#   label: "Comercial - Simulador Etapas Funil"
-# }
+explore: simulador_etapas {
+  label: "Comercial - Simulador Etapas Funil"
+}
 
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
