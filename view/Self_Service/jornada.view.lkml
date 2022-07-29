@@ -3993,5 +3993,13 @@ dimension: flag_balcao {
     value_format: "0.0%"
   }
 
+  measure: var_mensalidade_informada_analiseies {
+    type: average
+    sql: ${fato_ies_aval.mensalidade_ies}/nullif(${fato_ies_aval.mensalidade_inf_alu},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Inf Aluno x Mensalidade Análise IES"
+    value_format: "0.0%"
+  }
+
 
 }

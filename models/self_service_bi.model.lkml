@@ -62,7 +62,8 @@ explore: beneficiados {
     - jornada.id_proposta,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
-    - jornada.var_mensalidade_cadastro_analiseies
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies
 
   ]
 
@@ -713,7 +714,8 @@ explore: instituicao {
     -financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
-    - jornada.var_mensalidade_cadastro_analiseies
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies
 
   ]
 
@@ -1432,7 +1434,8 @@ explore: alunos {
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
-    - jornada.var_mensalidade_cadastro_analiseies
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies
 
 
 
