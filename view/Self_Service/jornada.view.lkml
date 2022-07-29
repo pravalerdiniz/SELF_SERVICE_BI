@@ -3985,5 +3985,13 @@ dimension: flag_balcao {
     description: "Média de dias entre o envio do primeiro documento e o momento que o aluno entra na etapa Aguardando Assinatura"
   }
 
+  measure: var_mensalidade_cadastro_analiseies {
+    type: average
+    sql: ${fato_ies_aval.mensalidade_ies}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Cadastro x Mensalidade Análise IES"
+    value_format: "0.0%"
+  }
+
 
 }

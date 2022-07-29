@@ -61,7 +61,8 @@ explore: beneficiados {
     - jornada.id_cpf,
     - jornada.id_proposta,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies
 
   ]
 
@@ -711,7 +712,8 @@ explore: instituicao {
     - financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies
 
   ]
 
@@ -1424,12 +1426,13 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
-    -financeiro.perc_alunos,
-    -jornada.perc_cpf,
-    -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD,
+    - financeiro.perc_alunos,
+    - jornada.perc_cpf,
+    - financeiro.arrasto_dias_atraso,
+    - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies
 
 
 
