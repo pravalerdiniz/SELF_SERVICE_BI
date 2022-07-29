@@ -81,48 +81,6 @@ explore: instituicao_metas_gc {
     relationship: many_to_one
   }
 
-}
-
-explore: vw_pipedrive_deals_pipeline {
-  label: "Pipedrive Graduação"
-  view_label: "1. Negócios"
-
-  join: vw_pipedrive_deals_atividades {
-    view_label: "2. Atividade"
-    sql_on: ${vw_pipedrive_deals_pipeline.id_negocio}=${vw_pipedrive_deals_atividades.id_negocio} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-  join: obj_pipedrive_etapa {
-    view_label: "3. Etapas Funil"
-    sql_on: ${vw_pipedrive_deals_pipeline.id_negocio} = ${obj_pipedrive_etapa.id_negocio} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
-}
-
-explore: projecao_formalizados {
-  label: "Projeção Formalizados Jornada"
-  view_label: "Projeção Formalizados Jornada"
-}
-
-explore: projecao_formalizados_grupo_ies {
-  label: "Projeção Formalizados - Grupo IES"
-  view_label: "Projeção Formalizados - Grupo IES"
-}
 
 
-explore: aproveitamento_estoque_nok{
-  label: "Aproveitamento Estoque"
-}
-
-
-
-explore: metas_distribuidas {
-  label: "Comercial - Metas Distribuídas"
-}
-
-explore: simulador_etapas {
-  label: "Comercial - Simulador Etapas Funil"
 }

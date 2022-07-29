@@ -128,68 +128,68 @@ explore: inep {
 }
 
 
-#Novo Modelo de Dados - Comercial - Lulinha 29/07/22
-# explore: instituicao_metas_gc {
-#   view_label: "1. Meta Grupo IES"
-#   join: dias_uteis
-#   {
-#     view_label: "5. Dias Úteis"
-#     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
 
-#   join: engajometro
-#   {
-#     view_label: "4. Engajometro"
-#     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${engajometro.data};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
+explore: instituicao_metas_gc {
+  view_label: "1. Meta Grupo IES"
+  join: dias_uteis
+  {
+    view_label: "5. Dias Úteis"
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
-#   join: meta_conversao_grupo_ies
-#   {
-#     view_label: "3. Meta Conversão Grupo IES"
-#     sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
-#       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
-#     type: full_outer
-#     relationship: many_to_one
-#   }
+  join: engajometro
+  {
+    view_label: "4. Engajometro"
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${engajometro.data};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
-#   join: meta_conv_grupo_ies_new
-#   {
-#     view_label: "3. Meta Conversão Grupo IES Novo"
-#     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
-#       ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
+  join: meta_conversao_grupo_ies
+  {
+    view_label: "3. Meta Conversão Grupo IES"
+    sql_on:  ${instituicao_metas_gc.data_meta_month} = ${meta_conversao_grupo_ies.data_meta_month} and
+      ${instituicao_metas_gc.grupo_instituicao} = ${meta_conversao_grupo_ies.grupo};;
+    type: full_outer
+    relationship: many_to_one
+  }
 
-#   join: meta_sla_comercial
-#   {
-#     view_label: "2. Meta SLA"
-#     sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
+  join: meta_conv_grupo_ies_new
+  {
+    view_label: "3. Meta Conversão Grupo IES Novo"
+    sql_on:  ${instituicao_metas_gc.data_meta_date} = ${meta_conv_grupo_ies_new.data_meta_date} and
+      ${instituicao_metas_gc.grupo_instituicao} = ${meta_conv_grupo_ies_new.grupo};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
-#   join: meta_comercial_grupo
-#   {
-#     view_label: "6. Meta Mensal Grupo (Simulador)"
-#     sql_on: ${instituicao_metas_gc.grupo_instituicao} = ${meta_comercial_grupo.grupo};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
+  join: meta_sla_comercial
+  {
+    view_label: "2. Meta SLA"
+    sql_on: ${instituicao_metas_gc.gerente} = ${meta_sla_comercial.gerente};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
-#   join: sazonalidade_mensal_meta
-#   {
-#     view_label: "7. Sazonalidade (Simulador)"
-#     sql_on: ${instituicao_metas_gc.data_meta_date} = ${sazonalidade_mensal_meta.date};;
-#     type: left_outer
-#     relationship: many_to_one
-#   }
+  join: meta_comercial_grupo
+  {
+    view_label: "6. Meta Mensal Grupo (Simulador)"
+    sql_on: ${instituicao_metas_gc.grupo_instituicao} = ${meta_comercial_grupo.grupo};;
+    type: left_outer
+    relationship: many_to_one
+  }
 
-# }
+  join: sazonalidade_mensal_meta
+  {
+    view_label: "7. Sazonalidade (Simulador)"
+    sql_on: ${instituicao_metas_gc.data_meta_date} = ${sazonalidade_mensal_meta.date};;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+}
 
 explore: status {
   persist_for: "1 hours"
@@ -1978,15 +1978,15 @@ explore: alunos {
 
 
 #Novo modelo de Dados - Comercial - Lulinha - 29/07/22
-# explore: projecao_formalizados {
-#   label: "Projeção Formalizados Jornada"
-#   view_label: "Projeção Formalizados Jornada"
-# }
+explore: projecao_formalizados {
+  label: "Projeção Formalizados Jornada"
+  view_label: "Projeção Formalizados Jornada"
+}
 
-# explore: projecao_formalizados_grupo_ies {
-#   label: "Projeção Formalizados - Grupo IES"
-#   view_label: "Projeção Formalizados - Grupo IES"
-# }
+explore: projecao_formalizados_grupo_ies {
+  label: "Projeção Formalizados - Grupo IES"
+  view_label: "Projeção Formalizados - Grupo IES"
+}
 
 
 
@@ -2031,13 +2031,13 @@ explore: carteira {
 }
 
 #Novo Modelo de Dados - Comercial - Lulinha - 29/07/22
-# explore: metas_distribuidas {
-#   label: "Comercial - Metas Distribuídas"
-# }
+explore: metas_distribuidas {
+  label: "Comercial - Metas Distribuídas"
+}
 
-# explore: simulador_etapas {
-#   label: "Comercial - Simulador Etapas Funil"
-# }
+explore: simulador_etapas {
+  label: "Comercial - Simulador Etapas Funil"
+}
 
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
