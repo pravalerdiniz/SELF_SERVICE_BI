@@ -324,6 +324,20 @@ view: leads_balcao {
     label: "Valor da Mensalidade"
   }
 
+  dimension: flag_fiador {
+    type: yesno
+    sql: ${cpf_fiador} is not null ;;
+    group_label: "Dados do Garantidor"
+    group_item_label: "Flag Garantidor"
+  }
+
+  measure: count_propostas_cfiador {
+    type: count_distinct
+    sql: ${cpf_lead};;
+    label: "Propostas - Com Garantidor"
+    filters: [descricao_retorno_avaliacao: "APROVADO, RECUSADO",flag_fiador: "yes"]
+  }
+
   measure: count_propostas {
     type: count_distinct
     sql: ${cpf_lead};;
