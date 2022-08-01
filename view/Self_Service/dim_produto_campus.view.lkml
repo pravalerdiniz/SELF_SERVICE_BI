@@ -3,6 +3,13 @@ view: dim_produto_campus {
   sql_table_name: "VETERANO"."DIMENSAO"."DIM_PRODUTO_CAMPUS"
     ;;
 
+  dimension:chave {
+    type: string
+    primary_key: yes
+    hidden:  yes
+    sql: concat(${id_campus},${id_produto} ) ;;
+  }
+
   dimension_group: data_fim {
     type: time
     timeframes: [
