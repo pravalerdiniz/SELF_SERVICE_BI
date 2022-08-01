@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Dim Produto Campus"
 view: dim_produto_campus {
-  sql_table_name: "DIMENSAO"."DIM_PRODUTO_CAMPUS"
+  sql_table_name: "VETERANO"."DIMENSAO"."DIM_PRODUTO_CAMPUS"
     ;;
 
   dimension_group: data_fim {
