@@ -105,7 +105,11 @@ explore: mgm_publico_alvo {
     - jornada.ds_curso,
     - jornada.total_renov,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies
   ]
 
   join: dim_cpf {
