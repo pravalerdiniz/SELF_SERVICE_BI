@@ -878,7 +878,7 @@ explore: instituicao {
   }
 
   join: dim_produto_campus {
-    view_label: "4. Produto Ativo Campus"
+    view_label: "8. Produto Ativo Campus"
     sql_on: ${instituicao.id_campus} = ${dim_produto_campus.id_campus} and
             ${proposta.id_produto} = ${dim_produto_campus.id_produto};;
     type: left_outer
