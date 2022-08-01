@@ -879,9 +879,8 @@ explore: instituicao {
 
   join: dim_produto_campus {
     view_label: "8. Produto Ativo no Campus"
-    sql_on:   ${instituicao.id_campus} = ${dim_produto_campus.id_campus} and
-               ${proposta.id_produto} = ${dim_produto_campus.id_produto};;
-    relationship: many_to_one
+    sql_on:   ${instituicao.id_campus} = ${dim_produto_campus.id_campus};;
+    relationship: many_to_many
     type:left_outer
 
   }
