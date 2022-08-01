@@ -2045,6 +2045,23 @@ explore: taxa_produto_ies {
     sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
     type: left_outer
     relationship: one_to_many
+    }
+
+  join: proposta {
+    view_label: "3. Dados da Proposta"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${proposta.id_instituicao} and
+            ${taxa_produto_ies.id_produto} = ${proposta.id_produto} and
+            ${taxa_produto_ies.id_ies_contrato} = ${proposta.id_ies_contrato};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: dim_produto_campus {
+    view_label: "3. Produto Ativo Campus"
+    sql_on: ${instituicao.id_campus} = ${dim_produto_campus.id_campus} and
+            ${taxa_produto_ies.id_produto} = ${dim_produto_campus.id_produto};;
+    type: left_outer
+    relationship: many_to_many
   }
 }
 #Novo Modelo de Dados - Comercial - Lulinha 29/07/22
