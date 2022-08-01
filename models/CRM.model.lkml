@@ -49,7 +49,9 @@ explore: tela_atendimento{
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
     - jornada.var_mensalidade_cadastro_analiseies,
-    - jornada.var_mensalidade_informada_analiseies
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies
   ]
   view_label: "1. Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"

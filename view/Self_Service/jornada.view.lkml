@@ -4001,5 +4001,21 @@ dimension: flag_balcao {
     value_format: "0.0%"
   }
 
+  measure: var_median_mensalidade_cadastro_analiseies {
+    type: median
+    sql: ${fato_ies_aval.mensalidade_ies}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var Mediana % Mensalidade Cadastro x Mensalidade Análise IES"
+    value_format: "0.0%"
+  }
+
+  measure: var_median_mensalidade_informada_analiseies {
+    type: median
+    sql: ${fato_ies_aval.mensalidade_ies}/nullif(${fato_ies_aval.mensalidade_inf_alu},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var Mediana % Mensalidade Inf Aluno x Mensalidade Análise IES"
+    value_format: "0.0%"
+  }
+
 
 }
