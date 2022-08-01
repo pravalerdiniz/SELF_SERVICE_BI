@@ -3,8 +3,8 @@ view: obj_pipedrive_etapa {
       persist_for: "1 hour"
       sql: select
             f.value:ID_NEGOCIO::int as ID_NEGOCIO,
-            f.value:DT_ATUALIZACAO_FUNIL::timestamp as DT_ATUALIZACAO_FUNIL,
-            f.value:DT_CRIACAO_FUNIL::timestamp as DT_CRIACAO_FUNIL,
+            f.value:DT_ATUALIZACAO_ETAPA::timestamp as DT_ATUALIZACAO_ETAPA,
+            f.value:DT_CRIACAO_ETAPA::timestamp as DT_CRIACAO_ETAPA,
             f.value:FLG_ETAPA_ESTAGNADO::boolean as FLG_ETAPA_ESTAGNADO,
             f.value:ID_ETAPA::int as ID_ETAPA,
             f.value:ID_ETAPA_FUNIL::int as ID_ETAPA_FUNIL,
@@ -20,6 +20,7 @@ view: obj_pipedrive_etapa {
   dimension: chave {
     type: string
     primary_key: yes
+    hidden: yes
     sql: concat(${id_negocio},${id_etapa}) ;;
   }
 
@@ -29,7 +30,7 @@ view: obj_pipedrive_etapa {
       label: "ID Negócio"
     }
 
-  dimension_group: dt_atualizacao_funil {
+  dimension_group: dt_atualizacao_etapa {
     type: time
     timeframes: [
       raw,
@@ -47,11 +48,11 @@ view: obj_pipedrive_etapa {
       month_num,
       day_of_month
     ]
-    sql: ${TABLE}."DT_ATUALIZACAO_FUNIL" ;;
-    label: "Data Atualização Funil"
+    sql: ${TABLE}."DT_ATUALIZACAO_ETAPA" ;;
+    label: "Data Atualização Etapa"
   }
 
-  dimension_group: dt_criacao_funil {
+  dimension_group: dt_criacao_etapa {
     type: time
     timeframes: [
       raw,
@@ -69,8 +70,8 @@ view: obj_pipedrive_etapa {
       month_num,
       day_of_month
     ]
-    sql: ${TABLE}."DT_CRIACAO_FUNIL" ;;
-    label: "Data criação Funil"
+    sql: ${TABLE}."DT_CRIACAO_ETAPA" ;;
+    label: "Data criação Etapa"
   }
 
   dimension: flg_etapa_estagnado {
