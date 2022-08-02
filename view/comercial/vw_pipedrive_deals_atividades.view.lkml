@@ -7,6 +7,7 @@ view: vw_pipedrive_deals_atividades {
   dimension: chave {
     type: string
     primary_key: yes
+    hidden: yes
     sql: concat(${id_negocio}, ${id_atividade}) ;;
   }
 
