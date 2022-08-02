@@ -495,7 +495,7 @@ explore: jornada {
 
   join: proposta_sem_fiador {
     view_label: "1. Proposta"
-    sql_on:  ${jornada.id_proposta} = ${proposta.id_proposta} ;;
+    sql_on:  ${jornada.id_proposta} = ${proposta_sem_fiador.id_proposta} ;;
     type: left_outer
     relationship: one_to_one
   }

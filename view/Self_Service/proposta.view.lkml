@@ -3794,14 +3794,14 @@ dimension: vl_tarifa_cadastro {
 
   dimension: flag_elegivel_semfiador_testeab {
     type: yesno
-    sql: case when ${proposta_sem_fiador.sem_fiador_elegivel} = 1 then 'Yes' else 'No' end ;;
+    sql: ${proposta_sem_fiador.sem_fiador_elegivel} = '1' ;;
     label: "Flag Elegível - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }
 
   dimension: flag_eleito_semfiador_testeab {
     type: yesno
-    sql: case when ${proposta_sem_fiador.sem_fiador_eleito} = 1 then 'Yes' else 'No' end ;;
+    sql: ${proposta_sem_fiador.sem_fiador_eleito} = '1' ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }
