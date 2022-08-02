@@ -48,7 +48,7 @@ view: obj_pipedrive_etapa {
       day_of_month
     ]
     sql: ${TABLE}."DATA_MUDANCA_ETAPA" ;;
-    label: "Data Mudança Etapa"
+    label: "Data Entrada na Etapa"
   }
 
 
