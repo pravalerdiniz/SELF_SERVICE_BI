@@ -65,7 +65,9 @@ explore: beneficiados {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -212,7 +214,9 @@ explore: status {
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    - financeiro.sum_PDD,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
   ]
 
   join: proposta
@@ -489,6 +493,13 @@ explore: jornada {
     relationship: one_to_one
   }
 
+  join: proposta_sem_fiador {
+    view_label: "1. Proposta"
+    sql_on:  ${jornada.id_proposta} = ${proposta.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: fato_ies_aval {
     view_label: "1. Jornada"
     sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
@@ -719,7 +730,9 @@ explore: instituicao {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -913,6 +926,8 @@ explore: financeiro {
     - vw_extrato_repasse.id_contrato,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -1370,6 +1385,13 @@ explore: proposta {
     relationship: one_to_one
   }
 
+  join: proposta_sem_fiador {
+    view_label: "1. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${proposta.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: ano_mes_carteira_ativa {
     view_label: "2. Alunos"
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${proposta.id_cpf} ;;
@@ -1450,7 +1472,9 @@ explore: alunos {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
 
 
@@ -2060,6 +2084,10 @@ explore: simulador_etapas {
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
+  fields: [ALL_FIELDS *,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
+  ]
 
   join: instituicao {
     view_label: "2. Dados da Instituição"

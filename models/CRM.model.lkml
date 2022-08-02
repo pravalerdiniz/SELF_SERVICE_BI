@@ -51,7 +51,9 @@ explore: tela_atendimento{
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
   ]
   view_label: "1. Tela de Atendimento"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
