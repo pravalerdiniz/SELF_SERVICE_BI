@@ -3,8 +3,9 @@ view: obj_pipedrive_etapa {
       persist_for: "1 hour"
       sql: select
             f.value:ID_NEGOCIO::int as ID_NEGOCIO,
-            f.value:DT_ATUALIZACAO_ETAPA::timestamp as DT_ATUALIZACAO_ETAPA,
-            f.value:DT_CRIACAO_ETAPA::timestamp as DT_CRIACAO_ETAPA,
+            f.value:DATA_MUDANCA_ETAPA::timestamp as DATA_MUDANCA_ETAPA,
+            #f.value:DT_ATUALIZACAO_ETAPA::timestamp as DT_ATUALIZACAO_ETAPA,
+            #f.value:DT_CRIACAO_ETAPA::timestamp as DT_CRIACAO_ETAPA,
             f.value:FLG_ETAPA_ESTAGNADO::boolean as FLG_ETAPA_ESTAGNADO,
             f.value:ID_ETAPA::int as ID_ETAPA,
             f.value:ID_ETAPA_FUNIL::int as ID_ETAPA_FUNIL,
@@ -30,6 +31,28 @@ view: obj_pipedrive_etapa {
       label: "ID Negócio"
     }
 
+  dimension_group: dt_mudanca_etapa {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      day_of_week,
+      week,
+      month,
+      quarter,
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      day_of_month
+    ]
+    sql: ${TABLE}."DATA_MUDANCA_ETAPA" ;;
+    label: "Data Mudança Etapa"
+  }
+
   dimension_group: dt_atualizacao_etapa {
     type: time
     timeframes: [
@@ -48,6 +71,7 @@ view: obj_pipedrive_etapa {
       month_num,
       day_of_month
     ]
+    hidden: yes
     sql: ${TABLE}."DT_ATUALIZACAO_ETAPA" ;;
     label: "Data Atualização Etapa"
   }
@@ -70,6 +94,7 @@ view: obj_pipedrive_etapa {
       month_num,
       day_of_month
     ]
+    hidden: yes
     sql: ${TABLE}."DT_CRIACAO_ETAPA" ;;
     label: "Data criação Etapa"
   }
