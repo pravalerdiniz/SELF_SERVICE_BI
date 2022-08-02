@@ -16,7 +16,7 @@ view: proposta_sem_fiador {
 dimension: sem_fiador_elegivel {
   type: string
   sql: ${TABLE}."WITHOUT_GUARANTOR" ;;
-  hidden: no
+  hidden: yes
   label: "Flag Eleito - Sem Fiador Teste A/B"
   group_label: "Sem Fiador - Teste A/B"
 
@@ -25,7 +25,7 @@ dimension: sem_fiador_elegivel {
 dimension: sem_fiador_eleito {
   type: string
   sql: ${TABLE}."ELECTED_WITHOUT_GUARANTOR" ;;
-  hidden: no
+  hidden: yes
   label: "Flag Eleito - Sem Fiador Teste A/B"
   group_label: "Sem Fiador - Teste A/B"
   }
