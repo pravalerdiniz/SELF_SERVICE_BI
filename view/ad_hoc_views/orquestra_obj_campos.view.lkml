@@ -97,6 +97,13 @@ view: orquestra_obj_campos {
     #description: ""
   }
 
+  dimension: motivo_cancelamento {
+    type: string
+    sql: ${TABLE}."MOTIVO_CANCELAMENTO" ;;
+    group_label: "Dados Chamado"
+    group_item_label: "Motivo Cancelamento"
+    #description: ""
+  }
 
   dimension: area_responsavel {
     type: string
