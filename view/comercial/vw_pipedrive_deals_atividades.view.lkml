@@ -41,8 +41,8 @@ view: vw_pipedrive_deals_atividades {
     ]
     convert_tz: no
     datatype: date
-    label: "Data planejada para a atividade"
-    #description: ""
+    label: "Data atividade"
+    description: "Data em que a atividade foi realizada"
     sql: ${TABLE}."DATA_ATIVIDADE" ;;
   }
 
