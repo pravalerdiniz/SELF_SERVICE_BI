@@ -1100,6 +1100,18 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
   }
 
+  dimension: st_contrato {
+    type: string
+    group_label: "Dados do Contrato"
+    label: "Situação"
+    description: "Indica a situação do contrato do aluno. Ex: Não concedido, Concedido ou Contrato de Acordo."
+    sql: ${TABLE}."FLG_CONTRATO_CEDIDO" ;;
+  }
+
+
+
+
+
   dimension: flg_contrato_gerado {
     type: yesno
     group_label: "Dados do Contrato"
@@ -3772,6 +3784,27 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_TITULOS_GERADOS" ;;
     }
 
+  dimension: origem_aprovacao_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    label: "Origem da Aprovação na Tela da IES"
+    description: "Indica qual foi a origem da aprovação da proposta na Tela da IES"
+    sql: ${TABLE}."DS_ORIGEM_APROVACAO" ;;
+  }
+
+  dimension: flag_elegivel_semfiador_testeab {
+    type: yesno
+    sql: ${proposta_sem_fiador.sem_fiador_elegivel} = '1' ;;
+    label: "Flag Elegível - Sem Fiador Teste A/B"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
+  dimension: flag_eleito_semfiador_testeab {
+    type: yesno
+    sql: ${proposta_sem_fiador.sem_fiador_eleito} = '1' ;;
+    label: "Flag Eleito - Sem Fiador Teste A/B"
+    group_label: "Sem Fiador - Teste A/B"
+  }
 
   set: detail {
     fields: [

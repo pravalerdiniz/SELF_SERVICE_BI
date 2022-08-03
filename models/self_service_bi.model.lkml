@@ -61,7 +61,13 @@ explore: beneficiados {
     - jornada.id_cpf,
     - jornada.id_proposta,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -208,7 +214,9 @@ explore: status {
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    - financeiro.sum_PDD,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
   ]
 
   join: proposta
@@ -485,6 +493,13 @@ explore: jornada {
     relationship: one_to_one
   }
 
+  join: proposta_sem_fiador {
+    view_label: "1. Proposta"
+    sql_on:  ${jornada.id_proposta} = ${proposta_sem_fiador.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: fato_ies_aval {
     view_label: "1. Jornada"
     sql_on: ${jornada.id_proposta} = ${fato_ies_aval.id_proposta} ;;
@@ -711,7 +726,13 @@ explore: instituicao {
     - financeiro.arrasto_dias_atraso,
     -financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -869,6 +890,15 @@ explore: instituicao {
 
   }
 
+  join: dim_produto_campus {
+    view_label: "8. Produto Ativo no Campus"
+    sql_on:   ${instituicao.id_campus} = ${dim_produto_campus.id_campus} and
+              ${proposta.id_produto} = ${dim_produto_campus.id_produto};;
+    relationship: many_to_many
+    type:left_outer
+
+  }
+
 
 }
 
@@ -896,6 +926,8 @@ explore: financeiro {
     - vw_extrato_repasse.id_contrato,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
   ]
 
@@ -1353,6 +1385,13 @@ explore: proposta {
     relationship: one_to_one
   }
 
+  join: proposta_sem_fiador {
+    view_label: "1. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${proposta.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: ano_mes_carteira_ativa {
     view_label: "2. Alunos"
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${proposta.id_cpf} ;;
@@ -1424,13 +1463,18 @@ explore: alunos {
     - atribuicao_nova.perc_cpf,
     - status.cont_cpf,
     - financeiro_extrato_titulo.alunos,
-    -financeiro.perc_alunos,
-    -jornada.perc_cpf,
-    -jornada.count_cpf,
-    -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD,
+    - financeiro.perc_alunos,
+    - jornada.perc_cpf,
+    - financeiro.arrasto_dias_atraso,
+    - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
 
 
 
@@ -1814,154 +1858,152 @@ explore: alunos {
 
 }
 
+#Novo modelo de dados experiencia do aluno 26/07/22 - Lulinha
 
-explore: solucx {
-  label: "SoluCX - NPS"
-
-
-  join: depara_respondentes_ies {
-    view_label: "Solucx"
-    type: left_outer
-    sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
-    relationship: many_to_one
-  }
-
-  join: depara_grupo_gerente {
-    view_label: "Gerente Atual"
-    type: left_outer
-    sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
-    relationship: many_to_one
-    fields: [gerente]
-  }
-
-}
+# explore: solucx {
+#   label: "SoluCX - NPS"
 
 
-explore: interacoes {
-  label: "Interações - Tickets"
-  view_label: "Interações - Tickets"
-  description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
-  fields: [ALL_FIELDS *,
-    - ano_mes_carteira_ativa *
-  ]
-  access_filter: {
-    field: EMPRESA_AGENTE
+#   join: depara_respondentes_ies {
+#     view_label: "Solucx"
+#     type: left_outer
+#     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
+#     relationship: many_to_one
+#   }
 
-    user_attribute: grupo_bpo
-  }
+#   join: depara_grupo_gerente {
+#     view_label: "Gerente Atual"
+#     type: left_outer
+#     sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
+#     relationship: many_to_one
+#     fields: [gerente]
+#   }
 
-  join: interacoes_detalhes_ligacao {
-    view_label: "Detalhes de ligação"
+# }
 
-    type: full_outer
-    sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
-    relationship: many_to_one
-  }
+#Novo modelo de dados experiencia_do_aluno 26/07/22 - Lulinha
 
+# explore: interacoes {
+#   label: "Interações - Tickets"
+#   view_label: "Interações - Tickets"
+#   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
+#   fields: [ALL_FIELDS *,
+#     - ano_mes_carteira_ativa *
+#   ]
+#   access_filter: {
+#     field: EMPRESA_AGENTE
 
-  join: interacoes_apontamentos_monitoria {
-    view_label: "Apontamentos de Monitoria"
-    type: left_outer
-    sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
-    relationship: one_to_many
+#     user_attribute: grupo_bpo
+#   }
 
-  }
-  join: dim_cpf {
-    view_label: "CPF"
-    sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+#   join: interacoes_detalhes_ligacao {
+#     view_label: "Detalhes de ligação"
 
-
-  join: alunos {
-    view_label: "Alunos"
-    sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-  join: ano_mes_carteira_ativa {
-    view_label: "Ano Mes Carteira Ativa"
-    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
-#  join: jornada {
-  #   view_label: "Jornada"
-  #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
-  # type: left_outer
-  #  relationship: one_to_many
-  #}
-
-  join: dados_jornada_interacoes {
-    from: dados_jornada_interacoes
-    view_label: "1. Jornada"
-    sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
-    relationship: many_to_many
-    type: left_outer
-  }
-
-  join: twoclix_detalhes_avaliacao {
-    view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
-    sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
-    type: left_outer
-    relationship: one_to_many
-  }
-}
+#     type: full_outer
+#     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
+#     relationship: many_to_one
+#   }
 
 
-explore: crx_agentes{
-  label: "Interações - Métricas do agente"
-  view_label: "Interações - Métricas do agente"
-  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
-}
+#   join: interacoes_apontamentos_monitoria {
+#     view_label: "Apontamentos de Monitoria"
+#     type: left_outer
+#     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
+#     relationship: one_to_many
 
-explore: crx_agentes_detalhes_pausas{
-  label: "Interações - Métricas de pausa"
-  view_label: "Interações - Métricas de pausa"
-  description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
-  fields: [ALL_FIELDS * ,
-    - crx_agentes.count,
-    - crx_agentes.nome_data ,
-    - crx_agentes.dias_logados ,
-    - crx_agentes.sum_dias_logados,
-    - crx_agentes.media_tempo_logado_dia ,
-    - crx_agentes.media_tempo_logado_sessao ,
-    - crx_agentes.media_tempo_pausado_dia ,
-    - crx_agentes.pausas ,
-    - crx_agentes.produtividade ,
-    - crx_agentes.qtd_atendimento_ativo ,
-    - crx_agentes.qtd_atendimento_receptivo ,
-    - crx_agentes.qtd_ligacoes_atendidas ,
-    - crx_agentes.qtd_ligacoes_nao_atendidas ,
-    - crx_agentes.qtd_pausas ,
-    - crx_agentes.qtd_recusa ,
-    - crx_agentes.sla_atendimento ,
-    - crx_agentes.tempo_maximo_ligacao ,
-    - crx_agentes.tempo_medio_falado ,
-    - crx_agentes.tempo_medio_pausado ,
-    - crx_agentes.tempo_minimo_ligacao ,
-    - crx_agentes.tempo_ociosidade ,
-    - crx_agentes.tempo_total_falado ,
-    - crx_agentes.tempo_total_logado ,
-    - crx_agentes.tempo_total_pausado ,
-    - crx_agentes.media_sla_atendimento
+#   }
+#   join: dim_cpf {
+#     view_label: "CPF"
+#     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
+#     relationship: one_to_many
+#     type: left_outer
+#   }
 
 
-  ]
-  join: crx_agentes{
-    view_label: "Detalhes do Agente"
+#   join: alunos {
+#     view_label: "Alunos"
+#     sql_on: ${dim_cpf.id_cpf} = ${alunos.id_cpf};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
 
-    type: inner
-    sql_on: ${crx_agentes.id} = ${crx_agentes_detalhes_pausas.id};;
-    relationship: many_to_one
-  }
-}
+#   join: ano_mes_carteira_ativa {
+#     view_label: "Ano Mes Carteira Ativa"
+#     sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+# #  join: jornada {
+#   #   view_label: "Jornada"
+#   #  sql_on: ${jornada.id_proposta} = ${alunos.id_proposta_atual};;
+#   # type: left_outer
+#   #  relationship: one_to_many
+#   #}
+
+#   join: dados_jornada_interacoes {
+#     from: dados_jornada_interacoes
+#     view_label: "1. Jornada"
+#     sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+#     relationship: many_to_many
+#     type: left_outer
+#   }
+
+#   join: twoclix_detalhes_avaliacao {
+#     view_label: "Monitoria - Detalhes Avaliação(TwoClix)"
+#     sql_on: ${interacoes.codigo_avaliacao}=${twoclix_detalhes_avaliacao.cod_avaliacao};;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+# }
 
 
+# explore: crx_agentes{
+#   label: "Interações - Métricas do agente"
+#   view_label: "Interações - Métricas do agente"
+#   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+# }
+
+# explore: crx_agentes_detalhes_pausas{
+#   label: "Interações - Métricas de pausa"
+#   view_label: "Interações - Métricas de pausa"
+#   description: "Apresenta os dados de pausas, disponibilidade, tempos médios por agente"
+#   fields: [ALL_FIELDS * ,
+#     - crx_agentes.count,
+#     - crx_agentes.nome_data ,
+#     - crx_agentes.dias_logados ,
+#     - crx_agentes.sum_dias_logados,
+#     - crx_agentes.media_tempo_logado_dia ,
+#     - crx_agentes.media_tempo_logado_sessao ,
+#     - crx_agentes.media_tempo_pausado_dia ,
+#     - crx_agentes.pausas ,
+#     - crx_agentes.produtividade ,
+#     - crx_agentes.qtd_atendimento_ativo ,
+#     - crx_agentes.qtd_atendimento_receptivo ,
+#     - crx_agentes.qtd_ligacoes_atendidas ,
+#     - crx_agentes.qtd_ligacoes_nao_atendidas ,
+#     - crx_agentes.qtd_pausas ,
+#     - crx_agentes.qtd_recusa ,
+#     - crx_agentes.sla_atendimento ,
+#     - crx_agentes.tempo_maximo_ligacao ,
+#     - crx_agentes.tempo_medio_falado ,
+#     - crx_agentes.tempo_medio_pausado ,
+#     - crx_agentes.tempo_minimo_ligacao ,
+#     - crx_agentes.tempo_ociosidade ,
+#     - crx_agentes.tempo_total_falado ,
+#     - crx_agentes.tempo_total_logado ,
+#     - crx_agentes.tempo_total_pausado ,
+#     - crx_agentes.media_sla_atendimento
 
 
+#   ]
+#   join: crx_agentes{
+#     view_label: "Detalhes do Agente"
+
+#     type: inner
+#     sql_on: ${crx_agentes.id} = ${crx_agentes_detalhes_pausas.id};;
+#     relationship: many_to_one
+#   }
+# }
 
 
 
@@ -1974,6 +2016,10 @@ explore: crx_agentes_detalhes_pausas{
 
 
 
+
+
+
+#Novo modelo de Dados - Comercial - Lulinha - 29/07/22
 explore: projecao_formalizados {
   label: "Projeção Formalizados Jornada"
   view_label: "Projeção Formalizados Jornada"
@@ -2003,14 +2049,15 @@ explore: instituicao_taxas_antecipacao{
 
 
 
-explore: aproveitamento_estoque_nok{
-  label: "Aproveitamento Estoque"
-}
+#explore: aproveitamento_estoque_nok{
+  #label: "Aproveitamento Estoque"
+#}
 
+#Novo modelo de dados - Experiencia do Aluno 26/07/22 - Lulinha
 
-explore: solucx_nps_ajustado {
-  label: "SoluCX - NPS Ajustado"
-}
+# explore: solucx_nps_ajustado {
+#   label: "SoluCX - NPS Ajustado"
+# }
 
 
 explore: dados_intake {
@@ -2025,7 +2072,7 @@ explore: carteira {
   label: "Carteira Ativa"
 }
 
-
+#Novo Modelo de Dados - Comercial - Lulinha - 29/07/22
 explore: metas_distribuidas {
   label: "Comercial - Metas Distribuídas"
 }
@@ -2037,11 +2084,51 @@ explore: simulador_etapas {
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
+  fields: [ALL_FIELDS *,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
+  ]
 
   join: instituicao {
     view_label: "2. Dados da Instituição"
     sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao};;
     type: left_outer
     relationship: one_to_many
+    }
+
+  join: proposta {
+    view_label: "3. Dados da Proposta"
+    sql_on: ${taxa_produto_ies.id_instituicao} = ${proposta.id_instituicao} and
+            ${taxa_produto_ies.id_produto} = ${proposta.id_produto} and
+            ${taxa_produto_ies.id_ies_contrato} = ${proposta.id_ies_contrato};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: dim_produto_campus {
+    view_label: "4. Produto Ativo Campus"
+    sql_on: ${instituicao.id_campus} = ${dim_produto_campus.id_campus} and
+            ${taxa_produto_ies.id_produto} = ${dim_produto_campus.id_produto};;
+    type: left_outer
+    relationship: many_to_many
   }
 }
+#Novo Modelo de Dados - Comercial - Lulinha 29/07/22
+# explore: vw_pipedrive_deals_pipeline {
+#   label: "Pipedrive Graduação"
+#   view_label: "1. Negócios"
+
+#   join: vw_pipedrive_deals_atividades {
+#     view_label: "2. Atividade"
+#     sql_on: ${vw_pipedrive_deals_pipeline.id_negocio}=${vw_pipedrive_deals_atividades.id_negocio} ;;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+
+#   join: obj_pipedrive_etapa {
+#     view_label: "3. Etapas Funil"
+#     sql_on: ${vw_pipedrive_deals_pipeline.id_negocio} = ${obj_pipedrive_etapa.id_negocio} ;;
+#     type: left_outer
+#     relationship: one_to_many
+#   }
+# }

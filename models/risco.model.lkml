@@ -108,10 +108,9 @@ explore: alunos {
     -alunos_acordo_renegociacao.count,
     -financeiro.perc_alunos,
     -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
-
-
-
+    -financeiro.sum_PDD,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_eleito_semfiador_testeab
   ]
 
   join: alunos_produtos_aprovados {

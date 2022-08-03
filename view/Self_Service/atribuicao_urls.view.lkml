@@ -3,6 +3,7 @@ view: atribuicao_urls {
     persist_for: "1 hour"
     sql: select
             id_cpf,
+            a.DS_URL_DCO_L100 AS URL_DESCOBERTA_100D,
             B.DS_URL AS URL_DESCOBERTA,
             C.DS_URL AS URL_FINALIZACAO
             from GRADUADO.SELF_SERVICE_BI.ATRIBUICAO a
@@ -16,6 +17,14 @@ view: atribuicao_urls {
     description: "Indica a URL de Descoberta do aluno."
     sql: ${TABLE}."URL_DESCOBERTA" ;;
     group_label: "Dados de Descoberta"
+  }
+
+  dimension: url_descoberta_100d {
+    type: string
+    label: "URL de Descoberta - 100 dias"
+    description: "Indica a URL de Descoberta do aluno nos últimos 100 dias."
+    sql: ${TABLE}."URL_DESCOBERTA_100D" ;;
+    group_label: "Dados de Descoberta - 100 Dias"
   }
 
   dimension: url_finalizacao {

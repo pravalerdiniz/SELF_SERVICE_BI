@@ -177,13 +177,14 @@ explore: orquestra_compra_carteira {
 
 explore: orquestra {
   label: "Orquestra"
+  view_label: "1. Orquestra"
 
   join: orquestra_obj_campos {
     type: left_outer
     sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Informações Processos"
+    view_label: "2. Informações Processos"
     }
 
   join: solicitacoes_para_facilities {
@@ -219,25 +220,29 @@ explore: base_forecast_cs {
   label: "Forecast Contatos"
 }
 
-explore: taxa_de_contato{
-  label: "Taxa de Contato"
+#Novo Modelo de Dados - Experiencia do Aluno - 26/07/22 Lulinha
+
+# explore: taxa_de_contato{
+#   label: "Taxa de Contato"
+# }
+
+
+
+
+# explore: taxa_de_contato_alunos_ativos{
+#   label: "Taxa de Contato de Alunos Ativos"
+# }
+
+# explore: taxa_de_contato_motivo_de_contato{
+#   label: "Taxa de Contato por Motivo de Contato"
+# }
+
+explore: campanha_valoriza {
+  label: "Campanha Valoriza"
 }
 
 explore: treinamento_data_driven {
   label: "Capacitação - Data Driven"
-}
-
-
-explore: taxa_de_contato_alunos_ativos{
-  label: "Taxa de Contato de Alunos Ativos"
-}
-
-explore: taxa_de_contato_motivo_de_contato{
-  label: "Taxa de Contato por Motivo de Contato"
-}
-
-explore: campanha_valoriza {
-  label: "Campanha Valoriza"
 }
 
 explore: base_trade {}
