@@ -176,7 +176,8 @@ explore: orquestra_compra_carteira {
 }
 
 explore: orquestra {
-  label: "1. Orquestra"
+  label: "Orquestra"
+  view_label: "1. Orquestra"
 
   join: orquestra_obj_campos {
     type: left_outer
