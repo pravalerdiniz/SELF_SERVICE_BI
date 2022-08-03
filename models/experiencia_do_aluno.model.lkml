@@ -184,14 +184,14 @@ explore: solucx {
 
 
   join: depara_respondentes_ies {
-    view_label: "Solucx"
+    view_label: "1. Solucx"
     type: left_outer
     sql_on: ${solucx.email_aluno} = ${depara_respondentes_ies.email} ;;
     relationship: many_to_one
   }
 
   join: depara_grupo_gerente {
-    view_label: "Gerente Atual"
+    view_label: "2. Gerente Atual"
     type: left_outer
     sql_on:  ${depara_grupo_gerente.grupo_instituicao} = ${depara_respondentes_ies.grupo};;
     relationship: many_to_one
