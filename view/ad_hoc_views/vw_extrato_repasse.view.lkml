@@ -57,6 +57,46 @@ view: vw_extrato_repasse {
     sql: ${TABLE}."VL_REPASSE_TOTAL_IES" ;;
   }
 
+  dimension: vl_desp_cobranca_pravaler {
+    type: number
+    group_label: "Dados do Repasse"
+    value_format: "0"
+    label: "Valor Despesa de cobrança Pravaler"
+    sql: ${TABLE}."VALOR_DESPESA_COBRANCA_PRAVALER" ;;
+  }
+
+  dimension: vl_pago_aluno {
+    type: number
+    group_label: "Dados do Aluno"
+    value_format: "0"
+    label: "Valor Pago pelo Aluno"
+    sql: ${TABLE}."VALOR_PAGO_ALUNO" ;;
+  }
+
+  dimension: vl_adm_aluno_pravaler {
+    type: number
+    group_label: "Dados do Aluno"
+    value_format: "0"
+    label: "Valor Adm Aluno Pravaler"
+    sql: ${TABLE}."VALOR_ADM_ALUNO_PRAVALER" ;;
+  }
+
+  dimension: vl_adm_aluno_ies {
+    type: number
+    group_label: "Dados do Aluno"
+    value_format: "0"
+    label: "Valor Adm Aluno IES"
+    sql: ${TABLE}."VALOR_ADM_ALUNO_IES" ;;
+  }
+
+  dimension: vl_juros_atraso {
+    type: number
+    group_label: "Dados do Título"
+    value_format: "0"
+    label: "Valor de Juros Atraso"
+    sql: ${TABLE}."VALOR_JUROS_ATRASO" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
