@@ -176,14 +176,14 @@ explore: orquestra_compra_carteira {
 }
 
 explore: orquestra {
-  label: "Orquestra"
+  label: "1. Orquestra"
 
   join: orquestra_obj_campos {
     type: left_outer
     sql_on: ${orquestra.numero_chamado}=${orquestra_obj_campos.numero_chamado};;
     #and ${orquestra.nome_task}=${orquestra_obj_campos.nome_task};; -- bkp Mari
     relationship: one_to_one
-    view_label: "Informações Processos"
+    view_label: "2. Informações Processos"
     }
 
   join: solicitacoes_para_facilities {

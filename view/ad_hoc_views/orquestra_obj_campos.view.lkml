@@ -35,10 +35,11 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Observação de retorno da análise:"::varchar,T.VALUE:"Observação de retorno da análise:"::varchar)) obs_retorno_analise
     ,max(coalesce(T.VALUE:"Retorno do chamado:"::varchar,T.VALUE:"Retorno do chamado:"::varchar)) retorno_chamado
     ,max(coalesce(T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco:"::varchar,T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar)) flg_aluno_possui_ordem_judicial_reclameaqui
+    ,max(coalesce(T.VALUE:"Motivo do cancelamento:"::varchar,T.VALUE:"Motivo do cancelamento"::varchar)) motivo_cancelamento
 
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
-      where (nome_fila ilike 'P17%' or nome_fila ilike 'P24' or nome_fila ilike 'P33' or nome_fila ilike 'P40' or nome_fila ilike 'P37' or nome_fila ilike 'P51')
+      where (nome_fila ilike 'P17%' or nome_fila ilike 'P24' or nome_fila ilike 'P33' or nome_fila ilike 'P40' or nome_fila ilike 'P37' or nome_fila ilike 'P51' or nome_fila ilike 'Cancelamento')
       --group by 1,2  -- bkp Mari
       group by 1
        ;;
