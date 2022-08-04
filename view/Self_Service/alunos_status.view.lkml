@@ -1,5 +1,5 @@
 view: alunos_status {
-  sql_table_name: "BO"."PRV_ALUNOS"
+  sql_table_name: "BICHO"."BO"."PRV_ALUNOS"
     ;;
 
   dimension: cd_rnv_status {
