@@ -605,7 +605,7 @@ dimension: tempo_evento_dias {
     type: count_distinct
     sql: ${id_aluno} ;;
     group_item_label: "Total de Alunos"
-    drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date]
+    drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date,status_curta.journey_status]
   }
 
   measure: total_contratos {
