@@ -6,12 +6,14 @@ view: alunos_status {
     type: number
     sql: ${TABLE}."cd_rnv_status" ;;
     group_label: "Status BO"
+    hidden:  yes
   }
 
   dimension: cd_rnv_status_detalhe {
     type: number
     sql: ${TABLE}."cd_rnv_status_detalhe" ;;
     group_label: "Status BO"
+    hidden:  yes
   }
 
   dimension: id {
@@ -25,18 +27,21 @@ view: alunos_status {
     type: number
     sql: ${TABLE}."sl_status" ;;
     group_label: "Status BO"
+    hidden:  yes
   }
 
   dimension: sl_status_detalhe {
     type: number
     sql: ${TABLE}."sl_status_detalhe" ;;
     group_label: "Status BO"
+    hidden:  yes
   }
 
   dimension: sl_status_full {
     type:  number
     sql: concat(${sl_status},${sl_status_detalhe}) ;;
     group_label: "Status BO"
+    hidden:  yes
   }
 
   dimension: cpf {
