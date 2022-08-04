@@ -628,7 +628,7 @@ explore: jornada {
   }
 
   join: alunos_status {
-    view_label: "1. Alunos"
+    view_label: "6. Alunos"
     sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
     type: left_outer
     relationship: one_to_many
