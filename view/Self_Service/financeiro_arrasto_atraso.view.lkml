@@ -13,12 +13,14 @@ view: financeiro_arrasto_atraso {
   dimension: arrasto {
     type: number
     sql: ${TABLE}."ARRASTO" ;;
+    hidden: yes
   }
 
   dimension: id_cpf {
     type: number
     sql: ${TABLE}."ID_CPF" ;;
     label: "ID CPF"
+    hidden: yes
   }
 
 }

@@ -1081,6 +1081,27 @@ join: vw_extrato_repasse {
   relationship: one_to_one
 }
 
+  join: carteira {
+    view_label: "6. Carteira (base OT)"
+    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
+            and ${carteira.id_boleto} = ${financeiro.id_boleto};;
+    fields: [
+      carteira.nm_cedente,
+      carteira.nm_fundo,
+      carteira.data_referencia_date,
+      carteira.data_emissao_date,
+      carteira.id_seunum,
+      carteira.valor_presente,
+      carteira.valor_apropriado,
+      carteira.valor_aquisicao,
+      carteira.protesto,
+
+    ]
+    relationship: many_to_many
+    type: left_outer
+  }
+
 }
 
 explore: proposta {
