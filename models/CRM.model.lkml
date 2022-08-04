@@ -41,7 +41,7 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 include: "/**/*.view.lkml"
 
-explore: tela_atendimento{
+explore: chamados_tela_atendimento{
   label: "Tela de Atendimento"
   fields: [ALL_FIELDS *,
     - alunos.id_cpf,
@@ -55,11 +55,18 @@ explore: tela_atendimento{
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab
   ]
-  view_label: "1. Tela de Atendimento"
+  view_label: "1. Tela Atendimento - Todos chamados"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
 
+  join: tela_atendimento {
+    view_label: "2. Tela atendimento - Célula contratação"
+    sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: tela_atendimento_jornada {
-    view_label: "2. Jornada"
+    view_label: "3. Jornada"
     sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
@@ -67,56 +74,56 @@ explore: tela_atendimento{
 
   join: alunos {
     from: alunos
-    view_label: "3. Dados Aluno"
+    view_label: "4. Dados Aluno"
     sql_on: ${tela_atendimento.id_cpf}=${alunos.id_cpf};;
     relationship: many_to_one
     type: left_outer
   }
 
   join: obj_persona_tela {
-    view_label: "4. Persona - Germina"
+    view_label: "5. Persona - Germina"
     sql_on:  ${tela_atendimento.id_cpf}=${obj_persona_tela.id_cpf};;
     type: left_outer
     relationship: many_to_one
   }
 
   join: ano_mes_carteira_ativa {
-    view_label: "5. Dados Aluno Ativo"
+    view_label: "6. Dados Aluno Ativo"
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${tela_atendimento.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
 
   join: proposta {
-    view_label: "7. Proposta"
+    view_label: "8. Proposta"
     sql_on: ${tela_atendimento_jornada.ID_PROPOSTA}=${proposta.id_proposta} ;;
     relationship: many_to_many
     type: full_outer
   }
 
   join: status {
-    view_label: "6. Status"
+    view_label: "7. Status"
     sql_on: ${tela_atendimento.id_cpf}=${status.id_cpf} ;;
     relationship: many_to_many
     type: full_outer
   }
 
   join: jornada {
-    view_label: "8. Jornada"
+    view_label: "9. Jornada"
     sql_on: ${tela_atendimento.id_cpf}=${jornada.id_cpf} ;;
     relationship: many_to_many
     type: full_outer
   }
 
   join: dim_cpf {
-    view_label: "9. Dim cpf"
+    view_label: "10. Dim cpf"
     sql_on: ${tela_atendimento.id_cpf}=${dim_cpf.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
 
   join: jornada_pivot {
-    view_label: "10. Jornada Pivot "
+    view_label: "11. Jornada Pivot "
     sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
