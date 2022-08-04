@@ -1,7 +1,7 @@
 # The name of this view in Looker is "Dim Regional"
 view: dim_regional {
 
-  sql_table_name: "DIMENSAO"."DIM_REGIONAL"
+  sql_table_name: "VETERANO"."DIMENSAO"."DIM_REGIONAL"
     ;;
 
   dimension: gerente {
@@ -38,6 +38,7 @@ view: dim_regional {
 
   dimension: rve {
     type: string
+    primary_key: yes
     label: " Nome RVE Atual"
     sql: ${TABLE}."RVE" ;;
   }
