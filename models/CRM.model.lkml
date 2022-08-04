@@ -55,7 +55,7 @@ explore: tela_atendimento{
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab
   ]
-  view_label: "1. Tela atendimento - Célula contratação"
+  view_label: "1.1. Tela atendimento - Célula contratação"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
 
   join: chamados_tela_atendimento {
@@ -66,7 +66,7 @@ explore: tela_atendimento{
   }
 
   join: tela_atendimento_jornada {
-    view_label: "2. Jornada do aluno na tela"
+    view_label: "2. Jornada - célula de contratação"
     sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
@@ -75,7 +75,7 @@ explore: tela_atendimento{
   join: alunos {
     from: alunos
     view_label: "3. Dados Aluno"
-    sql_on: ${tela_atendimento.id_cpf}=${alunos.id_cpf};;
+    sql_on: ${chamados_tela_atendimento.id_cpf}=${alunos.id_cpf};;
     relationship: many_to_one
     type: left_outer
   }
@@ -103,21 +103,21 @@ explore: tela_atendimento{
 
   join: status {
     view_label: "6. Status"
-    sql_on: ${tela_atendimento.id_cpf}=${status.id_cpf} ;;
+    sql_on: ${chamados_tela_atendimento.id_cpf}=${status.id_cpf} ;;
     relationship: many_to_many
     type: full_outer
   }
 
   join: jornada {
     view_label: "8. Jornada"
-    sql_on: ${tela_atendimento.id_cpf}=${jornada.id_cpf} ;;
+    sql_on: ${chamados_tela_atendimento.id_cpf}=${jornada.id_cpf} ;;
     relationship: many_to_many
     type: full_outer
   }
 
   join: dim_cpf {
     view_label: "9. Dim cpf"
-    sql_on: ${tela_atendimento.id_cpf}=${dim_cpf.id_cpf} ;;
+    sql_on: ${chamados_tela_atendimento.id_cpf}=${dim_cpf.id_cpf} ;;
     relationship: many_to_one
     type: left_outer
   }
