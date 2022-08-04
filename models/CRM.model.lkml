@@ -66,7 +66,7 @@ explore: tela_atendimento{
   }
 
   join: tela_atendimento_jornada {
-    view_label: "2. Jornada"
+    view_label: "2. Jornada do aluno na tela"
     sql_on: ${tela_atendimento.id_cpf}=${tela_atendimento_jornada.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
