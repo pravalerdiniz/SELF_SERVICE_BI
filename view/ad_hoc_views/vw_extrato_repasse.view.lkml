@@ -97,6 +97,14 @@ view: vw_extrato_repasse {
     sql: ${TABLE}."VALOR_JUROS_ATRASO" ;;
   }
 
+  dimension: multa_atraso {
+    type: number
+    group_label: "Dados do Título"
+    value_format: "$ #,##0.00"
+    label: "Multa de Atraso"
+    sql: ${TABLE}."MULTA_ATRASO" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
