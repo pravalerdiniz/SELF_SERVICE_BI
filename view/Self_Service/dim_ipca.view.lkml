@@ -13,10 +13,13 @@ view: dim_ipca {
   # This dimension will be called "Cd Mes" in Explore.
 
   dimension: cd_mes {
+    group_label: "IPCA - IBGE"
+    label: "Mês e ano da taxa IPCA."
+    description: "Mês e ano referência da taxa IPCA."
     type: date_month
     datatype: date
     sql: date_from_parts(substr(${TABLE}."CD_MES", 0, 4), substr(${TABLE}."CD_MES", 5, 6), 1) ;;
-    hidden: yes
+    hidden: no
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
@@ -72,7 +75,15 @@ view: dim_ipca {
     description: "Taxa IPCA acumulada nos últimos 12 meses em %."
     value_format_name: percent_2
     sql: ${TABLE}."VL_IPCA"/100 ;;
-    hidden: no
+    hidden: yes
+  }
+
+
+  measure: ultimo_mes {
+    type: max
+    description: "Último mês e ano do IPCA disponibilizado pelo IBGE: yyyymm"
+    sql: ${cd_mes} ;;
+    hidden: yes
   }
 
   measure: count {

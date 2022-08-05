@@ -409,7 +409,7 @@ dimension: safra_vencimento {
     value_format_name: percent_2
     group_label: "IPCA - IBGE"
     label: "IPCA Acumulado"
-    description: "% Taxa IPCA acumulado nos últimos 12 meses."
+    description: "% Taxa IPCA acumulado nos últimos 12 meses em relação ao mês de vencimento do boleto."
     sql: ${dim_ipca.vl_ipca} ;;
   }
 
