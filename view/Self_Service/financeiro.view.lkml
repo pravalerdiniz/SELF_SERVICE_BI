@@ -1018,9 +1018,6 @@ foi gerado por um pagamento menor do boleto anterior."
     drill_fields: [id_cpf, id_contrato, data_vencimento_date,data_pagamento_date]
   }
 
-
-
-
   measure: max_dias_atraso {
     type: max
     sql: ${dias_atraso} ;;
@@ -1032,14 +1029,10 @@ foi gerado por um pagamento menor do boleto anterior."
   }
 
 
-
-
-
-
   measure: avg_aquisicao {
     type: average
     sql: ${vl_aquisicao} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Aquisição"
     group_item_label: "Média"
     description: "Valor médio de aquisição do titulo"
@@ -1048,7 +1041,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_aquisicao {
     type: sum
     sql: ${vl_aquisicao} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "Valor de Aquisição"
     group_item_label: "Soma"
     description: "Soma do valor de aquisição do titulo"

@@ -31,6 +31,7 @@ view: financeiro_avg_vl_aquisicao {
     type: number
     sql: ${TABLE}."ID_CONTRATO" ;;
     label: "ID CONTRATO"
+    hidden: yes
   }
 
 }

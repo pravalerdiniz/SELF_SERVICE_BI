@@ -627,6 +627,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: alunos_status {
+    view_label: "6. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
     sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
@@ -1080,6 +1087,27 @@ join: vw_extrato_repasse {
   ;;
   relationship: one_to_one
 }
+
+  join: carteira {
+    view_label: "6. Carteira (base OT)"
+    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
+            and ${carteira.id_boleto} = ${financeiro.id_boleto};;
+    fields: [
+      carteira.nm_cedente,
+      carteira.nm_fundo,
+      carteira.data_referencia_date,
+      carteira.data_emissao_date,
+      carteira.id_seunum,
+      carteira.valor_presente,
+      carteira.valor_apropriado,
+      carteira.valor_aquisicao,
+      carteira.protesto,
+
+    ]
+    relationship: many_to_many
+    type: left_outer
+  }
 
 }
 
@@ -1850,6 +1878,13 @@ explore: alunos {
   join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_status {
+    view_label: "1. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
     type: left_outer
     relationship: one_to_many
   }
