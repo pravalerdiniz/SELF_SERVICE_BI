@@ -994,6 +994,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: ipca12m_atual {
+    view_label: "1. Financeiro"
+    sql_on: ${ipca12m_atual.ipca12m_atual} is not null ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: financeiro_avg_vl_aquisicao {
     view_label: "1. Financeiro"
     sql_on: ${financeiro_avg_vl_aquisicao.id_contrato} = ${financeiro.id_contrato} ;;
