@@ -404,6 +404,15 @@ dimension: safra_vencimento {
     description: "Quantidade de arrasto de dias de atraso do CPF."
   }
 
+  dimension: ipca_12m {
+    type: number
+    value_format_name: percent_2
+    group_label: "IPCA - IBGE"
+    label: "IPCA Acumulado"
+    description: "% Taxa IPCA acumulado nos últimos 12 meses."
+    sql: ${dim_ipca.vl_ipca} ;;
+  }
+
   dimension: ds_baixa {
     type: string
     group_label: "Status do Boleto"
@@ -909,6 +918,8 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Indica o código de barras (linha digitavel) do boleto."
     sql: ${TABLE}."LINHA_DIGITAVEL" ;;
   }
+
+
 
 
 
@@ -1536,7 +1547,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: avg_vl_ipca {
     type: average
     sql: ${vl_ipca} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "IPCA"
     group_item_label: "Médio"
     description: "Valor médio de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
@@ -1545,7 +1556,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_vl_ipca {
     type: sum
     sql: ${vl_ipca} ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "IPCA"
     group_item_label: "Soma"
     description: "Valor da soma de IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
@@ -1555,7 +1566,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: min_vl_ipca {
     type: min
     sql: ${vl_ipca}  ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "IPCA"
     group_item_label: "Mínimo"
     description: "Valor minimo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
@@ -1565,7 +1576,7 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: max_vl_ipca {
     type: max
     sql: ${vl_ipca}  ;;
-    value_format: "$ #,###"
+    value_format: "$ #,###.00"
     group_label: "IPCA"
     group_item_label: "Máximo"
     description: "Valor máximo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."

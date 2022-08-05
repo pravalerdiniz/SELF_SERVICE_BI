@@ -214,6 +214,7 @@ explore: status {
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab
@@ -367,6 +368,7 @@ explore: jornada {
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - instituicao.cnpj_ie,
     - instituicao.nome_fantasia,
@@ -724,7 +726,8 @@ explore: instituicao {
     - proposta.gerente_original,
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD,
+    - financeiro.ipca_12m,
+    - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
     - jornada.var_mensalidade_cadastro_analiseies,
@@ -977,6 +980,13 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: dim_ipca {
+    view_label: "1. Financeiro"
+    sql_on: ${dim_ipca.cd_mes} = ${financeiro.data_vencimento_month} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
   join: financeiro_avg_vl_aquisicao {
     view_label: "1. Financeiro"
     sql_on: ${financeiro_avg_vl_aquisicao.id_contrato} = ${financeiro.id_contrato} ;;
@@ -1101,6 +1111,8 @@ join: vw_extrato_repasse {
     relationship: many_to_many
     type: left_outer
   }
+
+
 
 }
 
@@ -1246,7 +1258,8 @@ explore: proposta {
     - atribuicao_nova.perc_cpf,
     - atribuicao_nova.count_id_cpf,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    - financeiro.ipca_12m,
+    - financeiro.sum_PDD
 
 
 
@@ -1487,6 +1500,7 @@ explore: alunos {
     - financeiro.perc_alunos,
     - jornada.perc_cpf,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -1831,6 +1845,8 @@ explore: alunos {
     type: left_outer
     relationship: one_to_one
   }
+
+
 
   join: financeiro_extrato_titulo {
     view_label: "3.1. Extrato Titulo - Gestão"
