@@ -629,6 +629,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: alunos_status {
+    view_label: "6. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
     sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
@@ -1887,6 +1894,13 @@ explore: alunos {
   join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_status {
+    view_label: "1. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
     type: left_outer
     relationship: one_to_many
   }
