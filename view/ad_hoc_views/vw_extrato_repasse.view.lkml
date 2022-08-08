@@ -62,7 +62,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Repasse"
     value_format: "$ #,##0.00"
     label: "Valor Despesa de cobrança Pravaler"
-    sql: ${TABLE}."VALOR_DESPESA_COBRANCA_PRAVALER" ;;
+    sql: ${TABLE}."VL_DESP_COBRANCA_PRAVALER" ;;
   }
 
   dimension: vl_pago_aluno {
@@ -78,7 +78,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
     label: "Valor Adm Aluno Pravaler"
-    sql: ${TABLE}."VALOR_ADM_ALUNO_PRAVALER" ;;
+    sql: ${TABLE}."VL_ADM_ALUNO_PRAVALER" ;;
   }
 
   dimension: vl_adm_aluno_ies {
@@ -86,7 +86,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
     label: "Valor Adm Aluno IES"
-    sql: ${TABLE}."VALOR_ADM_ALUNO_IES" ;;
+    sql: ${TABLE}."VL_ADM_ALUNO_IES" ;;
   }
 
   dimension: vl_juros_atraso {
@@ -94,7 +94,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Título"
     value_format: "$ #,##0.00"
     label: "Valor de Juros Atraso"
-    sql: ${TABLE}."VALOR_JUROS_ATRASO" ;;
+    sql: ${TABLE}."VL_JUROS_ATRASO" ;;
   }
 
   dimension: multa_atraso {
