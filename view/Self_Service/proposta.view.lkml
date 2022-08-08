@@ -978,7 +978,7 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados do Garantidor"
     label: "Renda do Garantidor"
-    value_format: "$ #,##0.00"
+    value_format: "$ #,###.00"
     description: "Indica o valor da renda do Garantidor do aluno."
     sql: NULLIF(${TABLE}."FIA_RENDA",0) ;;
 
@@ -3568,7 +3568,8 @@ dimension: vl_tarifa_cadastro {
 
 
   measure: sum_renda_fiador {
-    type: sum
+    type: sum_distinct
+    sql_distinct_key: ${id_cpf} ;;
     sql: ${fia_renda} ;;
     drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email ]
     value_format: "$ #,###.00"
@@ -3603,7 +3604,8 @@ dimension: vl_tarifa_cadastro {
 
 
   measure: sum_renda_aluno {
-    type: sum
+    type: sum_distinct
+    sql_distinct_key: ${id_cpf} ;;
     sql: ${aluno_renda} ;;
     drill_fields: [id_proposta,
           id_cpf,
@@ -3645,6 +3647,60 @@ dimension: vl_tarifa_cadastro {
       aluno_nome,
       aluno_email,
       tipo_proposta]
+  }
+
+  dimension: renda_total {
+    type: number
+    sql: coalesce(${aluno_renda},0) + coalesce(${fia_renda},0);;
+    value_format: "$ #,###.00"
+    group_label: "Renda Total"
+    description: "Renda Total = Renda do Aluno + Renda Fiador"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
+  measure: sum_renda_total {
+    type: sum
+    sql: ${renda_total};;
+    value_format: "$ #,###.00"
+    group_label: "Renda Total"
+    group_item_label: "Soma"
+    description: "Renda Total = Renda do Aluno + Renda Fiador"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
+  measure: avg_renda_total {
+    type: average
+    sql: ${renda_total};;
+    value_format: "$ #,###.00"
+    group_label: "Renda Total"
+    group_item_label: "Média"
+    description: "Renda Total = Renda do Aluno + Renda Fiador"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
+  dimension: faixa_renda_total {
+    type: tier
+    tiers: [1000,2000,3000,4000,6000,8000,10000]
+    style: integer
+    sql: ${renda_total} ;;
+    group_label: "Dados de Renda"
+    group_item_label: "Faixa de Renda Total"
+    description: "Indica a faixa de renda total (Aluno + Fiador)"
   }
 
   dimension: qtd_arquivos_fila_interfile {
