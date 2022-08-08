@@ -686,6 +686,13 @@ explore: jornada {
     type: full_outer
   }
 
+  join: leads_canal_entrada {
+    view_label: "1. Jornada"
+    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 #  join: metas_distribuidas {
 #    view_label: "14. Metas por Campus"
 #    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
