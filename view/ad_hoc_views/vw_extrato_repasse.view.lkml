@@ -70,7 +70,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
     label: "Valor Pago pelo Aluno"
-    sql: ${TABLE}."VALOR_PAGO_ALUNO" ;;
+    sql: ${TABLE}."VL_PAGO_ALUNO" ;;
   }
 
   dimension: vl_adm_aluno_pravaler {
