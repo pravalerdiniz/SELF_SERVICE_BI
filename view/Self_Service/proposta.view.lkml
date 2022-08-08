@@ -3569,7 +3569,7 @@ dimension: vl_tarifa_cadastro {
 
   measure: sum_renda_fiador {
     type: sum_distinct
-    sql_distinct_key: ${id_cpf} ;;
+    sql_distinct_key: ${cpf_aluno} ;;
     sql: ${fia_renda} ;;
     drill_fields: [id_cpf, aluno_nome, id_fia_cpf, fia_nome, aluno_email, fia_email ]
     value_format: "$ #,###.00"
@@ -3605,7 +3605,7 @@ dimension: vl_tarifa_cadastro {
 
   measure: sum_renda_aluno {
     type: sum_distinct
-    sql_distinct_key: ${id_cpf} ;;
+    sql_distinct_key: ${cpf_aluno} ;;
     sql: ${aluno_renda} ;;
     drill_fields: [id_proposta,
           id_cpf,
