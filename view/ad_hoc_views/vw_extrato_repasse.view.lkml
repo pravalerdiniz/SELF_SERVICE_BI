@@ -62,7 +62,7 @@ view: vw_extrato_repasse {
     group_label: "Dados do Repasse"
     value_format: "$ #,##0.00"
     label: "Valor Despesa de cobrança Pravaler"
-    sql: ${TABLE}."VL_DESP_COBRANCA_PRAVALER" ;;
+    sql: ${TABLE}."VL_DESPESA_COBRANCA_PRAVALER" ;;
   }
 
   dimension: vl_pago_aluno {
