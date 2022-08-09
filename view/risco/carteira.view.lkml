@@ -362,6 +362,7 @@ view: carteira {
     type: number
     label: "Ano_mês referência"
     group_label: "Dados da Tabela"
+    value_format: "0"
     description: "Ano e mês de referência do registro"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
