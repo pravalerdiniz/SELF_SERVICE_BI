@@ -2140,6 +2140,14 @@ explore: carteira {
 #Novo Modelo de Dados - Comercial - Lulinha - 29/07/22
 explore: metas_distribuidas {
   label: "Comercial - Metas Distribuídas"
+  view_label: "Metas Distribuídas"
+
+  join: dim_regional {
+    view_label: "Metas Distribuídas"
+    sql_on: ${dim_regional.id_campus_bo} = ${metas_distribuidas.id_campus};;
+    type: left_outer
+    relationship: one_to_one
+  }
 }
 
 explore: simulador_etapas {
