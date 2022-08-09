@@ -3862,6 +3862,20 @@ dimension: vl_tarifa_cadastro {
     group_label: "Sem Fiador - Teste A/B"
   }
 
+  dimension: mensalidade_inf_alu {
+    type: number
+    sql: ${TABLE}."VL_MENS_INFORMADA_ALUNO" ;;
+    group_label: "Mensalidades"
+    label: "Valor da Mensalidade Informada pelo Aluno"
+  }
+
+  dimension: mensalidade_ies {
+    type: number
+    sql: ${TABLE}."VL_MENSALIDADE_AVAL" ;;
+    group_label: "Mensalidades"
+    label: "Valor da Mensalidade da Análise IES"
+  }
+
   set: detail {
     fields: [
       id_proposta,
