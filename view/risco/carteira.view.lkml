@@ -435,4 +435,12 @@ view: carteira {
     drill_fields: []
     hidden: yes
   }
+
+  dimension: flg_ultima_base {
+    type: yesno
+    label: "Flag Mais Recente"
+    group_label: "Dados da Tabela"
+    description: "Indica se a informação é da base de Carteira mais recente ou não"
+    sql: ${TABLE}."FLG_ULTIMA_BASE" ;;
+    }
 }
