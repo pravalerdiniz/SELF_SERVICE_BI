@@ -36,6 +36,8 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Retorno do chamado:"::varchar,T.VALUE:"Retorno do chamado:"::varchar)) retorno_chamado
     ,max(coalesce(T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco:"::varchar,T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar)) flg_aluno_possui_ordem_judicial_reclameaqui
     ,max(coalesce(T.VALUE:"Motivo do cancelamento:"::varchar,T.VALUE:"Motivo do cancelamento"::varchar)) motivo_cancelamento
+    ,max(coalesce(T.VALUE:"Haverá Cancelamento:"::varchar,T.VALUE:"Haverá Cancelamento"::varchar)) havera_cancelamento
+    ,max(coalesce(T.VALUE:"Retorno da IES (Cancelamento Indeferido)"::varchar,T.VALUE:"Retorno da IES (Cancelamento Indeferido)"::varchar)) retorno_ies_cancelamento
 
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
@@ -102,6 +104,14 @@ view: orquestra_obj_campos {
     sql: ${TABLE}."MOTIVO_CANCELAMENTO" ;;
     group_label: "Dados Chamado"
     group_item_label: "Motivo Cancelamento"
+    #description: ""
+  }
+
+  dimension: havera_cancelamento {
+    type: string
+    sql: ${TABLE}."HAVERA_CANCELAMENTO" ;;
+    group_label: "Dados Chamado"
+    group_item_label: "Haverá Cancelamento?"
     #description: ""
   }
 
@@ -263,6 +273,14 @@ view: orquestra_obj_campos {
     sql: ${TABLE}."RETORNO_IES" ;;
     group_label: "Dados Chamado"
     group_item_label: "Retorno da IES"
+    #description: ""
+  }
+
+  dimension: retorno_ies_cancelamento{
+    type: string
+    sql: ${TABLE}."RETORNO_IES_CANCELAMENTO" ;;
+    group_label: "Dados Chamado"
+    group_item_label: "Retorno da IES (Cancelamento)"
     #description: ""
   }
 
