@@ -214,6 +214,7 @@ explore: status {
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab
@@ -367,6 +368,7 @@ explore: jornada {
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - instituicao.cnpj_ie,
     - instituicao.nome_fantasia,
@@ -627,6 +629,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: alunos_status {
+    view_label: "6. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
   join: aproveitamento_estoque_nok {
     view_label: "7. Aproveitamento Estoque NOK"
     sql_on:  ${proposta.gerente_atual} = ${aproveitamento_estoque_nok.gerente} and
@@ -677,6 +686,13 @@ explore: jornada {
     type: full_outer
   }
 
+  join: leads_canal_entrada {
+    view_label: "1. Jornada"
+    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 #  join: metas_distribuidas {
 #    view_label: "14. Metas por Campus"
 #    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
@@ -724,7 +740,8 @@ explore: instituicao {
     - proposta.gerente_original,
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD,
+    - financeiro.ipca_12m,
+    - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
     - jornada.var_mensalidade_cadastro_analiseies,
@@ -977,6 +994,20 @@ explore: financeiro {
     type: left_outer
   }
 
+  join: dim_ipca {
+    view_label: "1. Financeiro"
+    sql_on: ${dim_ipca.cd_mes} = ${financeiro.data_vencimento_month} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: ipca12m_atual {
+    view_label: "1. Financeiro"
+    sql_on: ${ipca12m_atual.ipca12m_atual} is not null ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
   join: financeiro_avg_vl_aquisicao {
     view_label: "1. Financeiro"
     sql_on: ${financeiro_avg_vl_aquisicao.id_contrato} = ${financeiro.id_contrato} ;;
@@ -1080,6 +1111,29 @@ join: vw_extrato_repasse {
   ;;
   relationship: one_to_one
 }
+
+  join: carteira {
+    view_label: "6. Carteira (base OT)"
+    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
+            and ${carteira.id_boleto} = ${financeiro.id_boleto};;
+    fields: [
+      carteira.nm_cedente,
+      carteira.nm_fundo,
+      carteira.data_referencia_date,
+      carteira.data_emissao_date,
+      carteira.id_seunum,
+      carteira.valor_presente,
+      carteira.valor_apropriado,
+      carteira.valor_aquisicao,
+      carteira.protesto,
+
+    ]
+    relationship: many_to_many
+    type: left_outer
+  }
+
+
 
 }
 
@@ -1225,7 +1279,8 @@ explore: proposta {
     - atribuicao_nova.perc_cpf,
     - atribuicao_nova.count_id_cpf,
     - financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD
+    - financeiro.ipca_12m,
+    - financeiro.sum_PDD
 
 
 
@@ -1466,6 +1521,7 @@ explore: alunos {
     - financeiro.perc_alunos,
     - jornada.perc_cpf,
     - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -1811,6 +1867,8 @@ explore: alunos {
     relationship: one_to_one
   }
 
+
+
   join: financeiro_extrato_titulo {
     view_label: "3.1. Extrato Titulo - Gestão"
     sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
@@ -1850,6 +1908,13 @@ explore: alunos {
   join: alunos_ativos_carteira_2 {
     view_label: "6.1 Carteira"
     sql_on: ${alunos.cpf_aluno} = ${alunos_ativos_carteira_2.tdt_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: alunos_status {
+    view_label: "1. Alunos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
     type: left_outer
     relationship: one_to_many
   }

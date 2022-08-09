@@ -60,41 +60,49 @@ view: vw_extrato_repasse {
   dimension: vl_desp_cobranca_pravaler {
     type: number
     group_label: "Dados do Repasse"
-    value_format: "0"
+    value_format: "$ #,##0.00"
     label: "Valor Despesa de cobrança Pravaler"
-    sql: ${TABLE}."VALOR_DESPESA_COBRANCA_PRAVALER" ;;
+    sql: ${TABLE}."VL_DESPESA_COBRANCA_PRAVALER" ;;
   }
 
   dimension: vl_pago_aluno {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "0"
+    value_format: "$ #,##0.00"
     label: "Valor Pago pelo Aluno"
-    sql: ${TABLE}."VALOR_PAGO_ALUNO" ;;
+    sql: ${TABLE}."VL_PAGO_ALUNO" ;;
   }
 
   dimension: vl_adm_aluno_pravaler {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "0"
+    value_format: "$ #,##0.00"
     label: "Valor Adm Aluno Pravaler"
-    sql: ${TABLE}."VALOR_ADM_ALUNO_PRAVALER" ;;
+    sql: ${TABLE}."VL_ADM_ALUNO_PRAVALER" ;;
   }
 
   dimension: vl_adm_aluno_ies {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "0"
+    value_format: "$ #,##0.00"
     label: "Valor Adm Aluno IES"
-    sql: ${TABLE}."VALOR_ADM_ALUNO_IES" ;;
+    sql: ${TABLE}."VL_ADM_ALUNO_IES" ;;
   }
 
   dimension: vl_juros_atraso {
     type: number
     group_label: "Dados do Título"
-    value_format: "0"
+    value_format: "$ #,##0.00"
     label: "Valor de Juros Atraso"
-    sql: ${TABLE}."VALOR_JUROS_ATRASO" ;;
+    sql: ${TABLE}."VL_JUROS_ATRASO" ;;
+  }
+
+  dimension: multa_atraso {
+    type: number
+    group_label: "Dados do Título"
+    value_format: "$ #,##0.00"
+    label: "Multa de Atraso"
+    sql: ${TABLE}."MULTA_ATRASO" ;;
   }
 
   measure: count {

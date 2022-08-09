@@ -362,6 +362,7 @@ view: carteira {
     type: number
     label: "Ano_mês referência"
     group_label: "Dados da Tabela"
+    value_format: "0"
     description: "Ano e mês de referência do registro"
     sql: ${TABLE}."TDT_ANO_MES" ;;
   }
@@ -435,4 +436,12 @@ view: carteira {
     drill_fields: []
     hidden: yes
   }
+
+  dimension: flg_ultima_base {
+    type: yesno
+    label: "Flag Mais Recente"
+    group_label: "Dados da Tabela"
+    description: "Indica se a informação é da base de Carteira mais recente ou não"
+    sql: ${TABLE}."FLG_ULTIMA_BASE" ;;
+    }
 }

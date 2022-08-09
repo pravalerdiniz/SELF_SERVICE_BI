@@ -3933,6 +3933,12 @@ dimension: flag_balcao {
   label: "Flag Balcão"
 }
 
+  dimension: flag_afiliados {
+    type: yesno
+    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "BICHO"."MGM"."LEADS_CANAL_ENTRADA") then 'Yes' else 'No' end ;;
+    label: "Flag Afiliados"
+  }
+
   dimension: tempo_aprovies_enviodoc {
     type: number
     sql: datediff(second,${dt_aprovado_instituicao_raw},${proposta_datas_interfile.dt_envio_documentacao_raw})/86400 ;;

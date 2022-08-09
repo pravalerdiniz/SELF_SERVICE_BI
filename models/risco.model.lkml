@@ -105,10 +105,11 @@ explore: alunos {
     - proposta.perc_cpf,
     - financeiro.count_alunos,
     - financeiro_extrato_titulo.alunos,
-    -alunos_acordo_renegociacao.count,
-    -financeiro.perc_alunos,
-    -financeiro.arrasto_dias_atraso,
-    -financeiro.sum_PDD,
+    - alunos_acordo_renegociacao.count,
+    - financeiro.perc_alunos,
+    - financeiro.arrasto_dias_atraso,
+    - financeiro.ipca_12m,
+    - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab
   ]
