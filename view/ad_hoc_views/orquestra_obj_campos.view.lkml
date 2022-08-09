@@ -37,7 +37,7 @@ view: orquestra_obj_campos {
     ,max(coalesce(T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco:"::varchar,T.VALUE:"Aluno possui Ordem Judicial ou Reclame Aqui conosco?"::varchar)) flg_aluno_possui_ordem_judicial_reclameaqui
     ,max(coalesce(T.VALUE:"Motivo do cancelamento:"::varchar,T.VALUE:"Motivo do cancelamento"::varchar)) motivo_cancelamento
     ,max(coalesce(T.VALUE:"Haverá Cancelamento:"::varchar,T.VALUE:"Haverá Cancelamento"::varchar)) havera_cancelamento
-    ,max(coalesce(T.VALUE:"Retorno da IES (Cancelamento Indeferido)"::varchar,T.VALUE:"Retorno da IES (Cancelamento Indeferido)"::varchar)) retorno_ies_cancelamento
+    ,max(coalesce(T.VALUE:"Retorno da IES (Cancelamento Indeferido):"::varchar,T.VALUE:"Retorno da IES (Cancelamento Indeferido)"::varchar)) retorno_ies_cancelamento
 
             from GRADUADO.AD_HOC.ORQUESTRA A,
       lateral flatten (input=>OBJ_CAMPOS) T
