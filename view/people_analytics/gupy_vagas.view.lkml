@@ -550,6 +550,14 @@ view: gupy_vagas {
     sql: ${TABLE}."SLA_DIAS_CORRIDOS" ;;
   }
 
+  dimension: area_rh {
+    group_label: "Dados da Vaga"
+    label: "Área (RH)"
+    description: "Indica a área da qual a vaga pertence (na visão do RH)"
+    type: string
+    sql: ${TABLE}."AREA_RH" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
