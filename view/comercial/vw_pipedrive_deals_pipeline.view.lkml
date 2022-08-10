@@ -61,7 +61,10 @@ view: vw_pipedrive_deals_pipeline {
     group_item_label: "Desc. Interesse de negócio 3"
     description: ""
     hidden: no
-    sql: ${TABLE}."DESC_INTERESSE_NEGOCIO_3" ;;
+    sql: ase when ${TABLE}."DESC_INTERESSE_NEGOCIO_3" is null
+              then 'teste'
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_3"
+         end ;;
   }
 
   dimension: desc_interesse_negocio_concat {
