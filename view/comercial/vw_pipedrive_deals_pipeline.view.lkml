@@ -39,7 +39,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 1"
     description: ""
-    hidden: no
+    hidden: yes
     sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_1" is null
               then ''
               else ${TABLE}."DESC_INTERESSE_NEGOCIO_1"
@@ -51,7 +51,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 2"
     description: ""
-    hidden: no
+    hidden: yes
     sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_2" is null
               then ''
               else ${TABLE}."DESC_INTERESSE_NEGOCIO_2"
@@ -63,7 +63,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 3"
     description: ""
-    hidden: no
+    hidden: yes
     sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_3" is null
               then ''
               else ${TABLE}."DESC_INTERESSE_NEGOCIO_3"
