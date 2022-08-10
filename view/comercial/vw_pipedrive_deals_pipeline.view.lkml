@@ -75,7 +75,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Interesse de negócio"
     description: ""
-    sql: concat(${desc_interesse_negocio_1}, ', ', ${desc_interesse_negocio_2}, ', ', ${desc_interesse_negocio_3}) ;;
+    sql: concat(${desc_interesse_negocio_1}, ' ', ${desc_interesse_negocio_2}, ' ', ${desc_interesse_negocio_3}) ;;
   }
 
   dimension: desc_origem_lead {
