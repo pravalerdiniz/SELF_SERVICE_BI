@@ -41,7 +41,7 @@ view: vw_pipedrive_deals_pipeline {
     description: ""
     hidden: no
     sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_1" is null
-              then ""
+              then 'teste'
               else ${TABLE}."DESC_INTERESSE_NEGOCIO_1"
          end ;;
   }
