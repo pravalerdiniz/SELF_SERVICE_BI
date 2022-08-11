@@ -1,37 +1,12 @@
-# The name of this view in Looker is "Bc Expectativas Mercado"
 view: bc_expectativas_mercado {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
-  sql_table_name: "AD_HOC"."BC_EXPECTATIVAS_MERCADO"
-    ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Basecalculo" in Explore.
+  sql_table_name: "AD_HOC"."BC_EXPECTATIVAS_MERCADO"  ;;
 
   dimension: basecalculo {
     type: number
+    label: "Base de Cálculo"
     sql: ${TABLE}."BASECALCULO" ;;
+    description: "Base de cálculo para as estatísticas baseada no prazo de validade das expectativas informadas pelas instituições informantes: - 0: uso das expectativas mais recentes informadas pelas instituições participantes a partir do 30º dia anterior à data de cálculo das estatísticas - 1: uso das expectativas mais recentes informadas pelas instituições participantes a partir do 4º dia útil anterior à data de cálculo das estatísticas"
   }
-
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  measure: total_basecalculo {
-    type: sum
-    sql: ${basecalculo} ;;
-  }
-
-  measure: average_basecalculo {
-    type: average
-    sql: ${basecalculo} ;;
-  }
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data {
     type: time
@@ -46,50 +21,69 @@ view: bc_expectativas_mercado {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."DATA" ;;
+    label: "Cálculo Estatistica"
+    description: "Data do cálculo da estatística"
   }
 
   dimension: datareferencia {
     type: string
+    label: "Data Referência"
+    description: "Data de referência para qual a estatística é esperada"
     sql: ${TABLE}."DATAREFERENCIA" ;;
   }
 
   dimension: desviopadrao {
     type: number
+    label: "Desvio Padrão"
+    description: "Desvio padrão das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."DESVIOPADRAO" ;;
   }
 
   dimension: indicador {
     type: string
+    label: "Indicardor"
+    description: "Indicador da taxa"
     sql: ${TABLE}."INDICADOR" ;;
   }
 
   dimension: maximo {
     type: number
+    label: "Máximo"
+    description: "Máximo das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."MAXIMO" ;;
   }
 
   dimension: media {
     type: number
+    label: "Mádia"
+    description: "Média das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."MEDIA" ;;
   }
 
   dimension: mediana {
     type: number
+    label: "Mediana"
+    description: "Mediana das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."MEDIANA" ;;
   }
 
   dimension: minimo {
     type: number
+    label: "Mínimo"
+    description: "Mínimo das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."MINIMO" ;;
   }
 
   dimension: numerorespondentes {
     type: number
+    label: "Número de Respondentes"
+    description: "Número de instituições credenciadas que forneceram suas expectativas"
     sql: ${TABLE}."NUMERORESPONDENTES" ;;
   }
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: []
   }
 }
