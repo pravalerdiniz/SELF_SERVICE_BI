@@ -2544,6 +2544,27 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FAIXA_COMPROMETIMENTO_RENDA" ;;
     }
 
+  dimension: vl_repasse_mensal {
+    type: number
+    group_label: "Dados da Proposta"
+    group_item_label: "Média VL_AQUISICAO"
+    label: "Média VL_AQUISIÇÃO"
+    description: "Valor de aquisição médio de acordo com o termo de cessão: Sum(vl_aquisição)/Nº_Parcelas"
+    value_format: "\R$ #,###.00"
+    sql: ${TABLE}."VL_REPASSE_MENSAL";;
+  }
+
+  dimension: vl_repasse_total {
+    type: number
+    group_label: "Dados da Proposta"
+    group_item_label: "Soma VL_AQUISIÇÃO"
+    label: "Soma VL_AQUISIÇÃO"
+    description: "Valor de aquisição total de acordo com o termo de cessão: Sum(vl_aquisição)"
+    value_format: "\R$ #,###.00"
+    sql: ${TABLE}."VL_REPASSE_TOTAL";;
+  }
+
+
 
 
 
