@@ -25,6 +25,12 @@ view: bc_expectativas_mercado {
     description: "Data do cálculo da estatística"
   }
 
+  measure: max_date_estatistica {
+    type: date
+    sql: MAX(${data_date}) ;;
+    label: "Data de Cálculo Mais Recente"
+  }
+
   dimension: datareferencia {
     type: string
     label: "Data Referência"
@@ -55,9 +61,15 @@ view: bc_expectativas_mercado {
 
   dimension: media {
     type: number
-    label: "Mádia"
+    label: "Média"
     description: "Média das expectativas fornecidas pelas instituições credenciadas"
     sql: ${TABLE}."MEDIA" ;;
+  }
+
+  measure: sum_media {
+    type: sum
+    label: "Média"
+    sql: ${media} ;;
   }
 
   dimension: mediana {
