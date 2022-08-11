@@ -320,6 +320,14 @@ dimension: vl_tarifa_cadastro {
     value_format: "0"
   }
 
+  measure: avg_carencia {
+    type: average
+    sql: ${carencia} ;;
+    label: "Carência Média"
+    description: "Indica a média dos dias de Carência dos contratos"
+    group_label: "Dados do Contrato"
+  }
+
 
   dimension: cet_aa {
     type: number
@@ -1848,18 +1856,65 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."SEMESTRE_FINANCIADO" ;;
   }
 
-  dimension: ticket_medio {
+########## Mensalidade Média
+
+  dimension: neg_mensalidade_media {
     type: number
     group_label: "Dados do Contrato"
-    label: "Valor Ticket Médio"
+    label: "Valor da Mensalidade Média"
     value_format: "$ #,##0.00"
     description: "Indica o valor da última mensalidade dividido pela quantidade de parcelas financiadas"
     hidden:  yes
     sql: ${TABLE}."TICKET_MEDIO" ;;
   }
 
+  measure: sum_neg_mensalidade_media {
+    type: sum
+    group_label: "Mensalidade Média"
+    group_item_label: "Soma"
+    value_format: "0"
+    link: {label:"Documentação - Mensalidade Média"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
+    sql: ${neg_mensalidade_media}  ;;
+    description: "Soma da Mensalidade Média do contrato"
+  }
 
 
+  measure: avg_neg_mensalidade_media  {
+    type: average
+    group_label: "Mensalidade Média"
+    group_item_label: "Média"
+    value_format: "0"
+    link: {label:"Documentação - Mensalidade Média"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
+    sql:${neg_mensalidade_media};;
+    description: "Média do valor da Mensalidade Média do contrato"
+  }
+
+  measure: min_neg_mensalidade_media {
+    type: min
+    group_label: "Mensalidade Média"
+    group_item_label: "Mínimo"
+    value_format: "0"
+    link: {label:"Documentação - Mensalidade Média"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
+    sql:${neg_mensalidade_media};;
+    description: "Mínimo do valor da Mensalidade Média do contrato"
+  }
+
+
+  measure: max_neg_mensalidade_media  {
+    type: max
+    group_label: "Mensalidade Média"
+    group_item_label: "Máximo"
+    value_format: "0"
+    link: {label:"Documentação - Mensalidade Média"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
+    sql:${neg_mensalidade_media};;
+    description: "Máximo do valor da mensalidade médio do contrato"
+  }
+
+  ####################################
 
   dimension: tipo_produto {
     type: string
@@ -3179,51 +3234,6 @@ dimension: vl_tarifa_cadastro {
   }
 
 
-  measure: sum_ticket_medio {
-    type: sum
-    group_label: "Ticket Médio"
-    group_item_label: "Soma"
-    value_format: "0"
-    link: {label:"Documentação - Ticket Médio"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
-    sql:${ticket_medio};;
-    description: "Soma do ticket médio do contrato"
-  }
-
-
-  measure: avg_ticket_medio  {
-    type: average
-    group_label: "Ticket Médio"
-    group_item_label: "Média"
-    value_format: "0"
-    link: {label:"Documentação - Ticket Médio"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
-    sql:${ticket_medio};;
-    description: "Média do valor do ticket médio do contrato"
-  }
-
-  measure: min_ticket_medio {
-    type: min
-    group_label: "Ticket Médio"
-    group_item_label: "Mínimo"
-    value_format: "0"
-    link: {label:"Documentação - Ticket Médio"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
-    sql:${ticket_medio};;
-    description: "Mínimo do valor do ticket médio do contrato"
-  }
-
-
-  measure: max_ticket_medio  {
-    type: max
-    group_label: "Ticket Médio"
-    group_item_label: "Máximo"
-    value_format: "0"
-    link: {label:"Documentação - Ticket Médio"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/959512599"}
-    sql:${ticket_medio};;
-    description: "Máximo do valor do ticket médio do contrato"
-  }
 
 
 
@@ -3875,6 +3885,42 @@ dimension: vl_tarifa_cadastro {
     group_label: "Mensalidades"
     label: "Valor da Mensalidade da Análise IES"
   }
+
+  measure: count_cpf {
+    type: count_distinct
+    sql_distinct_key: ${cpf_aluno};;
+    sql: ${cpf_aluno} ;;
+    label: "Contagem de CPF"
+    hidden: yes
+  }
+
+    measure: fin_ticket_medio {
+    type: number
+    sql: ${sum_mensalidade_contrato} / ${count_cpf} ;;
+    value_format: "#,##0"
+    group_label: "Dados do Contrato"
+    label: "Ticket Médio"
+    description: "Média entre (Soma das mensalidades dos Contratos / Contagem de CPFs Distintos)"
+  }
+
+  dimension_group: prazo {
+    type: duration
+    intervals: [day, month]
+    sql_start: ${data_concessao_date} ;;
+    sql_end: ${data_ult_vecto_date};;
+    label: "Prazo"
+    description: "Indica o tempo entre a data de Cessão e o último vencimento"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: prazo_medio {
+    type: average
+    sql: ${days_prazo} ;;
+    label: "Prazo Médio"
+    description: "Indica a média em Dias do prazo do contrato"
+    group_label: "Dados do Contrato"
+  }
+
 
   set: detail {
     fields: [
