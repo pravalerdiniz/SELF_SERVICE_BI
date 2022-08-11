@@ -374,6 +374,10 @@ explore: ipca_bv {
 
 }
 
+explore: b3_taxa_ref_di {
+  label: "Taxa B3"
+}
+
 explore: painel_de_carga{
   persist_with: painel_de_carga
 }

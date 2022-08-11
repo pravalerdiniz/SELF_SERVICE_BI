@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Metas Distribuidas"
 view: metas_distribuidas {
-  sql_table_name: "COMERCIAL"."METAS_DISTRIBUIDAS"
+  sql_table_name: "GRADUADO"."COMERCIAL"."METAS_DISTRIBUIDAS"
     ;;
 
   dimension: chave {

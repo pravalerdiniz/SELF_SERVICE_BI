@@ -1,7 +1,7 @@
 # The name of this view in Looker is "Simulador Etapas"
 view: simulador_etapas {
 
-  sql_table_name: "COMERCIAL"."SIMULADOR_ETAPAS"
+  sql_table_name: "GRADUADO"."COMERCIAL"."SIMULADOR_ETAPAS"
     ;;
 
   dimension: ano_mes {
