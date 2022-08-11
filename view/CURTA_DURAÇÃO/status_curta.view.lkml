@@ -135,6 +135,15 @@ view: status_curta {
     hidden: yes
   }
 
+  dimension: cpf_aluno_ajustado {
+    type: string
+    group_label: "Dados do Aluno"
+    label: "CPF do Aluno Ajustado"
+    description: "Indica o CPF do Aluno, com o formato padrão de 11 dígitos"
+    sql: cast(right(concat('000000',${cpf_aluno}),11) AS VARCHAR) ;;
+    required_access_grants: [grupo_cpf]
+  }
+
   dimension: nome_aluno {
     type: string
     sql: ${student.nome_aluno} ;;
@@ -176,26 +185,14 @@ view: status_curta {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   dimension: etapa {
     type: string
     sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.REPROVED' THEN 'Biometria Reprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PENDING' THEN 'Biometria Pendente'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
@@ -207,6 +204,7 @@ view: status_curta {
                ${TABLE}."TIPO_EVENTO" = 'MANAGEMENT.CONTRACT.SIGNED'
               THEN 'Contrato Assinado'
               WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
+
               ELSE NULL END
               ;;
     description: "Indica as etapas da jornada de contratação do aluno do curta duração"
@@ -604,10 +602,18 @@ dimension: tempo_evento_dias {
   measure: total_alunos {
     type: count_distinct
     sql: ${id_aluno} ;;
-    group_item_label: "Total de Alunos"
+    group_item_label: "Total de Alunos (ID) distintos"
+    description: "Total de Alunos (ID) distintos."
     drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date,status_curta.journey_status]
   }
 
+  measure: qtd_alunos {
+    type: count
+    #sql: ${id_aluno} ;;
+    group_item_label: "Total de Alunos (ID)."
+    description: "Total de Alunos (ID)."
+    drill_fields: [cpf_aluno,nome_aluno,nome_curso,nome_fantasia_instituicao,flg_aluno_resp_fin,telefone_aluno_1,etapa,data_evento_date,status_curta.journey_status]
+  }
   measure: total_contratos {
     type: count_distinct
     sql: ${num_contrato} ;;
