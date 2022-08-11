@@ -378,6 +378,10 @@ explore: b3_taxa_ref_di {
   label: "Taxa B3"
 }
 
+explore: bc_expectativas_mercado {
+  label: "Projeção IPCA"
+}
+
 explore: painel_de_carga{
   persist_with: painel_de_carga
 }

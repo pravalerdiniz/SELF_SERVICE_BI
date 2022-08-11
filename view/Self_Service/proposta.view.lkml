@@ -1654,40 +1654,6 @@ dimension: vl_tarifa_cadastro {
     sql: IFNULL(${TABLE}."NUM_DA_RENOVACAO",0) ;;
   }
 
-  measure: duration {
-    type: number
-    group_label: "Dados de Renovação"
-    group_item_label: "Duration"
-    sql: ${sum_vl_financiamento} * ${avg_duration_days}/${sum_vl_financiamento}/360;;
-    description: "Valor de Duration"
-    value_format: "0.00"
-
-  }
-
-  dimension: duration_month {
-    type: number
-    group_label: "Dados de Renovação"
-    label: "Meses de Duration"
-    description: "É uma regra de negócio - Indica o número de meses de Duration de acordo com o n° da renovação do aluno"
-    sql: case when ${num_da_renovacao} = 0 then 1
-          else ${num_da_renovacao} * 6 end;;
-  }
-
-  dimension: duration_days {
-    type: number
-    group_label: "Dados de Renovação"
-    label: "Dias de Duration"
-    description: "É uma regra de negócio - Indica o número de dias de Duration de acordo com o n° da renovação do aluno"
-    sql: ${duration_month} * 30;;
-  }
-
-  measure: avg_duration_days  {
-    type: average
-    group_label: "Dados de Renovação"
-    group_item_label: "Média dias de Duration"
-    sql: ${duration_days};;
-    description: "Média de dias de Duration"
-  }
 
   dimension: perc_comissao {
     type: number
