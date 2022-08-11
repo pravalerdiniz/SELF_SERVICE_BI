@@ -39,7 +39,11 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 1"
     description: ""
-    sql: ${TABLE}."DESC_INTERESSE_NEGOCIO_1" ;;
+    hidden: yes
+    sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_1" is null
+              then ''
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_1"
+         end ;;
   }
 
   dimension: desc_interesse_negocio_2 {
@@ -47,7 +51,11 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 2"
     description: ""
-    sql: ${TABLE}."DESC_INTERESSE_NEGOCIO_2" ;;
+    hidden: yes
+    sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_2" is null
+              then ''
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_2"
+         end ;;
   }
 
   dimension: desc_interesse_negocio_3 {
@@ -55,7 +63,19 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Desc. Interesse de negócio 3"
     description: ""
-    sql: ${TABLE}."DESC_INTERESSE_NEGOCIO_3" ;;
+    hidden: yes
+    sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_3" is null
+              then ''
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_3"
+         end ;;
+  }
+
+  dimension: desc_interesse_negocio_concat {
+    type: string
+    group_label: "Interesse de Negócio"
+    group_item_label: "Interesse de negócio"
+    description: ""
+    sql: concat(${desc_interesse_negocio_1}, ' ', ${desc_interesse_negocio_2}, ' ', ${desc_interesse_negocio_3}) ;;
   }
 
   dimension: desc_origem_lead {
@@ -475,6 +495,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "ID Interesse Negócio 1"
     description: ""
+    hidden: yes
     sql: ${TABLE}."ID_INTERESSE_NEGOCIO_1" ;;
   }
 
@@ -483,6 +504,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "ID Interesse Negócio 2"
     description: ""
+    hidden: yes
     sql: ${TABLE}."ID_INTERESSE_NEGOCIO_2" ;;
   }
 
@@ -491,6 +513,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "ID Interesse Negócio 3"
     description: ""
+    hidden: yes
     sql: ${TABLE}."ID_INTERESSE_NEGOCIO_3" ;;
   }
 
@@ -927,6 +950,7 @@ view: vw_pipedrive_deals_pipeline {
     group_label: "Interesse de Negócio"
     group_item_label: "Todos Interesses"
     description: ""
+    hidden: yes
     sql: ${TABLE}."TODOS_INTERESSES_NEGOCIOS_ID" ;;
   }
 

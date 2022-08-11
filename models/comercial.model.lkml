@@ -95,9 +95,6 @@ explore: projecao_formalizados_grupo_ies {
   view_label: "Projeção Formalizados - Grupo IES"
 }
 
-
-
-
 explore: vw_pipedrive_deals_pipeline {
   label: "Pipedrive Graduação"
   view_label: "1. Negócios"
