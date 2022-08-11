@@ -697,6 +697,13 @@ explore: status_curta {
     relationship: one_to_many
     fields: []
   }
+
+  join: reprov_risco_biometria {
+    view_label: "Status Curta"
+    sql_on: ${reprov_risco_biometria.aluno_id} = ${status_curta.id_aluno} ;;
+    type: left_outer
+    relationship: many_to_many
+  }
   }
 
   explore: dim_date {
