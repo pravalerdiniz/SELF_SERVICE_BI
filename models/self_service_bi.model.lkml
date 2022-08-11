@@ -2130,7 +2130,8 @@ explore: metas_distribuidas {
 
   join: dim_regional {
     view_label: "Metas Distribuídas"
-    sql_on: ${dim_regional.id_campus_bo} = ${metas_distribuidas.id_campus};;
+    sql_on: ${dim_regional.id_campus_bo} = ${metas_distribuidas.id_campus} and
+            ${dim_regional.id_ies_bo} = ${metas_distribuidas.id_instituicao};;
     type: left_outer
     relationship: one_to_one
   }
