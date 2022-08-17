@@ -322,7 +322,7 @@ view: instituicao {
   }
 
   dimension: ies_ativa {
-    type: yesno
+    type: string
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
     description:"Indica se a Instituição está ativa."
