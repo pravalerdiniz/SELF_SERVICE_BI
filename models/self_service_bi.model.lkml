@@ -535,7 +535,7 @@ explore: jornada {
 
   join: financeiro {
     view_label: "8. Financeiro"
-    sql_on: ${jornada.id_cpf} = ${financeiro.id_cpf} ;;
+    sql_on: ${jornada.id_cpf} = ${financeiro.id_cpf} and ${jornada.id_proposta} = ${financeiro.id_contrato} ;;
     relationship: one_to_many
     type: left_outer
 
