@@ -65,7 +65,9 @@ explore: beneficiados {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
   ]
 
   join: proposta {
@@ -726,7 +728,9 @@ explore: instituicao {
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
   ]
 
 
@@ -1255,7 +1259,9 @@ explore: proposta {
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
 
 
 
@@ -1490,7 +1496,9 @@ explore: alunos {
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
     - jornada.var_median_mensalidade_informada_analiseies,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
   ]
 
 

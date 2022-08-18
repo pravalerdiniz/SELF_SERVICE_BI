@@ -112,7 +112,9 @@ explore: mgm_publico_alvo {
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
     - jornada.var_median_mensalidade_informada_analiseies,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
   ]
 
   join: dim_cpf {

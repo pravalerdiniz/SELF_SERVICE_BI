@@ -3929,13 +3929,13 @@ dimension: flg_proposta_atual {
 
 dimension: flag_balcao {
   type: yesno
-  sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."MGM"."LEADS_BALCAO") then 'Yes' else 'No' end ;;
+  sql: ${leads_balcao.cpf_lead} is not null ;;
   label: "Flag Balcão"
 }
 
   dimension: flag_afiliados {
     type: yesno
-    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "BICHO"."MGM"."LEADS_CANAL_ENTRADA") then 'Yes' else 'No' end ;;
+    sql: ${leads_canal_entrada.cd_cpf_lead} is not null ;;
     label: "Flag Afiliados"
   }
 
