@@ -114,6 +114,7 @@ view: instituicao {
 
   dimension: cnpj_ie {
     type: number
+    value_format: "0"
     group_label: "Dados da Instituição"
     label: "CNPJ"
     description: "Indica o número do CNPJ da Instituição"
