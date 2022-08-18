@@ -280,6 +280,12 @@ view: solucx_transaction {
     sql: ${TABLE}."TRANSACTION_ID" ;;
   }
 
+measure:  count_transaction_id {
+  type: count_distinct
+  label: "Qtd de transações"
+  sql: ${transaction_id} ;;
+}
+
   dimension: type {
     type: string
     label: "TIPO DE REGISTRO"
