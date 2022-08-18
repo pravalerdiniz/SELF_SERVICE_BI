@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Solucx Transaction"
 view: solucx_transaction {
-  sql_table_name: "FATO"."SOLUCX_TRANSACTION"
+  sql_table_name: "VETERANO"."FATO"."SOLUCX_TRANSACTION"
     ;;
   drill_fields: [id]
 
