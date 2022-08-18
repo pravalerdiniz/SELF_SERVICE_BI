@@ -3847,14 +3847,14 @@ dimension: vl_tarifa_cadastro {
 
   dimension: flag_elegivel_semfiador_testeab {
     type: yesno
-    sql: ${proposta_sem_fiador.sem_fiador_elegivel} = '1' ;;
+    sql: ${TABLE}."FLG_ELEGIVEL_SEMFIADOR" ;;
     label: "Flag Elegível - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }
 
   dimension: flag_eleito_semfiador_testeab {
     type: yesno
-    sql: ${proposta_sem_fiador.sem_fiador_eleito} = '1' ;;
+    sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }

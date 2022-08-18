@@ -323,11 +323,11 @@ view: instituicao {
   }
 
   dimension: ies_ativa {
-    type: string
+    type: yesno
     group_label: "Dados da Instituição"
     label: "Instituição Ativa?"
     description:"Indica se a Instituição está ativa."
-    sql: case when ${ie_ativa} = 1 THEN 'Yes' ELSE 'No' END;;
+    sql: ${ie_ativa} = 1;;
   }
 
 

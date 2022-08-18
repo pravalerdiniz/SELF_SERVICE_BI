@@ -51,7 +51,9 @@ datagroup: self_service_bi_default_datagroup {
 
 explore:  fato_lead_mgm {
   label: "MGM Leads"
-
+  fields: [ALL_FIELDS *,
+    - alunos.flg_balcao
+  ]
   join: alunos {
     view_label: "Informações Alunos"
     sql_on: ${alunos.cpf_aluno} = ${fato_lead_mgm.cpf} ;;
@@ -109,7 +111,10 @@ explore: mgm_publico_alvo {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - alunos.flg_balcao,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
   ]
 
   join: dim_cpf {
@@ -147,6 +152,7 @@ explore: mgm_publico_alvo_jornada {
   fields: [ALL_FIELDS *,
     - alunos.id_cpf,
     - alunos.ativo_ano_mes,
+    - alunos.flg_balcao
   ]
 
   join: dim_cpf {

@@ -38,7 +38,7 @@ explore: gupy_candidaturas {
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
 
   join: gupy_vagas {
-    view_label: "Gypy Vagas (Base Vagas)"
+    view_label: "Gupy Vagas (Base Vagas)"
     relationship: many_to_one
     type: left_outer
     sql_on: ${gupy_candidaturas.id_vaga} = ${gupy_vagas.codigo} ;;
