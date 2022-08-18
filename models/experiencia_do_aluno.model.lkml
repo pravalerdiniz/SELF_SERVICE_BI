@@ -181,6 +181,7 @@ explore: crx_agentes_detalhes_pausas{
 
 explore: solucx {
   label: "SoluCX - NPS"
+  view_label: "1. Solucx"
   description: "Dados da ferramenta de disparo das pesquisas de NPS Transacional e Relacional."
 
 
