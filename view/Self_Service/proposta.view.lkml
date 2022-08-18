@@ -3883,7 +3883,7 @@ dimension: vl_tarifa_cadastro {
 
     measure: fin_ticket_medio {
     type: number
-    sql: ${sum_mensalidade_contrato} / ${count_cpf} ;;
+    sql: ${sum_mensalidade_contrato}/nullif(${count_cpf},0);;
     value_format: "#,##0"
     group_label: "Dados do Contrato"
     label: "Ticket Médio"
