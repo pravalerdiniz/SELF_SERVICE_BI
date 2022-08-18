@@ -200,6 +200,12 @@ explore: solucx {
     fields: [gerente]
   }
 
+  join: solucx_transaction {
+    view_label: "3. Transações"
+    type: full_outer
+    sql_on: ${solucx.id} = ${solucx_transaction.id} ;;
+    relationship: many_to_many
+  }
 }
 
 explore: solucx_nps_ajustado {
