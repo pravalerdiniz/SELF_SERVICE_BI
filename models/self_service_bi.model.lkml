@@ -212,7 +212,8 @@ explore: status {
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
-    - financeiro.sum_PDD
+    - financeiro.sum_PDD,
+    - alunos.flg_balcao
   ]
 
   join: proposta
@@ -724,7 +725,8 @@ explore: instituicao {
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
-    - jornada.tempo_enviodoc_aguass
+    - jornada.tempo_enviodoc_aguass,
+    - alunos.flg_balcao
   ]
 
 
@@ -1252,7 +1254,8 @@ explore: proposta {
     - atribuicao_nova.count_id_cpf,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
-    - financeiro.sum_PDD
+    - financeiro.sum_PDD,
+    - alunos.flg_balcao
 
 
 
@@ -1486,7 +1489,8 @@ explore: alunos {
     - jornada.var_mensalidade_cadastro_analiseies,
     - jornada.var_mensalidade_informada_analiseies,
     - jornada.var_median_mensalidade_cadastro_analiseies,
-    - jornada.var_median_mensalidade_informada_analiseies
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - alunos.flg_balcao
   ]
 
 

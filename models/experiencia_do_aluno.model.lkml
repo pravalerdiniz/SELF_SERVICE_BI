@@ -66,7 +66,8 @@ explore: interacoes {
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
   fields: [ALL_FIELDS *,
-    - ano_mes_carteira_ativa *
+    - ano_mes_carteira_ativa *,
+    - alunos.flg_balcao
   ]
   access_filter: {
     field: EMPRESA_AGENTE

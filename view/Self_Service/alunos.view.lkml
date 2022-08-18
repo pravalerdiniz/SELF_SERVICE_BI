@@ -1779,4 +1779,11 @@ measure: porc_evasao {
     description: "Indica se o aluno interagiu (abriu, recebeu, conforme a regra) com algum evento disparado por CRM (e-mail, sms, whatsapp) nos últimos 30 dias."
   }
 
+  dimension: flg_balcao {
+    type:  yesno
+    sql: ${leads_balcao.cpf_lead} is not null ;;
+    label: " Flag Balcão"
+    group_label: "Dados do Aluno"
+  }
+
 }

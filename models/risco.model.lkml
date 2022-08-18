@@ -111,7 +111,9 @@ explore: alunos {
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_eleito_semfiador_testeab
+    - proposta.flag_eleito_semfiador_testeab,
+    - leads_balcao *
+
   ]
 
   join: alunos_produtos_aprovados {
@@ -413,5 +415,11 @@ explore: alunos {
     fields: []
   }
 
+  join: leads_balcao {
+    view_label: "Alunos"
+    sql_on: ${leads_balcao.cpf_lead} = ${alunos.cpf_aluno} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
 }
