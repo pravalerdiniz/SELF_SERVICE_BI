@@ -600,6 +600,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: jornada_como_soube {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_cpf} = ${jornada_como_soube.id_cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: alunos {
     view_label: "6. Alunos"
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
