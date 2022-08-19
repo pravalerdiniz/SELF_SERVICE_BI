@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Solucx Transaction"
 view: solucx_transaction {
-  sql_table_name: "FATO"."SOLUCX_TRANSACTION"
+  sql_table_name: "VETERANO"."FATO"."SOLUCX_TRANSACTION"
     ;;
   drill_fields: [id]
 
@@ -279,6 +279,12 @@ view: solucx_transaction {
     label: "IDENTIFICADOR DA TRANSAÇÃO"
     sql: ${TABLE}."TRANSACTION_ID" ;;
   }
+
+measure:  count_transaction_id {
+  type: count_distinct
+  label: "Qtd de transações"
+  sql: ${transaction_id} ;;
+}
 
   dimension: type {
     type: string
