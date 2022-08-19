@@ -38,7 +38,7 @@ view: experimentos_germina {
     label: "Flag Grupo Tratamento"
     description: "Indica se o campo treatment faz parte de um grupo tratamento (yes) ou grupo controle (no)"
     type: yesno
-    sql:  ${TABLE}."EXPERIMENT_ID"  ;;
+    sql:  ${TABLE}."TREATMENT"  ;;
   }
 
   dimension_group: date_started {
