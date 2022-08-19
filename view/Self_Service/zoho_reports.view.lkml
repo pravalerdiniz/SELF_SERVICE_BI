@@ -39,11 +39,11 @@ view: zoho_reports {
     sql: ${TABLE}."CPF" ;;
   }
 
-  measure: total_cpf {
+  measure: total_email {
     type: count_distinct
     label: "Qtd de leads"
     description: "Quantidade de leads por evento"
-    sql: ${cpf} ;;
+    sql: ${email} ;;
   }
 
   dimension: email {
