@@ -1,7 +1,7 @@
 # The name of this view in Looker is "Zoho Reports"
 view: zoho_reports {
 
-  sql_table_name: "AD_HOC"."ZOHO_REPORTS"
+  sql_table_name: "GRADUADO"."AD_HOC"."ZOHO_REPORTS"
     ;;
 
   dimension: chave {
