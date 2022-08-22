@@ -1,30 +1,52 @@
 view: instituicao_contrato_produto_info {
   derived_table: {
     persist_for: "24 hours"
-    sql: select distinct
-        id_instituicao
-      ,f.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO
-      ,f.value:BANCO::varchar as BANCO
-      ,f.value:AGENCIA::varchar as DS_BANCO_AGENCIA
-      ,f.value:CONTA::varchar as DS_BANCO_CC
-      ,f.value:DIA_VENCIMENTO::number as DIA_VENCIMENTO
-      ,f.value:TIPO_VENCIMENTO::varchar as TIPO_VENCIMENTO
-      ,f.value:ORIGINADORES_ATIVOS::array  as ORIGINADORES_ATIVOS
-      ,f.value:DESC_ORIGINADORES_ATIVOS::array as DESC_ORIGINADORES_ATIVOS
-      ,f.value:ORIGINADORES_INATIVOS::array as ORIGINADORES_INATIVOS
-      ,f.value:DESC_ORIGINADORES_INATIVOS::array as DESC_ORIGINADORES_INATIVOS
-      ,f.value:PERC_DESAGIO::float as PERC_DESAGIO
-      ,f.value:PERC_COMISSAO::float as PERC_COMISSAO
-      ,f.value:VL_DIAS_WP::number as VL_DIAS_WO
-      ,f.value:FLG_WO::boolean as FLG_WO
-      ,f.value:ID_PRODUTO::varchar as ID_PRODUTO
-      ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
-      ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
-      ,f.value:FLG_CORTE::boolean as FLG_CORTE
-      ,f.value:MODALIDADE::varchar as MODALIDADE_RISCO
-      from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
-      lateral flatten (input => ies_contrato) f
-       ;;
+    sql:SELECT id_instituicao
+      , ID_IES_CONTRATO
+      ,f2.BANCO
+      ,f2.DS_BANCO_AGENCIA
+      ,f2.DS_BANCO_CC
+      ,f2.DIA_VENCIMENTO
+      ,f2.TIPO_VENCIMENTO
+      ,f2.ORIGINADORES_ATIVOS
+      ,f2.DESC_ORIGINADORES_ATIVOS
+      ,aux.value::string as DESC_ORIGINADORES_ATIVOS_STR
+      ,f2.ORIGINADORES_INATIVOS
+      ,f2.DESC_ORIGINADORES_INATIVOS
+      ,f2.PERC_DESAGIO
+      ,f2.PERC_COMISSAO
+      ,f2.VL_DIAS_WO
+      ,f2.FLG_WO
+      ,f2.ID_PRODUTO
+      ,f2.NM_PRODUTO
+      ,f2.FLG_ATIVO
+      ,f2.FLG_CORTE
+      ,f2.MODALIDADE_RISCO FROM
+          (select distinct
+            id_instituicao
+          ,f.value:ID_IES_CONTRATO::int as ID_IES_CONTRATO
+          ,f.value:BANCO::varchar as BANCO
+          ,f.value:AGENCIA::varchar as DS_BANCO_AGENCIA
+          ,f.value:CONTA::varchar as DS_BANCO_CC
+          ,f.value:DIA_VENCIMENTO::number as DIA_VENCIMENTO
+          ,f.value:TIPO_VENCIMENTO::varchar as TIPO_VENCIMENTO
+          ,f.value:ORIGINADORES_ATIVOS::array  as ORIGINADORES_ATIVOS
+          ,f.value:DESC_ORIGINADORES_ATIVOS::array as DESC_ORIGINADORES_ATIVOS
+          ,f.value:ORIGINADORES_INATIVOS::array as ORIGINADORES_INATIVOS
+          ,f.value:DESC_ORIGINADORES_INATIVOS::array as DESC_ORIGINADORES_INATIVOS
+          ,f.value:PERC_DESAGIO::float as PERC_DESAGIO
+          ,f.value:PERC_COMISSAO::float as PERC_COMISSAO
+          ,f.value:VL_DIAS_WP::number as VL_DIAS_WO
+          ,f.value:FLG_WO::boolean as FLG_WO
+          ,f.value:ID_PRODUTO::varchar as ID_PRODUTO
+          ,f.value:NM_PRODUTO::varchar  NM_PRODUTO
+          ,f.value:FLG_ATIVO::boolean as FLG_ATIVO
+          ,f.value:FLG_CORTE::boolean as FLG_CORTE
+          ,f.value:MODALIDADE::varchar as MODALIDADE_RISCO
+          from GRADUADO.SELF_SERVICE_BI.INSTITUICAO a,
+          lateral flatten (input => ies_contrato) f
+          ) f2,
+      lateral flatten(input => f2.DESC_ORIGINADORES_ATIVOS) aux;;
   }
 
   measure: count {
@@ -109,6 +131,14 @@ view: instituicao_contrato_produto_info {
     label: "Descrição dos Originadores Ativos"
     description: "Indica os originadores que tem contrato ativo com a instituição"
     sql: ${TABLE}."DESC_ORIGINADORES_ATIVOS" ;;
+  }
+
+  dimension: desc_originador_ativo {
+    type: string
+    group_label: "Originador - Ativo"
+    label: "Descrição do Originador Ativo"
+    description: "Indica os originadores que tem contrato ativo com a instituição"
+    sql: ${TABLE}."DESC_ORIGINADORES_ATIVOS_STR" ;;
   }
 
   dimension: modalidade_risco {

@@ -1120,7 +1120,7 @@ join: vw_extrato_repasse {
       carteira.valor_apropriado,
       carteira.valor_aquisicao,
       carteira.protesto,
-
+      flg_ultima_base
     ]
     relationship: many_to_many
     type: left_outer
