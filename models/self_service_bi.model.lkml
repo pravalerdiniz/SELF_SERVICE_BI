@@ -258,6 +258,13 @@ explore: status {
     type: left_outer
   }
 
+  join: base_cruzeiro_cs {
+    view_label: "6. Base Alunos Cruzeiro"
+    sql_on: ${base_cruzeiro_cs.id_cpf} = ${status.id_cpf} ;;
+    relationship: one_to_many
+    type: full_outer
+  }
+
 
 }
 
