@@ -66,7 +66,8 @@ explore: interacoes {
   view_label: "Interações - Tickets"
   description: "Apresenta os dados de interações realizadas pela Central de Atendimento"
   fields: [ALL_FIELDS *,
-    - ano_mes_carteira_ativa *
+    - ano_mes_carteira_ativa *,
+    - alunos.flg_balcao
   ]
   access_filter: {
     field: EMPRESA_AGENTE
@@ -180,6 +181,7 @@ explore: crx_agentes_detalhes_pausas{
 
 explore: solucx {
   label: "SoluCX - NPS"
+  view_label: "1. Solucx"
   description: "Dados da ferramenta de disparo das pesquisas de NPS Transacional e Relacional."
 
 
@@ -198,6 +200,12 @@ explore: solucx {
     fields: [gerente]
   }
 
+  join: solucx_transaction {
+    view_label: "3. Transações"
+    type: full_outer
+    sql_on: ${solucx.id} = ${solucx_transaction.id} ;;
+    relationship: many_to_many
+  }
 }
 
 explore: solucx_nps_ajustado {

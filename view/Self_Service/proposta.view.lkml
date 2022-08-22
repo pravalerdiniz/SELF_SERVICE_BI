@@ -317,13 +317,14 @@ dimension: vl_tarifa_cadastro {
     link: {label:"Documentação - Dias de Carência"
     url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/941293785"}
     sql: ${TABLE}."CARENCIA" ;;
-    value_format: "0"
+    value_format: "#,##0.00"
   }
 
   measure: avg_carencia {
     type: average
     sql: ${carencia} ;;
     label: "Carência Média"
+    value_format: "#,##0.00"
     description: "Indica a média dos dias de Carência dos contratos"
     group_label: "Dados do Contrato"
   }
@@ -3847,14 +3848,14 @@ dimension: vl_tarifa_cadastro {
 
   dimension: flag_elegivel_semfiador_testeab {
     type: yesno
-    sql: ${proposta_sem_fiador.sem_fiador_elegivel} = '1' ;;
+    sql: ${TABLE}."FLG_ELEGIVEL_SEMFIADOR" ;;
     label: "Flag Elegível - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }
 
   dimension: flag_eleito_semfiador_testeab {
     type: yesno
-    sql: ${proposta_sem_fiador.sem_fiador_eleito} = '1' ;;
+    sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
   }
@@ -3883,7 +3884,7 @@ dimension: vl_tarifa_cadastro {
 
     measure: fin_ticket_medio {
     type: number
-    sql: ${sum_mensalidade_contrato} / ${count_cpf} ;;
+    sql: ${sum_mensalidade_contrato}/nullif(${count_cpf},0);;
     value_format: "#,##0"
     group_label: "Dados do Contrato"
     label: "Ticket Médio"
@@ -3904,6 +3905,7 @@ dimension: vl_tarifa_cadastro {
     type: average
     sql: ${days_prazo} ;;
     label: "Prazo Médio"
+    value_format: "#,##0.00"
     description: "Indica a média em Dias do prazo do contrato"
     group_label: "Dados do Contrato"
   }

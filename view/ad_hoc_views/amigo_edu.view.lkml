@@ -26,6 +26,7 @@ view: amigo_edu {
             (EXTRACT(DOY FROM ${data_raw}) = EXTRACT(DOY FROM GETDATE())))  ;;
   }
 
+
   dimension_group: data {
     type: time
     timeframes: [
