@@ -691,6 +691,13 @@ explore: jornada {
     relationship: one_to_many
   }
 
+  join: alunos_como_soube {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.aluno_cpf}  = ${alunos_como_soube.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 #  join: metas_distribuidas {
 #    view_label: "14. Metas por Campus"
 #    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
