@@ -35,7 +35,7 @@ explore: historico_demograficos {
 
 explore: historico_turnover {
   label: "Histórico de Turnovers"
-  view_label: "Dados Turonver"
+  view_label: "Dados Turnover"
   description: "Informações históricas sobre Turnover dos colaboradores do Pravaler"
 }
 

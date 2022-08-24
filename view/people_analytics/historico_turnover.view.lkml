@@ -213,6 +213,13 @@ view: historico_turnover {
     sql: ${TABLE}."UNIDADE_NEGOCIO" ;;
   }
 
+  dimension: matricula {
+    view_label: "Dados Gerais"
+    label: "Matrícula"
+    type: string
+    sql: ${TABLE}."MATRICULA" ;;
+  }
+
   dimension: tempo_casa_extenso {
     view_label: "Datas e Períodos"
     label: "Tempo de Casa por extenso"
@@ -277,6 +284,7 @@ view: historico_turnover {
 
   dimension: ordem_tempo_casa {
     type: number
+    view_label: "Datas e Períodos"
     label: "Ordem - Tempo de casa"
     sql: ${ordem_tempo_casa_aux} ;;
     description: "Este campo segue uma regra de negócio para ordenarmos de 1 a 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
