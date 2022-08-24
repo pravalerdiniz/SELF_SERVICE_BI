@@ -33,6 +33,12 @@ explore: historico_demograficos {
 
 }
 
+explore: historico_turnover {
+  label: "Histórico de Turnovers"
+  view_label: "Dados Turonver"
+  description: "Informações históricas sobre Turnover dos colaboradores do Pravaler"
+}
+
 explore: gupy_candidaturas {
   label: "Dados sobre as candidaturas na GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"
