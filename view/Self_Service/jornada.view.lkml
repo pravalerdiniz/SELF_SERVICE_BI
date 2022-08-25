@@ -1748,7 +1748,8 @@ dimension: flg_d1 {
     hidden: no
     group_item_label: "Ciclo de Renovação (Aprov Behavior)"
     description: "Informa o ciclo da proposta de renovação do aluno de acordo com a data de Aprovação Behavior"
-    sql: case when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
+    sql: case when ${dt_aprovado_behavior_date} between '2021-06-01' and '2021-10-31' then '2021.2'
+              when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
               when ${dt_aprovado_behavior_date} between '2022-06-01' and '2022-10-31' then '2022.2'
               else 'Outro' end;;
   }
@@ -3929,13 +3930,13 @@ dimension: flg_proposta_atual {
 
 dimension: flag_balcao {
   type: yesno
-  sql: ${leads_balcao.cpf_lead} is not null ;;
+  sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."MGM"."LEADS_BALCAO") then 'Yes' else 'No' end;;
   label: "Flag Balcão"
 }
 
   dimension: flag_afiliados {
     type: yesno
-    sql: ${leads_canal_entrada.cd_cpf_lead} is not null ;;
+    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "BICHO"."MGM"."LEADS_CANAL_ENTRADA") then 'Yes' else 'No' end ;;
     label: "Flag Afiliados"
   }
 

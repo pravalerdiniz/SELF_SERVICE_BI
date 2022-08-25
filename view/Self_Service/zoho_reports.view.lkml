@@ -1,15 +1,15 @@
 # The name of this view in Looker is "Zoho Reports"
 view: zoho_reports {
 
-  sql_table_name: "AD_HOC"."ZOHO_REPORTS"
+  sql_table_name: "GRADUADO"."AD_HOC"."ZOHO_REPORTS"
     ;;
 
-  dimension: cpf_evento {
+  dimension: chave {
     type: string
     label: "Chave"
     primary_key: yes
     hidden: yes
-    sql: concat(${added_date},${analista},${cpf},${nome_evento_ies}) ;;
+    sql: concat(${added_date},${analista},${email},${nome_evento_ies}) ;;
   }
 
   dimension_group: added {
@@ -39,11 +39,11 @@ view: zoho_reports {
     sql: ${TABLE}."CPF" ;;
   }
 
-  measure: total_cpf {
+  measure: total_email {
     type: count_distinct
     label: "Qtd de leads"
     description: "Quantidade de leads por evento"
-    sql: ${cpf} ;;
+    sql: ${email} ;;
   }
 
   dimension: email {
