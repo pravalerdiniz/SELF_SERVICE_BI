@@ -3,7 +3,6 @@ view: vw_extrato_repasse {
     ;;
 
   dimension: cpf {
-    primary_key: yes
     type: number
     group_label: "Dados do Aluno"
     label: "CPF do Aluno"
@@ -28,6 +27,7 @@ view: vw_extrato_repasse {
 
   dimension: num_boleto {
     type: number
+    primary_key: yes
     group_label: "Dados do Título"
     label: "SEUNUM"
     sql: ${TABLE}."NUM_BOLETO" ;;
@@ -39,6 +39,15 @@ view: vw_extrato_repasse {
     value_format: "$ #,##0.00"
     label: "Valor da Comissão Pravaler"
     sql: ${TABLE}."VL_COMISSAO_PRAVALER" ;;
+  }
+
+  measure: sum_comissao {
+    type: sum
+    sql_distinct_key: ${num_boleto} ;;
+    group_label: "Dados de Repasse"
+    value_format: "$ #,##0.00"
+    label: "Soma Comissão Pravaler"
+    sql: ${vl_comissao_pravaler} ;;
   }
 
   dimension: vl_debito_total {
@@ -55,6 +64,14 @@ view: vw_extrato_repasse {
     value_format: "$ #,##0.00"
     label: "Valor de Repasse Total IES"
     sql: ${TABLE}."VL_REPASSE_TOTAL_IES" ;;
+  }
+
+  measure: sum_repasse_total {
+    type: sum
+    group_label: "Dados de Repasse"
+    value_format: "$ #,##0.00"
+    label: "Soma Repasse Total IES"
+    sql: ${vl_repasse_total_ies} ;;
   }
 
   dimension: vl_desp_cobranca_pravaler {

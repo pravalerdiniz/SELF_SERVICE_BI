@@ -928,7 +928,7 @@ explore: financeiro {
 
   join: financeiro_extrato_titulo {
     view_label: "1.1 Extrato Título"
-    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo} ;;
+    sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
     relationship: one_to_many
     type: left_outer
   }
@@ -1126,7 +1126,6 @@ explore: proposta {
   view_label: "1. Proposta"
   description: "Apresenta os dados de todas as propostas do PRAVALER"
   fields: [ALL_FIELDS *,
-
     - status.id_cpf,
     - status.id_elegivel,
     - status.id_proposta,
@@ -1262,10 +1261,6 @@ explore: proposta {
     - alunos.flg_balcao,
     - jornada.flag_balcao,
     - jornada.flag_afiliados
-
-
-
-
   ]
 
 
@@ -1432,6 +1427,14 @@ explore: proposta {
     sql_on: ${dim_cpf.id_cpf} = ${proposta.id_cpf} ;;
     relationship: one_to_many
     type: left_outer
+  }
+
+  join: vw_extrato_repasse {
+    sql_on: ${proposta.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
+    and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
+    relationship: one_to_one
+    type: left_outer
+
   }
 
 }
