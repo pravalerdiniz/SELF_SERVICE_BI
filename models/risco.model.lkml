@@ -425,7 +425,7 @@ explore: alunos {
 
   join: jornada {
     view_label: "Jornada"
-    sql_on: ${alunos.cpf_aluno} = ${jornada.cpf_aluno_proposta} and  ${alunos.id_proposta_atual} = ${jornada.id_proposta} ;;
+    sql_on: ${alunos.id_cpf} = ${jornada.id_cpf} and  ${alunos.id_proposta_atual} = ${jornada.id_proposta} ;;
     type: left_outer
     relationship: one_to_many
   }
