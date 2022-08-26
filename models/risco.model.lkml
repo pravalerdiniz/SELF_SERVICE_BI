@@ -112,7 +112,8 @@ explore: alunos {
     - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab,
-    - leads_balcao *
+    - leads_balcao *,
+    - jornada *
 
   ]
 
@@ -422,4 +423,10 @@ explore: alunos {
     type: left_outer
   }
 
+  join: jornada {
+    view_label: "Jornada"
+    sql_on: ${alunos.cpf_aluno} = ${jornada.cpf_aluno_proposta} and  ${alunos.id_proposta_atual} = ${jornada.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 }
