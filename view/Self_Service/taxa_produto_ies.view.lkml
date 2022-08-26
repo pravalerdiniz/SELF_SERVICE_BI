@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Taxa Produto Ies"
 view: taxa_produto_ies {
-  sql_table_name: "AD_HOC"."TAXA_PRODUTO_IES"
+  sql_table_name: "GRADUADO"."AD_HOC"."TAXA_PRODUTO_IES"
     ;;
 
 
