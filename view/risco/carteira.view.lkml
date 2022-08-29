@@ -304,6 +304,7 @@ view: carteira {
 
   dimension: num_contrato {
     type: number
+    value_format: "0"
     label: "ID Contrato"
     group_label: "Dados do Contrato"
     description: "Indica do ID identificador do contrato do Aluno (ID Contrato)"
@@ -312,6 +313,7 @@ view: carteira {
 
   dimension: num_parcela {
     type: number
+    value_format: "0"
     label: "Número da Parcela"
     group_label: "Dados do Título"
     description: "Indica o número da parcela do boleto do aluno"
@@ -385,6 +387,7 @@ view: carteira {
 
   dimension: valor_presente {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor Presente"
     group_label: "Dados do Título"
     description: "Indica o valor presente da parcela  do aluno"
@@ -401,6 +404,7 @@ view: carteira {
 
   dimension: vl_face {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor de Face"
     group_label: "Dados do Título"
     description: "Valor de face é o valor atualizado, ou seja, para fundos que realizam baixas parciais pode haver alteração dos valores"
@@ -409,6 +413,7 @@ view: carteira {
 
   dimension: vl_face_original {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor de Face Original"
     group_label: "Dados do Título"
     description: "A CONFIRMAR"
