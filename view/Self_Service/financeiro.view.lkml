@@ -1593,6 +1593,7 @@ foi gerado por um pagamento menor do boleto anterior."
     description: "Soma do valor total em atraso. O valor considerado para este cálculo é o 'Valor Total' do boleto"
   }
 
+
   measure: count_pagos {
     type: count_distinct
     sql: ${id_cpf} ;;
