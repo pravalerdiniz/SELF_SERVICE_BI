@@ -862,7 +862,7 @@ view: interacoes {
 
   dimension: nota_monitoramento{
     type: number
-    group_item_label: "Nota"
+    group_item_label: "Nota mon"
     group_label: "Dados de Monitoria"
     link: {
       label: "Documentação - Nota de Monitoramento "
@@ -870,7 +870,7 @@ view: interacoes {
     }
     description: "Este campo é uma regra de negócio*.Indica a nota de monitoria."
     sql: ${TABLE}."NOTA" ;;
-    hidden: yes
+    hidden: no
   }
 
   measure: nota_monitoramento_measure{
@@ -997,7 +997,7 @@ view: interacoes {
     group_item_label: "Nota Média Sem NCG"
     group_label: "Dados de Monitoria"
     description: "Indica a nota média sem NCG da monitoria."
-    sql: ${TABLE}."valor_nota_sem_ncg" ;;
+    sql: ${valor_nota_sem_ncg} ;;
     #value_format: "#.#,00"
   }
 
@@ -1096,7 +1096,7 @@ view: interacoes {
     group_item_label: "Valor Nota"
     group_label: "Dados de Monitoria"
     description: "Indica qual a nota da monitoria"
-    sql: ${TABLE}."VL_NOTA" ;;
+    sql: ${TABLE}."NOTA" ;;
   }
 
   measure: media_nota{
@@ -1104,7 +1104,7 @@ view: interacoes {
     group_item_label: "Nota Média"
     group_label: "Dados de Monitoria"
     description: "Indica a nota média da monitoria."
-    sql: ${TABLE}."valor_nota" ;;
+    sql: ${valor_nota} ;;
     #value_format: "#.#,00"
   }
 
@@ -1186,8 +1186,6 @@ view: interacoes {
     label: "Total de Abandono"
     description: "Total ligações abandonadas"
     sql: ${total_abandono};;
-
-
   }
 
   measure: count {
