@@ -4,6 +4,10 @@
      sql: SELECT ID_ALUNO, TIPO_EVENTO
           FROM  VETERANO.CURTA.STATUS s
           where s.TIPO_EVENTO IN ('STUDENT.RISK.DISAPPROVED', 'STUDENT.IDENTIFICATION.REPROVED')
+            AND ID_ALUNO NOT IN (SELECT ID_ALUNO
+                                  FROM  VETERANO.CURTA.STATUS aux
+                                  where aux.TIPO_EVENTO IN ('STUDENT.RISK.APPROVED')
+                                  )
        ;;
    }
 
