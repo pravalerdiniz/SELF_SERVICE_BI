@@ -4,6 +4,10 @@
      sql: SELECT ID_ALUNO, TIPO_EVENTO
           FROM  VETERANO.CURTA.STATUS s
           where s.TIPO_EVENTO IN ('STUDENT.RISK.DISAPPROVED', 'STUDENT.IDENTIFICATION.REPROVED')
+            AND ID_ALUNO NOT IN (SELECT ID_ALUNO
+                                  FROM  VETERANO.CURTA.STATUS aux
+                                  where aux.TIPO_EVENTO IN ('STUDENT.RISK.APPROVED')
+                                  )
        ;;
    }
 
@@ -16,7 +20,7 @@
    }
 
    dimension: reprov_risk_biometry {
-     description: "Aluno (ID) foi reprovado na análise de risco ou na biometria."
+     description: "Evento em que o aluno foi reprovado (Risco ou Biometria)."
      type: string
      sql: ${TABLE}."TIPO_EVENTO" ;;
    }
