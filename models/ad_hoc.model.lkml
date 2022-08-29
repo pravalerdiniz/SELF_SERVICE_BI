@@ -389,3 +389,29 @@ explore: painel_de_carga{
 explore: twoclix_detalhes_avaliacao {
   label: "TwoClix Detalhes Avaliação"
 }
+
+explore: correcao_ipca {
+  label: "1. Correção IPCA"
+  view_label: "1. Correção IPCA"
+
+  join: carteira {
+    view_label: "2. Carteira (base OT)"
+    sql_on: ${carteira.id_cpf} = ${correcao_ipca.id_cpf}
+            --and ${carteira.id_alu_contrato} = ${correcao_ipca.id_contrato}
+            and ${carteira.data_vencimento_date} = ${correcao_ipca.data_vencimento_date};;
+    fields: [
+      carteira.nm_cedente,
+      carteira.nm_fundo,
+      carteira.data_referencia_date,
+      carteira.data_emissao_date,
+      carteira.id_seunum,
+      carteira.valor_presente,
+      carteira.valor_apropriado,
+      carteira.valor_aquisicao,
+      carteira.protesto,
+      flg_ultima_base
+    ]
+    relationship: many_to_many
+    type: left_outer
+  }
+}
