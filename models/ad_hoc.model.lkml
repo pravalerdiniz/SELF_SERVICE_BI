@@ -411,7 +411,19 @@ explore: correcao_ipca {
       carteira.protesto,
       flg_ultima_base
     ]
-    relationship: many_to_many
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: financeiro {
+    view_label: "3. Financeiro"
+    sql_on: ${financeiro.id_cpf} = ${correcao_ipca.id_cpf}
+            and ${financeiro.id_contrato} = ${correcao_ipca.id_contrato}
+            and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto};;
+    fields: [
+      financeiro.flg_boleto_pago
+    ]
+    relationship: one_to_one
     type: left_outer
   }
 }

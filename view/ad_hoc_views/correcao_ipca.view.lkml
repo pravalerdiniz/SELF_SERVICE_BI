@@ -8,7 +8,7 @@ view: correcao_ipca {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
+  # Here's what a typical dimension looks like in Lid_boookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Cd Mes Ipca" in Explore.
 
@@ -26,10 +26,11 @@ view: correcao_ipca {
 
   dimension: cpf_aluno {
     type: number
+    group_label: "Dados do Aluno"
     label: "CPF"
-    description: "CPF do aluno"
+    description: "CPF do aluno sem zero a esquerda."
     sql: ${TABLE}."CPF" ;;
-    hidden: yes
+    hidden: no
   }
 
   dimension: cpf_aluno_ajustado {
@@ -155,7 +156,7 @@ view: correcao_ipca {
   }
 
   dimension: id_boleto {
-    type: number
+    type: string
     group_label: "Dados do Boleto"
     label: "ID Boleto"
     description: "Indica o ID único do Boleto."
@@ -170,19 +171,19 @@ view: correcao_ipca {
   }
 
   dimension: id_cpf {
-    type: number
+    type: string
     group_label: "Dados do Aluno"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
   dimension: id_fundo_investimento {
-    type: number
+    type: string
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
     hidden: no
   }
 
   dimension: id_seunum {
-    type: number
+    type: string
     sql: ${TABLE}."ID_SEUNUM" ;;
   }
 
