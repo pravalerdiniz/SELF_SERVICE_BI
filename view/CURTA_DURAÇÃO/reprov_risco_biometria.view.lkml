@@ -20,7 +20,7 @@
    }
 
    dimension: reprov_risk_biometry {
-     description: "Aluno (ID) foi reprovado na análise de risco ou na biometria."
+     description: "Evento em que o aluno foi reprovado (Risco ou Biometria)."
      type: string
      sql: ${TABLE}."TIPO_EVENTO" ;;
    }
