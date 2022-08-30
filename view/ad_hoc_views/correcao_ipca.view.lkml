@@ -187,8 +187,9 @@ view: correcao_ipca {
     sql: ${TABLE}."ID_SEUNUM" ;;
   }
 
-  dimension: ipca {
+  dimension: vl_ipca {
     type: number
+    hidden: yes
     sql: ${TABLE}."IPCA" ;;
   }
 
@@ -230,23 +231,33 @@ view: correcao_ipca {
     type: sum
     description: "Soma dos valores de boleto."
     sql: ${vl_boleto} ;;
+    value_format: "\R$ #,###.00"
   }
 
   measure: sum_boleto_ipca {
     type: sum
     description: "Soma dos valores de boleto com taxa IPCA_12M aplicada."
     sql: ${vl_boleto_ipca} ;;
+    value_format: "\R$ #,###.00"
   }
 
   measure: sum_aquisicao {
     type: sum
     description: "Soma dos valores de aquisição do boleto."
     sql: ${vl_aquisicao} ;;
+    value_format: "\R$ #,###.00"
   }
 
   measure: sum_aquisicao_vp {
     type: sum
     description: "Soma dos valores de aquisição (Valor Presente) do boleto."
     sql: ${vl_presente_aquisicao} ;;
+    value_format: "\R$ #,###.00"
+  }
+  measure: sum_ipca {
+    type: sum
+    description: "Soma dos valores de *reajuste* do IPCA."
+    value_format: "\R$ #,###.00"
+    sql: ${vl_ipca} ;;
   }
 }
