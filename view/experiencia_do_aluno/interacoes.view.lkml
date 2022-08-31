@@ -1159,6 +1159,52 @@ view: interacoes {
     sql: ${TABLE}."EMPRESA_AGENTE" ;;
   }
 
+  dimension: avaliado{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Avaliado"
+    description: "Indica o nome do avaliado"
+    sql: ${TABLE}."NM_AVALIADO" ;;
+  }
+
+  dimension: planilha{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Planilha"
+    sql: ${TABLE}."PLANILHA" ;;
+  }
+
+  dimension: nome_responsavel_fdbk{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Nome Resp. FDBK"
+    description: "Indica o nome do responsavel pelo faceback"
+    sql: ${TABLE}."NM_RESPONSAVEL_FDBK" ;;
+  }
+
+  dimension: ciclo{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Ciclo"
+    sql: ${TABLE}."CICLO" ;;
+  }
+
+  dimension: periodo{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Periodo"
+    description: "Indica qual o periodo que foi feita a avaliação"
+    sql: ${TABLE}."PERIODO" ;;
+  }
+
+  dimension: tempo_monitoria {
+    type: number
+    group_item_label: "Duração da Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o tempo de duração em segundos da monitoria"
+    sql: ${TABLE}."TEMPO_MONITORIA_SEG"/86400.0 ;;
+    value_format: "[hh]:mm:ss"
+  }
 
 
   measure: media_primeiro_tempo_resposta {
