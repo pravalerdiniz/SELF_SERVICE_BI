@@ -887,6 +887,22 @@ view: gupy_candidaturas {
     sql: ${TABLE}."DATA_ADMISSAO_INTERNO" ;;
   }
 
+  dimension: ordem_macroetapa {
+    group_label: "Dados da Candidatura"
+    label: "Ordem da Macroetapa"
+    description: "Indica a ordem da etapa (ascendente)"
+    type: number
+    sql: ${TABLE}."ORDEM_MACROETAPA" ;;
+  }
+
+  dimension: macroetapa {
+    group_label: "Dados da Candidatura"
+    label: "Macroetapa"
+    description: "Nome da macroetapa"
+    type: string
+    sql: ${TABLE}."MACROETAPA" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
