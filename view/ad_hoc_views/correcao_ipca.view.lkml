@@ -190,7 +190,7 @@ view: correcao_ipca {
   dimension: vl_ipca {
     type: number
     hidden: yes
-    sql: ${TABLE}."IPCA" ;;
+    sql: ${TABLE}."VL_ACRESCIMO_IPCA" ;;
   }
 
   dimension: tx_ipca12_m {
