@@ -380,6 +380,14 @@ explore: b3_taxa_ref_di {
 
 explore: bc_expectativas_mercado {
   label: "Projeção IPCA"
+
+  join: bc_expec_max_date {
+    view_label: "Bc Expectativas Mercado"
+    sql_on: ${bc_expectativas_mercado.data_date} = ${bc_expec_max_date.bc_max_date}
+            and ${bc_expectativas_mercado.datareferencia} = ${bc_expec_max_date.datareferencia};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: painel_de_carga{

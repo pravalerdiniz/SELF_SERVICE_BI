@@ -32,10 +32,10 @@ view: bc_expectativas_mercado {
   }
 
   dimension: datareferencia {
-    type: string
+    type: date_month
     label: "Data Referência"
     description: "Data de referência para qual a estatística é esperada"
-    sql: ${TABLE}."DATAREFERENCIA" ;;
+    sql: date_from_parts (substr(${TABLE}."DATAREFERENCIA", 4,5),substr(${TABLE}."DATAREFERENCIA", 1, 2),1) ;;
   }
 
   dimension: desviopadrao {
@@ -47,7 +47,7 @@ view: bc_expectativas_mercado {
 
   dimension: indicador {
     type: string
-    label: "Indicardor"
+    label: "Indicador"
     description: "Indicador da taxa"
     sql: ${TABLE}."INDICADOR" ;;
   }
