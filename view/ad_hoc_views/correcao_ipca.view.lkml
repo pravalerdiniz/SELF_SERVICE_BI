@@ -13,6 +13,7 @@ view: correcao_ipca {
   # This dimension will be called "Cd Mes Ipca" in Explore.
 
   dimension: cd_mes_ipca {
+    group_label: "Dados da taxa IPCA"
     type: string
     label: "Código MMYY IPCA"
     description: "Código de mês e ano da taxa IPCA aplicada."
@@ -144,6 +145,9 @@ view: correcao_ipca {
   }
 
   dimension: ds_fundo_investimento {
+    group_label: "Dados do Fundo"
+    description: "Nome do fundo de investimento."
+    label: "Fundo de investimento."
     type: string
     sql: ${TABLE}."DS_FUNDO_INVESTIMENTO" ;;
     hidden: no
@@ -165,24 +169,30 @@ view: correcao_ipca {
   }
 
   dimension: id_contrato {
+    description: "Identificador único do contrato."
     group_label: "Dados do Contrato"
     type: string
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
   dimension: id_cpf {
+    description: "Identificador único do CPF do aluno."
     type: string
     group_label: "Dados do Aluno"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
   dimension: id_fundo_investimento {
+    group_label: "Dados do Fundo"
+    description: "Identificador único do Fundo de Investimento."
     type: string
     sql: ${TABLE}."ID_FUNDO_INVESTIMENTO" ;;
     hidden: no
   }
 
   dimension: id_seunum {
+    group_label: "Dados do Boleto"
+    description: "Identificador único do seunum (boleto)."
     type: string
     sql: ${TABLE}."ID_SEUNUM" ;;
   }
@@ -194,6 +204,9 @@ view: correcao_ipca {
   }
 
   dimension: tx_ipca12_m {
+    group_label: "Dados da taxa IPCA"
+    description: "Taxa IPCA acumulada nos últimos 12 meses."
+    label: "Taxa IPCA"
     type: number
     sql: ${TABLE}."TX_IPCA12M" ;;
   }
@@ -223,7 +236,9 @@ view: correcao_ipca {
   }
 
   measure: count {
-    type: count
+    description: "Contagem de quantidade de boletos."
+    type: count_distinct
+    sql: ${id_boleto} ;;
     drill_fields: []
   }
 
