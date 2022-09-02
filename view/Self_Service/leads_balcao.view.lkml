@@ -351,4 +351,11 @@ view: leads_balcao {
     filters: [descricao_retorno_avaliacao: "APROVADO"]
     label: "Propostas Aprovadas"
   }
+
+  measure: count_simulados {
+    type: count_distinct
+    sql: ${cpf_lead} ;;
+    filters: [nome_instituicao: "-NULL", nome_campus: "-NULL", nome_curso: "-NULL", vl_mensalidade_curso_bruto: "NOT NULL"]
+    label: "Simulados"
+  }
 }

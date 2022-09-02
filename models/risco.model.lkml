@@ -113,7 +113,9 @@ explore: alunos {
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab,
     - leads_balcao *,
-    - jornada *
+    - jornada_pivot *,
+    - proposta_datas_interfile *,
+    - instituicao *
 
   ]
 
@@ -423,10 +425,23 @@ explore: alunos {
     type: left_outer
   }
 
-  join: jornada {
-    view_label: "Jornada"
-    sql_on: ${alunos.cpf_aluno} = ${jornada.cpf_aluno_proposta} and  ${alunos.id_proposta_atual} = ${jornada.id_proposta} ;;
-    type: left_outer
-    relationship: one_to_many
-  }
+join: dim_cpf {
+  view_label: "dim_CPF"
+  sql_on: ${alunos.cpf_aluno} = ${dim_cpf.cpf} ;;
+  relationship: one_to_many
+}
+
+join: jornada_pivot {}
+join: proposta_datas_interfile {}
+join: instituicao {}
+
+
+join: jornada {
+  view_label: "Jornada"
+  sql_on:  ${alunos.id_proposta_atual} = ${jornada.id_proposta}  and ${alunos.cpf_aluno} = ${jornada.aluno_cpf};;
+  type: left_outer
+  relationship: one_to_many
+
+
+}
 }

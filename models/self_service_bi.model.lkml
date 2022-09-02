@@ -405,7 +405,9 @@ explore: jornada {
     - instituicao.regional_regiao,
     - instituicao.carteira_regional,
     - instituicao.gerente_regional,
-    - instituicao.id_instituicao
+    - instituicao.id_instituicao,
+    - interacoes_apontamentos_monitoria *,
+    - dados_jornada_interacoes *
   ]
 
 
@@ -698,6 +700,28 @@ explore: jornada {
     relationship: one_to_many
   }
 
+  join: interacoes {
+    view_label: "1.14 Interações de Atendimento"
+    sql_on: ${jornada.aluno_cpf} = ${interacoes.cpf_requester} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: interacoes_apontamentos_monitoria {
+    view_label: "Apontamentos de Monitoria"
+    type: left_outer
+    sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
+    relationship: one_to_many
+  }
+
+  join: dados_jornada_interacoes {
+    from: dados_jornada_interacoes
+    view_label: "Jornada"
+    sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
 #  join: metas_distribuidas {
 #    view_label: "14. Metas por Campus"
 #    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
@@ -939,9 +963,6 @@ explore: financeiro {
     - financeiro_extrato_titulo.alunos,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
-    - vw_extrato_repasse.cpf,
-    - vw_extrato_repasse.id_cpf,
-    - vw_extrato_repasse.id_contrato,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo
 

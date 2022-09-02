@@ -515,7 +515,7 @@ view: interacoes {
 
   dimension: nome_assignee {
     type: string
-    group_label: "Dados do Atendente"
+    group_label: "Dados do Avaliado"
     group_item_label: "Nome"
     description: "Indica o nome do atendente."
     sql: ${TABLE}."NOME_ASSIGNEE" ;;
@@ -862,7 +862,7 @@ view: interacoes {
 
   dimension: nota_monitoramento{
     type: number
-    group_item_label: "Nota"
+    group_item_label: "Nota mon"
     group_label: "Dados de Monitoria"
     link: {
       label: "Documentação - Nota de Monitoramento "
@@ -889,6 +889,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica o nome do Atendente de monitoria."
     sql: ${TABLE}."AGENT_MONITORIA" ;;
+    hidden: yes
   }
 
   dimension: avaliador_monitoria{
@@ -897,8 +898,16 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica o nome do Avaliador de monitoria."
     sql: ${TABLE}."AVALIADOR_MONITORIA" ;;
+    hidden: yes
   }
 
+  dimension: nome_avaliador{
+    type: string
+    group_item_label: "Nome Avaliador"
+    group_label: "Dados de Monitoria"
+    description: "Indica o nome do Avaliador"
+    sql: ${TABLE}."NM_AVALIADOR" ;;
+  }
 
 
 
@@ -926,6 +935,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica qual o tipo de avaliação. Ex: Qualidade, cliente.."
     sql: ${TABLE}."TP_AVALIACAO" ;;
+    hidden: yes
   }
 
   dimension: codigo_avaliacao{
@@ -997,7 +1007,7 @@ view: interacoes {
     group_item_label: "Nota Média Sem NCG"
     group_label: "Dados de Monitoria"
     description: "Indica a nota média sem NCG da monitoria."
-    sql: ${TABLE}."valor_nota_sem_ncg" ;;
+    sql: ${valor_nota_sem_ncg} ;;
     #value_format: "#.#,00"
   }
 
@@ -1059,9 +1069,9 @@ view: interacoes {
   }
 
 
-  dimension: tipo_canal_avaliacao{
+  dimension: tipo_avaliacao{
     type: string
-    group_item_label: "Tipo de Canal Avaliação"
+    group_item_label: "Tipo de Avaliação"
     group_label: "Dados de Monitoria"
     description: "Indica qual o tipo de canal a avaliação teve. Ex: Monitoria>Voz, Auditoria, Monitoria>WhatsApp..."
     sql: ${TABLE}."TP_CANAL_AVALIACAO" ;;
@@ -1099,12 +1109,21 @@ view: interacoes {
     sql: ${TABLE}."VL_NOTA" ;;
   }
 
+  measure: soma_nota{
+    type: sum
+    group_item_label: "Soma Nota"
+    group_label: "Dados de Monitoria"
+    description: "Indica a soma da nota da monitoria."
+    sql: ${valor_nota} ;;
+    #value_format: "#.#,00"
+  }
+
   measure: media_nota{
     type: average
     group_item_label: "Nota Média"
     group_label: "Dados de Monitoria"
     description: "Indica a nota média da monitoria."
-    sql: ${TABLE}."valor_nota" ;;
+    sql: ${valor_nota} ;;
     #value_format: "#.#,00"
   }
 
@@ -1132,8 +1151,60 @@ view: interacoes {
     sql: ${TABLE}."PROCESSO" ;;
   }
 
+  dimension: cliente{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Cliente"
+    description: "Indica a empresa/cliente do atendente do ticket."
+    sql: ${TABLE}."EMPRESA_AGENTE" ;;
+  }
 
+  dimension: avaliado{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Avaliado"
+    description: "Indica o nome do avaliado"
+    sql: ${TABLE}."NM_AVALIADO" ;;
+  }
 
+  dimension: planilha{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Planilha"
+    sql: ${TABLE}."PLANILHA" ;;
+  }
+
+  dimension: nome_responsavel_fdbk{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Nome Resp. FDBK"
+    description: "Indica o nome do responsavel pelo faceback"
+    sql: ${TABLE}."NM_RESPONSAVEL_FDBK" ;;
+  }
+
+  dimension: ciclo{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Ciclo"
+    sql: ${TABLE}."CICLO" ;;
+  }
+
+  dimension: periodo{
+    type: string
+    group_label: "Dados de Monitoria"
+    group_item_label: "Periodo"
+    description: "Indica qual o periodo que foi feita a avaliação"
+    sql: ${TABLE}."PERIODO" ;;
+  }
+
+  dimension: tempo_monitoria {
+    type: number
+    group_item_label: "Duração da Monitoria"
+    group_label: "Dados de Monitoria"
+    description: "Indica qual o tempo de duração em segundos da monitoria"
+    sql: ${TABLE}."TEMPO_MONITORIA_SEG"/86400.0 ;;
+    value_format: "[hh]:mm:ss"
+  }
 
 
   measure: media_primeiro_tempo_resposta {
@@ -1186,8 +1257,6 @@ view: interacoes {
     label: "Total de Abandono"
     description: "Total ligações abandonadas"
     sql: ${total_abandono};;
-
-
   }
 
   measure: count {
