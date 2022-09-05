@@ -897,10 +897,17 @@ view: gupy_candidaturas {
 
   dimension: macroetapa {
     group_label: "Dados da Candidatura"
-    label: "Macroetapa"
-    description: "Nome da macroetapa"
+    label: "Etapa Funil"
+    description: "Nome da macroetapa no funil padrão da plataforma Gupy"
     type: string
-    sql: ${TABLE}."MACROETAPA" ;;
+    sql: case ${TABLE}."MACROETAPA"
+      when 'registration' then 'Triagem'
+      when 'online' then 'Avaliação'
+      when 'offline' then 'Entrevista'
+      when 'hiring' then 'Oferta'
+      else ${TABLE}."MACROETAPA"
+    end
+    ;;
   }
 
   measure: count {

@@ -92,6 +92,14 @@ view: orquestra {
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
   }
 
+  dimension: status_processo {
+    type: string
+    group_label: "Dados da Solicitação"
+    group_item_label: "Status do processo"
+    description: "Status final do processo"
+    sql: ${TABLE}."STATUS_PROCESSO" ;;
+  }
+
   dimension: tkt_zendesk {
     type: string
     group_label: "Dados da Solicitação"
@@ -273,21 +281,6 @@ view: orquestra {
     sql: ${TABLE}."CPF" ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  #measure: count {
-  #  type: count
-  #  group_item_label: "Quantidade de Chamados"
-  #  sql: ${numero_chamado};;
-  #  }
-
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
 
   measure: total_codigo_resultado {
     type: sum
