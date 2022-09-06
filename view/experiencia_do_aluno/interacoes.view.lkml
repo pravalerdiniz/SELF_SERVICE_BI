@@ -209,7 +209,7 @@ view: interacoes {
   dimension: cpf_requester {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF (Backoffice)"
+    group_item_label: "CPF (Antigo)"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
@@ -217,7 +217,7 @@ view: interacoes {
   dimension: cpf_requester_num {
     type: number
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF Num (Backoffice)"
+    group_item_label: "CPF Num (Antigo)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
     sql: ${TABLE}."CPF_REQUESTER" ;;
@@ -226,7 +226,7 @@ view: interacoes {
   dimension: cpf {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF (Zendesk)"
+    group_item_label: "CPF (Corrigido)"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF" ;;
   }
@@ -234,7 +234,7 @@ view: interacoes {
   dimension: cpf_num {
     type: number
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF Num (Zendesk)"
+    group_item_label: "CPF Num (Corrigido)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
     sql: ${TABLE}."CPF_NUM" ;;
@@ -475,6 +475,14 @@ view: interacoes {
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813196/MOTIVO+DE+CONTATO"
     }
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
+  }
+
+  dimension: formulario {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Formulário"
+    description: "Este campo trás em qual formulário o Ticket está."
+    sql: ${TABLE}."FORMULARIO" ;;
   }
 
   dimension: taxa_reclamacao {
