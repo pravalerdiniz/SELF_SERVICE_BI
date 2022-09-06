@@ -3513,9 +3513,10 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Custo Total Cessão - Soma"
+    value_format: "$ #,###.00"
     sql: ${sum_comissao} + ${sum_repasse} + ${sum_iof} + ${sum_tarifa_cadastro} + ${sum_custo_originacao} ;;
     description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacão)"
-    value_format: "0"
+
   }
 
 
