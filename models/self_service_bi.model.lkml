@@ -963,9 +963,6 @@ explore: financeiro {
     - financeiro_extrato_titulo.alunos,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
-    - vw_extrato_repasse.cpf,
-    - vw_extrato_repasse.id_cpf,
-    - vw_extrato_repasse.id_contrato,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo
 

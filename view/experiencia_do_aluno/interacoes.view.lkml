@@ -1212,7 +1212,27 @@ view: interacoes {
     description: "Indica qual o tempo de duração em segundos da monitoria"
     sql: ${TABLE}."TEMPO_MONITORIA_SEG"/86400.0 ;;
     value_format: "[hh]:mm:ss"
+    hidden: yes
   }
+
+  measure: duracao_monitoria{
+    type: sum
+    group_label: "Dados de Monitoria"
+    group_item_label: "Duração Monitoria"
+    description: "Indica qual o tempo de duração em segundos da monitoria"
+    sql: ${tempo_monitoria};;
+    value_format: "[hh]:mm:ss"
+  }
+
+  measure: duracao_media_monitoria{
+    type: average
+    group_label: "Dados de Monitoria"
+    group_item_label: "Duração Média Monitoria"
+    description: "Indica qual o tempo medio de duração em segundos da monitoria"
+    sql: ${tempo_monitoria};;
+    value_format: "[hh]:mm:ss"
+  }
+
 
 
   measure: media_primeiro_tempo_resposta {

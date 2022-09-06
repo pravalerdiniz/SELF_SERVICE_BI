@@ -380,6 +380,14 @@ explore: b3_taxa_ref_di {
 
 explore: bc_expectativas_mercado {
   label: "Projeção IPCA"
+
+  join: bc_expec_max_date {
+    view_label: "Bc Expectativas Mercado"
+    sql_on: ${bc_expectativas_mercado.data_date} = ${bc_expec_max_date.bc_max_date}
+            and ${bc_expectativas_mercado.datareferencia} = ${bc_expec_max_date.datareferencia};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
 
 explore: painel_de_carga{
@@ -419,7 +427,8 @@ explore: correcao_ipca {
     view_label: "3. Financeiro"
     sql_on: ${financeiro.id_cpf} = ${correcao_ipca.id_cpf}
             and ${financeiro.id_contrato} = ${correcao_ipca.id_contrato}
-            and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto};;
+            and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto}
+            and ${carteira.id_titulo_status} = 2;;
     fields: [
       financeiro.flg_boleto_pago
     ]
