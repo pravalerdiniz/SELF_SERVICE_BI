@@ -427,7 +427,8 @@ explore: correcao_ipca {
     view_label: "3. Financeiro"
     sql_on: ${financeiro.id_cpf} = ${correcao_ipca.id_cpf}
             and ${financeiro.id_contrato} = ${correcao_ipca.id_contrato}
-            and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto};;
+            and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto}
+            and ${carteira.id_titulo_status} = 2;;
     fields: [
       financeiro.flg_boleto_pago
     ]
