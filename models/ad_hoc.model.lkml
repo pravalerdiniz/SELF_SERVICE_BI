@@ -23,16 +23,18 @@ datagroup: painel_de_carga {
 }
 
 
-explore: comunicacao_conversao {
-  label: "Comunicação Conversão"
-  view_label: "Comunicação Conversão"
-  join: comunicacao_conversao_status_info {
-    view_label: "Status Log Pós Contato"
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
-  }
-}
+
+#Limpeza de Dados - 08/09/22 | Lulinha
+# explore: comunicacao_conversao {
+#   label: "Comunicação Conversão"
+#   view_label: "Comunicação Conversão"
+#   join: comunicacao_conversao_status_info {
+#     view_label: "Status Log Pós Contato"
+#     type: left_outer
+#     relationship: one_to_many
+#     sql_on: ${comunicacao_conversao.id_cpf} = ${comunicacao_conversao_status_info.id_cpf} ;;
+#   }
+# }
 
 
 
