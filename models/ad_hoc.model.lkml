@@ -137,44 +137,51 @@ explore: comparacao_ot {
   }
 }
 
-explore: final_pdd {
-  label: "Final PDD"
-  view_label: "Final PDD"
-}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: final_pdd {
+#   label: "Final PDD"
+#   view_label: "Final PDD"
+# }
 
-explore: fato_swap {
-  label: "Swap"
-  view_label: "Swap"
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: fato_swap {
+#   label: "Swap"
+#   view_label: "Swap"
 
-  join: fato_swap_realizado {
-    type: left_outer
-    sql_on: ${fato_swap.fim_mes_referencia_date} = ${fato_swap_realizado.fim_mes_referencia_date} ;;
-    relationship: many_to_one
-  }
+#   join: fato_swap_realizado {
+#     type: left_outer
+#     sql_on: ${fato_swap.fim_mes_referencia_date} = ${fato_swap_realizado.fim_mes_referencia_date} ;;
+#     relationship: many_to_one
+#   }
 
 
-}
+# }
 
 explore: unpivot_dre {
   label: "Demonstração do Resultado"
   view_label: "Demonstração do Resultado"
 }
 
-explore: itau {
-  label: "ITAU"
-}
+
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: itau {
+#   label: "ITAU"
+# }
 
 explore: documentacao {}
 
-explore: iniciados_x_finalizados_lead {}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: iniciados_x_finalizados_lead {}
 
 
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: atribuicao_rv_itau {}
 
-explore: atribuicao_rv_itau {}
 
-explore: orquestra_compra_carteira {
-  label: "Orquestra - Compra de Carteira"
-}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: orquestra_compra_carteira {
+#   label: "Orquestra - Compra de Carteira"
+# }
 
 explore: orquestra {
   label: "Orquestra"
@@ -238,77 +245,89 @@ explore: base_forecast_cs {
 #   label: "Taxa de Contato por Motivo de Contato"
 # }
 
-explore: campanha_valoriza {
-  label: "Campanha Valoriza"
-}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: campanha_valoriza {
+#   label: "Campanha Valoriza"
+# }
+
 
 explore: treinamento_data_driven {
   label: "Capacitação - Data Driven"
 }
 
-explore: base_trade {}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: base_trade {}
 
-explore: report_builder_cargas {}
-explore: report_builder_baixa {}
-explore: curta_duracao {}
 
-explore: jira {}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: report_builder_cargas {}
+# explore: report_builder_baixa {}
+# explore: curta_duracao {}
 
-explore: bv_export_boletos{}
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: jira {}
 
-explore: one_page_trade {}
 
-explore: pesquisa_perfil_aluno {
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: bv_export_boletos{}
 
- join: pesquisa_perfil_aluno_banco {
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: one_page_trade {}
 
-  type:left_outer
-  sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_banco.key_} ;;
-  relationship: many_to_one
-  }
 
-  join: pesquisa_aluno_perfil_faz_com_frequencia {
 
-    type:left_outer
-    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_faz_com_frequencia.key_} ;;
-    relationship: many_to_one
-  }
+#Tabela não utilizada 06/09/22 - Lulinha
+# explore: pesquisa_perfil_aluno {
 
-  join: pesquisa_aluno_perfil_servico_streaming {
+# join: pesquisa_perfil_aluno_banco {
 
-    type:left_outer
-    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_servico_streaming.key_} ;;
-    relationship: many_to_one
-  }
+#   type:left_outer
+#   sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_banco.key_} ;;
+#   relationship: many_to_one
+#   }
 
-  join: pesquisa_perfil_aluno_forma_pagamento {
+#   join: pesquisa_aluno_perfil_faz_com_frequencia {
 
-    type:left_outer
-    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_forma_pagamento.key_} ;;
-    relationship: many_to_one
-  }
+#     type:left_outer
+#     sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_faz_com_frequencia.key_} ;;
+#     relationship: many_to_one
+#   }
 
-  join: pesquisa_perfil_aluno_jogos_online {
+#   join: pesquisa_aluno_perfil_servico_streaming {
 
-    type:left_outer
-    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_jogos_online.key_} ;;
-    relationship: many_to_one
-  }
+#     type:left_outer
+#     sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_aluno_perfil_servico_streaming.key_} ;;
+#     relationship: many_to_one
+#   }
 
-  join: pesquisa_perfil_aluno_rede_social {
+#   join: pesquisa_perfil_aluno_forma_pagamento {
 
-    type:left_outer
-    sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_rede_social.key_} ;;
-    relationship: many_to_one
-  }
+#     type:left_outer
+#     sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_forma_pagamento.key_} ;;
+#     relationship: many_to_one
+#   }
 
-}
+#   join: pesquisa_perfil_aluno_jogos_online {
 
-explore: indicadores_comunicacao {}
+#     type:left_outer
+#     sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_jogos_online.key_} ;;
+#     relationship: many_to_one
+#   }
 
-explore: acompanhamento_fluxo_proposta {}
+#   join: pesquisa_perfil_aluno_rede_social {
 
-explore: distribuicao_finalizados_iniciados {}
+#     type:left_outer
+#     sql_on: ${pesquisa_perfil_aluno.key_} = ${pesquisa_perfil_aluno_rede_social.key_} ;;
+#     relationship: many_to_one
+#   }
+
+# }
+
+# explore: indicadores_comunicacao {}
+
+# explore: acompanhamento_fluxo_proposta {}
+
+# explore: distribuicao_finalizados_iniciados {}
 
 explore: base_score{
   label: "Base - Treino Score"
@@ -316,11 +335,11 @@ explore: base_score{
 
 explore: perfil_usuarios {}
 
-explore: cruzeiro_evadidos {}
+# explore: cruzeiro_evadidos {}
 
-explore: cruzeiro_inadimplentes {}
+# explore: cruzeiro_inadimplentes {}
 
-explore: csat_nuvem_palavras_bad {}
+# explore: csat_nuvem_palavras_bad {}
 
 explore: nps_nuvem_palavras_detratores {}
 
@@ -332,9 +351,9 @@ explore: nuvem_nps_ies {
   label: "Nuvem Palavras NPS IES"
 }
 
-explore: alunos_inadimplencia_2 {}
+# explore: alunos_inadimplencia_2 {}
 
-explore: uni_prv {}
+# explore: uni_prv {}
 
 explore: base_ot {
   label: "Base de Dados - Oliveira Trust"
@@ -345,7 +364,7 @@ explore: base_ot_analise {
   label: "Análise - Oliveira Trust"
 }
 
-explore: watson {}
+# explore: watson {}
 
 explore: amigo_edu {
   label: "Amigo Edu"
@@ -359,9 +378,9 @@ explore: kpi_controladoria {
   label: "KPI Controladoria"
 }
 
-explore: titulos_cnpj {
-  label: "Titulos CNPJ"
-}
+# explore: titulos_cnpj {
+#   label: "Titulos CNPJ"
+# }
 
 explore: ipca_bv {
   label: "IPCA BV"
@@ -394,9 +413,9 @@ explore: painel_de_carga{
   persist_with: painel_de_carga
 }
 
-explore: twoclix_detalhes_avaliacao {
-  label: "TwoClix Detalhes Avaliação"
-}
+# explore: twoclix_detalhes_avaliacao {
+#   label: "TwoClix Detalhes Avaliação"
+# }
 
 explore: correcao_ipca {
   label: "1. Correção IPCA"
