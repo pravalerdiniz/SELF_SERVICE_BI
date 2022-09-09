@@ -15,7 +15,7 @@ view: vw_pipedrive_deals_atividades {
   dimension: atribuido_id_criador_atividade {
     type: number
     group_label: "Dados Criador Atividade"
-    group_item_label: "ID Criador"
+    group_item_label: "ID usuário atribuído"
     #description: ""
     value_format_name: id
     sql: ${TABLE}."ATRIBUIDO_ID_CRIADOR_ATIVIDADE" ;;
@@ -179,7 +179,7 @@ view: vw_pipedrive_deals_atividades {
   dimension: id_criador_atualizacao_atividade {
     type: number
     group_label: "Dados Criador Atividade"
-    group_item_label: "ID atualizador da atividade"
+    group_item_label: "ID criador atualização da atividade"
     #description: ""
     sql: ${TABLE}."ID_CRIADOR_ATUALIZACAO_ATIVIDADE" ;;
   }
