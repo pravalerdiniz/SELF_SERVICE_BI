@@ -430,7 +430,8 @@ explore: correcao_ipca {
             and ${financeiro.id_boleto} = ${correcao_ipca.id_boleto}
             and ${carteira.id_titulo_status} = 2;;
     fields: [
-      financeiro.flg_boleto_pago
+      financeiro.flg_boleto_pago,
+      financeiro.ds_titulo_status
     ]
     relationship: one_to_one
     type: left_outer
