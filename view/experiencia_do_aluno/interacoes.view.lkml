@@ -209,7 +209,7 @@ view: interacoes {
   dimension: cpf_requester {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF (Backoffice)"
+    group_item_label: "CPF (Antigo)"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF_REQUESTER" ;;
   }
@@ -217,7 +217,7 @@ view: interacoes {
   dimension: cpf_requester_num {
     type: number
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF Num (Backoffice)"
+    group_item_label: "CPF Num (Antigo)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
     sql: ${TABLE}."CPF_REQUESTER" ;;
@@ -226,7 +226,7 @@ view: interacoes {
   dimension: cpf {
     type: string
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF (Zendesk)"
+    group_item_label: "CPF (Corrigido)"
     description: "Indica o CPF do Solicitante do ticket."
     sql: ${TABLE}."CPF" ;;
   }
@@ -234,7 +234,7 @@ view: interacoes {
   dimension: cpf_num {
     type: number
     group_label: "Dados do Solicitante"
-    group_item_label: "CPF Num (Zendesk)"
+    group_item_label: "CPF Num (Corrigido)"
     description: "Indica o CPF do Solicitante do ticket.(Formato Numérico)"
     value_format: "0"
     sql: ${TABLE}."CPF_NUM" ;;
@@ -355,6 +355,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica o checklist completo com todos os apontamentos da monitoria por ticket"
     sql: ${interacoes_apontamentos_monitoria.nome_procedimento};;
+    hidden: yes
   }
 
   dimension: conformidade_checklist {
@@ -363,6 +364,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica a conformidade ou não do apontamento. Ex: Conforme, Não Conforme."
     sql: ${interacoes_apontamentos_monitoria.conformidade_checklist};;
+    hidden: yes
   }
 
 
@@ -375,6 +377,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica o detalhamento do checklist da monitoria"
     sql: ${interacoes_apontamentos_monitoria.procedimento} ;;
+    hidden: yes
   }
 
   dimension: nota {
@@ -383,6 +386,7 @@ view: interacoes {
     group_label: "Dados de Monitoria"
     description: "Indica o peso da nota para cada apontamento da monitoria"
     sql: ${interacoes_apontamentos_monitoria.nota};;
+    hidden: yes
   }
 
 
@@ -475,6 +479,14 @@ view: interacoes {
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1063813196/MOTIVO+DE+CONTATO"
     }
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
+  }
+
+  dimension: formulario {
+    type: string
+    group_label: "Dados do Ticket"
+    group_item_label: "Formulário"
+    description: "Este campo trás em qual formulário o Ticket está."
+    sql: ${TABLE}."FORMULARIO" ;;
   }
 
   dimension: taxa_reclamacao {
@@ -846,6 +858,7 @@ view: interacoes {
       url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1064567021/CONFORMIDADE+-+NOTA+GERAL"
     }
     sql: ${TABLE}."CONFORMIDADE" ;;
+    hidden: yes
   }
 
   dimension: erro_critico{
@@ -1204,7 +1217,27 @@ view: interacoes {
     description: "Indica qual o tempo de duração em segundos da monitoria"
     sql: ${TABLE}."TEMPO_MONITORIA_SEG"/86400.0 ;;
     value_format: "[hh]:mm:ss"
+    hidden: yes
   }
+
+  measure: duracao_monitoria{
+    type: sum
+    group_label: "Dados de Monitoria"
+    group_item_label: "Duração Monitoria"
+    description: "Indica qual o tempo de duração em segundos da monitoria"
+    sql: ${tempo_monitoria};;
+    value_format: "[hh]:mm:ss"
+  }
+
+  measure: duracao_media_monitoria{
+    type: average
+    group_label: "Dados de Monitoria"
+    group_item_label: "Duração Média Monitoria"
+    description: "Indica qual o tempo medio de duração em segundos da monitoria"
+    sql: ${tempo_monitoria};;
+    value_format: "[hh]:mm:ss"
+  }
+
 
 
   measure: media_primeiro_tempo_resposta {

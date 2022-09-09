@@ -2783,6 +2783,7 @@ dimension: vl_tarifa_cadastro {
 
   measure: sum_iof {
     type: sum
+    value_format: "$ #,###.00"
     group_label: "IOF"
     group_item_label: "Soma"
     sql:${vl_iof};;
@@ -3409,7 +3410,7 @@ dimension: vl_tarifa_cadastro {
     group_item_label: "Tarifa Cadastro - Soma"
     sql:${vl_tarifa_cadastro};;
     description:  "Indica a soma do valor da tarifa de cadastro do contrato"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_juros_pago_ies {
@@ -3497,7 +3498,7 @@ dimension: vl_tarifa_cadastro {
     group_item_label: "Custo de Originação - Soma"
     sql: ${custo_originacao} ;;
     description: "Indica o valor de originação do  contrato"
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_receita_corban {
@@ -3506,16 +3507,17 @@ dimension: vl_tarifa_cadastro {
     label:"Receita do Correspondente Bancário"
     description:"Indica valor da taxa paga por originador para cada boleto gerado"
     sql: ${TABLE}."RECEITA_CORBAN" ;;
-    value_format: "0"
+    value_format: "$ #,###.00"
   }
 
   measure: sum_custo_total_cessao{
     type: number
     group_label: "Valores Cessão"
     group_item_label: "Custo Total Cessão - Soma"
+    value_format: "$ #,###.00"
     sql: ${sum_comissao} + ${sum_repasse} + ${sum_iof} + ${sum_tarifa_cadastro} + ${sum_custo_originacao} ;;
     description: "Indica o custo total da cessão (Comissão ideal + IOF + Repasse IES + Tarifa Cadastro + Custo de Originacão)"
-    value_format: "0"
+
   }
 
 
