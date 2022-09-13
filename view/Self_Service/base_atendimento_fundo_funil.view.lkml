@@ -241,7 +241,7 @@ view: base_atendimento_fundo_funil {
     label: "Flag Cedido"
     description: "Indica se o aluno foi cedido ou não"
     type: yesno
-    sql:  ${TABLE}."FLG_TABULACAO"  ;;
+    sql:  ${TABLE}."FLG_CEDIDO"  ;;
   }
 
   dimension: validador {
