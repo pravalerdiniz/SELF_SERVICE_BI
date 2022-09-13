@@ -67,6 +67,20 @@ view: pulse {
     sql: ${TABLE}."TEMPO_CASA" ;;
   }
 
+  dimension: tempo_casa_sort {
+    label: "Tempo de Casa (Ordenação)"
+    type: number
+    sql: CASE ${TABLE}."TEMPO_CASA"
+      WHEN '3 meses ou menos' THEN 1
+      WHEN 'Entre 4 e 6 meses' THEN 2
+      WHEN 'Entre 7 e 11 meses' THEN 3
+      WHEN 'Entre 1 ano e 1 ano e 11 meses' THEN 4
+      WHEN '2 anos ou mais'  THEN 5
+      ELSE 0
+    END;;
+    description: "Este campo é uma regra de negócio*. Indica a ordenadação de 1 à 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
+  }
+
   measure: count {
     type: count
     drill_fields: [id]

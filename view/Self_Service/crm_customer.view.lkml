@@ -55,6 +55,7 @@ view: crm_customer {
     sql: ${TABLE}."NOME" ;;
   }
 
+
   dimension: email {
     type: string
     group_label: "Dados do Aluno"
@@ -119,6 +120,7 @@ view: crm_customer {
     description: "Indica o ID do Grupo da Campanha disparada"
     sql: ${TABLE}."CAMPAIGN_ID" ;;
   }
+
   dimension: name_campaign {
     type: string
     group_label: "Dados da Campanha"
@@ -173,6 +175,14 @@ view: crm_customer {
     label: "Nome do Evento"
     description: "Indica o evento efetuado (Disparo, Entregue, Aberto, clicado)"
     sql: ${TABLE}."NOME_EVENTO" ;;
+  }
+
+  dimension: id_evento {
+    type: string
+    group_label: "Dados do Evento"
+    label: "ID do Evento"
+    description: "Indica o id referente a um disparo, ou seja, um e-mail, sms ou whatsapp"
+    sql: ${TABLE}."ID_EVENTO" ;;
   }
 
   dimension_group: data_evento {

@@ -241,7 +241,7 @@ view: base_atendimento_fundo_funil {
     label: "Flag Cedido"
     description: "Indica se o aluno foi cedido ou não"
     type: yesno
-    sql:  ${TABLE}."FLG_TABULACAO"  ;;
+    sql:  ${TABLE}."FLG_CEDIDO"  ;;
   }
 
   dimension: validador {
@@ -249,6 +249,29 @@ view: base_atendimento_fundo_funil {
     description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
     type: yesno
     sql:  ${TABLE}."VALIDADOR"  ;;
+  }
+
+  dimension: flg_fechamento {
+    label: "Flag Base Fechamento"
+    description: "Indica se o snapshot é referente a uma base de fechamento de mês"
+    type: yesno
+    sql:
+    LAST_DAY(DATE_TRUNC("MONTH", ${TABLE}."DATA_CESSAO_ORIGINAL")) = DATE_TRUNC("DAY", ${TABLE}."DATA_CESSAO_ORIGINAL")
+    AND HOUR(${TABLE}."DATA_CESSAO_ORIGINAL") > 20  ;;
+  }
+
+  dimension: flg_ultimo_snap {
+    label: "Flag Último Snap"
+    description: "Indica se os registros pertencem ao último snapshot da base de atendimento"
+    type: yesno
+    sql: ${TABLE}."FLG_ULTIMO_SNAP" ;;
+  }
+
+  dimension: flg_indicadores {
+    label: "Flag Indicadores"
+    description: "Indica se os registros pertecem à base de fechamento ou ao último snapshot = Base Indicadores"
+    type: yesno
+    sql: ${flg_fechamento} = 'Yes' or ${flg_ultimo_snap} = 'Yes' ;;
   }
 
 }
