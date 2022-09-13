@@ -251,4 +251,13 @@ view: base_atendimento_fundo_funil {
     sql:  ${TABLE}."VALIDADOR"  ;;
   }
 
+  dimension: flg_fechamento {
+    label: "Flag Base Fechamento"
+    description: "Indica se o snapshot é referente a uma base de fechamento de mês"
+    type: yesno
+    sql:
+    LAST_DAY(DATE_TRUNC("MONTH", ${TABLE}."DATA_CESSAO_ORIGINAL")) = DATE_TRUNC("DAY", ${TABLE}."DATA_CESSAO_ORIGINAL")
+    AND HOUR(${TABLE}."DATA_CESSAO_ORIGINAL") > 20  ;;
+  }
+
 }
