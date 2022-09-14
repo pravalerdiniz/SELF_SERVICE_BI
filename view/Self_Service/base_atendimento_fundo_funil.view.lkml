@@ -260,4 +260,18 @@ view: base_atendimento_fundo_funil {
     AND HOUR(${TABLE}."DATA_CESSAO_ORIGINAL") > 20  ;;
   }
 
+  dimension: flg_ultimo_snap {
+    label: "Flag Último Snap"
+    description: "Indica se os registros pertencem ao último snapshot da base de atendimento"
+    type: yesno
+    sql: ${TABLE}."FLG_ULTIMO_SNAP" ;;
+  }
+
+  dimension: flg_indicadores {
+    label: "Flag Indicadores"
+    description: "Indica se os registros pertecem à base de fechamento ou ao último snapshot = Base Indicadores"
+    type: yesno
+    sql: ${flg_fechamento} = 'Yes' or ${flg_ultimo_snap} = 'Yes' ;;
+  }
+
 }
