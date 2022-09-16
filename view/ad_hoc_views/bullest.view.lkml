@@ -463,7 +463,9 @@ view: bullest {
     group_item_label: "Reembolso Faculdade Inadimplente."
     type: sum
     description: "Valor que a IES não devolveu para o Pravaler."
-    sql: case when ${status_cancelamento} = 'Não Pago' then ${valor_faculdade} end ;;
+    sql: case when ${status_cancelamento} = 'Não Pago' then ${valor_faculdade}
+    when ${status_cancelamento} = 'Não Pago (Regerado)' then ${valor_faculdade}
+    when ${status_cancelamento} = 'Aguardando Pagamento (Regerado)' then ${valor_faculdade}end ;;
     value_format: "\R$ #,###.00"
   }
 

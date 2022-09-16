@@ -380,9 +380,9 @@ explore: kpi_controladoria {
   label: "KPI Controladoria"
 }
 
-# explore: titulos_cnpj {
-#   label: "Titulos CNPJ"
-# }
+ explore: titulos_cnpj {
+   label: "Titulos CNPJ"
+ }
 
 explore: ipca_bv {
   label: "IPCA BV"
