@@ -164,7 +164,7 @@ view: vw_extrato_repasse {
       month_name,
       year,
     ]
-    sql: ${TABLE}."DIA_VENCIMENTO_BOLETO" ;;
+    sql: ${TABLE}."DATA_VENCIMENTO_DO_BOLETO" ;;
   }
 
   dimension: valor_ipca {
