@@ -4,6 +4,7 @@ view: vw_extrato_repasse {
 
   dimension: cpf {
     type: number
+    value_format: "0"
     group_label: "Dados do Aluno"
     label: "CPF do Aluno"
     sql: ${TABLE}."CPF" ;;
@@ -19,6 +20,7 @@ view: vw_extrato_repasse {
 
   dimension: id_cpf {
     type: number
+    value_format: "0"
     group_label: "Dados do Aluno"
     label: "ID CPF"
     description: "Indica o código de referência do CPF do Aluno"
@@ -120,6 +122,22 @@ view: vw_extrato_repasse {
     value_format: "$ #,##0.00"
     label: "Multa de Atraso"
     sql: ${TABLE}."MULTA_ATRASO" ;;
+  }
+
+  dimension_group: transferencia {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
+    description: "Data em que foi feito o repasse dos valores gestão para a IES"
   }
 
   measure: count {

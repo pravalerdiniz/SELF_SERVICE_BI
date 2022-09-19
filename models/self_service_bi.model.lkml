@@ -963,9 +963,6 @@ explore: financeiro {
     - financeiro_extrato_titulo.alunos,
     - proposta.cont_cpf,
     - proposta.perc_cpf,
-    - vw_extrato_repasse.cpf,
-    - vw_extrato_repasse.id_cpf,
-    - vw_extrato_repasse.id_contrato,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo
 
@@ -2222,3 +2219,35 @@ explore: repasse {
 #     relationship: one_to_many
 #   }
 # }
+
+#Explore Base Atendimento: substituição da planilha em Excel do time Comercial de Conversão Fundo Funil
+
+explore:  base_atendimento_fundo_funil{
+  label: "Base Atendimento Fundo de Funil"
+
+  join: alunos {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${base_atendimento_fundo_funil.id_cpf} = ${alunos.id_cpf} ;;
+    fields: [alunos.ds_status_geral,
+      alunos.aluno_nome,
+      alunos.celular,
+      alunos.email]
+  }
+
+  join: proposta {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${base_atendimento_fundo_funil.id_proposta} = ${proposta.id_proposta} ;;
+    fields: [proposta.gerente_atual,
+      proposta.ds_instituicao,
+      proposta.ds_campus,
+      proposta.ds_curso,
+      proposta.id_curso,
+      proposta.id_campus,
+      proposta.aluno_cal_vet,
+      proposta.classe_modelo_iniciado,
+      proposta.semestre_financiado]
+  }
+
+}

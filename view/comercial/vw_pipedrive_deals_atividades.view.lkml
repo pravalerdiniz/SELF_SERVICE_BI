@@ -1,7 +1,7 @@
 
 view: vw_pipedrive_deals_atividades {
 
-  sql_table_name: "PIPEDRIVE"."VW_PIPEDRIVE_DEALS_ATIVIDADES"
+  sql_table_name: "GRADUADO"."PIPEDRIVE"."VW_PIPEDRIVE_DEALS_ATIVIDADES"
     ;;
 
   dimension: chave {
@@ -15,10 +15,19 @@ view: vw_pipedrive_deals_atividades {
   dimension: atribuido_id_criador_atividade {
     type: number
     group_label: "Dados Criador Atividade"
-    group_item_label: "ID Criador"
+    group_item_label: "ID usuário atribuído"
     #description: ""
     value_format_name: id
     sql: ${TABLE}."ATRIBUIDO_ID_CRIADOR_ATIVIDADE" ;;
+  }
+
+  dimension: nome_criador_atribuido_atividade {
+    type: string
+    group_label: "Dados Criador Atividade"
+    group_item_label: "Nome usuário atribuído"
+    #description: ""
+    value_format_name: id
+    sql: ${TABLE}."NOME_CRIADOR_ATRIBUIDO_ATIVIDADE" ;;
   }
 
 
@@ -176,12 +185,28 @@ view: vw_pipedrive_deals_atividades {
     sql: ${TABLE}."ID_CRIADOR_ATIVIDADE" ;;
   }
 
+  dimension: nome_criador_atividade {
+    type: string
+    group_label: "Dados Criador Atividade"
+    group_item_label: "Nome criador da atividade"
+    #description: ""
+    sql: ${TABLE}."NOME_CRIADOR_ATIVIDADE" ;;
+  }
+
   dimension: id_criador_atualizacao_atividade {
     type: number
     group_label: "Dados Criador Atividade"
-    group_item_label: "ID atualizador da atividade"
+    group_item_label: "ID criador atualização da atividade"
     #description: ""
     sql: ${TABLE}."ID_CRIADOR_ATUALIZACAO_ATIVIDADE" ;;
+  }
+
+  dimension: NOME_ATUALIZADOR_ATIVIDADE {
+    type: string
+    group_label: "Dados Criador Atividade"
+    group_item_label: "Nome do atualizador da atividade"
+    #description: ""
+    sql: ${TABLE}."NOME_ATUALIZADOR_ATIVIDADE" ;;
   }
 
   dimension: id_lead {

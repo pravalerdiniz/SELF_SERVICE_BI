@@ -1,6 +1,6 @@
 view: atribuicao_nova
 {view_label: "Atribuição"
-  sql_table_name: "SELF_SERVICE_BI"."ATRIBUICAO"
+  sql_table_name: "GRADUADO"."SELF_SERVICE_BI"."ATRIBUICAO"
     ;;
 
 

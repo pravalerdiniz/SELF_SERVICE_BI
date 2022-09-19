@@ -33,7 +33,7 @@ view: taxa_de_contato_motivo_de_contato {
 
       SELECT
       (TO_CHAR(DATE_TRUNC('month', interacoes."DATA_CRIACAO" ), 'YYYY-MM')) AS "ANO_MES",
-      interacoes."CPF_REQUESTER"  AS "CPF",
+      CASE WHEN interacoes."DATA_CRIACAO" < TO_TIMESTAMP('2022-07-01') THEN interacoes."CPF_REQUESTER" ELSE COALESCE(interacoes."CPF", interacoes."CPF_REQUESTER") END AS "CPF",
       interacoes."MOTIVO_CONTATO"  AS "MOTIVO_DE_CONTATO",
       COUNT(*) AS "QTD_TICKET"
       FROM "SELF_SERVICE_BI"."INTERACOES" AS interacoes

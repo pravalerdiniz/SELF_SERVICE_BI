@@ -1,7 +1,7 @@
 # The name of this view in Looker is "Zoho Reports"
 view: zoho_reports {
 
-  sql_table_name: "GRADUADO"."AD_HOC"."ZOHO_REPORTS"
+  sql_table_name: "POS_GRADUADO"."MARKETING"."LEADS_TRADE"
     ;;
 
   dimension: chave {
@@ -9,10 +9,10 @@ view: zoho_reports {
     label: "Chave"
     primary_key: yes
     hidden: yes
-    sql: concat(${added_date},${analista},${email},${nome_evento_ies}) ;;
+    sql: concat(${data_evento_date},${analista},${email},${nome_evento}) ;;
   }
 
-  dimension_group: added {
+  dimension_group: data_evento {
     type: time
     timeframes: [
     raw,
@@ -27,9 +27,9 @@ view: zoho_reports {
     ]
     convert_tz: no
     datatype: date
-    label: "Data que o registro foi adicionado"
-    description: "Indica a data que o registro foi adicionado no banco"
-    sql: ${TABLE}."ADDED_DATE" ;;
+    label: "Data do evento"
+    description: "Indica a data que ocorreu o evento"
+    sql: ${TABLE}."DATA_EVENTO" ;;
   }
 
   dimension: cpf {
@@ -39,12 +39,6 @@ view: zoho_reports {
     sql: ${TABLE}."CPF" ;;
   }
 
-  measure: total_email {
-    type: count_distinct
-    label: "Qtd de leads"
-    description: "Quantidade de leads por evento"
-    sql: ${email} ;;
-  }
 
   dimension: email {
     type: string
@@ -53,11 +47,11 @@ view: zoho_reports {
     sql: ${TABLE}."EMAIL" ;;
   }
 
-  dimension: nome_evento_ies {
+  dimension: nome_evento {
     type: string
     label: "Nome Evento"
     description: "Indica o nome do Evento"
-    sql: ${TABLE}."NOME_EVENTO_IES" ;;
+    sql: ${TABLE}."NOME_EVENTO" ;;
   }
 
   dimension: nome_sobrenome {
@@ -93,6 +87,13 @@ view: zoho_reports {
     label: "Telefone lead"
     description: "Indica o telefone do lead capturado no evento"
     sql: ${TABLE}."TELEFONE" ;;
+  }
+
+  measure: total_email {
+    type: count_distinct
+    label: "Qtd de leads"
+    description: "Quantidade de leads por evento"
+    sql: ${email} ;;
   }
 
   measure: count {
