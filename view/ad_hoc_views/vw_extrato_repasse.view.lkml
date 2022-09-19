@@ -2,12 +2,27 @@ view: vw_extrato_repasse {
   sql_table_name: "AD_HOC"."VW_EXTRATO_REPASSE"
     ;;
 
+  dimension: id_cpf {
+    type: number
+    value_format: "0"
+    group_label: "Dados do Aluno"
+    label: "ID CPF"
+    description: "Indica o código de referência do CPF do Aluno"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
   dimension: cpf {
     type: number
     value_format: "0"
     group_label: "Dados do Aluno"
     label: "CPF do Aluno"
     sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: nome_aluno {
+    type: string
+    label: "Nome do Aluno"
+    sql: ${TABLE}."NOME" ;;
   }
 
   dimension: id_contrato {
@@ -18,14 +33,7 @@ view: vw_extrato_repasse {
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
-  dimension: id_cpf {
-    type: number
-    value_format: "0"
-    group_label: "Dados do Aluno"
-    label: "ID CPF"
-    description: "Indica o código de referência do CPF do Aluno"
-    sql: ${TABLE}."ID_CPF" ;;
-  }
+
 
   dimension: num_boleto {
     type: number
@@ -139,6 +147,8 @@ view: vw_extrato_repasse {
     sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
     description: "Data em que foi feito o repasse dos valores gestão para a IES"
   }
+
+
 
   measure: count {
     type: count
