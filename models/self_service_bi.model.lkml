@@ -2198,6 +2198,11 @@ explore: taxa_produto_ies {
     relationship: many_to_many
   }
 }
+
+explore: repasse {
+  from: vw_extrato_repasse
+  view_label: "Repasse"
+}
 #Novo Modelo de Dados - Comercial - Lulinha 29/07/22
 # explore: vw_pipedrive_deals_pipeline {
 #   label: "Pipedrive Graduação"
