@@ -28,6 +28,21 @@ view: funil_nova_proposta {
     sql: ${TABLE}."DT_STATUS" ;;
   }
 
+  dimension_group: data_safrado {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_SAFRADO" ;;
+  }
+
   dimension: etapa {
     type: string
     sql: ${TABLE}."ETAPA" ;;
