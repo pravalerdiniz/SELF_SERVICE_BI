@@ -136,7 +136,7 @@ view: vw_extrato_repasse {
   dimension: qtd_prestacoes {
     type: number
     label: "Qtd Prestações"
-    sql: ${TABLE}."QTD_PRESTACOES" ;;
+    sql: ${TABLE}."QTD__PRESTACOES" ;;
   }
 
   dimension: valor_mensalidade {
@@ -216,7 +216,7 @@ view: vw_extrato_repasse {
     type: number
     value_format: "$ #,##0.00"
     label: "Valor Seguro Pravaler"
-    sql: ${TABLE}."VL_DSEGURO_PRAVALER" ;;
+    sql: ${TABLE}."VL_SEGURO_PRAVALER" ;;
   }
 
   dimension: taxa_adesao {
