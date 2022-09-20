@@ -380,9 +380,9 @@ explore: kpi_controladoria {
   label: "KPI Controladoria"
 }
 
-# explore: titulos_cnpj {
-#   label: "Titulos CNPJ"
-# }
+ explore: titulos_cnpj {
+   label: "Titulos CNPJ"
+ }
 
 explore: ipca_bv {
   label: "IPCA BV"
@@ -457,4 +457,24 @@ explore: correcao_ipca {
     relationship: one_to_one
     type: left_outer
   }
+
+  join: proposta {
+    view_label: "4. Proposta"
+    sql_on: ${proposta.id_proposta}=${correcao_ipca.id_contrato}
+            and (${proposta.tipo_produto} != 'COMPRA DE CARTEIRA' or ${proposta.tipo_proposta} = 'RENOVACAO')
+            ;;
+    fields: [
+      proposta.tipo_produto,
+      proposta.tipo_proposta]
+    type: inner
+    relationship: many_to_one
+
+  }
 }
+
+
+explore: bullest {
+  label: "1. Bullest"
+  view_label: "1. Bullest"
+
+  }

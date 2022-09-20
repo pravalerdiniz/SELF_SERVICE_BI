@@ -2,12 +2,48 @@ view: vw_extrato_repasse {
   sql_table_name: "AD_HOC"."VW_EXTRATO_REPASSE"
     ;;
 
+  dimension: id_cpf {
+    type: number
+    value_format: "0"
+    group_label: "Dados do Aluno"
+    label: "ID CPF"
+    description: "Indica o código de referência do CPF do Aluno"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
   dimension: cpf {
     type: number
     value_format: "0"
     group_label: "Dados do Aluno"
     label: "CPF do Aluno"
     sql: ${TABLE}."CPF" ;;
+  }
+
+  dimension: nome_aluno {
+    type: string
+    label: "Nome do Aluno"
+    sql: ${TABLE}."NOME" ;;
+  }
+
+  dimension: status_aluno {
+    type: string
+    label: "Status Aluno"
+    sql: ${TABLE}."STATUS_ALUNO" ;;
+  }
+
+  dimension_group: cancelamento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: ${TABLE}."DATA_CANCELAMENTO" ;;
   }
 
   dimension: id_contrato {
@@ -18,13 +54,181 @@ view: vw_extrato_repasse {
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
 
-  dimension: id_cpf {
+  dimension: semestre_financiado {
+    type:  number
+    label: "Semestre Financiado"
+    sql: ${TABLE}."SEMESTRE_FINANCIADO" ;;
+  }
+
+  dimension: ano_financiado {
+    type:  number
+    label: "Ano Financiado"
+    sql: ${TABLE}."ANO_FINANCIADO" ;;
+  }
+
+  dimension: ra_aluno {
+    type:  string
+    label: "RA Aluno"
+    sql: ${TABLE}."RA_ALUNO" ;;
+  }
+
+  dimension: ies_grupo {
+    type: string
+    label: "IES Grupo"
+    sql: ${TABLE}."IES_GRUPO" ;;
+  }
+
+  dimension: nome_ies {
+    type: string
+    label: "Nome IES"
+    sql: ${TABLE}."NOME_IES" ;;
+  }
+
+  dimension: campus_ies {
+    type: string
+    label: "Campus IES"
+    sql: ${TABLE}."CAMPUS_IES" ;;
+  }
+
+  dimension: uf_campus {
+    type: string
+    label: "UF Campus"
+    sql: ${TABLE}."UF_CAMPUS" ;;
+  }
+
+  dimension: codigo_curso {
+    type: string
+    label: "Codigo Curso"
+    sql: ${TABLE}."CODIGO_CURSO" ;;
+  }
+
+  dimension: nome_curso {
+    type: string
+    label: "Nome Curso"
+    sql: ${TABLE}."NOME_CURSO" ;;
+  }
+
+  dimension: mes_contratacao {
     type: number
-    value_format: "0"
-    group_label: "Dados do Aluno"
-    label: "ID CPF"
-    description: "Indica o código de referência do CPF do Aluno"
-    sql: ${TABLE}."ID_CPF" ;;
+    label: "MES_CONTRATACAO"
+    sql: ${TABLE}."MES_CONTRATACAO" ;;
+  }
+
+  dimension: parcela {
+    type: string
+    label: "Parcela"
+    sql: ${TABLE}."PARCELA" ;;
+  }
+
+  dimension: tipo_aluno {
+    type: string
+    label: "Tipo Aluno"
+    sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
+
+  dimension: vl_financiado_total {
+    type: number
+    value_format: "$ #,##0.00"
+    label: "Valor Financiado Total"
+    sql: ${TABLE}."VL_FINANCIADO_TOTAL" ;;
+  }
+
+  dimension: qtd_prestacoes {
+    type: number
+    label: "Qtd Prestações"
+    sql: ${TABLE}."QTD__PRESTACOES" ;;
+  }
+
+  dimension: valor_mensalidade {
+    type: number
+    value_format: "$ #,##0.00"
+    label: "Valor Mensalidade"
+    sql: ${TABLE}."VALOR_MENSALIDADE" ;;
+  }
+
+  dimension: dia_escolhido_pagamento {
+    type: number
+    label: "Dia Escolhido Pagamento"
+    sql: ${TABLE}."DIA_ESCOLHIDO_PAGAMENTO" ;;
+  }
+
+  dimension_group: vencimento_boleto {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: ${TABLE}."DATA_VENCIMENTO_DO_BOLETO" ;;
+  }
+
+  dimension: valor_ipca {
+    type: number
+    label: "Valor IPCA"
+    sql: ${TABLE}."VALOR_IPCA" ;;
+  }
+
+  dimension: porcentagem_ipca {
+    type: number
+    label: "Porcentagem IPCA"
+    sql: ${TABLE}."PORCENTAGEM_IPCA" ;;
+  }
+
+  dimension: valor_do_boleto {
+    type: number
+    label: "Valor do Boleto"
+    sql: ${TABLE}."VALOR_DO_BOLETO" ;;
+  }
+
+  dimension_group: reconhecimento_do_pagamento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: ${TABLE}."DATA_RECONHECIMENTO_DO_PAGAMENTO" ;;
+  }
+
+  dimension: dias_de_atraso {
+    type: number
+    label: "Dias de Atraso"
+    sql: ${TABLE}."DIAS_DE_ATRASO" ;;
+  }
+
+  dimension: taxa_comissao {
+    type: number
+    label: "Taxa Comissão"
+    sql: ${TABLE}."TAXA_COMISSAO" ;;
+  }
+
+  dimension: vl_seguro_pravaler {
+    type: number
+    value_format: "$ #,##0.00"
+    label: "Valor Seguro Pravaler"
+    sql: ${TABLE}."VL_SEGURO_PRAVALER" ;;
+  }
+
+  dimension: taxa_adesao {
+    type: number
+    label: "Taxa Adesão"
+    sql: ${TABLE}."TAXA_ADESAO" ;;
+  }
+
+  dimension: produto_nome {
+    type: string
+    label: "Produto Nome"
+    sql: ${TABLE}."PRODUTO_NOME" ;;
   }
 
   dimension: num_boleto {
@@ -33,6 +237,12 @@ view: vw_extrato_repasse {
     group_label: "Dados do Título"
     label: "SEUNUM"
     sql: ${TABLE}."NUM_BOLETO" ;;
+  }
+
+  dimension: num_boleto_origem {
+    type: string
+    label: "Origem Número Boleto"
+    sql: ${TABLE}."NUM_BOLETO_ORIGEM" ;;
   }
 
   dimension: vl_comissao_pravaler {
@@ -138,6 +348,46 @@ view: vw_extrato_repasse {
     ]
     sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
     description: "Data em que foi feito o repasse dos valores gestão para a IES"
+  }
+
+  dimension_group: concessao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_num,
+      month_name,
+      year,
+    ]
+    sql: ${TABLE}."DATA_CONCESSAO" ;;
+  }
+
+  dimension: qtd_mensalidades {
+    type: number
+    label: "Qtd Mensalidades"
+    sql: ${TABLE}."QTD_MENSALIDADES" ;;
+  }
+
+  dimension: id_ies {
+    type: number
+    value_format: "0"
+    label: "ID IES"
+    sql: ${TABLE}."ID_IES" ;;
+  }
+
+  dimension: tipo_baixa {
+    type: number
+    label: "Tipo Baixa"
+    sql: ${TABLE}."TIPO_BAIXA" ;;
+  }
+
+  dimension: pn {
+    type: string
+    label: "PN"
+    sql: ${TABLE}."PN" ;;
   }
 
   measure: count {
