@@ -2250,4 +2250,11 @@ explore:  base_atendimento_fundo_funil{
       proposta.semestre_financiado]
   }
 
+  join: jornada {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    fields: [jornada.canal]
+  }
+
 }

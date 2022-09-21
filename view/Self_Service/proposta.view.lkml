@@ -2925,6 +2925,17 @@ dimension: vl_tarifa_cadastro {
     description: "Média do valor da mensalidade descrita no contrato"
   }
 
+  measure: median_mensalidade_contrato  {
+    type: number
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Mediana"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    sql:med(${vl_mensalidade});;
+    description: "Média do valor da mensalidade descrita no contrato"
+  }
+
   measure: avg_mensalidade_contrato_ajustado  {
     type: average
     group_label: "Mensalidade"
@@ -2959,16 +2970,7 @@ dimension: vl_tarifa_cadastro {
     description: "Máximo do valor da mensalidade descrita no contrato"
   }
 
-  measure: median_mensalidade_contrato  {
-    type: median
-    group_label: "Mensalidade"
-    value_format: "$ #,###.00"
-    group_item_label: "Mediana"
-    link: {label:"Documentação - Valor da Mensalidade"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
-    sql:${vl_mensalidade};;
-    description: "Mediana do valor da mensalidade descrita no contrato"
-  }
+
 
   measure: perc1_mensalidade_contrato  {
     type: percentile
@@ -3684,6 +3686,21 @@ dimension: vl_tarifa_cadastro {
     value_format: "$ #,###.00"
     group_label: "Renda Total"
     group_item_label: "Média"
+    description: "Renda Total = Renda do Aluno + Renda Fiador"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
+  measure: median_renda_total {
+    type: number
+    sql: median(${renda_total});;
+    value_format: "$ #,###.00"
+    group_label: "Renda Total"
+    group_item_label: "Mediana"
     description: "Renda Total = Renda do Aluno + Renda Fiador"
     required_access_grants: [grupo_renda]
     drill_fields: [id_proposta,

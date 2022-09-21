@@ -210,7 +210,7 @@ view: base_atendimento_fundo_funil {
   }
 
   dimension: flg_contatar {
-    label: "Flag Contratar"
+    label: "Flag Contatar"
     description: "Indica se o consultor precisa contatar o aluno"
     type: yesno
     sql:  ${TABLE}."FLG_CONTATAR"  ;;
