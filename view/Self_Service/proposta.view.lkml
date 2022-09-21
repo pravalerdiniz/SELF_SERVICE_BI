@@ -3696,8 +3696,8 @@ dimension: vl_tarifa_cadastro {
   }
 
   measure: median_renda_total {
-    type: median
-    sql: ${renda_total};;
+    type: number
+    sql: median(${renda_total});;
     value_format: "$ #,###.00"
     group_label: "Renda Total"
     group_item_label: "Mediana"
