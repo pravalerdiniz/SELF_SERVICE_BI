@@ -2932,7 +2932,7 @@ dimension: vl_tarifa_cadastro {
     group_item_label: "Mediana"
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
-    sql:med(${vl_mensalidade});;
+    sql:median(${vl_mensalidade});;
     description: "Média do valor da mensalidade descrita no contrato"
   }
 
