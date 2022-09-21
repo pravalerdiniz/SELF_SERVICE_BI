@@ -1,7 +1,7 @@
 
 view: funil_nova_proposta {
 
-  sql_table_name: "AD_HOC"."FUNIL_NOVA_PROPOSTA"
+  sql_table_name: "GRADUADO"."AD_HOC"."FUNIL_NOVA_PROPOSTA"
     ;;
 
 
