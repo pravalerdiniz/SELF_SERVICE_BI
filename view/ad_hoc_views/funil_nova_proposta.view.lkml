@@ -17,11 +17,19 @@ view: funil_nova_proposta {
     type: time
     timeframes: [
       raw,
+      time,
       date,
+      day_of_week,
       week,
       month,
       quarter,
-      year
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      day_of_month
     ]
     convert_tz: no
     datatype: date
@@ -31,12 +39,20 @@ view: funil_nova_proposta {
   dimension_group: data_safrado {
     type: time
     timeframes: [
-      raw,
+       raw,
+      time,
       date,
+      day_of_week,
       week,
       month,
       quarter,
-      year
+      year,
+      time_of_day,
+      month_name,
+      day_of_year,
+      hour_of_day,
+      month_num,
+      day_of_month
     ]
     convert_tz: no
     datatype: date
