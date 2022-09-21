@@ -62,6 +62,7 @@ view: funil_nova_proposta {
   dimension: etapa {
     type: string
     sql: ${TABLE}."ETAPA" ;;
+    order_by_field: ordem_etapa
   }
 
   dimension: qtd {
@@ -69,6 +70,92 @@ view: funil_nova_proposta {
     sql: ${TABLE}."QTD" ;;
   }
 
+  dimension: ordem_etapa {
+    type: number
+    hidden: yes
+    sql: CAST(${ordem_etapa_funil} AS INT) ;;
+
+  }
+
+  dimension: ordem_etapa_funil {
+    type: string
+    case: {
+      when: {
+        sql: ${etapa} = 'LEAD' ;;
+        label: "0"
+      }
+      when: {
+        sql: ${etapa} = 'Elegivel' ;;
+        label: "0"
+      }
+
+      when: {
+        sql: ${etapa} = 'SIMULADO' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${etapa} = 'INICIADO'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'Iniciado / Elegivel'  ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'FINALIZADO' ;;
+        label: "3"
+      }
+      when: {
+        sql: ${etapa} = 'APROVADO RISCO' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${etapa} = 'Aprovado Behavior' ;;
+        label: "5"
+      }
+
+      when: {
+        sql: ${etapa} = 'MATRICULA AE' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${etapa} = 'APROVADO INSTITUICAO' ;;
+        label: "6"
+      }
+
+      when: {
+        sql: ${etapa} = 'Contrato Gerado';;
+        label: "8"
+      }
+
+      when: {
+        sql: ${etapa} = 'AGUARDANDO DOCUMENTO';;
+        label: "9"
+      }
+
+      when: {
+        sql: ${etapa} = 'AGUARDANDO ASSINATURA' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "11"
+      }
+
+      when: {
+        sql: ${etapa} = 'FORMALIZADO' ;;
+        label: "12"
+      }
+      when: {
+        sql: ${etapa} = 'CEDIDO';;
+        label: "13"
+      }
+      else: "14"
+    }
+    hidden: yes
+  }
 
   measure: total_qtd {
     type: sum
