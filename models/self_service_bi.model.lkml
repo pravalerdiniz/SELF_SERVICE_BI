@@ -2195,6 +2195,11 @@ explore: taxa_produto_ies {
     relationship: many_to_many
   }
 }
+
+explore: repasse {
+  from: vw_extrato_repasse
+  view_label: "Repasse"
+}
 #Novo Modelo de Dados - Comercial - Lulinha 29/07/22
 # explore: vw_pipedrive_deals_pipeline {
 #   label: "Pipedrive Graduação"
@@ -2243,6 +2248,13 @@ explore:  base_atendimento_fundo_funil{
       proposta.aluno_cal_vet,
       proposta.classe_modelo_iniciado,
       proposta.semestre_financiado]
+  }
+
+  join: jornada {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    fields: [jornada.canal]
   }
 
 }

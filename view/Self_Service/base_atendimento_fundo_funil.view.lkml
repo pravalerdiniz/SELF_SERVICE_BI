@@ -210,7 +210,7 @@ view: base_atendimento_fundo_funil {
   }
 
   dimension: flg_contatar {
-    label: "Flag Contratar"
+    label: "Flag Contatar"
     description: "Indica se o consultor precisa contatar o aluno"
     type: yesno
     sql:  ${TABLE}."FLG_CONTATAR"  ;;
@@ -256,8 +256,8 @@ view: base_atendimento_fundo_funil {
     description: "Indica se o snapshot é referente a uma base de fechamento de mês"
     type: yesno
     sql:
-    LAST_DAY(DATE_TRUNC("MONTH", ${TABLE}."DATA_CESSAO_ORIGINAL")) = DATE_TRUNC("DAY", ${TABLE}."DATA_CESSAO_ORIGINAL")
-    AND HOUR(${TABLE}."DATA_CESSAO_ORIGINAL") > 20  ;;
+    LAST_DAY(DATE_TRUNC("MONTH", ${TABLE}."DT_SNAPSHOT")) = DATE_TRUNC("DAY", ${TABLE}."DT_SNAPSHOT")
+    AND HOUR(${TABLE}."DT_SNAPSHOT") > 17  ;;
   }
 
   dimension: flg_ultimo_snap {
