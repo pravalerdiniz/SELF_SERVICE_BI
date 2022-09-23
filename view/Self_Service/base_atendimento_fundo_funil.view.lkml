@@ -274,4 +274,108 @@ view: base_atendimento_fundo_funil {
     sql: ${flg_fechamento} = 'Yes' or ${flg_ultimo_snap} = 'Yes' ;;
   }
 
+  measure: qtd_alunos {
+    label: "Quantidade de Alunos"
+    description: "Contagem de alunos distintos da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  measure: qtd_alunos_sem_contato {
+    label: "Quantidade de Alunos Sem Contato"
+    description: "Contagem de alunos distintos sem contato da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    filters: [flg_tabulacao: "No"]
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  measure: qtd_alunos_com_contato {
+    label: "Quantidade de Alunos Com Contato"
+    description: "Contagem de alunos distintos sem contato da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    filters: [flg_tabulacao: "Yes"]
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  measure: qtd_alunos_convertidos {
+    label: "Quantidade de Alunos Convertidos"
+    description: "Contagem de alunos distintos que foram Formalizados ou Cedidos da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    filters: [id_status_destino_geral: "41, 50, 51"]
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  measure: conversao_alunos {
+    label: "Conversão Alunos"
+    description: "Quantidade de alunos Formalizados ou Cedidos pela quantidade de alunos da Base de Atendimento"
+    group_label: "Aluno"
+    type: number
+    value_format: "0.0%"
+    sql: ${qtd_alunos_convertidos}/${qtd_alunos} ;;
+  }
+
+  measure: taxa_contato {
+    label: "Taxa de Contato"
+    description: "Quantidade de alunos com contato pela quantidade de alunos da Base de Atendimento"
+    group_label: "Aluno"
+    type: number
+    value_format: "0.0%"
+    sql: ${qtd_alunos_com_contato}/${qtd_alunos} ;;
+  }
+
+  measure: soma_contatos {
+    label: "Soma de Contatos Realizados"
+    description: "Soma da quantidade de contatos realizados com cada aluno da Base de Atendimento"
+    group_label: "Contato"
+    type: sum
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
+  measure: soma_contatos_tentativa {
+    label: "Soma de Contatos Não Efetivos (Tentativa de Contato)"
+    description: "Soma da quantidade de contatos não atendidos realizados com cada aluno da Base de Atendimento (tentativa de contato)"
+    group_label: "Contato"
+    type: sum
+    filters: [titulo_chamado: "ERRO"]
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
+  measure: soma_contatos_efetivos {
+    label: "Soma de Contatos Efetivos"
+    description: "Soma da quantidade de contatos atendidos realizados com cada aluno da Base de Atendimento (tentativa de contato)"
+    group_label: "Contato"
+    type: sum
+    filters: [titulo_chamado: "-ERRO"]
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
+  measure: qtd_consultores {
+    label: "Quantidade de Consultores"
+    group_label: "Atendimento"
+    type: count_distinct
+    sql: ${TABLE}."LOGIN" ;;
+  }
+
+  measure: qtd_contato_aluno {
+    label: "Quantidade de Contatos por Aluno (Spin)"
+    description: "Soma da quantidade de contatos realizados pela quantidade de alunos na Base de Atendimento"
+    group_label: "Atendimento"
+    type: number
+    value_format: "0.0"
+    sql: ${soma_contatos}/${qtd_alunos} ;;
+  }
+
+  measure: qtd_contato_consultor  {
+    label: "Quantidade de Contato por Consultor"
+    description: "Soma da quantidade de contatos realizdaos pela quantidade de consultores"
+    group_label: "Atendimento"
+    type: number
+    value_format: "0.0"
+    sql: ${soma_contatos}/${qtd_consultores} ;;
+  }
+
 }
