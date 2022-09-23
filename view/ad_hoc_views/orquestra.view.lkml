@@ -323,6 +323,16 @@ view: orquestra {
     description: "Contagem de Chamados Únicos"
   }
 
+  measure: count_tasks {
+    type: count
+    #sql: ${numero_chamado} ;;
+    drill_fields: [numero_chamado,
+      nome_fila, data_inicio_date, area_requisitante, data_fim_date, area_executor, descricao_resultado]
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Total de Tasks"
+    description: "Contagem de Chamados (Tasks)"
+  }
+
   measure: count_chamados_rejeitados {
     type: count_distinct
     sql: (case when ${status_processo} = 'REJEITADO' then ${numero_chamado} end) ;;

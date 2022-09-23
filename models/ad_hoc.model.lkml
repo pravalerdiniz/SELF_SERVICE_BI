@@ -472,9 +472,11 @@ explore: correcao_ipca {
   }
 }
 
-
 explore: bullest {
   label: "1. Bullest"
   view_label: "1. Bullest"
+  }
 
+  explore: vw_titulos {
+    label: "API titulos Validação"
   }

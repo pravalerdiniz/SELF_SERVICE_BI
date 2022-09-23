@@ -52,6 +52,18 @@ explore: gupy_candidaturas {
 
 }
 
+explore: gupy_vagas_por_status {
+  label: "Vagas Gupy por status"
+  description: "Informações em formato de Snapshot para as vagas da Gupy"
+
+  join: gupy_vagas  {
+    view_label: "Gupy Vagas (Base Vagas)"
+    relationship: one_to_one
+    type: inner
+    sql_on: ${gupy_vagas.codigo} = ${gupy_vagas_por_status.codigo} ;;
+  }
+}
+
 explore: gupy_vagas {
   label: "Dados sobre as vagas na GUPY"
   description: "Informações sobre vagas cadastradas na plataforma Gupy"
