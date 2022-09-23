@@ -501,7 +501,7 @@ view: gupy_vagas {
     sql: case ${TABLE}."STATUS"
           when 'approved' then 'aprovada'
           when 'canceled' then 'cancelada'
-          when 'closed' then 'fechada'
+          when 'closed' then 'encerrada'
           when 'frozen' then 'congelada'
           when 'published' then 'publicada'
           when 'waiting_approval' then 'em aprovação'

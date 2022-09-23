@@ -372,8 +372,7 @@ view: vw_extrato_repasse {
   }
 
   dimension: id_ies {
-    type: number
-    value_format: "0"
+    type: string
     label: "ID IES"
     sql: ${TABLE}."ID_IES" ;;
   }

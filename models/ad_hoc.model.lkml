@@ -36,7 +36,7 @@ datagroup: painel_de_carga {
 #   }
 # }
 
-
+explore: funil_nova_proposta {}
 
 explore: orcamento {
   label: "Orçamento - Histórico"
