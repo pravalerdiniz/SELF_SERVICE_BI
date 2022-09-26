@@ -2,12 +2,13 @@
 view: leads_canal_entrada {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "BICHO"."MGM"."LEADS_CANAL_ENTRADA"
+  sql_table_name: VETERANO.AFILIADOS.TB_LEADS_CANAL_ENTRADA
     ;;
 
   dimension: cd_canal {
     type: number
-    sql: ${TABLE}."CD_CANAL" ;;
+    label: "Código Canal"
+    sql: ${TABLE}."ID_CANAL" ;;
     group_label: "Dados Leads Afiliados"
   }
 
@@ -25,13 +26,15 @@ view: leads_canal_entrada {
 
   dimension: cd_cpf_lead {
     type: number
-    sql: ${TABLE}."CD_CPF_LEAD" ;;
+    label: "CPF Lead"
+    sql: ${TABLE}."CPF_LEAD" ;;
     group_label: "Dados Leads Afiliados"
   }
 
   dimension: cd_lead_canal_origem {
     type: string
-    sql: ${TABLE}."CD_LEAD_CANAL_ORIGEM" ;;
+    label: "Código Canal Origem"
+    sql: ${TABLE}."ID_LEAD_CANAL_ORIGEM" ;;
     group_label: "Dados Leads Afiliados"
   }
 
@@ -80,14 +83,16 @@ view: leads_canal_entrada {
     group_label: "Dados Leads Afiliados"
   }
 
-  dimension: in_verificacao_prv_proposta {
+  dimension: FLG_VERIFICACAO_PRV_PROPOSTA {
     type: yesno
-    sql: ${TABLE}."IN_VERIFICACAO_PRV_PROPOSTA" ;;
+    label: "Flag verificação proposta"
+    sql: ${TABLE}."FLG_VERIFICACAO_PRV_PROPOSTA" ;;
     group_label: "Dados Leads Afiliados"
   }
 
   dimension: nr_gerado_prv_proposta {
     type: number
+    label: "Número gerado Proposta"
     sql: ${TABLE}."NR_GERADO_PRV_PROPOSTA" ;;
     group_label: "Dados Leads Afiliados"
   }
