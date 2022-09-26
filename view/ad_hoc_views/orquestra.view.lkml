@@ -281,12 +281,12 @@ view: orquestra {
     sql: ${TABLE}."CPF" ;;
   }
 
-#  dimension: cpf_number {
-#    type: number
-#    group_label: "Dados do Aluno"
-#    group_item_label: "CPF do Aluno (número)"
-#    sql: ${TABLE}."CPF" ;;
-#  }
+  dimension: cpf_number {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF do Aluno (número)"
+    sql: ${TABLE}."CPF" ;;
+  }
 
 
   measure: total_codigo_resultado {
