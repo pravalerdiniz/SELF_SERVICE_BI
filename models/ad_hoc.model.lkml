@@ -17,6 +17,32 @@ access_grant: grupo_cpf {
   allowed_values: ["grupo_cpf"]
 }
 
+access_grant: grupo_nome {
+  user_attribute: grupo_nome
+  allowed_values: ["grupo_nome"]
+
+}
+
+access_grant: grupo_telefone {
+  user_attribute: grupo_telefone
+  allowed_values: ["grupo_telefone"]
+}
+
+access_grant: grupo_endereco {
+  user_attribute: grupo_endereco
+  allowed_values: ["grupo_endereco"]
+}
+
+access_grant: grupo_email {
+  user_attribute: grupo_email
+  allowed_values: ["grupo_email"]
+}
+
+access_grant: grupo_renda {
+  user_attribute: grupo_renda
+  allowed_values: ["grupo_renda"]
+}
+
 datagroup: painel_de_carga {
    sql_trigger: SELECT max(dt_conclusao) data_carga FROM GRADUADO.MONITORIA_BANCO.PAINEL_CARGA;;
   max_cache_age: "1 hour"
@@ -187,6 +213,10 @@ explore: documentacao {}
 
 explore: orquestra {
   label: "Orquestra"
+  fields: [ALL_FIELDS *,
+    - alunos.ativo_ano_mes,
+    - alunos.flg_balcao
+  ]
   view_label: "1. Orquestra"
 
   join: orquestra_obj_campos {
@@ -220,6 +250,21 @@ explore: orquestra {
     relationship: one_to_one
     view_label: "Processo P28"
   }
+
+  join: dim_cpf {
+    from: dim_cpf
+    type: left_outer
+    sql_on: ${orquestra.cpf_number}=${dim_cpf.cpf};;
+    relationship: many_to_one
+  }
+
+  join: alunos {
+    from: alunos
+    type: left_outer
+    sql_on: ${dim_cpf.id_cpf}=${alunos.id_cpf};;
+    relationship: one_to_many
+    view_label: "Alunos"
+    }
 }
 
 explore: reclame_aqui {
