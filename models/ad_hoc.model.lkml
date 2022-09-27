@@ -315,8 +315,7 @@ explore: treinamento_data_driven {
 # explore: jira {}
 
 
-#Tabela não utilizada 06/09/22 - Lulinha
-# explore: bv_export_boletos{}
+explore: bv_export_boletos{}
 
 #Tabela não utilizada 06/09/22 - Lulinha
 # explore: one_page_trade {}
