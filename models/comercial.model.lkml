@@ -126,3 +126,23 @@ explore: metas_distribuidas {
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
 }
+
+explore: leads_afiliados {
+  label: "Afiliados"
+  view_label: "1. Leads Afiliados"
+#
+#  join: dim_cpf {
+#    view_label: "2. Dim cpf"
+#    sql_on: ${leads_afiliados.CPF_LEAD} = ${dim_cpf.cpf} ;;
+#    relationship: many_to_one
+#    type: left_outer
+#  }
+
+#  join: jornada {
+#    view_label: "2.Jornada"
+#    sql_on: ${jornada.aluno_cpf} = ${leads_afiliados.CPF_LEAD} ;;
+#    type: left_outer
+#    relationship: one_to_many
+#  }
+
+}

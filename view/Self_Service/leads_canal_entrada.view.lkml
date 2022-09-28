@@ -12,22 +12,29 @@ view: leads_canal_entrada {
     group_label: "Dados Leads Afiliados"
   }
 
-  measure: total_cd_canal {
-    type: sum
-    sql: ${cd_canal} ;;
-    group_label: "Dados Leads Afiliados"
-  }
+#  measure: total_cd_canal {
+#    type: sum
+#    sql: ${cd_canal} ;;
+#    group_label: "Dados Leads Afiliados"
+#  }
 
-  measure: average_cd_canal {
-    type: average
-    sql: ${cd_canal} ;;
-    group_label: "Dados Leads Afiliados"
-  }
+#  measure: average_cd_canal {
+#    type: average
+#    sql: ${cd_canal} ;;
+#    group_label: "Dados Leads Afiliados"
+#  }
 
   dimension: cd_cpf_lead {
     type: number
     label: "CPF Lead"
     sql: ${TABLE}."CPF_LEAD" ;;
+    group_label: "Dados Leads Afiliados"
+  }
+
+  measure: count_cpf {
+    type: count_distinct
+    sql: ${cd_cpf_lead} ;;
+    label: "Quantidade leads afiliados"
     group_label: "Dados Leads Afiliados"
   }
 
@@ -99,12 +106,14 @@ view: leads_canal_entrada {
 
   dimension: nr_proposta_canal_origem {
     type: number
+    label: "Número Proposta Canal Origem"
     sql: ${TABLE}."NR_PROPOSTA_CANAL_ORIGEM" ;;
     group_label: "Dados Leads Afiliados"
   }
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: []
     group_label: "Dados Leads Afiliados"
   }
