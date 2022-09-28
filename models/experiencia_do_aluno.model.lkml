@@ -249,3 +249,14 @@ explore: taxa_de_contato_motivo_de_contato{
   label: "Taxa de Contato por Motivo de Contato"
   description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
 }
+
+
+explore: ra_tickets_metas{
+  label: "Reclame Aqui - Metas"
+  description: "Essa base trás o cálculo para avaliações faltantes para bater a meta dos indicadores de 'Voltaria Fazer Negócio' e 'Seu Problema foi Resolvido'."
+}
+
+explore: reclame_aqui{
+  label: "Reclame Aqui"
+  description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
+}
