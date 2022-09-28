@@ -387,11 +387,6 @@ explore: perfil_usuarios {}
 
 # explore: csat_nuvem_palavras_bad {}
 
-explore: nps_nuvem_palavras_detratores {}
-
-explore: nps_nuvem_palavras_neutros {}
-
-explore: nps_nuvem_palavras_promotores {}
 
 explore: nuvem_nps_ies {
   label: "Nuvem Palavras NPS IES"

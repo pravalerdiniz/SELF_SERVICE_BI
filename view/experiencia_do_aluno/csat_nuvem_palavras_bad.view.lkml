@@ -1,4 +1,4 @@
-view: nuvem_palavras_csat_bad {
+view: csat_nuvem_palavras_bad {
   derived_table: {
     sql: SELECT
           *
