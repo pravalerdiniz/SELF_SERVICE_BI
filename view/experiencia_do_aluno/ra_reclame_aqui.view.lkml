@@ -386,7 +386,7 @@ view: reclame_aqui {
 
   dimension: flg_reclamacao_considerada {
     type: yesno
-    group_label: "Dados da Relcamação"
+    group_label: "Dados da Reclamação"
     group_item_label: "Flag Reclamação Considerada (Yes/No"
     description: "Regra para marcar uma reclamação ativa. Regra: FLG_ATIVO = TRUE, FLG_RA_PROCESSO_INTERNO = TRUE, RA_STATUS not in “Desativado pelo consumidor” ou “Inativa no ReclameAQUI”"
     sql: ${TABLE}."FLG_RECLAMACAO_CONSIDERADA" ;;
