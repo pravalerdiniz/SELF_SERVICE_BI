@@ -219,6 +219,25 @@ explore: taxa_de_contato{
 }
 
 
+explore: nps_nuvem_palavras_detratores {
+  label: "SoluCX - Nuvem de Palavras (Detratores)"
+  description: "Palavras mais comentadas pelos alunos detratores nas pesquisas de NPS Relacional no ano atual"
+}
+
+explore: nps_nuvem_palavras_neutros {
+  label: "SoluCX - Nuvem de Palavras (Neutros)"
+  description: "Palavras mais comentadas pelos alunos neutros nas pesquisas de NPS Relacional no ano atual"
+}
+
+explore: nps_nuvem_palavras_promotores {
+  label: "SoluCX - Nuvem de Palavras (Promotores)"
+  description: "Palavras mais comentadas pelos alunos promotores nas pesquisas de NPS Relacional no ano atual"
+}
+
+explore: nuvem_palavras_reclame_aqui_geral {
+  label: "Reclame Aqui - Nuvem de Palavras"
+  description: "Palavras mais comentadas pelos alunos que tiveram uma reclamação nas reclamações do Reclame Aqui nos últimos 6 meses"
+}
 
 
 explore: taxa_de_contato_alunos_ativos{
