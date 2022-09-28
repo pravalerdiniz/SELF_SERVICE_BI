@@ -19,6 +19,46 @@ include: "/**/*.view.lkml"               # include all views in the views/ folde
 #   }
 # }
 
+map_layer: MAPA_ESTADO_ALUNO {
+  file: "/MAPAS/uf.json"
+}
+
+map_layer: MAPA_CIDADE_ALUNO {
+  file: "/MAPAS/municipio.json"
+}
+
+
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
+
+access_grant: grupo_nome {
+  user_attribute: grupo_nome
+  allowed_values: ["grupo_nome"]
+
+}
+
+access_grant: grupo_telefone {
+  user_attribute: grupo_telefone
+  allowed_values: ["grupo_telefone"]
+}
+
+access_grant: grupo_endereco {
+  user_attribute: grupo_endereco
+  allowed_values: ["grupo_endereco"]
+}
+
+access_grant: grupo_email {
+  user_attribute: grupo_email
+  allowed_values: ["grupo_email"]
+}
+
+access_grant: grupo_renda {
+  user_attribute: grupo_renda
+  allowed_values: ["grupo_renda"]
+}
+
 
 explore: instituicao_metas_gc {
   label: "Metas - Grupo"
@@ -130,19 +170,42 @@ explore: simulador_etapas {
 explore: leads_afiliados {
   label: "Afiliados"
   view_label: "1. Leads Afiliados"
-#
-#  join: dim_cpf {
-#    view_label: "2. Dim cpf"
-#    sql_on: ${leads_afiliados.CPF_LEAD} = ${dim_cpf.cpf} ;;
-#    relationship: many_to_one
-#    type: left_outer
-#  }
+  fields: [ALL_FIELDS *,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
+  ]
 
-#  join: jornada {
-#    view_label: "2.Jornada"
-#    sql_on: ${jornada.aluno_cpf} = ${leads_afiliados.CPF_LEAD} ;;
-#    type: left_outer
-#    relationship: one_to_many
-#  }
+  join: dim_cpf {
+    from: dim_cpf
+    view_label: "2. Dim cpf"
+    sql_on: ${leads_afiliados.CPF_LEAD} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    from:  jornada
+    view_label: "2.Jornada"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 }
