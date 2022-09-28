@@ -258,5 +258,5 @@ explore: ra_tickets_metas{
 
 explore: reclame_aqui{
   label: "Reclame Aqui"
-  description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
+  description: " Essa base trás as reclamações do Reclame Aqui."
 }
