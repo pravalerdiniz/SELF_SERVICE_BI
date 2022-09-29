@@ -202,7 +202,7 @@ explore: leads_afiliados {
 
   join: jornada {
     from:  jornada
-    view_label: "2.Jornada"
+    view_label: "2. Jornada"
     sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf};;
     type: left_outer
     relationship: one_to_many
