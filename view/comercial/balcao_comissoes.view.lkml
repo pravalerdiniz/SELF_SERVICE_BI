@@ -9,7 +9,7 @@ view: balcao_comissoes {
       f.value:NOME_CAMPANHA::varchar as nome_campanha,
       f.value:NOME_IES_PAYLOAD_SABER_REDE::varchar as nome_ies_payload_saber_rede,
       f.value:NOME_TIPO_COMISSAO::varchar as nome_tipo_comissao,
-      f.value:QT_TIPO_COMISSAO::number as qt_tipo_comissao,
+      f.value:QT_TIPO_COMISSAO::float as qt_tipo_comissao,
       f.value:STATUS_PAGAMENTO::varchar as status_pagamento
       from "VETERANO"."AFILIADOS"."VW_HOMOLOG_COMISSAO" a,
       lateral flatten (input => INFO_COMISSAO) f
