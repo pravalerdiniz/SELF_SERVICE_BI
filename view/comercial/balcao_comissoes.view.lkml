@@ -31,8 +31,23 @@ view: balcao_comissoes {
     sql: ${TABLE}."CPF_AFILIADO" ;;
   }
 
-  dimension: dt_solicitacao_comissao {
-    type: date
+  # dimension: dt_solicitacao_comissao {
+  #   type: date
+  #   sql: ${TABLE}."DT_SOLICITACAO_COMISSAO" ;;
+  # }
+
+  dimension_group: dt_solicitacao_comissao {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}."DT_SOLICITACAO_COMISSAO" ;;
   }
 
@@ -75,7 +90,6 @@ view: balcao_comissoes {
     fields: [
       id_comissao,
       cpf_afiliado,
-      dt_solicitacao_comissao,
       id_afiliado,
       id_campanha,
       nome_campanha,
