@@ -86,6 +86,12 @@ view: balcao_comissoes {
     sql: ${TABLE}."STATUS_PAGAMENTO" ;;
   }
 
+  measure: total_comissao {
+    type: sum
+    sql: ${qt_tipo_comissao} ;;
+    description: "Soma das comissões"
+  }
+
   set: detail {
     fields: [
       id_comissao,
