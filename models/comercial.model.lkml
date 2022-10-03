@@ -209,3 +209,16 @@ explore: leads_afiliados {
   }
 
 }
+
+explore: vw_homolog_comissao {
+  label: "Homologação Comissão"
+  view_label: "Atendentes Balcão"
+  description: "Informações relacionadas à comissão dos atendentes do balcão da IES"
+
+  join: balcao_comissoes {
+    view_label: "Comissões por atendente"
+    sql_on: ${vw_homolog_comissao.cpf_atendente_ies} = ${balcao_comissoes.cpf_afiliado};;
+    type: left_outer
+    relationship: one_to_many
+  }
+}
