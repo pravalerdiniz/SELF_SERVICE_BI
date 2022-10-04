@@ -39,6 +39,12 @@ explore: historico_turnover {
   description: "Informações históricas sobre Turnover dos colaboradores do Pravaler"
 }
 
+explore: nps_processo_seletivo {
+  label: "NPS processo seletivo"
+  view_label: "NPS processo seletivo"
+  description: "Respostas coletadas pela pesquisa NPS do processo seletivo"
+}
+
 explore: gupy_candidaturas {
   label: "Dados sobre as candidaturas na GUPY"
   description: "Informações sobre vagas, candidatos e acompanhamento de candidaturas"

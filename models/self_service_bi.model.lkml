@@ -523,7 +523,8 @@ explore: jornada {
 
   join: instituicao_metas_gc {
     view_label: "2.1 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}
+        and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -1123,14 +1124,12 @@ join: sql_runner_query_range_boleto {
     type: left_outer
   }
 
-join: vw_extrato_repasse {
-  view_label: "4. Extrato Repasse - Gestão Corrigido"
-  sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
-          ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
-          --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
-  ;;
-  relationship: one_to_one
-}
+## join: vw_extrato_repasse {
+## view_label: "4. Extrato Repasse - Gestão Corrigido"
+## sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
+## ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+## --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato});;
+## relationship: one_to_one }
 
   join: carteira {
     view_label: "6. Carteira (base OT)"
@@ -1471,13 +1470,11 @@ explore: proposta {
     type: left_outer
   }
 
-  join: vw_extrato_repasse {
-    sql_on: ${proposta.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
-    and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
-    relationship: one_to_one
-    type: left_outer
-
-  }
+  ##join: vw_extrato_repasse {
+  ##  sql_on: ${proposta.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
+  ##  and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
+  ##  relationship: one_to_one
+  ##  type: left_outer}
 
 }
 

@@ -490,7 +490,31 @@ view: instituicao {
     description: "Indica o grupo da IES nos dados do amigoedu"
   }
 
+# Campos relacionados aos cursos
 
+  dimension: programa {
+    sql: ${TABLE}."PROGRAMA";;
+    type: string
+    group_label: "Dados do Curso - IE"
+    group_item_label: "Programa"
+    description: " ID do curso enviado pela IEs"
+  }
+
+  dimension: pc_bolsa_estudo {
+    sql: ${TABLE}."PC_BOLSA_ESTUDO";;
+    type: number
+    group_label: "Dados do Curso - IE"
+    group_item_label: "PC Bolsa Estudo"
+    description: " Mostra o percentual de bolsa para o curso"
+  }
+
+  dimension: hash_fies {
+    sql: ${TABLE}."HASH_FIES";;
+    type: string
+    group_label: "Dados do Curso - IE"
+    group_item_label: "Hash Fies"
+    description: "Relação com cursos do FIEs"
+  }
 
   measure: count {
     type: count

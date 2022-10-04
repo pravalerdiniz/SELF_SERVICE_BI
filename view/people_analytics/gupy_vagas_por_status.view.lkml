@@ -18,7 +18,7 @@ view: gupy_vagas_por_status {
       UNION ALL
 
       select
-        DATA_ENCERRAMENTO::DATE, codigo, 'FECHADA', NOME
+        DATA_ENCERRAMENTO::DATE, codigo, 'ENCERRADA', NOME
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
       WHERE DATA_ENCERRAMENTO IS NOT NULL
 
@@ -107,8 +107,8 @@ view: gupy_vagas_por_status {
   measure: count_fechadas {
     type: count_distinct
     sql: ${codigo} ;;
-    filters: [status: "FECHADA"]
-    label: "Qtde. Fechadas"
+    filters: [status: "ENCERRADA"]
+    label: "Qtde. Encerradas"
     value_format: "0"
     drill_fields: [detail*]
   }

@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Chamados Tela Atendimento"
 view: chamados_tela_atendimento {
-  sql_table_name: "CRM"."CHAMADOS_TELA_ATENDIMENTO"
+  sql_table_name: "GRADUADO"."CRM"."CHAMADOS_TELA_ATENDIMENTO"
     ;;
 
   dimension: cpf {
