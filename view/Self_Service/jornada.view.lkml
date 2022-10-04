@@ -25,6 +25,36 @@ view: jornada {
     description: "Este campo é uma regra de negócio*. Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
   }
 
+  parameter: timeframe_picker {
+    type: unquoted
+    hidden:  yes
+    default_value: "week"
+    allowed_value: {
+      value: "day_of_month"
+    }
+    allowed_value: {
+      value: "week"
+    }
+    allowed_value: {
+      value: "month"
+    }
+  }
+
+  dimension: date {
+    hidden: yes
+    sql:
+    {% if timeframe_picker._parameter_value == 'day_of_month' %}
+      ${dt_status_day_of_month}
+    {% elsif timeframe_picker._parameter_value == 'month' %}
+      ${dt_status_month}
+    {% elsif timeframe_picker._parameter_value == 'week' %}
+      ${dt_status_week}
+    {% else %}
+      ${dt_status_date}
+    {% endif %};;
+    label: "data teste"
+  }
+
   dimension: wtd_only {
     group_label: "Filtros para Análise de Períodos"
     label: "Week to Date - Data da Etapa"
