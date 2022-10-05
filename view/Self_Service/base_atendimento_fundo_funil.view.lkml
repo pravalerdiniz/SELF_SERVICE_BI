@@ -275,8 +275,8 @@ view: base_atendimento_fundo_funil {
     sql: ${flg_fechamento} = 'Yes' or ${flg_ultimo_snap} = 'Yes' ;;
   }
 
-  dimension: flg_celula_fundo_funil {
-    label: "Flag Célula Fundo de Funil"
+  dimension: flg_consultor_fundo_funil {
+    label: "Flag Consultor Fundo de Funil"
     description: "Indica se o último consultor a entrar em contato com o aluno pertence à célula de fundo de funil"
     type: yesno
     sql: ${TABLE}."LOGIN" IN
@@ -312,6 +312,24 @@ view: base_atendimento_fundo_funil {
     sql: ${TABLE}."ID_CPF" ;;
   }
 
+  measure: qtd_alunos_sem_contato_fundo_funil {
+    label: "Quantidade de Alunos Sem Contato - Fundo Funil"
+    description: "Contagem de alunos distintos sem contato pela célula de fundo de funil da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    filters: [flg_consultor_fundo_funil: "No"]
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  measure: qtd_alunos_com_contato_fundo_funil {
+    label: "Quantidade de Alunos Com Contato - Fundo Funil"
+    description: "Contagem de alunos distintos com contato pela célula de fundo de funil da Base de Atendimento"
+    group_label: "Aluno"
+    type: count_distinct
+    filters: [flg_consultor_fundo_funil: "Yes"]
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
   measure: qtd_alunos_convertidos {
     label: "Quantidade de Alunos Convertidos"
     description: "Contagem de alunos distintos que foram Formalizados ou Cedidos da Base de Atendimento"
@@ -339,11 +357,29 @@ view: base_atendimento_fundo_funil {
     sql: ${qtd_alunos_com_contato}/${qtd_alunos} ;;
   }
 
+  measure: taxa_contato_fundo_funil {
+    label: "Taxa de Contato - Fundo Funil"
+    description: "Quantidade de alunos com contato da célula de fundo de funil pela quantidade de alunos da Base de Atendimento"
+    group_label: "Aluno"
+    type: number
+    value_format: "0.0%"
+    sql: ${qtd_alunos_com_contato_fundo_funil}/${qtd_alunos} ;;
+  }
+
   measure: soma_contatos {
     label: "Soma de Contatos Realizados"
     description: "Soma da quantidade de contatos realizados com cada aluno da Base de Atendimento"
     group_label: "Contato"
     type: sum
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
+  measure: soma_contatos_fundo_funil {
+    label: "Soma de Contatos Realizados - Fundo Funil"
+    description: "Soma da quantidade de contatos realizados pela célula de fundo de funil com cada aluno da Base de Atendimento"
+    group_label: "Contato"
+    type: sum
+    filters: [flg_consultor_fundo_funil: "Yes"]
     sql: ${TABLE}."QTD_CONTATO" ;;
   }
 
@@ -356,12 +392,30 @@ view: base_atendimento_fundo_funil {
     sql: ${TABLE}."QTD_CONTATO" ;;
   }
 
+  measure: soma_contatos_tentativa_fundo_funil {
+    label: "Soma de Contatos Não Efetivos (Tentativa de Contato) - Fundo Funil"
+    description: "Soma da quantidade de contatos não atendidos realizados pela célula de fundo de funil com cada aluno da Base de Atendimento (tentativa de contato)"
+    group_label: "Contato"
+    type: sum
+    filters: [titulo_chamado: "ERRO", flg_consultor_fundo_funil: "Yes"]
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
   measure: soma_contatos_efetivos {
     label: "Soma de Contatos Efetivos"
     description: "Soma da quantidade de contatos atendidos realizados com cada aluno da Base de Atendimento (tentativa de contato)"
     group_label: "Contato"
     type: sum
     filters: [titulo_chamado: "-ERRO"]
+    sql: ${TABLE}."QTD_CONTATO" ;;
+  }
+
+  measure: soma_contatos_efetivos_fundo_funil {
+    label: "Soma de Contatos Efetivos - Fundo Funil"
+    description: "Soma da quantidade de contatos atendidos realizados pela célula de fundo de funil com cada aluno da Base de Atendimento (tentativa de contato)"
+    group_label: "Contato"
+    type: sum
+    filters: [titulo_chamado: "-ERRO", flg_consultor_fundo_funil: "Yes"]
     sql: ${TABLE}."QTD_CONTATO" ;;
   }
 
@@ -381,6 +435,15 @@ view: base_atendimento_fundo_funil {
     sql: ${soma_contatos}/${qtd_alunos} ;;
   }
 
+  measure: qtd_contato_aluno_fundo_funil {
+    label: "Quantidade de Contatos por Aluno (Spin) - Fundo Funil"
+    description: "Soma da quantidade de contatos realizados pela célula de fundo de funil pela quantidade de alunos na Base de Atendimento"
+    group_label: "Atendimento"
+    type: number
+    value_format: "0.0"
+    sql: ${soma_contatos_fundo_funil}/${qtd_alunos} ;;
+  }
+
   measure: qtd_contato_consultor  {
     label: "Quantidade de Contato por Consultor"
     description: "Soma da quantidade de contatos realizdaos pela quantidade de consultores"
@@ -388,6 +451,15 @@ view: base_atendimento_fundo_funil {
     type: number
     value_format: "0.0"
     sql: ${soma_contatos}/${qtd_consultores} ;;
+  }
+
+  measure: qtd_contato_consultor_fundo_funil  {
+    label: "Quantidade de Contato por Consultor - Fundo Funil"
+    description: "Soma da quantidade de contatos realizados pela célula de fundo de funil pela quantidade de consultores"
+    group_label: "Atendimento"
+    type: number
+    value_format: "0.0"
+    sql: ${soma_contatos_fundo_funil}/${qtd_consultores} ;;
   }
 
 }
