@@ -257,7 +257,8 @@ view: base_atendimento_fundo_funil {
     type: yesno
     sql:
     LAST_DAY(DATE_TRUNC("MONTH", ${TABLE}."DT_SNAPSHOT")) = DATE_TRUNC("DAY", ${TABLE}."DT_SNAPSHOT")
-    AND HOUR(${TABLE}."DT_SNAPSHOT") > 17  ;;
+    AND (HOUR(${TABLE}."DT_SNAPSHOT") > 17 OR HOUR(${TABLE}."DT_SNAPSHOT") = 00)  ;;
+  #regra de negócio acima paliativa para considerar último snapshot (snap de fechamento) dos meses anteriores e snapshot do mês 09/2022 criado à meia-noite
   }
 
   dimension: flg_ultimo_snap {
