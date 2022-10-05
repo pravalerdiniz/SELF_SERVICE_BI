@@ -275,6 +275,17 @@ view: base_atendimento_fundo_funil {
     sql: ${flg_fechamento} = 'Yes' or ${flg_ultimo_snap} = 'Yes' ;;
   }
 
+  dimension: flg_celula_fundo_funil {
+    label: "Flag Célula Fundo de Funil"
+    description: "Indica se o último consultor a entrar em contato com o aluno pertence à célula de fundo de funil"
+    type: yesno
+    sql: ${TABLE}."LOGIN" IN
+        ('ANDERSON.OLIVEIRA', 'ANDREZA.SILVA', 'ARYELLY.PEQUENO',
+          'BRUNO.NICOLETI', 'DANNY.SILVA', 'DENISE.OLIVEIRA', 'GABRIELLY.ANDRADE', 'INGRID.SANTOS',
+          'JULIANA.AZEVEDO', 'KAUANY.SABINO', 'MARCELLA.SANTOS', 'NATHALYA.MARTINS', 'SABRINA.RODRIGUES',
+          'SHAIRON.WEINBERG', 'WESLEY.DALBERIO') ;;
+  }
+
   measure: qtd_alunos {
     label: "Quantidade de Alunos"
     description: "Contagem de alunos distintos da Base de Atendimento"
