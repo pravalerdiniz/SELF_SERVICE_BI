@@ -77,8 +77,8 @@ view: google_analytics_aberturas {
 
   dimension: campanha {
     type: string
-    sql: ${TABLE}."CAMPANHA" ;;
-    label: "Campanha"
+    sql: ${TABLE}."Nome do Disparo" ;;
+    label: "Nome do Disparo"
     description: "O grupo de campanha associado à navegação"
   }
 
