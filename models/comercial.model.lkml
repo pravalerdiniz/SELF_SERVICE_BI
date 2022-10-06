@@ -221,4 +221,11 @@ explore: vw_homolog_comissao {
     type: left_outer
     relationship: one_to_many
   }
+
+  join: depara_grupo_gerente {
+    view_label: "Atendentes Balcão"
+    sql_on: ${vw_homolog_comissao.nome_grupo_instituicao} = ${depara_grupo_gerente.grupo_instituicao};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }
