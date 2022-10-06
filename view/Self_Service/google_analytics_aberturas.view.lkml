@@ -1,4 +1,4 @@
-view: ga_canal_aquisicao_conversao {
+view: google_analytics_aberturas {
   derived_table: {
     persist_for: "1 hour"
     sql: select a.date,
@@ -41,9 +41,9 @@ view: ga_canal_aquisicao_conversao {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."DATE" ;;
-    label: "Data da sessão"
+    label: "Data"
     description: "Data considerada para análise do site"
-    hidden: yes
+
   }
 
   dimension: canal {
