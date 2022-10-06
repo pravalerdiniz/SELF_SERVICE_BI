@@ -610,13 +610,6 @@ explore: jornada {
     type: left_outer
   }
 
-  join: jornada_como_soube {
-    view_label: "1. Jornada"
-    sql_on: ${jornada.id_cpf} = ${jornada_como_soube.id_cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
   join: alunos {
     view_label: "6. Alunos"
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
@@ -628,13 +621,6 @@ explore: jornada {
     sql_on:${jornada.id_cpf} = ${alunos_painel_risco.id_cpf} and ${jornada.id_proposta} = ${alunos_painel_risco.proposta}  ;;
     type: left_outer
     relationship: many_to_one
-  }
-
-  join: alunos_status {
-    view_label: "6. Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
-    type: left_outer
-    relationship: one_to_many
   }
 
   join: aproveitamento_estoque_nok {
@@ -1918,15 +1904,6 @@ explore: alunos {
     type: left_outer
     relationship: one_to_many
   }
-
-  join: alunos_status {
-    view_label: "1. Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
 
 }
 

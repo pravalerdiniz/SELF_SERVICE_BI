@@ -166,7 +166,12 @@ explore: ga_campanha_aquisicao_conversao {
           sql_on: ${ga_canal_aquisicao_conversao.date_date} = ${ga_etapas.date_date};;
           relationship: many_to_one
           type: full_outer
-        }
+        }}
 
 
-  }
+      explore: google_analytics_aberturas {
+          label: "Google Analytics"
+          view_label: "Google Analytics"
+          description: "Informações sobre do Google Analytics"
+
+}
