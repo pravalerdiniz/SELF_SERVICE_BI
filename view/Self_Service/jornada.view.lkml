@@ -30,7 +30,7 @@ view: jornada {
     hidden:  yes
     default_value: "week"
     allowed_value: {
-      value: "day_of_month"
+      value: "date"
     }
     allowed_value: {
       value: "week"
@@ -43,8 +43,8 @@ view: jornada {
   dimension: date {
     hidden: yes
     sql:
-    {% if timeframe_picker._parameter_value == 'day_of_month' %}
-      ${dt_status_day_of_month}
+    {% if timeframe_picker._parameter_value == 'date' %}
+      ${dt_status_date}
     {% elsif timeframe_picker._parameter_value == 'month' %}
       ${dt_status_month}
     {% elsif timeframe_picker._parameter_value == 'week' %}
@@ -53,6 +53,7 @@ view: jornada {
       ${dt_status_date}
     {% endif %};;
     label: "data teste"
+    #type: date
   }
 
   dimension: wtd_only {
