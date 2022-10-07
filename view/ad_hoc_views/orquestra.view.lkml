@@ -178,6 +178,14 @@ view: orquestra {
     sql: ${TABLE}."NOME_TASK" ;;
   }
 
+  dimension: SLA {
+    type: number
+    group_label: "Dados da Tarefa"
+    group_item_label: "SLA da Tarefa"
+    description: "Tempo máximo para conclusão da tarefa."
+    sql: ${TABLE}."SLA" ;;
+  }
+
   dimension_group: data_inicio {
     type: time
     timeframes: [
