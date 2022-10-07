@@ -1500,6 +1500,15 @@ dimension: url {
   hidden:  no
 }
 
+  dimension: id_url {
+    type: string
+    group_label: "Dados de Primeiro Canal"
+    group_item_label: "ID_URL"
+    description: "ID da Primeira URL da proposta/lead"
+    sql: ${TABLE}."ID_URL" ;;
+    hidden:  no
+  }
+
   dimension: canal {
     type: string
     group_label: "Dados de Primeiro Canal"
