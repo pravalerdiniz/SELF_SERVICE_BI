@@ -265,6 +265,23 @@ explore: orquestra {
     relationship: one_to_many
     view_label: "Alunos"
     }
+
+  join: orquestra_sla_task {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado} = ${orquestra_sla_task.numero_chamado}
+        and ${orquestra.nome_fila} = ${orquestra_sla_task.nome_fila}
+        and ${orquestra.nome_task} = ${orquestra_sla_task.nome_task}
+        and ${orquestra.data_inicio_date} = ${orquestra_sla_task.data_inicio_date}
+        and ${orquestra.data_fim_date} is not null;;
+    relationship: one_to_one
+    fields: [
+      orquestra_sla_task.sum_horas_task
+    ]
+    view_label: "1. Orquestra"
+
+  }
+
+
 }
 
 
