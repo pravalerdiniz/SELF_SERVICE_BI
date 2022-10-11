@@ -558,6 +558,13 @@ view: gupy_vagas {
     sql: ${TABLE}."AREA_RH" ;;
   }
 
+  dimension: flg_excluida {
+    group_label: "Dados da Vaga"
+    label: "Vaga excluída da plataforma?"
+    type: yesno
+    sql: ${TABLE}."FLG_EXCLUIDA" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
