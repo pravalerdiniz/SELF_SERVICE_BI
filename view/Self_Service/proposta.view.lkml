@@ -108,7 +108,7 @@ view: proposta {
 dimension: vl_tarifa_cadastro {
   group_label: "Dados de Contrato"
   label: "Valor Tarifa Cadastro"
-  hidden: yes
+  hidden: no
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
