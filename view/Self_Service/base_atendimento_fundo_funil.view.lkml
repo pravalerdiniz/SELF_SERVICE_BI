@@ -310,6 +310,28 @@ WHEN ${TABLE}."DS_TITULO_CHAMADO" = 'CADASTRO' AND ${TABLE}."DS_SUB_TITULO_CHAMA
 ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
   }
 
+  dimension: status_entrada_base {
+    label: "Status Entrada Base"
+    description: "Indica o Status Geral Destino que fez com que o aluno entrasse na Base de Atendimento"
+    type: number
+    sql: ${TABLE}."ID_STATUS_ENTRADA" ;;
+  }
+
+  dimension_group: data_entrada_base {
+    label: "Data de Entrada do Aluno"
+    description: "Data em que o aluno entrou na Base de Atendimento"
+    type: time
+    timeframes: [
+      hour,
+      date,
+      day_of_week,
+      week,
+      month,
+      year
+    ]
+    sql: ${TABLE}."DT_ENTRADA_BASE" ;;
+  }
+
   measure: qtd_alunos {
     label: "Quantidade de Alunos"
     description: "Contagem de alunos distintos da Base de Atendimento"
