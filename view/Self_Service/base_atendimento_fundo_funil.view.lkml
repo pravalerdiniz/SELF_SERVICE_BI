@@ -434,6 +434,24 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     sql: ${qtd_alunos_com_contato_fundo_funil}/${qtd_alunos} ;;
   }
 
+  measure: aluno_consultor {
+    label: "Quantidade de Alunos por Consultor"
+    description: "Quantidade de alunos da Base de Atendimento pela quantidade de consultores"
+    group_label: "Aluno"
+    type: number
+    value_format: "0.0"
+    sql: ${qtd_alunos}/${qtd_consultores} ;;
+  }
+
+  measure: aluno_consultor_fundo_funil {
+    label: "Quantidade de Alunos Base por Consultor - Fundo Funil"
+    description: "Quantidade de alunos da Base de Atendimento pela quantidade de consultores de fundo de funil"
+    group_label: "Aluno"
+    type: number
+    value_format: "0.0"
+    sql: ${qtd_alunos}/${qtd_consultores_fundo_funil} ;;
+  }
+
   measure: soma_contatos {
     label: "Soma de Contatos Realizados"
     description: "Soma da quantidade de contatos realizados com cada aluno da Base de Atendimento"
@@ -494,8 +512,16 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     sql: ${TABLE}."LOGIN" ;;
   }
 
+  measure: qtd_consultores_fundo_funil {
+    label: "Quantidade de Consultores - Fundo Funil"
+    group_label: "Atendimento"
+    type: count_distinct
+    filters: [flg_consultor_fundo_funil: "Yes"]
+    sql: ${TABLE}."LOGIN" ;;
+  }
+
   measure: qtd_contato_aluno {
-    label: "Quantidade de Contatos por Aluno (Spin)"
+    label: "Quantidade de Contatos por Aluno"
     description: "Soma da quantidade de contatos realizados pela quantidade de alunos na Base de Atendimento"
     group_label: "Atendimento"
     type: number
@@ -504,7 +530,7 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
   }
 
   measure: qtd_contato_aluno_fundo_funil {
-    label: "Quantidade de Contatos por Aluno (Spin) - Fundo Funil"
+    label: "Quantidade de Contatos por Aluno - Fundo Funil"
     description: "Soma da quantidade de contatos realizados pela célula de fundo de funil pela quantidade de alunos na Base de Atendimento"
     group_label: "Atendimento"
     type: number
