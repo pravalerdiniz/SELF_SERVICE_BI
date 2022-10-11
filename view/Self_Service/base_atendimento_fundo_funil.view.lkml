@@ -354,6 +354,20 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
               ELSE 'DEMAIS IES' END ;;
   }
 
+  dimension: flg_convertido {
+    label: "Flag Convertido"
+    description: "Indica se o aluno foi convertido (Status Geral Destino = 41, 50 ou 51)"
+    type: yesno
+    sql: ${id_status_destino_geral} IN (41, 50, 51) ;;
+  }
+
+  dimension: flg_cancelado {
+    label: "Flag Cancelado"
+    description: "Indica se o aluno foi cancelado (Status Geral Destino = 18, 28, 38, 48, 58)"
+    type: yesno
+    sql: ${id_status_destino_geral} IN (18, 28, 38, 48, 58) ;;
+  }
+
   measure: qtd_alunos {
     label: "Quantidade de Alunos"
     description: "Contagem de alunos distintos da Base de Atendimento"
