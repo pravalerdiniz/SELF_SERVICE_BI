@@ -515,6 +515,114 @@ measure:avg_aprovados_risco {
     hidden: yes
   }
 
+#Lead
+
+  measure:sum_lead {
+    type:sum
+    label: "Soma Lead"
+    group_label: "Meta Lead"
+    sql: ${lead} ;;
+  }
+  measure: min_lead {
+    type:min
+    label: "Minimo Lead"
+    group_label: "Meta Lead"
+    sql: ${lead} ;;
+  }
+  measure: max_lead {
+    type:max
+    label: "Máximo Lead"
+    group_label: "Meta Lead"
+    sql: ${lead} ;;
+  }
+  measure:avg_lead {
+    type: average
+    label: "Média Lead"
+    group_label: "Meta Lead"
+    sql: ${lead} ;;
+  }
+
+#Simulado
+
+  measure:sum_simulado {
+    type:sum
+    label: "Soma Simulado"
+    group_label: "Meta Simulado"
+    sql: ${simulado} ;;
+  }
+  measure: min_simulado {
+    type:min
+    label: "Minimo Simulado"
+    group_label: "Meta Simulado"
+    sql: ${simulado} ;;
+  }
+  measure: max_simulado {
+    type:max
+    label: "Máximo Simulado"
+    group_label: "Meta Simulado"
+    sql: ${simulado} ;;
+  }
+  measure:avg_simulado{
+    type: average
+    label: "Média Simulado"
+    group_label: "Meta Simulado"
+    sql: ${simulado} ;;
+  }
+
+#Aguardando Assinatura
+
+  measure:sum_agg_ass {
+    type:sum
+    label: "Soma Assinatura"
+    group_label: "Meta Agg Assinatura"
+    sql: ${aguardando_assinatura} ;;
+  }
+  measure: min_agg_ass {
+    type:min
+    label: "Minimo Assinatura"
+    group_label: "Meta Agg Assinatura"
+    sql: ${aguardando_assinatura} ;;
+  }
+  measure: max_agg_ass {
+    type:max
+    label: "Máximo Assinatura"
+    group_label: "Meta Agg Assinatura"
+    sql: ${aguardando_assinatura} ;;
+  }
+  measure:avg_agg_ass {
+    type: average
+    label: "Média Assinatura"
+    group_label: "Meta Agg Assinatura"
+    sql: ${aguardando_assinatura} ;;
+  }
+
+#Aguardando Documento
+
+  measure:sum_agg_doc {
+    type:sum
+    label: "Soma Documento"
+    group_label: "Meta Agg Documento"
+    sql: ${aguardando_documento} ;;
+  }
+  measure: min_agg_doc{
+    type:min
+    label: "Minimo Documento"
+    group_label: "Meta Agg Documento"
+    sql: ${aguardando_documento} ;;
+  }
+  measure: max_agg_doc {
+    type:max
+    label: "Máximo Documento"
+    group_label: "Meta Agg Documento"
+    sql: ${aguardando_documento} ;;
+  }
+  measure:avg_agg_doc {
+    type: average
+    label: "Média Documento"
+    group_label: "Meta Agg Documento"
+    sql: ${aguardando_documento} ;;
+  }
+
    set: detail {
       fields: [
         grupo_instituicao,
