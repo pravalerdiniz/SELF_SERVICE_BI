@@ -521,13 +521,4 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     sql: ${soma_contatos}/${qtd_consultores} ;;
   }
 
-  measure: qtd_contato_consultor_fundo_funil  {
-    label: "Quantidade de Contato por Consultor - Fundo Funil"
-    description: "Soma da quantidade de contatos realizados pela célula de fundo de funil pela quantidade de consultores"
-    group_label: "Atendimento"
-    type: number
-    value_format: "0.0"
-    sql: ${soma_contatos_fundo_funil}/${qtd_consultores} ;;
-  }
-
 }
