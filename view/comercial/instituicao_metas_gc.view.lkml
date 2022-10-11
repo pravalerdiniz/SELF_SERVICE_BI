@@ -366,21 +366,21 @@ measure:sum_finalizado {
   measure: min_aprovados_risco {
     type:min
     label: "Minimo Aprovado Risco"
-    group_label: "Aprovados Risco"
+    group_label: "Meta Aprovado Risco"
     #value_format: "0.00%"
     sql: ${aprovados_risco} ;;
   }
  measure: max_aprovados_risco {
     type:max
     label: "Máximo Aprovado Risco"
-    group_label: "Aprovados Risco"
+    group_label: "Meta Aprovado Risco"
     #value_format: "0.00%"
     sql: ${aprovados_risco} ;;
   }
 measure:avg_aprovados_risco {
     type: average
     label: "Média Aprovado Risco"
-    group_label: "Aprovados Risco"
+    group_label: "Meta Aprovado Risco"
     #value_format: "0.00%"
     sql: ${aprovados_risco} ;;
   }
@@ -389,28 +389,28 @@ measure:avg_aprovados_risco {
   measure:sum_aprovados_ies {
     type:sum
     label: "Soma Aprovado Instituição"
-    group_label: "Aprovado Instituição"
+    group_label: "Meta Aprovado Instituição"
     #value_format: "0.00%"
     sql: ${aprovados_ies} ;;
   }
   measure: min_aprovados_ies {
     type: min
     label: "Mínimo Aprovado Instituição"
-    group_label: "Aprovado Instituição"
+    group_label: "Meta Aprovado Instituição"
     #value_format: "0.00%"
     sql: ${aprovados_ies} ;;
   }
   measure: max_aprovados_ies {
     type: max
     label: "Máximo Aprovado Instituição"
-    group_label: "Aprovado Instituição"
+    group_label: "Meta Aprovado Instituição"
     #value_format: "0.00%"
     sql: ${aprovados_ies} ;;
   }
   measure: avg_aprovados_ies {
     type: average
     label: "Média Aprovado Instituição"
-    group_label: "Aprovado Instituição"
+    group_label: "Meta Aprovado Instituição"
     #value_format: "0.00%"
     sql: ${aprovados_ies} ;;
   }
@@ -419,25 +419,25 @@ measure:avg_aprovados_risco {
   measure:sum_iniciados {
     type:sum
     label: "Soma Iniciado"
-    group_label: "Iniciado"
+    group_label: "Meta Iniciado"
     sql: ${iniciados} ;;
   }
   measure: min_iniciados {
     type: min
     label: "Minimo Iniciado"
-    group_label: "Iniciado"
+    group_label: "Meta Iniciado"
     sql: ${iniciados} ;;
   }
   measure: max_iniciados {
     type: max
     label: "Máximo Iniciado"
-    group_label: "Iniciado"
+    group_label: "Meta Iniciado"
     sql: ${iniciados} ;;
   }
   measure:avg_iniciados {
     type:average
     label: "Média Iniciado"
-    group_label: "Iniciado"
+    group_label: "Meta Iniciado"
     sql: ${iniciados} ;;
   }
   measure:sum_iniciados_orcamento {
@@ -484,7 +484,6 @@ measure:avg_aprovados_risco {
     sql: ${cedidos_orcamento} ;;
     hidden: yes
   }
-
   measure: max_cedidos_orcamento {
     type: max
     label: "Máximo - Orçamento"
@@ -501,7 +500,6 @@ measure:avg_aprovados_risco {
     sql: ${cedidos_orcamento} ;;
     hidden: yes
   }
-
   measure:sum_cedidos_orcamento {
     type: sum
     label: "Soma - Orçamento"
@@ -509,7 +507,6 @@ measure:avg_aprovados_risco {
     sql: ${cedidos_orcamento} ;;
     hidden: yes
   }
-
   measure:sum_cedidos_historico {
     type: sum
     label: "Soma - Histórico"
