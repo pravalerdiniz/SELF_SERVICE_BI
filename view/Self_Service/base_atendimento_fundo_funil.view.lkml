@@ -346,6 +346,14 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     sql: ${qtd_dias_base} > 13 ;;
   }
 
+  dimension: celula_atendimento {
+    label: "Célula de Atendimento"
+    type: string
+    sql: CASE WHEN ${grupo_ies} ILIKE '%ANIMA%' THEN 'ANIMA'
+              WHEN ${grupo_ies} ILIKE '%CRUZEIRO DO SUL%' THEN 'CRUZEIRO'
+              ELSE 'DEMAIS IES' END ;;
+  }
+
   measure: qtd_alunos {
     label: "Quantidade de Alunos"
     description: "Contagem de alunos distintos da Base de Atendimento"
