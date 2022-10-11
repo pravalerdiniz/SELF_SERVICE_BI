@@ -332,6 +332,20 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     sql: ${TABLE}."DT_ENTRADA_BASE" ;;
   }
 
+  dimension: qtd_dias_base {
+    label: "Quantidade de Dias na Base"
+    description: "Indica a quantidade de dias que o aluno está na Base de Atendimento"
+    type: number
+    sql: DATEDIFF(DAY,${TABLE}."DT_ENTRADA_BASE", ${TABLE}."DT_SNAPSHOT") ;;
+  }
+
+  dimension: flg_cashback {
+    label: "Flag Cashback"
+    description: "Indica se o consultor deve oferecer Cashback ao aluno ou não"
+    type: yesno
+    sql: ${qtd_dias_base} > 13 ;;
+  }
+
   measure: qtd_alunos {
     label: "Quantidade de Alunos"
     description: "Contagem de alunos distintos da Base de Atendimento"
