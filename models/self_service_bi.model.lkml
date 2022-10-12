@@ -2246,3 +2246,13 @@ explore:  base_atendimento_fundo_funil{
   }
 
 }
+
+explore: negocios_provas_pravaler {
+  label: "comercial provas pravaler"
+
+  join: etapas_funil_pipedrive_provas_prv {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${negocios_provas_pravaler.id_negocio} = ${etapas_funil_pipedrive_provas_prv.id_negocio} ;;
+  }
+}
