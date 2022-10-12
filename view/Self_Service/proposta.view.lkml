@@ -108,7 +108,7 @@ view: proposta {
 dimension: vl_tarifa_cadastro {
   group_label: "Dados de Contrato"
   label: "Valor Tarifa Cadastro"
-  hidden: yes
+  hidden: no
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
@@ -155,7 +155,7 @@ dimension: vl_tarifa_cadastro {
   dimension: aluno_renda {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "0"
+    value_format: "$ #,###.00"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
     sql:NULLIF(${TABLE}."ALUNO_RENDA",0) ;;
@@ -521,7 +521,7 @@ dimension: vl_tarifa_cadastro {
   dimension_group: data_preenchimento {
     type: time
     timeframes: [
-       raw,
+      raw,
       date,
       week,
       month,
@@ -530,7 +530,8 @@ dimension: vl_tarifa_cadastro {
       year,
       day_of_year,
       day_of_week,
-      day_of_week_index
+      day_of_week_index,
+      time
     ]
     label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
@@ -2925,6 +2926,17 @@ dimension: vl_tarifa_cadastro {
     description: "Média do valor da mensalidade descrita no contrato"
   }
 
+  measure: median_mensalidade_contrato  {
+    type: number
+    group_label: "Mensalidade"
+    value_format: "$ #,###.00"
+    group_item_label: "Mediana"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    sql:med(${vl_mensalidade});;
+    description: "Média do valor da mensalidade descrita no contrato"
+  }
+
   measure: avg_mensalidade_contrato_ajustado  {
     type: average
     group_label: "Mensalidade"
@@ -2959,16 +2971,7 @@ dimension: vl_tarifa_cadastro {
     description: "Máximo do valor da mensalidade descrita no contrato"
   }
 
-  measure: median_mensalidade_contrato  {
-    type: median
-    group_label: "Mensalidade"
-    value_format: "$ #,###.00"
-    group_item_label: "Mediana"
-    link: {label:"Documentação - Valor da Mensalidade"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
-    sql:${vl_mensalidade};;
-    description: "Mediana do valor da mensalidade descrita no contrato"
-  }
+
 
   measure: perc1_mensalidade_contrato  {
     type: percentile
@@ -3693,6 +3696,21 @@ dimension: vl_tarifa_cadastro {
       tipo_proposta]
   }
 
+  measure: median_renda_total {
+    type: number
+    sql: median(${renda_total});;
+    value_format: "$ #,###.00"
+    group_label: "Renda Total"
+    group_item_label: "Mediana"
+    description: "Renda Total = Renda do Aluno + Renda Fiador"
+    required_access_grants: [grupo_renda]
+    drill_fields: [id_proposta,
+      id_cpf,
+      aluno_nome,
+      aluno_email,
+      tipo_proposta]
+  }
+
   dimension: faixa_renda_total {
     type: tier
     tiers: [1000,2000,3000,4000,6000,8000,10000]
@@ -4243,5 +4261,13 @@ dimension: vl_tarifa_cadastro {
   #   {% endfor %} ;;
   # }
 
+  dimension: mensalidadexrenda {
+    type: number
+    value_format: "0.0%"
+    group_label: "Dados do Aluno"
+    label: "Mensalidade/Renda"
+    description: "Indica a relação % entre Mensalidade e Renda do Aluno"
+    sql: ${vl_mensalidade}/${aluno_renda} ;;
+  }
 
 }

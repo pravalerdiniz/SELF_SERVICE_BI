@@ -1,8 +1,8 @@
-# arrasto de atraso do Gestão Garantido
+# arrasto de atraso por CPF (maior tempo de atraso por CPF)
 
 view: financeiro_arrasto_atraso {
   derived_table: {
-    sql: SELECT
+    sql: SELECT DISTINCT
       financeiro."ID_CPF" AS "ID_CPF",
       MAX(financeiro."dias_atraso") OVER (PARTITION BY financeiro."ID_CPF") AS "ARRASTO"
     FROM "GRADUADO"."SELF_SERVICE_BI"."FINANCEIRO"

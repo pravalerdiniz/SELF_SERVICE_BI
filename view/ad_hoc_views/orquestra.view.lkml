@@ -178,6 +178,14 @@ view: orquestra {
     sql: ${TABLE}."NOME_TASK" ;;
   }
 
+  dimension: SLA {
+    type: number
+    group_label: "Dados da Tarefa"
+    group_item_label: "SLA da Tarefa"
+    description: "Tempo máximo para conclusão da tarefa."
+    sql: ${TABLE}."SLA" ;;
+  }
+
   dimension_group: data_inicio {
     type: time
     timeframes: [
@@ -281,6 +289,14 @@ view: orquestra {
     sql: ${TABLE}."CPF" ;;
   }
 
+  dimension: cpf_number {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF do Aluno (número)"
+    value_format: "0"
+    sql: ${TABLE}."CPF" ;;
+  }
+
 
   measure: total_codigo_resultado {
     type: sum
@@ -312,7 +328,27 @@ view: orquestra {
     drill_fields: [numero_chamado,
       nome_fila, data_inicio_date, area_requisitante, data_fim_date, area_executor, descricao_resultado]
     group_label: "Quantidade de Chamados"
-    group_item_label: "Valor"
+    group_item_label: "Total"
     description: "Contagem de Chamados Únicos"
   }
+
+  measure: count_tasks {
+    type: count
+    #sql: ${numero_chamado} ;;
+    drill_fields: [numero_chamado,
+      nome_fila, data_inicio_date, area_requisitante, data_fim_date, area_executor, descricao_resultado]
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Total de Tasks"
+    description: "Contagem de Chamados (Tasks)"
+  }
+
+  measure: count_chamados_rejeitados {
+    type: count_distinct
+    sql: (case when ${status_processo} = 'REJEITADO' then ${numero_chamado} end) ;;
+    group_label: "Quantidade de Chamados"
+    group_item_label: "Rejeitados"
+    description: "Contagem de Chamados Rejeitados"
+  }
+
+
 }

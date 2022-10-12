@@ -37,7 +37,8 @@ view: dias_uteis {
       month_name,
       day_of_year,
       hour_of_day,
-      month_num
+      month_num,
+      week_of_year
     ]
     sql: ${TABLE}."DS_DATE" ;;
     label: "Data"

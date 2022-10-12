@@ -101,7 +101,25 @@ view: orquestra_obj_campos {
 
   dimension: motivo_cancelamento {
     type: string
-    sql: ${TABLE}."MOTIVO_CANCELAMENTO" ;;
+    sql: case
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Valor de mensalidade incorreto', 'Valor de mensalidade incorreto (15704)') then 'Valor de mensalidade incorreto'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Trancou (outros motivos)', 'Trancou (outros motivos) (15702)') then 'Trancou (outros motivos)'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Não estudou o semestre financiado', 'Não estudou o semestre financiado (15760)') then 'Não estudou o semestre financiado'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Aluno Formado', 'Aluno Formado (15692)', 'Já me formei (15692)') then 'Aluno Formado'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Bolsa / Desconto na IES', 'Bolsa / Desconto na IES (15694)') then 'Bolsa / Desconto na IES'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Curso não formou turma (15696)', 'Curso não formou turma', 'Meu curso não formou turma (15696)') then 'Curso não formou turma'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Duplicidade de contrato (15695)', 'Duplicidade de contrato') then 'Duplicidade de contrato'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Mudança de Curso (15698)', 'Mudança de Curso', 'Mudei meu curso (15698)') then 'Mudança de Curso'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Não estudei o semestre financiado (15760)', 'Não estudou o semestre financiado', 'Não estudou o semestre financiado (15760)') then 'Não estudou o semestre financiado'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Pagamento direto para a IES (15699)', 'Pagamento direto para a IES') then 'Pagamento direto para a IES'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Prouni / FIES (15693)', 'Prouni / FIES','Consegui um benefício do governo (ex Prouni/ FIES) (15694)') then 'Prouni / FIES'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Trancou (dificuldade financeira) (15700)', 'Trancou (dificuldade financeira)') then 'Trancou (dificuldade financeira)'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Transferência de IES', 'Transferência de IES (15703)') then 'Transferência de IES'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Garantidor não sabe sobre o financiamento', 'Garantidor não sabe sobre o financiamento (15697)') then 'Garantidor não sabe sobre o financiamento'
+          when ${TABLE}."MOTIVO_CANCELAMENTO" IN ('Vou pagar a mensalidade integral direto para a faculdade (15699)', 'Pagamento direto para a IES') then 'Pagamento direto para a IES'
+    else ${TABLE}."MOTIVO_CANCELAMENTO"
+    end ;;
+    #sql: ${TABLE}."MOTIVO_CANCELAMENTO" ;;
     group_label: "Dados Chamado"
     group_item_label: "Motivo Cancelamento"
     #description: ""
