@@ -2242,3 +2242,8 @@ explore: negocios_provas_pravaler {
     sql_on: ${negocios_provas_pravaler.id_negocio} = ${etapas_funil_pipedrive_provas_prv.id_negocio} ;;
   }
 }
+
+explore: vw_atualizacao_produtos {
+  label: "Logs de Atualizações - Produtos"
+  description: "Histórico dos logs de atualização"
+}
