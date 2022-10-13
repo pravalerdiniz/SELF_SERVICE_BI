@@ -195,7 +195,7 @@ explore: leads_afiliados {
 }
 
 explore: vw_homolog_comissao {
-  label: "Homologação Comissão"
+  label: "Comissão - Atendentes Afiliados"
   view_label: "Atendentes Balcão"
   description: "Informações relacionadas à comissão dos atendentes do balcão da IES"
 
