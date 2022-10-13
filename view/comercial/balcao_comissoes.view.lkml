@@ -11,7 +11,7 @@ view: balcao_comissoes {
       f.value:NOME_TIPO_COMISSAO::varchar as nome_tipo_comissao,
       f.value:QT_TIPO_COMISSAO::float as qt_tipo_comissao,
       f.value:STATUS_PAGAMENTO::varchar as status_pagamento
-      from "VETERANO"."AFILIADOS"."VW_HOMOLOG_COMISSAO" a,
+      from "GRADUADO"."BALCAO_AFILIADOS"."COMISSAO_AFILIADOS" a,
       lateral flatten (input => INFO_COMISSAO) f
  ;;
   }

@@ -2,7 +2,7 @@
 view: vw_homolog_comissao {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "VETERANO"."AFILIADOS"."VW_HOMOLOG_COMISSAO"
+  sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."COMISSAO_AFILIADOS"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
