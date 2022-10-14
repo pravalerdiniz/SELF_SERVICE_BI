@@ -1,4 +1,5 @@
 connection: "graduado"
+# connection: "pos_graduado"
 
 include: "/**/*.dashboard.lookml"
 include: "/**/*.view.lkml"
