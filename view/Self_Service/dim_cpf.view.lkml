@@ -33,4 +33,10 @@ view: dim_cpf {
     required_access_grants: [grupo_cpf]
   }
 
+  dimension: ultimo_celular {
+    type: number
+    sql: ${TABLE}."ULTIMO_CELULAR" ;;
+    description: "Ultimo numero de celular cadastrado pelo aluno"
+  }
+
 }
