@@ -2039,7 +2039,8 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      day_of_month
     ]
     sql: ${TABLE}."DT_FINALIZADO" ;;
     label: "Data Finalizado"
