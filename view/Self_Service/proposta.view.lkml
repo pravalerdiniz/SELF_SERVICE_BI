@@ -3930,6 +3930,67 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
   }
 
+  dimension: num_vl_pmt {
+    type: number
+    sql: ${TABLE}."VL_PMT" ;;
+    label: "PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    link: {label:"Documentação - VL_PMT"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1581515203/VL+PMT"
+    }
+    group_label: "Dados do Contrato"
+  }
+
+  measure: vl_pmt {
+    type: number
+    sql: ${TABLE}."VL_PMT";;
+    label: "Valor de PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: sum_vl_pmt {
+    type: sum
+    sql: ${num_vl_pmt} ;;
+    label: "Soma Valor de PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    group_label: "Dados do Contrato"
+  }
+
+  dimension: num_vl_financiado_desagio {
+    type: number
+    sql: ${TABLE}."VL_FINANCIADO_DESAGIO" ;;
+    label: "Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    link: {label:"Documentação - VL_FINANCIADO_DESAGIO"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1581842474/VL+FINANCIADO+DESAGIO"
+    }
+    group_label: "Dados do Contrato"
+  }
+
+  measure: vl_financiado_desagio {
+    type: number
+    sql: ${TABLE}."VL_FINANCIADO_DESAGIO" ;;
+    label: "Valor Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    group_label: "Dados do Contrato"
+
+  }
+
+  measure: sum_vl_financiado_desagio {
+    type: sum
+    sql: ${num_vl_financiado_desagio};;
+    label: "Soma Valor Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    group_label: "Dados do Contrato"
+  }
+
 
   set: detail {
     fields: [
@@ -3965,9 +4026,9 @@ dimension: vl_tarifa_cadastro {
   #   group_item_label: "Quantidade de Contratos Anteriores"
   #   sql:${qtd_contratos_anteriores};;
   #   value_format: "0"
-  #   link: {label:"Documentação - Quantidade de Contratos Anteriores"
-  #   url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
-  #     }
+  #  link: {label:"Documentação - Quantidade de Contratos Anteriores"
+  #  url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
+  #  }
   #   description: "Soma da quantidade contratos anteriores por proposta"
   # }
 
