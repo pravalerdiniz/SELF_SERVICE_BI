@@ -17,7 +17,9 @@ view: orquestra_sla_task {
                    ELSE 0
                    END)
               )
-           END   TEMPO_TASK
+           END   TEMPO_TASK,
+
+          SUM(datediff(HOURS, A.DATA_INICIO, A.DATA_FIM)) TEMPO_TASK_TOTAL
         from GRADUADO.AD_HOC.ORQUESTRA A
         where
         A.data_fim is not null
@@ -46,10 +48,18 @@ view: orquestra_sla_task {
 
   dimension: horas_task {
     group_label: "Dados da Solicitação"
-    description: "Quantidade de horas gastas na tarefa."
+    description: "Quantidade de horas gastas na tarefa excluindo final de semana."
     type: number
     sql: ${TABLE}."TEMPO_TASK" ;;
   }
+
+  dimension: horas_task_total {
+    group_label: "Dados da Solicitação"
+    description: "Quantidade de horas gastas na tarefa, incluindo final de semana."
+    type: number
+    sql: ${TABLE}."TEMPO_TASK_TOTAL" ;;
+  }
+
 
    dimension_group: data_inicio {
     type: time
@@ -71,4 +81,9 @@ view: orquestra_sla_task {
      type: sum
      sql: ${horas_task} ;;
    }
+
+  measure:sum_horas_task_total {
+    description: "Total de horas gastas na(s) tarefa(s), incluindo FDS."
+    sql: ${horas_task_total} ;;
+  }
 }

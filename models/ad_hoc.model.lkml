@@ -275,7 +275,8 @@ explore: orquestra {
         and ${orquestra.data_fim_date} is not null;;
     relationship: one_to_one
     fields: [
-      orquestra_sla_task.sum_horas_task
+      orquestra_sla_task.sum_horas_task,
+      orquestra_sla_task.sum_horas_task_total
     ]
     view_label: "1. Orquestra"
 
