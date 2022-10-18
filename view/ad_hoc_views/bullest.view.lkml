@@ -444,7 +444,7 @@ view: bullest {
   measure: sum_valor_bruto {
     type: sum
     description: "Valor do contratado."
-    sql: ${valor_faculdade} ;;
+    sql: ${valor_bruto} ;;
     value_format: "\R$ #,###.00"
   }
 
