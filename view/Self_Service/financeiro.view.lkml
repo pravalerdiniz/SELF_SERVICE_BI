@@ -233,14 +233,20 @@ dimension: data_trunc  {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
-  dimension: data_cessao_gestao {
-    group_label: "Gestão Garantido"
-    type: date
+  dimension_group: data_corte {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      month
+    ]
     convert_tz: no
     datatype: date
-    label: "Data de corte."
-    description: "Indica a data de corte do boleto no produto gestão garantido."
+    group_label: "Gestão Garantido"
+    label: "Data de Corte Gestão Garantido."
+    description: "Indica o mês de corte no Gestão Garantido. Se o vencimento é até dia 5 considera-se o mês de vencimento original, e se for após dia 5, considera-se o mês seguinte."
     sql: CASE WHEN ${data_vencimento_day_of_month} > 5 THEN DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num}+1,5) ELSE DATEFROMPARTS(${data_vencimento_year},${data_vencimento_month_num},5) END ;;
+    #sql: CASE WHEN ${data_vencimento_day_of_month} > 5 THEN DATEADD('month', 1, ${data_vencimento_date}) ELSE ${data_vencimento_date} END ;;
   }
 
   dimension: wtd_only {
@@ -395,6 +401,8 @@ dimension: safra_vencimento {
     }
     sql: ${TABLE}."DIAS_ATRASO" ;;
   }
+
+
 
   dimension: arrasto_dias_atraso {
     type: number
@@ -1083,14 +1091,27 @@ foi gerado por um pagamento menor do boleto anterior."
     type: sum
     sql: CASE
       WHEN ${flg_writeoff} AND ${flg_boleto_pago} = FALSE THEN ${vl_boleto}
-      WHEN ${arrasto_dias_atraso} BETWEEN 1 AND 14 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
-      WHEN ${arrasto_dias_atraso} BETWEEN 15 AND 30 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
-      WHEN ${arrasto_dias_atraso} BETWEEN 31 AND 60 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
-      WHEN ${arrasto_dias_atraso} BETWEEN 61 AND 90 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
-      WHEN ${arrasto_dias_atraso} BETWEEN 91 AND 120 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
-      WHEN ${arrasto_dias_atraso} BETWEEN 121 AND 150 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
-      WHEN ${arrasto_dias_atraso} BETWEEN 151 AND 180 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 1 AND 14 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.077
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 15 AND 30 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 31 AND 60 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 61 AND 90 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 91 AND 120 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 121 AND 150 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 151 AND 180 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      WHEN DATEDIFF(DAY,${data_vencimento_date},GETDATE()) BETWEEN 181 AND 360 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}
       ELSE 0 END
+      /*
+       CASE
+      WHEN ${flg_writeoff} AND ${flg_boleto_pago} = FALSE THEN ${vl_boleto}
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 1 AND 14 AND ${id_titulo_status} = 2  AND (${data_pagamento_date} > ${data_vencimento_date} OR ${data_pagamento_date} IS NULL)  THEN ${vl_boleto}* 0.077
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 15 AND 30 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.174
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 31 AND 60 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.44
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 61 AND 90 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.60
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 91 AND 120 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.75
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 121 AND 150 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.84
+      WHEN DATEDIFF(DAY,${data_vencimento_date},last_day(${data_corte_raw})) BETWEEN 151 AND 180 AND ((${id_titulo_status} = 2  AND ${flg_boleto_pago} = FALSE) OR (${data_pagamento_date} > ${data_vencimento_date}) ) AND ${flg_boleto_base_gestao_garantido} = TRUE and ${flg_boleto_pago_em_dia} = FALSE THEN ${vl_boleto}* 0.89
+      ELSE 0
+      END*/
       ;;
     group_label: "Gestão Garantido"
     value_format: "$ #,###.00"
@@ -1360,8 +1381,8 @@ foi gerado por um pagamento menor do boleto anterior."
   measure: sum_carteira_operacionalizada {
     type: sum
     sql: CASE
-        WHEN DATE(GETDATE()) > ${data_cessao_gestao} and ${flg_boleto_base_gestao_garantido} = TRUE  AND  ${id_titulo_status} IN (2,4) THEN ${vl_boleto}
-        WHEN DATE(GETDATE()) = (${data_cessao_gestao}) and ${flg_boleto_base_gestao_garantido} = FALSE  AND  ${id_titulo_status} = (2) THEN ${vl_boleto}
+        WHEN DATE(GETDATE()) > ${data_corte_date} and ${data_corte_date} = TRUE  AND  ${id_titulo_status} IN (2,4) THEN ${vl_boleto}
+        WHEN DATE(GETDATE()) = (${data_corte_date}) and ${data_corte_date} = FALSE  AND  ${id_titulo_status} = (2) THEN ${vl_boleto}
     ELSE 0 END;;
     value_format: "$ #,###.00"
     group_label: "Gestão Garantido"
