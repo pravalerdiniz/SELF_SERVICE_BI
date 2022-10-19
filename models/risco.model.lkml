@@ -115,7 +115,8 @@ explore: alunos {
     - leads_balcao *,
     - jornada_pivot *,
     - proposta_datas_interfile *,
-    - instituicao *
+    - instituicao *,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
 
   ]
 

@@ -3878,7 +3878,16 @@ dimension: vl_tarifa_cadastro {
     sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
           and ${id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
           and ${mensalidadexrenda} < 0.5 then 'Yes' else 'No' end;;
-    label: "Nova Flag Sem Fiador"
+    label: "Nova Flag Sem Fiador - Produto Aluno"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
+  dimension: nova_flag_elegivel_semfiador_testeab_aprov {
+    type: string
+    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
+          and ${proposta_produtos_aprovados.id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
+          and ${mensalidadexrenda} < 0.5 then 'Yes' else 'No' end;;
+    label: "Nova Flag Sem Fiador - Produtos Aprovados"
     group_label: "Sem Fiador - Teste A/B"
   }
 
