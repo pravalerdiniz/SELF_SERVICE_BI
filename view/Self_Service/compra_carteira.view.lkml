@@ -119,7 +119,6 @@ view: compra_carteira {
     description: "Número atribuído como máscara do cpf do aluno."
     group_label: "Compra de Carteira"
     sql: ${TABLE}."ID_CPF" ;;
-    hidden: yes
   }
 
   dimension: id_proposta {
