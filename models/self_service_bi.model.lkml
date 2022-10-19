@@ -1139,6 +1139,14 @@ join: sql_runner_query_range_boleto {
     type: left_outer
   }
 
+  join: compra_carteira {
+    view_label: "1. Financeiro"
+    sql_on: ${compra_carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${compra_carteira.id_contrato} = ${financeiro.id_contrato} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
 
 
 }
