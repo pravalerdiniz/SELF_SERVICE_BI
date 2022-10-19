@@ -3873,6 +3873,15 @@ dimension: vl_tarifa_cadastro {
     group_label: "Sem Fiador - Teste A/B"
   }
 
+  dimension: nova_flag_elegivel_semfiador_testeab {
+    type: string
+    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
+          and ${id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
+          and ${mensalidadexrenda} < 0.5 then 'Yes' else 'No' end;;
+    label: "Nova Flag Sem Fiador"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
   dimension: flag_eleito_semfiador_testeab {
     type: yesno
     sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
@@ -4307,20 +4316,20 @@ dimension: vl_tarifa_cadastro {
   # }
 
 
-  # dimension: id_produtos_preaprovados {
-  #   type: string
-  #   group_label: "Dados do Produto"
-  #   hidden: yes
-  #   label: "ID Produtos Pré Aprovados"
-  #   description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
-  #   sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
-  #   html:
-  #   {% assign words = value | split: ',' %}
-  #   <ul>
-  #   {% for word in words %}
-  #   <li>{{ word }}</li>
-  #   {% endfor %} ;;
-  # }
+  dimension: id_produtos_preaprovados {
+     type: string
+     group_label: "Dados do Produto"
+     hidden: no
+     label: "ID Produtos Pré Aprovados"
+     description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
+     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
+     html:
+     {% assign words = value | split: ',' %}
+     <ul>
+     {% for word in words %}
+     <li>{{ word }}</li>
+     {% endfor %} ;;
+   }
 
   dimension: mensalidadexrenda {
     type: number
