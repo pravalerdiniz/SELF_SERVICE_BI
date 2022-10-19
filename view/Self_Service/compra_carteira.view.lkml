@@ -1,5 +1,5 @@
 view: compra_carteira {
-  sql_table_name: "FINANCEIRO"."COMPRA_CARTEIRA" ;;
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."COMPRA_CARTEIRA" ;;
 
 
   dimension: ativo {
@@ -115,6 +115,7 @@ view: compra_carteira {
 
   dimension: id_cpf {
     type: number
+    primary_key: yes
     label: "Id CPF"
     description: "Número atribuído como máscara do cpf do aluno."
     group_label: "Compra de Carteira"
