@@ -1791,7 +1791,7 @@ measure: porc_evasao {
     sql: ${TABLE}."FLG_CONSENTIMENTO_WHATSAPP" ;;
     group_label: "Dados do Aluno"
     label: "Flag Consentimento Whatsapp"
-    description: "Indica se o aluno clicou e aceitou o botão de Termos e Condições na página inicial do Pravaler"
+    description: "Indica se o aluno clicou no botão de 'Aceito contato por whatsapp' na página de Cadastro do Aluno"
   }
 
 }
