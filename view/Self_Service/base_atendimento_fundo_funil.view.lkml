@@ -1,10 +1,11 @@
 #View criada para utilização no Explore Base Atendimento
 
-#Substituição da planilha em Excel utilizada pelo time Comercial de Conversão Fundo de Funil
+#Atualização da aba Base Novos da planilha em Excel utilizada pelo time Comercial de Conversão Fundo de Funil via Looker + Geração de Indicadores
 
 view: base_atendimento_fundo_funil {
   sql_table_name: "POS_GRADUADO"."MARKETING"."BASE_ATENDIMENTO"
     ;;
+  drill_fields: [cpf, alunos.aluno_nome, grupo_ies, proposta.ds_instituicao, dt_status_date, id_status_destino_geral, data_entrada_base_date, status_entrada_base, login_consultor, id_chamado, titulo_chamado, sub_titulo_chamado, date_ultimo_contato_date, date_primeiro_contato_date, quantidade_contato, proposta.ds_campus, proposta.ds_curso, proposta.aluno_cal_vet]
 
   dimension: id_cpf {
     label: "ID CPF do aluno"
