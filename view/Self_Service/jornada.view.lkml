@@ -1814,7 +1814,10 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      month_name,
+      day_of_month,
+      day_of_week
     ]
     sql: ${TABLE}."DT_AGUARDANDO_ASSINATURA" ;;
     label: "Data Aguardando Assinatura"
