@@ -1,4 +1,5 @@
 connection: "graduado"
+# connection: "pos_graduado"
 
 include: "/**/*.dashboard.lookml"
 include: "/**/*.view.lkml"
@@ -67,7 +68,8 @@ explore: beneficiados {
     - jornada.var_median_mensalidade_cadastro_analiseies,
     - jornada.var_median_mensalidade_informada_analiseies,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: proposta {
@@ -215,7 +217,8 @@ explore: status {
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: proposta
@@ -460,6 +463,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: proposta_vl_financiamento {
     view_label: "2. Proposta"
     sql_on: ${proposta_vl_financiamento.id_proposta} = ${jornada.id_proposta} ;;
@@ -523,7 +533,8 @@ explore: jornada {
 
   join: instituicao_metas_gc {
     view_label: "2.1 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao} and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
+    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}
+        and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: many_to_many
     type: left_outer
   }
@@ -609,13 +620,6 @@ explore: jornada {
     type: left_outer
   }
 
-  join: jornada_como_soube {
-    view_label: "1. Jornada"
-    sql_on: ${jornada.id_cpf} = ${jornada_como_soube.id_cpf} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
-
   join: alunos {
     view_label: "6. Alunos"
     sql_on:  ${alunos.id_cpf} = ${jornada.id_cpf} ;;
@@ -627,13 +631,6 @@ explore: jornada {
     sql_on:${jornada.id_cpf} = ${alunos_painel_risco.id_cpf} and ${jornada.id_proposta} = ${alunos_painel_risco.proposta}  ;;
     type: left_outer
     relationship: many_to_one
-  }
-
-  join: alunos_status {
-    view_label: "6. Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
-    type: left_outer
-    relationship: one_to_many
   }
 
   join: aproveitamento_estoque_nok {
@@ -775,7 +772,8 @@ explore: instituicao {
     - jornada.tempo_enviodoc_aguass,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
 
@@ -964,7 +962,8 @@ explore: financeiro {
     - proposta.cont_cpf,
     - proposta.perc_cpf,
     - proposta.flg_instituicao_ativa,
-    - financeiro_log_titulo.id_titulo
+    - financeiro_log_titulo.id_titulo,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
 
   ]
 
@@ -1123,14 +1122,12 @@ join: sql_runner_query_range_boleto {
     type: left_outer
   }
 
-join: vw_extrato_repasse {
-  view_label: "4. Extrato Repasse - Gestão Corrigido"
-  sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
-          ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
-          --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
-  ;;
-  relationship: one_to_one
-}
+## join: vw_extrato_repasse {
+## view_label: "4. Extrato Repasse - Gestão Corrigido"
+## sql_on: ${financeiro.id_cpf} = ${vw_extrato_repasse.id_cpf} and
+## ${financeiro.id_seunum} = ${vw_extrato_repasse.num_boleto}
+## --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato});;
+## relationship: one_to_one }
 
   join: carteira {
     view_label: "6. Carteira (base OT)"
@@ -1150,6 +1147,14 @@ join: vw_extrato_repasse {
       flg_ultima_base
     ]
     relationship: many_to_many
+    type: left_outer
+  }
+
+  join: compra_carteira {
+    view_label: "1. Financeiro"
+    sql_on: ${compra_carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${compra_carteira.id_contrato} = ${financeiro.id_contrato} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
@@ -1471,13 +1476,11 @@ explore: proposta {
     type: left_outer
   }
 
-  join: vw_extrato_repasse {
-    sql_on: ${proposta.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
-    and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
-    relationship: one_to_one
-    type: left_outer
-
-  }
+  ##join: vw_extrato_repasse {
+  ##  sql_on: ${proposta.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato})
+  ##  and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
+  ##  relationship: one_to_one
+  ##  type: left_outer}
 
 }
 
@@ -1543,7 +1546,8 @@ explore: alunos {
     - jornada.var_median_mensalidade_informada_analiseies,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
 
@@ -1922,15 +1926,6 @@ explore: alunos {
     relationship: one_to_many
   }
 
-  join: alunos_status {
-    view_label: "1. Alunos"
-    sql_on: ${alunos.cpf_aluno} = ${alunos_status.cpf};;
-    type: left_outer
-    relationship: one_to_many
-  }
-
-
-
 }
 
 #Novo modelo de dados experiencia do aluno 26/07/22 - Lulinha
@@ -2168,7 +2163,8 @@ explore: simulador_etapas {
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
-  fields: [ALL_FIELDS *
+  fields: [ALL_FIELDS *,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: instituicao {
@@ -2250,4 +2246,26 @@ explore:  base_atendimento_fundo_funil{
       proposta.semestre_financiado]
   }
 
+  join: jornada {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
+    fields: [jornada.canal]
+  }
+
+}
+
+explore: negocios_provas_pravaler {
+  label: "comercial provas pravaler"
+
+  join: etapas_funil_pipedrive_provas_prv {
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${negocios_provas_pravaler.id_negocio} = ${etapas_funil_pipedrive_provas_prv.id_negocio} ;;
+  }
+}
+
+explore: vw_atualizacao_produtos {
+  label: "Logs de Atualizações - Produtos"
+  description: "Histórico dos logs de atualização"
 }

@@ -426,10 +426,25 @@ view: bullest {
     hidden: yes
   }
 
+  dimension: dias_em_aberto {
+    type: number
+    label: "Faixa de Dias em atraso"
+    description: "Quantidade de dias em atraso."
+    sql: case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) between 1 and 30
+        then 30
+        when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) between 31 and 60
+        then 60
+        when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) between 61 and 99
+        then 90
+        when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) > 99
+        then 100 end ;;
+  }
+
   measure: sum_valor_bruto {
     type: sum
     description: "Valor do contratado."
-    sql: ${valor_faculdade} ;;
+    sql: ${valor_bruto} ;;
     value_format: "\R$ #,###.00"
   }
 
@@ -444,7 +459,7 @@ view: bullest {
     group_label: "Reembolso"
     group_item_label: "Reembolso Faculdade."
     type: sum
-    description: "Valor que a IES terá que devolver para o Pravaler."
+    description: "Valor total de reembolso da IES para o Pravaler, entre pagos, vencidos e a vencer."
     sql: ${valor_faculdade} ;;
     value_format: "\R$ #,###.00"
   }
@@ -458,14 +473,47 @@ view: bullest {
     value_format: "\R$ #,###.00"
   }
 
+  measure: sum_reembolso_faculdade_em_aberto {
+    group_label: "Reembolso"
+    group_item_label: "Reembolso Faculdade em Aberto (Vencidos + A Vencer)."
+    type: sum
+    description: "Valor que a IES ainda não pagou para o Pravaler, entre vencidos e a vencer."
+    sql: case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)')
+        then ${valor_faculdade} end ;;
+    value_format: "\R$ #,###.00"
+  }
+
+  measure: sum_reembolso_faculdade_a_vencer {
+    group_label: "Reembolso"
+    group_item_label: "Reembolso Faculdade a vencer (Adimplente)."
+    type: sum
+    description: "Valor a vencer que a IES não pagou para o Pravaler."
+    sql: case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) <= 0
+        then ${valor_faculdade}
+         end ;;
+    value_format: "\R$ #,###.00"
+  }
+
+  measure: sum_reembolso_faculdade_nao_cobrado {
+    group_label: "Reembolso"
+    group_item_label: "Reembolso Faculdade Não Cobrado."
+    type: sum
+    description: "Valor não cobrado da IES."
+    sql: case when ${status_cancelamento} IN ( 'Não Cobrado') then ${valor_faculdade} end ;;
+    value_format: "\R$ #,###.00"
+  }
+
   measure: sum_reembolso_faculdade_inadimplente {
     group_label: "Reembolso"
-    group_item_label: "Reembolso Faculdade Inadimplente."
+    group_item_label: "Reembolso Faculdade vencidos (Inadimplente)."
     type: sum
     description: "Valor que a IES não devolveu para o Pravaler."
-    sql: case when ${status_cancelamento} = 'Não Pago' then ${valor_faculdade}
-    when ${status_cancelamento} = 'Não Pago (Regerado)' then ${valor_faculdade}
-    when ${status_cancelamento} = 'Aguardando Pagamento (Regerado)' then ${valor_faculdade}end ;;
+    sql: case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) > 0
+         then ${valor_faculdade}
+    end ;;
     value_format: "\R$ #,###.00"
   }
 
@@ -505,7 +553,42 @@ view: bullest {
   }
 
   measure: count {
+    group_label: "Count"
+    group_item_label: "Quantidade de títulos."
     type: count
     drill_fields: [id]
+  }
+
+  measure: count_vencidos {
+    group_label: "Count"
+    group_item_label: "Quantidade de títulos a receber vencidos."
+    type: count_distinct
+    description: "Quantidade de títulos (CNPJ) a receber vencidos."
+    sql:  case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) > 0
+        then ${id}
+         end ;;
+  }
+
+  measure: count_a_vencer {
+    group_label: "Count"
+    group_item_label: "Quantidade de títulos a receber a vencer."
+    type: count_distinct
+    description: "Quantidade de títulos (CNPJ) vencidos."
+    sql:  case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)') AND datediff(day, ${TABLE}."dt_primeiro_vecto", getdate()) <= 0
+        then ${id}
+         end ;;
+  }
+
+  measure: count_em_aberto {
+    group_label: "Count"
+    group_item_label: "Quantidade de títulos a receber."
+    type: count_distinct
+    description: "Quantidade de títulos (CNPJ) vencidos e a vencer."
+    sql:  case
+            when ${status_cancelamento} IN ( 'Aguardando Pagamento', 'Aguardando Pagamento (Regerado)', 'Não Pago', 'Não Pago (Regerado)')
+        then ${id}
+         end ;;
   }
 }

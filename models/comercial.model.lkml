@@ -1,23 +1,47 @@
 connection: "crm"
 
 include: "/**/*.view.lkml"               # include all views in the views/ folder in this project
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
+
+map_layer: MAPA_ESTADO_ALUNO {
+  file: "/MAPAS/uf.json"
+}
+
+map_layer: MAPA_CIDADE_ALUNO {
+  file: "/MAPAS/municipio.json"
+}
+
+
+access_grant: grupo_cpf {
+  user_attribute: grupo_cpf
+  allowed_values: ["grupo_cpf"]
+}
+
+access_grant: grupo_nome {
+  user_attribute: grupo_nome
+  allowed_values: ["grupo_nome"]
+
+}
+
+access_grant: grupo_telefone {
+  user_attribute: grupo_telefone
+  allowed_values: ["grupo_telefone"]
+}
+
+access_grant: grupo_endereco {
+  user_attribute: grupo_endereco
+  allowed_values: ["grupo_endereco"]
+}
+
+access_grant: grupo_email {
+  user_attribute: grupo_email
+  allowed_values: ["grupo_email"]
+}
+
+access_grant: grupo_renda {
+  user_attribute: grupo_renda
+  allowed_values: ["grupo_renda"]
+}
 
 
 explore: instituicao_metas_gc {
@@ -119,10 +143,73 @@ explore: aproveitamento_estoque_nok{
   label: "Aproveitamento Estoque"
 }
 
-explore: metas_distribuidas {
-  label: "Comercial - Metas Distribuídas"
-}
+#explore: metas_distribuidas {
+#  label: "Comercial - Metas Distribuídas"
+#}
 
 explore: simulador_etapas {
   label: "Comercial - Simulador Etapas Funil"
+}
+
+explore: leads_afiliados {
+  label: "Afiliados"
+  view_label: "1. Leads Afiliados"
+  fields: [ALL_FIELDS *,
+    - jornada.cpf_aluno_proposta,
+    - jornada.aluno_email,
+    - jornada.aluno_nome,
+    - jornada.aluno_celular,
+    - jornada.grupo_instituicao,
+    - jornada.ds_instituicao,
+    - jornada.ds_campus,
+    - jornada.nm_modalidade_produto,
+    - jornada.nm_produto,
+    - jornada.ds_curso,
+    - jornada.total_renov,
+    - jornada.tempo_aprovies_enviodoc,
+    - jornada.tempo_enviodoc_aguass,
+    - jornada.var_mensalidade_cadastro_analiseies,
+    - jornada.var_mensalidade_informada_analiseies,
+    - jornada.var_median_mensalidade_cadastro_analiseies,
+    - jornada.var_median_mensalidade_informada_analiseies,
+    - jornada.flag_balcao,
+    - jornada.flag_afiliados
+  ]
+
+  join: dim_cpf {
+    from: dim_cpf
+    view_label: "2. Dim cpf"
+    sql_on: ${leads_afiliados.CPF_LEAD} = ${dim_cpf.cpf} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: jornada {
+    from:  jornada
+    view_label: "2. Jornada"
+    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+}
+
+explore: vw_homolog_comissao {
+  label: "Comissão - Atendentes Afiliados"
+  view_label: "Atendentes Balcão"
+  description: "Informações relacionadas à comissão dos atendentes do balcão da IES"
+
+  join: balcao_comissoes {
+    view_label: "Comissões por atendente"
+    sql_on: ${vw_homolog_comissao.cpf_atendente_ies} = ${balcao_comissoes.cpf_afiliado};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+  join: depara_grupo_gerente {
+    view_label: "Atendentes Balcão"
+    sql_on: ${vw_homolog_comissao.nome_grupo_instituicao} = ${depara_grupo_gerente.grupo_instituicao};;
+    type: left_outer
+    relationship: many_to_one
+  }
 }

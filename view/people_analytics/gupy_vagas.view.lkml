@@ -501,7 +501,7 @@ view: gupy_vagas {
     sql: case ${TABLE}."STATUS"
           when 'approved' then 'aprovada'
           when 'canceled' then 'cancelada'
-          when 'closed' then 'fechada'
+          when 'closed' then 'encerrada'
           when 'frozen' then 'congelada'
           when 'published' then 'publicada'
           when 'waiting_approval' then 'em aprovação'
@@ -556,6 +556,13 @@ view: gupy_vagas {
     description: "Indica a área da qual a vaga pertence (na visão do RH)"
     type: string
     sql: ${TABLE}."AREA_RH" ;;
+  }
+
+  dimension: flg_excluida {
+    group_label: "Dados da Vaga"
+    label: "Vaga excluída da plataforma?"
+    type: yesno
+    sql: ${TABLE}."FLG_EXCLUIDA" ;;
   }
 
   measure: count {

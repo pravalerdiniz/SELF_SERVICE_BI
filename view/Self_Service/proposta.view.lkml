@@ -108,7 +108,7 @@ view: proposta {
 dimension: vl_tarifa_cadastro {
   group_label: "Dados de Contrato"
   label: "Valor Tarifa Cadastro"
-  hidden: yes
+  hidden: no
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
@@ -155,7 +155,7 @@ dimension: vl_tarifa_cadastro {
   dimension: aluno_renda {
     type: number
     group_label: "Dados do Aluno"
-    value_format: "0"
+    value_format: "$ #,###.00"
     label: "Renda do Aluno"
     description: "Indica o valor de renda do aluno"
     sql:NULLIF(${TABLE}."ALUNO_RENDA",0) ;;
@@ -521,7 +521,7 @@ dimension: vl_tarifa_cadastro {
   dimension_group: data_preenchimento {
     type: time
     timeframes: [
-       raw,
+      raw,
       date,
       week,
       month,
@@ -530,7 +530,8 @@ dimension: vl_tarifa_cadastro {
       year,
       day_of_year,
       day_of_week,
-      day_of_week_index
+      day_of_week_index,
+      time
     ]
     label: "Preenchimento da Proposta"
     description: "Indica a data de preenchimento da proposta"
@@ -3872,6 +3873,24 @@ dimension: vl_tarifa_cadastro {
     group_label: "Sem Fiador - Teste A/B"
   }
 
+  dimension: nova_flag_elegivel_semfiador_testeab {
+    type: string
+    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
+          and ${id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
+          and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
+    label: "Nova Flag Sem Fiador - Produto Aluno"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
+  dimension: nova_flag_elegivel_semfiador_testeab_aprov {
+    type: string
+    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
+          and ${proposta_produtos_aprovados.id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
+          and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
+    label: "Nova Flag Sem Fiador - Produtos Aprovados"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
   dimension: flag_eleito_semfiador_testeab {
     type: yesno
     sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
@@ -3929,6 +3948,67 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
   }
 
+  dimension: num_vl_pmt {
+    type: number
+    sql: ${TABLE}."VL_PMT" ;;
+    label: "PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    link: {label:"Documentação - VL_PMT"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1581515203/VL+PMT"
+    }
+    group_label: "Dados do Contrato"
+  }
+
+  measure: vl_pmt {
+    type: number
+    sql: ${TABLE}."VL_PMT";;
+    label: "Valor de PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: sum_vl_pmt {
+    type: sum
+    sql: ${num_vl_pmt} ;;
+    label: "Soma Valor de PMT"
+    value_format: "#,##0.00"
+    description: "É um campo da tabela PROPOSTA e representa o valor da parcela do aluno"
+    group_label: "Dados do Contrato"
+  }
+
+  dimension: num_vl_financiado_desagio {
+    type: number
+    sql: ${TABLE}."VL_FINANCIADO_DESAGIO" ;;
+    label: "Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    link: {label:"Documentação - VL_FINANCIADO_DESAGIO"
+      url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/1581842474/VL+FINANCIADO+DESAGIO"
+    }
+    group_label: "Dados do Contrato"
+  }
+
+  measure: vl_financiado_desagio {
+    type: number
+    sql: ${TABLE}."VL_FINANCIADO_DESAGIO" ;;
+    label: "Valor Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    group_label: "Dados do Contrato"
+
+  }
+
+  measure: sum_vl_financiado_desagio {
+    type: sum
+    sql: ${num_vl_financiado_desagio};;
+    label: "Soma Valor Financiado Desagiado"
+    value_format: "#,##0.00"
+    description: "Representa o valor de deságio do financiamento do aluno"
+    group_label: "Dados do Contrato"
+  }
+
 
   set: detail {
     fields: [
@@ -3964,9 +4044,9 @@ dimension: vl_tarifa_cadastro {
   #   group_item_label: "Quantidade de Contratos Anteriores"
   #   sql:${qtd_contratos_anteriores};;
   #   value_format: "0"
-  #   link: {label:"Documentação - Quantidade de Contratos Anteriores"
-  #   url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
-  #     }
+  #  link: {label:"Documentação - Quantidade de Contratos Anteriores"
+  #  url: "https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916914190/QUANTIDADE+DE+CONTRATOS+ANTERIORES"
+  #  }
   #   description: "Soma da quantidade contratos anteriores por proposta"
   # }
 
@@ -4245,20 +4325,28 @@ dimension: vl_tarifa_cadastro {
   # }
 
 
-  # dimension: id_produtos_preaprovados {
-  #   type: string
-  #   group_label: "Dados do Produto"
-  #   hidden: yes
-  #   label: "ID Produtos Pré Aprovados"
-  #   description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
-  #   sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
-  #   html:
-  #   {% assign words = value | split: ',' %}
-  #   <ul>
-  #   {% for word in words %}
-  #   <li>{{ word }}</li>
-  #   {% endfor %} ;;
-  # }
+  dimension: id_produtos_preaprovados {
+     type: string
+     group_label: "Dados do Produto"
+     hidden: no
+     label: "ID Produtos Pré Aprovados"
+     description: "Informa o ID dos produtos pré aprovados por risco para envio da IES"
+     sql: ${TABLE}."ID_PRODUTOS_APROVADOS" ;;
+     html:
+     {% assign words = value | split: ',' %}
+     <ul>
+     {% for word in words %}
+     <li>{{ word }}</li>
+     {% endfor %} ;;
+   }
 
+  dimension: mensalidadexrenda {
+    type: number
+    value_format: "0.0%"
+    group_label: "Dados do Aluno"
+    label: "Mensalidade/Renda"
+    description: "Indica a relação % entre Mensalidade e Renda do Aluno"
+    sql: ${vl_mensalidade}/${aluno_renda} ;;
+  }
 
 }

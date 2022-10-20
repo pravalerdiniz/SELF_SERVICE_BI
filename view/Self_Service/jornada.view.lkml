@@ -18,11 +18,43 @@ view: jornada {
       day_of_year,
       hour_of_day,
       month_num,
-      day_of_month
+      day_of_month,
+      week_of_year
     ]
     sql: ${TABLE}."DT_STATUS" ;;
     label: "Etapa"
     description: "Este campo é uma regra de negócio*. Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
+  }
+
+  parameter: timeframe_picker {
+    type: unquoted
+    hidden:  yes
+    default_value: "week"
+    allowed_value: {
+      value: "date"
+    }
+    allowed_value: {
+      value: "week"
+    }
+    allowed_value: {
+      value: "month"
+    }
+  }
+
+  dimension: date {
+    hidden: yes
+    sql:
+    {% if timeframe_picker._parameter_value == 'date' %}
+      ${dt_status_date}
+    {% elsif timeframe_picker._parameter_value == 'month' %}
+      ${dt_status_month}
+    {% elsif timeframe_picker._parameter_value == 'week' %}
+      ${dt_status_week}
+    {% else %}
+      ${dt_status_date}
+    {% endif %};;
+    label: "data teste"
+    #type: date
   }
 
   dimension: wtd_only {
@@ -1470,6 +1502,15 @@ dimension: url {
   hidden:  no
 }
 
+  dimension: id_url {
+    type: string
+    group_label: "Dados de Primeiro Canal"
+    group_item_label: "ID_URL"
+    description: "ID da Primeira URL da proposta/lead"
+    sql: ${TABLE}."ID_URL" ;;
+    hidden:  no
+  }
+
   dimension: canal {
     type: string
     group_label: "Dados de Primeiro Canal"
@@ -1773,7 +1814,11 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      month_name,
+      day_of_month,
+      day_of_week,
+      week_of_year
     ]
     sql: ${TABLE}."DT_AGUARDANDO_ASSINATURA" ;;
     label: "Data Aguardando Assinatura"
@@ -1998,7 +2043,8 @@ dimension: flg_d1 {
       week,
       month,
       year,
-      month_num
+      month_num,
+      day_of_month
     ]
     sql: ${TABLE}."DT_FINALIZADO" ;;
     label: "Data Finalizado"

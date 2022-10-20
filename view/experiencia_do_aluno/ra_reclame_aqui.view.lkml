@@ -131,6 +131,7 @@ view: reclame_aqui {
     sql: ${TABLE}."FLG_VOLTA_FAZER_NEGOCIO" ;;
   }
 
+
   dimension: cliente_consideracao {
     type: string
     group_label: "Dados da Avaliação"
@@ -381,6 +382,14 @@ view: reclame_aqui {
     group_item_label: "Flag Ativo?"
     description: "Flag Ativo? (Yes/No)"
     sql: ${TABLE}."FLG_ATIVO" ;;
+  }
+
+  dimension: flg_reclamacao_considerada {
+    type: yesno
+    group_label: "Dados da Reclamação"
+    group_item_label: "Flag Reclamação Considerada (Yes/No"
+    description: "Regra para marcar uma reclamação ativa. Regra: FLG_ATIVO = TRUE, FLG_RA_PROCESSO_INTERNO = TRUE, RA_STATUS not in “Desativado pelo consumidor” ou “Inativa no ReclameAQUI”"
+    sql: ${TABLE}."FLG_RECLAMACAO_CONSIDERADA" ;;
   }
 
   dimension: titulo_reclamacao {
