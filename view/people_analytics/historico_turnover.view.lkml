@@ -97,9 +97,18 @@ view: historico_turnover {
     sql: ${TABLE}."DATA_REFERENCIA" ;;
   }
 
-  dimension: mes_ref {
+
+  dimension: mes_ref_ordem {
     view_label: "Datas e Períodos"
     label: "Mês"
+    description: "Mês de refência"
+    type: number
+    sql: to_char(${TABLE}."DATA_REFERENCIA", 'mm');;
+  }
+
+  dimension: mes_ref {
+    view_label: "Datas e Períodos"
+    label: "Mês (Extenso)"
     description: "Nome do mês"
     type: string
     sql: case to_char(${TABLE}."DATA_REFERENCIA", 'mm')
