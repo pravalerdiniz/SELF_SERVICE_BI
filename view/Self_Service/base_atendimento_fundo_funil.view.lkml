@@ -11,6 +11,7 @@ view: base_atendimento_fundo_funil {
     label: "ID CPF do aluno"
     type: number
     sql:  ${TABLE}."ID_CPF"  ;;
+    primary_key: yes
   }
 
   dimension: id_proposta {
