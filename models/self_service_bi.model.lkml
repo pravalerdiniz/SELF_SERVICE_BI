@@ -68,7 +68,8 @@ explore: beneficiados {
     - jornada.var_median_mensalidade_cadastro_analiseies,
     - jornada.var_median_mensalidade_informada_analiseies,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: proposta {
@@ -216,7 +217,8 @@ explore: status {
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: proposta
@@ -458,6 +460,13 @@ explore: jornada {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
     type: left_outer
   }
 
@@ -763,7 +772,8 @@ explore: instituicao {
     - jornada.tempo_enviodoc_aguass,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
 
@@ -952,7 +962,8 @@ explore: financeiro {
     - proposta.cont_cpf,
     - proposta.perc_cpf,
     - proposta.flg_instituicao_ativa,
-    - financeiro_log_titulo.id_titulo
+    - financeiro_log_titulo.id_titulo,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
 
   ]
 
@@ -1136,6 +1147,14 @@ join: sql_runner_query_range_boleto {
       flg_ultima_base
     ]
     relationship: many_to_many
+    type: left_outer
+  }
+
+  join: compra_carteira {
+    view_label: "1. Financeiro"
+    sql_on: ${compra_carteira.id_cpf} = ${financeiro.id_cpf}
+            and ${compra_carteira.id_contrato} = ${financeiro.id_contrato} ;;
+    relationship: one_to_many
     type: left_outer
   }
 
@@ -1527,7 +1546,8 @@ explore: alunos {
     - jornada.var_median_mensalidade_informada_analiseies,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
 
@@ -2143,7 +2163,8 @@ explore: simulador_etapas {
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
-  fields: [ALL_FIELDS *
+  fields: [ALL_FIELDS *,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
 
   join: instituicao {

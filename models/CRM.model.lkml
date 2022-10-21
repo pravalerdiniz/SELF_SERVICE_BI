@@ -56,7 +56,8 @@ explore: tela_atendimento{
     - proposta.flag_eleito_semfiador_testeab,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
   ]
   view_label: "1.1. Tela atendimento - Célula contratação"
   description: "Informações sobre os registros da Tela de Atendimento - Célula Final de Funil"
