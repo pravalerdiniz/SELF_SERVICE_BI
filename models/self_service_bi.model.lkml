@@ -464,8 +464,22 @@ explore: jornada {
   }
 
   join: proposta_produtos_aprovados {
-    view_label: "1.1 Produtos Aprovados"
+    view_label: "2. Proposta"
     sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_contagem {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados_contagem.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_semfiador {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados_semfiador.proposta_id_proposta}  ;;
     relationship: one_to_many
     type: left_outer
   }
@@ -1319,6 +1333,19 @@ explore: proposta {
   }
 
 
+  join: proposta_produtos_aprovados_contagem {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados_contagem.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_semfiador {
+    view_label: "1.1. Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados_semfiador.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: proposta_docs_pendentes {
     view_label: "1.2 Documentos Pendentes"

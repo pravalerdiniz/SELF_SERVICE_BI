@@ -46,4 +46,10 @@ ORDER BY
     sql: ${contagem_de_produtos} ;;
     label: "Contagem de Produtos"
   }
+
+  dimension: id_produto {
+    type: string
+    sql: ${TABLE}."ID_PRODUTO" ;;
+    hidden: yes
+  }
 }

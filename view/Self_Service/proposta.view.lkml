@@ -3871,21 +3871,13 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_ELEGIVEL_SEMFIADOR" ;;
     label: "Flag Elegível - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
-  }
-
-  dimension: nova_flag_elegivel_semfiador_testeab {
-    type: string
-    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
-          and ${id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
-          and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
-    label: "Nova Flag Sem Fiador - Produto Aluno"
-    group_label: "Sem Fiador - Teste A/B"
+    hidden:  yes
   }
 
   dimension: nova_flag_elegivel_semfiador_testeab_aprov {
     type: string
     sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
-          and ${proposta_produtos_aprovados.id_produto} in ('BOF-20','BOF-34','BOF-48','BOF-99','BOF-199','BOF-200','BOF-201','BOF-207','BOF-208')
+          and ${proposta_produtos_aprovados_semfiador.contagem_de_produtos} > 0
           and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
     label: "Nova Flag Sem Fiador - Produtos Aprovados"
     group_label: "Sem Fiador - Teste A/B"
@@ -3896,6 +3888,7 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
+    hidden:  yes
   }
 
   dimension: mensalidade_inf_alu {
