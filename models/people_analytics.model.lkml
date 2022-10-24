@@ -29,8 +29,6 @@ explore: dados_demograficos {
 explore: historico_demograficos {
   view_label: "Dados Demográficos"
   description: "Informações sobre histórico da região onde residem os colaboradores do Pravaler"
-
-
 }
 
 explore: historico_turnover {
@@ -92,4 +90,24 @@ explore: enps {
     type: left_outer
     sql_on: ${enps.id_resposta} = ${enps_flatten.id_resposta} ;;
   }
+}
+
+explore: dim_bolsas_dho {
+  label: "Edupass Bolsas"
+  view_label: "Edupass Bolsas"
+}
+
+explore: dim_pravalentes_dho {
+  label:"Pravalentes Edupass + Qmágico"
+  view_label: "Pravalentes Edupass + Qmágico"
+}
+
+explore: dim_reembolsos {
+  label:"Edupass Reembolsos"
+  view_label: "Edupass Reembolsos"
+}
+
+explore: dim_treinamentos_dho {
+  label:"Treinamentos Universidade + Eduplay"
+  view_label: "Treinamentos Universidade + Eduplay"
 }
