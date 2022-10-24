@@ -3887,7 +3887,8 @@ dimension: vl_tarifa_cadastro {
     type: string
     sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
           and ${proposta_produtos_aprovados_semfiador.contagem_de_produtos} > 0
-          --and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
+          --and ${mensalidadexrenda} <= 0.5
+          then 'Yes' else 'No' end;;
     label: "Flag Produtos Sem Fiador"
     group_label: "Sem Fiador - Teste A/B"
   }
@@ -3897,7 +3898,7 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"
-    hidden:  yes
+    hidden:  no
   }
 
   dimension: mensalidade_inf_alu {
