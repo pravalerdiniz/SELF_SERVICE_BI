@@ -3866,20 +3866,29 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DS_ORIGEM_APROVACAO" ;;
   }
 
-  dimension: flag_elegivel_semfiador_testeab {
-    type: yesno
-    sql: ${TABLE}."FLG_ELEGIVEL_SEMFIADOR" ;;
-    label: "Flag Elegível - Sem Fiador Teste A/B"
-    group_label: "Sem Fiador - Teste A/B"
-    hidden:  yes
-  }
+  #dimension: flag_elegivel_semfiador_testeab {
+   #  type: yesno
+   #  sql: ${TABLE}."FLG_ELEGIVEL_SEMFIADOR" ;;
+   #  label: "Flag Elegível - Sem Fiador Teste A/B"
+    # group_label: "Sem Fiador - Teste A/B"
+  # hidden:  yes
+  # }
 
-  dimension: nova_flag_elegivel_semfiador_testeab_aprov {
+  dimension: flag_elegivel_semfiador_testeab {
     type: string
     sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
           and ${proposta_produtos_aprovados_semfiador.contagem_de_produtos} > 0
           and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
-    label: "Nova Flag Sem Fiador - Produtos Aprovados"
+    label: "Flag Elegível Sem Fiador"
+    group_label: "Sem Fiador - Teste A/B"
+  }
+
+  dimension: flag_produtos_semfiador_testeab {
+    type: string
+    sql: case when ${grupo_instituicao} in ('ANIMA','CRUZEIRO DO SUL EDUCACIONAL')
+          and ${proposta_produtos_aprovados_semfiador.contagem_de_produtos} > 0
+          --and ${mensalidadexrenda} <= 0.5 then 'Yes' else 'No' end;;
+    label: "Flag Produtos Sem Fiador"
     group_label: "Sem Fiador - Teste A/B"
   }
 

@@ -3289,8 +3289,8 @@ dimension: qtd_dias_iniciados {
   }
 
   measure: median_qtd_dias_agg_ass {
-    type: median
-    sql: ${qtd_dias_agg_ass} ;;
+    type: number
+    sql: median(${qtd_dias_agg_ass}) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Aguardando Assinatura"
     value_format: "0.0"
@@ -3397,8 +3397,8 @@ dimension: qtd_dias_iniciados {
   }
 
   measure: median_qtd_dias_cedido {
-    type: median
-    sql: ${qtd_dias_cedido} ;;
+    type: number
+    sql: median(${qtd_dias_cedido}) ;;
     group_label: "Mediana - Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Novos - Cedidos"
     value_format: "0.0"

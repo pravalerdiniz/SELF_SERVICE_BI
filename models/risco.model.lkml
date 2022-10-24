@@ -116,8 +116,8 @@ explore: alunos {
     - jornada_pivot *,
     - proposta_datas_interfile *,
     - instituicao *,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
-
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: alunos_produtos_aprovados {

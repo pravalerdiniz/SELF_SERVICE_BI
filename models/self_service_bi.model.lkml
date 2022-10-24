@@ -69,7 +69,8 @@ explore: beneficiados {
     - jornada.var_median_mensalidade_informada_analiseies,
     - jornada.flag_balcao,
     - jornada.flag_afiliados,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: proposta {
@@ -218,7 +219,8 @@ explore: status {
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: proposta
@@ -787,7 +789,8 @@ explore: instituicao {
     - alunos.flg_balcao,
     - jornada.flag_balcao,
     - jornada.flag_afiliados,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
 
@@ -977,8 +980,8 @@ explore: financeiro {
     - proposta.perc_cpf,
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
-
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: financeiro_extrato_titulo {
@@ -1574,7 +1577,8 @@ explore: alunos {
     - alunos.flg_balcao,
     - jornada.flag_balcao,
     - jornada.flag_afiliados,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
 
@@ -2191,7 +2195,8 @@ explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
   fields: [ALL_FIELDS *,
-    - proposta.nova_flag_elegivel_semfiador_testeab_aprov
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: instituicao {
