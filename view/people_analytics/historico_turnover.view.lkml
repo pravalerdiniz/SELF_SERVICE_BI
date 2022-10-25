@@ -321,4 +321,46 @@ view: historico_turnover {
     description: "Este campo segue uma regra de negócio para ordenarmos de 1 a 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
   }
 
+  dimension_group: data_nascimento {
+    view_label: "Datas e Períodos"
+    label: "Data de nascimento"
+    description: "Data de nascimento do Pravalente"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_NASCIMENTO" ;;
+  }
+
+  dimension: grau_instrucao {
+    type: string
+    view_label: "Dados Gerais"
+    label: "Grau de Instrução"
+    description: "Escolaridade do Pravalente"
+    sql: ${TABLE}."GRAU_INSTRUCAO" ;;
+  }
+
+  dimension: raca {
+    type: string
+    view_label: "Dados Gerais"
+    label: "Raça"
+    description: "Etnia do Pravalente"
+    sql: ${TABLE}."RACA" ;;
+  }
+
+  dimension: flg_deficiencia {
+    type: yesno
+    view_label: "Dados Gerais"
+    label: "Possui deficiência?"
+    description: "Indica se o Pravalente possui alguma deficiência"
+    sql: ${TABLE}."FLG_PCD" ;;
+  }
+
 }
