@@ -206,7 +206,12 @@ view: historico_turnover {
     view_label: "Dados Gerais"
     label: "Sexo"
     type: string
-    sql: ${TABLE}."SEXO" ;;
+    sql: case upper(${TABLE}."SEXO")
+      when 'F' then 'Feminino'
+      when 'M' then 'Masculino'
+      else ''
+    end
+    ;;
   }
 
   dimension: situacao {
