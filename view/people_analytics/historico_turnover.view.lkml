@@ -354,7 +354,7 @@ view: historico_turnover {
     type: string
     case: {
       when: {
-        sql: ${idade} <= 20;; #'3 meses ou menos'
+        sql: ${idade} <= 20;;
         label: "Até 20 anos"
       }
       when: {
@@ -378,6 +378,40 @@ view: historico_turnover {
         label: "40 anos ou mais"
       }
       else: ""
+    }
+  }
+
+  dimension: faixa_etaria_ordem {
+    view_label: "Dados Gerais"
+    label: "Faixa etária - Ordenação"
+    description: "Classificação da faixa etária"
+    type: number
+    case: {
+      when: {
+        sql: ${idade} <= 20;;
+        label: "1"
+      }
+      when: {
+        sql: ${idade} between 21 and 24;;
+        label: "2"
+      }
+      when: {
+        sql: ${idade} between 25 and 29;;
+        label: "3"
+      }
+      when: {
+        sql: ${idade} between 30 and 34;;
+        label: "4"
+      }
+      when: {
+        sql: ${idade} between 35 and 39;;
+        label: "5"
+      }
+      when: {
+        sql: ${idade} >= 40;;
+        label: "6"
+      }
+      else: "0"
     }
   }
 
