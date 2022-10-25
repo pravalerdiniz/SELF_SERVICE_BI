@@ -339,6 +339,48 @@ view: historico_turnover {
     sql: ${TABLE}."DATA_NASCIMENTO" ;;
   }
 
+  dimension: idade {
+    view_label: "Datas e Períodos"
+    label: "Idade"
+    description: "Idade do Pravalente"
+    type: number
+    sql: trunc(datediff(hour, to_date(${data_nascimento_date}), current_date()) / 8766) ;;
+  }
+
+  dimension: faixa_etaria {
+    view_label: "Dados Gerais"
+    label: "Faixa etária"
+    description: "Classificação da faixa etária"
+    type: string
+    case: {
+      when: {
+        sql: ${idade} <= 20;; #'3 meses ou menos'
+        label: "Até 20 anos"
+      }
+      when: {
+        sql: ${idade} between 21 and 24;;
+        label: "Entre 21 e 24 anos"
+      }
+      when: {
+        sql: ${idade} between 25 and 29;;
+        label: "Entre 25 e 29 anos"
+      }
+      when: {
+        sql: ${idade} between 30 and 34;;
+        label: "Entre 30 e 34 anos"
+      }
+      when: {
+        sql: ${idade} between 35 and 39;;
+        label: "Entre 35 e 39 anos"
+      }
+      when: {
+        sql: ${idade} >= 40;;
+        label: "40 anos ou mais"
+      }
+      else: ""
+    }
+  }
+
   dimension: grau_instrucao {
     type: string
     view_label: "Dados Gerais"
