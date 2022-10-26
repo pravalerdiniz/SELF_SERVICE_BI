@@ -2260,7 +2260,8 @@ explore:  base_atendimento_fundo_funil{
     fields: [alunos.ds_status_geral,
       alunos.aluno_nome,
       alunos.celular,
-      alunos.email]
+      alunos.email,
+      alunos.flg_consentimento_whatsapp]
   }
 
   join: proposta {
