@@ -1070,36 +1070,35 @@ explore: financeiro {
 
   }
 
-  join: instituicao_taxas_antecipacao {
-    view_label: "3.2. Taxas da Instituição por Produto Antecipação"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
-      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
-      ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+##  join: instituicao_taxas_antecipacao {
+##    view_label: "3.2. Taxas da Instituição por Produto Antecipação"
+##    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+##      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+##      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
+##      ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
-  join: instituicao_taxas_gestao {
-    view_label: "3.3. Taxas da Instituição por Produto Gestão"
-    sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
-      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
-        ;;
-    relationship: one_to_many
-    type: left_outer
+## join: instituicao_taxas_gestao {
+##  view_label: "3.3. Taxas da Instituição por Produto Gestão"
+##    sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
+##      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+##      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
+##        ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
-  }
-
-  join: taxa_produto_ies {
-    view_label: "3.5. Tabela de Taxas da Instituição Unificada"
-    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
-      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
-      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
-        ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+## join: taxa_produto_ies {
+##  view_label: "3.5. Tabela de Taxas da Instituição Unificada"
+##    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
+##      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
+##      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
+##        ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
   join: taxa_instituicao_simplificada {
@@ -1108,8 +1107,7 @@ explore: financeiro {
      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
-
-  }
+    }
 
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
@@ -1146,34 +1144,26 @@ join: sql_runner_query_range_boleto {
 ## --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato});;
 ## relationship: one_to_one }
 
-  join: carteira {
-    view_label: "6. Carteira (base OT)"
-    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
-            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
-            and ${carteira.id_boleto} = ${financeiro.id_boleto};;
-    fields: [
-      carteira.nm_cedente,
-      carteira.nm_fundo,
-      carteira.data_referencia_date,
-      carteira.data_emissao_date,
-      carteira.id_seunum,
-      carteira.valor_presente,
-      carteira.valor_apropriado,
-      carteira.valor_aquisicao,
-      carteira.protesto,
-      flg_ultima_base
-    ]
-    relationship: many_to_many
-    type: left_outer
-  }
-
-  join: compra_carteira {
-    view_label: "1. Financeiro"
-    sql_on: ${compra_carteira.id_cpf} = ${financeiro.id_cpf}
-            and ${compra_carteira.id_contrato} = ${financeiro.id_contrato} ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+##  join: carteira {
+##    view_label: "6. Carteira (base OT)"
+##    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
+##            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
+##          and ${carteira.id_boleto} = ${financeiro.id_boleto};;
+##    fields: [
+##      carteira.nm_cedente,
+##      carteira.nm_fundo,
+##      carteira.data_referencia_date,
+##      carteira.data_emissao_date,
+##      carteira.id_seunum,
+##      carteira.valor_presente,
+##      carteira.valor_apropriado,
+##      carteira.valor_aquisicao,
+##      carteira.protesto,
+##      flg_ultima_base
+##    ]
+##    relationship: many_to_many
+##    type: left_outer
+##  }
 
 
 
