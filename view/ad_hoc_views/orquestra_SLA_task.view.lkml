@@ -77,7 +77,7 @@ view: orquestra_sla_task {
   }
 
    measure:sum_horas_task {
-     description: "Total de horas gastas na(s) tarefa(s). Cálculo realizado subtraindo a
+     description: "Total de horas gastas na(s) tarefa(s excluindo final de semana). Cálculo realizado subtraindo a
     data_final pela data_inicial da tarefa."
      type: sum
      sql: ${horas_task} ;;

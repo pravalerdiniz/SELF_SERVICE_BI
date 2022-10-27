@@ -282,6 +282,19 @@ explore: orquestra {
 
   }
 
+  join: orquestra_flg_formalizacao {
+    type: left_outer
+    sql_on: ${orquestra.numero_chamado} = ${orquestra_flg_formalizacao.numero_chamado}
+       ;;
+    relationship: one_to_one
+    fields: [
+      orquestra_flg_formalizacao.flg_formalizacao,
+    ]
+    view_label: "1. Orquestra"
+
+  }
+
+
 
 }
 
