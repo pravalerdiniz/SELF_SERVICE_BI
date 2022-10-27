@@ -29,8 +29,6 @@ explore: dados_demograficos {
 explore: historico_demograficos {
   view_label: "Dados Demográficos"
   description: "Informações sobre histórico da região onde residem os colaboradores do Pravaler"
-
-
 }
 
 explore: historico_turnover {
@@ -73,6 +71,13 @@ explore: gupy_vagas_por_status {
 explore: gupy_vagas {
   label: "Dados sobre as vagas na GUPY"
   description: "Informações sobre vagas cadastradas na plataforma Gupy"
+
+  join: gupy_vagas_por_status {
+    view_label: "Gupy Vagas (Por status)"
+    relationship: one_to_one
+    type: inner
+    sql_on: ${gupy_vagas.codigo} = ${gupy_vagas_por_status.codigo} ;;
+  }
 }
 
 explore: pulse {

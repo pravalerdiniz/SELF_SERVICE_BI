@@ -97,6 +97,37 @@ view: historico_turnover {
     sql: ${TABLE}."DATA_REFERENCIA" ;;
   }
 
+
+  dimension: mes_ref_ordem {
+    view_label: "Datas e Períodos"
+    label: "Mês"
+    description: "Mês de refência"
+    type: number
+    sql: to_char(${TABLE}."DATA_REFERENCIA", 'mm');;
+  }
+
+  dimension: mes_ref {
+    view_label: "Datas e Períodos"
+    label: "Mês (Extenso)"
+    description: "Nome do mês"
+    type: string
+    sql: case to_char(${TABLE}."DATA_REFERENCIA", 'mm')
+      when 1 then 'Janeiro'
+      when 2 then 'Fevereiro'
+      when 3 then 'Março'
+      when 4 then 'Abril'
+      when 5 then 'Maio'
+      when 6 then 'Junho'
+      when 7 then 'Julho'
+      when 8 then 'Agosto'
+      when 9 then 'Setembro'
+      when 10 then 'Outubro'
+      when 11 then 'Novembro'
+      when 12 then 'Dezembro'
+    end
+    ;;
+  }
+
   dimension: ano_referencia {
     view_label: "Datas e Períodos"
     label: "Ano de referência"
@@ -175,7 +206,12 @@ view: historico_turnover {
     view_label: "Dados Gerais"
     label: "Sexo"
     type: string
-    sql: ${TABLE}."SEXO" ;;
+    sql: case upper(${TABLE}."SEXO")
+      when 'F' then 'Feminino'
+      when 'M' then 'Masculino'
+      else ''
+    end
+    ;;
   }
 
   dimension: situacao {
@@ -288,6 +324,124 @@ view: historico_turnover {
     label: "Ordem - Tempo de casa"
     sql: ${ordem_tempo_casa_aux} ;;
     description: "Este campo segue uma regra de negócio para ordenarmos de 1 a 5 a faixa de tempo do Pravalente. Então: 3 meses ou menos = 1; entre 4 e 6 meses = 2; entre 7 e 11 = 3; entre 1 ano e 1 ano e 11 meses = 4; 2 anos ou mais = 5; e caso contrário, não atender essas regras o valor será = 0"
+  }
+
+  dimension_group: data_nascimento {
+    view_label: "Datas e Períodos"
+    label: "Data de nascimento"
+    description: "Data de nascimento do Pravalente"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_NASCIMENTO" ;;
+  }
+
+  dimension: idade {
+    view_label: "Datas e Períodos"
+    label: "Idade"
+    description: "Idade do Pravalente"
+    type: number
+    sql: trunc(datediff(hour, to_date(${data_nascimento_date}), current_date()) / 8766) ;;
+  }
+
+  dimension: faixa_etaria {
+    view_label: "Dados Gerais"
+    label: "Faixa etária"
+    description: "Classificação da faixa etária"
+    type: string
+    case: {
+      when: {
+        sql: ${idade} <= 20;;
+        label: "Até 20 anos"
+      }
+      when: {
+        sql: ${idade} between 21 and 24;;
+        label: "Entre 21 e 24 anos"
+      }
+      when: {
+        sql: ${idade} between 25 and 29;;
+        label: "Entre 25 e 29 anos"
+      }
+      when: {
+        sql: ${idade} between 30 and 34;;
+        label: "Entre 30 e 34 anos"
+      }
+      when: {
+        sql: ${idade} between 35 and 39;;
+        label: "Entre 35 e 39 anos"
+      }
+      when: {
+        sql: ${idade} >= 40;;
+        label: "40 anos ou mais"
+      }
+      else: ""
+    }
+  }
+
+  dimension: faixa_etaria_ordem {
+    view_label: "Dados Gerais"
+    label: "Faixa etária - Ordenação"
+    description: "Classificação da faixa etária"
+    type: number
+    case: {
+      when: {
+        sql: ${idade} <= 20;;
+        label: "1"
+      }
+      when: {
+        sql: ${idade} between 21 and 24;;
+        label: "2"
+      }
+      when: {
+        sql: ${idade} between 25 and 29;;
+        label: "3"
+      }
+      when: {
+        sql: ${idade} between 30 and 34;;
+        label: "4"
+      }
+      when: {
+        sql: ${idade} between 35 and 39;;
+        label: "5"
+      }
+      when: {
+        sql: ${idade} >= 40;;
+        label: "6"
+      }
+      else: "0"
+    }
+  }
+
+  dimension: grau_instrucao {
+    type: string
+    view_label: "Dados Gerais"
+    label: "Grau de Instrução"
+    description: "Escolaridade do Pravalente"
+    sql: ${TABLE}."GRAU_INSTRUCAO" ;;
+  }
+
+  dimension: raca {
+    type: string
+    view_label: "Dados Gerais"
+    label: "Raça"
+    description: "Etnia do Pravalente"
+    sql: ${TABLE}."RACA" ;;
+  }
+
+  dimension: flg_deficiencia {
+    type: yesno
+    view_label: "Dados Gerais"
+    label: "Possui deficiência?"
+    description: "Indica se o Pravalente possui alguma deficiência"
+    sql: ${TABLE}."FLG_PCD" ;;
   }
 
 }

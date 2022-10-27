@@ -68,7 +68,9 @@ explore: beneficiados {
     - jornada.var_median_mensalidade_cadastro_analiseies,
     - jornada.var_median_mensalidade_informada_analiseies,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: proposta {
@@ -216,7 +218,9 @@ explore: status {
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
     - financeiro.sum_PDD,
-    - alunos.flg_balcao
+    - alunos.flg_balcao,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: proposta
@@ -458,6 +462,27 @@ explore: jornada {
     view_label: "2. Proposta"
     sql_on: ${proposta.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados.id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_contagem {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados_contagem.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_semfiador {
+    view_label: "2. Proposta"
+    sql_on: ${jornada.id_proposta} = ${proposta_produtos_aprovados_semfiador.proposta_id_proposta}  ;;
+    relationship: one_to_many
     type: left_outer
   }
 
@@ -763,7 +788,9 @@ explore: instituicao {
     - jornada.tempo_enviodoc_aguass,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
 
@@ -952,8 +979,9 @@ explore: financeiro {
     - proposta.cont_cpf,
     - proposta.perc_cpf,
     - proposta.flg_instituicao_ativa,
-    - financeiro_log_titulo.id_titulo
-
+    - financeiro_log_titulo.id_titulo,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: financeiro_extrato_titulo {
@@ -1042,36 +1070,35 @@ explore: financeiro {
 
   }
 
-  join: instituicao_taxas_antecipacao {
-    view_label: "3.2. Taxas da Instituição por Produto Antecipação"
-    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
-      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
-      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
-      ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+##  join: instituicao_taxas_antecipacao {
+##    view_label: "3.2. Taxas da Instituição por Produto Antecipação"
+##    sql_on: ${instituicao.id_instituicao} = ${instituicao_taxas_antecipacao.id_instituicao}
+##      and  ${instituicao_taxas_antecipacao.id_contrato_instituicao} = ${financeiro.id_ies_contrato}
+##      and ${proposta.id_produto}=${instituicao_taxas_antecipacao.id_produto}
+##      ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
-  join: instituicao_taxas_gestao {
-    view_label: "3.3. Taxas da Instituição por Produto Gestão"
-    sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
-      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
-      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
-        ;;
-    relationship: one_to_many
-    type: left_outer
+## join: instituicao_taxas_gestao {
+##  view_label: "3.3. Taxas da Instituição por Produto Gestão"
+##    sql_on: ${instituicao_taxas_gestao.id_instituicao} = ${instituicao.id_instituicao}
+##      and   ${instituicao_taxas_gestao.id_ies_contrato} = ${financeiro.id_ies_contrato}
+##      and ${proposta.id_produto}=${instituicao_taxas_gestao.id_produto}
+##        ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
-  }
-
-  join: taxa_produto_ies {
-    view_label: "3.5. Tabela de Taxas da Instituição Unificada"
-    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
-      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
-      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
-        ;;
-    relationship: one_to_many
-    type: left_outer
-  }
+## join: taxa_produto_ies {
+##  view_label: "3.5. Tabela de Taxas da Instituição Unificada"
+##    sql_on: ${taxa_produto_ies.id_instituicao} = ${instituicao.id_instituicao}
+##      and   ${taxa_produto_ies.id_ies_contrato} = ${financeiro.id_ies_contrato}
+##      and   ${taxa_produto_ies.id_produto} = ${proposta.id_produto}
+##        ;;
+##    relationship: one_to_many
+##    type: left_outer
+##  }
 
 ###>>>>>>> branch 'master' of git@github.com:pravalerdiniz/SELF_SERVICE_BI.git
   join: taxa_instituicao_simplificada {
@@ -1080,8 +1107,7 @@ explore: financeiro {
      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
-
-  }
+    }
 
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
@@ -1118,26 +1144,26 @@ join: sql_runner_query_range_boleto {
 ## --${financeiro.id_contrato} = concat('BOF-',${vw_extrato_repasse.id_contrato});;
 ## relationship: one_to_one }
 
-  join: carteira {
-    view_label: "6. Carteira (base OT)"
-    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
-            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
-            and ${carteira.id_boleto} = ${financeiro.id_boleto};;
-    fields: [
-      carteira.nm_cedente,
-      carteira.nm_fundo,
-      carteira.data_referencia_date,
-      carteira.data_emissao_date,
-      carteira.id_seunum,
-      carteira.valor_presente,
-      carteira.valor_apropriado,
-      carteira.valor_aquisicao,
-      carteira.protesto,
-      flg_ultima_base
-    ]
-    relationship: many_to_many
-    type: left_outer
-  }
+##  join: carteira {
+##    view_label: "6. Carteira (base OT)"
+##    sql_on: ${carteira.id_cpf} = ${financeiro.id_cpf}
+##            and ${carteira.id_alu_contrato} = ${financeiro.id_contrato}
+##          and ${carteira.id_boleto} = ${financeiro.id_boleto};;
+##    fields: [
+##      carteira.nm_cedente,
+##      carteira.nm_fundo,
+##      carteira.data_referencia_date,
+##      carteira.data_emissao_date,
+##      carteira.id_seunum,
+##      carteira.valor_presente,
+##      carteira.valor_apropriado,
+##      carteira.valor_aquisicao,
+##      carteira.protesto,
+##      flg_ultima_base
+##    ]
+##    relationship: many_to_many
+##    type: left_outer
+##  }
 
 
 
@@ -1300,6 +1326,19 @@ explore: proposta {
   }
 
 
+  join: proposta_produtos_aprovados_contagem {
+    view_label: "1.1 Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados_contagem.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
+  join: proposta_produtos_aprovados_semfiador {
+    view_label: "1.1. Produtos Aprovados"
+    sql_on: ${proposta.id_proposta} = ${proposta_produtos_aprovados_semfiador.proposta_id_proposta}  ;;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: proposta_docs_pendentes {
     view_label: "1.2 Documentos Pendentes"
@@ -1527,7 +1566,9 @@ explore: alunos {
     - jornada.var_median_mensalidade_informada_analiseies,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
-    - jornada.flag_afiliados
+    - jornada.flag_afiliados,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
 
@@ -2143,7 +2184,9 @@ explore: simulador_etapas {
 explore: taxa_produto_ies {
   label: "Taxa de Juros IES"
   view_label: "1. Tabela histórica Taxa de Juros"
-  fields: [ALL_FIELDS *
+  fields: [ALL_FIELDS *,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: instituicao {
@@ -2207,7 +2250,8 @@ explore:  base_atendimento_fundo_funil{
     fields: [alunos.ds_status_geral,
       alunos.aluno_nome,
       alunos.celular,
-      alunos.email]
+      alunos.email,
+      alunos.flg_consentimento_whatsapp]
   }
 
   join: proposta {

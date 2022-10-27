@@ -613,6 +613,6 @@ view: vw_contratos_inadimplencia {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [cpf,alu_contrato,status_cancelamento,data_concessao_date,eleg_fpd,fpd15]
   }
 }
