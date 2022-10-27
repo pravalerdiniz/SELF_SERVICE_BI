@@ -13,9 +13,6 @@ view: proposta {
     sql: ${TABLE}."ALUNO_CAL_VET" ;;
   }
 
-
-
-
   dimension: aluno_celular {
     type: string
     group_label: "Dados do Aluno"
@@ -3347,47 +3344,64 @@ dimension: vl_tarifa_cadastro {
     value_format: "$ #,###.00"
   }
 
-  measure: sum_desagio {
-    type: sum
+  dimension: desagio {
+    type: number
     group_label: "Valores Cessão"
-    group_item_label: "Deságio - Soma"
-    sql:${vl_financiamento} - ${vl_repasse_ies}-${vl_comissao_ideal};;
+    group_item_label: "Deságio"
+    sql:${vl_financiamento} - ${num_vl_financiado_desagio};;
     description: "Soma de valor do deságio (Comissão + Juros)"
     value_format: "$ #,###.00"
   }
 
-  measure: taxa_desagio_geral {
-    type: number
+  measure: sum_desagio {
+    type: sum
     group_label: "Valores Cessão"
-    group_item_label: "Deságio %"
-    sql:(${sum_custo_total_cessao} / ${sum_vl_financiamento}-1)*(-1) ;;
-    description: "Taxa de Deságio "
-    value_format: "0.00%"
-    hidden: yes
+    group_item_label: "Deságio"
+    sql: ${desagio} ;;
+    description: "Soma de valor do deságio (Comissão + Juros)"
+    value_format: "$ #,###.00"
   }
 
-  measure: taxa_desagio_ajustada {
+  measure: taxa_desagio {
     type: number
     group_label: "Valores Cessão"
-    group_item_label: "Deságio %"
-    sql: CASE WHEN
-         ${taxa_desagio_geral} < 0
-        THEN 0
-        ELSE ${taxa_desagio_geral}
-        END ;;
+    group_item_label: "Taxa Deságio"
+    sql: NULLIF(${sum_desagio},0) / NULLIF(${sum_vl_financiamento},0) ;;
     description: "Taxa de Deságio "
     value_format: "0.00%"
   }
 
-  measure: sum_perc_desagio {
+  measure: desconto_desagio{
     type: number
     group_label: "Valores Cessão"
-    group_item_label: "Deságio % - Soma"
-    sql: ${perc_desagio};;
-    description: "Soma de valor do deságio % "
-
+    group_item_label: "Desconto Deságio"
+    sql: NULLIF(${sum_vl_financiamento},0) - NULLIF(${sum_vl_financiado_desagio},0) ;;
+    value_format: "$ #,###.00"
   }
 
+  measure: receita_comissao {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Receita Comissão"
+    sql: (${comissao_media_ponderada} / 100) * NULLIF(${sum_vl_financiado_desagio},0) ;;
+    value_format: "$ #,###.00"
+  }
+
+  measure: desconto_total {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Desconto Total"
+    sql: ${receita_comissao} + ${desconto_desagio} ;;
+    value_format: "$ #,###.00"
+  }
+
+  measure: taxa_desconto_total {
+    type: number
+    group_label: "Valores Cessão"
+    group_item_label: "Taxa Desconto Total"
+    sql: ${desconto_total} / NULLIF(${sum_vl_financiamento},0) ;;
+    value_format: "0.00%"
+  }
 
   measure: avg_perc_comissao {
     type: average
@@ -3395,16 +3409,6 @@ dimension: vl_tarifa_cadastro {
     group_item_label: "Comissão % - Média"
     sql:${perc_comissao};;
     description: "Indica a porcentagem média de comissão paga ao Pravaler por produto contratado"
-  }
-
-
-  measure: avg_desagio {
-    type: average
-    group_label: "Valores Cessão"
-    group_item_label: "Deságio % - Média"
-    sql:${perc_desagio};;
-    description: "Valor percentual médio do Deságio (Comissão + Juros)"
-    value_format: "0"
   }
 
   measure: sum_tarifa_cadastro {
@@ -3831,8 +3835,6 @@ dimension: vl_tarifa_cadastro {
     description: "Indica a quantidade total de alunos na cessão"
     sql: ${id_cpf} ;;
   }
-
-
 
   dimension: metodo_autenticacao {
     type: string
