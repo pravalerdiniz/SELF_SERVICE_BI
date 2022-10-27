@@ -613,6 +613,6 @@ view: vw_contratos_inadimplencia {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [cpf]
   }
 }
