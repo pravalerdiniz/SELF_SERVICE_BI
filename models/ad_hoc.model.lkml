@@ -547,3 +547,7 @@ explore: bullest {
   explore: vw_titulos {
     label: "API titulos Validação"
   }
+
+  explore: request_log {
+    label: "Data Filter"
+  }
