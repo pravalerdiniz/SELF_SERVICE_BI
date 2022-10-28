@@ -54,6 +54,7 @@ view: etapas_funil_pipedrive_provas_prv {
           WHEN ${nome_etapa_funil} = '2 - Reunião' THEN '02 - Agendados Equipe Provas'
           WHEN ${nome_etapa_funil} = '3 - Elaboração e Envio de Proposta' THEN '03 - Elaboração de Proposta'
           WHEN ${nome_etapa_funil} = '4 - Proposta em Análise' THEN '04 - Proposta Enviada'
+          WHEN ${nome_etapa_funil} = '5 - Operações Internas' THEN '05 - Piloto/POC'
           WHEN ${nome_etapa_funil} = '7 - Contrato Assinado' THEN '08 - Negócio Fechado'
           WHEN ${nome_etapa_funil} = '6 - Envio de Contrato' THEN '07 - Aguardando Assinatura'
           WHEN ${nome_etapa_funil} = 'Não Engajada' THEN 'Não Classificada'
