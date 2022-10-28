@@ -591,8 +591,7 @@ view: gupy_vagas {
 
 
   measure: count {
-    label: "Total"
-    type: count_distinct
-    drill_fields: [codigo, nome, area_rh, sla_dias_corridos, data_publicacao_date, data_encerramento_date]
+    type: count
+    drill_fields: []
   }
 }
