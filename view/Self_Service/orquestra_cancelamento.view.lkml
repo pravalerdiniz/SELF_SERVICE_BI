@@ -87,7 +87,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
-    group_item_label: "Data atualização"
+    label: "Data atualização"
     description: "DATA/HORA QUE O REGISTRO FOI ATUALIZADO"
   }
 
@@ -111,7 +111,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."DATA_CARGA" ;;
-    group_item_label: "Data Carga"
+    label: "Data Carga"
     description: "DATA/HORA QUE O REGISTRO FOI CARREGADO"
   }
 
@@ -135,7 +135,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."DATA_EXPECTATIVA_CONCLUSAO" ;;
-    group_item_label: "Data expectativa conclusão"
+    label: "Data expectativa conclusão"
     description: "DATA DE EXPECTATIVA DA CONCLUSÃO DA TASK"
   }
 
@@ -159,7 +159,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."DATA_FIM_TASK" ;;
-    group_item_label: "Data fim Task"
+    label: "Data fim Task"
     description: "DATA E HORA DA FINALIZAÇÃO DA TAREFA (TASK)"
   }
 
@@ -183,7 +183,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."DATA_INICIO_TASK" ;;
-    group_item_label: "Data Início Task"
+    label: "Data Início Task"
     description: "DATA E HORA DO INICIO DA TAREFA (TASK)"
   }
 
@@ -343,7 +343,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."MAX_DATA_CHAMADO" ;;
-    group_item_label: "Data chamado - máximo"
+    label: "Data chamado - fim"
     description: "MAIOR DATA/HORA DO CHAMADO"
   }
 
@@ -367,7 +367,7 @@ view: orquestra_cancelamento {
       week_of_year
     ]
     sql: ${TABLE}."MIN_DATA_CHAMADO" ;;
-    group_item_label: "Data chamado - mínimo"
+    label: "Data chamado - início"
     description: "MENOR DATA/HORA DO CHAMADO"
   }
 
