@@ -382,7 +382,7 @@ view: orquestra_cancelamento {
   dimension: nome_executor {
     type: string
     sql: ${TABLE}."NOME_EXECUTOR" ;;
-    group_label: "Dados Executor"
+    group_label: "Dados do Executor"
     group_item_label: "Nome executor"
     description: "NOME DO USUARIO QUE REALIZOU/EXECUTOU A TAREFA (TASK)"
   }
