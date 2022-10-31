@@ -564,7 +564,7 @@ view: orquestra_cancelamento {
   }
 
   dimension: tempo_desde_abertura_horas {
-    type: string
+    type: number
     sql: ${TABLE}."TEMPO_DESDE_ABERTURA_HORAS" ;;
     group_label: "Dados do Chamado"
     group_item_label: "Tempo desde a abertura"
@@ -580,7 +580,7 @@ view: orquestra_cancelamento {
   }
 
   dimension: valordoreembolso {
-    type: string
+    type: number
     sql: ${TABLE}."VALORDOREEMBOLSO" ;;
     group_label: "Dados do Chamado"
     group_item_label: "Valor Reembolso"
@@ -588,7 +588,7 @@ view: orquestra_cancelamento {
   }
 
   dimension: valorqueaiesdevolverzparaopravaler {
-    type: string
+    type: number
     sql: ${TABLE}."VALORQUEAIESDEVOLVERZPARAOPRAVALER" ;;
     group_label: "Dados do Chamado"
     group_item_label: "Valor devolução IES"
@@ -618,6 +618,30 @@ view: orquestra_cancelamento {
     group_label: "Métricas"
     group_item_label: "Qtd chamados"
     description: "Contagem de Chamados Únicos"
+  }
+
+  measure: sum_tempo {
+    type: sum
+    sql: ${tempo_desde_abertura_horas} ;;
+    group_label: "Métricas"
+    group_item_label: "Tempo desde a abertura"
+    description: "Soma do tempo do chamado"
+  }
+
+  measure: sum_valor_reembolso {
+    type: sum
+    sql: ${valordoreembolso} ;;
+    group_label: "Métricas"
+    group_item_label: "Valor Reembolso"
+    description: "Soma do reembolso"
+  }
+
+  measure: sum_valor_devolucao {
+    type: sum
+    sql: ${valorqueaiesdevolverzparaopravaler};;
+    group_label: "Métricas"
+    group_item_label: "Valor Devolução IES"
+    description: "Soma do reembolso"
   }
 
 }
