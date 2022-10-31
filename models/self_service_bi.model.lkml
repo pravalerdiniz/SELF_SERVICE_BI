@@ -2292,3 +2292,8 @@ explore: vw_atualizacao_produtos {
   label: "Logs de Atualizações - Produtos"
   description: "Histórico dos logs de atualização"
 }
+
+explore: orquestra_cancelamento {
+  label: "Chamados Orquestra - Cancelamento"
+  description: "Histórico dos chamados da fila de Cancelamento"
+}
