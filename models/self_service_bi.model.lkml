@@ -2294,6 +2294,6 @@ explore: vw_atualizacao_produtos {
 }
 
 explore: orquestra_cancelamento {
-  label: "Chamados Orquestra - Cancelamento"
+  label: "Orquestra - Cancelamento"
   description: "Histórico dos chamados da fila de Cancelamento"
 }
