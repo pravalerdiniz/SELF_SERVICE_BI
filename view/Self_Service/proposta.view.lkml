@@ -3896,7 +3896,7 @@ dimension: vl_tarifa_cadastro {
   }
 
   dimension: flag_eleito_semfiador_testeab {
-    type: yesno
+    type: string
     sql: ${TABLE}."FLG_ELEITO_SEMFIADOR" ;;
     label: "Flag Eleito - Sem Fiador Teste A/B"
     group_label: "Sem Fiador - Teste A/B"

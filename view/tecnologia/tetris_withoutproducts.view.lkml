@@ -105,6 +105,8 @@ view: tetris_withoutproducts {
     type: count_distinct
     sql: ${TABLE}."COURSE_ID" ;;
     label: "Quantidade de Registros Distintos"
+    drill_fields: [_created_at_date, _id,course_id,course_name,course_institution,institution_apelido,
+                  campus,campus_descricao, mensagem]
     hidden: no
   }
 
@@ -112,6 +114,8 @@ view: tetris_withoutproducts {
     type: count_distinct
     sql: ${TABLE}."_ID" ;;
     label: "Quantidade de Registros"
+    drill_fields: [_created_at_date, _id,course_id,course_name,course_institution,institution_apelido,
+      campus,campus_descricao, mensagem]
     hidden: no
   }
 }
