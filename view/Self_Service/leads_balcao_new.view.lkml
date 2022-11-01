@@ -312,6 +312,30 @@ view: leads_balcao_new {
     group_item_label: "Renda Mensal"
   }
 
+  dimension: id_turno {
+    type: number
+    sql:  ${TABLE}."ID_TURNO" ;;
+    label: "ID Turno"
+  }
+
+  dimension: turno {
+    type: string
+    sql: ${TABLE}."TURNO" ;;
+    label: "Turno"
+  }
+
+  dimension: id_nivel {
+    type: number
+    sql: ${TABLE}."ID_NIVEL" ;;
+    label: "ID Nivel"
+  }
+
+  dimension: nivel_graduacao {
+    type: string
+    sql: ${TABLE}."NIVEL_GRADUACAO" ;;
+    label: "Nivel Graduacao"
+  }
+
   measure: count_leads {
     type: count_distinct
     sql: ${cpf_lead} ;;
