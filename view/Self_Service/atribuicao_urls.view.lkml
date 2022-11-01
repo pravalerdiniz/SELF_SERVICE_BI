@@ -4,21 +4,22 @@ view: atribuicao_urls {
     sql:
           SELECT
               A.id_cpf,
-              A.ID_URL_DESCOBERTA AS URL_DESCOBERTA,
+              A.ID_URL_DESCOBERTA AS ID_URL_DESCOBERTA,
               B.CANAL AS CANAL_DESCOBERTA,
               B.UTM_SOURCE AS UTM_SOURCE_DESCOBERTA,
               B.UTM_MEDIUM AS UTM_MEDIUM_DESCOBERTA,
               B.UTM_CAMPAIGN AS UTM_CAMPAIGN_DESCOBERTA,
               B.UTM_TERM AS UTM_TERM_DESCOBERTA,
               B.ORIGIN AS ORIGIN_DESCOBERTA,
-              A.ID_URL_DCO_L100 AS URL_DESCOBERTA_100D,
+              A.ID_URL_DCO_L100 AS ID_URL_DESCOBERTA_100D,
+              A.DS_URL_DCO_L100 AS DS_URL_DESCOBERTA_100D,
               C.CANAL AS CANAL_DESCOBERTA_100D,
               C.UTM_SOURCE AS UTM_SOURCE_DESCOBERTA_100D,
               C.UTM_MEDIUM AS UTM_MEDIUM_DESCOBERTA_100D,
               C.UTM_CAMPAIGN AS UTM_CAMPAIGN_DESCOBERTA_100D,
               C.UTM_TERM AS UTM_TERM_DESCOBERTA_100D,
               C.ORIGIN AS ORIGIN_DESCOBERTA_100D,
-              A.ID_URL_FINALIZACAO AS URL_FINALIZACAO,
+              A.ID_URL_FINALIZACAO AS ID_URL_FINALIZACAO,
               D.CANAL AS CANAL_FINALIZACAO,
               D.UTM_SOURCE AS UTM_SOURCE_FINALIZACAO,
               D.UTM_MEDIUM AS UTM_MEDIUM_FINALIZACAO,
@@ -31,11 +32,11 @@ view: atribuicao_urls {
           LEFT JOIN "VETERANO"."DIMENSAO"."DIM_URL" D ON A.ID_URL_FINALIZACAO = D.ID_URL;;
   }
 
-  dimension: url_descoberta {
+  dimension: id_url_descoberta {
     type: string
-    label: "URL de Descoberta"
-    description: "Indica a URL de Descoberta do aluno."
-    sql: ${TABLE}."URL_DESCOBERTA" ;;
+    label: "ID da URL de Descoberta"
+    description: "Indica o ID da URL de Descoberta do aluno."
+    sql: ${TABLE}."ID_URL_DESCOBERTA" ;;
     group_label: "Dados de Descoberta"
   }
 
@@ -79,11 +80,19 @@ view: atribuicao_urls {
     group_label: "Dados de Descoberta"
   }
 
+  dimension: id_url_descoberta_100d {
+    type: string
+    label: "ID da URL de Descoberta - 100 Dias"
+    description: "Indica o ID da URL de Descoberta do aluno."
+    sql: ${TABLE}."ID_URL_DESCOBERTA_100D" ;;
+    group_label: "Dados de Descoberta - 100 Dias"
+  }
+
   dimension: url_descoberta_100d {
     type: string
     label: "URL de Descoberta - 100 Dias"
     description: "Indica a URL de Descoberta do aluno."
-    sql: ${TABLE}."URL_DESCOBERTA_100D" ;;
+    sql: ${TABLE}."DS_URL_DESCOBERTA_100D" ;;
     group_label: "Dados de Descoberta - 100 Dias"
   }
 
@@ -127,11 +136,11 @@ view: atribuicao_urls {
     group_label: "Dados de Descoberta - 100 Dias"
   }
 
-  dimension: url_finalizacao {
+  dimension: id_url_finalizacao {
     type: string
-    label: "URL de Finalização"
-    description: "Indica a URL de Finalização do aluno."
-    sql: ${TABLE}."URL_FINALIZACAO" ;;
+    label: "ID da URL de Finalização"
+    description: "Indica o ID da URL de Finalização do aluno."
+    sql: ${TABLE}."ID_URL_FINALIZACAO" ;;
     group_label: "Dados de Finalização"
   }
 

@@ -193,8 +193,8 @@ view: negocios_provas_pravaler {
     sql: ${TABLE}."ID_NEGOCIO" ;;
   }
 
-  dimension: idade_negocio_segundos {
-    type: number
+  measure: idade_negocio_segundos {
+    type: sum
     sql: ${TABLE}."IDADE_NEGOCIO_SEGUNDOS" ;;
   }
 
