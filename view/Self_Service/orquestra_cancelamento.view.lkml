@@ -60,8 +60,8 @@ view: orquestra_cancelamento {
 
   dimension: cpf {
     type: number
-    group_label: "Dados do Requisitante"
-    group_item_label: "CPF"
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF do aluno"
     description: "NUMERO DO CPF DO ALUNO/USUÁRIO SOLICITANTE"
     sql: ${TABLE}."CPF" ;;
   }
