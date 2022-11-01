@@ -40,6 +40,7 @@ view: request_log {
   dimension: alu_contrato {
     type: number
     sql: ${TABLE}."ALU_CONTRATO" ;;
+    value_format: "0"
   }
 
   dimension: bairro {
