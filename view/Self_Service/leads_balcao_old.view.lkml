@@ -1,4 +1,4 @@
-view: leads_balcao {
+view: leads_balcao_old {
   sql_table_name: "VETERANO"."MGM"."LEADS_BALCAO"
     ;;
 

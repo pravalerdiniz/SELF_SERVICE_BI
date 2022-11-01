@@ -1,4 +1,4 @@
-view: leads_balcao_new {
+view: leads_balcao {
   sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO"
     ;;
 
