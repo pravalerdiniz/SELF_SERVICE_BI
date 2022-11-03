@@ -1,5 +1,5 @@
-view: leads_balcao {
-  sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO"
+view: leads_balcao_old {
+  sql_table_name: "VETERANO"."MGM"."LEADS_BALCAO"
     ;;
 
   dimension: celular {
@@ -310,34 +310,6 @@ view: leads_balcao {
     sql: ${TABLE}."VL_RENDA_MENSAL" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Renda Mensal"
-  }
-
-  dimension: id_turno {
-    type: number
-    sql:  ${TABLE}."ID_TURNO" ;;
-    group_label: "Dados da Instituição"
-    group_item_label: "ID Turno"
-  }
-
-  dimension: turno {
-    type: string
-    sql: ${TABLE}."TURNO" ;;
-    group_label: "Dados da Instituição"
-    group_item_label: "Turno"
-  }
-
-  dimension: id_nivel {
-    type: number
-    sql: ${TABLE}."ID_NIVEL" ;;
-    group_label: "Dados da Instituição"
-    group_item_label: "ID Nivel"
-  }
-
-  dimension: nivel_graduacao {
-    type: string
-    sql: ${TABLE}."NIVEL_GRADUACAO" ;;
-    group_label: "Dados da Instituição"
-    group_item_label: "Nivel Graduacao"
   }
 
   measure: count_leads {

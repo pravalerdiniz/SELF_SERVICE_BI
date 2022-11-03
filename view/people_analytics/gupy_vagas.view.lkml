@@ -512,6 +512,14 @@ view: gupy_vagas {
     ;;
   }
 
+  dimension: status_original {
+    group_label: "Dados da Vaga"
+    label: "Status (Original)"
+    type: string
+    sql: ${TABLE}."STATUS";;
+    hidden: yes
+  }
+
   dimension: tipo {
     group_label: "Dados da Vaga"
     label: "Tipo"
@@ -564,6 +572,23 @@ view: gupy_vagas {
     type: yesno
     sql: ${TABLE}."FLG_EXCLUIDA" ;;
   }
+
+  measure: count_congeladas {
+    label: "Qtd. Congeladas"
+    type: count_distinct
+    filters: [status_original: "frozen"]
+    sql:  ${TABLE}."CODIGO";;
+    drill_fields: [codigo, nome, area_rh, data_publicacao_date, data_congelamento_date]
+  }
+
+  measure: count_publicadas {
+    label: "Qtd. Publicadas em aberto"
+    type: count_distinct
+    filters: [status_original: "published"]
+    sql:  ${TABLE}."CODIGO";;
+    drill_fields: [codigo, nome, area_rh, data_publicacao_date, sla_dias_corridos]
+  }
+
 
   measure: count {
     type: count

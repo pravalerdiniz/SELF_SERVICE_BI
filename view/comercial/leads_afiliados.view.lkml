@@ -1,5 +1,5 @@
 view: leads_afiliados {
-    sql_table_name: VETERANO.AFILIADOS.FATO_LEAD_AFILIADOS
+    sql_table_name: GRADUADO.BALCAO_AFILIADOS.LEADS
       ;;
 
     dimension: ID_CANAL {

@@ -50,10 +50,11 @@ view: etapas_funil_pipedrive_provas_prv {
   dimension: etapa_depara {
     type: string
     description: "Indica a etapa do funil de vendas"
-    sql: CASE WHEN ${nome_etapa_funil} = 'Novos Leads' or ${nome_etapa_funil} = '1 - Com contato' THEN '01 - Novos Negócios '
+    sql: CASE WHEN ${nome_etapa_funil} = 'Novos Leads' or ${nome_etapa_funil} = '1 - Com contato' or ${nome_etapa_funil} = 'Novos Negócios' THEN '01 - Novos Negócios '
           WHEN ${nome_etapa_funil} = '2 - Reunião' THEN '02 - Agendados Equipe Provas'
           WHEN ${nome_etapa_funil} = '3 - Elaboração e Envio de Proposta' THEN '03 - Elaboração de Proposta'
           WHEN ${nome_etapa_funil} = '4 - Proposta em Análise' THEN '04 - Proposta Enviada'
+          WHEN ${nome_etapa_funil} = '5 - Operações Internas' THEN '05 - Piloto/POC'
           WHEN ${nome_etapa_funil} = '7 - Contrato Assinado' THEN '08 - Negócio Fechado'
           WHEN ${nome_etapa_funil} = '6 - Envio de Contrato' THEN '07 - Aguardando Assinatura'
           WHEN ${nome_etapa_funil} = 'Não Engajada' THEN 'Não Classificada'
@@ -89,8 +90,8 @@ view: etapas_funil_pipedrive_provas_prv {
     sql: ${TABLE}."NOME_FUNIL" ;;
   }
 
-  dimension: segundos_na_etapa {
-    type: number
+  measure: segundos_na_etapa {
+    type: sum
     sql: ${TABLE}."SEGUNDOS_NA_ETAPA" ;;
   }
 
