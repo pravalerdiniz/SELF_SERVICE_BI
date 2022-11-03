@@ -164,6 +164,10 @@ explore: comparacao_ot {
 
   }
 }
+explore: despesa_pdd_liquida {
+  label: "PDD Líquida"
+  view_label: "PDD Liquida"
+}
 
 #Tabela não utilizada 06/09/22 - Lulinha
 # explore: final_pdd {
