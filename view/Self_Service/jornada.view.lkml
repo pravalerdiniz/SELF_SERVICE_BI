@@ -3982,7 +3982,7 @@ dimension: flag_balcao {
 
   dimension: flag_afiliados {
     type: yesno
-    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "VETERANO"."AFILIADOS"."FATO_LEAD_AFILIADOS") then 'Yes' else 'No' end ;;
+    sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."AFILIADOS"."FATO_LEAD_AFILIADOS") then 'Yes' else 'No' end ;;
     label: "Flag Afiliados"
   }
 
