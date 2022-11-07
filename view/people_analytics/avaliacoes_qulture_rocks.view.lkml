@@ -2,7 +2,7 @@
 view: avaliacoes_qulture_rocks {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "GRADUADO"."AVALIACOES_QULTURE_ROCKS"
+  sql_table_name: "GENTE_GESTAO"."AVALIACOES_QULTURE_ROCKS"
     ;;
   drill_fields: [id]
   # This primary key is the unique key for this table in the underlying database.
