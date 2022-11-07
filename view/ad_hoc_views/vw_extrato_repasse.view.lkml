@@ -15,13 +15,13 @@ view: vw_extrato_repasse {
     type: number
     value_format: "0"
     group_label: "Dados do Aluno"
-    label: "CPF do Aluno"
+    label: "CPF"
     sql: ${TABLE}."CPF" ;;
   }
 
   dimension: nome_aluno {
     type: string
-    label: "Nome do Aluno"
+    label: "Nome"
     sql: ${TABLE}."NOME" ;;
   }
 
@@ -44,12 +44,13 @@ view: vw_extrato_repasse {
       year,
     ]
     sql: ${TABLE}."DATA_CANCELAMENTO" ;;
+    label: "Data Cancelamento"
   }
 
   dimension: id_contrato {
     type: string
     group_label: "Dados do Aluno"
-    label: "ID do Contrato"
+    label: "Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
     sql: ${TABLE}."ID_CONTRATO" ;;
   }
@@ -68,7 +69,7 @@ view: vw_extrato_repasse {
 
   dimension: ra_aluno {
     type:  string
-    label: "RA Aluno"
+    label: "R.A. Aluno"
     sql: ${TABLE}."RA_ALUNO" ;;
   }
 
@@ -110,7 +111,7 @@ view: vw_extrato_repasse {
 
   dimension: mes_contratacao {
     type: number
-    label: "MES_CONTRATACAO"
+    label: "Mes Contratacao"
     sql: ${TABLE}."MES_CONTRATACAO" ;;
   }
 
@@ -135,7 +136,7 @@ view: vw_extrato_repasse {
 
   dimension: qtd_prestacoes {
     type: number
-    label: "Qtd Prestações"
+    label: "Qtd. Prestacoes"
     sql: ${TABLE}."QTD__PRESTACOES" ;;
   }
 
@@ -165,6 +166,7 @@ view: vw_extrato_repasse {
       year,
     ]
     sql: ${TABLE}."DATA_VENCIMENTO_DO_BOLETO" ;;
+    label: "Data Vencimento do Boleto"
   }
 
   dimension: valor_ipca {
@@ -198,6 +200,7 @@ view: vw_extrato_repasse {
       year,
     ]
     sql: ${TABLE}."DATA_RECONHECIMENTO_DO_PAGAMENTO" ;;
+    label: "Data Reconhecimento do Pagamento"
   }
 
   dimension: dias_de_atraso {
@@ -208,7 +211,7 @@ view: vw_extrato_repasse {
 
   dimension: taxa_comissao {
     type: number
-    label: "Taxa Comissão"
+    label: "Taxa Comissao"
     sql: ${TABLE}."TAXA_COMISSAO" ;;
   }
 
@@ -221,7 +224,7 @@ view: vw_extrato_repasse {
 
   dimension: taxa_adesao {
     type: number
-    label: "Taxa Adesão"
+    label: "Taxa Adesao"
     sql: ${TABLE}."TAXA_ADESAO" ;;
   }
 
@@ -235,13 +238,13 @@ view: vw_extrato_repasse {
     type: number
     primary_key: yes
     group_label: "Dados do Título"
-    label: "SEUNUM"
+    label: "Numero Boleto"
     sql: ${TABLE}."NUM_BOLETO" ;;
   }
 
   dimension: num_boleto_origem {
     type: string
-    label: "Origem Número Boleto"
+    label: "Numero Boleto Origem"
     sql: ${TABLE}."NUM_BOLETO_ORIGEM" ;;
   }
 
@@ -249,7 +252,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados de Repasse"
     value_format: "$ #,##0.00"
-    label: "Valor da Comissão Pravaler"
+    label: "Valor Comissao Pravaler"
     sql: ${TABLE}."VL_COMISSAO_PRAVALER" ;;
   }
 
@@ -266,7 +269,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Título"
     value_format: "$ #,##0.00"
-    label: "Valor de Débito Total"
+    label: "Debito Total"
     sql: ${TABLE}."VL_DEBITO_TOTAL" ;;
   }
 
@@ -274,7 +277,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados de Repasse"
     value_format: "$ #,##0.00"
-    label: "Valor de Repasse Total IES"
+    label: "Repasse Total IES"
     sql: ${TABLE}."VL_REPASSE_TOTAL_IES" ;;
   }
 
@@ -290,7 +293,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Repasse"
     value_format: "$ #,##0.00"
-    label: "Valor Despesa de cobrança Pravaler"
+    label: "Valor Despesa Cobranca Pravaler"
     sql: ${TABLE}."VL_DESPESA_COBRANCA_PRAVALER" ;;
   }
 
@@ -298,7 +301,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
-    label: "Valor Pago pelo Aluno"
+    label: "Valor Pago Aluno"
     sql: ${TABLE}."VL_PAGO_ALUNO" ;;
   }
 
@@ -306,7 +309,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
-    label: "Valor Adm Aluno Pravaler"
+    label: "Valor Adm. Aluno Pravaler"
     sql: ${TABLE}."VL_ADM_ALUNO_PRAVALER" ;;
   }
 
@@ -314,7 +317,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Aluno"
     value_format: "$ #,##0.00"
-    label: "Valor Adm Aluno IES"
+    label: "Valor Adm. Aluno IES"
     sql: ${TABLE}."VL_ADM_ALUNO_IES" ;;
   }
 
@@ -322,7 +325,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Título"
     value_format: "$ #,##0.00"
-    label: "Valor de Juros Atraso"
+    label: "Juros Atraso"
     sql: ${TABLE}."VL_JUROS_ATRASO" ;;
   }
 
@@ -330,7 +333,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Título"
     value_format: "$ #,##0.00"
-    label: "Multa de Atraso"
+    label: "Multa Atraso"
     sql: ${TABLE}."MULTA_ATRASO" ;;
   }
 
@@ -347,6 +350,7 @@ view: vw_extrato_repasse {
       year,
     ]
     sql: ${TABLE}."DATA_TRANSFERENCIA" ;;
+    label: "Data Transferencia"
     description: "Data em que foi feito o repasse dos valores gestão para a IES"
   }
 
@@ -363,11 +367,12 @@ view: vw_extrato_repasse {
       year,
     ]
     sql: ${TABLE}."DATA_CONCESSAO" ;;
+    label: "Data Concessao"
   }
 
   dimension: qtd_mensalidades {
     type: number
-    label: "Qtd Mensalidades"
+    label: "Qtd. Mensalidades"
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
   }
 
