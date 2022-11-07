@@ -1792,6 +1792,7 @@ dimension: flg_d1 {
     sql: case when ${dt_aprovado_behavior_date} between '2021-06-01' and '2021-10-31' then '2021.2'
               when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
               when ${dt_aprovado_behavior_date} between '2022-06-01' and '2022-10-31' then '2022.2'
+              when ${dt_aprovado_behavior_date} between '2022-11-01' and '2023-05-31' then '2023.1'
               else 'Outro' end;;
   }
 
