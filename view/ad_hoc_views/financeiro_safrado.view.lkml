@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Despesa Pdd Liquida"
-view: despesa_pdd_liquida {
+view: financeiro_safrado {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: "POS_GRADUADO"."FINANCEIRO"."DESPESA_PDD_LIQUIDA"

@@ -164,9 +164,9 @@ explore: comparacao_ot {
 
   }
 }
-explore: despesa_pdd_liquida {
-  label: "PDD Líquida"
-  view_label: "PDD Liquida"
+explore: financeiro_safrado {
+  label: "Financeiro Safrado"
+  view_label: "Financeiro Safrado"
 }
 
 #Tabela não utilizada 06/09/22 - Lulinha
