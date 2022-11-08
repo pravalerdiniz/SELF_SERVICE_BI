@@ -1792,6 +1792,7 @@ dimension: flg_d1 {
     sql: case when ${dt_aprovado_behavior_date} between '2021-06-01' and '2021-10-31' then '2021.2'
               when ${dt_aprovado_behavior_date} between '2021-11-01' and '2022-05-31' then '2022.1'
               when ${dt_aprovado_behavior_date} between '2022-06-01' and '2022-10-31' then '2022.2'
+              when ${dt_aprovado_behavior_date} between '2022-11-01' and '2023-05-31' then '2023.1'
               else 'Outro' end;;
   }
 
@@ -3976,13 +3977,13 @@ dimension: flg_proposta_atual {
 
 dimension: flag_balcao {
   type: yesno
-  sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."MGM"."LEADS_BALCAO") then 'Yes' else 'No' end;;
+  sql: case when ${aluno_cpf} in (select distinct cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO") then 'Yes' else 'No' end;;
   label: "Flag Balcão"
 }
 
   dimension: flag_afiliados {
     type: yesno
-    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "BICHO"."MGM"."LEADS_CANAL_ENTRADA") then 'Yes' else 'No' end ;;
+    sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."AFILIADOS"."FATO_LEAD_AFILIADOS") then 'Yes' else 'No' end ;;
     label: "Flag Afiliados"
   }
 

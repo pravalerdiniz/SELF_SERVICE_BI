@@ -430,6 +430,13 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: proposta_testeab {
+    view_label: "1. Jornada"
+    sql_on: ${jornada.id_cpf} = ${proposta_testeab.id_cpf} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
   join: alunos_interacoes_crm {
     view_label: "1.11 Interações CRM"
     sql_on: ${jornada.id_cpf} = ${alunos_interacoes_crm.id_cpf}

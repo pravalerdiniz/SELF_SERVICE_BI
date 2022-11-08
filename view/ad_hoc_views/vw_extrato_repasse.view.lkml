@@ -293,7 +293,7 @@ view: vw_extrato_repasse {
     type: number
     group_label: "Dados do Repasse"
     value_format: "$ #,##0.00"
-    label: "Valor Despesa Cobrança Pravaler"
+    label: "Valor Despesa Cobranca Pravaler"
     sql: ${TABLE}."VL_DESPESA_COBRANCA_PRAVALER" ;;
   }
 
