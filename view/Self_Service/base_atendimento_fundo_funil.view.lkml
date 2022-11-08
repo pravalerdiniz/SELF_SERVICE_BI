@@ -3,8 +3,7 @@
 #Atualização da aba Base Novos da planilha em Excel utilizada pelo time Comercial de Conversão Fundo de Funil via Looker + Geração de Indicadores
 
 view: base_atendimento_fundo_funil {
-  sql_table_name: "POS_GRADUADO"."MARKETING"."BASE_ATENDIMENTO"
-    ;;
+  sql_table_name: "POS_GRADUADO"."MARKETING"."BASE_ATENDIMENTO" ;;
   drill_fields: [cpf, alunos.aluno_nome, grupo_ies, proposta.ds_instituicao, dt_status_date, id_status_destino_geral, data_entrada_base_date, status_entrada_base, login_consultor, id_chamado, titulo_chamado, sub_titulo_chamado, date_ultimo_contato_date, date_primeiro_contato_date, quantidade_contato, proposta.ds_campus, proposta.ds_curso, proposta.aluno_cal_vet]
 
   dimension: id_cpf {
@@ -183,6 +182,21 @@ view: base_atendimento_fundo_funil {
     sql: ${TABLE}."DATA_CESSAO_ORIGINAL" ;;
   }
 
+  #criando dimensão abaixo enquanto data_cessao_ultima_proposta não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar data_cessao_ultima_proposta
+  dimension_group: date_cessao_ultima_proposta_temp {
+    label: "Data Status de Formalização/Cessão"
+    type: time
+    timeframes: [
+      hour,
+      date,
+      day_of_week,
+      week,
+      month,
+      year
+    ]
+    sql: CASE WHEN ${flg_cedido_temp} THEN ${TABLE}."DT_STATUS" ELSE NULL END;;
+  }
+
   dimension_group: dt_status {
     label: "Data do Último Status do Aluno"
     type: time
@@ -246,11 +260,27 @@ view: base_atendimento_fundo_funil {
     sql:  ${TABLE}."FLG_CEDIDO"  ;;
   }
 
+  #criando dimensão abaixo enquanto flg_cedido não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar flg_cedido
+  dimension: flg_cedido_temp {
+    label: "Flag Cedido Ajuste"
+    description: "Indica se o aluno foi formalizado/cedido (status = 41, 50 ou 51)"
+    type: yesno
+    sql: ${id_status_destino_geral} IN (41, 50, 51) ;;
+  }
+
   dimension: validador {
     label: "Validador"
     description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
     type: yesno
     sql:  ${TABLE}."VALIDADOR"  ;;
+  }
+
+  #criando dimensão abaixo enquanto validador não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar validador
+  dimension: validador_temp {
+    label: "Validador Ajuste"
+    description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
+    type: yesno
+    sql:  CASE WHEN ${sub_titulo_chamado} IS NOT NULL AND (${date_cessao_ultima_proposta_temp_date} >= ${date_ultimo_contato_date} ;;
   }
 
   dimension: flg_fechamento {
@@ -368,6 +398,97 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     description: "Indica se o aluno foi cancelado (Status Geral Destino = 18, 28, 38, 48, 58)"
     type: yesno
     sql: ${id_status_destino_geral} IN (18, 28, 38, 48, 58) ;;
+  }
+
+#GRUPO DIMENSÃO - RELATÓRIO EXTRAÇÃO#
+
+  dimension: login_consultor_relatorio {
+    label: "Login Consultor - Relatório"
+    group_label: "Relatório Extração"
+    description: "Login do último consultor a entrar em contato com o aluno. Considera somente consultor Fundo Funil"
+    type: string
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."LOGIN" ELSE NULL END  ;;
+  }
+
+  dimension: titulo_chamado_relatorio {
+    label: "Título do Chamado - Relatório"
+    group_label: "Relatório Extração"
+    type: string
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."DS_TITULO_CHAMADO" ELSE NULL END ;;
+  }
+
+  dimension: sub_titulo_chamado_relatorio {
+    label: "Subtítulo do Chamado - Relatório"
+    group_label: "Relatório Extração"
+    type: string
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."DS_SUB_TITULO_CHAMADO" ELSE NULL END  ;;
+  }
+
+  dimension: validador_relatorio {
+    label: "Validador - Relatório"
+    group_label: "Relatório Extração"
+    description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
+    type: yesno
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."VALIDADOR" ELSE NULL END ;;
+  }
+
+  #criando dimensão abaixo enquanto validador não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar validador
+  dimension: validador_temp_relatorio {
+    label: "Validador Ajuste - Relatório"
+    group_label: "Relatório Extração"
+    description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
+    type: yesno
+    sql:  ${flg_consultor_fundo_funil} AND (${date_cessao_ultima_proposta_temp_date} >= ${date_ultimo_contato_date}) ;;
+  }
+
+  dimension: flg_contatar_relatorio {
+    label: "Flag Contatar - Relatório"
+    group_label: "Relatório Extração"
+    description: "Indica se o consultor precisa contatar o aluno"
+    type: yesno
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."FLG_CONTATAR" ELSE TRUE END  ;;
+  }
+
+  dimension: dias_sem_contato_relatorio {
+    label: "Quantidade Dias Sem Contato - Relatório"
+    group_label: "Relatório Extração"
+    description: "Indica a quantidade de dias desde o último contato com o aluno"
+    type: number
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."DIAS_SEM_CONTATO" ELSE NULL END ;;
+  }
+
+  dimension: flg_tabulacao_relatorio {
+    label: "Flag Tabulação - Relatório"
+    group_label: "Relatório Extração"
+    description: "Indica se o aluno possui tabulação"
+    type: yesno
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."FLG_TABULACAO" ELSE NULL END  ;;
+  }
+
+  dimension_group: date_primeiro_contato_relatorio {
+    label: "Data Primeiro Contato - Relatório"
+    description: "Data do Primeiro Contato realizado com o aluno pelo último consultor"
+    group_label: "Relatório Extração"
+    type: time
+    timeframes: [date]
+    sql: CASE WHEN ${flg_consultor_fundo_funil} THEN ${date_primeiro_contato_date} ELSE NULL END;;
+  }
+
+  dimension_group: date_ultimo_contato_relatorio {
+    label: "Data Ultimo Contato - Relatório"
+    description: "Data do último contato realizado com o aluno pelo último consultor"
+    group_label: "Relatório Extração"
+    type: time
+    timeframes: [date]
+    sql: CASE WHEN ${flg_consultor_fundo_funil} THEN ${date_ultimo_contato_date} ELSE NULL END ;;
+  }
+
+  dimension: quantidade_contato_relatorio {
+    label: "Quantidade de Contatos - Relatório"
+    group_label: "Relatório Extração"
+    description: "Contagem de chamados realizados pelo último consultor que entrou em contato com o aluno"
+    type: number
+    sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."QTD_CONTATO" ELSE NULL END  ;;
   }
 
   measure: qtd_alunos {
