@@ -98,7 +98,3 @@ explore: enps {
     sql_on: ${enps.id_resposta} = ${enps_flatten.id_resposta} ;;
   }
 }
-
-explore: avaliacoes_qulture_rocks {
-  label: "Avaliações Qulture Rocks"
-}
