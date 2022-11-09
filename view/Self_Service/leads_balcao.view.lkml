@@ -286,6 +286,7 @@ view: leads_balcao {
   dimension: valor_renda_mensal_fiador {
     type: number
     sql: ${TABLE}."VALOR_RENDA_MENSAL_FIADOR" ;;
+    value_format: "$ #,###.00"
     group_label: "Dados do Garantidor"
     group_item_label: "Renda Mensal do Fiador"
   }
@@ -293,6 +294,7 @@ view: leads_balcao {
   dimension: vl_mensalidade_curso_bruto {
     type: number
     sql: ${TABLE}."VL_MENSALIDADE_CURSO_BRUTO" ;;
+    value_format: "$ #,###.00"
     group_label: "Dados da Instituição"
     group_item_label: "Valor da Mensalidade"
   }
@@ -300,6 +302,7 @@ view: leads_balcao {
   dimension: vl_mensalidade_curso_desconto {
     type: number
     sql: ${TABLE}."VL_MENSALIDADE_CURSO_DESCONTO" ;;
+    value_format: "$ #,###.00"
     group_label: "Dados da Instituição"
     group_item_label: "Valor da Mensalidade (Desconto)"
   }
@@ -307,6 +310,7 @@ view: leads_balcao {
   dimension: vl_renda_mensal {
     type: number
     sql: ${TABLE}."VL_RENDA_MENSAL" ;;
+    value_format: "$ #,###.00"
     group_label: "Dados do Aluno"
     group_item_label: "Renda Mensal"
   }
