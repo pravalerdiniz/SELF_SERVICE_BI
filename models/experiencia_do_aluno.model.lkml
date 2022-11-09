@@ -77,7 +77,6 @@ explore: interacoes {
 
   join: interacoes_detalhes_ligacao {
     view_label: "Detalhes de ligação"
-
     type: full_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
     relationship: many_to_one
@@ -91,6 +90,7 @@ explore: interacoes {
     relationship: one_to_many
 
   }
+
   join: dim_cpf {
     view_label: "CPF"
     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
