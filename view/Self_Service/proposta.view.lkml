@@ -1334,6 +1334,7 @@ dimension: vl_tarifa_cadastro {
     label: "Grupo"
     description: "Indica o nome do grupo da instituição no momento do preenchimento da proposta"
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
+    drill_fields: [ds_instituicao]
   }
 
   dimension: id_campus {
