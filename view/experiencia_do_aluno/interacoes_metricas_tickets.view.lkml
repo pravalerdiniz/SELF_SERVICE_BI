@@ -1,5 +1,5 @@
 view: interacoes_metricas_tickets {
-  sql_table_name: "FATO"."FATO_TICKET_METRICS_ZENDESK"
+  sql_table_name: "VETERANO"."FATO"."FATO_TICKET_METRICS_ZENDESK"
     ;;
 
 
