@@ -260,3 +260,8 @@ explore: reclame_aqui{
   label: "Reclame Aqui"
   description: " Essa base trás as reclamações do Reclame Aqui."
 }
+
+explore: interacoes_metricas_tickets{
+  label: "Interações - Métricas dos Tickets"
+  description: " Essa base trás as rméticas dos tickets."
+}
