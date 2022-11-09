@@ -1,4 +1,4 @@
-view: fato_ticket_metrics_zendesk {
+view: interacoes_metricas_tickets {
   sql_table_name: "FATO"."FATO_TICKET_METRICS_ZENDESK"
     ;;
 
