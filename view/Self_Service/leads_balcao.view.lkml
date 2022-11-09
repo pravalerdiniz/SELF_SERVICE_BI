@@ -7,7 +7,6 @@ view: leads_balcao {
     sql: ${TABLE}."CELULAR" ;;
     group_label: "Dados do Aluno"
     group_item_label: "Celular do Aluno"
-
   }
 
 
@@ -385,5 +384,21 @@ view: leads_balcao {
     sql: ${cpf_lead} ;;
     filters: [nome_instituicao: "-NULL", nome_campus: "-NULL", nome_curso: "-NULL", vl_mensalidade_curso_bruto: "NOT NULL"]
     label: "Simulados"
+  }
+
+  measure: var_mensalidade_balcao_vs_cadastro {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Cadastro x Mensalidade Balcão"
+    value_format: "0.0%"
+  }
+
+  measure: var_mensalidade_balcao_vs_analiseies {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto}/nullif(${proposta.mensalidade_ies},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Análise IES x Mensalidade Balcão"
+    value_format: "0.0%"
   }
 }
