@@ -394,7 +394,7 @@ view: leads_balcao {
     type: average
     sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
     group_label: "Mensalidades"
-    group_item_label: "Var % Mensalidade Cadastro x Mensalidade Balcão"
+    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Balcão Descontada"
     value_format: "0.0%"
   }
 }
