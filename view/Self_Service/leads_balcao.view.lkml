@@ -390,19 +390,11 @@ view: leads_balcao {
     label: "Simulados"
   }
 
-  measure: var_mensalidade_balcao_vs_cadastro {
+  measure: var_mensalidade_balcao_bruto_vs_desconto {
     type: average
-    sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
     group_label: "Mensalidades"
     group_item_label: "Var % Mensalidade Cadastro x Mensalidade Balcão"
-    value_format: "0.0%"
-  }
-
-  measure: var_mensalidade_balcao_vs_analiseies {
-    type: average
-    sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${proposta.mensalidade_ies},0)-1 ;;
-    group_label: "Mensalidades"
-    group_item_label: "Var % Mensalidade Análise IES x Mensalidade Balcão"
     value_format: "0.0%"
   }
 }
