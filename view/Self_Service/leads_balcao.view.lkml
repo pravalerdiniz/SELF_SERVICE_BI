@@ -2,6 +2,13 @@ view: leads_balcao {
   sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO"
     ;;
 
+  dimension: primary_key {
+    type:  string
+    primary_key: yes
+    hidden: yes
+    sql: concat(${cpf_lead}, ${data_proposta_raw}) ;;
+  }
+
   dimension: celular {
     type: number
     sql: ${TABLE}."CELULAR" ;;
@@ -349,10 +356,16 @@ view: leads_balcao {
     label: "Leads"
   }
 
-  measure: valor_mensalidade {
+  measure: valor_mensalidade_bruto {
     type: sum
     sql: ${vl_mensalidade_curso_bruto} ;;
-    label: "Valor da Mensalidade"
+    label: "Valor da Mensalidade Bruto"
+  }
+
+  measure: valor_mensalidade_desconto {
+    type: sum
+    sql: ${vl_mensalidade_curso_desconto} ;;
+    label: "Valor da Mensalidade Desconto"
   }
 
   dimension: flag_fiador {
