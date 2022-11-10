@@ -77,7 +77,6 @@ explore: interacoes {
 
   join: interacoes_detalhes_ligacao {
     view_label: "Detalhes de ligação"
-
     type: full_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
     relationship: many_to_one
@@ -91,6 +90,7 @@ explore: interacoes {
     relationship: one_to_many
 
   }
+
   join: dim_cpf {
     view_label: "CPF"
     sql_on: ${interacoes.cpf_requester_num} = ${dim_cpf.cpf} ;;
@@ -259,4 +259,9 @@ explore: ra_tickets_metas{
 explore: reclame_aqui{
   label: "Reclame Aqui"
   description: " Essa base trás as reclamações do Reclame Aqui."
+}
+
+explore: interacoes_metricas_tickets{
+  label: "Interações - Métricas dos Tickets"
+  description: " Essa base trás as rméticas dos tickets."
 }
