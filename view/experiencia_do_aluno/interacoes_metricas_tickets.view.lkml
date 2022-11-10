@@ -44,4 +44,20 @@ view: interacoes_metricas_tickets {
     sql: ${TABLE}."REPLY_TIME_IN_MINUTES_CORRIDO" ;;
   }
 
+  dimension_group: criacao{
+    type: time
+    label: "Ticket Criação"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."CREATED_AT" ;;
+      description: "Indica a data de criação do ticket"
+  }
+
 }

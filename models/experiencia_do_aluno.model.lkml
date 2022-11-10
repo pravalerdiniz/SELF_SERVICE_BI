@@ -82,6 +82,13 @@ explore: interacoes {
     relationship: many_to_one
   }
 
+  join: interacoes_metricas_tickets {
+    view_label: "Métricas dos Tickets"
+    type: left_outer
+    sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id};;
+    relationship: one_to_many
+  }
+
 
   join: interacoes_apontamentos_monitoria {
     view_label: "Apontamentos de Monitoria"
