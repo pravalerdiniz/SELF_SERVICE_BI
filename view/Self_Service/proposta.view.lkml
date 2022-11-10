@@ -4336,4 +4336,23 @@ dimension: vl_tarifa_cadastro {
     sql: ${vl_mensalidade}/${aluno_renda} ;;
   }
 
+  dimension_group: dt_aceite_renovacao {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Aceite Renovação"
+    description: "Data em que o Aluno aceitou o processod de Renovação"
+    sql: ${TABLE}."DT_ACEITE_RENOVACAO" ;;
+  }
+
 }
