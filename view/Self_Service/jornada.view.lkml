@@ -2237,6 +2237,15 @@ dimension: flg_d1 {
               else datediff(second,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
               ,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
+    hidden: yes
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Renovação - Aprovação IES"
+    value_format: "0.0"
+  }
+
+  dimension: sla_apr_ies_renov3 {
+    type: number
+    sql: coalesce(${sla_apr_ies_renov}/86400,0) ;;
     hidden: no
     group_label: "Quantidade de Dias da Proposta na Etapa"
     group_item_label: "Renovação - Aprovação IES"
