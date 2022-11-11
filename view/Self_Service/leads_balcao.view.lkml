@@ -350,6 +350,24 @@ view: leads_balcao {
     group_item_label: "Nivel Graduacao"
   }
 
+  dimension: flag_fiador {
+    type: yesno
+    sql: ${cpf_fiador} is not null ;;
+    group_label: "Dados do Garantidor"
+    group_item_label: "Flag Garantidor"
+  }
+
+  dimension: diferenca_mensalidades_bruta_descontada {
+    type: string
+    group_label: "Dados da Instituição"
+    group_item_label: "Diferença Mensalidades Bruta e Descontada"
+    sql: CASE
+          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) > 5 THEN 'Divergência'
+          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) < 0 THEN 'Red Flag'
+          ELSE 'Tolerância'
+          END ;;
+  }
+
   measure: count_leads {
     type: count_distinct
     sql: ${cpf_lead} ;;
@@ -366,13 +384,6 @@ view: leads_balcao {
     type: sum
     sql: ${vl_mensalidade_curso_desconto} ;;
     label: "Valor da Mensalidade Desconto"
-  }
-
-  dimension: flag_fiador {
-    type: yesno
-    sql: ${cpf_fiador} is not null ;;
-    group_label: "Dados do Garantidor"
-    group_item_label: "Flag Garantidor"
   }
 
   measure: count_propostas_cfiador {
@@ -408,6 +419,14 @@ view: leads_balcao {
     sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
     group_label: "Mensalidades"
     group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Balcão Descontada"
+    value_format: "0.0%"
+  }
+
+  measure: var_mensalidade_balcao_bruto_vs_analise_ies {
+    type: average
+    sql: ${proposta.mensalidade_ies}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Análise IES"
     value_format: "0.0%"
   }
 }
