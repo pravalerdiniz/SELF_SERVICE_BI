@@ -2237,8 +2237,10 @@ dimension: flg_d1 {
               else datediff(second,coalesce(${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw})
               ,coalesce(${dt_aprovado_instituicao_raw}, ${dt_aprovado_behavior_raw}, ${dt_iniciado_elegivel_raw},${dt_iniciado_raw}))
          end ;;
-    value_format: "0"
-    hidden: yes
+    hidden: no
+    group_label: "Quantidade de Dias da Proposta na Etapa"
+    group_item_label: "Renovação - Aprovação IES"
+    value_format: "0.0"
   }
 
   dimension: sla_agu_ass_renov {
