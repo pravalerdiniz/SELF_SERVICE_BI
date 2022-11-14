@@ -357,7 +357,7 @@ view: leads_balcao {
     group_item_label: "Flag Garantidor"
   }
 
-  dimension: diferenca_mensalidades_bruta_descontada {
+  dimension: flag_mensalidades_bruta_descontada {
     type: string
     group_label: "Dados da Instituição"
     group_item_label: "Diferença Mensalidades Bruta e Descontada"
@@ -367,6 +367,37 @@ view: leads_balcao {
           ELSE 'Igual'
           END ;;
     description: "Regra para calcular identificar se a mensalidade descontada foi menor, igual ou maior que a mensalidade bruta"
+  }
+
+  dimension: faixa_delta_bruto_desconto {
+    type: string
+    group_label: "Dados da Instituição"
+    group_item_label: "Faixa Delta Bruto Desconto"
+    sql: CASE
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} < 0 THEN '< 0%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} >= 0
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.1 THEN '0-10%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.1
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.2 THEN '10-20%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.2
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.3 THEN '20-30%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.3
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.4 THEN '30-40%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.4
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.5 THEN '40-50%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.5
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.6 THEN '50-60%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.6
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.7 THEN '60-70%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.7
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.8 THEN '70-80%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.8
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.9 THEN '80-90%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.9
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 1 THEN '90-100%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 1 THEN '> 100%'
+      END ;;
+    description: "Categorização das faixas dos deltas"
   }
 
   measure: count_leads {
