@@ -362,11 +362,11 @@ view: leads_balcao {
     group_label: "Dados da Instituição"
     group_item_label: "Diferença Mensalidades Bruta e Descontada"
     sql: CASE
-          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) > 5 THEN 'Divergência'
+          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) > 0 THEN 'Desconto'
           WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) < 0 THEN 'Red Flag'
-          ELSE 'Tolerância'
+          ELSE 'Igual'
           END ;;
-    description: "Regra para calcular a flag: Se o bruto for 5 reais mais caro que o descontado, há divergência. Se o delta estiver entre 0 e 5 reais, está dentro da tolerância. Se o descontado for maior que o bruto, é red flag, pois não deveria acontecer."
+    description: "Regra para calcular identificar se a mensalidade descontada foi menor, igual ou maior que a mensalidade bruta"
   }
 
   measure: count_leads {
