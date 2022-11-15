@@ -376,6 +376,14 @@ view: negocios_provas_pravaler {
     sql: ${TABLE}."ULT_EMAIL_RECEBIDO" ;;
   }
 
+  dimension: origem_lead_depara {
+    type: string
+    description: "converte a origem do lead em outbound e inbound"
+    sql: CASE WHEN ${origem_lead} ilike 'Out%' THEN 'Outbound'
+          WHEN ${origem_lead} ilike 'in%' THEN 'Inbound'
+          ELSE ${origem_lead} END ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []

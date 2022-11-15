@@ -1,6 +1,6 @@
 view: proposta_testeab {
 
-  sql_table_name: "SIMULACAO_PROPOSTA"."PROPOSTA_TESTEAB"
+  sql_table_name: "POS_GRADUADO"."SIMULACAO_PROPOSTA"."PROPOSTA_TESTEAB"
     ;;
 
   dimension: cpf {

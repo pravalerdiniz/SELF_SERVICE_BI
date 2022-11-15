@@ -115,6 +115,21 @@ view: alunos_inadimplencia_2 {
     sql: ${TABLE}."OVER30" ;;
   }
 
+  dimension: NEVER_PAID1 {
+    type: yesno
+    label: "Never Paid 1"
+    description: "Flag com Verdadeiro para se o aluno foi cedido e não pagou o primeiro boleto"
+    sql: ${TABLE}."FLG_NEVER_PAID1" ;;
+  }
+
+  dimension: NEVER_PAID2 {
+    type: yesno
+    label: "Never Paid 2"
+    description: "Flag com Verdadeiro para se o aluno foi cedido e pagou APENAS o primeiro boleto"
+    sql: ${TABLE}."FLG_NEVER_PAID2" ;;
+  }
+
+
   dimension: over60 {
     type: number
     hidden: yes

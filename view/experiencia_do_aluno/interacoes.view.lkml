@@ -1385,4 +1385,5 @@ view: interacoes {
     sql: ${TABLE}."INFOS_USUARIO" ;;
   }
 
+
 }

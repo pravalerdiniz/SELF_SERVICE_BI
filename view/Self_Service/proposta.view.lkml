@@ -1334,6 +1334,7 @@ dimension: vl_tarifa_cadastro {
     label: "Grupo"
     description: "Indica o nome do grupo da instituição no momento do preenchimento da proposta"
     sql: ${TABLE}."GRUPO_INSTITUICAO" ;;
+    drill_fields: [ds_instituicao,ds_campus]
   }
 
   dimension: id_campus {
@@ -4333,6 +4334,25 @@ dimension: vl_tarifa_cadastro {
     label: "Mensalidade/Renda"
     description: "Indica a relação % entre Mensalidade e Renda do Aluno"
     sql: ${vl_mensalidade}/${aluno_renda} ;;
+  }
+
+  dimension_group: dt_aceite_renovacao {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      day_of_year
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Aceite Renovação"
+    description: "Data em que o Aluno aceitou o processod de Renovação"
+    sql: ${TABLE}."DT_ACEITE_RENOVACAO" ;;
   }
 
 }
