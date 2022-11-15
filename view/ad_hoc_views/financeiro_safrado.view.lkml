@@ -117,8 +117,8 @@ view: financeiro_safrado {
     sql: ${desp_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Valor de PDD."
-    description: "Soma do valor de PDD."
+    group_item_label: "Total Despesa de PDD."
+    description: "Soma do (ΔEstoque_PDD + VP_WO)."
   }
 
   measure: total_estoque_pdd{
@@ -126,7 +126,7 @@ view: financeiro_safrado {
     sql: ${estoque_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Valor de estoque."
+    group_item_label: "Total Estoque de PDD."
     description: "Soma do valor de estoque PDD."
   }
 
@@ -142,10 +142,10 @@ view: financeiro_safrado {
   measure: total_pdd_carteira {
     type: sum
     sql: ${pdd_carteira} ;;
-    value_format: "$ #,###.00"
+    value_format_name: percent_2
     group_label: "PDD"
-    group_item_label: "PDD da carteira."
-    description: "Soma do PDD da carteira."
+    group_item_label: "PDD da carteira em %."
+    description: "Soma do (Estoque_PDD/VP_carteira) da carteira."
   }
 
   measure: total_rec_wo {
@@ -162,7 +162,7 @@ view: financeiro_safrado {
     sql: ${var_estoque_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Soma do Delta do estoque."
+    group_item_label: "ΔEstoque_PDD."
     description: "Soma da variação do estoque PDD."
   }
 
@@ -171,7 +171,7 @@ view: financeiro_safrado {
     sql: ${vp_carteira} ;;
     value_format: "$ #,###.00"
     group_label: "Valor presente"
-    group_item_label: "Valor presente"
+    group_item_label: "VP Carteira"
     description: "Soma do valor presente da carteira."
   }
 
@@ -180,7 +180,7 @@ view: financeiro_safrado {
     sql: ${vp_wo} ;;
     value_format: "$ #,###.00"
     group_label: "Valor presente"
-    group_item_label: "WO"
+    group_item_label: "VP em WO"
     description: "Soma do valor presente em WO."
   }
 
