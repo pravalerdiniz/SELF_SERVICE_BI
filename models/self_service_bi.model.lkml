@@ -412,6 +412,7 @@ explore: jornada {
     - instituicao.gerente_regional,
     - instituicao.id_instituicao,
     - interacoes_apontamentos_monitoria *,
+    - interacoes_metricas_tickets *,
     - dados_jornada_interacoes *
   ]
 
@@ -732,6 +733,13 @@ explore: jornada {
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
     relationship: one_to_many
+  }
+
+  join: interacoes_metricas_tickets {
+    view_label: "1.14 Interações de Atendimento"
+    sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id}} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
   join: dados_jornada_interacoes {

@@ -1,10 +1,12 @@
 view: interacoes_metricas_tickets {
   sql_table_name: "VETERANO"."FATO"."FATO_TICKET_METRICS_ZENDESK"
+
     ;;
 
 
 
   dimension: ticket_id {
+    primary_key: yes
     type: number
     group_label: "Métricas de Ticket"
     group_item_label: "ID Ticket"
