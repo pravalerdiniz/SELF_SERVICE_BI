@@ -7,6 +7,7 @@ view: interacoes_metricas_tickets {
 
   dimension: ticket_id {
     primary_key: yes
+    hidden: yes
     type: number
     group_label: "Métricas de Ticket"
     group_item_label: "ID Ticket"
