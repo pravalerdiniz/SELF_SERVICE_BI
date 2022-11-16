@@ -270,5 +270,5 @@ explore: reclame_aqui{
 
 explore: interacoes_metricas_tickets{
   label: "Interações - Métricas dos Tickets"
-  description: " Essa base trás as rméticas dos tickets."
+  description: " Essa base trás as métricas dos tickets."
 }

@@ -1,13 +1,10 @@
 view: interacoes_metricas_tickets {
-  sql_table_name: "VETERANO"."FATO"."FATO_TICKET_METRICS_ZENDESK"
-
-    ;;
+  sql_table_name: "VETERANO"."FATO"."FATO_TICKET_METRICS_ZENDESK"   ;;
 
 
 
   dimension: ticket_id {
     primary_key: yes
-    hidden: yes
     type: number
     group_label: "Métricas de Ticket"
     group_item_label: "ID Ticket"
@@ -28,7 +25,7 @@ view: interacoes_metricas_tickets {
     group_label: "Métricas de Ticket"
     group_item_label: "Tempo de Primeira Resolução (minutos)"
     description: "Mostra o tempo em minutos até a primeira view: interacoes"
-    sql: ${TABLE}."FIRST_RESOLUTION_TIME_IN_MINUTES_CORRIDO" ;;
+    sql: ${TABLE}."FIRST_RESOLUTION_TIME_IN_MINUTES_C" ;;
   }
 
   measure: tempo_resolucao_completa {
@@ -36,7 +33,7 @@ view: interacoes_metricas_tickets {
     group_label: "Métricas de Ticket"
     group_item_label: "Tempo de Resolução Completa (minutos)"
     description: "Mostra o tempo em minutos até a resolução completa do ticket."
-    sql: ${TABLE}."FULL_RESOLUTION_TIME_IN_MINUTES_CORRIDO" ;;
+    sql: ${TABLE}."FULL_RESOLUTION_TIME_IN_MINUTES_C" ;;
   }
 
   measure: tempo_resposta {
@@ -44,7 +41,7 @@ view: interacoes_metricas_tickets {
     group_label: "Métricas de Ticket"
     group_item_label: "Tempo de resposta (minutos)"
     description: "Mostra o tempo de resposta em minutos."
-    sql: ${TABLE}."REPLY_TIME_IN_MINUTES_CORRIDO" ;;
+    sql: ${TABLE}."REPLY_TIME_IN_MINUTES_C" ;;
   }
 
   dimension_group: criacao{
