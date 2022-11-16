@@ -2312,3 +2312,13 @@ explore: orquestra_cancelamento {
   label: "Orquestra - Cancelamento"
   description: "Histórico dos chamados da fila de Cancelamento"
 }
+
+explore: position_based {
+  label: "Modelo de Atribuição Position-Based"
+  description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
+}
+
+explore: position_based_jornada {
+  label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
+  description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
+}
