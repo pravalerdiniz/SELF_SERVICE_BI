@@ -16,6 +16,11 @@ view: position_based {
     sql: ${TABLE}."CREDITO" ;;
   }
 
+  measure: qtd_alunos {
+    type: count_distinct
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
   dimension_group: date_status {
     type: time
     timeframes: [
