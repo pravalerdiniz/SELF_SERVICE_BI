@@ -412,6 +412,7 @@ explore: jornada {
     - instituicao.gerente_regional,
     - instituicao.id_instituicao,
     - interacoes_apontamentos_monitoria *,
+    - interacoes_metricas_tickets *,
     - dados_jornada_interacoes *
   ]
 
@@ -732,6 +733,13 @@ explore: jornada {
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_apontamentos_monitoria.id_ticket};;
     relationship: one_to_many
+  }
+
+  join: interacoes_metricas_tickets {
+    view_label: "1.14 Interações de Atendimento"
+    sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id}} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
   join: dados_jornada_interacoes {
@@ -2303,4 +2311,19 @@ explore: vw_atualizacao_produtos {
 explore: orquestra_cancelamento {
   label: "Orquestra - Cancelamento"
   description: "Histórico dos chamados da fila de Cancelamento"
+}
+
+explore: position_based {
+  label: "Modelo de Atribuição Position-Based"
+  description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
+}
+
+explore: position_based_jornada {
+  label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
+  description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
+}
+
+explore: meta_canal {
+  label: "Metas por Canal - Planejamento Comercial"
+  description: "Metas do Q4 2022"
 }

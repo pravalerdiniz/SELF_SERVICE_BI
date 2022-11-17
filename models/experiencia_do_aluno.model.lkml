@@ -86,7 +86,7 @@ explore: interacoes {
     view_label: "Métricas dos Tickets"
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id};;
-    relationship: one_to_many
+    relationship: one_to_one
   }
 
 
@@ -270,5 +270,5 @@ explore: reclame_aqui{
 
 explore: interacoes_metricas_tickets{
   label: "Interações - Métricas dos Tickets"
-  description: " Essa base trás as rméticas dos tickets."
+  description: " Essa base trás as métricas dos tickets."
 }
