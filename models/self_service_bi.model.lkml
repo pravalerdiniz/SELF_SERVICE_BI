@@ -2322,3 +2322,8 @@ explore: position_based_jornada {
   label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
   description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
 }
+
+explore: meta_canal {
+  label: "Metas por Canal - Planejamento Comercial"
+  description: "Metas do Q4 2022"
+}
