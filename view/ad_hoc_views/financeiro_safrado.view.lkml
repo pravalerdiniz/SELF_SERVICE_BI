@@ -240,7 +240,7 @@ view: financeiro_safrado {
     value_format: "$ #,###.00"
     group_label: "Receita de Juros"
     group_item_label: "Receita de Juros"
-    description: "Receita de juros calculada. (VP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
+    description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
   }
 
   measure: count {
