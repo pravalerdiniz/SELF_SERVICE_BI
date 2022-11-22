@@ -306,7 +306,6 @@ explore: jornada {
     - alunos.celular,
     - alunos.escolaridade,
     - alunos.numero_dependentes,
-    - alunos.cep,
     - alunos.bairro,
     - alunos.cidade,
     - alunos.uf,
