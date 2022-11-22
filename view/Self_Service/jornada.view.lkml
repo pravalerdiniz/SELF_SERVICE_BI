@@ -1133,7 +1133,7 @@ view: jornada {
   measure: simuladosporleads {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "1. Simulados / Leads"
     sql: ${simulados} / ${lead} ;;
   }
@@ -1141,7 +1141,7 @@ view: jornada {
   measure: iniciadosporsimulados {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "2. Iniciados / Simulados"
     sql: ${iniciado} / ${simulados} ;;
   }
@@ -1149,7 +1149,7 @@ view: jornada {
   measure: finalizadosporiniciados {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "3. Finalizados / Iniciados"
     sql: ${finalizados} / ${iniciado} ;;
   }
@@ -1157,7 +1157,7 @@ view: jornada {
   measure: aprovadoriscoporfinalizados {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "4. Aprovado Risco / Finalizados"
     sql: ${apr_risco} / ${finalizados} ;;
   }
@@ -1165,7 +1165,7 @@ view: jornada {
   measure: aprovadoiesporaprovadorisco {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "5. Aprovado IES / Aprovado Risco"
     sql: ${apr_ies} / ${apr_risco} ;;
   }
@@ -1173,7 +1173,7 @@ view: jornada {
   measure: aguardandodocumentoporaprovadoies {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "6. Aguardando Documento / Aprovado IES"
     sql: ${aguardando_documento} / ${apr_ies} ;;
   }
@@ -1181,7 +1181,7 @@ view: jornada {
   measure: aguardandoassinaturaporaguardandodocumento {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "7. Aguardando Assinatura / Aguardando Documento"
     sql: ${aguardando_assinatura} / ${aguardando_documento} ;;
   }
@@ -1189,7 +1189,7 @@ view: jornada {
   measure: formalizadoporaguardandoassinatura {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
+    group_label: "Metas - Conversão"
     label: "8. Formalizados / Aguardando Assinatura"
     sql: ${formalizado} / ${aguardando_assinatura} ;;
   }
