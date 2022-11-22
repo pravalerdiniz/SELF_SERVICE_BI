@@ -65,6 +65,19 @@ view: etapas_funil_pipedrive_provas_prv {
           ELSE ${nome_etapa_funil} END ;;
   }
 
+  dimension: etapa_depara_checkpoint_v {
+    type: string
+    description: "Indica a etapa do funil de vendas no quadro apresentado no checkpoint, combinando o status do negócio com a etapa atual"
+    sql: CASE WHEN ${etapa_depara} = '01 - Novos Negócios ' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' THEN '1. Leads'
+          WHEN ${etapa_depara} = '02 - Agendados Equipe Provas' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' or ${etapa_depara} = '03 - Elaboração de Proposta' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' THEN '2. Reuniões Agendadas'
+          WHEN ${etapa_depara} = '04 - Proposta Enviada' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' or ${etapa_depara} = '05 - Piloto/POC' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' THEN '3. Propostas Enviadas'
+          WHEN ${etapa_depara} = '06 - Negociação / Fechamento' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' or ${etapa_depara} = '07 - Aguardando Assinatura' and ${negocios_provas_pravaler.status_negocio} = 'ABERTO' THEN '4. Negociações Finais'
+          WHEN ${etapa_depara} = '08 - Negócio Fechado' and ${negocios_provas_pravaler.status_negocio} = 'GANHO' THEN '5. Contratos Fechados'
+          WHEN ${etapa_depara} = 'On Hold (Retomar em 2023)' THEN '6. On Hold'
+          WHEN ${etapa_depara} = '04 - Proposta Enviada' and ${negocios_provas_pravaler.status_negocio} = 'PERDIDO' or ${etapa_depara} = '05 - Piloto/POC' and ${negocios_provas_pravaler.status_negocio} = 'PERDIDO' or ${etapa_depara} = '06 - Negociação / Fechamento' and ${negocios_provas_pravaler.status_negocio} = 'PERDIDO' or ${etapa_depara} = '07 - Aguardando Assinatura' and ${negocios_provas_pravaler.status_negocio} = 'PERDIDO' THEN '7. Propostas Negadas'
+          ELSE 'Não Classificada' END ;;
+  }
+
   dimension: flg_etapa_atual {
     type: yesno
     sql: ${TABLE}."FLG_ETAPA_ATUAL" ;;
