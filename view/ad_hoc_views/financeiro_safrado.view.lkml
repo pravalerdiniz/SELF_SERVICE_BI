@@ -56,7 +56,7 @@ view: financeiro_safrado {
   }
 
   dimension: accrual_juros {
-    description: "Valor de receita de juros safrado ."
+    description: "Valor de receita de juros safrado."
     type: number
     value_format: "$ #,###.00"
     sql: ${TABLE}."RECEITA_JUROS" ;;
