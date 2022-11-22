@@ -1130,7 +1130,69 @@ view: jornada {
     description: "Soma de todos os alunos novos que passaram pela etapa Cedido"
   }
 
+  measure: simuladosporleads {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "1. Simulados / Leads"
+    sql: ${simulados} / ${lead} ;;
+  }
 
+  measure: iniciadosporsimulados {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "2. Iniciados / Simulados"
+    sql: ${iniciado} / ${simulados} ;;
+  }
+
+  measure: finalizadosporiniciados {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "3. Finalizados / Iniciados"
+    sql: ${finalizados} / ${iniciado} ;;
+  }
+
+  measure: aprovadoriscoporfinalizados {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "4. Aprovado Risco / Finalizados"
+    sql: ${apr_risco} / ${finalizados} ;;
+  }
+
+  measure: aprovadoiesporaprovadorisco {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "5. Aprovado IES / Aprovado Risco"
+    sql: ${apr_ies} / ${apr_risco} ;;
+  }
+
+  measure: aguardandodocumentoporaprovadoies {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "6. Aguardando Documento / Aprovado IES"
+    sql: ${aguardando_documento} / ${apr_ies} ;;
+  }
+
+  measure: aguardandoassinaturaporaguardandodocumento {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "7. Aguardando Assinatura / Aguardando Documento"
+    sql: ${aguardando_assinatura} / ${aguardando_documento} ;;
+  }
+
+  measure: formalizadoporaguardandoassinatura {
+    type: number
+    value_format: "0.0%"
+    group_label: "2. Conversões"
+    label: "8. Formalizados / Aguardando Assinatura"
+    sql: ${formalizado} / ${aguardando_assinatura} ;;
+  }
 
 # ETAPA RENOVAÇÃO
 
