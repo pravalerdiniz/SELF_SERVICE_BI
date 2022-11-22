@@ -47,7 +47,7 @@ view: interacoes_metricas_tickets {
   measure: primeira_resolucao_minutos_corridos {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Primeira Resolução (minutos corridos)"
+    group_item_label: "Primeira Resolução (minutos corridos)"
     description: "Número de minutos corridos para a primeira resolução"
     sql: ${TABLE}."PRIMEIRA_RESOLUCAO_MINUTOS_CORRIDOS" ;;
   }
@@ -55,7 +55,7 @@ view: interacoes_metricas_tickets {
   measure: primeira_resolucao_minutos_trabalhados {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Primeira Resolução (minutos trabalhados)"
+    group_item_label: "Primeira Resolução (minutos trabalhados)"
     description: "Número de minutos trabalhados para a primeira resolução"
     sql: ${TABLE}."PRIMEIRA_RESOLUCAO_MINUTOS_TRABALHADOS" ;;
   }
@@ -63,7 +63,7 @@ view: interacoes_metricas_tickets {
   measure: primeira_resposta_minutos_corridos {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Primeira Resposta (minutos corridos)"
+    group_item_label: "Primeira Resposta (minutos corridos)"
     description: "Número de minutos corridos para a primeira resposta"
     sql: ${TABLE}."PRIMEIRA_RESPOSTA_MINUTOS_CORRIDOS" ;;
   }
@@ -71,7 +71,7 @@ view: interacoes_metricas_tickets {
   measure: primeira_resposta_minutos_trabalhados {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Primeira Resposta (minutos trabalhados)"
+    group_item_label: "Primeira Resposta (minutos trabalhados)"
     description: "Número de minutos trabalhados para a primeira resposta"
     sql: ${TABLE}."PRIMEIRA_RESPOSTA_MINUTOS_TRABALHADOS" ;;
   }
@@ -79,7 +79,7 @@ view: interacoes_metricas_tickets {
   measure: resolucao_completa_minutos_corridos {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Resolução Completa (minutos corridos)"
+    group_item_label: "Resolução Completa (minutos corridos)"
     description: "Número de minutos corridos para a resolução completa"
     sql: ${TABLE}."RESOLUCAO_COMPLETA_MINUTOS_CORRIDOS" ;;
   }
@@ -87,7 +87,7 @@ view: interacoes_metricas_tickets {
   measure: resolucao_completa_minutos_trabalhados {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Resolução Completa (minutos trabalhados)"
+    group_item_label: "Resolução Completa (minutos trabalhados)"
     description: "Número de minutos trabalhados para a resolução completa"
     sql: ${TABLE}."RESOLUCAO_COMPLETA_MINUTOS_TRABALHADOS" ;;
   }
@@ -95,7 +95,7 @@ view: interacoes_metricas_tickets {
   measure: espera_agente_minutos_corridos {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Espera do Agente (minutos corridos)"
+    group_item_label: "Espera do Agente (minutos corridos)"
     description: "Número de minutos corridos que o atendente gastou esperando"
     sql: ${TABLE}."ESPERA_AGENTE_MINUTOS_CORRIDOS" ;;
   }
@@ -103,7 +103,7 @@ view: interacoes_metricas_tickets {
   measure: espera_agente_minutos_trabalhados {
     type: sum
     group_label: "Métricas de Ticket"
-    group_item_label: "Tempo de Espera do Agente (minutos trabalhados)"
+    group_item_label: "Espera do Agente (minutos trabalhados)"
     description: "Número de minutos trabalhados que o atendente gastou esperando"
     sql: ${TABLE}."ESPERA_AGENTE_MINUTOS_TRABALHADOS" ;;
   }
