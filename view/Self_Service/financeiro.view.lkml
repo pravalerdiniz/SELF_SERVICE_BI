@@ -421,6 +421,14 @@ dimension: safra_vencimento {
     sql: ${dim_ipca.vl_ipca} ;;
   }
 
+  #dimension: vl_ipca_acumulado {
+  #  type: number
+ #   label: "Correção IPCA Acumulado"
+#    description: "Valor de IPCA acumulado desde o boleto original."
+ #   sql: ${financeiro.vl_ipca_acumulado} ;;
+#    hidden: yes
+#  }
+
   dimension: ds_baixa {
     type: string
     group_label: "Status do Boleto"
@@ -677,6 +685,8 @@ dimension: safra_vencimento {
     description: "Indica o valor em percentual da taxa de IPCA do boleto. IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
     sql: ${TABLE}."PERC_IPCA" ;;
   }
+
+
 
   dimension: vl_aquisicao {
     type: number
@@ -1602,6 +1612,15 @@ foi gerado por um pagamento menor do boleto anterior."
     group_item_label: "Máximo"
     description: "Valor máximo da IPCA aplicado sobre os boletos. A sigla IPCA corresponde ao Índice Nacional de Preços ao Consumidor Amplo. A diferença entre eles está no uso do termo “amplo”. O IPCA engloba uma parcela maior da população. Ele aponta a variação do custo de vida médio de famílias com renda mensal de 1 e 40 salários mínimos."
   }
+
+# measure: total_vl_ipca_acum {
+#    type: sum
+#    sql: ${vl_ipca}  ;;
+#    value_format: "$ #,###.00"
+#    group_label: "IPCA"
+#    group_item_label: "Valor acumulado"
+#    description: "Valor acumulado de IPCA aplicado sobre os boletos originais (valor de face na cessão)."
+#  }
 
 
   measure: vl_atraso {
