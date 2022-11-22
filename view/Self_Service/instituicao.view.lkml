@@ -524,6 +524,14 @@ view: instituicao {
     description: "Informa a modalidade de ensino do curso, ou seja, se é EAD ou presencial"
   }
 
+  dimension: categoria_curso {
+    sql: ${TABLE}."DESCRICAO_CLASS_CURSO" ;;
+    type: string
+    group_label: "Dados do Curso - IE"
+    group_item_label: "Classificação Curso"
+    description: "Parametrização dos nomes de curso em rótulos unificados"
+  }
+
   measure: count {
     type: count
     drill_fields: [id]
