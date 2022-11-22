@@ -151,6 +151,7 @@ explore: comparacao_ot {
     -financeiro.aluno_nome,
     -financeiro.arrasto_dias_atraso,
     -financeiro.ipca_12m,
+    -financeiro.vl_ipca_acumulado,
     -financeiro.sum_PDD
   ]
 
