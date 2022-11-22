@@ -959,8 +959,8 @@ view: jornada {
   }
 
   measure: lead {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf} ;;
     filters: {
       field: etapa
       value: "Lead"
@@ -970,14 +970,31 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Lead"
+    group_item_label: "1. Lead"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Lead"
   }
 
+  measure: simulados {
+    type: count_distinct
+    sql: ${id_cpf} ;;
+    filters: {
+      field: etapa
+      value: "Simulado"
+    }
+    filters: {
+      field: tipo_proposta
+      value: "NOVO"
+    }
+    group_label: "Etapa - Aluno Novo"
+    group_item_label: "2. Simulados"
+    drill_fields: [id_cpf, id_proposta]
+    description: "Soma de todos os alunos novos que passaram pela etapa Simulado"
+  }
+
   measure: iniciados {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Iniciado"
@@ -987,14 +1004,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Iniciado"
+    group_item_label: "3. Iniciado"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Iniciado"
   }
 
   measure: finalizados {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Finalizado"
@@ -1004,14 +1021,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Finalizado"
+    group_item_label: "4. Finalizado"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Finalizado"
   }
 
   measure: apr_risco {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Aprovado Risco"
@@ -1021,14 +1038,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Aprovado Risco"
+    group_item_label: "5. Aprovado Risco"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aprovado Risco"
   }
 
   measure: apr_ies {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Aprovado Instituicao"
@@ -1038,14 +1055,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Aprovado Instituição"
+    group_item_label: "6. Aprovado Instituição"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aprovado Instituição"
   }
 
   measure: aguardando_documento_contrato {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Aguardando Documento"
@@ -1055,7 +1072,7 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Aguardando Documento"
+    group_item_label: "7. Aguardando Documento"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aguardando Documento"
   }
@@ -1063,8 +1080,8 @@ view: jornada {
 
 
   measure: aguardando_assinatura_contrato {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Aguardando Assinatura"
@@ -1074,14 +1091,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Aguardando Assinatura"
+    group_item_label: "8. Aguardando Assinatura"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Aguardando Assinatura"
   }
 
   measure: form {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Formalizado"
@@ -1091,14 +1108,14 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Formalizado"
+    group_item_label: "9. Formalizado"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Formalizado"
   }
 
   measure: cedidos {
-    type: sum
-    sql: ${status_etapa} ;;
+    type: count_distinct
+    sql: ${id_cpf};;
     filters: {
       field: etapa
       value: "Cedido"
@@ -1108,7 +1125,7 @@ view: jornada {
       value: "NOVO"
     }
     group_label: "Etapa - Aluno Novo"
-    group_item_label: "Cedido"
+    group_item_label: "10. Cedido"
     drill_fields: [id_cpf, id_proposta]
     description: "Soma de todos os alunos novos que passaram pela etapa Cedido"
   }
