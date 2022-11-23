@@ -217,6 +217,7 @@ explore: status {
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
@@ -305,7 +306,6 @@ explore: jornada {
     - alunos.celular,
     - alunos.escolaridade,
     - alunos.numero_dependentes,
-    - alunos.cep,
     - alunos.bairro,
     - alunos.cidade,
     - alunos.uf,
@@ -379,6 +379,7 @@ explore: jornada {
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - instituicao.cnpj_ie,
     - instituicao.nome_fantasia,
@@ -798,6 +799,7 @@ explore: instituicao {
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -1326,6 +1328,7 @@ explore: proposta {
     - atribuicao_nova.count_id_cpf,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
@@ -1572,6 +1575,7 @@ explore: alunos {
     - jornada.perc_cpf,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -2294,7 +2298,8 @@ explore:  base_atendimento_fundo_funil{
 }
 
 explore: negocios_provas_pravaler {
-  label: "comercial provas pravaler"
+  label: "Comercial - Provas Pravaler"
+  description: "Dados do pipeline de vendas do produto Provas Pravaler"
 
   join: etapas_funil_pipedrive_provas_prv {
     relationship: one_to_many
@@ -2326,4 +2331,9 @@ explore: position_based_jornada {
 explore: meta_canal {
   label: "Metas por Canal - Planejamento Comercial"
   description: "Metas do Q4 2022"
+}
+
+explore: faturamento_provas_pravaler {
+  label: "Faturamento - Provas Pravaler"
+  description: "Dados de faturamento do produto Provas Pravaler"
 }
