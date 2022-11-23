@@ -2298,7 +2298,8 @@ explore:  base_atendimento_fundo_funil{
 }
 
 explore: negocios_provas_pravaler {
-  label: "comercial provas pravaler"
+  label: "Comercial - Provas Pravaler"
+  description: "Dados do pipeline de vendas do produto Provas Pravaler"
 
   join: etapas_funil_pipedrive_provas_prv {
     relationship: one_to_many
@@ -2330,4 +2331,9 @@ explore: position_based_jornada {
 explore: meta_canal {
   label: "Metas por Canal - Planejamento Comercial"
   description: "Metas do Q4 2022"
+}
+
+explore: faturamento_provas_pravaler {
+  label: "Faturamento - Provas Pravaler"
+  description: "Dados de faturamento do produto Provas Pravaler"
 }
