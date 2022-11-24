@@ -320,6 +320,14 @@ view: final_pdd {
     sql: ${valor_presente} ;;
   }
 
+  measure: count_cpf {
+    type: count_distinct
+    label: "Qtd Alunos"
+    group_label: "Dados do Aluno"
+    description: "Quantidade de alunos (cpfs)"
+    sql: ${tdt_cpf} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
