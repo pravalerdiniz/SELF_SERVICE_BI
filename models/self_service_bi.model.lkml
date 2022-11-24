@@ -432,6 +432,12 @@ explore: jornada {
     relationship: many_to_one
   }
 
+  join: depara_campanhas {
+    view_label: "1.1. Atribuição"
+    sql_on: ${depara_campanhas.concat_campaign_source_medium} = ${atribuicao_urls.concat_campaign_source_medium_100};;
+    relationship: many_to_one
+  }
+
   join: proposta_testeab {
     view_label: "1. Jornada"
     sql_on: ${jornada.id_cpf} = ${proposta_testeab.id_cpf} ;;
