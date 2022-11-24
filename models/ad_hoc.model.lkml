@@ -170,11 +170,11 @@ explore: financeiro_safrado {
   view_label: "Financeiro Safrado"
 }
 
-#Tabela não utilizada 06/09/22 - Lulinha
-# explore: final_pdd {
-#   label: "Final PDD"
-#   view_label: "Final PDD"
-# }
+#Tabela não utilizada 06/09/22 - Lulinha - Reativada em 23/11/22 - Murilo
+ explore: final_pdd {
+   label: "Final PDD"
+   view_label: "Final PDD"
+ }
 
 #Tabela não utilizada 06/09/22 - Lulinha
 # explore: fato_swap {
