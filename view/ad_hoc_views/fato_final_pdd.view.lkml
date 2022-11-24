@@ -46,6 +46,7 @@ view: fato_final_pdd {
   dimension: ano_mes_obs {
     type: string
     sql: ${TABLE}."ANO_MES_OBS" ;;
+    hidden: yes
   }
 
   dimension: data_formatura {
@@ -193,6 +194,7 @@ view: fato_final_pdd {
   dimension: min_maturidade_cessao {
     type: number
     sql: ${TABLE}."MIN_MATURIDADE_CESSAO" ;;
+    hidden: yes
   }
 
   dimension: pdd {
@@ -218,11 +220,13 @@ view: fato_final_pdd {
   dimension: proc_provisao_cpf {
     type: number
     sql: ${TABLE}."PROC_PROVISAO_CPF" ;;
+    hidden: yes
   }
 
   dimension: produto_class {
     type: string
     sql: ${TABLE}."PRODUTO_CLASS" ;;
+    hidden: yes
   }
 
   dimension: provisao_cpf {
@@ -254,6 +258,7 @@ view: fato_final_pdd {
   dimension: rating_audit_cpf {
     type: string
     sql: ${TABLE}."RATING_AUDIT_CPF" ;;
+    hidden: yes
   }
 
   dimension: rating_cpf {
@@ -299,6 +304,7 @@ view: fato_final_pdd {
   dimension: score {
     type: number
     sql: ${TABLE}."SCORE" ;;
+    hidden: yes
   }
 
   dimension: semestre_visao {
@@ -312,11 +318,13 @@ view: fato_final_pdd {
   dimension: status_formatura_txt {
     type: string
     sql: ${TABLE}."STATUS_FOMRATURA_TXT" ;;
+    hidden: yes
   }
 
   dimension: status_formatura {
     type: string
     sql: ${TABLE}."STATUS_FORMATURA" ;;
+    hidden: yes
   }
 
   dimension: tdt_ano_mes_obs {
@@ -325,6 +333,14 @@ view: fato_final_pdd {
     group_label: "Datas Referência"
     description: "Ano e mês de observação do registro"
     sql: ${TABLE}."TDT_ANO_MES_OBS" ;;
+  }
+
+  dimension: tdt_ano_mes {
+    type: string
+    label: "Ano/Mês Referência"
+    group_label: "Datas Referência"
+    description: "Ano e mês de referência"
+    sql: ${TABLE}."ANO_MES" ;;
   }
 
   dimension: tx_pdd_nova {
