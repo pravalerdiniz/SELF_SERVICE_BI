@@ -275,7 +275,7 @@ view: orquestra_p17 {
 
   dimension: descricaodasolicitacaodeexclusao {
     type: string
-    group_label: "Dados da Tarefa"
+    group_label: "Dados da Task"
     group_item_label: "Descrição da Solicitação de Exclusão"
     description: "Descrição do motivo para exclusão de dados"
     sql: ${TABLE}."DESCRICAODASOLICITACAODEEXCLUSAO" ;;
