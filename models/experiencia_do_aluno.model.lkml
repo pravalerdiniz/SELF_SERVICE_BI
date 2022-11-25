@@ -86,7 +86,7 @@ explore: interacoes {
     view_label: "Métricas dos Tickets"
     type: left_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id};;
-    relationship: one_to_one
+    relationship: one_to_many
   }
 
 

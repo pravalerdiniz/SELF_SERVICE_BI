@@ -195,7 +195,7 @@ view: orquestra_p17 {
 
   dimension_group: data_atualizacao {
     type: time
-    group_item_label: "Atualização"
+    label: "Atualização"
     description: "Data de atualização"
     timeframes: [
       raw,
@@ -211,7 +211,7 @@ view: orquestra_p17 {
 
   dimension_group: data_expectativa_conclusao {
     type: time
-    group_item_label: "Expectativa Conclusão"
+    label: "Expectativa Conclusão"
     description: "Data prevista para resolução baseado no que é configurado de Lead Time"
     timeframes: [
       raw,
@@ -227,7 +227,7 @@ view: orquestra_p17 {
 
   dimension_group: data_fim_task {
     type: time
-    group_item_label: "Fim da Tarefa"
+    label: "Fim da Tarefa"
     description: "Fim da Tarefa"
     timeframes: [
       raw,
@@ -243,7 +243,7 @@ view: orquestra_p17 {
 
   dimension_group: data_inicio_task {
     type: time
-    group_item_label: "Início da Tarefa"
+    label: "Início da Tarefa"
     description: "Início da Tarefa"
     timeframes: [
       raw,
@@ -275,7 +275,7 @@ view: orquestra_p17 {
 
   dimension: descricaodasolicitacaodeexclusao {
     type: string
-    group_label: "Dados da Tarefa"
+    group_label: "Dados da Task"
     group_item_label: "Descrição da Solicitação de Exclusão"
     description: "Descrição do motivo para exclusão de dados"
     sql: ${TABLE}."DESCRICAODASOLICITACAODEEXCLUSAO" ;;
@@ -435,7 +435,7 @@ view: orquestra_p17 {
 
   dimension_group: max_data_chamado {
     type: time
-    group_item_label: "Finalização Chamado Max"
+    label: "Finalização Chamado Max"
     description: "Data Max de finalização da task"
     timeframes: [
       raw,
@@ -451,7 +451,7 @@ view: orquestra_p17 {
 
   dimension_group: min_data_chamado {
     type: time
-    group_item_label: "Finalização Chamado Min"
+    label: "Finalização Chamado Min"
     description: "Data Min de finalização da task"
     timeframes: [
       raw,
@@ -609,173 +609,196 @@ view: orquestra_p17 {
     sql: ${TABLE}."PRECISAREANALISEINTERFILE" ;;
   }
 
-  dimension: qualasuasolicitacao {
-    type: string
-    sql: ${TABLE}."QUALASUASOLICITACAO" ;;
-  }
-
   dimension: qualonumerodocontrato {
     type: string
+    group_label: "Dados do Chamado"
+    group_item_label: "Numero do contrato do aluno"
+    description: "Numero do contrato do aluno"
     sql: ${TABLE}."QUALONUMERODOCONTRATO" ;;
   }
 
   dimension: rendaatualizada {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Renda Atualizada"
+    description: "Informação para Risco P10"
     sql: ${TABLE}."RENDAATUALIZADA" ;;
   }
 
-  dimension: resumo_solicitacao {
-    type: string
-    sql: ${TABLE}."RESUMO_SOLICITACAO" ;;
-  }
-
-  dimension: retorno {
-    type: string
-    sql: ${TABLE}."RETORNO" ;;
-  }
-
-  dimension: selecione_1_opcao {
-    type: string
-    sql: ${TABLE}."SELECIONE_1_OPCAO" ;;
-  }
-
-  dimension: selecione_opcao {
-    type: string
-    sql: ${TABLE}."SELECIONE_OPCAO" ;;
-  }
-
-  dimension: sla {
-    type: string
+  measure: sla {
+    type: sum
+    group_label: "Dados do Chamado"
+    group_item_label: "SLA"
+    description: "SLA do Chamado"
     sql: ${TABLE}."SLA" ;;
   }
 
   dimension: status_processo {
     type: string
+    group_label: "Dados do Chamado"
+    group_item_label: "Status do Processo"
+    description: "Status do Chamado"
     sql: ${TABLE}."STATUS_PROCESSO" ;;
   }
 
   dimension: status_task {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Status Task"
+    description: "Status da Task"
     sql: ${TABLE}."STATUS_TASK" ;;
   }
 
   dimension: subcategoria_app {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria App"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_APP" ;;
   }
 
   dimension: subcategoria_boletos {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Boletos"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_BOLETOS" ;;
   }
 
   dimension: subcategoria_canais_ies {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Canais IES"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CANAIS_IES" ;;
   }
 
   dimension: subcategoria_cessao {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Cessão"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CESSAO" ;;
   }
 
   dimension: subcategoria_cobranca {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Cobrança"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_COBRANCA" ;;
   }
 
   dimension: subcategoria_compra_carteira {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Compra de Carteira"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_COMPRA_CARTEIRA" ;;
   }
 
   dimension: subcategoria_contratacao_form {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Contratação Form"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CONTRATACAO_FORM" ;;
   }
 
   dimension: subcategoria_infra_devops {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Infra DevOps"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_INFRA_DEVOPS" ;;
   }
 
   dimension: subcategoria_portal {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Portal"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_PORTAL" ;;
   }
 
   dimension: subcategoria_proposta {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Proposta"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_PROPOSTA" ;;
   }
 
   dimension: subcategoria_risco {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Risco"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_RISCO" ;;
   }
 
   dimension: subcategoria_sem_fiador {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Sem Fiador"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_SEM_FIADOR" ;;
   }
 
   dimension: subcategoria_site {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Subcategoria Site"
+    description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_SITE" ;;
   }
 
   dimension: supervisorresponsavel {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Supervisor Responsável"
+    description: "Supervisor Responsável"
     sql: ${TABLE}."SUPERVISORRESPONSAVEL" ;;
   }
 
   dimension: telefonecelular {
     type: string
+    group_label: "Dados do Requisitante"
+    group_item_label: "Celular"
+    description: "Telefone celular do requisitante"
     sql: ${TABLE}."TELEFONECELULAR" ;;
   }
 
   dimension: temcontratacaocedida {
     type: string
+    group_label: "Dados do Chamado"
+    group_item_label: "Tem Contratação Cedida?"
+    description: "Anonimização de dados - Contratação Cedida"
     sql: ${TABLE}."TEMCONTRATACAOCEDIDA" ;;
   }
 
-  dimension: tempo_desde_abertura_horas {
-    type: string
+  measure: tempo_desde_abertura_horas {
+    type: sum
+    group_label: "Dados do Chamado"
+    group_item_label: "Tempo desde Abertura (Horas)"
+    description: "Tempo desde a abertura do chamado"
     sql: ${TABLE}."TEMPO_DESDE_ABERTURA_HORAS" ;;
   }
 
   dimension: ticketzendesk {
     type: string
+    group_label: "Dados do Chamado"
+    group_item_label: "Ticket Zendesk"
+    description: "Ticket do Zendesk relativo a abertura do chamado"
     sql: ${TABLE}."TICKETZENDESK" ;;
-  }
-
-  dimension: ticketzendesk2 {
-    type: string
-    sql: ${TABLE}."TICKETZENDESK2" ;;
-  }
-
-  dimension: ticketzendesk3 {
-    type: string
-    sql: ${TABLE}."TICKETZENDESK3" ;;
-  }
-
-  dimension: ticketzendesk4 {
-    type: string
-    sql: ${TABLE}."TICKETZENDESK4" ;;
-  }
-
-  dimension: tipo {
-    type: string
-    sql: ${TABLE}."TIPO" ;;
   }
 
   dimension: tratativadocaso {
     type: string
+    group_label: "Dados da Task"
+    group_item_label: "Tratativa do Caso"
+    description: "Subprocesso de Cobrança"
     sql: ${TABLE}."TRATATIVADOCASO" ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
 }
