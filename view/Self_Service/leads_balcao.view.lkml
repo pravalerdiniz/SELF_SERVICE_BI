@@ -409,6 +409,13 @@ view: leads_balcao {
     description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
   }
 
+  measure: max_data_ultima_simulacao {
+    type: date_time
+    group_label: "Dados da Proposta"
+    group_item_label: "Última Data da Proposta"
+    sql: MAX(${data_proposta_raw});;
+  }
+
   measure: count_leads {
     type: count_distinct
     sql: ${cpf_lead} ;;
