@@ -195,7 +195,7 @@ view: orquestra_p17 {
 
   dimension_group: data_atualizacao {
     type: time
-    group_item_label: "Atualização"
+    label: "Atualização"
     description: "Data de atualização"
     timeframes: [
       raw,
@@ -211,7 +211,7 @@ view: orquestra_p17 {
 
   dimension_group: data_expectativa_conclusao {
     type: time
-    group_item_label: "Expectativa Conclusão"
+    label: "Expectativa Conclusão"
     description: "Data prevista para resolução baseado no que é configurado de Lead Time"
     timeframes: [
       raw,
@@ -227,7 +227,7 @@ view: orquestra_p17 {
 
   dimension_group: data_fim_task {
     type: time
-    group_item_label: "Fim da Tarefa"
+    label: "Fim da Tarefa"
     description: "Fim da Tarefa"
     timeframes: [
       raw,
@@ -243,7 +243,7 @@ view: orquestra_p17 {
 
   dimension_group: data_inicio_task {
     type: time
-    group_item_label: "Início da Tarefa"
+    label: "Início da Tarefa"
     description: "Início da Tarefa"
     timeframes: [
       raw,
@@ -435,7 +435,7 @@ view: orquestra_p17 {
 
   dimension_group: max_data_chamado {
     type: time
-    group_item_label: "Finalização Chamado Max"
+    label: "Finalização Chamado Max"
     description: "Data Max de finalização da task"
     timeframes: [
       raw,
@@ -451,7 +451,7 @@ view: orquestra_p17 {
 
   dimension_group: min_data_chamado {
     type: time
-    group_item_label: "Finalização Chamado Min"
+    label: "Finalização Chamado Min"
     description: "Data Min de finalização da task"
     timeframes: [
       raw,
