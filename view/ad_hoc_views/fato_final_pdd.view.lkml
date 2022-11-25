@@ -1,6 +1,15 @@
-view: final_pdd {
-  sql_table_name: "AD_HOC"."FINAL_PDD"
+# The name of this view in Looker is "Fato Final Pdd"
+view: fato_final_pdd {
+  # The sql_table_name parameter indicates the underlying database table
+  # to be used for all fields in this view.
+  sql_table_name: "VETERANO"."FATO"."FATO_FINAL_PDD"
     ;;
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
+
+  # Here's what a typical dimension looks like in LookML.
+  # A dimension is a groupable field that can be used to filter query results.
+  # This dimension will be called "Ano Cessao Cpf" in Explore.
 
   dimension: ano_cessao_cpf {
     type: string
@@ -34,17 +43,19 @@ view: final_pdd {
     sql: ${TABLE}."DATA_CESSAO" ;;
   }
 
-  dimension: tdt_ano_obs {
+  dimension: ano_mes_obs {
     type: string
-    label: "Ano/Mês Observação"
-    group_label: "Datas Referência"
-    description: "Ano e mês de observação do registro"
-    sql: ${TABLE}."TDT_ANO_OBS" ;;
+    sql: ${TABLE}."ANO_MES_OBS" ;;
+    hidden: yes
+  }
+
+  dimension: data_formatura {
+    type: string
+    sql: ${TABLE}."DATA_FORMATURA" ;;
   }
 
   dimension_group: data_visao {
     type: time
-    label: "Data Visão"
     timeframes: [
       raw,
       date,
@@ -92,10 +103,26 @@ view: final_pdd {
 
   dimension: fundo {
     type: number
-    label: "Fundo de Investimento"
+    label: "ID Fundo de Investimento"
     group_label: "Dados do Fundo"
-    description: "Identifica o fundo utilizado"
+    description: "Identifica o ID do fundo de investimento."
     sql: ${TABLE}."FUNDO" ;;
+  }
+
+  dimension: id_cpf {
+    type: number
+    label: "ID CPF"
+    group_label: "Dados do Aluno"
+    description: "Número atribuído como máscara do cpf do aluno"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
+  dimension: id_curso {
+    type: string
+    label: "Produto ID"
+    group_label: "Dados de Cessão"
+    description: "ID que indica o curso do aluno."
+    sql: ${TABLE}."ID_CURSO" ;;
   }
 
   dimension: id_ies {
@@ -103,7 +130,7 @@ view: final_pdd {
     group_label: "Dados da IES"
     description: "ID da instituição no qual o curso é ofertado"
     type: number
-    sql: ${TABLE}."ID_IES" ;;
+    sql: ${TABLE}."ID_INSTITUICAO" ;;
   }
 
   dimension: id_produto {
@@ -138,6 +165,7 @@ view: final_pdd {
     sql: ${TABLE}."MATURIDADE_FUNDO" ;;
   }
 
+
   dimension: maturidade_visao {
     type: number
     label: "Maturidade Aluno Mês Visao"
@@ -146,15 +174,7 @@ view: final_pdd {
     sql: ${TABLE}."MATURIDADE_VISAO" ;;
   }
 
-  dimension: min_maturidade_cessao {
-    type: number
-    label: "Mínimo Maturidade Cessão"
-    group_label: "Dados de Cessão"
-    description: "Menor valor da maturidade na cessao realizada"
-    sql: ${TABLE}."MIN_MATURIDADE_CESSAO" ;;
-  }
-
-  dimension_group: mindetdt_vecto {
+  dimension_group: min_data_vencimento {
     type: time
     label: "Data Menor Vencimento"
     description: "Menor data de vencimento do cpf"
@@ -168,27 +188,59 @@ view: final_pdd {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}."MINDETDT_VECTO" ;;
+    sql: ${TABLE}."MIN_DATA_VENCIMENTO" ;;
+  }
+
+  dimension: min_maturidade_cessao {
+    type: number
+    sql: ${TABLE}."MIN_MATURIDADE_CESSAO" ;;
+    hidden: yes
+  }
+
+  dimension: pdd {
+    label: "Nome Fundo de Investimento"
+    group_label: "Dados do Fundo"
+    type: string
+    sql: ${TABLE}."PDD" ;;
+  }
+
+  dimension: pdd_compl {
+    type: string
+    sql: ${TABLE}."PDD_COMPL" ;;
+    hidden: yes
+  }
+#
+  dimension: porc_provisao_cpf {
+    label: "Porcentagem Provisão Aluno"
+    group_label: "Dados do Aluno"
+    description: "Percentual da provisão por cpf"
+    sql: ${TABLE}."PORC_PROVISAO_CPF" ;;
+  }
+
+  dimension: proc_provisao_cpf {
+    type: number
+    sql: ${TABLE}."PROC_PROVISAO_CPF" ;;
+    hidden: yes
+  }
+
+  dimension: produto_class {
+    type: string
+    sql: ${TABLE}."PRODUTO_CLASS" ;;
+    hidden: yes
   }
 
   dimension: provisao_cpf {
     type: number
+
     label: "Provisão Aluno"
     group_label: "Dados do Aluno"
     description: "Valor da provisão para cada cpf"
     sql: ${TABLE}."PROVISAO_CPF" ;;
   }
 
-  dimension: provisao_cpf_pct {
-    type: number
-    label: "Porcentagem Provisão Aluno"
-    group_label: "Dados do Aluno"
-    description: "Percentual da provisão por cpf"
-    sql: ${TABLE}."PROVISAO_CPF_PCT" ;;
-  }
-
   dimension: provisao_cpf_tx_pdd_nova {
     type: number
+
     label: "Taxa Provisão Aluno"
     group_label: "Dados do Aluno"
     description: "Taxa aplicada a provisão"
@@ -203,12 +255,10 @@ view: final_pdd {
     sql: ${TABLE}."PROVISAO_FUNDO" ;;
   }
 
-  dimension: provisao_fundo_pct {
-    type: number
-    label: "Porcentagem Provisão Fundo"
-    description: "Percentual de provisão por fundo"
-    group_label: "Dados do Fundo"
-    sql: ${TABLE}."PROVISAO_FUNDO_PCT" ;;
+  dimension: rating_audit_cpf {
+    type: string
+    sql: ${TABLE}."RATING_AUDIT_CPF" ;;
+    hidden: yes
   }
 
   dimension: rating_cpf {
@@ -243,36 +293,54 @@ view: final_pdd {
     sql: ${TABLE}."SAFRA_CESSAO_FUNDO" ;;
   }
 
-  dimension: safra_cessao_sem {
+  dimension: safra_cessao_semestre {
     type: string
     label: "Safra Cessão"
     group_label: "Dados de Cessão"
     description: "Indica a safra e cessao do semestre"
-    sql: ${TABLE}."SAFRA_CESSAO_SEM" ;;
+    sql: ${TABLE}."SAFRA_CESSAO_SEMESTRE" ;;
   }
 
-  dimension: sem_visao {
-    type: string
+  dimension: score {
+    type: number
+    sql: ${TABLE}."SCORE" ;;
+    hidden: yes
+  }
+
+  dimension: semestre_visao {
+     type: string
     label: "Semestre Visão"
     group_label: "Datas Referência"
     description: "Semestre em que está sendo feita a analise"
-    sql: ${TABLE}."SEM_VISAO" ;;
+    sql: ${TABLE}."SEMESTRE_VISAO" ;;
+  }
+
+  dimension: status_formatura_txt {
+    type: string
+    sql: ${TABLE}."STATUS_FOMRATURA_TXT" ;;
+    hidden: yes
+  }
+
+  dimension: status_formatura {
+    type: string
+    sql: ${TABLE}."STATUS_FORMATURA" ;;
+    hidden: yes
+  }
+
+  dimension: tdt_ano_mes_obs {
+    type: string
+    label: "Ano/Mês Observação"
+    group_label: "Datas Referência"
+    description: "Ano e mês de observação do registro"
+    sql: ${TABLE}."TDT_ANO_MES_OBS" ;;
   }
 
   dimension: tdt_ano_mes {
     type: string
+    label: "Ano/Mês Referência"
     group_label: "Datas Referência"
-    label: "Data Referência"
-    description: "Ano e mês de referência do registro"
-    sql: ${TABLE}."TDT_ANO_MES" ;;
-  }
-
-  dimension: tdt_cpf {
-    type: number
-    label: "ID CPF"
-    group_label: "Dados do Aluno"
-    description: "Número atribuído como máscara do cpf do aluno"
-    sql: ${TABLE}."TDT_CPF" ;;
+    description: "Ano e mês de referência"
+    sql: ${TABLE}."ANO_MES" ;;
   }
 
   dimension: tx_pdd_nova {
@@ -284,22 +352,13 @@ view: final_pdd {
     sql: ${TABLE}."TX_PDD_NOVA" ;;
   }
 
-  measure: sum_tx_pdd_nova {
-    type: sum
-    label: "Soma Taxa PDD Nova"
-    group_label: "Valores"
-    description: "Taxa \"nova\" cobrada no pdd"
-    value_format: "0.00%"
-    sql: ${tx_pdd_nova} ;;
-  }
-
   dimension: valor_presente {
     type: number
     value_format: "$#,##0.00"
     label: "Valor presente"
     group_label: "Valores"
     description: "Valor presente"
-    sql: ${TABLE}."VALOR_PRESENTE" ;;
+    sql: ${TABLE}."VL_PRESENTE" ;;
   }
 
   measure: sum_VP {
@@ -311,13 +370,13 @@ view: final_pdd {
     sql: ${valor_presente} ;;
   }
 
-  measure: avg_VP {
-    type: average
-    value_format: "$#,##0.00"
-    label: "Média Valor Presente"
+  measure: sum_tx_pdd_nova {
+    type: sum
+    label: "Soma Taxa PDD Nova"
     group_label: "Valores"
-    description: "Valor presente"
-    sql: ${valor_presente} ;;
+    description: "Taxa \"nova\" cobrada no pdd"
+    value_format: "0.00%"
+    sql: ${tx_pdd_nova} ;;
   }
 
   measure: count_cpf {
@@ -325,12 +384,11 @@ view: final_pdd {
     label: "Qtd Alunos"
     group_label: "Dados do Aluno"
     description: "Quantidade de alunos (cpfs)"
-    sql: ${tdt_cpf} ;;
+    sql: ${id_cpf} ;;
   }
 
   measure: count {
     type: count
     drill_fields: []
-    hidden: yes
   }
 }

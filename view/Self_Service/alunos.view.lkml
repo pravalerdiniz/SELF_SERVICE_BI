@@ -586,6 +586,7 @@ view: alunos {
     group_label: "Dados do Curso"
     group_item_label: "Área de Conhecimento"
     description: "Indica a área de conhecimento do curso. Ex: Ciências Exatas e da Terra, Ciências Biológicas, Engenharia / Tecnologia, Ciências da Saúde, entre outras"
+    hidden: yes
   }
 
   dimension: ds_cal_vet {
@@ -614,6 +615,7 @@ view: alunos {
     group_label: "Dados do Curso"
     group_item_label: "Ênfase"
     description: "Indica o curso de aprofuncamento, se houver"
+    hidden: yes
   }
 
   dimension: flg_curso_ativo {

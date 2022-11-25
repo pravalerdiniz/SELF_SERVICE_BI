@@ -2086,7 +2086,7 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Principal"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor principal do contrato"
     link: {label:"Documentação - Valor Prncipal"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736905/VALOR+PRINCIPAL"}
