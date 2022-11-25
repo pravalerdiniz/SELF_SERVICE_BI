@@ -417,6 +417,7 @@ union select '', 'cpc', 'google', 'cpcgoogle', 'Search'
     sql: ${TABLE}."CONCAT" ;;
     primary_key: yes
     hidden:  yes
+    label: "Concat DePara"
   }
 
   dimension: tipo_campanha {

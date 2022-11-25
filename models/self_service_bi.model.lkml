@@ -1074,6 +1074,7 @@ explore: financeiro {
     type: left_outer
   }
 
+
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
@@ -1525,6 +1526,13 @@ explore: proposta {
   ##  and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
   ##  relationship: one_to_one
   ##  type: left_outer}
+
+  join: fin_qtd_mens_contrato {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fin_qtd_mens_contrato.id_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 }
 
