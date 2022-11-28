@@ -409,6 +409,13 @@ view: leads_balcao {
     description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
   }
 
+  dimension: flag_ultima_simulacao {
+    type: yesno
+    label: "Flag Última Simulação"
+    sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
+    description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
+  }
+
   measure: max_data_ultima_simulacao {
     type: date_time
     group_label: "Dados da Proposta"
