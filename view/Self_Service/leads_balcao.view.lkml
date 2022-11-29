@@ -411,7 +411,8 @@ view: leads_balcao {
 
   dimension: flag_ultima_simulacao {
     type: yesno
-    label: "Flag Última Simulação"
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Última Simulação"
     sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
     description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
   }
