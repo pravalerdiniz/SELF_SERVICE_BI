@@ -1170,6 +1170,7 @@ view: jornada {
     sql: ${apr_ies} / NULLIF(${apr_risco}) ;;
   }
 
+
   measure: aguardandodocumentoporaprovadoies {
     type: number
     value_format: "0.0%"
