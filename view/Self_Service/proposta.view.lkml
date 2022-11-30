@@ -2077,7 +2077,6 @@ dimension: vl_tarifa_cadastro {
     label: "Valor Prestação"
     value_format: "$ #,###.00"
     description: "Indica o valor da prestação do contrato"
-    hidden:  yes
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
 
