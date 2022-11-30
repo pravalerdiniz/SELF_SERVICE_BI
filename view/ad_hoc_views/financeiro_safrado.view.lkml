@@ -236,7 +236,7 @@ view: financeiro_safrado {
 
   measure: total_accrual_juros {
     type: sum
-    sql: CASE WHEN ${tdt_ano_mes_year} = 2016 THEN 0 ELSE ${var_carteira} + ${vp_pagamentos} - ${vp_originado} END ;;
+    sql: ${accrual_juros}  ;;
     value_format: "$ #,###.00"
     group_label: "Receita de Juros"
     group_item_label: "Receita de Juros"
