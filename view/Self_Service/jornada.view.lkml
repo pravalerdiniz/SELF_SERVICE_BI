@@ -1135,7 +1135,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "1. Simulados / Leads"
-    sql: ${simulados} / NULLIF(${lead}) ;;
+    sql: ${simulados} / NULLIF(${lead},0) ;;
   }
 
   measure: iniciadosporsimulados {
@@ -1143,7 +1143,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "2. Iniciados / Simulados"
-    sql: ${iniciados} / NULLIF(${simulados}) ;;
+    sql: ${iniciados} / NULLIF(${simulados},0) ;;
   }
 
   measure: finalizadosporiniciados {
@@ -1151,7 +1151,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "3. Finalizados / Iniciados"
-    sql: ${finalizados} / NULLIF(${iniciados}) ;;
+    sql: ${finalizados} / NULLIF(${iniciados},0) ;;
   }
 
   measure: aprovadoriscoporfinalizados {
@@ -1159,7 +1159,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "4. Aprovado Risco / Finalizados"
-    sql: ${apr_risco} / NULLIF(${finalizados}) ;;
+    sql: ${apr_risco} / NULLIF(${finalizados},0) ;;
   }
 
   measure: aprovadoiesporaprovadorisco {
@@ -1167,7 +1167,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "5. Aprovado IES / Aprovado Risco"
-    sql: ${apr_ies} / NULLIF(${apr_risco}) ;;
+    sql: ${apr_ies} / NULLIF(${apr_risco},0) ;;
   }
 
 
@@ -1176,7 +1176,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "6. Aguardando Documento / Aprovado IES"
-    sql: ${aguardando_documento_contrato} / NULLIF(${apr_ies}) ;;
+    sql: ${aguardando_documento_contrato} / NULLIF(${apr_ies},0) ;;
   }
 
   measure: aguardandoassinaturaporaguardandodocumento {
@@ -1184,7 +1184,7 @@ view: jornada {
     value_format: "0.0%"
     group_label: "Conversão por etapas"
     label: "7. Aguardando Assinatura / Aguardando Documento"
-    sql: ${aguardando_assinatura_contrato} / NULLIF(${aguardando_documento_contrato}) ;;
+    sql: ${aguardando_assinatura_contrato} / NULLIF(${aguardando_documento_contrato},0) ;;
   }
 
   measure: formalizadoporaguardandoassinatura {
