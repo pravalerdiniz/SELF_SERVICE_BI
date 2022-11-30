@@ -1810,7 +1810,7 @@ measure: porc_evasao {
     ]
     convert_tz: no
     datatype: date
-    label: "Dados do Aluno"
+    label: "Data da Formatura"
     description: "Aponta a data de Formatura do Aluno, de acordo com atualização no portal"
     sql: ${TABLE}."DATA_FORMADO" ;;
   }
