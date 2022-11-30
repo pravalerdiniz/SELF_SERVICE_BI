@@ -1,4 +1,3 @@
-# The name of this view in Looker is "Request Log"
 view: request_log {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
@@ -193,4 +192,27 @@ view: request_log {
     type: count
     drill_fields: [id, user_name]
   }
+
+  dimension: filter {
+    type: string
+    sql: CASE WHEN ${user_name} = 'NIFI' and ${origin} = 'BACKOFFICE' THEN 'DATA FILTER'
+    ELSE 'BUSINES FILTER'
+    END;;
+    label: "Tipo de Filtro"
+    group_label: ""
+    description: "Indica se a validação é de Business ou Data"
+  }
+
+  dimension: erro_validacao {
+    type: string
+    sql: CASE
+          WHEN ${sucesso} = 'No' THEN 'Com Erro'
+          WHEN ${sucesso} = 'Yes' THEN 'Sem Erro'
+        ELSE 'Vazio'
+        END;;
+    label: "Validação de Erro"
+    group_label: ""
+    description: "Indica se o contrato está com algum erro ou não"
+  }
+
 }

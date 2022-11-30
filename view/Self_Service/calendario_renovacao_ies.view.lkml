@@ -1,8 +1,11 @@
 # The name of this view in Looker is "Calendario Renovacao Ies"
 view: calendario_renovacao_ies {
-  sql_table_name: "AD_HOC"."CALENDARIO_RENOVACAO_IES"
+  derived_table: {
+    sql: select * from graduado.ad_hoc.calendario_renovacao_ies
+qualify row_number() over (partition by id_ies,flag_estacao order by dt_subida_alunos asc)=1
     ;;
-
+    persist_for: "24 hours"
+}
   dimension: aprovadores_tela_ies {
     type: string
     sql: ${TABLE}."APROVADORES_TELA_IES" ;;
@@ -75,6 +78,12 @@ view: calendario_renovacao_ies {
     label: "Flag Estação"
     description: "Indica se é a primeira data da estação"
     sql: ${TABLE}."FLAG_ESTACAO" ;;
+  }
+
+  dimension: flag_primeira_data {
+    type: string
+    sql: (select dt_subida_alunos from graduado.ad_hoc.calendario_renovacao_ies
+          ;;
   }
 
 

@@ -1796,4 +1796,23 @@ measure: porc_evasao {
     description: "Indica se o aluno clicou no botão de 'Aceito contato por whatsapp' na página de Cadastro do Aluno"
   }
 
+  dimension_group: data_formado {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      time
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Dados do Aluno"
+    description: "Aponta a data de Formatura do Aluno, de acordo com atualização no portal"
+    sql: ${TABLE}."DATA_FORMADO" ;;
+  }
+
 }

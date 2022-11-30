@@ -2332,6 +2332,11 @@ explore: orquestra_cancelamento {
   description: "Histórico dos chamados da fila de Cancelamento"
 }
 
+explore: orquestra_p17 {
+  label: "Orquestra - P17"
+  description: "Histórico dos chamados da fila P17"
+}
+
 explore: position_based {
   label: "Modelo de Atribuição Position-Based"
   description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
