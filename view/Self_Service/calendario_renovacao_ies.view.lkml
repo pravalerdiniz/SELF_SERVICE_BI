@@ -2,7 +2,7 @@
 view: calendario_renovacao_ies {
   derived_table: {
     sql: select * from graduado.ad_hoc.calendario_renovacao_ies
-qualify row_number() over (partition by id_ies,flag_estacao order by dt_subida_alunos asc)=1
+qualify row_number() over (partition by grupo_ies,flag_estacao order by dt_subida_alunos asc)=1
     ;;
     persist_for: "24 hours"
 }
