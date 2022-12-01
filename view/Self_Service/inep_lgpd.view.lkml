@@ -1510,6 +1510,36 @@ view: inep_lgpd {
     sql: ${TABLE}."NO_CINE_ROTULO" ;;
   }
 
+  dimension: tp_dimensao {
+    group_label: "Dados do curso"
+    label: "Código do tipo de dimensão Geográfica"
+    description: "Nome do curso, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
+    type: number
+    sql: ${TABLE}."TP_DIMENSAO" ;;
+  }
+
+  dimension: no_dimensao {
+    group_label: "Dados do curso"
+    label: "Tipo da dimensão Geográfica do Curso"
+    description: "Tipo de dimensão geográfica dos cursos presenciais e a distância ofertados no Brasil e também por instituições brasileiras no exterior"
+    type: string
+    sql: ${TABLE}."NO_DIMENSAO" ;;
+  }
+
+  dimension: no_curso {
+    group_label: "Dados do curso"
+    label: "Nome do Curso"
+    type: string
+    sql: ${TABLE}."NO_CURSO" ;;
+  }
+
+  dimension: co_curso {
+    group_label: "Dados do curso"
+    label: "Código do Curso"
+    type: number
+    sql: ${TABLE}."CO_CURSO" ;;
+  }
+
   dimension: no_ies {
     group_label: "Dados IES"
     label: "Nome da Instituição de Ensino"
@@ -1544,6 +1574,20 @@ view: inep_lgpd {
     description: "Nome do Município do local de oferta do curso"
     type: string
     sql: ${TABLE}."NO_MUNICIPIO" ;;
+  }
+
+  dimension: co_local_oferta {
+    group_label: "Dados do curso - Local de Oferta"
+    label: "Código do Local de Oferta"
+    type: number
+    sql: ${TABLE}."CO_LOCAL_OFERTA" ;;
+  }
+
+  dimension: no_local_oferta {
+    group_label: "Dados do curso - Local de Oferta"
+    label: "Nome do Local de Oferta"
+    type: string
+    sql: ${TABLE}."NO_LOCAL_OFERTA" ;;
   }
 
   dimension: no_municipio_ies {
@@ -1604,6 +1648,13 @@ view: inep_lgpd {
     sql: ${TABLE}."NO_TP_NIVEL_ACADEMICO" ;;
   }
 
+  dimension: in_gratuito {
+    group_label: "Dados do curso"
+    label: "Curso gratuito?"
+    type: yesno
+    sql: ${TABLE}."IN_GRATUITO" ;;
+  }
+
   dimension: no_tp_rede {
     group_label: "Dados IES"
     label: "Rede de Ensino"
@@ -1652,6 +1703,34 @@ view: inep_lgpd {
     description: "Quantidade de cursos da insituição"
     type: number
     sql: ${TABLE}."QT_CURSO" ;;
+  }
+
+  dimension: qt_vg_proc_seletivo {
+    group_label: "Dados quantitativos do Curso"
+    label: "Qtd. de vagas nos processos seletivos"
+    type: number
+    sql: ${TABLE}."QT_VG_PROC_SELETIVO" ;;
+  }
+
+  dimension: qt_insc_proc_seletivo {
+    group_label: "Dados quantitativos do Curso"
+    label: "Qtd. de inscrições no processo seletivo"
+    type: number
+    sql: ${TABLE}."QT_INSC_PROC_SELETIVO" ;;
+  }
+
+  dimension: qt_ing_outro_tipo_selecao {
+    group_label: "Dados quantitativos do Curso"
+    label: "Qtd. de ingressantes em outro tipo de seleção"
+    type: number
+    sql: ${TABLE}."QT_ING_OUTRO_TIPO_SELECAO" ;;
+  }
+
+  dimension: qt_ing_proc_seletivo {
+    group_label: "Dados quantitativos do Curso"
+    label: "Qtd. de ingressantes nos processos seletivos"
+    type: number
+    sql: ${TABLE}."QT_ING_PROC_SELETIVO" ;;
   }
 
   dimension: qt_docente_exe {
