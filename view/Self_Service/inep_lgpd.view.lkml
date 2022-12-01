@@ -1480,7 +1480,7 @@ view: inep_lgpd {
 
   dimension: no_cine_area_detalhada {
     group_label: "Dados do curso"
-    label: "Nome Cine da área detalhada"
+    label: "Área detalhada do curso (CINE Brasil)"
     description: "Nome da área detalhada, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
     sql: ${TABLE}."NO_CINE_AREA_DETALHADA" ;;
@@ -1488,7 +1488,7 @@ view: inep_lgpd {
 
   dimension: no_cine_area_especifica {
     group_label: "Dados do curso"
-    label: "Nome Cine da área específica"
+    label: "Área específica do curso (CINE Brasil)"
     description: "Nome da área específica, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
     sql: ${TABLE}."NO_CINE_AREA_ESPECIFICA" ;;
@@ -1496,7 +1496,7 @@ view: inep_lgpd {
 
   dimension: no_cine_area_geral {
     group_label: "Dados do curso"
-    label: "Nome Cine da área geral"
+    label: "Área geral do curso (CINE Brasil)"
     description: "Nome da área geral, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
     sql: ${TABLE}."NO_CINE_AREA_GERAL" ;;
@@ -1504,7 +1504,7 @@ view: inep_lgpd {
 
   dimension: no_cine_rotulo {
     group_label: "Dados do curso"
-    label: "Nome do rótulo Cine"
+    label: "Nome do curso (CINE Brasil)"
     description: "Nome do curso, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco"
     type: string
     sql: ${TABLE}."NO_CINE_ROTULO" ;;
