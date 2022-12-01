@@ -15,6 +15,14 @@ view: financeiro_safrado {
     hidden: yes
   }
 
+  dimension: fundo {
+    description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
+    type: number
+    sql: ${TABLE}."FUNDO" ;;
+    hidden: no
+  }
+
+
   dimension: desp_pdd_liquida {
     description: "Valor de despesa PDD líquida na safra (Despesa_PDD - Recuperado_WO)."
     type: number
