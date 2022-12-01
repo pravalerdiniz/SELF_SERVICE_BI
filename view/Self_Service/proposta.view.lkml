@@ -2068,7 +2068,6 @@ dimension: vl_tarifa_cadastro {
     label: "Valor da Parcela"
     value_format: "0"
     description: "Indica o valor da parcela do contrato."
-    hidden: yes
     sql: ${TABLE}."VL_PARCELA" ;;
   }
 
@@ -2078,7 +2077,6 @@ dimension: vl_tarifa_cadastro {
     label: "Valor Prestação"
     value_format: "$ #,###.00"
     description: "Indica o valor da prestação do contrato"
-    hidden:  yes
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
 
