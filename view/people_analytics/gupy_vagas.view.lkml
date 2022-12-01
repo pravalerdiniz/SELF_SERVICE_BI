@@ -335,7 +335,7 @@ view: gupy_vagas {
 
   dimension: nome {
     group_label: "Dados da Vaga"
-    label: "Vaga"
+    label: "Nome da Vaga"
     type: string
     sql: ${TABLE}."NOME" ;;
   }
