@@ -151,6 +151,7 @@ explore: comparacao_ot {
     -financeiro.aluno_nome,
     -financeiro.arrasto_dias_atraso,
     -financeiro.ipca_12m,
+    -financeiro.vl_ipca_acumulado,
     -financeiro.sum_PDD
   ]
 
@@ -169,11 +170,14 @@ explore: financeiro_safrado {
   view_label: "Financeiro Safrado"
 }
 
-#Tabela não utilizada 06/09/22 - Lulinha
-# explore: final_pdd {
-#   label: "Final PDD"
-#   view_label: "Final PDD"
-# }
+#Tabela não utilizada 06/09/22 - Lulinha -
+# Reativada em 23/11/22 - Murilo (Time de cancelamento necessista para contagem de alunos por fundo)
+# 24/11/22 - Murilo (Troca GRADUADO.AD_HOC.FINAL_PDD para VETERANO.FATO.FATO_FINAL_PDD)
+# [Motivo: Graduado está desatualizada e Gui disse que vai demorar para corrigir]
+ explore: fato_final_pdd {
+   label: "Final PDD"
+   view_label: "Final PDD"
+ }
 
 #Tabela não utilizada 06/09/22 - Lulinha
 # explore: fato_swap {

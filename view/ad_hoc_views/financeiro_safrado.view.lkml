@@ -2,7 +2,7 @@
 view: financeiro_safrado {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."DESPESA_PDD_LIQUIDA"
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -36,6 +36,30 @@ view: financeiro_safrado {
     type: number
     value_format: "$ #,###.00"
     sql: ${TABLE}."PAGAMENTOS" ;;
+    hidden: yes
+  }
+
+  dimension: vp_pagamentos {
+    description: "Valor de pagamentos recebidos a valor presente."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."PAGAMENTOS_VP_LIMITADO" ;;
+    hidden: yes
+  }
+
+  dimension: vp_originado {
+    description: "Valor de originações no mês de referência."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."VP_ORIGINADO" ;;
+    hidden: yes
+  }
+
+  dimension: accrual_juros {
+    description: "Valor de receita de juros safrado."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."RECEITA_JUROS" ;;
     hidden: yes
   }
 
@@ -92,6 +116,14 @@ view: financeiro_safrado {
     type: number
     value_format: "$ #,###.00"
     sql: ${TABLE}."VP_CARTEIRA" ;;
+    hidden: yes
+  }
+
+  dimension: var_carteira {
+    description: "Variação do Valor presente da carteira."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."VAR_CARTEIRA" ;;
     hidden: yes
   }
 
@@ -182,6 +214,33 @@ view: financeiro_safrado {
     group_label: "Valor presente"
     group_item_label: "VP em WO"
     description: "Soma do valor presente em WO."
+  }
+
+  measure: total_vp_pagamentos {
+    type: sum
+    sql: ${vp_pagamentos} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor presente"
+    group_item_label: "VP Pagamentos"
+    description: "Soma do valor presente de pagamentos recebidos."
+  }
+
+  measure: total_vp_originado {
+    type: sum
+    sql: ${vp_originado} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor presente"
+    group_item_label: "VP Originações"
+    description: "Soma do valor presente de originações."
+  }
+
+  measure: total_accrual_juros {
+    type: sum
+    sql: CASE WHEN ${tdt_ano_mes_year} = 2016 THEN 0 ELSE ${var_carteira} + ${vp_pagamentos} - ${vp_originado} END ;;
+    value_format: "$ #,###.00"
+    group_label: "Receita de Juros"
+    group_item_label: "Receita de Juros"
+    description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
   }
 
   measure: count {

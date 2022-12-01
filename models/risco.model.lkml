@@ -109,6 +109,7 @@ explore: alunos {
     - financeiro.perc_alunos,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_eleito_semfiador_testeab,

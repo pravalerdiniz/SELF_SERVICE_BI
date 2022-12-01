@@ -400,6 +400,30 @@ view: leads_balcao {
     description: "Categorização das faixas dos deltas"
   }
 
+  dimension: flag_mensalidade_desconto_analise_ies {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Igualdade Mensalidades Desconto Balcão x Análise IES"
+    sql: ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < 1
+    AND ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1  ;;
+    description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
+  }
+
+  dimension: flag_ultima_simulacao {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Última Simulação"
+    sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
+    description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
+  }
+
+  measure: max_data_ultima_simulacao {
+    type: date_time
+    group_label: "Dados da Proposta"
+    group_item_label: "Última Data da Proposta"
+    sql: MAX(${data_proposta_raw});;
+  }
+
   measure: count_leads {
     type: count_distinct
     sql: ${cpf_lead} ;;

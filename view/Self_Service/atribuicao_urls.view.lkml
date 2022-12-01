@@ -120,6 +120,13 @@ view: atribuicao_urls {
     group_label: "Dados de Descoberta - 100 Dias"
   }
 
+  dimension: concat_campaign_source_medium_100 {
+    type:  string
+    hidden:  yes
+    sql: CONCAT(coalesce(${utm_campaign_descoberta_100d},''),coalesce(${utm_source_descoberta_100d},''),coalesce(${utm_medium_descoberta_100d},'')) ;;
+    label: "Concat Atrib"
+  }
+
   dimension: utm_term_descoberta_100d {
     type: string
     label: "Term de Descoberta - 100 Dias"

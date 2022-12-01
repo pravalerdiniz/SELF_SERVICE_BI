@@ -182,21 +182,6 @@ view: base_atendimento_fundo_funil {
     sql: ${TABLE}."DATA_CESSAO_ORIGINAL" ;;
   }
 
-  #criando dimensão abaixo enquanto data_cessao_ultima_proposta não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar data_cessao_ultima_proposta
-  dimension_group: date_cessao_ultima_proposta_temp {
-    label: "Data Status de Formalização/Cessão"
-    type: time
-    timeframes: [
-      hour,
-      date,
-      day_of_week,
-      week,
-      month,
-      year
-    ]
-    sql: CASE WHEN ${flg_cedido_temp} THEN ${TABLE}."DT_STATUS" ELSE NULL END;;
-  }
-
   dimension_group: dt_status {
     label: "Data do Último Status do Aluno"
     type: time
@@ -260,27 +245,11 @@ view: base_atendimento_fundo_funil {
     sql:  ${TABLE}."FLG_CEDIDO"  ;;
   }
 
-  #criando dimensão abaixo enquanto flg_cedido não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar flg_cedido
-  dimension: flg_cedido_temp {
-    label: "Flag Cedido Ajuste"
-    description: "Indica se o aluno foi formalizado/cedido (status = 41, 50 ou 51)"
-    type: yesno
-    sql: ${id_status_destino_geral} IN (41, 50, 51) ;;
-  }
-
   dimension: validador {
     label: "Validador"
     description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
     type: yesno
     sql:  ${TABLE}."VALIDADOR"  ;;
-  }
-
-  #criando dimensão abaixo enquanto validador não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar validador
-  dimension: validador_temp {
-    label: "Validador Ajuste"
-    description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
-    type: yesno
-    sql:  CASE WHEN ${sub_titulo_chamado} IS NOT NULL AND (${date_cessao_ultima_proposta_temp_date} >= ${date_ultimo_contato_date} ;;
   }
 
   dimension: flg_fechamento {
@@ -430,15 +399,6 @@ ELSE ${TABLE}."DS_SUB_TITULO_CHAMADO" END ;;
     description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
     type: yesno
     sql:  CASE WHEN ${flg_consultor_fundo_funil} THEN ${TABLE}."VALIDADOR" ELSE NULL END ;;
-  }
-
-  #criando dimensão abaixo enquanto validador não é ajustada no snow. Após ajuste, apagar dimensão abaixo e utilizar validador
-  dimension: validador_temp_relatorio {
-    label: "Validador Ajuste - Relatório"
-    group_label: "Relatório Extração"
-    description: "Indica se o aluno que foi cedido possui tabulação realizada pelo consultor"
-    type: yesno
-    sql:  ${flg_consultor_fundo_funil} AND (${date_cessao_ultima_proposta_temp_date} >= ${date_ultimo_contato_date}) ;;
   }
 
   dimension: flg_contatar_relatorio {
