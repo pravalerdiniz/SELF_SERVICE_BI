@@ -2189,7 +2189,7 @@ explore: dados_intake {
 }
 
 explore: inep_lgpd {
-  label: "Dados INEP - LGPD"
+  label: "INEP - Censo educacional do Ensino Superior (LGPD)"
 }
 
 explore: carteira {
