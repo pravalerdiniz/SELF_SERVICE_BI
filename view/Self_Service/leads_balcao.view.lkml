@@ -409,6 +409,18 @@ view: leads_balcao {
     description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
   }
 
+  dimension: flag_comparativo_desconto_analise_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Mensalidades Balcão x Análise IES (maior ou menor)"
+    sql: CASE
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão."
+  }
+
   dimension: flag_ultima_simulacao {
     type: yesno
     group_label: "Dados da Proposta"
