@@ -616,7 +616,7 @@ explore: jornada {
     join: instituicao_resumo {
     view_label: "3. Instituição"
     sql_on: ${jornada.id_instituicao} = ${instituicao_resumo.id_instituicao};;
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
   }
 
