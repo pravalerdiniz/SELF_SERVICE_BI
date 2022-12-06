@@ -195,8 +195,10 @@ view: request_log {
 
   dimension: filter {
     type: string
-    sql: CASE WHEN ${user_name} = 'NIFI' and ${origin} = 'BACKOFFICE' THEN 'DATA FILTER'
-    ELSE 'BUSINES FILTER'
+    sql: CASE
+    WHEN ${user_name} = 'NiFi' THEN 'DATA FILTER'
+    WHEN ${user_name} = 'credit-release' THEN 'BUSINESS FILTER'
+    ELSE ' '
     END;;
     label: "Tipo de Filtro"
     group_label: ""
@@ -206,8 +208,8 @@ view: request_log {
   dimension: erro_validacao {
     type: string
     sql: CASE
-          WHEN ${sucesso} = 'No' THEN 'Com Erro'
-          WHEN ${sucesso} = 'Yes' THEN 'Sem Erro'
+          WHEN ${sucesso} = 'false' THEN 'Com Erro'
+          WHEN ${sucesso} = 'true' THEN 'Sem Erro'
         ELSE 'Vazio'
         END;;
     label: "Validação de Erro"
