@@ -9,6 +9,7 @@ view: vw_atualizacao_produtos {
   # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
+    description: "ID do Log"
     primary_key: yes
     type: number
     sql: ${TABLE}."ID" ;;
@@ -19,16 +20,19 @@ view: vw_atualizacao_produtos {
   # This dimension will be called "Acao" in Explore.
 
   dimension: acao {
+    description: "Ação realizda na tela"
     type: string
     sql: ${TABLE}."ACAO" ;;
   }
 
   dimension: campus_id {
+    description: "ID do Campus"
     type: number
     sql: ${TABLE}."CAMPUS_ID" ;;
   }
 
   dimension: campus_nome {
+    description: "Nome do Campus"
     type: string
     sql: ${TABLE}."CAMPUS_NOME" ;;
   }
@@ -37,6 +41,7 @@ view: vw_atualizacao_produtos {
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: created {
+    description: "Data de criação do log"
     type: time
     timeframes: [
       raw,
@@ -51,6 +56,7 @@ view: vw_atualizacao_produtos {
   }
 
   dimension: ies_id {
+    description: "Nome d IES"
     type: number
     sql: ${TABLE}."IES_ID" ;;
   }
@@ -66,11 +72,13 @@ view: vw_atualizacao_produtos {
   }
 
   dimension: produto_id {
+    description: "Identificador único do produto."
     type: number
     sql: ${TABLE}."PRODUTO_ID" ;;
   }
 
   dimension: produto_nome {
+    description: "Nome do Produto"
     type: string
     sql: ${TABLE}."PRODUTO_NOME" ;;
   }
@@ -92,6 +100,7 @@ view: vw_atualizacao_produtos {
       year
     ]
     sql: ${TABLE}."UPDATED_AT" ;;
+    hidden: yes
   }
 
   measure: count {

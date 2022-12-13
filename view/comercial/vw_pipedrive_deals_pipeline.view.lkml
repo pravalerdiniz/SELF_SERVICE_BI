@@ -70,12 +70,36 @@ view: vw_pipedrive_deals_pipeline {
          end ;;
   }
 
+  dimension: desc_interesse_negocio_4 {
+    type: string
+    group_label: "Interesse de Negócio"
+    group_item_label: "Desc. Interesse de negócio 4"
+    description: ""
+    hidden: yes
+    sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_4" is null
+              then ''
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_4"
+         end ;;
+  }
+
+  dimension: desc_interesse_negocio_5 {
+    type: string
+    group_label: "Interesse de Negócio"
+    group_item_label: "Desc. Interesse de negócio 5"
+    description: ""
+    hidden: yes
+    sql: case when ${TABLE}."DESC_INTERESSE_NEGOCIO_5" is null
+              then ''
+              else ${TABLE}."DESC_INTERESSE_NEGOCIO_5"
+         end ;;
+  }
+
   dimension: desc_interesse_negocio_concat {
     type: string
     group_label: "Interesse de Negócio"
     group_item_label: "Interesse de negócio"
     description: ""
-    sql: concat(${desc_interesse_negocio_1}, ' ', ${desc_interesse_negocio_2}, ' ', ${desc_interesse_negocio_3}) ;;
+    sql: concat(${desc_interesse_negocio_1}, ' ', ${desc_interesse_negocio_2}, ' ', ${desc_interesse_negocio_3}, ' ', ${desc_interesse_negocio_4}, ' ', ${desc_interesse_negocio_5}) ;;
   }
 
   dimension: desc_origem_lead {

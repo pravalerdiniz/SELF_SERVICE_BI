@@ -217,6 +217,7 @@ explore: status {
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
@@ -305,10 +306,6 @@ explore: jornada {
     - alunos.celular,
     - alunos.escolaridade,
     - alunos.numero_dependentes,
-    - alunos.cep,
-    - alunos.bairro,
-    - alunos.cidade,
-    - alunos.uf,
     - alunos.tipo_residencia,
     - alunos.estado_civil,
     - alunos.tempo_empresa,
@@ -379,6 +376,7 @@ explore: jornada {
     - alunos.ativo_ano_mes,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - instituicao.cnpj_ie,
     - instituicao.nome_fantasia,
@@ -412,6 +410,7 @@ explore: jornada {
     - instituicao.gerente_regional,
     - instituicao.id_instituicao,
     - interacoes_apontamentos_monitoria *,
+    - interacoes_metricas_tickets *,
     - dados_jornada_interacoes *
   ]
 
@@ -427,6 +426,12 @@ explore: jornada {
     view_label: "1.1. Atribuição"
     sql_on:  ${atribuicao_urls.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
+    relationship: many_to_one
+  }
+
+  join: depara_campanhas {
+    view_label: "1.1. Atribuição"
+    sql_on: ${depara_campanhas.concat_campaign_source_medium} = ${atribuicao_urls.concat_campaign_source_medium_100};;
     relationship: many_to_one
   }
 
@@ -608,7 +613,7 @@ explore: jornada {
     join: instituicao_resumo {
     view_label: "3. Instituição"
     sql_on: ${jornada.id_instituicao} = ${instituicao_resumo.id_instituicao};;
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
   }
 
@@ -734,6 +739,13 @@ explore: jornada {
     relationship: one_to_many
   }
 
+  join: interacoes_metricas_tickets {
+    view_label: "1.14 Interações de Atendimento"
+    sql_on: ${interacoes.id_ticket} = ${interacoes_metricas_tickets.ticket_id}} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: dados_jornada_interacoes {
     from: dados_jornada_interacoes
     view_label: "Jornada"
@@ -790,6 +802,7 @@ explore: instituicao {
     - proposta.perc_tx_subsidiado_ies,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -1058,6 +1071,7 @@ explore: financeiro {
     type: left_outer
   }
 
+
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
@@ -1318,6 +1332,7 @@ explore: proposta {
     - atribuicao_nova.count_id_cpf,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - jornada.flag_balcao,
@@ -1509,6 +1524,13 @@ explore: proposta {
   ##  relationship: one_to_one
   ##  type: left_outer}
 
+  join: fin_qtd_mens_contrato {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fin_qtd_mens_contrato.id_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 }
 
 explore: alunos {
@@ -1564,6 +1586,7 @@ explore: alunos {
     - jornada.perc_cpf,
     - financeiro.arrasto_dias_atraso,
     - financeiro.ipca_12m,
+    - financeiro.vl_ipca_acumulado,
     - financeiro.sum_PDD,
     - jornada.tempo_aprovies_enviodoc,
     - jornada.tempo_enviodoc_aguass,
@@ -2163,7 +2186,7 @@ explore: dados_intake {
 }
 
 explore: inep_lgpd {
-  label: "Dados INEP - LGPD"
+  label: "INEP - Censo educacional do Ensino Superior (LGPD)"
 }
 
 explore: carteira {
@@ -2286,7 +2309,8 @@ explore:  base_atendimento_fundo_funil{
 }
 
 explore: negocios_provas_pravaler {
-  label: "comercial provas pravaler"
+  label: "Comercial - Provas Pravaler"
+  description: "Dados do pipeline de vendas do produto Provas Pravaler"
 
   join: etapas_funil_pipedrive_provas_prv {
     relationship: one_to_many
@@ -2303,4 +2327,29 @@ explore: vw_atualizacao_produtos {
 explore: orquestra_cancelamento {
   label: "Orquestra - Cancelamento"
   description: "Histórico dos chamados da fila de Cancelamento"
+}
+
+explore: orquestra_p17 {
+  label: "Orquestra - P17"
+  description: "Histórico dos chamados da fila P17"
+}
+
+explore: position_based {
+  label: "Modelo de Atribuição Position-Based"
+  description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
+}
+
+explore: position_based_jornada {
+  label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
+  description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
+}
+
+explore: meta_canal {
+  label: "Metas por Canal - Planejamento Comercial"
+  description: "Metas do Q4 2022"
+}
+
+explore: faturamento_provas_pravaler {
+  label: "Faturamento - Provas Pravaler"
+  description: "Dados de faturamento do produto Provas Pravaler"
 }

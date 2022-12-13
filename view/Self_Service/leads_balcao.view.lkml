@@ -357,16 +357,83 @@ view: leads_balcao {
     group_item_label: "Flag Garantidor"
   }
 
-  dimension: diferenca_mensalidades_bruta_descontada {
+  dimension: flag_mensalidades_bruta_descontada {
     type: string
     group_label: "Dados da Instituição"
     group_item_label: "Diferença Mensalidades Bruta e Descontada"
     sql: CASE
-          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) > 5 THEN 'Divergência'
+          WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) > 0 THEN 'Desconto'
           WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto}) < 0 THEN 'Red Flag'
-          ELSE 'Tolerância'
+          ELSE 'Igual'
           END ;;
-    description: "Regra para calcular a flag: Se o bruto for 5 reais mais caro que o descontado, há divergência. Se o delta estiver entre 0 e 5 reais, está dentro da tolerância. Se o descontado for maior que o bruto, é red flag, pois não deveria acontecer."
+    description: "Regra para calcular identificar se a mensalidade descontada foi menor, igual ou maior que a mensalidade bruta"
+  }
+
+  dimension: faixa_delta_bruto_desconto {
+    type: string
+    group_label: "Dados da Instituição"
+    group_item_label: "Faixa Delta Bruto Desconto"
+    sql: CASE
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} < 0 THEN '< 0%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} >= 0
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.1 THEN '0-10%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.1
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.2 THEN '10-20%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.2
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.3 THEN '20-30%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.3
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.4 THEN '30-40%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.4
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.5 THEN '40-50%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.5
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.6 THEN '50-60%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.6
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.7 THEN '60-70%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.7
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.8 THEN '70-80%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.8
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 0.9 THEN '80-90%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 0.9
+        AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 1 THEN '90-100%'
+      WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 1 THEN '> 100%'
+      END ;;
+    description: "Categorização das faixas dos deltas"
+  }
+
+  dimension: flag_mensalidade_desconto_analise_ies {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Igualdade Mensalidades Desconto Balcão x Análise IES"
+    sql: ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < 1
+    AND ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1  ;;
+    description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
+  }
+
+  dimension: flag_comparativo_desconto_analise_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Mensalidades Balcão x Análise IES (maior ou menor)"
+    sql: CASE
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão."
+  }
+
+  dimension: flag_ultima_simulacao {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Última Simulação"
+    sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
+    description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
+  }
+
+  measure: max_data_ultima_simulacao {
+    type: date_time
+    group_label: "Dados da Proposta"
+    group_item_label: "Última Data da Proposta"
+    sql: MAX(${data_proposta_raw});;
   }
 
   measure: count_leads {

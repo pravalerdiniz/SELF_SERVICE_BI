@@ -923,6 +923,10 @@ view: gupy_candidaturas {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [drill_fields*]
+  }
+
+  set: drill_fields {
+    fields: [id_candidatura, cd_vaga, nm_vaga, nm_candidato, dt_candidatura_date, dt_publicacao_date, status_candidatura, status_vaga]
   }
 }

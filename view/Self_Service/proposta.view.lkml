@@ -2068,7 +2068,6 @@ dimension: vl_tarifa_cadastro {
     label: "Valor da Parcela"
     value_format: "0"
     description: "Indica o valor da parcela do contrato."
-    hidden: yes
     sql: ${TABLE}."VL_PARCELA" ;;
   }
 
@@ -2078,7 +2077,6 @@ dimension: vl_tarifa_cadastro {
     label: "Valor Prestação"
     value_format: "$ #,###.00"
     description: "Indica o valor da prestação do contrato"
-    hidden:  yes
     sql: ${TABLE}."VL_PRESTACOES" ;;
   }
 
@@ -2086,7 +2084,7 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Principal"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor principal do contrato"
     link: {label:"Documentação - Valor Prncipal"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/940736905/VALOR+PRINCIPAL"}

@@ -2,7 +2,7 @@
 view: financeiro_safrado {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."DESPESA_PDD_LIQUIDA"
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -14,6 +14,14 @@ view: financeiro_safrado {
     sql: ${TABLE}."DESP_PDD" ;;
     hidden: yes
   }
+
+  dimension: fundo {
+    description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
+    type: number
+    sql: ${TABLE}."FUNDO" ;;
+    hidden: no
+  }
+
 
   dimension: desp_pdd_liquida {
     description: "Valor de despesa PDD líquida na safra (Despesa_PDD - Recuperado_WO)."
@@ -36,6 +44,30 @@ view: financeiro_safrado {
     type: number
     value_format: "$ #,###.00"
     sql: ${TABLE}."PAGAMENTOS" ;;
+    hidden: yes
+  }
+
+  dimension: vp_pagamentos {
+    description: "Valor de pagamentos recebidos a valor presente."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."PAGAMENTOS_VP_LIMITADO" ;;
+    hidden: yes
+  }
+
+  dimension: vp_originado {
+    description: "Valor de originações no mês de referência."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."VP_ORIGINADO" ;;
+    hidden: yes
+  }
+
+  dimension: accrual_juros {
+    description: "Valor de receita de juros safrado."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."RECEITA_JUROS" ;;
     hidden: yes
   }
 
@@ -95,6 +127,14 @@ view: financeiro_safrado {
     hidden: yes
   }
 
+  dimension: var_carteira {
+    description: "Variação do Valor presente da carteira."
+    type: number
+    value_format: "$ #,###.00"
+    sql: ${TABLE}."VAR_CARTEIRA" ;;
+    hidden: yes
+  }
+
   dimension: vp_wo {
     description: "Valor presente em WriteOff."
     type: number
@@ -117,8 +157,8 @@ view: financeiro_safrado {
     sql: ${desp_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Valor de PDD."
-    description: "Soma do valor de PDD."
+    group_item_label: "Total Despesa de PDD."
+    description: "Soma do (ΔEstoque_PDD + VP_WO)."
   }
 
   measure: total_estoque_pdd{
@@ -126,7 +166,7 @@ view: financeiro_safrado {
     sql: ${estoque_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Valor de estoque."
+    group_item_label: "Total Estoque de PDD."
     description: "Soma do valor de estoque PDD."
   }
 
@@ -142,10 +182,10 @@ view: financeiro_safrado {
   measure: total_pdd_carteira {
     type: sum
     sql: ${pdd_carteira} ;;
-    value_format: "$ #,###.00"
+    value_format_name: percent_2
     group_label: "PDD"
-    group_item_label: "PDD da carteira."
-    description: "Soma do PDD da carteira."
+    group_item_label: "PDD da carteira em %."
+    description: "Soma do (Estoque_PDD/VP_carteira) da carteira."
   }
 
   measure: total_rec_wo {
@@ -162,7 +202,7 @@ view: financeiro_safrado {
     sql: ${var_estoque_pdd} ;;
     value_format: "$ #,###.00"
     group_label: "PDD"
-    group_item_label: "Soma do Delta do estoque."
+    group_item_label: "ΔEstoque_PDD."
     description: "Soma da variação do estoque PDD."
   }
 
@@ -171,7 +211,7 @@ view: financeiro_safrado {
     sql: ${vp_carteira} ;;
     value_format: "$ #,###.00"
     group_label: "Valor presente"
-    group_item_label: "Valor presente"
+    group_item_label: "VP Carteira"
     description: "Soma do valor presente da carteira."
   }
 
@@ -180,8 +220,35 @@ view: financeiro_safrado {
     sql: ${vp_wo} ;;
     value_format: "$ #,###.00"
     group_label: "Valor presente"
-    group_item_label: "WO"
+    group_item_label: "VP em WO"
     description: "Soma do valor presente em WO."
+  }
+
+  measure: total_vp_pagamentos {
+    type: sum
+    sql: ${vp_pagamentos} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor presente"
+    group_item_label: "VP Pagamentos"
+    description: "Soma do valor presente de pagamentos recebidos."
+  }
+
+  measure: total_vp_originado {
+    type: sum
+    sql: ${vp_originado} ;;
+    value_format: "$ #,###.00"
+    group_label: "Valor presente"
+    group_item_label: "VP Originações"
+    description: "Soma do valor presente de originações."
+  }
+
+  measure: total_accrual_juros {
+    type: sum
+    sql: ${accrual_juros}  ;;
+    value_format: "$ #,###.00"
+    group_label: "Receita de Juros"
+    group_item_label: "Receita de Juros"
+    description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
   }
 
   measure: count {

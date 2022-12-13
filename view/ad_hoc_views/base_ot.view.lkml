@@ -99,7 +99,7 @@ view: base_ot {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."DATA_ENTRADA" ;;
-    hidden: yes
+    hidden: no
   }
 
   dimension_group: data_modificacao {
@@ -149,7 +149,7 @@ view: base_ot {
     datatype: date
     label: "Referência"
     sql: ${TABLE}."DATA_REFERENCIA" ;;
-    hidden: yes
+    hidden: no
   }
 
   dimension_group: data_vencimento {
