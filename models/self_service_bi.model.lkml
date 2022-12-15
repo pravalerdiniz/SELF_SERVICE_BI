@@ -1152,7 +1152,9 @@ join: sql_runner_query_range_boleto {
     view_label: "1. Financeiro"
     sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf};;
     fields: [
-      alunos.flg_aluno_ativo
+      alunos.flg_aluno_ativo,
+      alunos.flg_inadimplente,
+      alunos.cpf_aluno
     ]
     relationship: one_to_one
     type: left_outer
