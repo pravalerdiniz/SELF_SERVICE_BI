@@ -232,6 +232,20 @@ explore: status {
     relationship: many_to_one
   }
 
+  join: flag_unico_aluno {
+    view_label: "2. Proposta"
+    sql_on: ${status.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_unico_garantidor {
+    view_label: "2. Proposta"
+    sql_on: ${status.id_proposta} = ${flag_unico_garantidor.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
     sql_on: ${proposta_projeto_decola.id_proposta} = ${proposta.id_proposta} and
@@ -269,6 +283,13 @@ explore: status {
     sql_on: ${base_cruzeiro_cs.id_cpf} = ${status.id_cpf} ;;
     relationship: one_to_many
     type: full_outer
+  }
+
+  join: alunos_painel_risco {
+    view_label: "3. Alunos"
+    sql_on:${status.id_cpf} = ${alunos_painel_risco.id_cpf} and ${status.id_proposta} = ${alunos_painel_risco.proposta}  ;;
+    type: left_outer
+    relationship: many_to_one
   }
 
 
@@ -1152,7 +1173,9 @@ join: sql_runner_query_range_boleto {
     view_label: "1. Financeiro"
     sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf};;
     fields: [
-      alunos.flg_aluno_ativo
+      alunos.flg_aluno_ativo,
+      alunos.flg_inadimplente,
+      alunos.cpf_aluno
     ]
     relationship: one_to_one
     type: left_outer
@@ -2334,16 +2357,6 @@ explore: orquestra_p17 {
   description: "Histórico dos chamados da fila P17"
 }
 
-explore: position_based {
-  label: "Modelo de Atribuição Position-Based"
-  description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
-}
-
-explore: position_based_jornada {
-  label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
-  description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
-}
-
 explore: meta_canal {
   label: "Metas por Canal - Planejamento Comercial"
   description: "Metas do Q4 2022"
@@ -2352,4 +2365,9 @@ explore: meta_canal {
 explore: faturamento_provas_pravaler {
   label: "Faturamento - Provas Pravaler"
   description: "Dados de faturamento do produto Provas Pravaler"
+}
+
+explore: position_based_full_funnel {
+  label: "Position-Based Full Funnel"
+  description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
