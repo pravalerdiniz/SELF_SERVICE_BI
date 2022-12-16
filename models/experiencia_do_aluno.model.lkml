@@ -272,3 +272,45 @@ explore: interacoes_metricas_tickets{
   label: "Interações - Métricas dos Tickets"
   description: " Essa base trás as métricas dos tickets."
 }
+
+explore: tickets_mundiale_zendesk {
+  label: "Tickets Mundiale e Zendesk"
+  view_label: "1. Mundiale e Zendesk"
+  description: " Essa base trás as informações Mundiale (BOT, CHAT e WHATSAPP) e da Zendesk (LIGAÇÃO E T2) com revisão das Regras de Negócios."
+  fields: [ALL_FIELDS *,
+    - alunos.ativo_ano_mes,
+    - alunos.flg_balcao,
+    - interacoes_detalhes_ligacao.caminho_ura,
+    - interacoes_detalhes_ligacao.id_ligacao,
+  ]
+
+  join: interacoes_detalhes_ligacao {
+    view_label: "2. Ligação (55pbx)"
+    type: full_outer
+    sql_on: ${tickets_mundiale_zendesk.zendesk_id} = ${interacoes_detalhes_ligacao.id_ticket};;
+    relationship: one_to_one
+  }
+
+  join: interacoes_metricas_tickets {
+    view_label: "3. Métricas dos Tickets da Zendesk"
+    type: left_outer
+    sql_on: ${tickets_mundiale_zendesk.zendesk_id} = ${interacoes_metricas_tickets.ticket_id};;
+    relationship: one_to_one
+  }
+
+  join: alunos {
+    view_label: "4. Alunos"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${alunos.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: dados_jornada_interacoes {
+    view_label: "5. Jornada"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+
+}
