@@ -16,7 +16,7 @@ view: position_based_full_funnel {
 
   measure: credito {
     type: sum
-    sql: ${credito} ;;
+    sql: ${TABLE}."CREDITO" ;;
   }
 
   dimension_group: date_status {
