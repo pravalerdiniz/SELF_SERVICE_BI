@@ -280,6 +280,8 @@ explore: tickets_mundiale_zendesk {
   fields: [ALL_FIELDS *,
     - alunos.ativo_ano_mes,
     - alunos.flg_balcao,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab,
     - interacoes_detalhes_ligacao.caminho_ura,
     - interacoes_detalhes_ligacao.id_ligacao,
   ]
@@ -305,9 +307,23 @@ explore: tickets_mundiale_zendesk {
     relationship: many_to_many
   }
 
+  join: proposta {
+    view_label: "5. Proposta"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${proposta.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
   join: dados_jornada_interacoes {
-    view_label: "5. Jornada"
-    sql_on: ${tickets_mundiale_zendesk.cpf_cliente}= ${dados_jornada_interacoes.cpf_requester} ;;
+    view_label: "6. Jornada"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente}= ${dados_jornada_interacoes.cpf_requester} and ${proposta.id_proposta} = ${dados_jornada_interacoes.ID_PROPOSTA};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: status {
+    view_label: "7. Status"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${proposta.cpf_aluno} and ${proposta.id_proposta} = ${status.id_proposta} ;;
     relationship: many_to_many
     type: left_outer
   }
