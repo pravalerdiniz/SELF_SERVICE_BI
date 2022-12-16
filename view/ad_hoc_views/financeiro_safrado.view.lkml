@@ -215,6 +215,18 @@ view: financeiro_safrado {
     description: "Soma do valor presente da carteira."
   }
 
+  measure: total_vp_carteira_profit_sharing {
+    type: sum
+    sql: CASE
+              WHEN ${fundo} = 2  THEN  ${vp_carteira} * 0.5
+              WHEN ${fundo} = 41 THEN  ${vp_carteira} * 0.4
+         ELSE ${vp_carteira} END;;
+    value_format: "$ #,###.00"
+    group_label: "Valor presente"
+    group_item_label: "VP Carteira Profit Sharing"
+    description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV, 40% para FIDC III e 100% para FIDC I e II."
+  }
+
   measure: total_vp_wo {
     type: sum
     sql: ${vp_wo} ;;
