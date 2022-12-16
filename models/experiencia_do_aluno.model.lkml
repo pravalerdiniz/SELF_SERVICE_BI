@@ -312,5 +312,12 @@ explore: tickets_mundiale_zendesk {
     type: left_outer
   }
 
+  join: nps_relacional_ultima_nota {
+    view_label: "8. NPS mais Recente do Aluno"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${nps_relacional_ultima_nota.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
 
 }
