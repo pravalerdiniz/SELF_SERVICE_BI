@@ -54,6 +54,7 @@ GROUP BY
 
   dimension: ano_mes {
     type: string
+    primary_key: yes
     group_item_label: "Data"
     description: "Mês referente à taxa de contato"
     sql: ${TABLE}."ANO_MES" ;;

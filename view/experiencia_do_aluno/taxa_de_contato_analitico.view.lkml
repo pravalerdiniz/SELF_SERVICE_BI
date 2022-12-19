@@ -57,6 +57,7 @@ WHERE tickets_mundiale_zendesk."FINALIZADO_POR"  = 'ATH' AND tickets_mundiale_ze
 
   dimension: ano_mes {
     type: string
+    primary_key: yes
     group_item_label: "Data"
     description: "Mês referente à taxa de contato"
     sql: ${TABLE}."ANO_MES" ;;
