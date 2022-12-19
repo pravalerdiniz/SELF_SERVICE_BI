@@ -775,6 +775,13 @@ explore: jornada {
     type: left_outer
   }
 
+  join: tickets_mundiale_zendesk {
+    view_label: "14. Mundiale Zendesk"
+    sql_on: ${jornada.aluno_cpf}=${tickets_mundiale_zendesk.cpf_cliente};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
 #  join: metas_distribuidas {
 #    view_label: "14. Metas por Campus"
 #    sql_on: ${proposta.id_campus} = ${metas_distribuidas.id_campus}
