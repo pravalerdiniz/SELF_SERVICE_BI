@@ -22,12 +22,14 @@ view: vw_extrato_repasse {
   dimension: nome_aluno {
     type: string
     label: "Nome"
+    group_label: "Dados do Aluno"
     sql: ${TABLE}."NOME" ;;
   }
 
   dimension: status_aluno {
     type: string
     label: "Status Aluno"
+    group_label: "Dados do Aluno"
     sql: ${TABLE}."STATUS_ALUNO" ;;
   }
 
@@ -49,7 +51,7 @@ view: vw_extrato_repasse {
 
   dimension: id_contrato {
     type: string
-    group_label: "Dados do Aluno"
+    group_label: "Dados do Contrato"
     label: "Contrato"
     description: "Indica o número do contrato do aluno com PRAVALER"
     sql: ${TABLE}."ID_CONTRATO" ;;
@@ -58,72 +60,84 @@ view: vw_extrato_repasse {
   dimension: semestre_financiado {
     type:  number
     label: "Semestre Financiado"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."SEMESTRE_FINANCIADO" ;;
   }
 
   dimension: ano_financiado {
     type:  number
     label: "Ano Financiado"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."ANO_FINANCIADO" ;;
   }
 
   dimension: ra_aluno {
     type:  string
     label: "R.A. Aluno"
+    group_label: "Dados do Aluno"
     sql: ${TABLE}."RA_ALUNO" ;;
   }
 
   dimension: ies_grupo {
     type: string
     label: "IES Grupo"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."IES_GRUPO" ;;
   }
 
   dimension: nome_ies {
     type: string
     label: "Nome IES"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."NOME_IES" ;;
   }
 
   dimension: campus_ies {
     type: string
     label: "Campus IES"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."CAMPUS_IES" ;;
   }
 
   dimension: uf_campus {
     type: string
     label: "UF Campus"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."UF_CAMPUS" ;;
   }
 
   dimension: codigo_curso {
     type: string
     label: "Codigo Curso"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."CODIGO_CURSO" ;;
   }
 
   dimension: nome_curso {
     type: string
     label: "Nome Curso"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."NOME_CURSO" ;;
   }
 
   dimension: mes_contratacao {
     type: number
     label: "Mes Contratacao"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."MES_CONTRATACAO" ;;
   }
 
   dimension: parcela {
     type: string
     label: "Parcela"
+    group_label: "Dados do Título"
     sql: ${TABLE}."PARCELA" ;;
   }
 
   dimension: tipo_aluno {
     type: string
     label: "Tipo Aluno"
+    group_label:"Dados do Aluno"
     sql: ${TABLE}."TIPO_ALUNO" ;;
   }
 
@@ -131,12 +145,14 @@ view: vw_extrato_repasse {
     type: number
     value_format: "$ #,##0.00"
     label: "Valor Financiado Total"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."VL_FINANCIADO_TOTAL" ;;
   }
 
   dimension: qtd_prestacoes {
     type: number
     label: "Qtd. Prestacoes"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."QTD__PRESTACOES" ;;
   }
 
@@ -144,12 +160,14 @@ view: vw_extrato_repasse {
     type: number
     value_format: "$ #,##0.00"
     label: "Valor Mensalidade"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."VALOR_MENSALIDADE" ;;
   }
 
   dimension: dia_escolhido_pagamento {
     type: number
     label: "Dia Escolhido Pagamento"
+    group_label: "Dados do Título"
     sql: ${TABLE}."DIA_ESCOLHIDO_PAGAMENTO" ;;
   }
 
@@ -172,18 +190,21 @@ view: vw_extrato_repasse {
   dimension: valor_ipca {
     type: number
     label: "Valor IPCA"
+    group_label: "Dados do Título"
     sql: ${TABLE}."VALOR_IPCA" ;;
   }
 
   dimension: porcentagem_ipca {
     type: number
     label: "Porcentagem IPCA"
+    group_label: "Dados do Título"
     sql: ${TABLE}."PORCENTAGEM_IPCA" ;;
   }
 
   dimension: valor_do_boleto {
     type: number
     label: "Valor do Boleto"
+    group_label: "Dados do Título"
     sql: ${TABLE}."VALOR_DO_BOLETO" ;;
   }
 
@@ -206,12 +227,14 @@ view: vw_extrato_repasse {
   dimension: dias_de_atraso {
     type: number
     label: "Dias de Atraso"
+    group_label: "Dados do Título"
     sql: ${TABLE}."DIAS_DE_ATRASO" ;;
   }
 
   dimension: taxa_comissao {
     type: number
     label: "Taxa Comissao"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."TAXA_COMISSAO" ;;
   }
 
@@ -219,18 +242,21 @@ view: vw_extrato_repasse {
     type: number
     value_format: "$ #,##0.00"
     label: "Valor Seguro Pravaler"
+    group_label: "Dados de Repasse"
     sql: ${TABLE}."VL_SEGURO_PRAVALER" ;;
   }
 
   dimension: taxa_adesao {
     type: number
     label: "Taxa Adesao"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."TAXA_ADESAO" ;;
   }
 
   dimension: produto_nome {
     type: string
     label: "Produto Nome"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."PRODUTO_NOME" ;;
   }
 
@@ -245,6 +271,7 @@ view: vw_extrato_repasse {
   dimension: num_boleto_origem {
     type: string
     label: "Numero Boleto Origem"
+    group_label: "Dados do Título"
     sql: ${TABLE}."NUM_BOLETO_ORIGEM" ;;
   }
 
@@ -291,7 +318,7 @@ view: vw_extrato_repasse {
 
   dimension: vl_desp_cobranca_pravaler {
     type: number
-    group_label: "Dados do Repasse"
+    group_label: "Dados de Repasse"
     value_format: "$ #,##0.00"
     label: "Valor Despesa Cobranca Pravaler"
     sql: ${TABLE}."VL_DESPESA_COBRANCA_PRAVALER" ;;
@@ -373,18 +400,21 @@ view: vw_extrato_repasse {
   dimension: qtd_mensalidades {
     type: number
     label: "Qtd. Mensalidades"
+    group_label: "Dados do Contrato"
     sql: ${TABLE}."QTD_MENSALIDADES" ;;
   }
 
   dimension: id_ies {
     type: string
     label: "ID IES"
+    group_label: "Dados da Instituição"
     sql: ${TABLE}."ID_IES" ;;
   }
 
   dimension: tipo_baixa {
     type: number
     label: "Tipo Baixa"
+    group_label: "Dados do Título"
     sql: ${TABLE}."TIPO_BAIXA" ;;
   }
 
