@@ -278,6 +278,9 @@ explore: tickets_mundiale_zendesk {
   view_label: "1. Mundiale e Zendesk"
   description: " Essa base trás as informações Mundiale (BOT, CHAT e WHATSAPP) e da Zendesk (LIGAÇÃO E T2) com revisão das Regras de Negócios."
   fields: [ALL_FIELDS *,
+    - ano_mes_carteira_ativa *,
+    - dim_cpf *,
+    - interacoes_metricas_tickets.ticket_id,
     - alunos.ativo_ano_mes,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
@@ -335,5 +338,26 @@ explore: tickets_mundiale_zendesk {
     relationship: many_to_many
   }
 
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${dim_cpf.cpf} ;;
+    relationship: one_to_many
+    type: left_outer
 
+  }
+
+  join: ano_mes_carteira_ativa {
+    view_label: "Ano Mes Carteira Ativa"
+    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+}
+
+
+explore: taxa_de_contato_alunos_ativos_nova{
+  label: "Taxa de Contato de Alunos Ativos"
+  description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, contando a quantidade de tickets desses alunos em cada mês. Valores atualizados, considerando dados da Zendesk e da Mundiale, bem como revisão das regras de negócio."
 }
