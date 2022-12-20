@@ -416,7 +416,7 @@ view: status {
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
-    hidden: yes
+    hidden: no
 
   }
 
@@ -486,7 +486,7 @@ view: status {
 
   measure: count {
     type: count
-    drill_fields: [id, id_proposta, status_origem_geral, status_origem_detalhado ,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
+    drill_fields: [cpf_aluno, id, id_proposta, status_origem_geral, status_origem_detalhado ,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
   }
 
   measure: cont_cpf {
