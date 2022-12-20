@@ -4,51 +4,51 @@ view: gupy_vagas_por_status {
   derived_table: {
     sql:
       select
-        DATA_APROVACAO::DATE as "DATA_REFERENCIA", codigo, 'APROVADA' AS "STATUS", NOME AS VAGA
+        DATA_APROVACAO::DATE as "DATA_REFERENCIA", codigo, 'APROVADA' AS "STATUS", NOME AS VAGA, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_APROVACAO IS NOT NULL
+      WHERE DATA_APROVACAO IS NOT NULL AND NOT FLG_EXCLUIDA
 
       UNION ALL
 
       select
-        DATA_CANCELAMENTO::DATE, codigo, 'CANCELADA', NOME
+        DATA_CANCELAMENTO::DATE, codigo, 'CANCELADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
       WHERE DATA_CANCELAMENTO IS NOT NULL
 
       UNION ALL
 
       select
-        DATA_ENCERRAMENTO::DATE, codigo, 'ENCERRADA', NOME
+        DATA_ENCERRAMENTO::DATE, codigo, 'ENCERRADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_ENCERRAMENTO IS NOT NULL
+      WHERE DATA_ENCERRAMENTO IS NOT NULL AND NOT FLG_EXCLUIDA
 
       UNION ALL
 
       select
-        DATA_CONGELAMENTO::DATE, codigo, 'CONGELADA', NOME
+        DATA_CONGELAMENTO::DATE, codigo, 'CONGELADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_CONGELAMENTO IS NOT NULL
+      WHERE DATA_CONGELAMENTO IS NOT NULL --AND NOT FLG_EXCLUIDA
 
       UNION ALL
 
       select
-        DATA_PUBLICACAO::DATE, codigo, 'PUBLICADA', NOME
+        DATA_PUBLICACAO::DATE, codigo, 'PUBLICADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_PUBLICACAO IS NOT NULL
+      WHERE DATA_PUBLICACAO IS NOT NULL AND NOT FLG_EXCLUIDA
 
       UNION ALL
 
       select
-        DATA_REPROVACAO::DATE, codigo, 'REPROVADA', NOME
+        DATA_REPROVACAO::DATE, codigo, 'REPROVADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_REPROVACAO IS NOT NULL
+      WHERE DATA_REPROVACAO IS NOT NULL AND NOT FLG_EXCLUIDA
 
       UNION ALL
 
       select
-        DATA_CRIACAO::DATE, codigo, 'CADASTRADA', NOME
+        DATA_CRIACAO::DATE, codigo, 'CADASTRADA', NOME, HEADCOUNT
       FROM "GRADUADO"."GENTE_GESTAO"."GUPY_VAGAS"
-      WHERE DATA_CRIACAO IS NOT NULL
+      WHERE DATA_CRIACAO IS NOT NULL --AND NOT FLG_EXCLUIDA
     ;;
     }
 
@@ -84,6 +84,13 @@ view: gupy_vagas_por_status {
     ]
     datatype: date
     sql: ${TABLE}."DATA_REFERENCIA";;
+  }
+
+  dimension: headcount {
+    label: "Headount"
+    type: number
+    sql: ${TABLE}."HEADCOUNT" ;;
+    hidden: yes
   }
 
   measure: count_aprovadas {
@@ -145,6 +152,14 @@ view: gupy_vagas_por_status {
     sql: ${codigo} ;;
     filters: [status: "CADASTRADA"]
     label: "Qtde. Cadastradas"
+    value_format: "0"
+    drill_fields: [detail*]
+  }
+
+  measure: sum_vagas{
+    type: sum
+    sql: ${headcount} ;;
+    label: "Total Headcount"
     value_format: "0"
     drill_fields: [detail*]
   }
