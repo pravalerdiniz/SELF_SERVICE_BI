@@ -1,5 +1,5 @@
 view: orquestra_p17 {
-  sql_table_name: "CS"."ORQUESTRA_P17"
+  sql_table_name: POS_GRADUADO.CS.ORQUESTRA_P17
     ;;
 
 
@@ -799,6 +799,13 @@ view: orquestra_p17 {
     group_item_label: "Tratativa do Caso"
     description: "Subprocesso de Cobrança"
     sql: ${TABLE}."TRATATIVADOCASO" ;;
+  }
+
+  measure: count_chamados {
+    type: count_distinct
+    sql: ${numero_chamado} ;;
+    group_item_label: "Qtd chamados"
+    description: "Contagem de Chamados Únicos"
   }
 
 }
