@@ -252,11 +252,6 @@ explore: taxa_de_contato_alunos_ativos{
   description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, com a quantidade de tickets desses alunos em cada mês. Assim é possível calcular a taxa de contato."
 }
 
-explore: taxa_de_contato_motivo_de_contato{
-  label: "Taxa de Contato por Motivo de Contato"
-  description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
-}
-
 
 explore: ra_tickets_metas{
   label: "Reclame Aqui - Metas"
@@ -271,4 +266,103 @@ explore: reclame_aqui{
 explore: interacoes_metricas_tickets{
   label: "Interações - Métricas dos Tickets"
   description: " Essa base trás as métricas dos tickets."
+}
+
+explore: tickets_mundiale_zendesk {
+  label: "Tickets Mundiale e Zendesk"
+  view_label: "1. Mundiale e Zendesk"
+  description: " Essa base trás as informações Mundiale (BOT, CHAT e WHATSAPP) e da Zendesk (LIGAÇÃO E T2) com revisão das Regras de Negócios."
+  fields: [ALL_FIELDS *,
+    - ano_mes_carteira_ativa *,
+    - dim_cpf *,
+    - interacoes_metricas_tickets.ticket_id,
+    - alunos.ativo_ano_mes,
+    - alunos.flg_balcao,
+    - proposta.flag_elegivel_semfiador_testeab,
+    - proposta.flag_produtos_semfiador_testeab,
+    - interacoes_detalhes_ligacao.caminho_ura,
+    - interacoes_detalhes_ligacao.id_ligacao,
+  ]
+
+  join: interacoes_detalhes_ligacao {
+    view_label: "2. Ligação (55pbx)"
+    type: full_outer
+    sql_on: ${tickets_mundiale_zendesk.zendesk_id} = ${interacoes_detalhes_ligacao.id_ticket};;
+    relationship: one_to_one
+  }
+
+  join: interacoes_metricas_tickets {
+    view_label: "3. Métricas dos Tickets da Zendesk"
+    type: left_outer
+    sql_on: ${tickets_mundiale_zendesk.zendesk_id} = ${interacoes_metricas_tickets.ticket_id};;
+    relationship: one_to_one
+  }
+
+  join: alunos {
+    view_label: "4. Alunos"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${alunos.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: proposta {
+    view_label: "5. Proposta"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${proposta.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: dados_jornada_interacoes {
+    view_label: "6. Jornada"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente}= ${dados_jornada_interacoes.cpf_requester} and ${proposta.id_proposta} = ${dados_jornada_interacoes.ID_PROPOSTA};;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: status {
+    view_label: "7. Status"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${proposta.cpf_aluno} and ${proposta.id_proposta} = ${status.id_proposta} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: nps_relacional_ultima_nota {
+    view_label: "8. NPS mais Recente do Aluno"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${nps_relacional_ultima_nota.cpf_aluno};;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: dim_cpf {
+    view_label: "CPF"
+    sql_on: ${tickets_mundiale_zendesk.cpf_cliente_num} = ${dim_cpf.cpf} ;;
+    relationship: one_to_many
+    type: left_outer
+
+  }
+
+  join: ano_mes_carteira_ativa {
+    view_label: "Ano Mes Carteira Ativa"
+    sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
+
+}
+
+
+explore: taxa_de_contato_alunos_ativos_nova{
+  label: "Taxa de Contato de Alunos Ativos"
+  view_label: "1. Taxa de Contato"
+  description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, contando a quantidade de tickets desses alunos em cada mês. Valores atualizados, considerando dados da Zendesk e da Mundiale, bem como revisão das regras de negócio."
+
+
+  join: taxa_de_contato_analitico {
+    view_label: "2. Analítico"
+    sql_on: ${taxa_de_contato_alunos_ativos_nova.ano_mes} = ${taxa_de_contato_analitico.ano_mes};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 }
