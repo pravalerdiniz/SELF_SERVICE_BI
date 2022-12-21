@@ -1,4 +1,3 @@
-
 view: position_based_full_funnel {
 
   sql_table_name: "POS_GRADUADO"."MARKETING"."POSITION_BASED_FULL_FUNNEL"
@@ -16,6 +15,7 @@ view: position_based_full_funnel {
 
   measure: credito {
     type: sum
+    value_format: "0"
     sql: ${TABLE}."CREDITO" ;;
   }
 
@@ -51,31 +51,38 @@ view: position_based_full_funnel {
 
   dimension: qtd_contatos {
     type: number
+    group_label: "Contatos"
     sql: ${TABLE}."QTD_CONTATOS" ;;
   }
 
   dimension: qtd_contatos_unicos {
     type: number
+    group_label: "Contatos"
     sql: ${TABLE}."QTD_CONTATOS_UNICOS" ;;
   }
 
   dimension: touchpoint {
     type: number
+    group_label: "Contatos"
     sql: ${TABLE}."TOUCHPOINT" ;;
   }
 
   dimension: flg_first {
     type: yesno
+    group_label: "Contatos"
+    group_item_label: "Teste"
     sql: ${TABLE}."FLG_FIRST" ;;
   }
 
   dimension: flg_middle {
     type: yesno
+    group_label: "Contatos"
     sql: ${TABLE}."FLG_MIDDLE" ;;
   }
 
   dimension: flg_last {
     type: yesno
+    group_label: "Contatos"
     sql: ${TABLE}."FLG_LAST" ;;
   }
 
