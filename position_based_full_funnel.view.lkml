@@ -8,6 +8,11 @@ view: position_based_full_funnel {
     sql: ${TABLE}."ID_CPF" ;;
   }
 
+  dimension: etapa {
+    type: string
+    sql: ${TABLE}."ETAPA" ;;
+  }
+
   dimension: canal {
     type: string
     sql: ${TABLE}."CANAL" ;;
@@ -28,7 +33,7 @@ view: position_based_full_funnel {
     sql: ${TABLE}."DATE_STATUS" ;;
   }
 
-  dimension_group: safra {
+  dimension_group: data_credito {
     type: time
     timeframes: [
       raw,
@@ -40,7 +45,7 @@ view: position_based_full_funnel {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}."SAFRA" ;;
+    sql: ${TABLE}."DATA_CREDITO" ;;
   }
 
   dimension: qtd_contatos {
@@ -80,70 +85,6 @@ view: position_based_full_funnel {
     group_label: "Contatos"
     label: "c. Flag Last"
     sql: ${TABLE}."FLG_LAST" ;;
-  }
-
-  dimension: flg_lead {
-    type: yesno
-    group_label: "Funil"
-    label: "1. Flag Lead"
-    sql: ${TABLE}."FLG_LEAD" ;;
-  }
-
-  dimension: flg_simulado {
-    type: yesno
-    group_label: "Funil"
-    label: "2. Flag Simulado"
-    sql: ${TABLE}."FLG_SIMULADO" ;;
-  }
-
-  dimension: flg_iniciado {
-    type: yesno
-    group_label: "Funil"
-    label: "3. Flag Iniciado"
-    sql: ${TABLE}."FLG_INICIADO" ;;
-  }
-
-  dimension: flg_finalizado {
-    type: yesno
-    group_label: "Funil"
-    label: "4. Flag Finalizado"
-    sql: ${TABLE}."FLG_FINALIZADO" ;;
-  }
-
-  dimension: flg_apr_risco {
-    type: yesno
-    group_label: "Funil"
-    label: "5. Flag Aprovado Risco"
-    sql: ${TABLE}."FLG_APR_RISCO" ;;
-  }
-
-  dimension: flg_apr_ies {
-    type: yesno
-    group_label: "Funil"
-    label: "6. Flag Aprovado IES"
-    sql: ${TABLE}."FLG_APR_IES" ;;
-  }
-
-
-  dimension: flg_aguard_doc {
-    type: yesno
-    group_label: "Funil"
-    label: "7. Flag Aguardando Documento"
-    sql: ${TABLE}."FLG_AGUARD_DOC" ;;
-  }
-
-  dimension: flg_aguard_ass {
-    type: yesno
-    group_label: "Funil"
-    label: "8. Flag Aguardando Assinatura"
-    sql: ${TABLE}."FLG_AGUARD_ASS" ;;
-  }
-
-  dimension: flg_formalizado {
-    type: yesno
-    group_label: "Funil"
-    label: "9. Flag Formalizado"
-    sql: ${TABLE}."FLG_FORMALIZADO" ;;
   }
 
   measure: credito {
