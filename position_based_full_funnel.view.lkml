@@ -10,12 +10,25 @@ view: position_based_full_funnel {
 
   dimension: etapa {
     type: string
-    sql: ${TABLE}."ETAPA" ;;
+    sql: CASE
+            WHEN ${TABLE}."ETAPA" = 'Lead' THEN '1. Lead'
+            WHEN ${TABLE}."ETAPA" = 'Simulado' THEN '2. Simulado'
+            WHEN ${TABLE}."ETAPA" = 'Iniciado' THEN '3. Iniciado'
+            WHEN ${TABLE}."ETAPA" = 'Finalizado' THEN '4. Finalizado'
+            WHEN ${TABLE}."ETAPA" = 'Aprovado Risco' THEN '5. Aprovado Risco'
+            WHEN ${TABLE}."ETAPA" = 'Aprovado Instituicao' THEN '6. Aprovado Instituicao'
+            WHEN ${TABLE}."ETAPA" = 'Aguardando Documento' THEN '7. Aguardando Documento'
+            WHEN ${TABLE}."ETAPA" = 'Aguardando Assinatura' THEN '8. Aguardando Assinatura'
+            WHEN ${TABLE}."ETAPA" = 'Formalizado' THEN '9. Formalizado'
+        END;;
   }
 
   dimension: canal {
     type: string
-    sql: ${TABLE}."CANAL" ;;
+    sql: CASE
+            WHEN ${TABLE}."CANAL" = 'ITI' OR ${TABLE}."CANAL" = 'ITAU' THEN 'OUTROS'
+            WHEN ${TABLE}."CANAL" = 'APP' OR ${TABLE}."CANAL" = 'SOCIAL' THEN 'ORGANICO'
+         ELSE ${TABLE}."CANAL" END;;
   }
 
   dimension_group: date_status {
