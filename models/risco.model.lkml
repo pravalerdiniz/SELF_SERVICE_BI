@@ -448,4 +448,12 @@ join: jornada {
 
 
 }
+
+join: fato_final_pdd {
+  view_label: "Final PDD - Veterano/Fato"
+  sql_on: ${alunos.id_cpf} = ${fato_final_pdd.id_cpf};;
+  type: left_outer
+  relationship: one_to_many
+}
+
 }
