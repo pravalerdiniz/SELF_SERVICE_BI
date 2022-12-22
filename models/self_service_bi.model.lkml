@@ -205,7 +205,7 @@ explore: status {
     user_attribute: grupo_ies
   }
   label: "Status"
-  view_label: "1. Status "
+  view_label: "1. Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
   fields: [ALL_FIELDS *,
     - proposta.id_cpf,
