@@ -292,6 +292,12 @@ explore: status {
     relationship: many_to_one
   }
 
+  join: status_contagem_2_0 {
+    view_label: "1. Status"
+    sql_on: ${status.id_cpf} = ${status_contagem_2_0.id_cpf} and ${status.dt_status_date} = ${status_contagem_2_0.dt_status_date} ;;
+    type: left_outer
+    relationship: many_to_many
+  }
 
 }
 
