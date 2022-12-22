@@ -97,10 +97,4 @@ explore: enps {
     type: left_outer
     sql_on: ${enps.id_resposta} = ${enps_flatten.id_resposta} ;;
   }
-
-}
-
-explore: vcom {
-  label: "Crédito & Cobrança Vcom"
-  view_label: "Crédito & Cobrança Vcom"
 }
