@@ -4353,12 +4353,4 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."DT_ACEITE_RENOVACAO" ;;
   }
 
-  dimension: ds_url_descoberta {
-    type: string
-    group_label: "Dados de Marketing"
-    label: "URL Descoberta"
-    description: "Indica o canal de URL associada ao canal de descoberta do aluno"
-    sql: ${TABLE}."DS_URL_DESCOBERTA" ;;
-  }
-
 }
