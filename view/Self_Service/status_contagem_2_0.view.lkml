@@ -32,7 +32,7 @@ group by 1,2 ;;
   }
 
   dimension: count_2_0 {
-    type:  string
+    type:  number
     sql: ${TABLE}."COUNT_2_0" ;;
     label: "Contagem de Status 2.0"
     group_label: "Contagem de Status"
