@@ -374,12 +374,12 @@ explore: alunos {
   }
 
 # Erro: SQL compilation error: Database 'STAGE' does not exist or not authorized.
-#  join: alunos_cobranca_pdd {
-#    view_label: "Cobrança - PDD "
-#    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
-#    type: left_outer
-#    relationship: one_to_many
-#  }
+  join: alunos_cobranca_pdd {
+    view_label: "Cobrança - PDD "
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
+    type: left_outer
+    relationship: one_to_many
+  }
 
   join: alunos_cobranca_radar {
     view_label: "Cobrança - RADAR "
@@ -389,11 +389,11 @@ explore: alunos {
   }
 
 # Erro: SQL compilation error: Database 'STAGE' does not exist or not authorized.
-#  join: alunos_cobranca_pdd_boletos {
-#    view_label: "Cobrança - PDD Boletos"
-#    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
-#    relationship: one_to_many
-#  }
+  join: alunos_cobranca_pdd_boletos {
+    view_label: "Cobrança - PDD Boletos"
+    sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
+    relationship: one_to_many
+  }
 
   join: alunos_mis_meritocracia {
     view_label: "Cobrança - Meritocracia"
@@ -448,4 +448,12 @@ join: jornada {
 
 
 }
+
+join: fato_final_pdd {
+  view_label: "Final PDD - Veterano/Fato"
+  sql_on: ${alunos.id_cpf} = ${fato_final_pdd.id_cpf};;
+  type: left_outer
+  relationship: one_to_many
+}
+
 }

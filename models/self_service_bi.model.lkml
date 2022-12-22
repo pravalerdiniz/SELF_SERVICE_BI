@@ -205,7 +205,7 @@ explore: status {
     user_attribute: grupo_ies
   }
   label: "Status"
-  view_label: "1. Status "
+  view_label: "1. Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
   fields: [ALL_FIELDS *,
     - proposta.id_cpf,
@@ -292,6 +292,12 @@ explore: status {
     relationship: many_to_one
   }
 
+  join: status_contagem_2_0 {
+    view_label: "1. Status"
+    sql_on: ${status.id_cpf} = ${status_contagem_2_0.id_cpf} and ${status.dt_status_date} = ${status_contagem_2_0.dt_status_date} ;;
+    type: left_outer
+    relationship: many_to_many
+  }
 
 }
 
@@ -771,6 +777,13 @@ explore: jornada {
     from: dados_jornada_interacoes
     view_label: "Jornada"
     sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: tickets_mundiale_zendesk {
+    view_label: "14. Mundiale Zendesk"
+    sql_on: ${jornada.aluno_cpf}=${tickets_mundiale_zendesk.cpf_cliente};;
     relationship: many_to_many
     type: left_outer
   }

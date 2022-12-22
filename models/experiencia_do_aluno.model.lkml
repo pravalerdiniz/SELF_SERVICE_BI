@@ -252,11 +252,6 @@ explore: taxa_de_contato_alunos_ativos{
   description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, com a quantidade de tickets desses alunos em cada mês. Assim é possível calcular a taxa de contato."
 }
 
-explore: taxa_de_contato_motivo_de_contato{
-  label: "Taxa de Contato por Motivo de Contato"
-  description: " Essa base trás a taxa de contato por motivo de contato na central de atendimento."
-}
-
 
 explore: ra_tickets_metas{
   label: "Reclame Aqui - Metas"
@@ -359,5 +354,15 @@ explore: tickets_mundiale_zendesk {
 
 explore: taxa_de_contato_alunos_ativos_nova{
   label: "Taxa de Contato de Alunos Ativos"
+  view_label: "1. Taxa de Contato"
   description: "A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos por mês a partir de 2021, e a base de tickets, contando a quantidade de tickets desses alunos em cada mês. Valores atualizados, considerando dados da Zendesk e da Mundiale, bem como revisão das regras de negócio."
+
+
+  join: taxa_de_contato_analitico {
+    view_label: "2. Analítico"
+    sql_on: ${taxa_de_contato_alunos_ativos_nova.ano_mes} = ${taxa_de_contato_analitico.ano_mes};;
+    type: left_outer
+    relationship: one_to_many
+  }
+
 }
