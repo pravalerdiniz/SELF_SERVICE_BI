@@ -2371,3 +2371,8 @@ explore: position_based_full_funnel {
   label: "Position-Based Full Funnel"
   description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
+
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Crédito & Cobrança Vcom"
+}
