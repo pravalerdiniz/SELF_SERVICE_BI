@@ -105,4 +105,11 @@ view: position_based_full_funnel {
     value_format: "0"
     sql: ${TABLE}."CREDITO" ;;
   }
+
+  measure: count_id_cpf {
+    type: count_distinct
+    label: "Qtd Alunos"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
 }
