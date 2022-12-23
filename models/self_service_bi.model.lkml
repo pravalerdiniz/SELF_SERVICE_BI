@@ -2357,7 +2357,7 @@ explore: negocios_provas_pravaler {
 
 explore: vw_atualizacao_produtos {
   label: "Logs de Atualizações - Produtos"
-  description: "Histórico dos logs de atualização"
+  description: "Histórico dos logs de atualização dos produtos"
 }
 
 explore: orquestra_cancelamento {
@@ -2388,4 +2388,14 @@ explore: position_based_full_funnel {
 explore: vcom {
   label: "Crédito & Cobrança Vcom"
   view_label: "Crédito & Cobrança Vcom"
+}
+
+explore: usuarios_campus_ies {
+  label: "Usuários IES"
+  view_label: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: log_usuarios {
+  label: "Log Usuários"
+  view_label: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
 }
