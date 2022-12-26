@@ -12,7 +12,7 @@ view: usuarios_campus_ies {
   # This dimension will be called "Campus" in Explore.
 
   dimension: id_usuario {
-    type: number
+    type: string
     primary_key: yes
     sql: ${TABLE}."ID_USUARIO" ;;
   }
@@ -56,8 +56,9 @@ view: usuarios_campus_ies {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: count {
-    type: count
-    drill_fields: []
+  measure: count_usuarios {
+    type: count_distinct
+    sql: ${id_usuario} ;;
+    label: "Usuários"
   }
 }

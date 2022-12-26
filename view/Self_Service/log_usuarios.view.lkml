@@ -5,7 +5,7 @@ view: log_usuarios {
   sql_table_name: "POS_GRADUADO"."ONBOARDING"."LOG_USUARIOS";;
 
   dimension: id_usuario {
-    type: number
+    type: string
     primary_key: yes
     sql: ${TABLE}."ID_USUARIO" ;;
   }
@@ -44,7 +44,7 @@ view: log_usuarios {
   }
 
   dimension: id_log {
-    type: number
+    type: string
     sql: ${TABLE}."ID_LOG" ;;
   }
 
@@ -53,8 +53,15 @@ view: log_usuarios {
     sql: ${TABLE}."NOME_MODULO" ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  measure: count_usuarios {
+    type: count_distinct
+    sql: ${id_usuario} ;;
+    label: "Usuários"
+  }
+
+  measure: count_logs {
+    type: count_distinct
+    sql: ${id_log} ;;
+    label: "Logs"
   }
 }
