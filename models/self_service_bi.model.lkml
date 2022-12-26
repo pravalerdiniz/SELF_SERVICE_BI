@@ -2392,10 +2392,10 @@ explore: vcom {
 
 explore: usuarios_campus_ies {
   label: "Usuários IES"
-  view_label: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
+  description: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
 }
 
 explore: log_usuarios {
   label: "Log Usuários"
-  view_label: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
+  description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
 }
