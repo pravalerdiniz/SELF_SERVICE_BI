@@ -1133,65 +1133,66 @@ view: jornada {
   measure: simuladosporleads {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "1. Simulados / Leads"
-    sql: ${simulados} / ${lead} ;;
+    sql: ${simulados} / NULLIF(${lead},0) ;;
   }
 
   measure: iniciadosporsimulados {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "2. Iniciados / Simulados"
-    sql: ${iniciado} / ${simulados} ;;
+    sql: ${iniciados} / NULLIF(${simulados},0) ;;
   }
 
   measure: finalizadosporiniciados {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "3. Finalizados / Iniciados"
-    sql: ${finalizados} / ${iniciado} ;;
+    sql: ${finalizados} / NULLIF(${iniciados},0) ;;
   }
 
   measure: aprovadoriscoporfinalizados {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "4. Aprovado Risco / Finalizados"
-    sql: ${apr_risco} / ${finalizados} ;;
+    sql: ${apr_risco} / NULLIF(${finalizados},0) ;;
   }
 
   measure: aprovadoiesporaprovadorisco {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "5. Aprovado IES / Aprovado Risco"
-    sql: ${apr_ies} / ${apr_risco} ;;
+    sql: ${apr_ies} / NULLIF(${apr_risco},0) ;;
   }
+
 
   measure: aguardandodocumentoporaprovadoies {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "6. Aguardando Documento / Aprovado IES"
-    sql: ${aguardando_documento} / ${apr_ies} ;;
+    sql: ${aguardando_documento_contrato} / NULLIF(${apr_ies},0) ;;
   }
 
   measure: aguardandoassinaturaporaguardandodocumento {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "7. Aguardando Assinatura / Aguardando Documento"
-    sql: ${aguardando_assinatura} / ${aguardando_documento} ;;
+    sql: ${aguardando_assinatura_contrato} / NULLIF(${aguardando_documento_contrato},0) ;;
   }
 
   measure: formalizadoporaguardandoassinatura {
     type: number
     value_format: "0.0%"
-    group_label: "Metas - Conversão"
+    group_label: "Conversão por etapas"
     label: "8. Formalizados / Aguardando Assinatura"
-    sql: ${formalizado} / ${aguardando_assinatura} ;;
+    sql: ${form} / NULLIF(${aguardando_assinatura_contrato},0) ;;
   }
 
 # ETAPA RENOVAÇÃO

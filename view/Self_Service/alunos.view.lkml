@@ -586,6 +586,7 @@ view: alunos {
     group_label: "Dados do Curso"
     group_item_label: "Área de Conhecimento"
     description: "Indica a área de conhecimento do curso. Ex: Ciências Exatas e da Terra, Ciências Biológicas, Engenharia / Tecnologia, Ciências da Saúde, entre outras"
+    hidden: yes
   }
 
   dimension: ds_cal_vet {
@@ -614,6 +615,7 @@ view: alunos {
     group_label: "Dados do Curso"
     group_item_label: "Ênfase"
     description: "Indica o curso de aprofuncamento, se houver"
+    hidden: yes
   }
 
   dimension: flg_curso_ativo {
@@ -1792,6 +1794,25 @@ measure: porc_evasao {
     group_label: "Dados do Aluno"
     label: "Flag Consentimento Whatsapp"
     description: "Indica se o aluno clicou no botão de 'Aceito contato por whatsapp' na página de Cadastro do Aluno"
+  }
+
+  dimension_group: data_formado {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      time
+    ]
+    convert_tz: no
+    datatype: date
+    label: "Data da Formatura"
+    description: "Aponta a data de Formatura do Aluno, de acordo com atualização no portal"
+    sql: ${TABLE}."DATA_FORMADO" ;;
   }
 
 }

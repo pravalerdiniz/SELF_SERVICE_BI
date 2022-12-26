@@ -205,7 +205,7 @@ explore: status {
     user_attribute: grupo_ies
   }
   label: "Status"
-  view_label: "1. Status "
+  view_label: "1. Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
   fields: [ALL_FIELDS *,
     - proposta.id_cpf,
@@ -230,6 +230,20 @@ explore: status {
     sql_on:  ${proposta.id_proposta} = ${status.id_proposta};;
     type: left_outer
     relationship: many_to_one
+  }
+
+  join: flag_unico_aluno {
+    view_label: "2. Proposta"
+    sql_on: ${status.id_proposta} = ${flag_unico_aluno.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
+  }
+
+  join: flag_unico_garantidor {
+    view_label: "2. Proposta"
+    sql_on: ${status.id_proposta} = ${flag_unico_garantidor.id_proposta} ;;
+    type: left_outer
+    relationship: one_to_one
   }
 
   join: proposta_projeto_decola {
@@ -271,6 +285,19 @@ explore: status {
     type: full_outer
   }
 
+  join: alunos_painel_risco {
+    view_label: "3. Alunos"
+    sql_on:${status.id_cpf} = ${alunos_painel_risco.id_cpf} and ${status.id_proposta} = ${alunos_painel_risco.proposta}  ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: status_contagem_2_0 {
+    view_label: "1. Status"
+    sql_on: ${status.id_cpf} = ${status_contagem_2_0.id_cpf} and ${status.dt_status_date} = ${status_contagem_2_0.dt_status_date} ;;
+    type: left_outer
+    relationship: many_to_many
+  }
 
 }
 
@@ -306,9 +333,6 @@ explore: jornada {
     - alunos.celular,
     - alunos.escolaridade,
     - alunos.numero_dependentes,
-    - alunos.bairro,
-    - alunos.cidade,
-    - alunos.uf,
     - alunos.tipo_residencia,
     - alunos.estado_civil,
     - alunos.tempo_empresa,
@@ -429,6 +453,12 @@ explore: jornada {
     view_label: "1.1. Atribuição"
     sql_on:  ${atribuicao_urls.id_cpf} = ${jornada.id_cpf} ;;
     type: left_outer
+    relationship: many_to_one
+  }
+
+  join: depara_campanhas {
+    view_label: "1.1. Atribuição"
+    sql_on: ${depara_campanhas.concat_campaign_source_medium} = ${atribuicao_urls.concat_campaign_source_medium_100};;
     relationship: many_to_one
   }
 
@@ -610,7 +640,7 @@ explore: jornada {
     join: instituicao_resumo {
     view_label: "3. Instituição"
     sql_on: ${jornada.id_instituicao} = ${instituicao_resumo.id_instituicao};;
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
   }
 
@@ -747,6 +777,13 @@ explore: jornada {
     from: dados_jornada_interacoes
     view_label: "Jornada"
     sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: tickets_mundiale_zendesk {
+    view_label: "14. Mundiale Zendesk"
+    sql_on: ${jornada.aluno_cpf}=${tickets_mundiale_zendesk.cpf_cliente};;
     relationship: many_to_many
     type: left_outer
   }
@@ -1068,6 +1105,7 @@ explore: financeiro {
     type: left_outer
   }
 
+
   join: instituicao_contrato_produto_info {
     view_label: "3.1. Contrato da Instituição por Produto"
     sql_on: ${instituicao.id_instituicao} = ${instituicao_contrato_produto_info.id_instituicao}
@@ -1148,7 +1186,9 @@ join: sql_runner_query_range_boleto {
     view_label: "1. Financeiro"
     sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf};;
     fields: [
-      alunos.flg_aluno_ativo
+      alunos.flg_aluno_ativo,
+      alunos.flg_inadimplente,
+      alunos.cpf_aluno
     ]
     relationship: one_to_one
     type: left_outer
@@ -1519,6 +1559,13 @@ explore: proposta {
   ##  and ${proposta.cpf_aluno} = ${vw_extrato_repasse.cpf};;
   ##  relationship: one_to_one
   ##  type: left_outer}
+
+  join: fin_qtd_mens_contrato {
+    view_label: "1. Proposta"
+    sql_on: ${proposta.id_proposta} = ${fin_qtd_mens_contrato.id_contrato} ;;
+    type: left_outer
+    relationship: one_to_many
+  }
 
 }
 
@@ -2175,7 +2222,7 @@ explore: dados_intake {
 }
 
 explore: inep_lgpd {
-  label: "Dados INEP - LGPD"
+  label: "INEP - Censo educacional do Ensino Superior (LGPD)"
 }
 
 explore: carteira {
@@ -2310,7 +2357,7 @@ explore: negocios_provas_pravaler {
 
 explore: vw_atualizacao_produtos {
   label: "Logs de Atualizações - Produtos"
-  description: "Histórico dos logs de atualização"
+  description: "Histórico dos logs de atualização dos produtos"
 }
 
 explore: orquestra_cancelamento {
@@ -2318,14 +2365,9 @@ explore: orquestra_cancelamento {
   description: "Histórico dos chamados da fila de Cancelamento"
 }
 
-explore: position_based {
-  label: "Modelo de Atribuição Position-Based"
-  description: "Dados de distribuição de crédito entre os canais utilizando o Modelo Position-Based"
-}
-
-explore: position_based_jornada {
-  label: "Modelo de Atribuição Position-Based - Jornada do Aluno"
-  description: "Dados de Jornada - do Aluno que Formalizou - como Lead"
+explore: orquestra_p17 {
+  label: "Orquestra - P17"
+  description: "Histórico dos chamados da fila P17"
 }
 
 explore: meta_canal {
@@ -2336,4 +2378,24 @@ explore: meta_canal {
 explore: faturamento_provas_pravaler {
   label: "Faturamento - Provas Pravaler"
   description: "Dados de faturamento do produto Provas Pravaler"
+}
+
+explore: position_based_full_funnel {
+  label: "Position-Based Full Funnel"
+  description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
+}
+
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Crédito & Cobrança Vcom"
+}
+
+explore: usuarios_campus_ies {
+  label: "Usuários IES"
+  description: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: log_usuarios {
+  label: "Log Usuários"
+  description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
 }

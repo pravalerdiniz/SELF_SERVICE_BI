@@ -373,6 +373,7 @@ explore: alunos {
     relationship: many_to_one
   }
 
+# Erro: SQL compilation error: Database 'STAGE' does not exist or not authorized.
   join: alunos_cobranca_pdd {
     view_label: "Cobrança - PDD "
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd.cpf};;
@@ -387,6 +388,7 @@ explore: alunos {
     relationship: one_to_many
   }
 
+# Erro: SQL compilation error: Database 'STAGE' does not exist or not authorized.
   join: alunos_cobranca_pdd_boletos {
     view_label: "Cobrança - PDD Boletos"
     sql_on: ${alunos.cpf_aluno} = ${alunos_cobranca_pdd_boletos.cpf};;
@@ -446,4 +448,12 @@ join: jornada {
 
 
 }
+
+join: fato_final_pdd {
+  view_label: "Final PDD - Veterano/Fato"
+  sql_on: ${alunos.id_cpf} = ${fato_final_pdd.id_cpf};;
+  type: left_outer
+  relationship: one_to_many
+}
+
 }

@@ -193,7 +193,7 @@ view: base_atendimento_fundo_funil {
       month,
       year
     ]
-    sql: ${TABLE}."DT_STATUS" ;;
+    sql: ${TABLE}."DT_STATUS"::DATETIME ;;
   }
 
   dimension_group: dt_snapshot {

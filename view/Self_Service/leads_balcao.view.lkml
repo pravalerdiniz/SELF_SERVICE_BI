@@ -267,7 +267,9 @@ view: leads_balcao {
   dimension: nota_avaliacao_lead {
     type: number
     sql: ${TABLE}."NOTA_AVALIACAO_LEAD" ;;
-    hidden:  yes
+    group_label: "Dados do Aluno"
+    group_item_label: "Avaliação Lead"
+    description: "Nota que é dada de acordo com a tela que o atendente preencheu, ou seja, é um marcador do abandono da jornada."
   }
 
   dimension: proposta_lead_balcao {
@@ -405,8 +407,35 @@ view: leads_balcao {
     group_label: "Dados da Proposta"
     group_item_label: "Flag Igualdade Mensalidades Desconto Balcão x Análise IES"
     sql: ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < 1
-    AND ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1;;
+    AND ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1  ;;
     description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
+  }
+
+  dimension: flag_comparativo_desconto_analise_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Mensalidades Balcão x Análise IES (maior ou menor)"
+    sql: CASE
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
+          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão."
+  }
+
+  dimension: flag_ultima_simulacao {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Última Simulação"
+    sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
+    description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
+  }
+
+  measure: max_data_ultima_simulacao {
+    type: date_time
+    group_label: "Dados da Proposta"
+    group_item_label: "Última Data da Proposta"
+    sql: MAX(${data_proposta_raw});;
   }
 
   measure: count_leads {

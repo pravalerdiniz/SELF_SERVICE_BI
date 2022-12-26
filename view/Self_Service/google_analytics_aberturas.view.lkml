@@ -8,6 +8,7 @@ view: google_analytics_aberturas {
           f.value:ORIGEM::varchar as ORIGEM,
           f.value:ORIGEM_MIDIA::varchar as ORIGEM_MIDIA,
           f.value:CAMPANHA::varchar as CAMPANHA,
+          f.value:CATEGORIA_DISPOSITIVO::varchar as DISPOSITIVO,
           f.value:FINALIZADO::int as FINALIZADO,
           f.value:GOALCOMPLETE::int as GOALCOMPLETE,
           f.value:INICIADO::int as INICIADO,
@@ -80,6 +81,13 @@ view: google_analytics_aberturas {
     sql: ${TABLE}."CAMPANHA" ;;
     label: "Campanha"
     description: "O grupo de campanha associado à navegação"
+  }
+
+  dimension: dispositivo {
+    type: string
+    sql: ${TABLE}."DISPOSITIVO" ;;
+    label: "Dispositivo"
+    description: "O grupo de categoria de dispositivo"
   }
 
   measure: total_lead {

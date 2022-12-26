@@ -416,7 +416,7 @@ view: status {
 
   dimension: cpf_aluno {
     sql: ${proposta.cpf_aluno};;
-    hidden: yes
+    hidden: no
 
   }
 
@@ -486,7 +486,7 @@ view: status {
 
   measure: count {
     type: count
-    drill_fields: [id, id_proposta, status_origem_geral, status_origem_detalhado ,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
+    drill_fields: [cpf_aluno, id, id_proposta, status_origem_geral, status_origem_detalhado ,status_origem_geral_descricao,status_destino_geral,status_destino_geral_descricao,dt_status_date]
   }
 
   measure: cont_cpf {
@@ -1082,7 +1082,6 @@ dimension: fx_estoque_produtivo_assinatura {
     description: "Marcação da Faixa dos Alunos em Estoque Produtivo"
   }
 
-
   #Campos Ocultos - Lulinha 20/06/2021
 
   # dimension: flg_proposta_atual {
@@ -1091,5 +1090,14 @@ dimension: fx_estoque_produtivo_assinatura {
   #   description: "Indica se é a proposta atual do aluno. Ou seja a última com alteração de status"
   #   sql: ${TABLE}."FLG_PROPOSTA_ATUAL" ;;
   # }
+
+  #Igor Miquelino Amorim | 16/12/2022 | Medida criada para mapear a data de entrada do aluno na base de
+  #estoque do time de conversão do fundo de funil
+  measure: min_dt_status {
+    type: date
+    label: "Mínima Data de Status"
+    description: "Retorna a menor data de status"
+    sql: MIN(${TABLE}."DT_STATUS") ;;
+  }
 
 }
