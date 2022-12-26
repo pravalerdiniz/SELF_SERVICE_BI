@@ -2,7 +2,7 @@
 view: usuarios_campus_ies {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "PRO_GRADUADO"."ONBOARDING"."USUARIOS_CAMPUS_IES"
+  sql_table_name: "POS_GRADUADO"."ONBOARDING"."USUARIOS_CAMPUS_IES"
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
