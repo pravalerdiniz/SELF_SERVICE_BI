@@ -52,6 +52,26 @@ view: usuarios_campus_ies {
     sql: ${TABLE}."GRUPO" ;;
   }
 
+  dimension: nome_usuario {
+    type: string
+    sql: ${TABLE}."NOME_USUARIO" ;;
+  }
+
+  dimension: login_usuario {
+    type: string
+    sql: ${TABLE}."LOGIN_USUARIO" ;;
+  }
+
+  dimension: email_usuario {
+    type: string
+    sql: ${TABLE}."EMAIL_USUARIO" ;;
+  }
+
+  dimension: perfil_usuario {
+    type: string
+    sql: ${TABLE}."PERFIL_USUARIO" ;;
+  }
+
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
