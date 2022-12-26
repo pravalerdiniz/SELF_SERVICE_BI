@@ -2529,6 +2529,15 @@ dimension: vl_tarifa_cadastro {
   }
 
 
+  measure: sum_repasse_mensal {
+    type: sum
+    group_label: "Proposta"
+    group_item_label: "Valor Repasse"
+    label: "Valor Repasse"
+    description: "Valor de aquisição médio de acordo com o termo de cessão: Sum(vl_aquisicao)/Nº_Parcelas"
+    value_format: "\R$ #,###.00"
+    sql: ${vl_repasse_mensal};;
+  }
 
 
 
