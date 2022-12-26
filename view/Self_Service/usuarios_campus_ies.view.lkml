@@ -22,9 +22,24 @@ view: usuarios_campus_ies {
     sql: ${TABLE}."CAMPUS" ;;
   }
 
+  dimension: id_campus {
+    type: string
+    sql: ${TABLE}."ID_CAMPUS" ;;
+  }
+
   dimension: flg_campus_ativo {
     type: yesno
     sql: ${TABLE}."FLG_CAMPUS_ATIVO" ;;
+  }
+
+  dimension: ies {
+    type: string
+    sql: ${TABLE}."IES" ;;
+  }
+
+  dimension: id_ies {
+    type: string
+    sql: ${TABLE}."ID_IES" ;;
   }
 
   dimension: flg_ie_ativa {
@@ -35,16 +50,6 @@ view: usuarios_campus_ies {
   dimension: grupo {
     type: string
     sql: ${TABLE}."GRUPO" ;;
-  }
-
-  dimension: id_campus {
-    type: string
-    sql: ${TABLE}."ID_CAMPUS" ;;
-  }
-
-  dimension: id_ies {
-    type: string
-    sql: ${TABLE}."ID_IES" ;;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
