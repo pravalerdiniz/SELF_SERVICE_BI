@@ -59,3 +59,9 @@ map_layer: MAPA_CIDADE_ALUNO {
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+explore: student_intercambio {
+  label: "Intercambio - Produto Piloto"
+  description: "Dados gerais do produto piloto de intercambio"
+
+}
