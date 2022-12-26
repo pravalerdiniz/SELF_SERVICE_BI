@@ -2,7 +2,7 @@
 view: log_usuarios {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "ONBOARDING"."LOG_USUARIOS";;
+  sql_table_name: "POS_GRADUADO"."ONBOARDING"."LOG_USUARIOS";;
 
   dimension: id_usuario {
     type: number
