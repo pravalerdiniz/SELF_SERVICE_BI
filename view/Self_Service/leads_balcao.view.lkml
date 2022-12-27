@@ -267,7 +267,9 @@ view: leads_balcao {
   dimension: nota_avaliacao_lead {
     type: number
     sql: ${TABLE}."NOTA_AVALIACAO_LEAD" ;;
-    hidden:  yes
+    group_label: "Dados do Aluno"
+    group_item_label: "Avaliação Lead"
+    description: "Nota que é dada de acordo com a tela que o atendente preencheu, ou seja, é um marcador do abandono da jornada."
   }
 
   dimension: proposta_lead_balcao {

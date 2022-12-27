@@ -2529,6 +2529,15 @@ dimension: vl_tarifa_cadastro {
   }
 
 
+  measure: sum_repasse_mensal {
+    type: sum
+    group_label: "Proposta"
+    group_item_label: "Valor Repasse"
+    label: "Valor Repasse"
+    description: "Valor de aquisição médio de acordo com o termo de cessão: Sum(vl_aquisicao)/Nº_Parcelas"
+    value_format: "\R$ #,###.00"
+    sql: ${vl_repasse_mensal};;
+  }
 
 
 
@@ -3991,6 +4000,33 @@ dimension: vl_tarifa_cadastro {
     label: "Soma Valor Financiado Desagiado"
     value_format: "#,##0.00"
     description: "Representa o valor de deságio do financiamento do aluno"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: valor_prestacao_sem_juros {
+    type: number
+    sql: ${vl_financiamento}/${sum_qtd_prestacoes} ;;
+    label: "Valor Prestação Sem Juros"
+    value_format: "$ #,###.00"
+    description: "Valor do financiamento sem a incidência de juros"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: diferenca_prestacao {
+    type: number
+    sql: ${vl_prestacoes} - ${valor_prestacao_sem_juros} ;;
+    label: "Diferença Prestação"
+    value_format: "$ #,###.00"
+    description: "Diferença entre as pretações com e sem incidência de juros"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: diferenca_financiamento {
+    type: number
+    sql: ${sum_vl_financiamento_aluno} - ${vl_financiamento} ;;
+    label: "Diferença Financiamento"
+    value_format: "$ #,###.00"
+    description: "Diferença entre os financiamentos totais com e sem incidência de juros"
     group_label: "Dados do Contrato"
   }
 
