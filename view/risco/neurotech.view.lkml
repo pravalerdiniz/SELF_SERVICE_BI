@@ -272,13 +272,13 @@ view: neurotech {
 
   dimension: calc_bvs_situacao_regular_aluno {
     type: string
-    label: "Situação Regular Aluno"
+    label: "Situação Do Aluno no Bureau de crédito - Boa Vista"
     sql: ${TABLE}."CALC_BVS_SITUACAO_REGULAR_ALUNO" ;;
   }
 
   dimension: calc_bvs_situacao_regular_garantidor {
     type: string
-    label: "Situação Regular Garantidor"
+    label: "Situação Do Garantidor no Bureau de crédito - Boa Vista"
     sql: ${TABLE}."CALC_BVS_SITUACAO_REGULAR_GARANTIDOR" ;;
   }
 
@@ -408,7 +408,223 @@ view: neurotech {
     sql: ${TABLE}."CALC_GESTAO_GARANTIDO" ;;
   }
 
-  set: detail {
+  dimension:  prop_ponto_corte_gtg {
+    type: number
+    label: "Ponto de Corte - Gestão Garantido"
+    sql: ${TABLE}."PROP_PONTO_CORTE_GTG" ;;
+  }
+
+  dimension: prop_ponto_corte_rmg {
+    type: number
+    label: "Ponto de Corte - Repasse Garantido"
+    sql: ${TABLE}."PROP_PONTO_CORTE_RMG" ;;
+  }
+
+  dimension: prop_cep {
+    type: string
+    label: "CEP do ALuno"
+    sql: ${TABLE}."PROP_CEP" ;;
+  }
+
+  dimension: prop_ocupacao_aluno {
+    type: string
+    label: "Ocupação Profissional do Aluno"
+    sql: ${TABLE}."PROP_OCUPACAO_ALUNO" ;;
+  }
+
+  dimension: calc_status_aluno {
+    type: number
+    label: "Status Atual do Aluno"
+    sql: ${TABLE}."CALC_STATUS_ALUNO" ;;
+  }
+
+  dimension: calc_outbox_coeficiente_aluno {
+    type: number
+    label: "Cálculo de Coeficiente Outbox do Aluno"
+    sql: ${TABLE}."CALC_OUTBOX_COEFICIENTE_ALUNO" ;;
+  }
+
+  dimension: calc_outbox_coeficiente_garantidor{
+    type: number
+    label: "Cálculo de Coeficiente Outbox do Garantidor"
+    sql: ${TABLE}."CALC_OUTBOX_COEFICIENTE_GARANTIDOR";;
+  }
+
+  dimension: calc_outbox_cat_aluno{
+    type: string
+    label: "Cálculo de Coeficiente Outbox da Categoria do Aluno"
+    sql: ${TABLE}."CALC_OUTBOX_CAT_ALUNO";;
+  }
+
+  dimension: calc_outbox_cat_garantidor{
+    type: string
+    label: "Cálculo de Coeficiente Outbox da categoria do Garantidor"
+    sql: ${TABLE}."CALC_OUTBOX_CAT_GARANTIDOR";;
+  }
+
+  dimension: calc_prob_inferida_modelo_proposta{
+    type: number
+    label: "Cálculo de Probabilidade Inferida do modelo PROPOSTA"
+    sql: ${TABLE}."CALC_PROB_INFERIDA_MODELO_PROPOSTA";;
+  }
+
+  dimension: calc_bvs_parcial_aluno{
+    type: number
+    label: "Cálculo de BVS Parcial do Aluno"
+    sql: ${TABLE}."CALC_BVS_PARCIAL_ALUNO";;
+  }
+
+  dimension: calc_prob_inferida_modelo_aluno{
+    type: number
+    label: "Probabilidade Inferida do modelo ALUNO"
+    sql: ${TABLE}."CALC_PROB_INFERIDA_MODELO_ALUNO";;
+  }
+
+  dimension: calc_outbox_xbeta_aluno{
+    type: number
+    label: "Cálculo de Outbox/Xbeta do Aluno"
+    sql: ${TABLE}."CALC_OUTBOX_XBETA_ALUNO";;
+  }
+
+  dimension: calc_outbox_logistica_proposta{
+    type: number
+    label: "Cálculo de Outbox Logistica/Proposta"
+    sql: ${TABLE}."CALC_OUTBOX_LOGISTICA_PROPOSTA";;
+  }
+
+  dimension: calc_bvs_parcial_garantidor{
+    type: number
+    label: "Cálculo de BVS Parcial do Garantidor"
+    sql: ${TABLE}."CALC_BVS_PARCIAL_GARANTIDOR";;
+  }
+
+  dimension: calc_outbox_xbeta_garantidor{
+    type: number
+    label: "Cálculo de Outbox/Xbeta do Garantidor"
+    sql: ${TABLE}."CALC_OUTBOX_XBETA_GARANTIDOR";;
+  }
+
+  dimension: calc_outbox_score_aluno{
+    type: number
+    label: "Cálculo de Outbox do Score do Aluno"
+    sql: ${TABLE}."CALC_OUTBOX_SCORE_ALUNO";;
+  }
+
+  dimension: calc_outbox_score_garantidor{
+    type: number
+    label: "Cálculo de Outbox do Score do Garantidor"
+    sql: ${TABLE}."CALC_OUTBOX_SCORE_GARANTIDOR";;
+  }
+
+  dimension: calc_prob_inferida_modelo_garantidor{
+    type: number
+    label: "Cálculo de Probabilidade Inferida do modelo GARANTIDOR"
+    sql: ${TABLE}."CALC_PROB_INFERIDA_MODELO_GARANTIDOR";;
+  }
+
+  dimension: calc_prob_inferida_modelo{
+    type: number
+    label: "Cálculo de Probabilidade Inferida do MODELO"
+    sql: ${TABLE}."CALC_PROB_INFERIDA_MODELO";;
+  }
+
+  dimension: calc_outbox_xbeta{
+    type: number
+    label: "Cálculo de OUTBOX/XBETA"
+    sql: ${TABLE}."CALC_OUTBOX_XBETA";;
+  }
+
+  dimension: calc_outbox_xbeta_pa{
+    type: number
+    label: "Cálculo de OUTBOX/XBETA do modelo PA"
+    sql: ${TABLE}."CALC_OUTBOX_XBETA_PA";;
+  }
+
+  dimension: calc_outbox_xbeta_paf{
+    type: number
+    label: "Cálculo de OUTBOX/XBETA  modelo PAF"
+    sql: ${TABLE}."CALC_OUTBOX_XBETA_PAF";;
+  }
+
+  dimension: calc_recusado_credit_score{
+    type: string
+    label: "Recusado por Credit Score"
+    sql: ${TABLE}."CALC_RECUSADO_CREDIT_SCORE";;
+  }
+
+  dimension: calc_debug{
+    type: string
+    label: "Debug"
+    sql: ${TABLE}."CALC_DEBUG";;
+  }
+
+  dimension: calc_recusa_renda_insuficiente{
+    type: string
+    label: "Recusa por Renda Insuficiente"
+    sql: ${TABLE}."CALC_RECUSA_RENDA_INSUFICIENTE";;
+  }
+
+  dimension: calc_comprometimento{
+    type: number
+    label: "Comprometimento de renda do aluno"
+    sql: ${TABLE}."CALC_COMPROMETIMENTO";;
+  }
+
+  dimension: calc_outbox_logistica_aluno{
+    type: number
+    label: "Calculo de Outbox de Logistica/Aluno"
+    sql: ${TABLE}."CALC_OUTBOX_LOGISTICA_ALUNO";;
+  }
+
+  dimension: calc_outbox_logistica_garantidor{
+    type: number
+    label: "Calculo de Outbox de Logistica/Garantidor"
+    sql: ${TABLE}."CALC_OUTBOX_LOGISTICA_GARANTIDOR";;
+  }
+
+  dimension: calc_outbox_logistica{
+    type: number
+    label: "Calculo de Outbox de Logistica"
+    sql: ${TABLE}."CALC_OUTBOX_LOGISTICA";;
+  }
+
+  dimension: calc_outbox_score_customizado_aluno{
+    type: number
+    label: "Score customizado do Aluno (modelos externos)"
+    sql: ${TABLE}."CALC_OUTBOX_SCORE_CUSTOMIZADO_ALUNO";;
+  }
+
+  dimension: calc_outbox_score_customizado_garantidor{
+    type: number
+    label: "Score customizado do Garantidor (modelos externos)"
+    sql: ${TABLE}."CALC_OUTBOX_SCORE_CUSTOMIZADO_GARANTIDOR";;
+  }
+
+  dimension: calc_outbox_score_proposta{
+    type: number
+    label: "Score da proposta"
+    sql: ${TABLE}."CALC_OUTBOX_SCORE_PROPOSTA";;
+  }
+
+  dimension: calc_score_modelo_paf{
+    type: number
+    label: "Score do modelo PAF"
+    sql: ${TABLE}."CALC_SCORE_MODELO_PAF";;
+  }
+
+  dimension: calc_score_modelo_pa{
+    type: number
+    label: "Score do modelo PA"
+    sql: ${TABLE}."CALC_SCORE_MODELO_PA";;
+  }
+
+  dimension: calc_coeficiente_mensalidade_atraso{
+    type: number
+    label: "Coeficiente De Mensalidade em Atraso"
+    sql: ${TABLE}."CALC_COEFICIENTE_MENSALIDADE_ATRASO";;
+  }
+
+    set: detail {
     fields: [
       id,
       created_at_date,
@@ -468,7 +684,43 @@ view: neurotech {
       calc_gestao_aprov,
       calc_complementar_aprov,
       calc_repasse_garantido,
-      calc_gestao_garantido
+      calc_gestao_garantido,
+      prop_ponto_corte_gtg,
+      prop_ponto_corte_rmg,
+      prop_cep,
+      prop_ocupacao_aluno,
+      calc_status_aluno,
+      calc_outbox_coeficiente_aluno,
+      calc_outbox_coeficiente_garantidor,
+      calc_outbox_cat_aluno,
+      calc_outbox_cat_garantidor,
+      calc_prob_inferida_modelo_proposta,
+      calc_bvs_parcial_aluno,
+      calc_prob_inferida_modelo_aluno,
+      calc_outbox_xbeta_aluno,
+      calc_outbox_logistica_proposta,
+      calc_bvs_parcial_garantidor,
+      calc_outbox_xbeta_garantidor,
+      calc_outbox_score_aluno,
+      calc_outbox_score_garantidor,
+      calc_prob_inferida_modelo_garantidor,
+      calc_prob_inferida_modelo,
+      calc_outbox_xbeta,
+      calc_outbox_xbeta_pa,
+      calc_outbox_xbeta_paf,
+      calc_recusado_credit_score,
+      calc_debug,
+      calc_recusa_renda_insuficiente,
+      calc_comprometimento,
+      calc_outbox_logistica_aluno,
+      calc_outbox_logistica_garantidor,
+      calc_outbox_logistica,
+      calc_outbox_score_customizado_aluno,
+      calc_outbox_score_customizado_garantidor,
+      calc_outbox_score_proposta,
+      calc_score_modelo_paf,
+      calc_score_modelo_pa,
+      calc_coeficiente_mensalidade_atraso
     ]
   }
 }
