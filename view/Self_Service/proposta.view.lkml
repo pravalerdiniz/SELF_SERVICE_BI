@@ -104,7 +104,7 @@ view: proposta {
 
 dimension: vl_tarifa_cadastro {
   type: number
-  group_label: "Dados de Contrato"
+  group_label: "Dados do Contrato"
   label: "Valor Tarifa Cadastro"
   hidden: no
   value_format: "$ #,###.00"
