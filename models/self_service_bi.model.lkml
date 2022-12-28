@@ -464,10 +464,9 @@ explore: jornada {
 
   join: proposta_testeab {
     view_label: "1. Jornada"
-    sql_on: ${jornada.id_cpf} = ${dim_cpf.id_cpf}
-    and ${proposta_testeab.cpf} = ${dim_cpf.cpf} ;;
+    sql_on: ${jornada.cpf_aluno_ajustado} = ${proposta_testeab.cpf};;
     type: left_outer
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
   join: alunos_interacoes_crm {
