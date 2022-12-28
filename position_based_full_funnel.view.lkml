@@ -8,9 +8,27 @@ view: position_based_full_funnel {
     sql: ${TABLE}."ID_CPF" ;;
   }
 
+  dimension: etapa {
+    type: string
+    sql: CASE
+            WHEN ${TABLE}."ETAPA" = 'Lead' THEN '1. Lead'
+            WHEN ${TABLE}."ETAPA" = 'Simulado' THEN '2. Simulado'
+            WHEN ${TABLE}."ETAPA" = 'Iniciado' THEN '3. Iniciado'
+            WHEN ${TABLE}."ETAPA" = 'Finalizado' THEN '4. Finalizado'
+            WHEN ${TABLE}."ETAPA" = 'Aprovado Risco' THEN '5. Aprovado Risco'
+            WHEN ${TABLE}."ETAPA" = 'Aprovado Instituicao' THEN '6. Aprovado Instituicao'
+            WHEN ${TABLE}."ETAPA" = 'Aguardando Documento' THEN '7. Aguardando Documento'
+            WHEN ${TABLE}."ETAPA" = 'Aguardando Assinatura' THEN '8. Aguardando Assinatura'
+            WHEN ${TABLE}."ETAPA" = 'Formalizado' THEN '9. Formalizado'
+        END;;
+  }
+
   dimension: canal {
     type: string
-    sql: ${TABLE}."CANAL" ;;
+    sql: CASE
+            WHEN ${TABLE}."CANAL" = 'ITI' OR ${TABLE}."CANAL" = 'ITAU' THEN 'OUTROS'
+            WHEN ${TABLE}."CANAL" = 'APP' OR ${TABLE}."CANAL" = 'SOCIAL' THEN 'ORGANICO'
+         ELSE ${TABLE}."CANAL" END;;
   }
 
   dimension_group: date_status {
@@ -28,7 +46,7 @@ view: position_based_full_funnel {
     sql: ${TABLE}."DATE_STATUS" ;;
   }
 
-  dimension_group: safra {
+  dimension_group: data_credito {
     type: time
     timeframes: [
       raw,
@@ -40,7 +58,7 @@ view: position_based_full_funnel {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}."SAFRA" ;;
+    sql: ${TABLE}."DATA_CREDITO" ;;
   }
 
   dimension: qtd_contatos {
@@ -82,73 +100,16 @@ view: position_based_full_funnel {
     sql: ${TABLE}."FLG_LAST" ;;
   }
 
-  dimension: flg_lead {
-    type: yesno
-    group_label: "Funil"
-    label: "1. Flag Lead"
-    sql: ${TABLE}."FLG_LEAD" ;;
-  }
-
-  dimension: flg_simulado {
-    type: yesno
-    group_label: "Funil"
-    label: "2. Flag Simulado"
-    sql: ${TABLE}."FLG_SIMULADO" ;;
-  }
-
-  dimension: flg_iniciado {
-    type: yesno
-    group_label: "Funil"
-    label: "3. Flag Iniciado"
-    sql: ${TABLE}."FLG_INICIADO" ;;
-  }
-
-  dimension: flg_finalizado {
-    type: yesno
-    group_label: "Funil"
-    label: "4. Flag Finalizado"
-    sql: ${TABLE}."FLG_FINALIZADO" ;;
-  }
-
-  dimension: flg_apr_risco {
-    type: yesno
-    group_label: "Funil"
-    label: "5. Flag Aprovado Risco"
-    sql: ${TABLE}."FLG_APR_RISCO" ;;
-  }
-
-  dimension: flg_apr_ies {
-    type: yesno
-    group_label: "Funil"
-    label: "6. Flag Aprovado IES"
-    sql: ${TABLE}."FLG_APR_IES" ;;
-  }
-
-
-  dimension: flg_aguard_doc {
-    type: yesno
-    group_label: "Funil"
-    label: "7. Flag Aguardando Documento"
-    sql: ${TABLE}."FLG_AGUARD_DOC" ;;
-  }
-
-  dimension: flg_aguard_ass {
-    type: yesno
-    group_label: "Funil"
-    label: "8. Flag Aguardando Assinatura"
-    sql: ${TABLE}."FLG_AGUARD_ASS" ;;
-  }
-
-  dimension: flg_formalizado {
-    type: yesno
-    group_label: "Funil"
-    label: "9. Flag Formalizado"
-    sql: ${TABLE}."FLG_FORMALIZADO" ;;
-  }
-
   measure: credito {
     type: sum
     value_format: "0"
     sql: ${TABLE}."CREDITO" ;;
   }
+
+  measure: count_id_cpf {
+    type: count_distinct
+    label: "Qtd Alunos"
+    sql: ${TABLE}."ID_CPF" ;;
+  }
+
 }

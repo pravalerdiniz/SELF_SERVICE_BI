@@ -23,7 +23,9 @@ view: proposta_testeab {
       year
     ]
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
-    hidden:  yes
+    hidden:  no
+    label: "Data de Atualização"
+    group_label: "Dados Teste AB"
   }
 
   dimension_group: data_criacao {

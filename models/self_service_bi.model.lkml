@@ -464,9 +464,9 @@ explore: jornada {
 
   join: proposta_testeab {
     view_label: "1. Jornada"
-    sql_on: ${jornada.id_cpf} = ${proposta_testeab.id_cpf} ;;
+    sql_on: ${jornada.cpf_aluno_ajustado} = ${proposta_testeab.cpf};;
     type: left_outer
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
   join: alunos_interacoes_crm {
@@ -2357,7 +2357,7 @@ explore: negocios_provas_pravaler {
 
 explore: vw_atualizacao_produtos {
   label: "Logs de Atualizações - Produtos"
-  description: "Histórico dos logs de atualização"
+  description: "Histórico dos logs de atualização dos produtos"
 }
 
 explore: orquestra_cancelamento {
@@ -2383,4 +2383,19 @@ explore: faturamento_provas_pravaler {
 explore: position_based_full_funnel {
   label: "Position-Based Full Funnel"
   description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
+}
+
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Crédito & Cobrança Vcom"
+}
+
+explore: usuarios_campus_ies {
+  label: "Usuários IES"
+  description: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: log_usuarios {
+  label: "Log Usuários"
+  description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
 }

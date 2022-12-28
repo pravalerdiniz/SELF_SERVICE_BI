@@ -830,7 +830,7 @@ measure: qtd_ies_descadastrada {
     type: string
     group_label: "Dados da Regional - IE"
     label: "Gerente Regional"
-    hidden: yes
+    hidden: no
     description: "Indica o nome do responsável pela Regional"
     sql: ${TABLE}."GERENTE_REGIONAL";;
   }

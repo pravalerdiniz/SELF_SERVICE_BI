@@ -1815,4 +1815,13 @@ measure: porc_evasao {
     sql: ${TABLE}."DATA_FORMADO" ;;
   }
 
+  dimension: ra {
+    type: string
+    sql: ${TABLE}."RA" ;;
+    group_label: "Dados do Aluno"
+    group_item_label: "RA - Registro Acadêmico"
+    hidden: no
+    description: "Registro Acadêmico do Aluno na IES, de acordo com análise da Instituição"
+  }
+
 }
