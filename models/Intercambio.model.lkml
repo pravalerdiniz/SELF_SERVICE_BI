@@ -64,4 +64,17 @@ explore: student_intercambio {
   label: "Intercambio - Produto Piloto"
   description: "Dados gerais do produto piloto de intercambio"
 
+  join: contracts_intercambio {
+    view_label: "Contratos - Intercambio"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${student_intercambio.id_aluno} = ${contracts_intercambio.id_aluno};;
+  }
+
+  join: status_intercambio {
+    view_label: "Status Intercambio"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${student_intercambio.id_aluno} = ${status_intercambio.id_aluno};;
+}
 }
