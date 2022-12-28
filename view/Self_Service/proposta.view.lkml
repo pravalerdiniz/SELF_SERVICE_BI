@@ -103,9 +103,11 @@ view: proposta {
 
 
 dimension: vl_tarifa_cadastro {
+  type: number
   group_label: "Dados de Contrato"
   label: "Valor Tarifa Cadastro"
   hidden: no
+  value_format: "$ #,###.00"
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
@@ -4387,6 +4389,13 @@ dimension: vl_tarifa_cadastro {
     label: "Aceite Renovação"
     description: "Data em que o Aluno aceitou o processod de Renovação"
     sql: ${TABLE}."DT_ACEITE_RENOVACAO" ;;
+  }
+
+  dimension: flag_sem_fiador {
+    type:  yesno
+    label: "Flag Sem Fiador"
+    sql: ${proposta.cpf_fiador} is null
+      and ${proposta.fia_idade} is null;;
   }
 
 }
