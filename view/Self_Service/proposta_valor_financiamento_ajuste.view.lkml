@@ -39,6 +39,8 @@ persist_for: "1 hour"
     sql: ${TABLE}."VL_FINANCIAMENTO" ;;
     type: number
     group_label: "Dados do Contrato"
+    label: "Valor do Financiamento Final NEW"
     value_format: "$ #,###.00"
+    hidden: no
   }
   }
