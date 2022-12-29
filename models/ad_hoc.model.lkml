@@ -164,6 +164,35 @@ explore: comparacao_ot {
     type: left_outer
 
   }
+
+  join: proposta {
+    from:  proposta
+    view_label: "3. Proposta"
+    sql_on: ${comparacao_ot.id_cpf} = ${proposta.id_cpf};;
+    relationship: one_to_many
+    type: left_outer
+    fields: []
+  }
+
+  join: instituicao {
+    view_label: "4. Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          and ${instituicao.id_campus} = ${proposta.id_campus}
+          and ${instituicao.id_curso} =  ${proposta.id_curso}
+          and ${comparacao_ot.id_cpf} = ${proposta.id_cpf} ;;
+    relationship: many_to_one
+    type:left_outer
+    fields: []
+  }
+
+  join: taxa_instituicao_simplificada {
+    view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato}
+      and ${comparacao_ot.id_fundo} = ${financeiro.id_fundo_investimento};;
+    relationship: one_to_many
+    type: left_outer
+  }
 }
 explore: financeiro_safrado {
   label: "Financeiro Safrado"

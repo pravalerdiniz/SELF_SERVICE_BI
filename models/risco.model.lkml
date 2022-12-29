@@ -345,6 +345,14 @@ explore: alunos {
     relationship: one_to_one
   }
 
+  join: taxa_instituicao_simplificada {
+    view_label: "Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: financeiro_extrato_titulo {
     view_label: "Extrato Titulo - Gestão"
     sql_on: ${financeiro.id_titulo} = ${financeiro_extrato_titulo.id_titulo};;
