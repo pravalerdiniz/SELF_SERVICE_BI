@@ -457,3 +457,7 @@ join: fato_final_pdd {
 }
 
 }
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Crédito & Cobrança Vcom"
+}
