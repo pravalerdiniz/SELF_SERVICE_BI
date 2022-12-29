@@ -1751,7 +1751,7 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
     label:"Quantidade de Prestações"
     description:"Indica a quantidade de prestações por contrato"
-    hidden: no
+    hidden: yes
     sql: ${TABLE}."QTD_PRESTACOES" ;;
   }
 
