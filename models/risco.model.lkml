@@ -58,7 +58,10 @@ map_layer: MAPA_CIDADE_ALUNO {
 #   }
 # }
 
-
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Vcom"
+}
 
 explore: alunos {
   view_label: "Alunos"
@@ -456,8 +459,4 @@ join: fato_final_pdd {
   relationship: one_to_many
 }
 
-}
-explore: vcom {
-  label: "Crédito & Cobrança Vcom"
-  view_label: "Crédito & Cobrança Vcom"
 }
