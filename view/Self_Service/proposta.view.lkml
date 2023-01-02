@@ -2051,12 +2051,24 @@ dimension: vl_tarifa_cadastro {
     sql: NULLIF(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
+  dimension: vl_mensalidade_original {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Mensalidade Original"
+    value_format: "$ #,###.00"
+    description: "Indica o valor da mensalidade informada pelo aluno no momento da simulação"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    hidden: no
+    sql: NULLIF(${TABLE}."VL_MENSALIDADE_ORIGINAL",0) ;;
+  }
+
   dimension: vl_mensalidade_ajustado {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade Ajustado"
     value_format: "$ #,###.00"
-    description: "Indica o valor da mensalidade descrita no contrato"
+    description: "Indica o valor da mensalidade descrita no contrato, arredonda"
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     hidden: no
