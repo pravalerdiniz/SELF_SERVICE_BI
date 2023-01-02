@@ -40,7 +40,9 @@ view: proposta_testeab {
       year
     ]
     sql: ${TABLE}."DATA_CRIACAO" ;;
-    hidden:  yes
+    hidden:  no
+    label: "Data de Criação"
+    group_label: "Dados Teste AB"
   }
 
   dimension: descricao_teste {
