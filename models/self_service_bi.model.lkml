@@ -142,7 +142,7 @@ explore: instituicao_metas_gc {
   {
     view_label: "5. Dias Úteis"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
