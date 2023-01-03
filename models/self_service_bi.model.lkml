@@ -332,7 +332,6 @@ explore: jornada {
   fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     - proposta.ds_ult_status,
     - proposta.id_status_detalhado,
-    - proposta.tipo_proposta,
     - proposta.id_proposta,
     - proposta.id_elegivel,
     - proposta.etapa_ult_status,
@@ -2439,6 +2438,11 @@ explore: faturamento_provas_pravaler {
 
 explore: position_based_full_funnel {
   label: "Position-Based Full Funnel"
+  description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
+}
+
+explore: position_based_jornada {
+  label: "Position-Based Jornada"
   description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
 
