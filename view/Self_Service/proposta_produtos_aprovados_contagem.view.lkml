@@ -20,6 +20,7 @@ LEFT JOIN proposta_produtos_aprovados ON (proposta."ID_PROPOSTA") = (proposta_pr
 LEFT JOIN "GRADUADO"."SELF_SERVICE_BI"."JORNADA"
      AS jornada ON (proposta."ID_PROPOSTA") = (jornada."ID_PROPOSTA")
 WHERE ((( jornada."DT_STATUS"  ) >= ((DATEADD('year', -2, DATE_TRUNC('year', CURRENT_DATE())))) AND ( jornada."DT_STATUS"  ) < ((DATEADD('year', 3, DATEADD('year', -2, DATE_TRUNC('year', CURRENT_DATE()))))))) AND (jornada."ETAPA" ) = 'Aprovado Risco' AND (jornada."STATUS_ETAPA" ) = 1
+AND FLG_APROVADO = 'TRUE'
 GROUP BY
     1
 ORDER BY

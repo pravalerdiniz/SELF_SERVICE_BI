@@ -142,7 +142,7 @@ explore: instituicao_metas_gc {
   {
     view_label: "5. Dias Úteis"
     sql_on:  ${instituicao_metas_gc.data_meta_date} = ${dias_uteis.ds_date};;
-    type: left_outer
+    type: full_outer
     relationship: many_to_one
   }
 
@@ -205,7 +205,7 @@ explore: status {
     user_attribute: grupo_ies
   }
   label: "Status"
-  view_label: "1. Status "
+  view_label: "1. Status"
   description: "Apresenta os dados de todos status que a proposta do aluno esteve."
   fields: [ALL_FIELDS *,
     - proposta.id_cpf,
@@ -271,6 +271,14 @@ explore: status {
     type: left_outer
   }
 
+  join: taxa_instituicao_simplificada {
+    view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: ano_mes_carteira_ativa {
     view_label: "5. Dados Aluno Ativo"
     sql_on: ${ano_mes_carteira_ativa.id_cpf} = ${status.id_cpf} ;;
@@ -292,6 +300,23 @@ explore: status {
     relationship: many_to_one
   }
 
+  join: status_contagem_2_0 {
+    view_label: "1. Status"
+    sql_on: ${status.id_cpf} = ${status_contagem_2_0.id_cpf} and ${status.dt_status_date} = ${status_contagem_2_0.dt_status_date} ;;
+    type: left_outer
+    relationship: many_to_many
+  }
+
+  join: instituicao {
+    view_label: "7. Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${alunos.id_instituicao}
+          AND  ${instituicao.id_campus} = ${alunos.id_campus}
+          AND    ${instituicao.id_curso} =  ${alunos.id_curso}  ;;
+    relationship: many_to_one
+    type:left_outer
+    fields: []
+
+  }
 
 }
 
@@ -458,9 +483,9 @@ explore: jornada {
 
   join: proposta_testeab {
     view_label: "1. Jornada"
-    sql_on: ${jornada.id_cpf} = ${proposta_testeab.id_cpf} ;;
+    sql_on: ${jornada.cpf_aluno_ajustado} = ${proposta_testeab.cpf};;
     type: left_outer
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
   join: alunos_interacoes_crm {
@@ -614,6 +639,14 @@ explore: jornada {
 
   }
 
+  join: taxa_instituicao_simplificada {
+    view_label: "8.1. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 
   join: alunos_hotlead {
     view_label: "5. Campanhas DBM"
@@ -727,7 +760,10 @@ explore: jornada {
   join: leads_balcao {
     view_label: "13. Balcão"
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
-    and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date};;
+    and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date}
+    and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
+    and ${instituicao.id_campus} = ${leads_balcao.id_campus}
+    and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
     relationship: many_to_many
     type: full_outer
   }
@@ -771,6 +807,13 @@ explore: jornada {
     from: dados_jornada_interacoes
     view_label: "Jornada"
     sql_on: ${interacoes.cpf_requester}= ${dados_jornada_interacoes.cpf_requester} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
+
+  join: tickets_mundiale_zendesk {
+    view_label: "14. Mundiale Zendesk"
+    sql_on: ${jornada.aluno_cpf}=${tickets_mundiale_zendesk.cpf_cliente};;
     relationship: many_to_many
     type: left_outer
   }
@@ -1149,7 +1192,7 @@ explore: financeiro {
      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
     relationship: one_to_many
     type: left_outer
-    }
+  }
 
   join: proposta_projeto_decola {
     view_label: "2.1 Acordos - Projeto Decola"
@@ -1468,6 +1511,14 @@ explore: proposta {
     sql_on: ${proposta.id_proposta} = ${financeiro.id_contrato} ;;
     type: left_outer
     relationship: one_to_many
+  }
+
+  join: taxa_instituicao_simplificada {
+    view_label: "3.4. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
   }
 
 #Excluido - Não utilizado 08-06-2022 / Lulinha
@@ -1964,6 +2015,14 @@ explore: alunos {
     relationship: one_to_one
   }
 
+  join: taxa_instituicao_simplificada {
+    view_label: "3.2. Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato};;
+    relationship: one_to_many
+    type: left_outer
+  }
+
 
   join: jornada {
     view_label: "4. Jornada"
@@ -1977,6 +2036,17 @@ explore: alunos {
     sql_on: ${jornada_pivot.id_proposta} = ${jornada.id_proposta} ;;
     relationship: many_to_one
     type: left_outer
+  }
+
+  join: instituicao {
+    view_label: "5. Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${alunos.id_instituicao}
+          AND  ${instituicao.id_campus} = ${alunos.id_campus}
+          AND    ${instituicao.id_curso} =  ${alunos.id_curso}  ;;
+    relationship: many_to_one
+    type:left_outer
+    fields: []
+
   }
 
   join: alunos_ativos_carteira {
@@ -2344,7 +2414,7 @@ explore: negocios_provas_pravaler {
 
 explore: vw_atualizacao_produtos {
   label: "Logs de Atualizações - Produtos"
-  description: "Histórico dos logs de atualização"
+  description: "Histórico dos logs de atualização dos produtos"
 }
 
 explore: orquestra_cancelamento {
@@ -2365,4 +2435,24 @@ explore: meta_canal {
 explore: faturamento_provas_pravaler {
   label: "Faturamento - Provas Pravaler"
   description: "Dados de faturamento do produto Provas Pravaler"
+}
+
+explore: position_based_full_funnel {
+  label: "Position-Based Full Funnel"
+  description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
+}
+
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Crédito & Cobrança Vcom"
+}
+
+explore: usuarios_campus_ies {
+  label: "Usuários IES"
+  description: "Controle dos acessos de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: log_usuarios {
+  label: "Log Usuários"
+  description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
 }

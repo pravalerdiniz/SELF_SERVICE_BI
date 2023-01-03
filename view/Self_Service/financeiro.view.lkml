@@ -1801,13 +1801,22 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."DATA_TIT_IPCA" ;;
   }
 
+  measure: comissao {
+    type: number
+    sql: (${financeiro.sum_boleto} * ${taxa_instituicao_simplificada.avg_taxa_comissao})/100 ;;
+    group_label: "Repasse"
+    group_item_label: "Comissão Pravaler"
+    value_format: "$ #,###.00"
 
+  }
 
+  measure: estimativa_repasse {
+    type: number
+    sql: ${financeiro.sum_boleto} - ${comissao} ;;
+    group_label: "Repasse"
+    group_item_label: "Estimativa Repasse"
+    value_format: "$ #,###.00"
 
-
-
-
-
-
+  }
 
 }

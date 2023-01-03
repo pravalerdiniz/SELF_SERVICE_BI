@@ -103,9 +103,11 @@ view: proposta {
 
 
 dimension: vl_tarifa_cadastro {
-  group_label: "Dados de Contrato"
+  type: number
+  group_label: "Dados do Contrato"
   label: "Valor Tarifa Cadastro"
   hidden: no
+  value_format: "$ #,###.00"
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
@@ -2049,12 +2051,24 @@ dimension: vl_tarifa_cadastro {
     sql: NULLIF(${TABLE}."VL_MENSALIDADE",0) ;;
   }
 
+  dimension: vl_mensalidade_original {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Valor Mensalidade Original"
+    value_format: "$ #,###.00"
+    description: "Indica o valor da mensalidade informada pelo aluno no momento da simulação"
+    link: {label:"Documentação - Valor da Mensalidade"
+      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
+    hidden: no
+    sql: NULLIF(${TABLE}."VL_MENSALIDADE_ORIGINAL",0) ;;
+  }
+
   dimension: vl_mensalidade_ajustado {
     type: number
     group_label: "Dados do Contrato"
     label: "Valor Mensalidade Ajustado"
     value_format: "$ #,###.00"
-    description: "Indica o valor da mensalidade descrita no contrato"
+    description: "Indica o valor da mensalidade descrita no contrato, arredonda"
     link: {label:"Documentação - Valor da Mensalidade"
       url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     hidden: no
@@ -2529,6 +2543,15 @@ dimension: vl_tarifa_cadastro {
   }
 
 
+  measure: sum_repasse_mensal {
+    type: sum
+    group_label: "Proposta"
+    group_item_label: "Valor Repasse"
+    label: "Valor Repasse"
+    description: "Valor de aquisição médio de acordo com o termo de cessão: Sum(vl_aquisicao)/Nº_Parcelas"
+    value_format: "\R$ #,###.00"
+    sql: ${vl_repasse_mensal};;
+  }
 
 
 
@@ -3994,6 +4017,33 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
   }
 
+  measure: valor_prestacao_sem_juros {
+    type: number
+    sql: ${vl_financiamento}/${sum_qtd_prestacoes} ;;
+    label: "Valor Prestação Sem Juros"
+    value_format: "$ #,###.00"
+    description: "Valor do financiamento sem a incidência de juros"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: diferenca_prestacao {
+    type: number
+    sql: ${vl_prestacoes} - ${valor_prestacao_sem_juros} ;;
+    label: "Diferença Prestação"
+    value_format: "$ #,###.00"
+    description: "Diferença entre as pretações com e sem incidência de juros"
+    group_label: "Dados do Contrato"
+  }
+
+  measure: diferenca_financiamento {
+    type: number
+    sql: ${sum_vl_financiamento_aluno} - ${vl_financiamento} ;;
+    label: "Diferença Financiamento"
+    value_format: "$ #,###.00"
+    description: "Diferença entre os financiamentos totais com e sem incidência de juros"
+    group_label: "Dados do Contrato"
+  }
+
 
   set: detail {
     fields: [
@@ -4351,6 +4401,13 @@ dimension: vl_tarifa_cadastro {
     label: "Aceite Renovação"
     description: "Data em que o Aluno aceitou o processod de Renovação"
     sql: ${TABLE}."DT_ACEITE_RENOVACAO" ;;
+  }
+
+  dimension: flag_sem_fiador {
+    type:  yesno
+    label: "Flag Sem Fiador"
+    sql: ${proposta.cpf_fiador} is null
+      and ${proposta.fia_idade} is null;;
   }
 
 }

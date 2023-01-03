@@ -80,6 +80,7 @@ view: tickets_mundiale_zendesk {
     group_label: "Dados do Ticket"
     group_item_label: "Tabulação - Formulário"
     description: "Indica o formulário utilizado para tabulação do ticket."
+    drill_fields: [motivo_contato]
     sql: ${TABLE}."FORMULARIO" ;;
   }
 
@@ -130,6 +131,7 @@ view: tickets_mundiale_zendesk {
     group_label: "Dados do Ticket"
     group_item_label: "Tabulação - Motivo de Contato"
     description: "Indica o primeiro motivo de contato utilizado para tabulação do ticket (À partir de 12/08/2022)."
+    drill_fields: [submotivo_contato]
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
