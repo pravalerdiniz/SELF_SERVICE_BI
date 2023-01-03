@@ -42,11 +42,11 @@ view: proposta_vl_financiamento {
   dimension: vl_financiamento_final {
     type: number
     group_label: "Dados do Contrato"
-    label: "Valor do Financiamento"
+    label: "Valor do Financiamento + Contrato Conjunto"
     value_format: "$ #,###.00"
     description: "Indica o valor total do financiamento do contrato"
     sql: coalesce(${vl_mat_contr},${vl_financiamento}) ;;
-    hidden:  yes
+    hidden:  no
   }
 
   measure: sum_vl_mat_contr {

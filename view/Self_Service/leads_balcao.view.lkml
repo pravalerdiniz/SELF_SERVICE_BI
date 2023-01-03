@@ -423,6 +423,18 @@ view: leads_balcao {
     description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão."
   }
 
+  dimension: flag_comparativo_valor_instituicao_balcao {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Balcão Bruto x Cadastro Instituição (maior ou menor)"
+    sql: CASE
+          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
+          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade cadastrada na Instituição é maior ou menor que a mensalidade do Balcão."
+  }
+
   dimension: flag_ultima_simulacao {
     type: yesno
     group_label: "Dados da Proposta"
@@ -497,6 +509,14 @@ view: leads_balcao {
     sql: ${proposta.mensalidade_ies}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
     group_label: "Mensalidades"
     group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Análise IES"
+    value_format: "0.0%"
+  }
+
+  measure: var_mensalidade_balcao_bruto_vs_instituicao {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Cadastro Instituição"
     value_format: "0.0%"
   }
 }

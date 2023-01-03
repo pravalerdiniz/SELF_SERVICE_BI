@@ -58,7 +58,10 @@ map_layer: MAPA_CIDADE_ALUNO {
 #   }
 # }
 
-
+explore: vcom {
+  label: "Crédito & Cobrança Vcom"
+  view_label: "Vcom"
+}
 
 explore: alunos {
   view_label: "Alunos"
@@ -116,7 +119,6 @@ explore: alunos {
     - leads_balcao *,
     - jornada_pivot *,
     - proposta_datas_interfile *,
-    - instituicao *,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_produtos_semfiador_testeab
   ]
@@ -325,6 +327,17 @@ explore: alunos {
 
   }
 
+  join: instituicao {
+    view_label: "Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}
+          ;;
+    relationship: many_to_one
+    type:left_outer
+
+  }
+
   join: proposta_projeto_decola {
     view_label: "Proposta - Projeto Decola"
     sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
@@ -340,6 +353,14 @@ explore: alunos {
     sql_on: ${alunos.id_cpf} = ${financeiro.id_cpf} and ${financeiro.id_contrato} = ${proposta.id_proposta};;
     type: left_outer
     relationship: one_to_one
+  }
+
+  join: taxa_instituicao_simplificada {
+    view_label: "Taxas da Instituição por Produto Gestão - Simplificada"
+    sql_on:  ${taxa_instituicao_simplificada.id_instituicao} = ${proposta.id_instituicao}
+      and   ${taxa_instituicao_simplificada.id_ies_contrato} = ${financeiro.id_ies_contrato} ;;
+    relationship: one_to_many
+    type: left_outer
   }
 
   join: financeiro_extrato_titulo {
@@ -437,8 +458,6 @@ join: dim_cpf {
 
 join: jornada_pivot {}
 join: proposta_datas_interfile {}
-join: instituicao {}
-
 
 join: jornada {
   view_label: "Jornada"
