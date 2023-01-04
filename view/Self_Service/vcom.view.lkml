@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Vcom"
-view: vcom {
+view: vcom_erros {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: "POS_GRADUADO"."CCR"."VCOM"

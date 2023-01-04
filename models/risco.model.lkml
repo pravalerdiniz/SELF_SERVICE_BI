@@ -58,9 +58,9 @@ map_layer: MAPA_CIDADE_ALUNO {
 #   }
 # }
 
-explore: vcom {
-  label: "Crédito & Cobrança Vcom"
-  view_label: "Vcom"
+explore: vcom_erros {
+  label: "Crédito & Cobrança Vcom Base de Erros"
+  view_label: "Vcom Erros"
 }
 
 explore: alunos {
