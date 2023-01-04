@@ -61,7 +61,35 @@ map_layer: MAPA_CIDADE_ALUNO {
 # }
 
 explore: student_intercambio {
+  view_label: "Dados do Aluno/Garantidor"
   label: "Intercambio - Produto Piloto"
   description: "Dados gerais do produto piloto de intercambio"
 
+  join: contracts_intercambio {
+    view_label: "Contratos - Intercambio"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${student_intercambio.id_aluno} = ${contracts_intercambio.id_aluno};;
+  }
+
+  join: status_intercambio {
+    view_label: "Status Intercambio"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${student_intercambio.id_aluno} = ${status_intercambio.id_aluno};;
+  }
+
+  join: risk_intercambio {
+    view_label: "Análise de Risco"
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${student_intercambio.id_aluno} = ${risk_intercambio.external_id};;
+  }
+
+  join: institution_intercambio {
+    view_label: "Dados da Instituição"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${status_intercambio.id_instituicao} = ${institution_intercambio.id_instituicao};;
+ }
 }

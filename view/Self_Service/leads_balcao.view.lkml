@@ -371,6 +371,7 @@ view: leads_balcao {
     description: "Regra para calcular identificar se a mensalidade descontada foi menor, igual ou maior que a mensalidade bruta"
   }
 
+  # criação do histograma
   dimension: faixa_delta_bruto_desconto {
     type: string
     group_label: "Dados da Instituição"
@@ -402,37 +403,69 @@ view: leads_balcao {
     description: "Categorização das faixas dos deltas"
   }
 
-  dimension: flag_mensalidade_desconto_analise_ies {
+  # flags de igualdade entre as mensalidades
+  dimension: flag_igual_cadastro_inst_balcao_bruto {
     type: yesno
     group_label: "Dados da Proposta"
-    group_item_label: "Flag Igualdade Mensalidades Desconto Balcão x Análise IES"
-    sql: ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < 1
-    AND ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1  ;;
+    group_item_label: "Flag Igualdade Cadastro Inst x Balcão Bruto"
+    sql: ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_bruto} < 1
+      AND ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_bruto} > -1  ;;
+    description: "Informa se o valor da mensalidade cadastrada na Instituição é igual à mensalidade bruta do Balcão"
+  }
+
+  dimension: flag_igual_balcao_bruto_desconto {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Igualdade Balcão Bruto x Balcão Desconto"
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto} - ${leads_balcao.vl_mensalidade_curso_desconto} < 1
+      AND ${leads_balcao.vl_mensalidade_curso_bruto} - ${leads_balcao.vl_mensalidade_curso_desconto} > -1  ;;
+    description: "Informa se o valor da mensalidade cadastrada na Instituição é igual à mensalidade bruta do Balcão"
+  }
+
+  dimension: flag_igual_balcao_desconto_analise_ies {
+    type: yesno
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Igualdade Balcão Desconto Balcão x Análise IES"
+    sql: ${leads_balcao.vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies} < 1
+      AND ${leads_balcao.vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies} > -1  ;;
     description: "Informa se o valor da mensalidade descontado é igual à mensalidade apresentada na proposta, após a etapa de análise da IES"
   }
 
-  dimension: flag_comparativo_desconto_analise_ies {
+  # flags de valores maiores ou menores comparando as mensalidades
+  dimension: flag_comparativo_cadastro_inst_balcao_bruto {
     type: string
     group_label: "Dados da Proposta"
-    group_item_label: "Flag Diferença entre Mensalidades Balcão x Análise IES (maior ou menor)"
+    group_item_label: "Flag Diferença entre Cadastro Instituição x Balcão Bruto"
     sql: CASE
-          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
-          WHEN ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
-          ELSE 'Igual'
-          END;;
-    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão."
-  }
-
-  dimension: flag_comparativo_valor_instituicao_balcao {
-    type: string
-    group_label: "Dados da Proposta"
-    group_item_label: "Flag Diferença entre Balcão Bruto x Cadastro Instituição (maior ou menor)"
-    sql: CASE
-          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
-          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_bruto} > 1 THEN 'Maior'
+          WHEN ${instituicao.valor_mensalidade} - ${leads_balcao.vl_mensalidade_curso_bruto} < -1 THEN 'Menor'
           ELSE 'Igual'
           END;;
     description: "Informa se a mensalidade cadastrada na Instituição é maior ou menor que a mensalidade do Balcão."
+  }
+
+  dimension: flag_comparativo_balcao_bruto_desconto {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Mensalidades Balcão Bruto x Balcão Desconto"
+    sql: CASE
+          WHEN ${leads_balcao.vl_mensalidade_curso_bruto} - ${leads_balcao.vl_mensalidade_curso_desconto} > 1 THEN 'Maior'
+          WHEN ${leads_balcao.vl_mensalidade_curso_bruto} - ${leads_balcao.vl_mensalidade_curso_desconto} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão Desconto."
+  }
+
+  dimension: flag_comparativo_balcao_desconto_analise_ies {
+    type: string
+    group_label: "Dados da Proposta"
+    group_item_label: "Flag Diferença entre Mensalidades Balcão Desconto x Análise IES"
+    sql: CASE
+          WHEN ${leads_balcao.vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies} > 1 THEN 'Maior'
+          WHEN ${leads_balcao.vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies} < -1 THEN 'Menor'
+          ELSE 'Igual'
+          END;;
+    description: "Informa se a mensalidade da Análise IES é maior ou menor que a mensalidade do Balcão Desconto."
   }
 
   dimension: flag_ultima_simulacao {
@@ -496,6 +529,24 @@ view: leads_balcao {
     label: "Simulados"
   }
 
+  # medidas de valores absolutos do delta ticket
+  measure: delta_ticket_cadastro_inst_balcao_bruto {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto} - ${instituicao.valor_mensalidade}  ;;
+    group_label: "Mensalidades"
+    group_item_label: "Delta Ticket Cadastro Instituição x Balcão Bruto"
+    value_format: "$ #,###.00"
+  }
+
+  measure: delta_ticket_balcao_bruto_desconto {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_desconto} - ${leads_balcao.vl_mensalidade_curso_bruto}  ;;
+    group_label: "Mensalidades"
+    group_item_label: "Delta Ticket Balcão Bruto x Balcão Desconto"
+    value_format: "$ #,###.00"
+  }
+
+  # medidas de percentual do delta ticket
   measure: var_mensalidade_balcao_bruto_vs_desconto {
     type: average
     sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;

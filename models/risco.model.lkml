@@ -119,7 +119,6 @@ explore: alunos {
     - leads_balcao *,
     - jornada_pivot *,
     - proposta_datas_interfile *,
-    - instituicao *,
     - proposta.flag_elegivel_semfiador_testeab,
     - proposta.flag_produtos_semfiador_testeab
   ]
@@ -328,6 +327,17 @@ explore: alunos {
 
   }
 
+  join: instituicao {
+    view_label: "Instituicao"
+    sql_on:   ${instituicao.id_instituicao} = ${proposta.id_instituicao}
+          AND  ${instituicao.id_campus} = ${proposta.id_campus}
+          AND    ${instituicao.id_curso} =  ${proposta.id_curso}
+          ;;
+    relationship: many_to_one
+    type:left_outer
+
+  }
+
   join: proposta_projeto_decola {
     view_label: "Proposta - Projeto Decola"
     sql_on:  ${proposta_projeto_decola.id_cpf}  = ${alunos.id_cpf}
@@ -448,8 +458,6 @@ join: dim_cpf {
 
 join: jornada_pivot {}
 join: proposta_datas_interfile {}
-join: instituicao {}
-
 
 join: jornada {
   view_label: "Jornada"
