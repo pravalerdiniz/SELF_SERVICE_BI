@@ -770,7 +770,26 @@ view: neurotech {
 
   ## MEDIDAS ##
 
+  measure: renda_aluno {
+    type: sum
+    label: "Soma Renda Aluno"
+    group_label: "Medidas"
+    sql: ${prop_renda_aluno} ;;
+  }
 
+  measure: mensalidade {
+    type: sum
+    label: "Soma Mensalidade"
+    group_label: "Medidas"
+    sql: ${prop_mensalidade_ativa_ies} ;;
+  }
+
+  measure: renda_garantidor {
+    type: sum
+    label: "Soma Renda Garantidor"
+    group_label: "Medidas"
+    sql: ${prop_renda_garantidor} ;;
+  }
 
 
 }
