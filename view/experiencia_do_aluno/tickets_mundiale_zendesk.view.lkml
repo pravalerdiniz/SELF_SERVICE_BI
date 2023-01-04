@@ -274,6 +274,7 @@ view: tickets_mundiale_zendesk {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,

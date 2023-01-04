@@ -362,6 +362,7 @@ view: jornada {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,
