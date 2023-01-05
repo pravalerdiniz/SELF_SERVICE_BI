@@ -107,7 +107,7 @@ dimension: vl_tarifa_cadastro {
   group_label: "Dados do Contrato"
   label: "Valor Tarifa Cadastro"
   hidden: no
-  value_format: "$ #,###.00"
+  #value_format: "$ #,###.00"
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
