@@ -1,5 +1,5 @@
 view: liberacao_credito_debitos {
-  sql_table_name: "FINANCEIRO"."LIBERACAO_CREDITO_DEBITOS"
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."LIBERACAO_CREDITO_DEBITOS"
     ;;
   drill_fields: [id]
 
@@ -18,6 +18,7 @@ view: liberacao_credito_debitos {
   #VALUE
   dimension: valor {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor do Débito"
     group_label: ""
     description: "valor total do debito"

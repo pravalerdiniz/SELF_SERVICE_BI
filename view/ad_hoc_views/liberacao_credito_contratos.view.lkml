@@ -1,5 +1,5 @@
 view: liberacao_credito_contratos {
-  sql_table_name: "FINANCEIRO"."LIBERACAO_CREDITO_CONTRATOS"
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."LIBERACAO_CREDITO_CONTRATOS"
     ;;
   drill_fields: [id]
 
@@ -45,6 +45,7 @@ view: liberacao_credito_contratos {
   #NUMBER
   dimension: valor {
     type: number
+    value_format: "0"
     label: "Número do Contrato"
     group_label: ""
     description: "Numero do contrato"
