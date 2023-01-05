@@ -18,6 +18,7 @@ view: liberacao_credito_debitos {
   #VALUE
   dimension: valor {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor do Débito"
     group_label: ""
     description: "valor total do debito"

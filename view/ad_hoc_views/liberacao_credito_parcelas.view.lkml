@@ -18,6 +18,7 @@ view: liberacao_credito_parcelas {
   #VALUE
   dimension: valor {
     type: number
+    value_format: "$#,##0.00"
     label: "Valor da Parcela"
     group_label: ""
     description: "Valor da parcela"
