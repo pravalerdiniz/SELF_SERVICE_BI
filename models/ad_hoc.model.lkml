@@ -586,5 +586,13 @@ explore: bullest {
   }
 
   explore: request_log {
-    label: "Data Filter"
+    label: "Liberação de Crédito"
+    view_label: "1. Data / Business Filter"
+
   }
+
+
+
+
+
+
