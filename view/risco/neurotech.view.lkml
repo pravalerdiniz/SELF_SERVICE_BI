@@ -776,11 +776,18 @@ view: neurotech {
     sql: ${prop_renda_aluno} ;;
   }
 
-  measure: mensalidade {
+  measure: qtdade_mensalidade {
     type: sum
-    label: "Soma Mensalidade"
+    label: "Soma da Quantidade de Mensalidade em aberto"
     group_label: "Medidas"
     sql: ${prop_mensalidade_ativa_ies} ;;
+  }
+
+  measure: valor_mensalidade {
+    type: sum
+    label: "Soma dos valores da mensalidade"
+    group_label: "Medidas"
+    sql: ${prop_mensalidade} ;;
   }
 
   measure: renda_garantidor {
