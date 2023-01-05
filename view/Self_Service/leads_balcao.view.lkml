@@ -534,7 +534,7 @@ view: leads_balcao {
     type: average
     sql: ${leads_balcao.vl_mensalidade_curso_bruto} - ${instituicao.valor_mensalidade}  ;;
     group_label: "Mensalidades"
-    group_item_label: "Delta Ticket Cadastro Instituição x Balcão Bruto"
+    group_item_label: "Delta Ticket Balcão Bruto x Cadastro Instituição"
     value_format: "$ #,###.00"
   }
 
@@ -542,32 +542,40 @@ view: leads_balcao {
     type: average
     sql: ${leads_balcao.vl_mensalidade_curso_desconto} - ${leads_balcao.vl_mensalidade_curso_bruto}  ;;
     group_label: "Mensalidades"
-    group_item_label: "Delta Ticket Balcão Bruto x Balcão Desconto"
+    group_item_label: "Delta Ticket Balcão Desconto x Balcão Bruto"
+    value_format: "$ #,###.00"
+  }
+
+  measure: delta_ticket_balcao_desconto_analise_ies {
+    type: average
+    sql: ${proposta.mensalidade_ies} - ${leads_balcao.vl_mensalidade_curso_desconto}  ;;
+    group_label: "Mensalidades"
+    group_item_label: "Delta Ticket Análise IES x Balcão Desconto"
     value_format: "$ #,###.00"
   }
 
   # medidas de percentual do delta ticket
+  measure: var_mensalidade_balcao_bruto_vs_instituicao {
+    type: average
+    sql: ${leads_balcao.vl_mensalidade_curso_bruto}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
+    group_label: "Mensalidades"
+    group_item_label: "Var % Mensalidade Balcão Bruto x Cadastro Instituição"
+    value_format: "0.0%"
+  }
+
   measure: var_mensalidade_balcao_bruto_vs_desconto {
     type: average
     sql: ${leads_balcao.vl_mensalidade_curso_desconto}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
     group_label: "Mensalidades"
-    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Balcão Descontada"
+    group_item_label: "Var % Mensalidade Balcão Desconto x Balcão Bruto"
     value_format: "0.0%"
   }
 
   measure: var_mensalidade_balcao_bruto_vs_analise_ies {
     type: average
-    sql: ${proposta.mensalidade_ies}/nullif(${leads_balcao.vl_mensalidade_curso_bruto},0)-1 ;;
+    sql: ${proposta.mensalidade_ies}/nullif(${leads_balcao.vl_mensalidade_curso_desconto},0)-1 ;;
     group_label: "Mensalidades"
-    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Análise IES"
-    value_format: "0.0%"
-  }
-
-  measure: var_mensalidade_balcao_bruto_vs_instituicao {
-    type: average
-    sql: ${leads_balcao.vl_mensalidade_curso_bruto}/nullif(${instituicao.valor_mensalidade},0)-1 ;;
-    group_label: "Mensalidades"
-    group_item_label: "Var % Mensalidade Balcão Bruta x Mensalidade Cadastro Instituição"
+    group_item_label: "Var % Mensalidade Análise IESx Balcão Desconto"
     value_format: "0.0%"
   }
 }
