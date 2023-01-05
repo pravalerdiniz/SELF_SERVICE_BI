@@ -432,8 +432,7 @@ view: neurotech {
     label: "Mensalidade Ativa IES"
     group_label: "Dados da IES"
     sql: ${TABLE}."PROP_MENSALIDADE_ATIVA_IES" ;;
-    hidden: yes
-  }
+      }
 
   dimension: prop_escore_whorty_credit {
     type: number
