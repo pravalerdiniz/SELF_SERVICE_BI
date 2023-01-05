@@ -607,7 +607,8 @@ explore: bullest {
 
     join: liberacao_credito_contratos{
       view_label: "4. Contratos"
-      sql_on: ${liberacao_credito_debitos.id_contrato} = ${liberacao_credito_contratos.id} ;;
+      sql_on: ${liberacao_credito_debitos.id_contrato} = ${liberacao_credito_contratos.id}
+      and ${request_log.alu_contrato} = ${liberacao_credito_contratos.valor};;
       type: left_outer
       relationship: one_to_one
     }
