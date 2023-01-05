@@ -585,14 +585,59 @@ explore: bullest {
     label: "API titulos Validação"
   }
 
+
+
   explore: request_log {
     label: "Liberação de Crédito"
     view_label: "1. Data / Business Filter"
 
+    join: liberacao_credito_clientes {
+      view_label: "2. Clientes"
+      sql_on: ${request_log.cpf} = ${liberacao_credito_clientes.cpf} ;;
+      type: left_outer
+      relationship: many_to_one
+    }
+
+    join: liberacao_credito_debitos  {
+      view_label: "3. Débitos"
+      sql_on: ${liberacao_credito_clientes.id} = ${liberacao_credito_debitos.id_cliente} ;;
+      type: left_outer
+      relationship: one_to_many
+    }
+
+    join: liberacao_credito_contratos{
+      view_label: "4. Contratos"
+      sql_on: ${liberacao_credito_debitos.id_contrato} = ${liberacao_credito_contratos.id} ;;
+      type: left_outer
+      relationship: one_to_one
+    }
+
+    join: liberacao_credito_originadores {
+      view_label: "5. Originadores"
+      sql_on: ${liberacao_credito_originadores.id} = ${liberacao_credito_contratos.id_originador} ;;
+      type: left_outer
+      relationship: one_to_one
+    }
+
+    join: liberacao_credito_parcelas {
+      view_label: "6. Parcelas"
+      sql_on: ${liberacao_credito_parcelas.id_debito} = ${liberacao_credito_debitos.id} ;;
+      type: left_outer
+      relationship: one_to_one
+    }
+
+    join: liberacao_credito_contas_acesso {
+      view_label: "7. Contas Acesso"
+      sql_on: ${liberacao_credito_contas_acesso.id} = ${liberacao_credito_debitos.id_acesso_checkin} ;;
+      type: left_outer
+      relationship: one_to_one
+    }
+
+    join: liberacao_credito_bancos {
+      view_label: "8. Bancos"
+      sql_on: ${liberacao_credito_bancos.id} = ${liberacao_credito_contas_acesso.id_banco} ;;
+      type: left_outer
+      relationship: one_to_one
+    }
+
   }
-
-
-
-
-
-

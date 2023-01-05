@@ -74,6 +74,7 @@ view: request_log {
 
   dimension: cpf {
     type: number
+    value_format: "0"
     label: "CPF"
     description: ""
     group_label: "Dados do Aluno"

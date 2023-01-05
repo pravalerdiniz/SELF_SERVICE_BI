@@ -1,5 +1,5 @@
 view: liberacao_credito_contratos {
-  sql_table_name: "FINANCEIRO"."LIBERACAO_CREDITO_CONTRATOS"
+  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."LIBERACAO_CREDITO_CONTRATOS"
     ;;
   drill_fields: [id]
 
