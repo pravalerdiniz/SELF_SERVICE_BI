@@ -236,6 +236,7 @@ view: contracts_intercambio {
 
   dimension: id_aluno {
     type: string
+    primary_key: yes
     sql: ${TABLE}."ID_ALUNO" ;;
   }
 
@@ -462,38 +463,38 @@ view: contracts_intercambio {
     sql: ${TABLE}."VALOR_ASSINATURA" ;;
   }
 
-  dimension: vl_curso {
-    type: string
+  measure: vl_curso {
+    type: sum
     sql: ${TABLE}."VL_CURSO" ;;
   }
 
-  dimension: vl_emitido_desembolso {
-    type: number
+  measure: vl_emitido_desembolso {
+    type: sum
     sql: ${TABLE}."VL_EMITIDO_DESEMBOLSO" ;;
   }
 
-  dimension: vl_final_desembolso {
-    type: number
+  measure: vl_final_desembolso {
+    type: sum
     sql: ${TABLE}."VL_FINAL_DESEMBOLSO" ;;
   }
 
-  dimension: vl_net_taxa_externa {
-    type: number
+  measure: vl_net_taxa_externa {
+    type: sum
     sql: ${TABLE}."VL_NET_TAXA_EXTERNA" ;;
   }
 
-  dimension: vl_subsidio {
-    type: string
+  measure: vl_subsidio {
+    type: sum
     sql: ${TABLE}."VL_SUBSIDIO" ;;
   }
 
-  dimension: vl_total_contrato {
-    type: number
+  measure: vl_total_contrato {
+    type: sum
     sql: ${TABLE}."VL_TOTAL_CONTRATO" ;;
   }
 
-  dimension: vl_total_prefixado {
-    type: number
+  measure: vl_total_prefixado {
+    type: sum
     sql: ${TABLE}."VL_TOTAL_PREFIXADO" ;;
   }
 

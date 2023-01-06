@@ -391,18 +391,17 @@ view: neurotech {
     type: number
     group_label: "Dados do Aluno"
     sql: ${TABLE}."PROP_RENDA_ALUNO" ;;
-    hidden: yes
   }
 
   dimension: prop_renda_garantidor {
     type: number
-    hidden: yes
+    group_label: "Dados do Garantidor"
     sql: ${TABLE}."PROP_RENDA_GARANTIDOR" ;;
   }
 
   dimension: prop_mensalidade {
     type: number
-    hidden: yes
+    group_label: "Dados de Avaliação"
     sql: ${TABLE}."PROP_MENSALIDADE" ;;
   }
 
@@ -432,8 +431,7 @@ view: neurotech {
     label: "Mensalidade Ativa IES"
     group_label: "Dados da IES"
     sql: ${TABLE}."PROP_MENSALIDADE_ATIVA_IES" ;;
-    hidden: yes
-  }
+      }
 
   dimension: prop_escore_whorty_credit {
     type: number
@@ -777,11 +775,18 @@ view: neurotech {
     sql: ${prop_renda_aluno} ;;
   }
 
-  measure: mensalidade {
+  measure: qtdade_mensalidade {
     type: sum
-    label: "Soma Mensalidade"
+    label: "Soma da Quantidade de Mensalidade em aberto"
     group_label: "Medidas"
     sql: ${prop_mensalidade_ativa_ies} ;;
+  }
+
+  measure: valor_mensalidade {
+    type: sum
+    label: "Soma dos valores da mensalidade"
+    group_label: "Medidas"
+    sql: ${prop_mensalidade} ;;
   }
 
   measure: renda_garantidor {
