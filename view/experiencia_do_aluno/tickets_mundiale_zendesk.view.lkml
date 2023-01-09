@@ -177,7 +177,7 @@ view: tickets_mundiale_zendesk {
 
   dimension: nota_csat_zendesk {
     type: string
-    group_label: "Dados de Satifação"
+    group_label: "Dados de Satisfação"
     group_item_label: "Nota CSAT Zendesk"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. GOOD para bom e BAD para ruim (Apenas em tickets da Zendesk)."
     sql: ${TABLE}."NOTA_CSAT_ZENDESK" ;;
