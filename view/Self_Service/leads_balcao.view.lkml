@@ -507,6 +507,41 @@ view: leads_balcao {
     description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
   }
 
+  # dimensoes para o desenrola
+
+  dimension: valor_mensalidade_divida {
+    type: number
+    sql: ${TABLE}."VL_MENSALIDADE_DIVIDA" ;;
+    value_format: "$ #,###.00"
+    group_label: "Desenrola"
+    group_item_label: "Valor Mensalidade Dívida"
+  }
+
+  dimension: valor_total_divida {
+    type: number
+    sql: ${TABLE}."VL_TOTAL_DIVIDA" ;;
+    value_format: "$ #,###.00"
+    group_label: "Desenrola"
+    group_item_label: "Valor total da dívida"
+    description: "Valor total da dívida do aluno com a IES"
+  }
+
+  dimension: qtd_parcela_atraso_proposta {
+    type: number
+    sql: ${TABLE}."QT_PARCELA_ATRASO_PROPOSTA" ;;
+    group_label: "Desenrola"
+    group_item_label: "Quantidade de parcelas em atraso"
+    description: "Quantidade de parcelas do curso que o aluno possui em atraso"
+  }
+
+  dimension: flag_aluno_possui_divida {
+    type: yesno
+    sql: ${TABLE}."FLG_ALUNO_POSSUI_DIVIDA" ;;
+    group_label: "Desenrola"
+    group_item_label: "Possui dívida?"
+    description: "Flag que indica se o aluno possui alguma dívida com a IES"
+  }
+
   measure: max_data_ultima_simulacao {
     type: date_time
     group_label: "Dados da Proposta"
