@@ -154,8 +154,8 @@ view: tickets_mundiale_zendesk {
   measure: nota_bot_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota Mundiale 1.BOT"
-    description: "Indica a nota que o aluno avaliou o BOT de 1 a 3 (Apenas em tickets da Mundiale). Pergunta: O que achou do meu atendimento?"
+    group_item_label: "Nota Mundiale 1.Atendimento"
+    description: "Indica a nota que o aluno avaliou o atendimento de 1 a 3 (Apenas em tickets da Mundiale). Pergunta: O que achou do meu atendimento?"
     sql: ${TABLE}."NOTA_BOT_MUNDIALE" ;;
   }
 
