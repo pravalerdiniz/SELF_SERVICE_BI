@@ -135,6 +135,10 @@ explore: inep {
 }
 
 
+explore: meta_conversao_grupo_ies {
+  view_label: "Metas de Conversão"
+}
+
 
 explore: instituicao_metas_gc {
   view_label: "1. Meta Grupo IES"
