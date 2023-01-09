@@ -155,7 +155,7 @@ view: tickets_mundiale_zendesk {
     type: sum
     group_label: "Dados de Satisfação"
     group_item_label: "Nota Mundiale 1.Atendimento"
-    description: "Indica a nota que o aluno avaliou o atendimento de 1 a 3 (Apenas em tickets da Mundiale). Pergunta: O que achou do meu atendimento?"
+    description: "Indica a nota que o aluno avaliou o atendimento de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: O que achou do meu atendimento?"
     sql: ${TABLE}."NOTA_BOT_MUNDIALE" ;;
   }
 
@@ -163,7 +163,7 @@ view: tickets_mundiale_zendesk {
     type: sum
     group_label: "Dados de Satisfação"
     group_item_label: "Nota Mundiale 3.NPS"
-    description: "Indica a nota que o aluno recomenda o Pravaler entre 0 e 10 (Apenas em tickets da Mundiale). Pergunta: Numa escala de 0 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
+    description: "Indica a nota que o aluno recomenda o Pravaler entre 1 e 10 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: Numa escala de 0 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
     sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
   }
 
@@ -171,7 +171,7 @@ view: tickets_mundiale_zendesk {
     type: sum
     group_label: "Dados de Satisfação"
     group_item_label: "Nota Mundiale 2.Pravaler"
-    description: "Indica a nota que o aluno avaliou o Pravaler de 1 a 3 (Apenas em tickets da Mundiale). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    description: "Indica a nota que o aluno avaliou o Pravaler de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PRAVALER_MUNDIALE" ;;
   }
 
