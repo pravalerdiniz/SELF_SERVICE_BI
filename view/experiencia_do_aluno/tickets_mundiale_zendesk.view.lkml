@@ -19,12 +19,12 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."CANAL_ATENDIMENTO" ;;
   }
 
-  dimension: comentario_nps {
+  dimension: comentario_nps_csat {
     type: string
     group_label: "Dados de Satisfação"
-    group_item_label: "Comentário NPS"
-    description: "Comentário que o aluno deixou via Chat ou WhatsApp para a pergunta de NPS no final do atendimento (Apenas em tickets da Mundiale)."
-    sql: ${TABLE}."COMENTARIO_NPS" ;;
+    group_item_label: "Comentário NPS/CSAT"
+    description: "Comentário que o aluno deixou nas pesquisas de atendimento (Tanto em atendimentos da Mundiale quanto da Zendesk)."
+    sql: ${TABLE}."COMENTARIO_NPS_CSAT" ;;
   }
 
   dimension: cpf_atendente {
@@ -151,28 +151,36 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."NOME_CLIENTE" ;;
   }
 
-  measure: nota_bot {
+  measure: nota_bot_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota BOT"
-    description: "Indica a nota que o aluno avaliou o BOT de 1 a 3 (Apenas em tickets da Mundiale)."
-    sql: ${TABLE}."NOTA_BOT" ;;
+    group_item_label: "Nota Mundiale 1.Atendimento"
+    description: "Indica a nota que o aluno avaliou o atendimento de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: O que achou do meu atendimento?"
+    sql: ${TABLE}."NOTA_BOT_MUNDIALE" ;;
   }
 
-  measure: nota_nps {
+  measure: nota_nps_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota NPS"
-    description: "Indica a nota que o aluno recomenda o Pravaler entre 0 e 10 (Apenas em tickets da Mundiale)."
-    sql: ${TABLE}."NOTA_NPS" ;;
+    group_item_label: "Nota Mundiale 3.NPS"
+    description: "Indica a nota que o aluno recomenda o Pravaler entre 1 e 10 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: Numa escala de 0 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
+    sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
   }
 
-  measure: nota_pravaler {
+  measure: nota_pravaler_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota Pravaler"
-    description: "Indica a nota que o aluno avaliou o Pravaler de 1 a 3 (Apenas em tickets da Mundiale)."
-    sql: ${TABLE}."NOTA_PRAVALER" ;;
+    group_item_label: "Nota Mundiale 2.Pravaler"
+    description: "Indica a nota que o aluno avaliou o Pravaler de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    sql: ${TABLE}."NOTA_PRAVALER_MUNDIALE" ;;
+  }
+
+  dimension: nota_csat_zendesk {
+    type: string
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota CSAT Zendesk"
+    description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. GOOD para bom e BAD para ruim (Apenas em tickets da Zendesk)."
+    sql: ${TABLE}."NOTA_CSAT_ZENDESK" ;;
   }
 
   dimension: observacao_atendente {
