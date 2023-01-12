@@ -16,6 +16,7 @@ view: chamados_tela_atendimento {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       day_of_month,
