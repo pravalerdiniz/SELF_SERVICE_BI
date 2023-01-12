@@ -1786,7 +1786,7 @@ dimension: vl_tarifa_cadastro {
     label: "Renda Familia"
     value_format: "0"
     description: "Indica o valor da renda familiar do aluno"
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}."RENDA_FAMILIAR" ;;
     required_access_grants: [grupo_renda]
   }
@@ -1795,7 +1795,8 @@ dimension: vl_tarifa_cadastro {
     type: tier
     tiers: [1000,2000,3000,4000,6000,8000,10000]
     style: integer
-    sql: ${renda_familiar} ;;
+    sql: CASE WHEN ${renda_familiar} = 0 THEN NULL
+         ELSE ${renda_familiar} END;;
     group_label: "Dados do Aluno"
     group_item_label: "Faixa de Renda Família"
     description: "Indica a faixa de renda familiar do aluno"

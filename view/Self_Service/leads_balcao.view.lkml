@@ -6,6 +6,7 @@ view: leads_balcao {
     type:  string
     primary_key: yes
     hidden: yes
+    # granularidade
     sql: concat(${cpf_lead}, ${data_proposta_raw}) ;;
   }
 
