@@ -26,6 +26,13 @@ view: jornada {
     description: "Este campo é uma regra de negócio*. Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
   }
 
+  dimension: semana_etapa {
+    sql: EXTRACT(WOY FROM (add_days(-1,${dt_status_date}))) ;;
+    type: number
+    label: "Semana da Etapa"
+    group_label: "Dados da Proposta"
+  }
+
   parameter: timeframe_picker {
     type: unquoted
     hidden:  yes
