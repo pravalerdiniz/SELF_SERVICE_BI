@@ -17,6 +17,7 @@ view: jornada {
       month_name,
       day_of_year,
       hour_of_day,
+      hour,
       month_num,
       day_of_month,
       week_of_year
@@ -362,6 +363,7 @@ view: jornada {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,

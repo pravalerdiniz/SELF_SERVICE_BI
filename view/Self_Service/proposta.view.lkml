@@ -107,7 +107,7 @@ dimension: vl_tarifa_cadastro {
   group_label: "Dados do Contrato"
   label: "Valor Tarifa Cadastro"
   hidden: no
-  value_format: "$ #,###.00"
+  #value_format: "$ #,###.00"
   sql: ${TABLE}."VL_TARIFA_CADASTRO" ;;
 
 }
@@ -2058,10 +2058,32 @@ dimension: vl_tarifa_cadastro {
     label: "Valor Mensalidade Original"
     value_format: "$ #,###.00"
     description: "Indica o valor da mensalidade informada pelo aluno no momento da simulação"
-    link: {label:"Documentação - Valor da Mensalidade"
-      url:"https://pravaler.atlassian.net/wiki/spaces/IDD/pages/916881608/VALOR+DE+MENSALIDADE"}
     hidden: no
     sql: NULLIF(${TABLE}."VL_MENSALIDADE_ORIGINAL",0) ;;
+  }
+
+  dimension: rendaaluxrendamin {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Diferença entre Renda Aluno e Renda Mínima"
+    value_format: "0.0%"
+    sql: (${proposta.renda_total}-(${proposta.vl_mensalidade_original}*2))/coalesce(${proposta.renda_total},0) ;;
+  }
+
+  measure: rendaaluxrendamin_media {
+    type: average
+    group_label: "Dados do Contrato"
+    label: "Média - Diferença entre Renda Aluno e Renda Mínima"
+    value_format: "0.0%"
+    sql: ${rendaaluxrendamin} ;;
+  }
+
+  measure: rendaaluxrendamin_mediana {
+    type: number
+    group_label: "Dados do Contrato"
+    label: "Mediana - Diferença entre Renda Aluno e Renda Mínima"
+    value_format: "0.0%"
+    sql: median(${rendaaluxrendamin}) ;;
   }
 
   dimension: vl_mensalidade_ajustado {

@@ -135,6 +135,11 @@ explore: inep {
 }
 
 
+explore: meta_conversao_grupo_ies {
+  label: " Metas de Conversão"
+  view_label: "Metas de Conversão"
+}
+
 
 explore: instituicao_metas_gc {
   view_label: "1. Meta Grupo IES"
@@ -2446,10 +2451,6 @@ explore: position_based_jornada {
   description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
 
-explore: vcom {
-  label: "Crédito & Cobrança Vcom"
-  view_label: "Crédito & Cobrança Vcom"
-}
 
 explore: usuarios_campus_ies {
   label: "Usuários IES"
