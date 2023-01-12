@@ -830,9 +830,14 @@ explore: jornada {
 #    type: full_outer
 #  }
 
+  join: chamados_tela_atendimento {
+    view_label: "15. Chamados Tela Atendimento"
+    sql_on: ${jornada.id_cpf} = ${chamados_tela_atendimento.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
 
 }
-
 
 
 explore: instituicao {
