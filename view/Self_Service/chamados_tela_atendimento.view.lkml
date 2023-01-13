@@ -16,6 +16,7 @@ view: chamados_tela_atendimento {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       day_of_month,
@@ -245,6 +246,26 @@ view: chamados_tela_atendimento {
     label: "Tipo usuário"
     description: "Indica o tipo do atendente do chamado"
     sql: ${TABLE}."TP_USUARIO" ;;
+  }
+
+  dimension_group: data_completa_chamado {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      hour,
+      date,
+      week,
+      day_of_month,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    group_label: "Data Completa Chamado"
+    label: "Data Completa Chamado"
+    description: "Indica a data, hora, minuto e segundo que foi iniciado o chamado"
+    sql: CONCAT(${TABLE}."DATA_CHAMADO", ' ', ${TABLE}."HORARIO_CHAMADO")::timestamp ;;
   }
 
   measure: count_id_chamado {

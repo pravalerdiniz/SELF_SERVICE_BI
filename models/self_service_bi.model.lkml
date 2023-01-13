@@ -4,6 +4,7 @@ connection: "graduado"
 include: "/**/*.dashboard.lookml"
 include: "/**/*.view.lkml"
 
+
 access_grant: grupo_nome {
   user_attribute: grupo_nome
   allowed_values: ["grupo_nome"]
@@ -48,7 +49,10 @@ datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "5 hour"
 
+
 }
+
+week_start_day: sunday
 
 persist_with: self_service_bi_default_datagroup
 
@@ -765,9 +769,9 @@ explore: jornada {
     view_label: "13. Balcão"
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date}
-    and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
-    and ${instituicao.id_campus} = ${leads_balcao.id_campus}
-    and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
+    --and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
+    --and ${instituicao.id_campus} = ${leads_balcao.id_campus}
+    --and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
     relationship: many_to_many
     type: full_outer
   }
@@ -830,9 +834,14 @@ explore: jornada {
 #    type: full_outer
 #  }
 
+  join: chamados_tela_atendimento {
+    view_label: "15. Chamados Tela Atendimento"
+    sql_on: ${jornada.id_cpf} = ${chamados_tela_atendimento.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
 
 }
-
 
 
 explore: instituicao {
@@ -2460,4 +2469,8 @@ explore: usuarios_campus_ies {
 explore: log_usuarios {
   label: "Log Usuários"
   description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: metas_realizado_marketplace {
+  label: "Marketplace Metas e Realizado"
 }
