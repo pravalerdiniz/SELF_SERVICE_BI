@@ -2,7 +2,7 @@
 view: leads_canal_entrada {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: VETERANO.AFILIADOS.FATO_LEAD_AFILIADOS
+  sql_table_name: GRADUADO.BALCAO_AFILIADOS.LEADS
     ;;
 
   dimension: cd_canal {
