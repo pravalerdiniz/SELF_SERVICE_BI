@@ -13,8 +13,6 @@ view: vw_titulos {
     sql: ${TABLE}."ID" ;;
   }
 
-
-
   dimension: agencia {
     type: string
     sql: ${TABLE}."AGENCIA" ;;
