@@ -62,6 +62,24 @@ explore: vcom_erros {
   label: "Vcom"
   view_label: "Vcom"
 
+  join: financeiro {
+    from: financeiro
+    view_label: "1. Financeiro"
+    sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} and
+    ${financeiro.id_contrato} = ${vcom_erros.contrato} ;;
+    fields: [
+      financeiro.ativo_boleto,
+      financeiro.ds_fundo_investimento,
+      financeiro.ds_titulo_status,
+      financeiro.id_titulo_status,
+      financeiro.ds_titulo_classificacao,
+      financeiro.id_titulo_classificacao,
+      financeiro.ds_tipo_boleto
+    ]
+    relationship: one_to_one
+    type: left_outer
+  }
+
 #  join: alunos {
 #    from: alunos
 #    view_label: "1. Financeiro"
