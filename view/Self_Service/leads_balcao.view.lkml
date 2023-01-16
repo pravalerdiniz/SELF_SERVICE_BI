@@ -516,6 +516,7 @@ view: leads_balcao {
     value_format: "$ #,###.00"
     group_label: "Desenrola"
     group_item_label: "Valor Mensalidade Dívida"
+    description: "Valor da mensalidade + valor da divida"
   }
 
   dimension: valor_total_divida {
