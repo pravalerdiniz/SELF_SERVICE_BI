@@ -136,7 +136,7 @@ view: vcom_erros {
   dimension: flg_cpf_quitado {
     type: yesno
     label: "CPF Quitado"
-    group_label: "Dados do Aluno"
+    group_label: "Dados do Fluxo"
    description: "INDICA SE O CPF NÃO PÓSSUI BOLETOS EM ABERTO"
     sql: ${TABLE}."FLG_CPF_QUITADO" ;;
   }
