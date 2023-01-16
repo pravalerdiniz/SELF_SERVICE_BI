@@ -52,7 +52,7 @@ datagroup: self_service_bi_default_datagroup {
 
 }
 
-week_start_day: sunday
+##week_start_day: sunday
 
 persist_with: self_service_bi_default_datagroup
 
