@@ -24,150 +24,161 @@ view: meta_canal {
     sql: ${TABLE}."CANAL" ;;
   }
 
+  dimension: etapa {
+    type: string
+    sql: ${TABLE}."ETAPA" ;;
+  }
+
+  measure: meta_volume {
+    type: sum
+    value_format: "0"
+    sql: ${TABLE}."META" ;;
+  }
+
   measure: lead {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "1. Meta Leads"
-    sql: ${TABLE}."LEAD" ;;
+    filters: [etapa: "Lead"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: simulado {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "2. Meta Simulados"
-    sql: ${TABLE}."SIMULADO" ;;
+    filters: [etapa: "Simulado"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: iniciado {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "3. Meta Iniciados"
-    sql: ${TABLE}."INICIADO" ;;
+    filters: [etapa: "Iniciado"]
+    sql: ${TABLE}."META" ;;
   }
 
-  measure: finalizados {
+  measure: finalizado {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "4. Meta Finalizados"
-    sql: ${TABLE}."FINALIZADO" ;;
+    filters: [etapa: "Finalizado"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: aprovado_risco {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
-    label: "5. Meta Aprovados Risco"
-    sql: ${TABLE}."APROVADO_RISCO" ;;
+    label: "5. Meta Aprovado Risco"
+    filters: [etapa: "Aprovado Risco"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: aprovado_instituicao {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
-    label: "6. Meta Aprovados Instituição"
-    sql: ${TABLE}."APROVADO_INSTITUICAO" ;;
+    label: "6. Meta Aprovado Instituição"
+    filters: [etapa: "Aprovado Instituicao"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: aguardando_documento {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "7. Meta Aguardando Documento"
-    sql: ${TABLE}."AGUARDANDO_DOCUMENTO" ;;
+    filters: [etapa: "Aguardando Documento"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: aguardando_assinatura {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "8. Meta Aguardando Assinatura"
-    sql: ${TABLE}."AGUARDANDO_ASSINATURA" ;;
+    filters: [etapa: "Aguardando Assinatura"]
+    sql: ${TABLE}."META" ;;
   }
 
   measure: formalizado {
     type: sum
+    value_format: "0"
     group_label: "1. Absoluto"
     label: "9. Meta Formalizados"
-    sql: ${TABLE}."FORMALIZADO" ;;
+    filters: [etapa: "Formalizado"]
+    sql: ${TABLE}."META" ;;
   }
 
-  measure: simuladosporleads {
+  measure: simulado_por_lead {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "1. Simulados / Leads"
-    sql: ${simulado} / ${lead} ;;
+    group_label: "2. Conversão"
+    label: "1. Meta Simulado/Lead"
+    sql: ${simulado} / NULLIF(${lead},0) ;;
   }
 
-  measure: iniciadosporsimulados {
+  measure: iniciado_por_simulado {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "2. Iniciados / Simulados"
-    sql: ${iniciado} / ${simulado} ;;
+    group_label: "2. Conversão"
+    label: "2. Meta Iniciado/Simulado"
+    sql: ${iniciado} / NULLIF(${simulado},0) ;;
   }
 
-  measure: finalizadosporiniciados {
+  measure: finalizado_por_iniciado {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "3. Finalizados / Iniciados"
-    sql: ${finalizados} / ${iniciado} ;;
+    group_label: "2. Conversão"
+    label: "3. Meta Finalizado/Iniciado"
+    sql: ${finalizado} / NULLIF(${iniciado},0) ;;
   }
 
-  measure: aprovadoriscoporfinalizados {
+  measure: aprov_risco_por_finalizado {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "4. Aprovado Risco / Finalizados"
-    sql: ${aprovado_risco} / ${finalizados} ;;
+    group_label: "2. Conversão"
+    label: "4. Meta Aprov Risco/Finalizado"
+    sql: ${aprovado_risco} / NULLIF(${finalizado},0) ;;
   }
 
-  measure: aprovadoiesporaprovadorisco {
+  measure: aprov_ies_por_aprov_risco{
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "5. Aprovado IES / Aprovado Risco"
-    sql: ${aprovado_instituicao} / ${aprovado_risco} ;;
+    group_label: "2. Conversão"
+    label: "5. Meta Aprov IES/Aprov Risco"
+    sql: ${aprovado_instituicao} / NULLIF(${aprovado_risco},0) ;;
   }
 
-  measure: aguardandodocumentoporaprovadoies {
+  measure: aguard_doc_por_aprov_ies {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "6. Aguardando Documento / Aprovado IES"
-    sql: ${aguardando_documento} / ${aprovado_instituicao} ;;
+    group_label: "2. Conversão"
+    label: "6. Meta Aguard Doc/Aprov IES"
+    sql: ${aguardando_documento} / NULLIF(${aprovado_instituicao},0) ;;
   }
 
-  measure: aguardandoassinaturaporaguardandodocumento {
+  measure: aguard_ass_por_aguard_doc {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "7. Aguardando Assinatura / Aguardando Documento"
-    sql: ${aguardando_assinatura} / ${aguardando_documento} ;;
+    group_label: "2. Conversão"
+    label: "7. Meta Aguard Ass/Aguard Doc"
+    sql: ${aguardando_assinatura} / NULLIF(${aguardando_documento},0) ;;
   }
 
-  measure: formalizadoporaguardandoassinatura {
+  measure: formalizado_por_aguard_ass {
     type: number
     value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "8. Formalizados / Aguardando Assinatura"
-    sql: ${formalizado} / ${aguardando_assinatura} ;;
+    group_label: "2. Conversão"
+    label: "8. Meta Formalizado/Aguard Ass"
+    sql: ${formalizado} / NULLIF(${aguardando_assinatura},0) ;;
   }
-
-  measure: formalizadoporaprovadoies {
-    type: number
-    value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "Formalizados / Aprovado IES"
-    sql: ${formalizado} / ${aprovado_instituicao} ;;
-  }
-
-  measure: finalizadosporleads {
-    type: number
-    value_format: "0.0%"
-    group_label: "2. Conversões"
-    label: "Finalizados / Leads"
-    sql: ${finalizados} / ${lead} ;;
-  }
-
-
 
 
 }
