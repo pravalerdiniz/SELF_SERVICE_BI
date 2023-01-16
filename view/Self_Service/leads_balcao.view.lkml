@@ -645,4 +645,21 @@ view: leads_balcao {
     group_item_label: "Var % Mensalidade Análise IESx Balcão Desconto"
     value_format: "0.0%"
   }
+
+  # medidas do desenrola
+  measure: media_qtd_parcelas_atraso {
+    type: average
+    sql: ${qtd_parcela_atraso_proposta} ;;
+    group_label: "Desenrola"
+    group_item_label: "Média da Quantidade de Parcelas em Atraso"
+    value_format: "0.#"
+  }
+
+  measure: soma_valor_total_divida {
+    type: sum
+    sql: ${valor_total_divida} ;;
+    group_label: "Desenrola"
+    group_item_label: "Soma do Valor Total da Dívida"
+    value_format: "$0.00"
+  }
 }
