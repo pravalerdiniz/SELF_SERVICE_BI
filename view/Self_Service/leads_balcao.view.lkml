@@ -660,6 +660,6 @@ view: leads_balcao {
     sql: ${valor_total_divida} ;;
     group_label: "Desenrola"
     group_item_label: "Soma do Valor Total da Dívida"
-    value_format: "$0.00"
+    value_format: "$ #,###.00"
   }
 }
