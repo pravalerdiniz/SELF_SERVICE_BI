@@ -36,3 +36,12 @@ explore: processo_wo {
   description: "Mostra informações dos títulos que estão qualificados para serem marcados em WO no backoffice e OT."
 
 }
+
+explore: ot_consolidado {
+  persist_for: "12 hour"
+  from: ot_consolidado
+  label: "OT Consolidado"
+  view_label: "OT Consolidado"
+  description: "Mostra as informações histórica da OT, sepearando por safra, fundo e data de referência."
+
+}
