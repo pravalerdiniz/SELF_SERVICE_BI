@@ -48,7 +48,7 @@ view: ot_consolidado {
       description: "Valor de pagamentos recebidos a valor presente."
       type: number
       value_format: "$ #,###.00"
-      sql: ${TABLE}."SOMA_VP_PAGO" ;;
+      sql: ${TABLE}."SOMA_VP_PAGOS" ;;
       hidden: yes
     }
 
