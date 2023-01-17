@@ -39,4 +39,13 @@ view: view_solucx_ajustado_meta {
     description: "(% de promotores) - (% de detratores)"
     sql: ${TABLE}."NPS" ;;
   }
+
+  measure: avg_nps {
+    type: average
+    group_item_label: "NPS - Média"
+    description: "(% de promotores) - (% de detratores)"
+    sql: ${TABLE}."NPS" ;;
+  }
+
+
 }
