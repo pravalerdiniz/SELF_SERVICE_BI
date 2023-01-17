@@ -26,8 +26,22 @@ persist_with: pdd_gestao_default_datagroup
   view_label: "PDD Gestão Garantido"
   description: "Mostra as informações de PDD para o Gestão Garantido."
 
- #  join: users {
- #    relationship: many_to_one
- #    sql_on: ${users.id} = ${orders.user_id} ;;
- #  }
  }
+
+explore: processo_wo {
+  persist_for: "1 hour"
+  from: processo_wo
+  label: "Processo WO"
+  view_label: "Processo WO"
+  description: "Mostra informações dos títulos que estão qualificados para serem marcados em WO no backoffice e OT."
+
+}
+
+explore: ot_consolidado {
+  persist_for: "12 hour"
+  from: ot_consolidado
+  label: "OT Consolidado"
+  view_label: "OT Consolidado"
+  description: "Mostra as informações histórica da OT, sepearando por safra, fundo e data de referência."
+
+}

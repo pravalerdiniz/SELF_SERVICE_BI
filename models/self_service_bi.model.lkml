@@ -4,6 +4,7 @@ connection: "graduado"
 include: "/**/*.dashboard.lookml"
 include: "/**/*.view.lkml"
 
+
 access_grant: grupo_nome {
   user_attribute: grupo_nome
   allowed_values: ["grupo_nome"]
@@ -48,7 +49,10 @@ datagroup: self_service_bi_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "5 hour"
 
+
 }
+
+##week_start_day: sunday
 
 persist_with: self_service_bi_default_datagroup
 
@@ -134,6 +138,11 @@ explore: inep {
   #}
 }
 
+
+explore: meta_conversao_grupo_ies {
+  label: " Metas de Conversão"
+  view_label: "Metas de Conversão"
+}
 
 
 explore: instituicao_metas_gc {
@@ -332,7 +341,6 @@ explore: jornada {
   fields: [ALL_FIELDS *, - proposta.id_status_detalhado,
     - proposta.ds_ult_status,
     - proposta.id_status_detalhado,
-    - proposta.tipo_proposta,
     - proposta.id_proposta,
     - proposta.id_elegivel,
     - proposta.etapa_ult_status,
@@ -761,18 +769,19 @@ explore: jornada {
     view_label: "13. Balcão"
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date}
-    and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
-    and ${instituicao.id_campus} = ${leads_balcao.id_campus}
-    and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
+    --and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
+    --and ${instituicao.id_campus} = ${leads_balcao.id_campus}
+    --and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
     relationship: many_to_many
     type: full_outer
   }
 
   join: leads_canal_entrada {
     view_label: "1. Jornada"
-    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} ;;
+    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} AND
+    ${jornada.canal} = 'MGM';;
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
   join: alunos_como_soube {
@@ -826,9 +835,14 @@ explore: jornada {
 #    type: full_outer
 #  }
 
+  join: chamados_tela_atendimento {
+    view_label: "15. Chamados Tela Atendimento"
+    sql_on: ${jornada.id_cpf} = ${chamados_tela_atendimento.id_cpf} ;;
+    relationship: many_to_many
+    type: left_outer
+  }
 
 }
-
 
 
 explore: instituicao {
@@ -2442,10 +2456,11 @@ explore: position_based_full_funnel {
   description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
 
-explore: vcom {
-  label: "Crédito & Cobrança Vcom"
-  view_label: "Crédito & Cobrança Vcom"
+explore: position_based_jornada {
+  label: "Position-Based Jornada"
+  description: "Distribuição de Crédito para Aquisição de Lead baseada no Modelo Position-Based para todas as etapas do funil."
 }
+
 
 explore: usuarios_campus_ies {
   label: "Usuários IES"
@@ -2455,4 +2470,8 @@ explore: usuarios_campus_ies {
 explore: log_usuarios {
   label: "Log Usuários"
   description: "Controle dos logs de usuários das IES ao backoffice do Pravaler"
+}
+
+explore: metas_realizado_marketplace {
+  label: "Marketplace Metas e Realizado"
 }

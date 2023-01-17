@@ -195,4 +195,12 @@ explore: mgm_usuario {
     relationship: one_to_many
     type: left_outer
   }
-}
+  }
+
+explore: controle_on{
+  label: "Positivações Online"
+    }
+
+explore: controle_off{
+  label: "Positivações Offline"
+    }

@@ -1519,6 +1519,7 @@ dimension: faixa_tempo_meses_evasao {
       raw,
       time,
       date,
+      hour,
       week,
       month,
       quarter,

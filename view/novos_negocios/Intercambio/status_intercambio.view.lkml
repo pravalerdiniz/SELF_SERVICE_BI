@@ -111,4 +111,105 @@ view: status_intercambio {
     type: count
     drill_fields: []
   }
+
+  dimension: etapa {
+    type: string
+    sql: CASE WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CREATED' THEN 'Lead'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.APPROVED' THEN 'Aprovado Risco'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PROCESSING' THEN 'Biometria - Análise Iniciada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.APPROVED' THEN 'Biometria - Aprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.REPROVED' THEN 'Biometria Reprovada'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.IDENTIFICATION.PENDING' THEN 'Biometria Pendente'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.ACQUIRED' THEN 'Cadastro Completo'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.RECEIVEDALL' THEN 'Documentos Recebidos'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCS.APPROVED' THEN 'Documentos Aprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.DOCUMENTS.WRONG' THEN 'Documentos Reprovados'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.RISK.INCOMEAPPROVED' OR
+              ${TABLE}."TIPO_EVENTO" = 'STUDENT.INCOME.APPROVED'
+              THEN 'Aprovado Risco (Renda)'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.WAITINGSIGNATURE' THEN 'Aguardando Assinatura'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.SIGNATUREFINISHED' OR
+               ${TABLE}."TIPO_EVENTO" = 'MANAGEMENT.CONTRACT.SIGNED'
+              THEN 'Contrato Assinado'
+              WHEN  ${TABLE}."TIPO_EVENTO" = 'STUDENT.CONTRACT.DISBURSED' THEN 'Cedido'
+
+      ELSE NULL END
+      ;;
+    description: "Indica as etapas da jornada de contratação do aluno do curta duração"
+    group_item_label: "Etapa"
+    order_by_field: ordem_etapa
+  }
+
+
+
+  dimension: ordem_etapa {
+    type: number
+    group_label: "Dados da Etapa"
+    label: "Ordem - Etapa"
+    description: "Indica a ordem correta por etapa do funil. "
+    hidden: yes
+    sql: CAST(${ordem_etapa_funil} AS INT) ;;
+
+  }
+
+
+
+
+  dimension: ordem_etapa_funil {
+    type: string
+    case: {
+      when: {
+        sql: ${etapa} = 'Lead' ;;
+        label: "1"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Risco' ;;
+        label: "2"
+      }
+      when: {
+        sql: ${etapa} = 'Biometria - Análise Iniciada' ;;
+        label: "3"
+      }
+
+      when: {
+        sql: ${etapa} = 'Biometria - Aprovada' ;;
+        label: "4"
+      }
+
+      when: {
+        sql: ${etapa} = 'Cadastro Completo' ;;
+        label: "5"
+      }
+
+      when: {
+        sql: ${etapa} = 'Documentos Recebidos' ;;
+        label: "6"
+      }
+      when: {
+        sql: ${etapa} = 'Documentos Aprovados' ;;
+        label: "7"
+      }
+      when: {
+        sql: ${etapa} = 'Aprovado Risco (Renda)' ;;
+        label: "9"
+      }
+
+      when: {
+        sql: ${etapa} = 'Aguardando Assinatura' ;;
+        label: "10"
+      }
+      when: {
+        sql: ${etapa} = 'Contrato Assinado' ;;
+        label: "11"
+      }
+
+      when: {
+        sql: ${etapa} = 'Cedido' ;;
+        label: "12"
+      }
+      else: "0"
+    }
+    hidden: yes
+  }
+
 }

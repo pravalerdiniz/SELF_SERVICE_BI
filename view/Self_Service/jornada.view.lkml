@@ -17,6 +17,7 @@ view: jornada {
       month_name,
       day_of_year,
       hour_of_day,
+      hour,
       month_num,
       day_of_month,
       week_of_year
@@ -24,6 +25,13 @@ view: jornada {
     sql: ${TABLE}."DT_STATUS" ;;
     label: "Etapa"
     description: "Este campo é uma regra de negócio*. Data em que o aluno passou pela etapa. Esse campo pode ser utilizado como filtro para visualizar o funil completo, ou seja, acompanhar todas as propostas no funil em um determinado momento"
+  }
+
+  dimension: semana_etapa {
+    sql: EXTRACT(WOY FROM (add_days(-1,${dt_status_date}))) ;;
+    type: number
+    label: "Semana da Etapa"
+    group_label: "Dados da Proposta"
   }
 
   parameter: timeframe_picker {
@@ -362,6 +370,7 @@ view: jornada {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,
@@ -4074,7 +4083,7 @@ dimension: flag_balcao {
 
   dimension: flag_afiliados {
     type: yesno
-    sql: case when ${aluno_cpf} in (select distinct cpf_lead from "VETERANO"."AFILIADOS"."FATO_LEAD_AFILIADOS") then 'Yes' else 'No' end ;;
+    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS") then 'Yes' else 'No' end ;;
     label: "Flag Afiliados"
   }
 
