@@ -220,6 +220,11 @@ explore: solucx_nps_ajustado {
   description: "Para o cálculo da meta do NPS, ficou decidido comparar os respondentes de 2022 seguindo a distribuição média de respondentes de 2021. Foi preciso criar um SQL personalizado para tal acompanhamento."
 }
 
+explore: view_solucx_ajustado_meta {
+  label: "SoluCX - NPS Ajustado Meta"
+  description: "Para o cálculo da meta do NPS, ficou decidido comparar os respondentes de 2022 seguindo a distribuição média de respondentes de 2021. Foi preciso criar um SQL personalizado para tal acompanhamento."
+}
+
 explore: taxa_de_contato{
   label: "Taxa de Contato"
   description: " A taxa de contato faz um join entre a base de alunos, considerando todos os alunos ativos e cedidos por mês a partir de 2021, e a base de tickets, com a quantidade de tickets desses alunos em cada mês. Assim é possível calcular a taxa de contato."
