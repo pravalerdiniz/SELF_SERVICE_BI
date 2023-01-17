@@ -444,4 +444,10 @@ view: historico_turnover {
     sql: ${TABLE}."FLG_PCD" ;;
   }
 
+  measure: total_ativos {
+    type: count_distinct
+    filters: [flg_ativo: "Yes"]
+    sql: ${matricula} ;;
+  }
+
 }
