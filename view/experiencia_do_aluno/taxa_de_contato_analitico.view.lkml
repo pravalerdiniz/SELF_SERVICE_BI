@@ -7,8 +7,8 @@ view: taxa_de_contato_analitico {
           TICKETS.CPF AS CPF_TICKET,
           TICKETS.ZENDESK_ID,
           TICKETS.FORMULARIO,
-          TICKETS.MOTIVO_CONTATO,
-          TICKETS.SUBMOTIVO_CONTATO,
+          TICKETS.SUBMOTIVO_CONTATO_1,
+          TICKETS.SUBMOTIVO_CONTATO_2,
           TICKETS.FORMULARIO_MOTIVO
       FROM
         (
