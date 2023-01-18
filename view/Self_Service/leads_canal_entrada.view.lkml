@@ -2,7 +2,7 @@
 view: leads_canal_entrada {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS"
+  sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS "
     ;;
 
   dimension: cd_canal {
@@ -99,12 +99,12 @@ view: leads_canal_entrada {
     group_label: "Dados Leads Afiliados"
   }
 
-  dimension: nome_canal {
-    type: string
-    label: "Nome do Canal"
-    sql: ${TABLE}."NOME_CANAL" ;;
-    group_label: "Dados Leads Afiliados"
-  }
+  # dimension: nome_canal {
+  #   type: string
+  #   label: "Nome do Canal"
+  #   sql: ${TABLE}."NOME_CANAL" ;;
+  #   group_label: "Dados Leads Afiliados"
+  # }
 
   measure: count {
     type: count
