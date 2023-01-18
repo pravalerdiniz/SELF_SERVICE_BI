@@ -1232,7 +1232,8 @@ join: sql_runner_query_range_boleto {
     fields: [
       alunos.flg_aluno_ativo,
       alunos.flg_inadimplente,
-      alunos.cpf_aluno
+      alunos.cpf_aluno,
+      alunos.ra
     ]
     relationship: one_to_one
     type: left_outer
