@@ -111,9 +111,9 @@ view: tickets_mundiale_zendesk {
 
   dimension: id_lead {
     type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Grupo"
-    description: "Indentificação do contato do Aluno (Apenas em tickets da Mundiale)."
+    group_label: "Dados do Aluno"
+    group_item_label: "ID Lead"
+    description: "Indentificação da origem do aluno, como número de telefone."
     sql: ${TABLE}."ID_LEAD" ;;
   }
 
