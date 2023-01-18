@@ -2,7 +2,7 @@
 view: leads_canal_entrada {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: GRADUADO.BALCAO_AFILIADOS.LEADS
+  sql_table_name: "GRADUADO"."BALCAO_AFILIADOS"."LEADS"
     ;;
 
   dimension: cd_canal {
@@ -11,18 +11,6 @@ view: leads_canal_entrada {
     sql: ${TABLE}."ID_CANAL" ;;
     group_label: "Dados Leads Afiliados"
   }
-
-#  measure: total_cd_canal {
-#    type: sum
-#    sql: ${cd_canal} ;;
-#    group_label: "Dados Leads Afiliados"
-#  }
-
-#  measure: average_cd_canal {
-#    type: average
-#    sql: ${cd_canal} ;;
-#    group_label: "Dados Leads Afiliados"
-#  }
 
   dimension: cd_cpf_lead {
     type: number
@@ -108,6 +96,13 @@ view: leads_canal_entrada {
     type: number
     label: "Número Proposta Canal Origem"
     sql: ${TABLE}."NR_PROPOSTA_CANAL_ORIGEM" ;;
+    group_label: "Dados Leads Afiliados"
+  }
+
+  dimension: nome_canal {
+    type: string
+    label: "Nome do Canal"
+    sql: ${TABLE}."NOME_CANAL" ;;
     group_label: "Dados Leads Afiliados"
   }
 
