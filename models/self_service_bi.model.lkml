@@ -615,7 +615,7 @@ explore: jornada {
 
   join: instituicao_metas_gc {
     view_label: "2.1 Metas GC"
-    sql_on: ${proposta.grupo_instituicao} = ${instituicao_metas_gc.grupo_instituicao}
+    sql_on: ${instituicao_resumo.grupo} = ${instituicao_metas_gc.grupo_instituicao}
         and ${jornada.dt_status_date} = ${instituicao_metas_gc.data_meta_date} ;;
     relationship: many_to_many
     type: left_outer
@@ -778,8 +778,7 @@ explore: jornada {
 
   join: leads_canal_entrada {
     view_label: "1. Jornada"
-    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} AND
-    ${jornada.canal} = 'MGM';;
+    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} ;;
     type: left_outer
     relationship: many_to_one
   }
@@ -1079,7 +1078,8 @@ explore: financeiro {
     - proposta.flg_instituicao_ativa,
     - financeiro_log_titulo.id_titulo,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
   join: financeiro_extrato_titulo {
@@ -1295,11 +1295,6 @@ explore: proposta {
     - alunos.celular,
     - alunos.escolaridade,
     - alunos.numero_dependentes,
-    - alunos.cep,
-    - alunos.bairro,
-    - alunos.cidade,
-    - alunos.uf,
-    - alunos.tipo_residencia,
     - alunos.estado_civil,
     - alunos.tempo_empresa,
     - alunos.natureza_ocupacao,
@@ -1364,7 +1359,6 @@ explore: proposta {
     - alunos.mapa_uf_campus,
     - alunos.mapa_uf_instituicao,
     - alunos.cpf_aluno,
-    - alunos.endereco,
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
@@ -1687,7 +1681,8 @@ explore: alunos {
     - jornada.flag_balcao,
     - jornada.flag_afiliados,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
 
@@ -2324,7 +2319,8 @@ explore: taxa_produto_ies {
   view_label: "1. Tabela histórica Taxa de Juros"
   fields: [ALL_FIELDS *,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
   join: instituicao {
