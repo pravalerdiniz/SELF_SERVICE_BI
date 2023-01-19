@@ -1339,6 +1339,14 @@ dimension: vl_tarifa_cadastro {
     drill_fields: [ds_instituicao,ds_campus]
   }
 
+  dimension: flg_regional {
+    type: yesno
+    group_label: "Dados da Instituição"
+    label: "Flag Grupo Regional"
+    description: "Indica se o Grupo da IES faz parte do grupo do comercial Regional"
+    sql: ${TABLE}."GRUPO_INSTITUICAO" NOT IN ('ANIMA', 'CRUZEIRO DO SUL EDUCACIONAL', 'SER EDUCACIONAL', 'KROTON');;
+  }
+
   dimension: id_campus {
     type: string
     group_label: "Dados do Campus"

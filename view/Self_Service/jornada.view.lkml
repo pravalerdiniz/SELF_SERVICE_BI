@@ -4077,13 +4077,13 @@ dimension: flg_proposta_atual {
 
 dimension: flag_balcao {
   type: yesno
-  sql: case when ${aluno_cpf} in (select distinct cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO") then 'Yes' else 'No' end;;
+  sql: ${aluno_cpf} in (select distinct cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS_ANALITICO_BALCAO") ;;
   label: "Flag Balcão"
 }
 
   dimension: flag_afiliados {
     type: yesno
-    sql: case when ${aluno_cpf} in (select distinct cd_cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS") then 'Yes' else 'No' end ;;
+    sql: ${aluno_cpf} in (select distinct cpf_lead from "GRADUADO"."BALCAO_AFILIADOS"."LEADS") ;;
     label: "Flag Afiliados"
   }
 

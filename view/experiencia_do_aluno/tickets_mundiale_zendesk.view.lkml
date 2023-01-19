@@ -77,18 +77,18 @@ view: tickets_mundiale_zendesk {
 
   dimension: formulario {
     type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Formulário"
+    group_label: "Dados de Tabulação"
+    group_item_label: "Formulário"
     description: "Indica o formulário utilizado para tabulação do ticket."
-    drill_fields: [motivo_contato]
+    drill_fields: [submotivo_contato_1]
     sql: ${TABLE}."FORMULARIO" ;;
   }
 
   dimension: formulario_motivo {
     type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Formulário/Motivo de Contato"
-    description: "Indica o formulário, motivo e submotivos de contato do ticket (Contém todos os níveis de tabulação do motivo de contato)."
+    group_label: "Dados de Tabulação"
+    group_item_label: "Formulário + Submotivos de Contato"
+    description: "Indica o formulário e todos os submotivos de contato do ticket (Contém todos os níveis de tabulação do motivo de contato)."
     sql: ${TABLE}."FORMULARIO_MOTIVO" ;;
   }
 
@@ -111,11 +111,10 @@ view: tickets_mundiale_zendesk {
 
   dimension: id_lead {
     type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Grupo"
-    description: "Indentificação do contato do Aluno."
+    group_label: "Dados do Aluno"
+    group_item_label: "ID Lead"
+    description: "Indentificação da origem do aluno, como número de telefone."
     sql: ${TABLE}."ID_LEAD" ;;
-    hidden: yes
   }
 
   dimension: id_ticket {
@@ -124,15 +123,6 @@ view: tickets_mundiale_zendesk {
     group_item_label: "ID Ticket - Mundiale"
     description: "ID do ticket na Mundiale."
     sql: ${TABLE}."ID_TICKET" ;;
-  }
-
-  dimension: motivo_contato {
-    type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Motivo de Contato"
-    description: "Indica o primeiro motivo de contato utilizado para tabulação do ticket (À partir de 12/08/2022)."
-    drill_fields: [submotivo_contato]
-    sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
   dimension: nome_atendente {
@@ -163,7 +153,7 @@ view: tickets_mundiale_zendesk {
     type: sum
     group_label: "Dados de Satisfação"
     group_item_label: "Nota Mundiale 3.NPS"
-    description: "Indica a nota que o aluno recomenda o Pravaler entre 1 e 10 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: Numa escala de 0 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
+    description: "Indica a nota que o aluno recomenda o Pravaler entre 1 e 10 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
     sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
   }
 
@@ -179,7 +169,7 @@ view: tickets_mundiale_zendesk {
     type: string
     group_label: "Dados de Satisfação"
     group_item_label: "Nota CSAT Zendesk"
-    description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. GOOD para bom e BAD para ruim (Apenas em tickets da Zendesk)."
+    description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
     sql: ${TABLE}."NOTA_CSAT_ZENDESK" ;;
   }
 
@@ -239,13 +229,50 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."STEP" ;;
   }
 
-  dimension: submotivo_contato {
+  dimension: submotivo_contato_1 {
     type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Submotivo de Contato"
-    description: "Indica o submotivo de contato utilizado para tabulação do ticket (À partir de 12/08/2022)."
-    sql: ${TABLE}."SUBMOTIVO_CONTATO" ;;
+    group_label: "Dados de Tabulação"
+    group_item_label: "Submotivo 1"
+    description: "Indica o primeiro motivo de contato utilizado para tabulação do ticket."
+    drill_fields: [submotivo_contato_2]
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_1" ;;
   }
+
+  dimension: submotivo_contato_2 {
+    type: string
+    group_label: "Dados de Tabulação"
+    group_item_label: "Submotivo 2"
+    description: "Indica o segundo motivo de contato utilizado para tabulação do ticket."
+    drill_fields: [submotivo_contato_3]
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_2" ;;
+  }
+
+  dimension: submotivo_contato_3 {
+    type: string
+    group_label: "Dados de Tabulação"
+    group_item_label: "Submotivo 3"
+    description: "Indica o terceiro motivo de contato utilizado para tabulação do ticket (Poucos motivos chegam nesse nível) ."
+    drill_fields: [submotivo_contato_4]
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_3" ;;
+  }
+
+  dimension: submotivo_contato_4 {
+    type: string
+    group_label: "Dados de Tabulação"
+    group_item_label: "Submotivo 4"
+    description: "Indica o quarto motivo de contato utilizado para tabulação do ticket (Poucos motivos chegam nesse nível) ."
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_4" ;;
+  }
+
+  dimension: submotivo_contato_5 {
+    type: string
+    hidden: yes
+    group_label: "Dados de Tabulação"
+    group_item_label: "Submotivo 5"
+    description: "Indica o quarto motivo de contato utilizado para tabulação do ticket (Poucos motivos chegam nesse nível) ."
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_5" ;;
+  }
+
 
   dimension: tags {
     type: string
