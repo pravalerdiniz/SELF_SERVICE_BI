@@ -204,3 +204,7 @@ explore: controle_on{
 explore: controle_off{
   label: "Positivações Offline"
     }
+
+explore: historico_datas_trade {
+  label: "Histórico de Datas - Positivações"
+}
