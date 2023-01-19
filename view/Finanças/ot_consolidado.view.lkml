@@ -13,7 +13,7 @@ view: ot_consolidado {
     }
 
     dimension: fundo {
-      description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
+      description: "Fundo de investimento, sendo códigos 4,1 e 41 os FIDCS I, II e III respectivamente."
       type: number
       sql: ${TABLE}."FUNDO" ;;
       hidden: no
@@ -140,6 +140,13 @@ view: ot_consolidado {
       hidden: yes
     }
 
+  dimension: tipo_aluno {
+    description: "Tipo do aluno, sendo NOVO ou RENOVAÇÃO."
+    label: "Tipo Aluno"
+    type: string
+    sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
+
     measure: total_desp_pdd_liquida {
       type: sum
       sql: ${desp_pdd_liquida} ;;
@@ -221,7 +228,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Carteira Profit Sharing"
-      description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV, 40% para FIDC III e 100% para FIDC I e II."
+      description: "Soma do valor presente da carteira, aplicando para FIDC III e 100% para FIDC I e II."
     }
 
     measure: total_vp_wo {
@@ -263,6 +270,8 @@ view: ot_consolidado {
     measure: qtd_alunos {
       type: sum
       sql: ${TABLE}."QTD_ALUNOS" ;;
-      description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por mês, pois no ano irá somar os alunos*"
+      label: "Alunos por mês"
+      description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por MÊS*"
     }
+
   }

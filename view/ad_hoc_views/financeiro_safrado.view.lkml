@@ -16,7 +16,7 @@ view: financeiro_safrado {
   }
 
   dimension: fundo {
-    description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
+    description: "Fundo de investimento, sendo código 2 para BV."
     type: number
     sql: ${TABLE}."FUNDO" ;;
     hidden: no
@@ -224,7 +224,7 @@ view: financeiro_safrado {
     value_format: "$ #,###.00"
     group_label: "Valor presente"
     group_item_label: "VP Carteira Profit Sharing"
-    description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV, 40% para FIDC III e 100% para FIDC I e II."
+    description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV."
   }
 
   measure: total_vp_wo {
@@ -261,10 +261,5 @@ view: financeiro_safrado {
     group_label: "Receita de Juros"
     group_item_label: "Receita de Juros"
     description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
   }
 }
