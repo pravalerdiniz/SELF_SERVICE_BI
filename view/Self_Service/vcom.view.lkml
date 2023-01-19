@@ -193,5 +193,11 @@ view: vcom_erros {
 
   ## MEDIDAS ##
 
+  measure: count_cpf {
+    type: count
+    label: "Contagem CPF"
+    description: "Contagem absoluta do número de CPFs"
+  }
+
 
 }

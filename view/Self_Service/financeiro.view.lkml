@@ -965,12 +965,7 @@ foi gerado por um pagamento menor do boleto anterior."
       vl_boleto,
       data_pagamento_date,
       data_vencimento_date,
-
-
-
-
-
-    ]
+      ]
   }
 
 
