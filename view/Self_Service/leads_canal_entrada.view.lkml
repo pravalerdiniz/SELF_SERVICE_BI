@@ -99,12 +99,12 @@ view: leads_canal_entrada {
     group_label: "Dados Leads Afiliados"
   }
 
-  # dimension: nome_canal {
-  #   type: string
-  #   label: "Nome do Canal"
-  #   sql: ${TABLE}."NOME_CANAL" ;;
-  #   group_label: "Dados Leads Afiliados"
-  # }
+  dimension: nome_canal {
+    type: string
+    label: "Nome do Canal"
+    sql: ${TABLE}."NOME_CANAL" ;;
+    group_label: "Dados Leads Afiliados"
+  }
 
   measure: count {
     type: count
