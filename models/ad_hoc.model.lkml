@@ -194,9 +194,9 @@ explore: comparacao_ot {
     type: left_outer
   }
 }
-explore: financeiro_safrado {
-  label: "Financeiro Safrado"
-  view_label: "Financeiro Safrado"
+explore: bv_consolidado {
+  label: "BV Consolidado"
+  view_label: "BV Consolidado/Safrado"
 }
 
 #Tabela não utilizada 06/09/22 - Lulinha -
