@@ -1364,7 +1364,6 @@ explore: proposta {
     - alunos.mapa_uf_campus,
     - alunos.mapa_uf_instituicao,
     - alunos.cpf_aluno,
-    - alunos.endereco,
     - alunos.ds_fundo_investimento,
     - alunos.id_fundo_investimento,
     - alunos.ativo_ano_mes,
