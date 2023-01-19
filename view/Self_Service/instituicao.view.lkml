@@ -835,5 +835,12 @@ measure: qtd_ies_descadastrada {
     sql: ${TABLE}."GERENTE_REGIONAL";;
   }
 
+  dimension: regional {
+    type:  string
+    group_label: "Dados da Regional - IE"
+    label: "Regional"
+    sql: ${instituicao_metas_gc.regional} ;;
+  }
+
 
 }
