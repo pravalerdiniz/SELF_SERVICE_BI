@@ -6,6 +6,7 @@ view: leads_balcao {
     type:  string
     primary_key: yes
     hidden: yes
+    # granularidade
     sql: concat(${cpf_lead}, ${data_proposta_raw}) ;;
   }
 
@@ -400,7 +401,38 @@ view: leads_balcao {
         AND (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} <= 1 THEN '90-100%'
       WHEN (${vl_mensalidade_curso_bruto} - ${vl_mensalidade_curso_desconto})/${vl_mensalidade_curso_bruto} > 1 THEN '> 100%'
       END ;;
-    description: "Categorização das faixas dos deltas"
+    description: "Categorização das faixas dos deltas entre balcão bruto e desconto"
+  }
+
+  dimension: faixa_delta_desconto_analise_ies {
+    type: string
+    group_label: "Dados da Instituição"
+    group_item_label: "Faixa Delta Desconto Análise IES"
+    sql: CASE
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} < 0 THEN '< 0%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} >= 0
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.1 THEN '0-10%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.1
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.2 THEN '10-20%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.2
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.3 THEN '20-30%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.3
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.4 THEN '30-40%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.4
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.5 THEN '40-50%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.5
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.6 THEN '50-60%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.6
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.7 THEN '60-70%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.7
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.8 THEN '70-80%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.8
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 0.9 THEN '80-90%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 0.9
+        AND (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} <= 1 THEN '90-100%'
+      WHEN (${vl_mensalidade_curso_desconto} - ${proposta.mensalidade_ies})/${vl_mensalidade_curso_desconto} > 1 THEN '> 100%'
+      END ;;
+    description: "Categorização das faixas dos deltas entre balcão desconto e Análise IES"
   }
 
   # flags de igualdade entre as mensalidades
@@ -474,6 +506,42 @@ view: leads_balcao {
     group_item_label: "Flag Última Simulação"
     sql: ${TABLE}."FLG_ULT_SIMULACAO" ;;
     description: "Informa se foi a última simulação realizada pelo aluno no balcão da IES"
+  }
+
+  # dimensoes para o desenrola
+
+  dimension: valor_mensalidade_divida {
+    type: number
+    sql: ${TABLE}."VL_MENSALIDADE_DIVIDA" ;;
+    value_format: "$ #,###.00"
+    group_label: "Desenrola"
+    group_item_label: "Valor Mensalidade Dívida"
+    description: "Valor da mensalidade + valor da divida"
+  }
+
+  dimension: valor_total_divida {
+    type: number
+    sql: ${TABLE}."VL_TOTAL_DIVIDA" ;;
+    value_format: "$ #,###.00"
+    group_label: "Desenrola"
+    group_item_label: "Valor total da dívida"
+    description: "Valor total da dívida do aluno com a IES"
+  }
+
+  dimension: qtd_parcela_atraso_proposta {
+    type: number
+    sql: ${TABLE}."QT_PARCELA_ATRASO_PROPOSTA" ;;
+    group_label: "Desenrola"
+    group_item_label: "Quantidade de parcelas em atraso"
+    description: "Quantidade de parcelas do curso que o aluno possui em atraso"
+  }
+
+  dimension: flag_aluno_possui_divida {
+    type: yesno
+    sql: ${TABLE}."FLG_ALUNO_POSSUI_DIVIDA" ;;
+    group_label: "Desenrola"
+    group_item_label: "Possui dívida?"
+    description: "Flag que indica se o aluno possui alguma dívida com a IES"
   }
 
   measure: max_data_ultima_simulacao {
@@ -577,5 +645,22 @@ view: leads_balcao {
     group_label: "Mensalidades"
     group_item_label: "Var % Mensalidade Análise IESx Balcão Desconto"
     value_format: "0.0%"
+  }
+
+  # medidas do desenrola
+  measure: media_qtd_parcelas_atraso {
+    type: average
+    sql: ${qtd_parcela_atraso_proposta} ;;
+    group_label: "Desenrola"
+    group_item_label: "Média da Quantidade de Parcelas em Atraso"
+    value_format: "0.#"
+  }
+
+  measure: soma_valor_total_divida {
+    type: sum
+    sql: ${valor_total_divida} ;;
+    group_label: "Desenrola"
+    group_item_label: "Soma do Valor Total da Dívida"
+    value_format: "$ #,###.00"
   }
 }

@@ -409,6 +409,14 @@ view: orquestra_p17 {
     sql: ${TABLE}."LEAD_TIME_TASK" ;;
   }
 
+  measure: lead_time_task_media {
+    type: average
+    group_label: "Dados da Task"
+    group_item_label: "Lead Time da Task - Média"
+    description: "Média do Lead Time de conclusão do chamado"
+    sql: ${TABLE}."LEAD_TIME_TASK" ;;
+  }
+
   dimension: login_executor {
     type: string
     group_label: "Dados do Executor"

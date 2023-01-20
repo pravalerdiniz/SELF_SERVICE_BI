@@ -195,4 +195,16 @@ explore: mgm_usuario {
     relationship: one_to_many
     type: left_outer
   }
+  }
+
+explore: controle_on{
+  label: "Positivações Online"
+    }
+
+explore: controle_off{
+  label: "Positivações Offline"
+    }
+
+explore: historico_datas_trade {
+  label: "Histórico de Datas - Positivações"
 }

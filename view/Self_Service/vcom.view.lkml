@@ -1,5 +1,5 @@
 view: vcom_erros {
-  sql_table_name: "POS_GRADUADO"."CCR"."VCOM"
+  sql_table_name:"POS_GRADUADO"."CCR"."VCOM_TITULOS"
     ;;
 
  ## DIMENSÕES ##
@@ -136,7 +136,7 @@ view: vcom_erros {
   dimension: flg_cpf_quitado {
     type: yesno
     label: "CPF Quitado"
-    group_label: "Dados do Aluno"
+    group_label: "Dados do Fluxo"
    description: "INDICA SE O CPF NÃO PÓSSUI BOLETOS EM ABERTO"
     sql: ${TABLE}."FLG_CPF_QUITADO" ;;
   }
@@ -147,6 +147,14 @@ view: vcom_erros {
     group_label: "Dados do Boleto"
     description: "INDICA SE O TITULO ESTÁ NA VCOM"
     sql: ${TABLE}."FLG_RECEBIDO" ;;
+  }
+
+  dimension: classificacao_err {
+    type: string
+    label: "Classificação Erro"
+    group_label: "Dados de Fluxo"
+    description: "INDICA A CAUSA RAIZ DA MENSAGEM DE ERRO"
+    sql: ${TABLE}."CLASSIFICACAO_ERRO" ;;
   }
 
   ## DATAS ##
@@ -184,6 +192,12 @@ view: vcom_erros {
   }
 
   ## MEDIDAS ##
+
+  measure: count_cpf {
+    type: count
+    label: "Contagem CPF"
+    description: "Contagem absoluta do número de CPFs"
+  }
 
 
 }

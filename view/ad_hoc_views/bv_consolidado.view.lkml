@@ -1,9 +1,15 @@
 # The name of this view in Looker is "Despesa Pdd Liquida"
-view: financeiro_safrado {
+view: bv_consolidado {
+
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
-    ;;
+  derived_table: {
+    sql:
+    SELECT *
+    FROM "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
+    WHERE "FUNDO" = 2 ;;
+  }
+
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
@@ -16,7 +22,7 @@ view: financeiro_safrado {
   }
 
   dimension: fundo {
-    description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
+    description: "Fundo de investimento, sendo código 2 para BV."
     type: number
     sql: ${TABLE}."FUNDO" ;;
     hidden: no
@@ -224,7 +230,7 @@ view: financeiro_safrado {
     value_format: "$ #,###.00"
     group_label: "Valor presente"
     group_item_label: "VP Carteira Profit Sharing"
-    description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV, 40% para FIDC III e 100% para FIDC I e II."
+    description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV."
   }
 
   measure: total_vp_wo {
@@ -261,10 +267,5 @@ view: financeiro_safrado {
     group_label: "Receita de Juros"
     group_item_label: "Receita de Juros"
     description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
   }
 }

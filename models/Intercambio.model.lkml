@@ -93,3 +93,9 @@ explore: student_intercambio {
     sql_on: ${status_intercambio.id_instituicao} = ${institution_intercambio.id_instituicao};;
  }
 }
+
+explore: metas_intercambio {
+  view_label: "Metas Intercambio"
+  label: "Metas Intercambio"
+  description: "Metas de Intercambio"
+  }

@@ -573,6 +573,23 @@ view: gupy_vagas {
     sql: ${TABLE}."FLG_EXCLUIDA" ;;
   }
 
+  dimension_group: referencia_fechamento {
+    group_label: "Dados da Vaga"
+    label: "Data de referência de fechamento"
+    description: "Indica a data na qual a data foi fechada (Seja por cancelamento ou por preenchimento da mesma)"
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: coalesce(${data_encerramento_date}, ${data_cancelamento_date}) ;;
+  }
+
   measure: count_congeladas {
     label: "Qtd. Congeladas"
     type: count_distinct
@@ -588,7 +605,6 @@ view: gupy_vagas {
     sql:  ${TABLE}."CODIGO";;
     drill_fields: [codigo, nome, area_rh, data_publicacao_date, sla_dias_corridos]
   }
-
 
   measure: count {
     type: count

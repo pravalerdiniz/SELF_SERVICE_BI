@@ -378,6 +378,45 @@ view: gupy_candidaturas {
     sql: ${TABLE}."FLG_DEFICIENCIA" ;;
   }
 
+  dimension: ultima_empresa {
+    group_label: "Dados do Candidato"
+    label: "Empresa (da última ou atual experiência)"
+    description: "EMPRESA OBJETO DA ÚLTIMA EXPERIÊNCIA INFORMADA"
+    type: string
+    sql: ${TABLE}."ULTIMA_EMPRESA" ;;
+  }
+
+  dimension: cargo_ultima_empresa {
+    group_label: "Dados do Candidato"
+    label: "Cargo (da última ou atual experiência)"
+    type: string
+    sql: ${TABLE}."CARGO_ULTIMA_EMPRESA" ;;
+  }
+
+  dimension: ano_mes_inicio_ultima_empresa {
+    group_label: "Dados do Candidato"
+    label: "Ano/Mês de início da última experiência"
+    type: number
+    value_format: "######"
+    sql: ${TABLE}."ANO_MES_INICIO_ULTIMA_EMPRESA" ;;
+  }
+
+  dimension: ano_mes_termino_ultima_empresa {
+    group_label: "Dados do Candidato"
+    label: "Ano/Mês de término da última experiência"
+    type: number
+    value_format: "######"
+    sql: ${TABLE}."ANO_MES_TERMINO_ULTIMA_EMPRESA" ;;
+  }
+
+  dimension: flg_trabalha_atualmente {
+    group_label: "Dados do Candidato"
+    label: "Trabalha atualmente?"
+    description: "Indica se o candidato informou se est[a trabalhando atualmente"
+    type: yesno
+    sql: ${TABLE}."FLG_TRABALHA_ATUALMENTE" ;;
+  }
+
   dimension: flg_feedback {
     group_label: "Dados da Candidatura"
     label: "Houve Feedback?"
