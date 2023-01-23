@@ -62,9 +62,26 @@ explore: vcom_erros {
   label: "Vcom"
   view_label: "1. Vcom Envio Diário"
 
+  join: vcom_alunos {
+    from: vcom_alunos
+    view_label: "2. Vcom Alunos"
+    sql_on: ${vcom_erros.id_cpf} = ${vcom_alunos.id_cpf} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: vcom_titulos {
+    from: vcom_titulos
+    view_label: "3. Vcom Títulos"
+    sql_on: ${vcom_erros.id_cpf} = ${vcom_titulos.id_cpf} and
+    ${financeiro.id_boleto} = ${vcom_titulos.id_boleto};;
+    relationship: one_to_many
+    type: left_outer
+  }
+
   join: financeiro {
     from: financeiro
-    view_label: "2. Financeiro"
+    view_label: "4. Financeiro"
     sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} ;;
     fields: [
       financeiro.ativo_boleto,
@@ -79,18 +96,6 @@ explore: vcom_erros {
     relationship: one_to_one
     type: left_outer
   }
-
-#  join: alunos {
-#    from: alunos
-#    view_label: "1. Financeiro"
-#    sql_on: ${alunos.id_cpf} = ${vcom_erros.id_cpf}};;
-#    fields: [
-#      alunos.flg_inadimplente,
-#      alunos.cpf_aluno
-#    ]
-#    relationship: one_to_one
-#    type: left_outer
-#  }
 
 }
 
