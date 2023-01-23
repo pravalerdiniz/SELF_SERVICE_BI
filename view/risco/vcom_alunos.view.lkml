@@ -1,5 +1,5 @@
 view: vcom_alunos {
-  sql_table_name: "CCR"."VCOM_ALUNOS"
+  sql_table_name: "POS_GRADUADO"."CCR"."VCOM_ALUNOS"
   ;;
 
   ## DIMENSÕES ##
@@ -127,6 +127,12 @@ view: vcom_alunos {
 
 
   ## MEDIDAS ##
+
+  measure: count_cpf {
+    type: count
+    label: "Contagem de CPF"
+    description: "Contagem de CPF (Não é uma contagem distinta)"
+  }
 
 
 

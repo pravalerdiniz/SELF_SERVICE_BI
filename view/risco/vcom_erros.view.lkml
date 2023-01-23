@@ -119,4 +119,12 @@ view: vcom_erros {
     sql: ${TABLE}."DT_ATUALIZAO_MDW" ;;
   }
 
+  ## MEDIDAS ##
+
+  measure: count_cpf {
+    type: count
+    label: "Contagem de CPF"
+    description: "Contagem de CPF (Não é uma contagem Distinta)"
+  }
+
 }

@@ -1,5 +1,5 @@
 view: vcom_titulos {
-  sql_table_name: "CCR"."VCOM_TITULOS"
+  sql_table_name: "POS_GRADUADO"."CCR"."VCOM_TITULOS"
     ;;
 
   ## DIMENSÕES ##
