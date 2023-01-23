@@ -48,7 +48,7 @@ view: ot_consolidado {
       description: "Valor de pagamentos recebidos a valor presente."
       type: number
       value_format: "$ #,###.00"
-      sql: ${TABLE}."SOMA_VP_PAGOS" ;;
+      sql: ${TABLE}."SOMA_VP_PAGO" ;;
       hidden: yes
     }
 
@@ -56,7 +56,7 @@ view: ot_consolidado {
       description: "Valor de originações no mês de referência."
       type: number
       value_format: "$ #,###.00"
-      sql: ${TABLE}."SOMA_VP_ORIGINADOS" ;;
+      sql: ${TABLE}."SOMA_VP_ORIGINADO" ;;
       hidden: yes
     }
 
