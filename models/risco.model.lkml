@@ -60,13 +60,12 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 explore: vcom_erros {
   label: "Vcom"
-  view_label: "1. Vcom"
+  view_label: "1. Vcom Envio Diário"
 
   join: financeiro {
     from: financeiro
     view_label: "2. Financeiro"
-    sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} and
-    ${financeiro.id_contrato} = ${vcom_erros.contrato} ;;
+    sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} ;;
     fields: [
       financeiro.ativo_boleto,
       financeiro.ds_fundo_investimento,
