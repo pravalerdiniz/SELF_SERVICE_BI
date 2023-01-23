@@ -74,7 +74,8 @@ explore: vcom_erros {
     from: vcom_titulos
     view_label: "3. Vcom Títulos"
     sql_on: ${vcom_erros.id_cpf} = ${vcom_titulos.id_cpf} and
-    ${financeiro.id_boleto} = ${vcom_titulos.id_boleto};;
+    ${financeiro.id_boleto} = ${vcom_titulos.id_boleto} and
+    ${financeiro.id_contrato} = ${vcom_titulos.contrato};;
     relationship: one_to_many
     type: left_outer
   }
