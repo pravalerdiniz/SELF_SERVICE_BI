@@ -3963,12 +3963,27 @@ dimension: vl_tarifa_cadastro {
     label: "Valor da Mensalidade Informada pelo Aluno"
   }
 
+  measure: mensalidade_inf_alu_avg {
+    type: average
+    sql: ${TABLE}."VL_MENS_INFORMADA_ALUNO" ;;
+    group_label: "Mensalidades"
+    label: "Média do Valor da Mensalidade Informada pelo Aluno"
+  }
+
   dimension: mensalidade_ies {
     type: number
     sql: ${TABLE}."VL_MENSALIDADE_AVAL" ;;
     group_label: "Mensalidades"
     label: "Valor da Mensalidade da Análise IES"
   }
+
+  measure: mensalidade_ies_avg {
+    type: average
+    sql: ${TABLE}."VL_MENSALIDADE_AVAL" ;;
+    group_label: "Mensalidades"
+    label: "Média do Valor da Mensalidade da Análise IES"
+  }
+
 
   measure: count_cpf {
     type: count_distinct

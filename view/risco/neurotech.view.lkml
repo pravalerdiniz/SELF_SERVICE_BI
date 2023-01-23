@@ -388,18 +388,21 @@ view: neurotech {
   }
 
   dimension: prop_renda_aluno {
+    label: "Renda do Aluno"
     type: number
     group_label: "Dados do Aluno"
     sql: ${TABLE}."PROP_RENDA_ALUNO" ;;
   }
 
   dimension: prop_renda_garantidor {
+    label: "Renda do Garantidor"
     type: number
     group_label: "Dados do Garantidor"
     sql: ${TABLE}."PROP_RENDA_GARANTIDOR" ;;
   }
 
   dimension: prop_mensalidade {
+    label: "Valor da Mensalidade"
     type: number
     group_label: "Dados de Avaliação"
     sql: ${TABLE}."PROP_MENSALIDADE" ;;
