@@ -1,9 +1,15 @@
 # The name of this view in Looker is "Despesa Pdd Liquida"
-view: financeiro_safrado {
+view: bv_consolidado {
+
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
-    ;;
+  derived_table: {
+    sql:
+    SELECT *
+    FROM "POS_GRADUADO"."FINANCEIRO"."INDICADORES_SAFRADO"
+    WHERE "FUNDO" = 2 ;;
+  }
+
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 

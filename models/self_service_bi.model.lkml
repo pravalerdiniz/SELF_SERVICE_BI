@@ -778,8 +778,7 @@ explore: jornada {
 
   join: leads_canal_entrada {
     view_label: "1. Jornada"
-    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} AND
-    ${jornada.canal} = 'MGM';;
+    sql_on:  ${jornada.aluno_cpf} = ${leads_canal_entrada.cd_cpf_lead} ;;
     type: left_outer
     relationship: many_to_one
   }
