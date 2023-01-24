@@ -140,7 +140,6 @@ view: interacoes_detalhes_ligacao {
 
     dimension: id_ligacao {
       type: string
-      primary_key: yes
       group_label: "Dados da Ligação"
       group_item_label: "ID Ligação"
       description: "Indica o ID da ligação na 55."
@@ -209,6 +208,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: duracao_chamada {
       type: string
+      group_label: "Tempos de Atendimento"
       label: "Duração da chamada"
       description: "Indica a duração da chamada em HH:MM:SS."
       sql: ${TABLE}."DURACAO_CHAMADA" ;;
