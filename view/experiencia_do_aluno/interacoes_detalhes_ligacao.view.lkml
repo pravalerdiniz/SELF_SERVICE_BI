@@ -139,12 +139,20 @@ view: interacoes_detalhes_ligacao {
 
 
     dimension: id_ligacao {
-      type: number
+      type: string
       group_label: "Dados da Ligação"
       group_item_label: "ID Ligação"
-      description: "Indica o ID da ligação na 55."
+      description: "Indica o ID da ligação na 55pbx."
       sql: ${TABLE}."ID_LIGACAO" ;;
     }
+
+  dimension: id_ligacao_55 {
+    type: string
+    group_label: "Dados da Ligação"
+    group_item_label: "ID Ligação"
+    description: "Indica o ID da ligação na 55pbx."
+    sql: ${TABLE}."ID_LIGACAO" ;;
+  }
 
 
     dimension_group: data_ligacao {
