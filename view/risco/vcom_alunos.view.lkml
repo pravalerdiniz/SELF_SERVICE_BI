@@ -124,6 +124,13 @@ view: vcom_alunos {
     description: "INDICA SE O CPF ESTÁ REGISTRADO OU NÃO NA VCOM"
     sql: ${TABLE}."FLG_CAD_VCOM" ;;
   }
+  dimension: nome_acessoria {
+    type: string
+    label: "Nome da Assessoria de Cobrança"
+    group_label: "Dados de Cobrança"
+    description: "Indica o nome da assessoria que recebeu o titulo para cobrança"
+    sql: ${TABLE}."NM_ASSESSORIA" ;;
+  }
 
 
   ## MEDIDAS ##
