@@ -139,7 +139,7 @@ view: interacoes_detalhes_ligacao {
 
 
     dimension: id_ligacao {
-      type: string
+      type: number
       group_label: "Dados da Ligação"
       group_item_label: "ID Ligação"
       description: "Indica o ID da ligação na 55."
