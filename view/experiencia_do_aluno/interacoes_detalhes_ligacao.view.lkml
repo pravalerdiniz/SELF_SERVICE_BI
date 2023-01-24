@@ -39,6 +39,7 @@ view: interacoes_detalhes_ligacao {
     measure: DURACAO_CHAMADA_SEG{
       type: sum
       sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
+      group_label: "Tempos de Atendimento"
       label: "Tempo Total - Duração da Chamada"
       description: "Soma do tempo falado da ligação."
       value_format: "[hh]:mm:ss"
@@ -48,6 +49,7 @@ view: interacoes_detalhes_ligacao {
     measure: medio_duracao_chamada_seg {
       type: average
       sql: ${TABLE}."DURACAO_CHAMADA_SEG"/ 86400.0;;
+      group_label: "Tempos de Atendimento"
       label: "Tempo Médio - Duração da Chamada"
       description: "Média do tempo de duração da chamada"
       value_format: "[hh]:mm:ss"
@@ -59,6 +61,7 @@ view: interacoes_detalhes_ligacao {
 
     measure: TEMPO_ESPERA_ATE_ATENDIMENTO_SEG{
       type: sum
+      group_label: "Tempos de Atendimento"
       label: "Tempo Total - Espera"
       description: "Soma do tempo espera até atendimento da ligação."
       sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
@@ -69,6 +72,7 @@ view: interacoes_detalhes_ligacao {
     measure: medio_tempo_espera_ate_atendimento {
       type: average
       sql: ${TABLE}."TEMPO_ESPERA_ATE_ATENDIMENTO_SEG"/ 86400.0;;
+      group_label: "Tempos de Atendimento"
       label: "Tempo Médio - Espera"
       description: "Média do tempo de espera até o atendimento chamada"
       value_format: "[hh]:mm:ss"
@@ -78,6 +82,7 @@ view: interacoes_detalhes_ligacao {
 
     measure: TEMPO_FALADO_SEG{
       type: sum
+      group_label: "Tempos de Atendimento"
       label: "Tempo Total - Falado"
       description: "Soma do tempo falado da ligação."
       sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
@@ -87,6 +92,7 @@ view: interacoes_detalhes_ligacao {
 
     measure: MEDIA_TEMPO_FALADO_SEG{
       type: average
+      group_label: "Tempos de Atendimento"
       label: "Tempo Médio - Falado"
       description: "Soma do tempo falado da ligação."
       sql: ${TABLE}."TEMPO_FALADO_SEG"/ 86400.0;;
@@ -104,6 +110,7 @@ view: interacoes_detalhes_ligacao {
 
     measure: TEMPO_URA_SEG{
       type: sum
+      group_label: "Tempos de Atendimento"
       label: "Tempo Total -  URA"
       description: "Soma do tempo de ligação na URA."
       sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
@@ -114,6 +121,7 @@ view: interacoes_detalhes_ligacao {
     measure: medio_tempo_ura {
       type: average
       sql: ${TABLE}."TEMPO_URA_SEG"/ 86400.0;;
+      group_label: "Tempos de Atendimento"
       label: "Tempo Médio - URA"
       description: "Média do tempo da URA"
       value_format: "[hh]:mm:ss"
@@ -123,22 +131,26 @@ view: interacoes_detalhes_ligacao {
 
     dimension: id_ticket {
       type: number
-      hidden: yes
+      group_label: "Dados da Ligação"
+      group_item_label: "ID Ticket - Zendesk"
+      description: "Indica o ticket da ligação no Zendesk."
       sql: ${TABLE}."ID_TICKET" ;;
     }
 
 
     dimension: id_ligacao {
       type: string
-      hidden: no
       primary_key: yes
+      group_label: "Dados da Ligação"
+      group_item_label: "ID Ligação"
+      description: "Indica o ID da ligação na 55."
       sql: ${TABLE}."ID_LIGACAO" ;;
     }
 
 
     dimension_group: data_ligacao {
       type: time
-      label: "Data de ligação"
+      label: "Ligação"
       timeframes: [
         raw,
         time,
@@ -148,13 +160,13 @@ view: interacoes_detalhes_ligacao {
         quarter,
         year
       ]
-      description: "Indica a data da ligação do ticket."
+      description: "Indica a data da ligação."
       sql: ${TABLE}."DATA_LIGACAO" ;;
     }
 
     dimension: tipo_questionario {
       type: string
-      group_label: "Pesquisa de Satisfação"
+      group_label: "Dados de Satisfação"
       group_item_label: "Tipo Questionário"
       description: "Indica a pesquisa que está sendo avaliada"
       sql: ${TABLE}."TIPO_QUESTIONARIO" ;;
@@ -162,51 +174,38 @@ view: interacoes_detalhes_ligacao {
 
     dimension: pergunta_1 {
       type: number
-      group_label: "Pesquisa de Satisfação"
-      group_item_label: "Primeira Pergunta"
-      description: "Indica a questão que está sendo avaliada"
+      group_label: "Dados de Satisfação"
+      group_item_label: "Nota 1. Resolução"
+      description: "Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO"
       sql: ${TABLE}."PERGUNTA_1" ;;
     }
 
-    measure: pergunta_1_nota_4_5 {
-      type: sum
-      group_label: "Pesquisa de Satisfação"
-      group_item_label: "Primeira Pergunta - Notas 4 e 5"
-      description: "Indica a quantidade de notas 4 e 5 na pergunta 1."
-      sql:  case when ${pergunta_1}=4 or ${pergunta_1}=5 then 1 else 0 end ;;
-    }
 
     dimension: pergunta_2 {
       type: number
-      group_label: "Pesquisa de Satisfação"
-      group_item_label: "Segunda Pergunta"
-      description: "Indica a questão que está sendo avaliada"
+      group_label: "Dados de Satisfação"
+      group_item_label: "Nota 2. Atendimento"
+      description: "Como você avalia o atendimento do nosso Pravalente? Digite 3 para ótimo, 2 para regular e 1 para ruim."
       sql: ${TABLE}."PERGUNTA_2" ;;
     }
 
-  measure: pergunta_2_nota_4_5 {
-    type: sum
-    group_label: "Pesquisa de Satisfação"
-    group_item_label: "Segunda Pergunta - Notas 4 e 5"
-    description: "Indica a quantidade de notas 4 e 5 na pergunta 2."
-    sql:  case when ${pergunta_2}=4 or ${pergunta_2}=5 then 1 else 0 end ;;
-  }
 
     dimension: pergunta_3 {
       type: number
-      group_label: "Pesquisa de Satisfação"
-      group_item_label: "Terceira Pergunta"
-      description: "Indica a questão que está sendo avaliada"
+      group_label: "Dados de Satisfação"
+      group_item_label: "Nota 3. Pravaler"
+      description: "De modo geral, como classifica sua experiência com o Pravaler? Lembrando que é 3 para ótimo, 2 para regular e 1 para ruim."
       sql: ${TABLE}."PERGUNTA_3" ;;
     }
 
-  measure: pergunta_3_nota_1 {
-    type: sum
-    group_label: "Pesquisa de Satisfação"
-    group_item_label: "Terceira Pergunta - Notas 1 - Sim"
-    description: "Indica a quantidade de notas 1, ou seja, respondentes Sim."
-    sql:  case when ${pergunta_3}=1 then 1 else 0 end ;;
-  }
+    measure: pergunta_3_nota_1 {
+      type: sum
+      hidden: yes
+      group_label: "Dados de Satisfação"
+      group_item_label: "Terceira Pergunta - Notas 1 - Sim"
+      description: "Indica a quantidade de notas 1, ou seja, respondentes Sim."
+      sql:  case when ${pergunta_3}=1 then 1 else 0 end ;;
+    }
 
     dimension: duracao_chamada {
       type: string
@@ -217,21 +216,23 @@ view: interacoes_detalhes_ligacao {
 
     dimension: fila_atendimento {
       type: string
-      label: "Fila"
+      group_label: "Dados da Ligação"
+      group_item_label: "Fila"
       description: "Indica a fila de atendimento durante a ligação."
       sql: ${TABLE}."FILA_ATENDIMENTO" ;;
     }
 
-
     dimension: nome_agente {
       type: string
-      label: "Nome do Atendente"
+      group_label: "Dados do Atendente"
+      group_item_label: "Nome"
       description: "Indica o nome do atendente responsável pela ligação no ticket."
       sql: ${TABLE}."NOME_AGENTE" ;;
     }
 
     dimension: tempo_espera_ate_atendimento {
       type: string
+      group_label: "Tempos de Atendimento"
       label: "Tempo de Espera"
       description: "Indica o tempo de espera da ligação até o atendimento em segundos."
 
@@ -240,6 +241,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tempo_falado {
       type: string
+      group_label: "Tempos de Atendimento"
       label: "Tempo Falado"
       description: "Indica o tempo falado da ligação em segundos."
       sql: ${TABLE}."TEMPO_FALADO" ;;
@@ -247,6 +249,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tempo_ura {
       type: string
+      group_label: "Tempos de Atendimento"
       label: "Tempo na URA"
       description: "Indica o tempo da ligação na URA em segundos"
       sql: ${TABLE}."TEMPO_URA" ;;
@@ -254,6 +257,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: caminho_ura {
       type: string
+      group_label: "Dados da Ligação"
       label: "Caminho da URA"
       description: "Indica o caminho da URA."
       sql: ${TABLE}."CAMINHO_URA" ;;
@@ -261,6 +265,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tipo_conexao {
       type: string
+      group_label: "Dados da Ligação"
       label: "Tipo de Desconexão"
       description: "Indica se a ligação foi desconectada internamente pelo atendente ou externamente pelo aluno."
       sql: ${TABLE}."TIPO_CONEXAO" ;;
@@ -268,6 +273,7 @@ view: interacoes_detalhes_ligacao {
 
     dimension: tipo_ligacao {
       type: string
+      group_label: "Dados da Ligação"
       label: "Tipo de Ligação 55PBX"
       description: "Indica o tipo de ligação de acordo com a regra definida pela 55pbx."
       sql: ${TABLE}."TIPO_LIGACAO" ;;
@@ -275,6 +281,7 @@ view: interacoes_detalhes_ligacao {
 
   dimension: tipo_ligacao_prv {
     type: string
+    group_label: "Dados da Ligação"
     label: "Tipo de Ligação Pravaler"
     description: "Indica o tipo de ligação de acordo com a regra definida pela área de negócio."
     sql: ${TABLE}."TIPO_LIGACAO_PRV" ;;
