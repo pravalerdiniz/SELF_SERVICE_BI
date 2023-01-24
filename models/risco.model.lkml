@@ -92,7 +92,19 @@ explore: vcom_erros {
       financeiro.ds_titulo_classificacao,
       financeiro.id_titulo_classificacao,
       financeiro.ds_tipo_boleto,
-      financeiro.id_contrato
+      financeiro.id_contrato,
+      financeiro.data_baixa_date,
+      financeiro.data_pagamento_date,
+      financeiro.dias_a_vencer,
+      financeiro.faixa_adimple,
+      financeiro.faixa_aging_a_vencer,
+      financeiro.faixa_aging_vencidos,
+      financeiro.data_vencimento_date,
+      financeiro.flg_boleto_atrasado,
+      financeiro.flg_boleto_pago,
+      financeiro.flg_boleto_pago_em_dia,
+      financeiro.vl_boleto
+
     ]
     relationship: one_to_one
     type: left_outer
