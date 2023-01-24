@@ -199,6 +199,70 @@ view: interacoes_detalhes_ligacao {
       sql: ${TABLE}."PERGUNTA_3" ;;
     }
 
+
+
+
+
+  measure: pergunta_1_sum {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 1. Resolução"
+    description: "Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO"
+    sql: ${TABLE}."PERGUNTA_1" ;;
+  }
+
+
+  measure: pergunta_2_sum {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 2. Atendimento"
+    description: "Como você avalia o atendimento do nosso Pravalente? Digite 3 para ótimo, 2 para regular e 1 para ruim."
+    sql: ${TABLE}."PERGUNTA_2" ;;
+  }
+
+
+  measure: pergunta_3_sum {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 3. Pravaler"
+    description: "De modo geral, como classifica sua experiência com o Pravaler? Lembrando que é 3 para ótimo, 2 para regular e 1 para ruim."
+    sql: ${TABLE}."PERGUNTA_3" ;;
+  }
+
+
+  measure: pergunta_1_avg {
+    type: average
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 1. Resolução"
+    description: "Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO"
+    sql: ${TABLE}."PERGUNTA_1" ;;
+  }
+
+
+  measure: pergunta_2_avg {
+    type: average
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 2. Atendimento"
+    description: "Como você avalia o atendimento do nosso Pravalente? Digite 3 para ótimo, 2 para regular e 1 para ruim."
+    sql: ${TABLE}."PERGUNTA_2" ;;
+  }
+
+
+  measure: pergunta_3_avg {
+    type: average
+    group_label: "Dados de Satisfação"
+    group_item_label: "Nota 3. Pravaler"
+    description: "De modo geral, como classifica sua experiência com o Pravaler? Lembrando que é 3 para ótimo, 2 para regular e 1 para ruim."
+    sql: ${TABLE}."PERGUNTA_3" ;;
+  }
+
+
+
+
+
+
+
+
     measure: pergunta_3_nota_1 {
       type: sum
       hidden: yes
