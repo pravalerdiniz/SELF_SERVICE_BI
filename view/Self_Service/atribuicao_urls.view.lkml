@@ -11,6 +11,7 @@ view: atribuicao_urls {
               B.UTM_CAMPAIGN AS UTM_CAMPAIGN_DESCOBERTA,
               B.UTM_TERM AS UTM_TERM_DESCOBERTA,
               B.ORIGIN AS ORIGIN_DESCOBERTA,
+              B.UTM_CONTENT AS UTM_CONTENT_DESCOBERTA,
               A.ID_URL_DCO_L100 AS ID_URL_DESCOBERTA_100D,
               A.DS_URL_DCO_L100 AS DS_URL_DESCOBERTA_100D,
               C.CANAL AS CANAL_DESCOBERTA_100D,
@@ -19,13 +20,15 @@ view: atribuicao_urls {
               C.UTM_CAMPAIGN AS UTM_CAMPAIGN_DESCOBERTA_100D,
               C.UTM_TERM AS UTM_TERM_DESCOBERTA_100D,
               C.ORIGIN AS ORIGIN_DESCOBERTA_100D,
+              C.UTM_CONTENT AS UTM_CONTENT_DESCOBERTA_100D,
               A.ID_URL_FINALIZACAO AS ID_URL_FINALIZACAO,
               D.CANAL AS CANAL_FINALIZACAO,
               D.UTM_SOURCE AS UTM_SOURCE_FINALIZACAO,
               D.UTM_MEDIUM AS UTM_MEDIUM_FINALIZACAO,
               D.UTM_CAMPAIGN AS UTM_CAMPAIGN_FINALIZACAO,
               D.UTM_TERM AS UTM_TERM_FINALIZACAO,
-              D.ORIGIN AS ORIGIN_FINALIZACAO
+              D.ORIGIN AS ORIGIN_FINALIZACAO,
+              D.UTM_CONTENT AS UTM_CONTENT_FINALIZACAO
           FROM GRADUADO.SELF_SERVICE_BI.ATRIBUICAO A
           LEFT JOIN "VETERANO"."DIMENSAO"."DIM_URL" B ON A.ID_URL_DESCOBERTA = B.ID_URL
           LEFT JOIN "VETERANO"."DIMENSAO"."DIM_URL" C ON A.ID_URL_DCO_L100 = C.ID_URL
@@ -77,6 +80,14 @@ view: atribuicao_urls {
     label: "Origin de Descoberta"
     description: "Indica a Origin de Descoberta do aluno."
     sql: ${TABLE}."ORIGIN_DESCOBERTA" ;;
+    group_label: "Dados de Descoberta"
+  }
+
+  dimension: content_descoberta {
+    type: string
+    label: "Content de Descoberta"
+    description: "Indica a UTM_CONTENT de Descoberta do aluno."
+    sql: ${TABLE}."UTM_CONTENT_DESCOBERTA" ;;
     group_label: "Dados de Descoberta"
   }
 
@@ -143,6 +154,14 @@ view: atribuicao_urls {
     group_label: "Dados de Descoberta - 100 Dias"
   }
 
+  dimension: utm_content_descoberta_100d {
+    type: string
+    label: "Content de Descoberta - 100 Dias"
+    description: "Indica a UTM_CONTENT de Descoberta do aluno."
+    sql: ${TABLE}."UTM_CONTENT_DESCOBERTA_100D" ;;
+    group_label: "Dados de Descoberta - 100 Dias"
+  }
+
   dimension: id_url_finalizacao {
     type: string
     label: "ID da URL de Finalização"
@@ -188,6 +207,14 @@ view: atribuicao_urls {
     label: "Origin de Finalização"
     description: "Indica a Origin de Finalização do aluno."
     sql: ${TABLE}."ORIGIN_FINALIZACAO" ;;
+    group_label: "Dados de Finalização"
+  }
+
+  dimension: utm_content_finalizacao {
+    type: string
+    label: "Content de Finalização"
+    description: "Indica a Content de Finalização do aluno."
+    sql: ${TABLE}."UTM_CONTENT_FINALIZACAO" ;;
     group_label: "Dados de Finalização"
   }
 
