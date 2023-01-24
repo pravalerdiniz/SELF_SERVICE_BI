@@ -284,9 +284,7 @@ explore: tickets_mundiale_zendesk {
     - alunos.ativo_ano_mes,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab,
-    - interacoes_detalhes_ligacao.caminho_ura,
-    - interacoes_detalhes_ligacao.id_ligacao,
+    - proposta.flag_produtos_semfiador_testeab
   ]
 
   join: interacoes_detalhes_ligacao {
