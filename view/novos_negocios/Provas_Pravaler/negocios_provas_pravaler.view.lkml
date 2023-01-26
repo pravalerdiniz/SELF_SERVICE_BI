@@ -388,4 +388,10 @@ view: negocios_provas_pravaler {
     type: count
     drill_fields: []
   }
+
+  dimension: id_proprietario_negocio {
+    type: number
+    sql: ${TABLE}. "ID_PROPRIETARIO_NEGOCIO";;
+  }
+
 }
