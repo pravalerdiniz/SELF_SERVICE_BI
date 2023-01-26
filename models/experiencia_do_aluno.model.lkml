@@ -79,8 +79,9 @@ explore: interacoes {
     view_label: "Detalhes de ligação"
     type: full_outer
     sql_on: ${interacoes.id_ticket} = ${interacoes_detalhes_ligacao.id_ticket};;
-    relationship: many_to_one
+    relationship: one_to_one
   }
+
 
   join: interacoes_metricas_tickets {
     view_label: "Métricas dos Tickets"
