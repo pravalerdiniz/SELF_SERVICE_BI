@@ -157,13 +157,23 @@ view: vcom_titulos {
     sql: ${TABLE}."FLG_RECEBIDO" ;;
   }
 
-  dimension: classificacao_erro {
-    type: string
-    label: "Classificação Erro"
+  dimension: num_diff_pgto {
+    type: number
+    label: "Dias Diferentes de Pagamento"
     group_label: "Fluxo de Envio"
-    description: "INDICA A CAUSA RAIZ DO ERRO APRESENTADO NAS MENSAGENS DE ERR"
-    sql: ${TABLE}."CLASSIFICACAO_ERRO" ;;
+    description: "INDICA O NÚMERO DE DIAS DE DIFERENÇA ENTRE A DATA DE PAGAMENTO DA VCOM E DO BO"
+    sql: ${TABLE}."NUM_DIFF_PGTO" ;;
   }
+
+  dimension: flg_diff_vecto {
+    type: yesno
+    label: "Diferença Vencimento Flag"
+    group_label: "Fluxo de Envio"
+    description: "INDICA SE A DATA DE VENCIMENTO DA VCOM E DO BO SÃO DIFERENTES"
+    sql: ${TABLE}."FLG_DIFF_VECTO" ;;
+  }
+
+
 
   ## DATAS ##
 
@@ -195,6 +205,30 @@ view: vcom_titulos {
     ]
     sql: ${TABLE}."DT_CRICAO_MDW" ;;
     label: "Data Criação"
+  }
+
+  dimension_group: dt_vencimento_vcom {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      month,
+      year
+    ]
+    sql: ${TABLE}."DT_VENCIMENTO_VCOM"  ;;
+    label: "Data Vencimento Vcom"
+  }
+
+  dimension_group: dt_pgto_vcom {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      month,
+      year
+    ]
+    sql: ${TABLE}."DT_PGTO_VCOM"  ;;
+    label: "Data Pagamento Vcom"
   }
 
 }
