@@ -596,6 +596,7 @@ view: farol {
 
   dimension: cpf {
     type: number
+    value_format: "0"
     sql: ${TABLE}."CPF" ;;
   }
 
