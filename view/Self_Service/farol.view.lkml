@@ -586,6 +586,7 @@ view: farol {
 
   dimension: id_cpf {
     type: number
+    value_format: "0"
     sql: ${TABLE}."ID_CPF" ;;
   }
 
