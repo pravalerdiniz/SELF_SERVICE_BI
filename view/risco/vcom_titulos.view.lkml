@@ -40,6 +40,7 @@ view: vcom_titulos {
   dimension: id_seunum {
     type: number
     label: "ID SEUNUM"
+    value_format: "0"
     group_label: "Dados Boleto"
     description: "NUMERO DO SEUNUM DO BOLETO"
     sql: ${TABLE}."ID_SEUNUM" ;;
