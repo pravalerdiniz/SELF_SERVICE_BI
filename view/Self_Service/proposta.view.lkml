@@ -1750,7 +1750,7 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades em Atraso"
     description:"Indica a quantidade de mensalidades em atraso por contrato"
-    hidden: yes
+    hidden: no
     sql: ${TABLE}."QTD_MENSALIDADE_ATRASO" ;;
   }
 
