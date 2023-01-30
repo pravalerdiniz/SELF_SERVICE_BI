@@ -230,7 +230,8 @@ explore: status {
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
   join: proposta
@@ -323,8 +324,6 @@ explore: status {
           AND    ${instituicao.id_curso} =  ${alunos.id_curso}  ;;
     relationship: many_to_one
     type:left_outer
-    fields: []
-
   }
 
 }
