@@ -43,6 +43,22 @@ view: processo_wo {
     sql: ${TABLE}."DATA_VENCIMENTO" ;;
   }
 
+  dimension_group: data_referencia_OT {
+    description: "Data de referência da base OT."
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATA_REFERENCIA_OT" ;;
+  }
+
   dimension: id_fundo {
     description: "ID do fundo de investimento, sendo 2,4,1,41 os fundos BV, FIDC I, FIDC II e FIDC III respectivamente."
     type: number
