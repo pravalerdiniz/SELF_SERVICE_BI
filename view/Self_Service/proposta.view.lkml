@@ -2573,6 +2573,15 @@ dimension: vl_tarifa_cadastro {
     sql: ${TABLE}."VL_REPASSE_TOTAL";;
   }
 
+  dimension: flag_mensalidade_150 {
+    type: yesno
+    group_label: "Dados do Contrato"
+    group_item_label: "Flag Mensalidade 150"
+    label: "Flag Mensalidade 150"
+    description: "Indica se a mensalidade é maior que 150 reais (valor mínimo)"
+    sql: ${vl_mensalidade} > 150 ;;
+  }
+
 
   measure: sum_repasse_mensal {
     type: sum
