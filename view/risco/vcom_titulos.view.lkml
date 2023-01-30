@@ -92,6 +92,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "ETAPA NO FLUXO"
     sql: ${TABLE}."ETAPA" ;;
+    hidden: yes
   }
 
   dimension: fluxo {
@@ -100,6 +101,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "FLUXO UTILIZADO PARA ENVIO"
     sql: ${TABLE}."FLUXO" ;;
+    hidden: yes
   }
 
   dimension: layoutatual {
@@ -108,22 +110,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "LAYOUT UTILIZADO PARA ENVIO"
     sql: ${TABLE}."LAYOUTATUAL" ;;
-  }
-
-  dimension: mensagem_erro {
-    type: string
-    label: "Mensagem de Erro"
-    group_label: "Fluxo de Envio"
-    description: "MENSSAGEM DE ERRO PARA OS REGISTROS QUE FOREM REJEITADOS PARA VCOM"
-    sql: ${TABLE}."MENSAGEM_ERRO" ;;
-  }
-
-  dimension: flg_cpf_enviado {
-    type: yesno
-    label: "CPF Enviado Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O CPF JÁ FOI ENVIADO PELO MIDDLEWARE"
-    sql: ${TABLE}."FLG_CPF_ENVIADO" ;;
+    hidden: yes
   }
 
   dimension: flg_titulo_enviado {
@@ -132,22 +119,6 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "INDICA SE O TITULO ESTÁ NO MIDDLEWARE"
     sql: ${TABLE}."FLG_TITULO_ENVIADO" ;;
-  }
-
-  dimension: flg_em_aberto {
-    type: yesno
-    label: "Titulo Aberto Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O TIULO ESTÁ EM ABERTO (SEM DATA BAIXA/PAGAMENTO)"
-    sql: ${TABLE}."FLG_EM_ABERTO" ;;
-  }
-
-  dimension: flg_cpf_quitado {
-    type: yesno
-    label: "CPF Quitado Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O CPF NÃO PÓSSUI BOLETOS EM ABERTO"
-    sql: ${TABLE}."FLG_CPF_QUITADO" ;;
   }
 
   dimension: flg_recebido {
