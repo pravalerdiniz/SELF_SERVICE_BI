@@ -135,6 +135,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "INDICA O NÚMERO DE DIAS DE DIFERENÇA ENTRE A DATA DE PAGAMENTO DA VCOM E DO BO"
     sql: ${TABLE}."NUM_DIFF_PGTO" ;;
+    drill_fields: [id_seunum,cpf,dt_pgto_vcom_date,flg_recebido,flg_titulo_enviado]
   }
 
   dimension: flg_diff_vecto {
@@ -144,6 +145,24 @@ view: vcom_titulos {
     description: "INDICA SE A DATA DE VENCIMENTO DA VCOM E DO BO SÃO DIFERENTES"
     sql: ${TABLE}."FLG_DIFF_VECTO" ;;
   }
+
+  dimension: vl_parc_vcom {
+    type: number
+    value_format: "$0.00"
+    label: "Valor Parcela Vcom"
+    group_label: "Dados Boleto"
+    sql: ${TABLE}."VL_PARC_VCOM"  ;;
+  }
+
+  dimension: vl_orig_parc_vcom {
+    type: number
+    value_format: "$0.00"
+    label: "Valor Original Parcela Vcom"
+    group_label: "Dados Boleto"
+    sql: ${TABLE}."VL_ORIG_PARC_VCOM"  ;;
+  }
+
+
 
 
 

@@ -103,7 +103,8 @@ explore: vcom_erros {
       financeiro.flg_boleto_pago,
       financeiro.flg_boleto_pago_em_dia,
       financeiro.vl_total,
-      financeiro.dias_atraso
+      financeiro.dias_atraso,
+      financeiro.vl_boleto
     ]
     relationship: one_to_one
     type: left_outer
