@@ -2472,3 +2472,12 @@ explore: log_usuarios {
 explore: metas_realizado_marketplace {
   label: "Marketplace Metas e Realizado"
 }
+
+explore: metas_provas_pravaler {
+  label: "Metas de Receita Provas Pravaler"
+  description: "Controle de metas de Receita e Agendamentos do time comercial do Provas Pravaler."
+}
+
+explore: receita_semanal_provas_pravaler {
+  label: "Receita Provas Pravaler por competência (Semanal)"
+}

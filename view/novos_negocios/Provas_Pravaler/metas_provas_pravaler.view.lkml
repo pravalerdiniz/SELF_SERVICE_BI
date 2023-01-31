@@ -13,6 +13,7 @@ view: metas_provas_pravaler {
 
   dimension: id_gc_pipedrive {
     type: number
+    primary_key: yes
     sql: ${TABLE}."ID_GC_PIPEDRIVE" ;;
   }
 
