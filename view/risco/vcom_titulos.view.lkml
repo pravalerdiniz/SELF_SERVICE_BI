@@ -162,6 +162,15 @@ view: vcom_titulos {
     sql: ${TABLE}."VL_ORIG_PARC_VCOM"  ;;
   }
 
+  dimension: diff_valor {
+    type: number
+    label: "Diferença Valor Boleto"
+    group_label: "Fluxo de Envio"
+    description: "Validação entre o Valor do boleto na Vcom e no BO. (1 tem diferença - 0 Não tem diferença)."
+    sql: case when ${vl_parc_vcom} = ${financeiro.vl_boleto} then 0
+    else 1 end;;
+  }
+
 
 
 
