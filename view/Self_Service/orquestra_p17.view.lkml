@@ -5,7 +5,8 @@ view: orquestra_p17 {
 
   dimension: acordotrocadevencimento {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Acordo Troca de Vencimento"
     description: "Informação para Risco P10"
     sql: ${TABLE}."ACORDOTROCADEVENCIMENTO" ;;
@@ -13,6 +14,7 @@ view: orquestra_p17 {
 
   dimension: alunojapagoualgumaparcela {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Aluno já pagou alguma parcela?"
     sql: ${TABLE}."ALUNOJAPAGOUALGUMAPARCELA" ;;
@@ -20,6 +22,7 @@ view: orquestra_p17 {
 
   dimension: analiseefetuada {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Análise efetuada?"
     sql: ${TABLE}."ANALISEEFETUADA" ;;
@@ -27,6 +30,7 @@ view: orquestra_p17 {
 
   dimension: analiserealizada {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Análise realizada?"
     sql: ${TABLE}."ANALISEREALIZADA" ;;
@@ -34,17 +38,19 @@ view: orquestra_p17 {
 
   dimension: analisesolicitacaorealizadapelaarea {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Solicitação realizada pela área?"
     description: "Ações tomadas no chamados especificos"
     sql: ${TABLE}."ANALISESOLICITACAOREALIZADAPELAAREA" ;;
   }
 
-  dimension: area {
+  dimension: area_responsavel {
     type: string
-    group_label: "Dados do Chamado"
-    group_item_label: "Área"
-    description: "Área responsavel pelo chamado"
+    hidden: yes
+    group_label: "Dados da Tarefa"
+    group_item_label: "Área Responsável"
+    description: "Área responsavel pela tarefa"
     sql: ${TABLE}."AREA" ;;
   }
 
@@ -64,15 +70,16 @@ view: orquestra_p17 {
     sql: ${TABLE}."AREA_REQUISITANTE" ;;
   }
 
-  dimension: assuntoprincipalcontatocorrecao {
+  dimension: assunto_principal_contato_correcao {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Assunto Principal do Contato (Correção)"
     description: "Ação de troca de status"
     sql: ${TABLE}."ASSUNTOPRINCIPALCONTATOCORRECAO" ;;
   }
 
-  dimension: assuntoprincipaldocontato {
+  dimension: assunto_principal_contato {
     type: string
     group_label: "Dados do Chamado"
     group_item_label: "Assunto Principal do Contato"
@@ -82,31 +89,34 @@ view: orquestra_p17 {
 
   dimension: automacaomarketingonline {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Automação Marketing Online"
     description: "Ação tomada em casos de MGM"
     sql: ${TABLE}."AUTOMACAOMARKETINGONLINE" ;;
   }
 
-  dimension: automacaotier2_trocadestatus {
+  dimension: automacao_tier2_troca_status {
     type: string
-    group_label: "Dados da Task"
+    group_label: "Dados da Tarefa"
     group_item_label: "Automação Tier 2 Troca de Status"
     description: "Informação da automação em troca de status"
     sql: ${TABLE}."AUTOMACAOTIER2TROCADESTATUS" ;;
   }
 
-  dimension: autorizanovaanalisedaies {
+  dimension: autoriza_nova_analise_ies {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Autoriza nova análise da IES"
     description: "Subprocesso de Cancelamento"
     sql: ${TABLE}."AUTORIZANOVAANALISEDAIES" ;;
   }
 
-  dimension: avaliacaodaexcecao {
+  dimension: avaliacao_excecao {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Avaliação da Exceção"
     description: "Status da avaliação de exceção no chamado de Risco P10"
     sql: ${TABLE}."AVALIACAODAEXCECAO" ;;
@@ -114,7 +124,8 @@ view: orquestra_p17 {
 
   dimension: casodepfies {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Caso de P-FIES"
     description: "Informação para Risco P10"
     sql: ${TABLE}."CASODEPFIES" ;;
@@ -122,14 +133,15 @@ view: orquestra_p17 {
 
   dimension: categoria {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Caso de P-FIES"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Categoria"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."CATEGORIA" ;;
   }
 
   dimension: cep {
     type: string
+    hidden: yes
     group_label: "Dados do Requisitante"
     group_item_label: "CEP do Requisitante"
     description: "CEP do Requisitante"
@@ -138,7 +150,8 @@ view: orquestra_p17 {
 
   dimension: chamadocentralatendimento {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Chamado Central de Atendimento"
     description: "Origem solicitada em casos de Risco P10"
     sql: ${TABLE}."CHAMADOCENTRALATENDIMENTO" ;;
@@ -146,7 +159,8 @@ view: orquestra_p17 {
 
   dimension: compradecarteira {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Compra de Carteira"
     description: "Informação de origem em Anonimização"
     sql: ${TABLE}."COMPRADECARTEIRA" ;;
@@ -154,7 +168,8 @@ view: orquestra_p17 {
 
   dimension: comunicacaodisparadaporitau {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Comunicação disparada por Itau"
     description: "Informação para Anonimização"
     sql: ${TABLE}."COMUNICACAODISPARADAPORITAU" ;;
@@ -162,6 +177,7 @@ view: orquestra_p17 {
 
   dimension: cpf {
     type: string
+    hidden: yes
     group_label: "Dados do Usuário"
     group_item_label: "CPF"
     description: "CPF do usuário que pediu a abertura do chamado"
@@ -170,6 +186,7 @@ view: orquestra_p17 {
 
   dimension: cpf_2 {
     type: string
+    hidden: yes
     group_label: "Dados do Usuário"
     group_item_label: "CPF 2"
     sql: ${TABLE}."CPF_2" ;;
@@ -177,15 +194,15 @@ view: orquestra_p17 {
 
   dimension: cpf_do_aluno {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "CPF do Aluno"
     sql: ${TABLE}."CPF_DO_ALUNO" ;;
   }
 
-  dimension: cpfdocliente {
+  dimension: cpf_aluno {
     type: string
     group_label: "Dados do Chamado"
-    group_item_label: "CPF do Cliente"
+    group_item_label: "CPF do Aluno"
     description: "Anonimização de dados - CPF do requisitante"
     sql: ${TABLE}."CPFDOCLIENTE" ;;
   }
@@ -193,10 +210,10 @@ view: orquestra_p17 {
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
-  dimension_group: data_atualizacao {
+  dimension_group: chamado_atualizacao {
     type: time
-    label: "Atualização"
-    description: "Data de atualização"
+    label: "Chamado - Atualização"
+    description: "Data de última atualização do chamado."
     timeframes: [
       raw,
       time,
@@ -209,10 +226,10 @@ view: orquestra_p17 {
     sql: ${TABLE}."DATA_ATUALIZACAO" ;;
   }
 
-  dimension_group: data_expectativa_conclusao {
+  dimension_group: tarefa_expectativa_conclusao {
     type: time
-    label: "Expectativa Conclusão"
-    description: "Data prevista para resolução baseado no que é configurado de Lead Time"
+    label: "Tarefa - Expectativa Conclusão"
+    description: "Data prevista para conclusão da tarefa, baseado no que é configurado de Lead Time."
     timeframes: [
       raw,
       time,
@@ -225,10 +242,10 @@ view: orquestra_p17 {
     sql: ${TABLE}."DATA_EXPECTATIVA_CONCLUSAO" ;;
   }
 
-  dimension_group: data_fim_task {
+  dimension_group: tarefa_finalizacao {
     type: time
-    label: "Fim da Tarefa"
-    description: "Fim da Tarefa"
+    label: "Tarefa - Finalização"
+    description: "Data de finalização da Tarefa."
     timeframes: [
       raw,
       time,
@@ -241,10 +258,10 @@ view: orquestra_p17 {
     sql: ${TABLE}."DATA_FIM_TASK" ;;
   }
 
-  dimension_group: data_inicio_task {
+  dimension_group: tarefa_inicio {
     type: time
-    label: "Início da Tarefa"
-    description: "Início da Tarefa"
+    label: "Tarefa - Início"
+    description: "Data de início da Tarefa."
     timeframes: [
       raw,
       time,
@@ -265,7 +282,7 @@ view: orquestra_p17 {
     sql: ${TABLE}."DESCRICAO_RESULTADO" ;;
   }
 
-  dimension: descricaodasolicitacao {
+  dimension: descricao_solicitacao {
     type: string
     group_label: "Dados do Chamado"
     group_item_label: "Descrição da Solicitação"
@@ -273,15 +290,16 @@ view: orquestra_p17 {
     sql: ${TABLE}."DESCRICAODASOLICITACAO" ;;
   }
 
-  dimension: descricaodasolicitacaodeexclusao {
+  dimension: descricao_solicitacao_exclusao {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Descrição da Solicitação de Exclusão"
     description: "Descrição do motivo para exclusão de dados"
     sql: ${TABLE}."DESCRICAODASOLICITACAODEEXCLUSAO" ;;
   }
 
-  dimension: descricaodasolicitao_2 {
+  dimension: descricao_solicitao_2 {
     type: string
     group_label: "Dados do Chamado"
     group_item_label: "Descrição da Solicitação 2"
@@ -307,113 +325,113 @@ view: orquestra_p17 {
 
   dimension: emaildoaluno {
     type: string
-    group_label: "Dados do Chamado"
+    group_label: "Dados do Aluno"
     group_item_label: "E-mail do Aluno"
     description: "E-mail do Aluno"
     sql: ${TABLE}."EMAILDOALUNO" ;;
   }
 
-  dimension: emaildocliente {
+  dimension: email_cliente {
     type: string
-    group_label: "Dados do Requisitante"
-    group_item_label: "E-mail do Cliente"
-    description: "E-mail do Cliente"
+    group_label: "Dados do Chamado"
+    group_item_label: "E-mail do Aluno"
+    description: "E-mail do Aluno"
     sql: ${TABLE}."EMAILDOCLIENTE" ;;
   }
 
-  dimension: flg_primeira_task {
+  dimension: flg_primeira_tarefa {
     type: yesno
-    group_label: "Dados da Task"
-    group_item_label: "FLG Primeira Task?"
-    description: "Identifica se é a primeira task"
+    group_label: "Dados da Tarefa"
+    group_item_label: "[FLG] Primeira tarefa?"
+    description: "Identifica se é a primeira tarefa do chamado."
     sql: ${TABLE}."FLG_PRIMEIRA_TASK" ;;
   }
 
   dimension: flg_processo_em_andamento {
     type: yesno
-    group_label: "Dados da Task"
-    group_item_label: "FLG Processo em andamento?"
-    description: "Identifica se o processo está em andamento"
+    group_label: "Dados do Chamado"
+    group_item_label: "[FLG] Chamado em andamento?"
+    description: "Identifica se o chamado está em andamento"
     sql: ${TABLE}."FLG_PROCESSO_EM_ANDAMENTO" ;;
   }
 
-  dimension: flg_task_em_andamento {
+  dimension: flg_tarefa_em_andamento {
     type: yesno
-    group_label: "Dados da Task"
-    group_item_label: "FLG Task em andamento?"
-    description: "Identifica se a task está em andamento"
+    group_label: "Dados da Tarefa"
+    group_item_label: "[FLG] Tarefa em andamento?"
+    description: "Identifica se a tarefa está em andamento"
     sql: ${TABLE}."FLG_TASK_EM_ANDAMENTO" ;;
   }
 
   dimension: flg_task_sem_atraso {
     type: yesno
-    group_label: "Dados da Task"
-    group_item_label: "FLG Task sem atraso?"
-    description: "Identifica se a task está em atraso"
+    group_label: "Dados da Tarefa"
+    group_item_label: "[FLG] Tarefa sem atraso?"
+    description: "Identifica se a tarefa está em atraso"
     sql: ${TABLE}."FLG_TASK_SEM_ATRASO" ;;
   }
 
   dimension: flg_ultima_task {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "FLG última Task?"
-    description: "Identifica se é a última task"
+    group_label: "Dados da Tarefa"
+    group_item_label: "[FLG] Última tarefa?"
+    description: "Identifica se é a última tarefa"
     sql: ${TABLE}."FLG_ULTIMA_TASK" ;;
   }
 
-  dimension: flg_ultima_task_manual {
+  dimension: flg_ultima_tarefa_manual {
     type: yesno
-    group_label: "Dados da Task"
-    group_item_label: "FLG última Task manual?"
+    group_label: "Dados da Tarefa"
+    group_item_label: "[FLG] Última tarefa manual?"
     description: "Identifica se é a última task"
     sql: ${TABLE}."FLG_ULTIMA_TASK_MANUAL" ;;
   }
 
-  dimension: id_instance_task {
+  dimension: numero_tarefa {
     type: number
-    group_label: "Dados da Task"
-    group_item_label: "ID da Task"
-    description: "Número da Task"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Número da Tarefa"
+    description: "Número/ID da Tarefa"
     sql: ${TABLE}."ID_INSTANCE_TASK" ;;
   }
 
   dimension: ies {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "IES"
     description: "IES"
     sql: ${TABLE}."IES" ;;
   }
 
-  dimension: ies1 {
+  dimension: ies_cobranca {
     type: string
-    group_label: "Dados do Requisitante"
-    group_item_label: "IES do Aluno do Chamado de Cobrança"
+    group_label: "Dados do Aluno"
+    group_item_label: "IES do Aluno (Chamado de Cobrança)"
     description: "IES do aluno do chamado de Cobrança"
     sql: ${TABLE}."IES1" ;;
   }
 
-  dimension: iesdoaluno {
+  dimension: ies_aluno {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "IES do Aluno"
     description: "IES do aluno"
     sql: ${TABLE}."IESDOALUNO" ;;
   }
 
-  measure: lead_time_task {
+  measure: lead_time_tarefa {
     type: sum
-    group_label: "Dados da Task"
-    group_item_label: "Lead Time da Task"
-    description: "Lead Time de conclusão do chamado"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Soma - Lead Time (Dias)"
+    description: "Tempo em dias entre abertura e finalização da Tarefa."
     sql: ${TABLE}."LEAD_TIME_TASK" ;;
   }
 
   measure: lead_time_task_media {
     type: average
-    group_label: "Dados da Task"
-    group_item_label: "Lead Time da Task - Média"
-    description: "Média do Lead Time de conclusão do chamado"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Média - Lead Time (Dias)"
+    description: "Média do tempo em dias entre abertura e finalização da Tarefa."
     sql: ${TABLE}."LEAD_TIME_TASK" ;;
   }
 
@@ -435,16 +453,16 @@ view: orquestra_p17 {
 
   dimension: matricula {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "Matrícula do Aluno"
     description: "Número de matrícula do aluno"
     sql: ${TABLE}."MATRICULA" ;;
   }
 
-  dimension_group: max_data_chamado {
+  dimension_group: chamado_ultima_finalizacao {
     type: time
-    label: "Finalização Chamado Max"
-    description: "Data Max de finalização da task"
+    label: "Chamado - Última Finalização"
+    description: "Data de finalização da tarefa mais recente do chamado. Não quer dizer que o chamado já está finalizado."
     timeframes: [
       raw,
       time,
@@ -457,10 +475,10 @@ view: orquestra_p17 {
     sql: ${TABLE}."MAX_DATA_CHAMADO" ;;
   }
 
-  dimension_group: min_data_chamado {
+  dimension_group: chamado_primeira_finalizacao {
     type: time
-    label: "Finalização Chamado Min"
-    description: "Data Min de finalização da task"
+    label: "Chamado - Primeira Finalização"
+    description: "Data de finalização da primeira tarefa dentro do chamado. Ou seja, data em que o chamado foi aberto."
     timeframes: [
       raw,
       time,
@@ -481,17 +499,18 @@ view: orquestra_p17 {
     sql: ${TABLE}."MOTIVO_CONTATO" ;;
   }
 
-  dimension: motivodaaberturadochamado {
+  dimension: motivo_abertura_chamado {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Motivo Abertura Chamado Cobrança"
+    group_label: "Dados do Chamado"
+    group_item_label: "Motivo Abertura Chamado (Cobrança)"
     description: "Motivo de contato de Cobrança"
     sql: ${TABLE}."MOTIVODAABERTURADOCHAMADO" ;;
   }
 
-  dimension: motivodaexcecao {
+  dimension: motivo_excecao {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Motivo da Exceção"
     description: "Motivo do pedido de exceção no chamado de Risco P10"
     sql: ${TABLE}."MOTIVODAEXCECAO" ;;
@@ -499,7 +518,8 @@ view: orquestra_p17 {
 
   dimension: motivodecancelamento {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Motivo de Cancelamento"
     description: "Subprocesso de Cancelamento"
     sql: ${TABLE}."MOTIVODECANCELAMENTO" ;;
@@ -517,7 +537,7 @@ view: orquestra_p17 {
     type: string
     group_label: "Dados do Chamado"
     group_item_label: "Nome da Fila"
-    description: "Nome da Fila"
+    description: "Nome da Fila/Processo da solicitação"
     sql: ${TABLE}."NOME_FILA" ;;
   }
 
@@ -529,25 +549,26 @@ view: orquestra_p17 {
     sql: ${TABLE}."NOME_REQUISITANTE" ;;
   }
 
-  dimension: nome_task {
+  dimension: nome_tarefa {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Nome da Task"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Nome da Tarefa"
     description: "Nome da tarefa"
     sql: ${TABLE}."NOME_TASK" ;;
   }
 
-  dimension: nomecompleto {
+  dimension: nome_completo {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Nome Completo"
     description: "Informação de nome em Anonimização"
     sql: ${TABLE}."NOMECOMPLETO" ;;
   }
 
-  dimension: nomedoaluno {
+  dimension: nome_aluno {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "Nome do Aluno"
     description: "Nome do Aluno"
     sql: ${TABLE}."NOMEDOALUNO" ;;
@@ -557,38 +578,40 @@ view: orquestra_p17 {
     type: number
     group_label: "Dados do Chamado"
     group_item_label: "Número do Chamado"
-    description: "ID do chamado"
+    description: "Número/ID do chamado"
     sql: ${TABLE}."NUMERO_CHAMADO" ;;
   }
 
-  dimension: numerochamadoematraso {
+  dimension: numero_chamado_atraso {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Número do Chamado em Atraso"
+    group_label: "Dados do Chamado"
+    group_item_label: "Número do Chamado em Atraso (P24)"
     description: "Número do chamado em atraso, para informação em P24"
     sql: ${TABLE}."NUMEROCHAMADOEMATRASO" ;;
   }
 
-  dimension: numerodocontratoqueelequercancelar {
+  dimension: numero_contrato_cancelar {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Número do Contrato para Cancelar"
     description: "Subprocesso de Cancelamento"
     sql: ${TABLE}."NUMERODOCONTRATOQUEELEQUERCANCELAR" ;;
   }
 
-  dimension: observacoes1 {
+  dimension: observacoes {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Número do Contrato para Cancelar"
+    group_label: "Dados do Chamado"
+    group_item_label: "Observações"
     description: "Retorno do chamado de Prioridade Zero"
     sql: ${TABLE}."OBSERVACOES1" ;;
   }
 
   dimension: origemdasolicitacao {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Origem da Solicitação"
+    hidden: yes
+    group_label: "Dados do Chamado"
+    group_item_label: "Origem da Solicitação (P24)"
     description: "Origem da solicitação em P24"
     sql: ${TABLE}."ORIGEMDASOLICITACAO" ;;
   }
@@ -609,25 +632,27 @@ view: orquestra_p17 {
     sql: ${TABLE}."POSICAO_REQUISITANTE" ;;
   }
 
-  dimension: precisareanaliseinterfile {
+  dimension: precisa_reanalise_interfile {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Precisa Reanalisar Interfile"
+    hidden: yes
+    group_label: "Dados da Tarefa"
+    group_item_label: "Precisa Reanalise Interfile"
     description: "Informação em Análise de documentos"
     sql: ${TABLE}."PRECISAREANALISEINTERFILE" ;;
   }
 
-  dimension: qualonumerodocontrato {
+  dimension: numero_contrato {
     type: string
-    group_label: "Dados do Chamado"
-    group_item_label: "Numero do contrato do aluno"
+    group_label: "Dados do Aluno"
+    group_item_label: "Numero do contrato"
     description: "Numero do contrato do aluno"
     sql: ${TABLE}."QUALONUMERODOCONTRATO" ;;
   }
 
-  dimension: rendaatualizada {
+  dimension: renda_atualizada {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Renda Atualizada"
     description: "Informação para Risco P10"
     sql: ${TABLE}."RENDAATUALIZADA" ;;
@@ -635,31 +660,32 @@ view: orquestra_p17 {
 
   measure: sla {
     type: sum
-    group_label: "Dados do Chamado"
-    group_item_label: "SLA"
-    description: "SLA do Chamado"
+    group_label: "Dados da Tarefa"
+    group_item_label: "SLA para conclusão (Horas)"
+    description: "SLA para conclusão da tarefa em horas"
     sql: ${TABLE}."SLA" ;;
   }
 
-  dimension: status_processo {
+  dimension: status_chamado {
     type: string
     group_label: "Dados do Chamado"
-    group_item_label: "Status do Processo"
-    description: "Status do Chamado"
+    group_item_label: "Status do Chamado"
+    description: "Indica o status do chamado (CONCLUIDO, EM ANDAMENTO, REJEITADO...)"
     sql: ${TABLE}."STATUS_PROCESSO" ;;
   }
 
-  dimension: status_task {
+  dimension: status_tarefa {
     type: string
-    group_label: "Dados da Task"
-    group_item_label: "Status Task"
-    description: "Status da Task"
+    group_label: "Dados da Tarefa"
+    group_item_label: "Status da Tarefa"
+    description: "Indica o status da tarefa (CONCLUIDO, EM ANDAMENTO, REJEITADO...)"
     sql: ${TABLE}."STATUS_TASK" ;;
   }
 
   dimension: subcategoria_app {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria App"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_APP" ;;
@@ -667,7 +693,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_boletos {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Boletos"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_BOLETOS" ;;
@@ -675,7 +702,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_canais_ies {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Canais IES"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CANAIS_IES" ;;
@@ -683,7 +711,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_cessao {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Cessão"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CESSAO" ;;
@@ -691,7 +720,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_cobranca {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Cobrança"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_COBRANCA" ;;
@@ -699,7 +729,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_compra_carteira {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Compra de Carteira"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_COMPRA_CARTEIRA" ;;
@@ -707,7 +738,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_contratacao_form {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Contratação Form"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_CONTRATACAO_FORM" ;;
@@ -715,7 +747,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_infra_devops {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Infra DevOps"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_INFRA_DEVOPS" ;;
@@ -723,7 +756,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_portal {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Portal"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_PORTAL" ;;
@@ -731,7 +765,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_proposta {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Proposta"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_PROPOSTA" ;;
@@ -739,7 +774,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_risco {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Risco"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_RISCO" ;;
@@ -747,7 +783,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_sem_fiador {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Sem Fiador"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_SEM_FIADOR" ;;
@@ -755,7 +792,8 @@ view: orquestra_p17 {
 
   dimension: subcategoria_site {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Subcategoria Site"
     description: "Motivo de contato de Helpdesk"
     sql: ${TABLE}."SUBCATEGORIA_SITE" ;;
@@ -763,29 +801,31 @@ view: orquestra_p17 {
 
   dimension: supervisorresponsavel {
     type: string
-    group_label: "Dados da Task"
+    hidden: yes
+    group_label: "Dados da Tarefa"
     group_item_label: "Supervisor Responsável"
     description: "Supervisor Responsável"
     sql: ${TABLE}."SUPERVISORRESPONSAVEL" ;;
   }
 
-  dimension: telefonecelular {
+  dimension: celular {
     type: string
-    group_label: "Dados do Requisitante"
+    group_label: "Dados do Aluno"
     group_item_label: "Celular"
-    description: "Telefone celular do requisitante"
+    description: "Telefone celular do aluno"
     sql: ${TABLE}."TELEFONECELULAR" ;;
   }
 
   dimension: temcontratacaocedida {
     type: string
+    hidden: yes
     group_label: "Dados do Chamado"
     group_item_label: "Tem Contratação Cedida?"
     description: "Anonimização de dados - Contratação Cedida"
     sql: ${TABLE}."TEMCONTRATACAOCEDIDA" ;;
   }
 
-  measure: tempo_desde_abertura_horas {
+  measure: tempo_desde_abertura_chamado {
     type: sum
     group_label: "Dados do Chamado"
     group_item_label: "Tempo desde Abertura (Horas)"
@@ -803,17 +843,24 @@ view: orquestra_p17 {
 
   dimension: tratativadocaso {
     type: string
-    group_label: "Dados da Task"
+    group_label: "Dados da Tarefa"
     group_item_label: "Tratativa do Caso"
     description: "Subprocesso de Cobrança"
     sql: ${TABLE}."TRATATIVADOCASO" ;;
   }
 
-  measure: count_chamados {
+  measure: quantidade_chamados {
     type: count_distinct
     sql: ${numero_chamado} ;;
-    group_item_label: "Qtd chamados"
-    description: "Contagem de Chamados Únicos"
+    group_item_label: "Quantidade Chamados"
+    description: "Contagem de Chamados"
+  }
+
+  measure: quantidade_tarefas {
+    type: count_distinct
+    sql: ${numero_tarefa} ;;
+    group_item_label: "Quantidade Tarefas"
+    description: "Contagem de Tarefas"
   }
 
 }
