@@ -272,6 +272,7 @@ view: ot_consolidado {
       sql: ${TABLE}."QTD_ALUNOS" ;;
       label: "Alunos por mês"
       description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por MÊS*"
+      hidden: yes
     }
 
   }
