@@ -99,11 +99,13 @@ explore: vcom_erros {
       financeiro.faixa_aging_a_vencer,
       financeiro.faixa_aging_vencidos,
       financeiro.data_vencimento_date,
+      financeiro.data_vencimento_month,
       financeiro.flg_boleto_atrasado,
       financeiro.flg_boleto_pago,
       financeiro.flg_boleto_pago_em_dia,
       financeiro.vl_total,
-      financeiro.dias_atraso
+      financeiro.dias_atraso,
+      financeiro.vl_boleto
     ]
     relationship: one_to_one
     type: left_outer
