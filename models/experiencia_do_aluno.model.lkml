@@ -370,3 +370,88 @@ explore: taxa_de_contato_alunos_ativos_nova{
   }
 
 }
+
+
+
+
+  explore: contatos_pravaler {
+    label: "Contatos Pravaler"
+    view_label: "1. Mundiale Zendesk e 55pbx"
+    description: " Essa base trás as informações Mundiale (BOT, CHAT e WHATSAPP), Zendesk (LIGAÇÃO E T2) e 55PBX (URA) com revisão das Regras de Negócios."
+    fields: [ALL_FIELDS *,
+      - ano_mes_carteira_ativa *,
+      - dim_cpf *,
+      - interacoes_metricas_tickets.ticket_id,
+      - alunos.ativo_ano_mes,
+      - alunos.flg_balcao,
+      - proposta.flag_elegivel_semfiador_testeab,
+      - proposta.flag_produtos_semfiador_testeab
+    ]
+
+    join: interacoes_detalhes_ligacao {
+      view_label: "2. Ligação (55pbx)"
+      type: full_outer
+      sql_on: ${contatos_pravaler.zendesk_id} = ${interacoes_detalhes_ligacao.id_ticket};;
+      relationship: one_to_one
+    }
+
+    join: interacoes_metricas_tickets {
+      view_label: "3. Métricas dos Tickets da Zendesk"
+      type: left_outer
+      sql_on: ${contatos_pravaler.zendesk_id} = ${interacoes_metricas_tickets.ticket_id};;
+      relationship: one_to_one
+    }
+
+    join: alunos {
+      view_label: "4. Alunos"
+      sql_on: ${contatos_pravaler.cpf_aluno_num} = ${alunos.cpf_aluno};;
+      type: left_outer
+      relationship: many_to_many
+    }
+
+    join: proposta {
+      view_label: "5. Proposta"
+      sql_on: ${contatos_pravaler.cpf_aluno_num} = ${proposta.cpf_aluno};;
+      type: left_outer
+      relationship: many_to_many
+    }
+
+    join: dados_jornada_interacoes {
+      view_label: "6. Jornada"
+      sql_on: ${contatos_pravaler.cpf_aluno}= ${dados_jornada_interacoes.cpf_requester} and ${proposta.id_proposta} = ${dados_jornada_interacoes.ID_PROPOSTA};;
+      relationship: many_to_many
+      type: left_outer
+    }
+
+    join: status {
+      view_label: "7. Status"
+      sql_on: ${contatos_pravaler.cpf_aluno_num} = ${proposta.cpf_aluno} and ${proposta.id_proposta} = ${status.id_proposta} ;;
+      relationship: many_to_many
+      type: left_outer
+    }
+
+    join: nps_relacional_ultima_nota {
+      view_label: "8. NPS mais Recente do Aluno"
+      sql_on: ${contatos_pravaler.cpf_aluno_num} = ${nps_relacional_ultima_nota.cpf_aluno};;
+      type: left_outer
+      relationship: many_to_many
+    }
+
+    join: dim_cpf {
+      view_label: "CPF"
+      sql_on: ${contatos_pravaler.cpf_aluno_num} = ${dim_cpf.cpf} ;;
+      relationship: one_to_many
+      type: left_outer
+
+    }
+
+    join: ano_mes_carteira_ativa {
+      view_label: "Ano Mes Carteira Ativa"
+      sql_on: ${dim_cpf.id_cpf} = ${ano_mes_carteira_ativa.id_cpf};;
+      type: left_outer
+      relationship: one_to_many
+    }
+
+
+
+}

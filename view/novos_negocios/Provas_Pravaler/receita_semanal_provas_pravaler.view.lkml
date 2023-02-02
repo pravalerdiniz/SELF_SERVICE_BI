@@ -49,8 +49,8 @@ view: receita_semanal_provas_pravaler {
     sql: ${TABLE}."NOME_FANTASIA" ;;
   }
 
-  dimension: num_provas_iniciadas {
-    type: number
+  measure: num_provas_iniciadas {
+    type: sum
     sql: ${TABLE}."NUM_PROVAS_INICIADAS" ;;
   }
 
@@ -58,15 +58,6 @@ view: receita_semanal_provas_pravaler {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_num_provas_iniciadas {
-    type: sum
-    sql: ${num_provas_iniciadas} ;;
-  }
-
-  measure: average_num_provas_iniciadas {
-    type: average
-    sql: ${num_provas_iniciadas} ;;
-  }
 
   dimension: num_semana {
     type: number
