@@ -128,7 +128,7 @@ view: ot_consolidado {
       type: number
       value_format: "$ #,###.00"
       sql: ${TABLE}."SOMA_VP_CARTEIRA" ;;
-      hidden: yes
+      hidden: no
     }
 
     dimension: var_carteira {
@@ -145,6 +145,12 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       sql: ${TABLE}."SOMA_VP_WO" ;;
       hidden: yes
+    }
+
+    dimension: flag_filtro_mes {
+      description: "*NÃO USAR COM A RECEITA DE JUROS* - Flag para filtrar somente os valores de fechamento do ano, usada apenas junto com a visão anual."
+      type: string
+      sql: substr(${TABLE}."TDT_ANO_MES", 5,6) ;;
     }
 
   dimension: tipo_aluno {
