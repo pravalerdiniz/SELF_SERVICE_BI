@@ -2415,7 +2415,6 @@ dimension: flg_d1 {
     hidden: yes
   }
 
-
   measure: mediana_iniciados_novos {
     type: median
     #sql_distinct_key: ${id_proposta} ;;

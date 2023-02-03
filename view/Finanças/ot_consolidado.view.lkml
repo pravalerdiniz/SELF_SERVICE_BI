@@ -255,7 +255,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Originações"
-      description: "Soma do valor presente de originações."
+      description: "Soma do valor presente de originações. Considerando toda compra de títulos no período, inclusive IPCA, renegociação etc."
     }
 
     measure: total_accrual_juros {
@@ -272,6 +272,7 @@ view: ot_consolidado {
       sql: ${TABLE}."QTD_ALUNOS" ;;
       label: "Alunos por mês"
       description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por MÊS*"
+      hidden: yes
     }
 
   }

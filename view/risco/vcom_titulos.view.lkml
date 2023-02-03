@@ -40,6 +40,7 @@ view: vcom_titulos {
   dimension: id_seunum {
     type: number
     label: "ID SEUNUM"
+    value_format: "0"
     group_label: "Dados Boleto"
     description: "NUMERO DO SEUNUM DO BOLETO"
     sql: ${TABLE}."ID_SEUNUM" ;;
@@ -91,6 +92,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "ETAPA NO FLUXO"
     sql: ${TABLE}."ETAPA" ;;
+    hidden: yes
   }
 
   dimension: fluxo {
@@ -99,6 +101,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "FLUXO UTILIZADO PARA ENVIO"
     sql: ${TABLE}."FLUXO" ;;
+    hidden: yes
   }
 
   dimension: layoutatual {
@@ -107,22 +110,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "LAYOUT UTILIZADO PARA ENVIO"
     sql: ${TABLE}."LAYOUTATUAL" ;;
-  }
-
-  dimension: mensagem_erro {
-    type: string
-    label: "Mensagem de Erro"
-    group_label: "Fluxo de Envio"
-    description: "MENSSAGEM DE ERRO PARA OS REGISTROS QUE FOREM REJEITADOS PARA VCOM"
-    sql: ${TABLE}."MENSAGEM_ERRO" ;;
-  }
-
-  dimension: flg_cpf_enviado {
-    type: yesno
-    label: "CPF Enviado Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O CPF JÁ FOI ENVIADO PELO MIDDLEWARE"
-    sql: ${TABLE}."FLG_CPF_ENVIADO" ;;
+    hidden: yes
   }
 
   dimension: flg_titulo_enviado {
@@ -131,22 +119,6 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "INDICA SE O TITULO ESTÁ NO MIDDLEWARE"
     sql: ${TABLE}."FLG_TITULO_ENVIADO" ;;
-  }
-
-  dimension: flg_em_aberto {
-    type: yesno
-    label: "Titulo Aberto Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O TIULO ESTÁ EM ABERTO (SEM DATA BAIXA/PAGAMENTO)"
-    sql: ${TABLE}."FLG_EM_ABERTO" ;;
-  }
-
-  dimension: flg_cpf_quitado {
-    type: yesno
-    label: "CPF Quitado Flag"
-    group_label: "Fluxo de Envio"
-    description: "INDICA SE O CPF NÃO PÓSSUI BOLETOS EM ABERTO"
-    sql: ${TABLE}."FLG_CPF_QUITADO" ;;
   }
 
   dimension: flg_recebido {
@@ -163,6 +135,7 @@ view: vcom_titulos {
     group_label: "Fluxo de Envio"
     description: "INDICA O NÚMERO DE DIAS DE DIFERENÇA ENTRE A DATA DE PAGAMENTO DA VCOM E DO BO"
     sql: ${TABLE}."NUM_DIFF_PGTO" ;;
+    drill_fields: [id_seunum,cpf,dt_pgto_vcom_date,flg_recebido,flg_titulo_enviado]
   }
 
   dimension: flg_diff_vecto {
@@ -172,6 +145,33 @@ view: vcom_titulos {
     description: "INDICA SE A DATA DE VENCIMENTO DA VCOM E DO BO SÃO DIFERENTES"
     sql: ${TABLE}."FLG_DIFF_VECTO" ;;
   }
+
+  dimension: vl_parc_vcom {
+    type: number
+    value_format: "$0.00"
+    label: "Valor Parcela Vcom"
+    group_label: "Dados Boleto"
+    sql: ${TABLE}."VL_PARC_VCOM"  ;;
+  }
+
+  dimension: vl_orig_parc_vcom {
+    type: number
+    value_format: "$0.00"
+    label: "Valor Original Parcela Vcom"
+    group_label: "Dados Boleto"
+    sql: ${TABLE}."VL_ORIG_PARC_VCOM"  ;;
+  }
+
+  dimension: diff_valor {
+    type: number
+    label: "Diferença Valor Boleto"
+    group_label: "Fluxo de Envio"
+    description: "Validação entre o Valor do boleto na Vcom e no BO. (1 tem diferença - 0 Não tem diferença)."
+    sql: case when ${vl_parc_vcom} = ${financeiro.vl_boleto} then 0
+    else 1 end;;
+  }
+
+
 
 
 

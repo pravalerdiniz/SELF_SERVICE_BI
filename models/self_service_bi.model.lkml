@@ -230,7 +230,8 @@ explore: status {
     - financeiro.sum_PDD,
     - alunos.flg_balcao,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
   join: proposta
@@ -323,8 +324,6 @@ explore: status {
           AND    ${instituicao.id_curso} =  ${alunos.id_curso}  ;;
     relationship: many_to_one
     type:left_outer
-    fields: []
-
   }
 
 }
@@ -2471,4 +2470,13 @@ explore: log_usuarios {
 
 explore: metas_realizado_marketplace {
   label: "Marketplace Metas e Realizado"
+}
+
+explore: metas_provas_pravaler {
+  label: "Metas de Receita Provas Pravaler"
+  description: "Controle de metas de Receita e Agendamentos do time comercial do Provas Pravaler."
+}
+
+explore: receita_semanal_provas_pravaler {
+  label: "Receita Provas Pravaler por competência (Semanal)"
 }
