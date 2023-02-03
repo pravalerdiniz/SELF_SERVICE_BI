@@ -12,12 +12,19 @@ view: ot_consolidado {
       hidden: yes
     }
 
-    dimension: fundo {
-      description: "Fundo de investimento, sendo códigos 4,1 e 41 os FIDCS I, II e III respectivamente."
-      type: number
-      sql: ${TABLE}."FUNDO" ;;
-      hidden: no
-    }
+  dimension: fundo {
+    description: "Fundo de investimento, sendo as opções FIDC I, FIDC II e FIDC III."
+    type: string
+    sql: ${TABLE}."FUNDO" ;;
+    hidden: no
+  }
+
+  dimension: id_fundo {
+    description: "Fundo de investimento, sendo códigos 4,1 e 41 os FIDCS I, II e III respectivamente."
+    type: string
+    sql: ${TABLE}."ID_FUNDO" ;;
+    hidden: no
+  }
 
 
     dimension: desp_pdd_liquida {
@@ -272,7 +279,7 @@ view: ot_consolidado {
       sql: ${TABLE}."QTD_ALUNOS" ;;
       label: "Alunos por mês"
       description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por MÊS*"
-      hidden: yes
+      hidden: no
     }
 
   }
