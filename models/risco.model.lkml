@@ -104,7 +104,7 @@ explore: vcom_erros {
       financeiro.flg_boleto_pago_em_dia,
       financeiro.vl_total,
       financeiro.dias_atraso
-    ]
+      ]
     relationship: one_to_one
     type: left_outer
   }
@@ -120,6 +120,16 @@ explore: vcom_erros {
     ]
     type: left_outer
     relationship: many_to_one
+  }
+  join: alunos {
+    from: alunos
+    view_label: "6. Aluno"
+    sql_on: ${vcom_alunos.cpf} = ${alunos.cpf_aluno} ;;
+    fields: [
+      alunos.flg_inadimplente
+    ]
+    type: left_outer
+    relationship: one_to_one
   }
 
 }
