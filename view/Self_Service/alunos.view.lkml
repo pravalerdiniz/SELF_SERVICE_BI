@@ -1530,9 +1530,6 @@ dimension: faixa_tempo_meses_evasao {
     description: "Indica a data do último Status da Proposta mais atual do aluno"
   }
 
-
-
-
 measure: evasao_pravaler {
   type: count_distinct
   sql: ${id_cpf} ;;
@@ -1823,6 +1820,57 @@ measure: porc_evasao {
     group_item_label: "RA - Registro Acadêmico"
     hidden: no
     description: "Registro Acadêmico do Aluno na IES, de acordo com análise da Instituição"
+  }
+
+  dimension_group: data_entrada_base_atendimento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      hour,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DT_ULT_ENTRADA_BA" ;;
+    label: "Data Entrada Base Atendimento Final Funil"
+    description: "Indica a data que o aluno entrou pela última vez na Base Atendimento Final Funil (última vez que aluno passou pelos status 40 ou 42)"
+  }
+
+  dimension_group: data_ult_formalizacao {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      hour,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DT_ULT_FORMALIZACAO" ;;
+    label: "Data Última Formalização"
+    description: "Indica a data que o aluno passou pela última vez pelo status 41"
+  }
+
+  dimension_group: data_ult_cancelamento {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      hour,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."DT_ULT_CANCELAMENTO" ;;
+    label: "Data Último Cancelamento"
+    description: "Indica a data que o aluno passou pela última vez pelos status 18 ou 28 ou 38 ou 48 ou 58"
   }
 
 }
