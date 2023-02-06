@@ -452,6 +452,7 @@ explore: taxa_de_contato_alunos_ativos_nova{
       relationship: one_to_many
     }
 
+    join: parametro_data {}
 
 
 }
