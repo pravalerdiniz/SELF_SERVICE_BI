@@ -1750,7 +1750,7 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades em Atraso"
     description:"Indica a quantidade de mensalidades em atraso por contrato"
-    hidden: yes
+    hidden: no
     sql: ${TABLE}."QTD_MENSALIDADE_ATRASO" ;;
   }
 
@@ -2003,9 +2003,8 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Financiado"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor financiado pelo aluno."
-    hidden: yes
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
 
@@ -2571,6 +2570,15 @@ dimension: vl_tarifa_cadastro {
     description: "Valor de aquisição total de acordo com o termo de cessão: Sum(vl_aquisição)"
     value_format: "\R$ #,###.00"
     sql: ${TABLE}."VL_REPASSE_TOTAL";;
+  }
+
+  dimension: flag_mensalidade_150 {
+    type: yesno
+    group_label: "Dados do Contrato"
+    group_item_label: "Flag Mensalidade 150"
+    label: "Flag Mensalidade 150"
+    description: "Indica se a mensalidade é maior que 150 reais (valor mínimo)"
+    sql: ${vl_mensalidade} > 150 ;;
   }
 
 

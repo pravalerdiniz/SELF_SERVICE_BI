@@ -96,17 +96,43 @@ explore: vcom_erros {
       financeiro.data_baixa_date,
       financeiro.data_pagamento_date,
       financeiro.dias_a_vencer,
-      financeiro.faixa_adimple,
       financeiro.faixa_aging_a_vencer,
       financeiro.faixa_aging_vencidos,
       financeiro.data_vencimento_date,
+      financeiro.data_vencimento_month,
       financeiro.flg_boleto_atrasado,
       financeiro.flg_boleto_pago,
       financeiro.flg_boleto_pago_em_dia,
-      financeiro.vl_total
+      financeiro.vl_total,
+      financeiro.dias_atraso,
+      financeiro.vl_boleto,
+      financeiro.id_seunum,
     ]
     relationship: one_to_one
     type: left_outer
+  }
+
+  join: proposta{
+    from: proposta
+    view_label: "5. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${vcom_titulos.contrato};;
+    fields: [
+      proposta.flg_contrato_ativo,
+      proposta.flg_contrato_cedido,
+      proposta.flg_wo_ies
+    ]
+    type: left_outer
+    relationship: many_to_one
+  }
+  join: alunos {
+    from: alunos
+    view_label: "6. Aluno"
+    sql_on: ${vcom_alunos.cpf} = ${alunos.cpf_aluno} ;;
+    fields: [
+      alunos.flg_inadimplente
+    ]
+    type: left_outer
+    relationship: one_to_one
   }
 
 }
