@@ -539,9 +539,14 @@ join: jornada {
   sql_on:  ${alunos.id_proposta_atual} = ${jornada.id_proposta}  and ${alunos.cpf_aluno} = ${jornada.aluno_cpf};;
   type: left_outer
   relationship: one_to_many
-
-
 }
+
+  join: proposta_testeab {
+    view_label: "Jornada"
+    sql_on: ${jornada.cpf_aluno_ajustado} = ${proposta_testeab.cpf};;
+    type: left_outer
+    relationship: many_to_many
+  }
 
 join: fato_final_pdd {
   view_label: "Final PDD - Veterano/Fato"
