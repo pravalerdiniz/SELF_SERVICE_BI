@@ -7,8 +7,8 @@ view: taxa_de_contato_analitico {
           TICKETS.CPF AS CPF_TICKET,
           TICKETS.ZENDESK_ID,
           TICKETS.FORMULARIO,
-          TICKETS.MOTIVO_CONTATO,
-          TICKETS.SUBMOTIVO_CONTATO,
+          TICKETS.SUBMOTIVO_CONTATO_1,
+          TICKETS.SUBMOTIVO_CONTATO_2,
           TICKETS.FORMULARIO_MOTIVO
       FROM
         (
@@ -42,8 +42,8 @@ view: taxa_de_contato_analitico {
     tickets_mundiale_zendesk."CPF_CLIENTE_NUM"  AS "CPF",
     tickets_mundiale_zendesk."ZENDESK_ID",
     tickets_mundiale_zendesk."FORMULARIO",
-    tickets_mundiale_zendesk."MOTIVO_CONTATO",
-    tickets_mundiale_zendesk."SUBMOTIVO_CONTATO",
+    tickets_mundiale_zendesk."SUBMOTIVO_CONTATO_1",
+    tickets_mundiale_zendesk."SUBMOTIVO_CONTATO_2",
     tickets_mundiale_zendesk."FORMULARIO_MOTIVO"
 FROM "SELF_SERVICE_BI"."TICKETS_MUNDIALE_ZENDESK"
      AS tickets_mundiale_zendesk
@@ -115,21 +115,23 @@ WHERE tickets_mundiale_zendesk."FINALIZADO_POR"  = 'ATH' AND tickets_mundiale_ze
   }
 
 
-  dimension: motivo_contato {
+  dimension: submotivo_contato_1 {
     type: string
+    hidden: yes
     group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Motivo de Contato"
-    description: "Indica o primeiro motivo de contato utilizado para tabulação do ticket (À partir de 12/08/2022)."
-    sql: ${TABLE}."MOTIVO_CONTATO" ;;
+    group_item_label: "Tabulação - Submotivo 1"
+    description: "Indica o primeiro submotivo de contato utilizado para tabulação do ticket."
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_1" ;;
   }
 
 
-  dimension: submotivo_contato {
+  dimension: submotivo_contato_2 {
     type: string
+    hidden: yes
     group_label: "Dados do Ticket"
-    group_item_label: "Tabulação - Submotivo de Contato"
-    description: "Indica o submotivo de contato utilizado para tabulação do ticket (À partir de 12/08/2022)."
-    sql: ${TABLE}."SUBMOTIVO_CONTATO" ;;
+    group_item_label: "Tabulação - Submotivo 2"
+    description: "Indica o segundo submotivo de contato utilizado para tabulação do ticket."
+    sql: ${TABLE}."SUBMOTIVO_CONTATO_2" ;;
   }
 
 
@@ -138,7 +140,7 @@ WHERE tickets_mundiale_zendesk."FINALIZADO_POR"  = 'ATH' AND tickets_mundiale_ze
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Tabulação - Formulário/Motivo de Contato"
-    description: "Indica o formulário, motivo e submotivos de contato do ticket (Contém todos os níveis de tabulação do motivo de contato)."
+    description: "Indica o formulário e todos os submotivos de contato do ticket (Contém todos os níveis de tabulação do motivo de contato)."
     sql: ${TABLE}."FORMULARIO_MOTIVO" ;;
   }
 

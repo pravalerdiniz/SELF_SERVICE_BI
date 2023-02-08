@@ -1339,6 +1339,14 @@ dimension: vl_tarifa_cadastro {
     drill_fields: [ds_instituicao,ds_campus]
   }
 
+  dimension: flg_regional {
+    type: yesno
+    group_label: "Dados da Instituição"
+    label: "Flag Grupo Regional"
+    description: "Indica se o Grupo da IES faz parte do grupo do comercial Regional"
+    sql: ${TABLE}."GRUPO_INSTITUICAO" NOT IN ('ANIMA', 'CRUZEIRO DO SUL EDUCACIONAL', 'SER EDUCACIONAL', 'KROTON');;
+  }
+
   dimension: id_campus {
     type: string
     group_label: "Dados do Campus"
@@ -1742,7 +1750,7 @@ dimension: vl_tarifa_cadastro {
     group_label: "Dados do Contrato"
     label:"Quantidade de Mensalidades em Atraso"
     description:"Indica a quantidade de mensalidades em atraso por contrato"
-    hidden: yes
+    hidden: no
     sql: ${TABLE}."QTD_MENSALIDADE_ATRASO" ;;
   }
 
@@ -1995,9 +2003,8 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Financiado"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor financiado pelo aluno."
-    hidden: yes
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
 
@@ -2563,6 +2570,15 @@ dimension: vl_tarifa_cadastro {
     description: "Valor de aquisição total de acordo com o termo de cessão: Sum(vl_aquisição)"
     value_format: "\R$ #,###.00"
     sql: ${TABLE}."VL_REPASSE_TOTAL";;
+  }
+
+  dimension: flag_mensalidade_150 {
+    type: yesno
+    group_label: "Dados do Contrato"
+    group_item_label: "Flag Mensalidade 150"
+    label: "Flag Mensalidade 150"
+    description: "Indica se a mensalidade é maior que 150 reais (valor mínimo)"
+    sql: ${vl_mensalidade} > 150 ;;
   }
 
 
@@ -3955,12 +3971,27 @@ dimension: vl_tarifa_cadastro {
     label: "Valor da Mensalidade Informada pelo Aluno"
   }
 
+  measure: mensalidade_inf_alu_avg {
+    type: average
+    sql: ${TABLE}."VL_MENS_INFORMADA_ALUNO" ;;
+    group_label: "Mensalidades"
+    label: "Média do Valor da Mensalidade Informada pelo Aluno"
+  }
+
   dimension: mensalidade_ies {
     type: number
     sql: ${TABLE}."VL_MENSALIDADE_AVAL" ;;
     group_label: "Mensalidades"
     label: "Valor da Mensalidade da Análise IES"
   }
+
+  measure: mensalidade_ies_avg {
+    type: average
+    sql: ${TABLE}."VL_MENSALIDADE_AVAL" ;;
+    group_label: "Mensalidades"
+    label: "Média do Valor da Mensalidade da Análise IES"
+  }
+
 
   measure: count_cpf {
     type: count_distinct

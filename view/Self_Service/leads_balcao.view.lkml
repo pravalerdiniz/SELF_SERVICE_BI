@@ -538,7 +538,7 @@ view: leads_balcao {
 
   dimension: flag_aluno_possui_divida {
     type: yesno
-    sql: ${TABLE}."FLG_ALUNO_POSSUI_DIVIDA" ;;
+    sql: ${TABLE}."FLG_ALUNO_POSSUI_DIVIDA" = TRUE ;;
     group_label: "Desenrola"
     group_item_label: "Possui dívida?"
     description: "Flag que indica se o aluno possui alguma dívida com a IES"

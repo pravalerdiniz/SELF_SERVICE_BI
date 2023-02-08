@@ -230,4 +230,6 @@ view: instituicao_resumo {
     description: "Indica o nome do responsável pela Regional"
     sql: ${TABLE}."GERENTE_REGIONAL";;
   }
+
+
 }

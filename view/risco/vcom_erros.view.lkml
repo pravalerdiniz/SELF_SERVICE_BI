@@ -1,17 +1,8 @@
 view: vcom_erros {
-  sql_table_name: "POS_GRADUADO"."CCR"."VCOM"
+  sql_table_name:"POS_GRADUADO"."CCR"."VCOM_OPERACOES"
     ;;
 
  ## DIMENSÕES ##
-
-  dimension: id_boleto {
-    type: string
-    sql: ${TABLE}."ID_BOLETO" ;;
-    label: "ID Boleto"
-    group_label: "Dados do Boleto"
-    description: "IDENTIFICADOR DO BOLETO"
-    primary_key: yes
-  }
 
   dimension: id_mdw {
     type: string
@@ -19,6 +10,7 @@ view: vcom_erros {
     group_label: "Dados do Middleware"
     description: "ID DO REGISTRO NO MIDDLEWARE"
     sql: ${TABLE}."ID_MDW" ;;
+    primary_key: yes
   }
 
   dimension: id_cpf {
@@ -37,44 +29,12 @@ view: vcom_erros {
     sql: ${TABLE}."CPF" ;;
   }
 
-  dimension: id_seunum {
-    type: number
-    label: "ID SEUNUM"
-    group_label: "Dados do Boleto"
-    description: "NUMERO DO SEUNUM DO BOLETO"
-    sql: ${TABLE}."ID_SEUNUM" ;;
-  }
-
-  dimension: id_nossonum {
-    type: number
-    label: "ID NOSSONUM"
-    group_label: "Dados do Boleto"
-    description: "IDENTIFICADOR DO NUMERO DA ENTIDADE QUE GEROU A COBRANÇA"
-    sql: ${TABLE}."ID_NOSSONUM" ;;
-  }
-
-  dimension: id_tit_vcom {
-    type: number
-    label: "ID Titulo VCOM"
-    group_label: "Dados VCOM"
-    description: "ID DO TITULO NA VCOM"
-    sql: ${TABLE}."ID_TIT_VCOM" ;;
-  }
-
-  dimension: num_parcela {
-    type: number
-    label: "Número Parcela"
-    group_label: "Dados do Contrato"
-    description: "NÚMERO DA PARCELA DO CONTRATO DO ALUNO"
-    sql: ${TABLE}."NUM_PARCELA" ;;
-  }
-
-  dimension: contrato {
-    type: string
-    label: "ID Contrato"
-    group_label: "Dados do Contrato"
-    description: "PRIMARY KEY DA TABELA VETERANO.FATO.FATO_PROPOSTA. ID DO CONTRATO DO ALUNO"
-    sql: ${TABLE}."CONTRATO" ;;
+  dimension: flg_cpf_enviado {
+    type: yesno
+    label: "CPF Enviado"
+    group_label: "Dados de Fluxo"
+    description: "INDICA SE O CPF JÁ FOI ENVIADO PELO MIDDLEWARE"
+    sql: ${TABLE}."FLG_CPF_ENVIADO" ;;
   }
 
   dimension: etapa {
@@ -109,44 +69,20 @@ view: vcom_erros {
     sql: ${TABLE}."MENSAGEM_ERRO" ;;
   }
 
-  dimension: flg_cpf_enviado {
-    type: yesno
-    label: "CPF Enviado"
+  dimension: classificacao_erro {
+    type: string
+    label: "Classificação Erro"
     group_label: "Dados de Fluxo"
-    description: "INDICA SE O CPF JÁ FOI ENVIADO PELO MIDDLEWARE"
-    sql: ${TABLE}."FLG_CPF_ENVIADO" ;;
+    description: "INDICA A CAUSA RAIZ DA MENSAGEM DE ERRO"
+    sql: ${TABLE}."CLASSIFICACAO_ERRO" ;;
   }
 
-  dimension: flg_titulo_enviado {
+  dimension: flg_ultima_op {
     type: yesno
     label: "Titulo Enviado"
     group_label: "Dados de Fluxo"
     description: "INDICA SE O TITULO ESTÁ NO MIDDLEWARE"
-    sql: ${TABLE}."FLG_TITULO_ENVIADO" ;;
-  }
-
-  dimension: flg_em_aberto {
-    type: yesno
-    label: "Titulo em Aberto"
-    group_label: "Dados do Boleto"
-    description: "INDICA SE O TIULO ESTÁ EM ABERTO (SEM DATA BAIXA/PAGAMENTO)"
-    sql: ${TABLE}."FLG_EM_ABERTO" ;;
-  }
-
-  dimension: flg_cpf_quitado {
-    type: yesno
-    label: "CPF Quitado"
-    group_label: "Dados do Fluxo"
-   description: "INDICA SE O CPF NÃO PÓSSUI BOLETOS EM ABERTO"
-    sql: ${TABLE}."FLG_CPF_QUITADO" ;;
-  }
-
-  dimension: flg_recebido {
-    type: yesno
-    label: "Titulo Recebido"
-    group_label: "Dados do Boleto"
-    description: "INDICA SE O TITULO ESTÁ NA VCOM"
-    sql: ${TABLE}."FLG_RECEBIDO" ;;
+    sql: ${TABLE}."FLG_ULTIMA_OP" ;;
   }
 
   ## DATAS ##
@@ -185,5 +121,10 @@ view: vcom_erros {
 
   ## MEDIDAS ##
 
+  measure: count_cpf {
+    type: count
+    label: "Contagem de CPF"
+    description: "Contagem de CPF (Não é uma contagem Distinta)"
+  }
 
 }

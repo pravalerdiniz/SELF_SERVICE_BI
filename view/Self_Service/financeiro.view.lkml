@@ -723,7 +723,6 @@ dimension: safra_vencimento {
     group_label: "Dados do Boleto"
     value_format: "$ #,##0.00"
     label: "Valor de Boleto"
-    hidden: yes
     description: "Indica o valor do boleto"
     sql: ${TABLE}."VL_BOLETO" ;;
   }
@@ -965,12 +964,7 @@ foi gerado por um pagamento menor do boleto anterior."
       vl_boleto,
       data_pagamento_date,
       data_vencimento_date,
-
-
-
-
-
-    ]
+      ]
   }
 
 

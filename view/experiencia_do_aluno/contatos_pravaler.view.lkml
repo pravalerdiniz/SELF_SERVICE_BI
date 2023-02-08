@@ -1,6 +1,6 @@
-view: tickets_mundiale_zendesk {
+view: contatos_pravaler {
 
-  sql_table_name: "SELF_SERVICE_BI"."TICKETS_MUNDIALE_ZENDESK"
+  sql_table_name: "SELF_SERVICE_BI"."CONTATOS_PRAVALER"
     ;;
 
   dimension: campanha {
@@ -24,7 +24,7 @@ view: tickets_mundiale_zendesk {
     group_label: "Dados de Satisfação"
     group_item_label: "Comentários"
     description: "Comentário que o aluno deixou nas pesquisas de atendimento (Tanto em atendimentos da Mundiale quanto da Zendesk)."
-    sql: ${TABLE}."COMENTARIO_NPS_CSAT" ;;
+    sql: ${TABLE}."COMENTARIO_NOTA" ;;
   }
 
   dimension: cpf_atendente {
@@ -35,7 +35,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."CPF_ATENDENTE" ;;
   }
 
-  dimension: cpf_cliente {
+  dimension: cpf_aluno {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "CPF"
@@ -43,7 +43,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."CPF_CLIENTE" ;;
   }
 
-  dimension: cpf_cliente_num {
+  dimension: cpf_aluno_num {
     type: number
     group_label: "Dados do Aluno"
     group_item_label: "CPF (Numérico)"
@@ -59,7 +59,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."EMAIL_ATENDENTE" ;;
   }
 
-  dimension: email_cliente {
+  dimension: email_aluno {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "E-mail"
@@ -71,7 +71,7 @@ view: tickets_mundiale_zendesk {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Finalizado Por"
-    description: "Indica se o ticket foi finalizado no ATH (Atendimento Humano) ou no BOT (Apenas em tickets da Mundiale)."
+    description: "Indica se o ticket foi finalizado no ATH (Atendimento Humano), URA (em caso de ligação) ou no BOT (Apenas em tickets da Mundiale)."
     sql: ${TABLE}."FINALIZADO_POR" ;;
   }
 
@@ -84,7 +84,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."FORMULARIO" ;;
   }
 
-  dimension: formulario_motivo {
+  dimension: formulario_submotivos {
     type: string
     group_label: "Dados de Tabulação"
     group_item_label: "Formulário + Submotivos de Contato"
@@ -133,7 +133,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."NOME_ATENDENTE" ;;
   }
 
-  dimension: nome_cliente {
+  dimension: nome_aluno {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Nome"
@@ -141,36 +141,36 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."NOME_CLIENTE" ;;
   }
 
-  measure: nota_bot_mundiale {
+  measure: mundiale_ura_pergunta_1 {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota Mundiale 1.Atendimento"
-    description: "Indica a nota que o aluno avaliou o atendimento de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: O que achou do meu atendimento?"
-    sql: ${TABLE}."NOTA_BOT_MUNDIALE" ;;
+    group_item_label: "Mundiale/URA 1. Atendimento"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
+    sql: ${TABLE}."NOTA_ATENDIMENTO_MUNDIALE" ;;
   }
 
-  measure: nota_nps_mundiale {
+  measure: mundiale_ura_pergunta_2 {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota Mundiale 3.NPS"
-    description: "Indica a nota que o aluno recomenda o Pravaler entre 1 e 10 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros??"
-    sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
-  }
-
-  measure: nota_pravaler_mundiale {
-    type: sum
-    group_label: "Dados de Satisfação"
-    group_item_label: "Nota Mundiale 2.Pravaler"
-    description: "Indica a nota que o aluno avaliou o Pravaler de 1 a 3 (Apenas em tickets da Mundiale). Nota 0 significa que o aluno não respondeu. Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    group_item_label: "Mundiale/URA 2. Pravaler"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PRAVALER_MUNDIALE" ;;
   }
 
-  dimension: nota_csat_zendesk {
+  measure: mundiale_ura_pergunta_3 {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "Mundiale/URA 3.NPS/Resolução"
+    description: "MUNDIALE: Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?  ########  URA: Nota 1 ou 2. Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
+    sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
+  }
+
+  dimension: zendesk_pergunta_1 {
     type: string
     group_label: "Dados de Satisfação"
-    group_item_label: "Nota CSAT Zendesk"
+    group_item_label: "Zendesk 1. Satisfação"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
-    sql: ${TABLE}."NOTA_CSAT_ZENDESK" ;;
+    sql: ${TABLE}."NOTA_ATENDIMENTO_ZENDESK" ;;
   }
 
   dimension: observacao_atendente {
@@ -192,8 +192,8 @@ view: tickets_mundiale_zendesk {
   dimension: origem {
     type: string
     group_label: "Dados do Ticket"
-    group_item_label: "Origem (Mundiale/Zendesk)"
-    description: "Campo para identificar se o ticket é da Mundiale ou da Zendesk."
+    group_item_label: "Origem (Mundiale/Zendesk/URA)"
+    description: "Campo para identificar se o ticket é da Mundiale, Zendesk ou 55pbx (URA)."
     sql: ${TABLE}."ORIGEM" ;;
   }
 
@@ -209,7 +209,7 @@ view: tickets_mundiale_zendesk {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Primeira Mensagem"
-    description: "Mostra a primeira mensagem do BOT (Apenas em tickets da Mundiale)."
+    description: "Mostra a primeira mensagem do BOT ou primeira opção selecionada na URA."
     sql: ${TABLE}."PRIMEIRA_MENSAGEM" ;;
   }
 
@@ -217,7 +217,7 @@ view: tickets_mundiale_zendesk {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Retenção"
-    description: "Indica se o ticket foi Retido no BOT, Abandonado ou Transbordado para ATH (Apenas em tickets da Mundiale)."
+    description: "Indica se o ticket foi Retido no BOT ou na URA, Abandonado ou Transbordado para ATH (Apenas em tickets da Mundiale e 55pbx)."
     sql: ${TABLE}."RETENCAO" ;;
   }
 
@@ -225,7 +225,7 @@ view: tickets_mundiale_zendesk {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Último Step"
-    description: "Indica a última etapa marcada pelo BOT ou ATH (Apenas em tickets da Mundiale)."
+    description: "Indica a última etapa marcada pelo BOT, URA ou ATH (Apenas em tickets da Mundiale e 55pbx)."
     sql: ${TABLE}."STEP" ;;
   }
 
@@ -273,7 +273,6 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."SUBMOTIVO_CONTATO_5" ;;
   }
 
-
   dimension: tags {
     type: string
     group_label: "Dados do Ticket"
@@ -282,13 +281,54 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."TAGS" ;;
   }
 
-  dimension: telefone_cliente {
+  dimension: telefone_aluno {
     type: string
     group_label: "Dados do Aluno"
     group_item_label: "Celular"
     description: "Celular do Aluno."
     sql: ${TABLE}."TELEFONE_CLIENTE" ;;
   }
+
+  measure: tempo_atendimento {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Atendimento"
+    description: "Tempo de Atendimento do ticket."
+    sql: ${TABLE}."TEMPO_ATENDIMENTO" ;;
+  }
+
+  measure: tempo_autosservico {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Autosserviço"
+    description: "Tempo que o aluno ficou no BOT ou na URA do ticket (em construção)."
+    sql: ${TABLE}."TEMPO_AUTOSSERVICO" ;;
+  }
+
+  dimension: tempo_espera {
+    type: string
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Espera"
+    description: "Tempo que o aluno esperou durante o atendimento (em construção)."
+    sql: ${TABLE}."TEMPO_ESPERA" ;;
+  }
+
+  dimension: tempo_primeira_resposta {
+    type: string
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Primeira Resposta"
+    description: "Tempo que levou para o aluno receber a primeira resposta (em construção)."
+    sql: ${TABLE}."TEMPO_PRIMEIRA_RESPOSTA" ;;
+  }
+
+  dimension: tempo_total_atendimento {
+    type: string
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Total Atendimento"
+    description: "Tempo total de atendimento, desde o autosserviço até o encerramento do contato (em construção)."
+    sql: ${TABLE}."TEMPO_TOTAL_ATENDIMENTO" ;;
+  }
+
 
   dimension_group: ticket_atualizado_em {
     type: time
@@ -309,7 +349,6 @@ view: tickets_mundiale_zendesk {
     timeframes: [
       raw,
       time,
-      hour,
       date,
       week,
       month,
@@ -341,14 +380,6 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."TIPO_CONTATO" ;;
   }
 
-  measure: tma_atendente {
-    type: sum
-    group_label: "Dados do Ticket"
-    group_item_label: "TMA do Atendente"
-    description: "Tempo Médio de Atendimento do atendente por ticket (Apenas em tickets da Mundiale)."
-    sql: ${TABLE}."TMA_ATENDENTE" ;;
-  }
-
   dimension: transferencia_t2_ies {
     type: string
     group_label: "Dados do Ticket"
@@ -366,7 +397,7 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."ZENDESK_ID" ;;
   }
 
-  measure: count {
+  measure: quantidade_tickets {
     type: count
     group_label: "Dados do Ticket"
     group_item_label: "Quantidade de Tickets"

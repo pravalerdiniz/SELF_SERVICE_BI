@@ -42,6 +42,16 @@ explore: ot_consolidado {
   from: ot_consolidado
   label: "OT Consolidado"
   view_label: "OT Consolidado"
-  description: "Mostra as informações histórica da OT, sepearando por safra, fundo e data de referência."
+  description: "Mostra as informações histórica da OT, com granularidade de fundo, separando por safra e tipo aluno."
+
+}
+
+
+explore: ot_historico {
+  persist_for: "12 hour"
+  from: base_credito_universitario_historica
+  label: "OT Histórico"
+  view_label: "OT Histórico"
+  description: "Mostra as informações históricas da OT, com granularidade de título e valor presente mês a mês do mês/ano da compra até mês/ano de liquidação."
 
 }

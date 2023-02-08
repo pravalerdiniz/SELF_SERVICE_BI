@@ -60,13 +60,30 @@ map_layer: MAPA_CIDADE_ALUNO {
 
 explore: vcom_erros {
   label: "Vcom"
-  view_label: "1. Vcom"
+  view_label: "1. Vcom Envio Diário"
+
+  join: vcom_alunos {
+    from: vcom_alunos
+    view_label: "2. Vcom Alunos"
+    sql_on: ${vcom_erros.id_cpf} = ${vcom_alunos.id_cpf} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: vcom_titulos {
+    from: vcom_titulos
+    view_label: "3. Vcom Títulos"
+    sql_on: ${vcom_erros.id_cpf} = ${vcom_titulos.id_cpf} and
+    ${financeiro.id_boleto} = ${vcom_titulos.id_boleto} and
+    ${financeiro.id_contrato} = ${vcom_titulos.contrato};;
+    relationship: one_to_many
+    type: left_outer
+  }
 
   join: financeiro {
     from: financeiro
-    view_label: "2. Financeiro"
-    sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} and
-    ${financeiro.id_contrato} = ${vcom_erros.contrato} ;;
+    view_label: "4. Financeiro"
+    sql_on: ${financeiro.id_cpf} = ${vcom_erros.id_cpf} ;;
     fields: [
       financeiro.ativo_boleto,
       financeiro.ds_fundo_investimento,
@@ -75,23 +92,48 @@ explore: vcom_erros {
       financeiro.ds_titulo_classificacao,
       financeiro.id_titulo_classificacao,
       financeiro.ds_tipo_boleto,
-      financeiro.id_contrato
+      financeiro.id_contrato,
+      financeiro.data_baixa_date,
+      financeiro.data_pagamento_date,
+      financeiro.dias_a_vencer,
+      financeiro.faixa_aging_a_vencer,
+      financeiro.faixa_aging_vencidos,
+      financeiro.data_vencimento_date,
+      financeiro.data_vencimento_month,
+      financeiro.flg_boleto_atrasado,
+      financeiro.flg_boleto_pago,
+      financeiro.flg_boleto_pago_em_dia,
+      financeiro.vl_total,
+      financeiro.dias_atraso,
+      financeiro.vl_boleto,
+      financeiro.id_seunum,
     ]
     relationship: one_to_one
     type: left_outer
   }
 
-#  join: alunos {
-#    from: alunos
-#    view_label: "1. Financeiro"
-#    sql_on: ${alunos.id_cpf} = ${vcom_erros.id_cpf}};;
-#    fields: [
-#      alunos.flg_inadimplente,
-#      alunos.cpf_aluno
-#    ]
-#    relationship: one_to_one
-#    type: left_outer
-#  }
+  join: proposta{
+    from: proposta
+    view_label: "5. Proposta"
+    sql_on:  ${proposta.id_proposta} = ${vcom_titulos.contrato};;
+    fields: [
+      proposta.flg_contrato_ativo,
+      proposta.flg_contrato_cedido,
+      proposta.flg_wo_ies
+    ]
+    type: left_outer
+    relationship: many_to_one
+  }
+  join: alunos {
+    from: alunos
+    view_label: "6. Aluno"
+    sql_on: ${vcom_alunos.cpf} = ${alunos.cpf_aluno} ;;
+    fields: [
+      alunos.flg_inadimplente
+    ]
+    type: left_outer
+    relationship: one_to_one
+  }
 
 }
 
@@ -152,7 +194,8 @@ explore: alunos {
     - jornada_pivot *,
     - proposta_datas_interfile *,
     - proposta.flag_elegivel_semfiador_testeab,
-    - proposta.flag_produtos_semfiador_testeab
+    - proposta.flag_produtos_semfiador_testeab,
+    - instituicao.regional
   ]
 
   join: alunos_produtos_aprovados {
@@ -496,9 +539,14 @@ join: jornada {
   sql_on:  ${alunos.id_proposta_atual} = ${jornada.id_proposta}  and ${alunos.cpf_aluno} = ${jornada.aluno_cpf};;
   type: left_outer
   relationship: one_to_many
-
-
 }
+
+  join: proposta_testeab {
+    view_label: "Jornada"
+    sql_on: ${jornada.cpf_aluno_ajustado} = ${proposta_testeab.cpf};;
+    type: left_outer
+    relationship: many_to_many
+  }
 
 join: fato_final_pdd {
   view_label: "Final PDD - Veterano/Fato"

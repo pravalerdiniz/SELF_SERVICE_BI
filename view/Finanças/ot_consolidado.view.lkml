@@ -12,12 +12,19 @@ view: ot_consolidado {
       hidden: yes
     }
 
-    dimension: fundo {
-      description: "Fundo de investimento, sendo código 2 BV e 1,4,41 os FIDCS I, II e III respectivamente."
-      type: number
-      sql: ${TABLE}."FUNDO" ;;
-      hidden: no
-    }
+  dimension: fundo {
+    description: "Fundo de investimento, sendo as opções FIDC I, FIDC II e FIDC III."
+    type: string
+    sql: ${TABLE}."FUNDO" ;;
+    hidden: no
+  }
+
+  dimension: id_fundo {
+    description: "Fundo de investimento, sendo códigos 4,1 e 41 os FIDCS I, II e III respectivamente."
+    type: string
+    sql: ${TABLE}."ID_FUNDO" ;;
+    hidden: no
+  }
 
 
     dimension: desp_pdd_liquida {
@@ -56,7 +63,7 @@ view: ot_consolidado {
       description: "Valor de originações no mês de referência."
       type: number
       value_format: "$ #,###.00"
-      sql: ${TABLE}."SOMA_VP_ORIGINADOS" ;;
+      sql: ${TABLE}."SOMA_VP_ORIGINADO" ;;
       hidden: yes
     }
 
@@ -121,7 +128,7 @@ view: ot_consolidado {
       type: number
       value_format: "$ #,###.00"
       sql: ${TABLE}."SOMA_VP_CARTEIRA" ;;
-      hidden: yes
+      hidden: no
     }
 
     dimension: var_carteira {
@@ -139,6 +146,19 @@ view: ot_consolidado {
       sql: ${TABLE}."SOMA_VP_WO" ;;
       hidden: yes
     }
+
+    dimension: flag_filtro_mes {
+      description: "*NÃO USAR COM A RECEITA DE JUROS* - Flag para filtrar somente os valores de fechamento do ano, usada apenas junto com a visão anual."
+      type: string
+      sql: substr(${TABLE}."TDT_ANO_MES", 5,6) ;;
+    }
+
+  dimension: tipo_aluno {
+    description: "Tipo do aluno, sendo NOVO ou RENOVAÇÃO."
+    label: "Tipo Aluno"
+    type: string
+    sql: ${TABLE}."TIPO_ALUNO" ;;
+  }
 
     measure: total_desp_pdd_liquida {
       type: sum
@@ -221,7 +241,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Carteira Profit Sharing"
-      description: "Soma do valor presente da carteira, aplicando 50% da carteira para BV, 40% para FIDC III e 100% para FIDC I e II."
+      description: "Soma do valor presente da carteira, aplicando para FIDC III e 100% para FIDC I e II."
     }
 
     measure: total_vp_wo {
@@ -248,7 +268,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Originações"
-      description: "Soma do valor presente de originações."
+      description: "Soma do valor presente de originações. Considerando toda compra de títulos no período, inclusive IPCA, renegociação etc."
     }
 
     measure: total_accrual_juros {
@@ -263,6 +283,9 @@ view: ot_consolidado {
     measure: qtd_alunos {
       type: sum
       sql: ${TABLE}."QTD_ALUNOS" ;;
-      description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por mês, pois no ano irá somar os alunos*"
+      label: "Alunos por mês"
+      description: "Quantidade de alunos compondo a carteira. *Usar somente na visão por MÊS*"
+      hidden: no
     }
+
   }
