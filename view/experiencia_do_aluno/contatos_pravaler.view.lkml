@@ -313,10 +313,13 @@ view: contatos_pravaler {
     sql: ${TABLE}."TELEFONE_ALUNO" ;;
   }
 
+
+
+  # SOMA DAS MEDIDAS DE TEMPO
   measure: tempo_atendente {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Atendente"
+    group_item_label: "Soma - Tempo Atendente"
     description: "Tempo de Atendimento do Atendente."
     sql: ${TABLE}."TEMPO_ATENDENTE" ;;
   }
@@ -324,7 +327,7 @@ view: contatos_pravaler {
   measure: tempo_atendimento {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Atendimento"
+    group_item_label: "Soma - Tempo Atendimento"
     description: "Tempo de Atendimento do ticket."
     sql: ${TABLE}."TEMPO_ATENDIMENTO" ;;
   }
@@ -332,7 +335,7 @@ view: contatos_pravaler {
   measure: tempo_autosservico {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Autosserviço"
+    group_item_label: "Soma - Tempo Autosserviço"
     description: "Tempo que o aluno ficou no BOT ou na URA do ticket (em construção)."
     sql: ${TABLE}."TEMPO_AUTOSSERVICO" ;;
   }
@@ -340,7 +343,7 @@ view: contatos_pravaler {
   measure: tempo_espera {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Espera"
+    group_item_label: "Soma - Tempo Espera"
     description: "Tempo que o aluno esperou durante o atendimento (em construção)."
     sql: ${TABLE}."TEMPO_ESPERA" ;;
   }
@@ -348,7 +351,7 @@ view: contatos_pravaler {
   measure: tempo_primeira_resposta {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Primeira Resposta"
+    group_item_label: "Soma - Tempo Primeira Resposta"
     description: "Tempo que levou para o aluno receber a primeira resposta (em construção)."
     sql: ${TABLE}."TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
@@ -356,7 +359,58 @@ view: contatos_pravaler {
   measure: tempo_total_atendimento {
     type: sum
     group_label: "Métricas do Ticket"
-    group_item_label: "Tempo Total Atendimento"
+    group_item_label: "Soma - Tempo Total Atendimento"
+    description: "Tempo total de atendimento, desde o autosserviço até o encerramento do contato (em construção)."
+    sql: ${TABLE}."TEMPO_TOTAL_ATENDIMENTO" ;;
+  }
+
+
+
+# MÉDIA DAS MEDIDAS DE TEMPO
+  measure: media_tempo_atendente {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Atendente"
+    description: "Tempo de Atendimento do Atendente."
+    sql: ${TABLE}."TEMPO_ATENDENTE" ;;
+  }
+
+  measure: media_tempo_atendimento {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Atendimento"
+    description: "Tempo de Atendimento do ticket."
+    sql: ${TABLE}."TEMPO_ATENDIMENTO" ;;
+  }
+
+  measure: media_tempo_autosservico {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Autosserviço"
+    description: "Tempo que o aluno ficou no BOT ou na URA do ticket (em construção)."
+    sql: ${TABLE}."TEMPO_AUTOSSERVICO" ;;
+  }
+
+  measure: media_tempo_espera {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Espera"
+    description: "Tempo que o aluno esperou durante o atendimento (em construção)."
+    sql: ${TABLE}."TEMPO_ESPERA" ;;
+  }
+
+  measure: media_tempo_primeira_resposta {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Primeira Resposta"
+    description: "Tempo que levou para o aluno receber a primeira resposta (em construção)."
+    sql: ${TABLE}."TEMPO_PRIMEIRA_RESPOSTA" ;;
+  }
+
+  measure: media_tempo_total_atendimento {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Média - Tempo Total Atendimento"
     description: "Tempo total de atendimento, desde o autosserviço até o encerramento do contato (em construção)."
     sql: ${TABLE}."TEMPO_TOTAL_ATENDIMENTO" ;;
   }
