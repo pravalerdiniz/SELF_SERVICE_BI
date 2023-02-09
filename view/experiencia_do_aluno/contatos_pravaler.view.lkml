@@ -442,12 +442,11 @@ view: contatos_pravaler {
     group_label: "Dados do Ticket"
     group_item_label: "Último Passo Autosserviço"
     description: "Indica a última etapa marcada pelo BOT, URA ou ATH (Apenas em tickets da Mundiale e 55pbx)."
-    sql: ${TABLE}."ULTIMO PASSO" ;;
+    sql: ${TABLE}."ULTIMO_PASSO" ;;
   }
 
   measure: quantidade_tickets {
     type: count
-    group_label: "Dados do Ticket"
     group_item_label: "Quantidade de Tickets"
     description: "Contagem dos Registros da tabela."
     drill_fields: []
