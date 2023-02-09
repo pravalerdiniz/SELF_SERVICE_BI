@@ -368,7 +368,7 @@ view: contatos_pravaler {
 
 # MÉDIA DAS MEDIDAS DE TEMPO
   measure: media_tempo_atendente {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Atendente"
     description: "Tempo de Atendimento do Atendente."
@@ -376,7 +376,7 @@ view: contatos_pravaler {
   }
 
   measure: media_tempo_atendimento {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Atendimento"
     description: "Tempo de Atendimento do ticket."
@@ -384,7 +384,7 @@ view: contatos_pravaler {
   }
 
   measure: media_tempo_autosservico {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Autosserviço"
     description: "Tempo que o aluno ficou no BOT ou na URA do ticket (em construção)."
@@ -392,7 +392,7 @@ view: contatos_pravaler {
   }
 
   measure: media_tempo_espera {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Espera"
     description: "Tempo que o aluno esperou durante o atendimento (em construção)."
@@ -400,7 +400,7 @@ view: contatos_pravaler {
   }
 
   measure: media_tempo_primeira_resposta {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Primeira Resposta"
     description: "Tempo que levou para o aluno receber a primeira resposta (em construção)."
@@ -408,7 +408,7 @@ view: contatos_pravaler {
   }
 
   measure: media_tempo_total_atendimento {
-    type: sum
+    type: average
     group_label: "Métricas do Ticket"
     group_item_label: "Média - Tempo Total Atendimento"
     description: "Tempo total de atendimento, desde o autosserviço até o encerramento do contato (em construção)."
