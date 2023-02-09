@@ -11,12 +11,12 @@ view: contatos_pravaler {
     sql: ${TABLE}."CAMPANHA" ;;
   }
 
-  dimension: canal_atendimento {
+  dimension: canal {
     type: string
     group_label: "Dados do Ticket"
     group_item_label: "Canal Atendimento"
     description: "Indica o canal do atendimento (WHATSAPP, CHAT, LIGAÇÃO, etc)."
-    sql: ${TABLE}."CANAL_ATENDIMENTO" ;;
+    sql: ${TABLE}."CANAL" ;;
   }
 
   dimension: comentario_nota {
@@ -27,6 +27,22 @@ view: contatos_pravaler {
     sql: ${TABLE}."COMENTARIO_NOTA" ;;
   }
 
+  dimension: cpf_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF"
+    description: "Indica o CPF do aluno no formato texto."
+    sql: ${TABLE}."CPF_ALUNO" ;;
+  }
+
+  dimension: cpf_aluno_num {
+    type: number
+    group_label: "Dados do Aluno"
+    group_item_label: "CPF (Numérico)"
+    description: "Indica o CPF do aluno no formato numérico."
+    sql: ${TABLE}."CPF_ALUNO_NUM" ;;
+  }
+
   dimension: cpf_atendente {
     type: string
     group_label: "Dados do Atendente"
@@ -35,20 +51,28 @@ view: contatos_pravaler {
     sql: ${TABLE}."CPF_ATENDENTE" ;;
   }
 
-  dimension: cpf_aluno {
+  dimension: disparo_resposta_aluno {
     type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "CPF"
-    description: "Indica o CPF do aluno no formato texto."
-    sql: ${TABLE}."CPF_CLIENTE" ;;
+    group_label: "Dados do Disparo"
+    group_item_label: "Resposta do Aluno"
+    description: "Indica a opção queo aluno escolheu ao interagir com o disparo."
+    sql: ${TABLE}."DISPARO_RESPOSTA_ALUNO" ;;
   }
 
-  dimension: cpf_aluno_num {
-    type: number
+  dimension: disparo_template {
+    type: string
+    group_label: "Dados do Disparo"
+    group_item_label: "Template"
+    description: "Indica o template/campanha do disparo."
+    sql: ${TABLE}."DISPARO_TEMPLATE" ;;
+  }
+
+  dimension: email_aluno {
+    type: string
     group_label: "Dados do Aluno"
-    group_item_label: "CPF (Numérico)"
-    description: "Indica o CPF do aluno no formato numérico."
-    sql: ${TABLE}."CPF_CLIENTE_NUM" ;;
+    group_item_label: "E-mail"
+    description: "E-mail do aluno"
+    sql: ${TABLE}."EMAIL_ALUNO" ;;
   }
 
   dimension: email_atendente {
@@ -57,14 +81,6 @@ view: contatos_pravaler {
     group_item_label: "E-mail"
     description: "E-mail do atendente"
     sql: ${TABLE}."EMAIL_ATENDENTE" ;;
-  }
-
-  dimension: email_aluno {
-    type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "E-mail"
-    description: "E-mail do aluno"
-    sql: ${TABLE}."EMAIL_CLIENTE" ;;
   }
 
   dimension: finalizado_por {
@@ -117,12 +133,12 @@ view: contatos_pravaler {
     sql: ${TABLE}."ID_LEAD" ;;
   }
 
-  dimension: id_ticket {
-    type: number
-    group_label: "Dados do Ticket"
-    group_item_label: "ID Ticket - Mundiale"
-    description: "ID do ticket na Mundiale."
-    sql: ${TABLE}."ID_TICKET" ;;
+  dimension: nome_aluno {
+    type: string
+    group_label: "Dados do Aluno"
+    group_item_label: "Nome"
+    description: "Nome do aluno."
+    sql: ${TABLE}."NOME_ALUNO" ;;
   }
 
   dimension: nome_atendente {
@@ -133,44 +149,60 @@ view: contatos_pravaler {
     sql: ${TABLE}."NOME_ATENDENTE" ;;
   }
 
-  dimension: nome_aluno {
-    type: string
-    group_label: "Dados do Aluno"
-    group_item_label: "Nome"
-    description: "Nome do aluno."
-    sql: ${TABLE}."NOME_CLIENTE" ;;
-  }
-
-  measure: mundiale_ura_pergunta_1 {
+  measure: nota_pergunta1_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale/URA 1. Atendimento"
+    group_item_label: "Mundiale 1. Atendimento"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
-    sql: ${TABLE}."NOTA_ATENDIMENTO_MUNDIALE" ;;
+    sql: ${TABLE}."NOTA_PERGUNTA1_MUNDIALE" ;;
   }
 
-  measure: mundiale_ura_pergunta_2 {
+  measure: nota_pergunta2_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale/URA 2. Pravaler"
+    group_item_label: "Mundiale 2. Pravaler"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
-    sql: ${TABLE}."NOTA_PRAVALER_MUNDIALE" ;;
+    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
   }
 
-  measure: mundiale_ura_pergunta_3 {
+  measure: nota_pergunta3_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale/URA 3.NPS/Resolução"
-    description: "MUNDIALE: Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?  ########  URA: Nota 1 ou 2. Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
-    sql: ${TABLE}."NOTA_NPS_MUNDIALE" ;;
+    group_item_label: "Mundiale 3.NPS/Resolução"
+    description: "Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?"
+    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
   }
 
-  dimension: zendesk_pergunta_1 {
+  dimension: nota_atendimento_zendesk {
     type: string
     group_label: "Dados de Satisfação"
     group_item_label: "Zendesk 1. Satisfação"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
     sql: ${TABLE}."NOTA_ATENDIMENTO_ZENDESK" ;;
+  }
+
+  measure: nota_pergunta1_55pbx {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 1. Atendimento"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
+    sql: ${TABLE}."NOTA_PERGUNTA1_55PBX" ;;
+  }
+
+  measure: nota_pergunta2_55pbx {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 2. Pravaler"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    sql: ${TABLE}."NOTA_PERGUNTA2_55PBX" ;;
+  }
+
+  measure: nota_pergunta3_55pbx {
+    type: sum
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 3. Resolução"
+    description: "Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
+    sql: ${TABLE}."NOTA_PERGUNTA3_55PBX" ;;
   }
 
   dimension: observacao_atendente {
@@ -192,8 +224,8 @@ view: contatos_pravaler {
   dimension: origem {
     type: string
     group_label: "Dados do Ticket"
-    group_item_label: "Origem (Mundiale/Zendesk/URA)"
-    description: "Campo para identificar se o ticket é da Mundiale, Zendesk ou 55pbx (URA)."
+    group_item_label: "Origem do Contato"
+    description: "Campo para identificar se o ticket é da Mundiale, Zendesk, 55pbx (URA), etc."
     sql: ${TABLE}."ORIGEM" ;;
   }
 
@@ -219,14 +251,6 @@ view: contatos_pravaler {
     group_item_label: "Retenção"
     description: "Indica se o ticket foi Retido no BOT ou na URA, Abandonado ou Transbordado para ATH (Apenas em tickets da Mundiale e 55pbx)."
     sql: ${TABLE}."RETENCAO" ;;
-  }
-
-  dimension: step {
-    type: string
-    group_label: "Dados do Ticket"
-    group_item_label: "Último Step"
-    description: "Indica a última etapa marcada pelo BOT, URA ou ATH (Apenas em tickets da Mundiale e 55pbx)."
-    sql: ${TABLE}."STEP" ;;
   }
 
   dimension: submotivo_contato_1 {
@@ -286,7 +310,15 @@ view: contatos_pravaler {
     group_label: "Dados do Aluno"
     group_item_label: "Celular"
     description: "Celular do Aluno."
-    sql: ${TABLE}."TELEFONE_CLIENTE" ;;
+    sql: ${TABLE}."TELEFONE_ALUNO" ;;
+  }
+
+  measure: tempo_atendente {
+    type: sum
+    group_label: "Métricas do Ticket"
+    group_item_label: "Tempo Atendente"
+    description: "Tempo de Atendimento do Atendente."
+    sql: ${TABLE}."TEMPO_ATENDENTE" ;;
   }
 
   measure: tempo_atendimento {
@@ -305,24 +337,24 @@ view: contatos_pravaler {
     sql: ${TABLE}."TEMPO_AUTOSSERVICO" ;;
   }
 
-  dimension: tempo_espera {
-    type: string
+  measure: tempo_espera {
+    type: sum
     group_label: "Métricas do Ticket"
     group_item_label: "Tempo Espera"
     description: "Tempo que o aluno esperou durante o atendimento (em construção)."
     sql: ${TABLE}."TEMPO_ESPERA" ;;
   }
 
-  dimension: tempo_primeira_resposta {
-    type: string
+  measure: tempo_primeira_resposta {
+    type: sum
     group_label: "Métricas do Ticket"
     group_item_label: "Tempo Primeira Resposta"
     description: "Tempo que levou para o aluno receber a primeira resposta (em construção)."
     sql: ${TABLE}."TEMPO_PRIMEIRA_RESPOSTA" ;;
   }
 
-  dimension: tempo_total_atendimento {
-    type: string
+  measure: tempo_total_atendimento {
+    type: sum
     group_label: "Métricas do Ticket"
     group_item_label: "Tempo Total Atendimento"
     description: "Tempo total de atendimento, desde o autosserviço até o encerramento do contato (em construção)."
@@ -372,6 +404,23 @@ view: contatos_pravaler {
     sql: ${TABLE}."TICKET_FINALIZADO_EM" ;;
   }
 
+  dimension: ticket_mundiale {
+    type: number
+    group_label: "Dados do Ticket"
+    group_item_label: "ID Ticket - Mundiale"
+    description: "ID do ticket na Mundiale."
+    sql: ${TABLE}."TICKET_MUNDIALE" ;;
+  }
+
+  dimension: ticket_zendesk {
+    type: number
+    primary_key: yes
+    group_label: "Dados do Ticket"
+    group_item_label: "ID Ticket - Zendesk"
+    description: "ID do ticket na Zendesk."
+    sql: ${TABLE}."TICKET_ZENDESK" ;;
+  }
+
   dimension: tipo_contato {
     type: string
     group_label: "Dados do Ticket"
@@ -388,13 +437,12 @@ view: contatos_pravaler {
     sql: ${TABLE}."TRANSFERENCIA_T2_IES" ;;
   }
 
-  dimension: zendesk_id {
-    type: number
-    primary_key: yes
+  dimension: ultimo_passo {
+    type: string
     group_label: "Dados do Ticket"
-    group_item_label: "ID Ticket - Zendesk"
-    description: "ID do ticket na Zendesk."
-    sql: ${TABLE}."ZENDESK_ID" ;;
+    group_item_label: "Último Passo Autosserviço"
+    description: "Indica a última etapa marcada pelo BOT, URA ou ATH (Apenas em tickets da Mundiale e 55pbx)."
+    sql: ${TABLE}."ULTIMO PASSO" ;;
   }
 
   measure: quantidade_tickets {
