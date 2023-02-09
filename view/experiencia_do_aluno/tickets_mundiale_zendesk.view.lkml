@@ -19,10 +19,10 @@ view: tickets_mundiale_zendesk {
     sql: ${TABLE}."CANAL_ATENDIMENTO" ;;
   }
 
-  dimension: comentario_nps_csat {
+  dimension: comentario_nota {
     type: string
     group_label: "Dados de Satisfação"
-    group_item_label: "Comentário NPS/CSAT"
+    group_item_label: "Comentários"
     description: "Comentário que o aluno deixou nas pesquisas de atendimento (Tanto em atendimentos da Mundiale quanto da Zendesk)."
     sql: ${TABLE}."COMENTARIO_NPS_CSAT" ;;
   }

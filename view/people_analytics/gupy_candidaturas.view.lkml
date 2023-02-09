@@ -965,6 +965,13 @@ view: gupy_candidaturas {
     drill_fields: [drill_fields*]
   }
 
+  measure: count_distinct_candidato {
+    label: "Count distinct por candidato"
+    type: count_distinct
+    sql: ${TABLE}."ID_CANDIDATO" ;;
+    drill_fields: [drill_fields*]
+  }
+
   set: drill_fields {
     fields: [id_candidatura, cd_vaga, nm_vaga, nm_candidato, dt_candidatura_date, dt_publicacao_date, status_candidatura, status_vaga]
   }

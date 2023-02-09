@@ -171,7 +171,13 @@ view: vcom_titulos {
     else 1 end;;
   }
 
-
+  dimension: flg_menor_vct_atr {
+    type: yesno
+    label: "Flag Vencimento Antigo"
+    group_label: "Dados Boleto"
+    description: "Indica o Título vencido mais antigo"
+    sql: ${TABLE}."FLG_MENOR_VCT_ATR" ;;
+  }
 
 
 

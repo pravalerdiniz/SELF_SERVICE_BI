@@ -2003,9 +2003,8 @@ dimension: vl_tarifa_cadastro {
     type: number
     group_label: "Dados da Cessão"
     label: "Valor Financiado"
-    value_format: "0"
+    value_format: "$ #,###.00"
     description: "Indica o valor financiado pelo aluno."
-    hidden: yes
     sql: ${TABLE}."VL_FINANCIADO" ;;
   }
 

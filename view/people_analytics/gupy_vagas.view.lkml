@@ -587,7 +587,34 @@ view: gupy_vagas {
     ]
     convert_tz: no
     datatype: date
-    sql: coalesce(${data_encerramento_date}, ${data_cancelamento_date}) ;;
+    sql: to_date(coalesce(${data_encerramento_date}, ${data_cancelamento_date}), 'YYYY-MM-DD') ;;
+  }
+
+  dimension_group: eng_data_atualizacao {
+    group_label: "Dados da Vaga"
+    label: "ENG - última data de atualização dos dados"
+    description: "Indica a última data na qual houve coleta dos dados na sua origem"
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      time
+    ]
+    convert_tz: no
+    datatype: date
+    hidden: yes
+    sql: ${TABLE}."ENG_DATA_ATUALIZACAO";;
+  }
+
+  measure: max_eng_data_atualizacao {
+    group_label: "Dados da Vaga"
+    label: "ENG - última data de atualização dos dados"
+    description: "Indica a última data na qual houve coleta dos dados na sua origem"
+    type: string
+    sql: to_char(max(${TABLE}."ENG_DATA_ATUALIZACAO"), 'DD/MM/YYYY HH24:MI');;
   }
 
   measure: count_congeladas {
@@ -607,7 +634,17 @@ view: gupy_vagas {
   }
 
   measure: count {
-    type: count
-    drill_fields: []
+    type: count_distinct
+    sql:  ${TABLE}."CODIGO";;
+    drill_fields: [detail*]
   }
+
+  set: detail {
+    fields: [
+      codigo, nome, prazo_candidatura_date, prazo_contratacao_date, sla_dias_corridos
+      , qtd_inscritos, qtd_em_processo, qtd_contratados, qtd_desistencias
+      , qtd_inscricoes_internas, qtd_reprovados
+    ]
+  }
+
 }
