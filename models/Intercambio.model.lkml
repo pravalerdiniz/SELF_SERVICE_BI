@@ -92,6 +92,13 @@ explore: student_intercambio {
     type: left_outer
     sql_on: ${status_intercambio.id_instituicao} = ${institution_intercambio.id_instituicao};;
  }
+
+ join: dim_cpf {
+   view_label: "Usuários"
+  relationship: one_to_one
+  type: left_outer
+  sql_on: ${contracts_intercambio.id_cpf_resp_fin} = ${dim_cpf.id_cpf} ;;
+ }
 }
 
 explore: metas_intercambio {
