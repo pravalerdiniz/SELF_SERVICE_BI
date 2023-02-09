@@ -458,6 +458,6 @@ explore: taxa_de_contato_alunos_ativos_nova{
 
 
 explore: ligacoes_55pbx{
-  label: "2. Ligação (55pbx)"
+  label: "Ligação (55pbx)"
   description: "Dados de Ligação da 55pbx."
 }
