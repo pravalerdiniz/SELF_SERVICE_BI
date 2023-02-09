@@ -141,7 +141,7 @@ view: student_intercambio {
     sql: ${id_cpf_aluno} ;;
   }
 
-  dimension: id_cpf_garantidor {
+  dimension: id_cpf_resp_fin {
     type: number
     sql: ${TABLE}."ID_CPF_GARANTIDOR" ;;
   }

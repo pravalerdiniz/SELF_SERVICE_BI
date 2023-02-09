@@ -98,3 +98,22 @@ explore: enps {
     sql_on: ${enps.id_resposta} = ${enps_flatten.id_resposta} ;;
   }
 }
+
+# Comunicação Interna
+explore: slack_resumo_analitico {
+  label: "Slack - Resumo corporativo"
+  view_label: "Resumo corporativo"
+  description: "Informações analíticas sobre o uso corporativo do Slack"
+}
+
+explore: slack_analitico_canais {
+  label: "Slack - Analítico canais"
+  view_label: "Analítico canais"
+  description: "Informações analíticas sobre os canais do Slack"
+}
+
+explore: slack_analitico_membros {
+  label: "Slack - Analítico membros"
+  view_label: "Analítico membros"
+  description: "Informações analíticas sobre os membros do Slack"
+}
