@@ -507,7 +507,7 @@ view: contatos_pravaler {
   }
 
   dimension: year_to_date {
-    type: number
+    type: string
     group_label: "Dados do Ticket"
     group_item_label: "YTD"
     description: "Marca o YTD do ano atual e do ano passado para facilitar comparação entre os períodos."
