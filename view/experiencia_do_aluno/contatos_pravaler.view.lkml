@@ -505,4 +505,14 @@ view: contatos_pravaler {
     description: "Contagem dos Registros da tabela."
     drill_fields: []
   }
+
+  dimension: year_to_date {
+    type: number
+    group_label: "Dados do Ticket"
+    group_item_label: "YTD"
+    description: "Marca o YTD do ano atual e do ano passado para facilitar comparação entre os períodos."
+    sql: ${TABLE}."YEAR_TO_DATE" ;;
+  }
+
+
 }
