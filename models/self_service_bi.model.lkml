@@ -768,9 +768,10 @@ explore: jornada {
     view_label: "13. Balcão"
     sql_on: ${jornada.aluno_cpf} = ${leads_balcao.cpf_lead}
     and ${jornada.dt_status_date} >= ${leads_balcao.data_proposta_date}
-    --and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
-    --and ${instituicao.id_campus} = ${leads_balcao.id_campus}
-    --and ${instituicao.id_curso} = ${leads_balcao.id_curso};;
+    and ${instituicao.id_instituicao} = ${leads_balcao.id_instituicao}
+    and ${instituicao.id_campus} = ${leads_balcao.id_campus}
+    and ${instituicao.id_curso} = ${leads_balcao.id_curso}
+    ;;
     relationship: many_to_many
     type: full_outer
   }
