@@ -45,7 +45,7 @@ view: liberacao_credito_contratos {
   #NUMBER
   dimension: valor {
     type: number
-    value_format: "0"
+    value_format: "$0.00"
     label: "Número do Contrato"
     group_label: ""
     description: "Numero do contrato"
