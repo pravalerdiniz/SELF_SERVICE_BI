@@ -11,6 +11,7 @@ view: slack_analitico_membros {
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data_criacao_conta {
+    label: "Data da criação da conta"
     type: time
     timeframes: [
       raw,
@@ -26,6 +27,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_desativacao_conta {
+    label: "Data de desativação da conta"
     type: time
     timeframes: [
       raw,
@@ -41,6 +43,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_reivindicacao_conta {
+    label: "Data da reivindicação da conta"
     type: time
     timeframes: [
       raw,
@@ -56,6 +59,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_ultima_vez_ativo {
+    label: "Data da última vez ativo"
     type: time
     timeframes: [
       raw,
@@ -71,6 +75,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_ultima_vez_ativo_android {
+    label: "Data da última vez ativo em dispositivo Android"
     type: time
     timeframes: [
       raw,
@@ -86,6 +91,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_ultima_vez_ativo_ios {
+    label: "Data da última vez ativo em dispositivo IOS"
     type: time
     timeframes: [
       raw,
@@ -101,6 +107,7 @@ view: slack_analitico_membros {
   }
 
   dimension_group: data_ultima_vez_ativo_pc {
+    label: "Data da última vez ativo em PC"
     type: time
     timeframes: [
       raw,
@@ -120,91 +127,91 @@ view: slack_analitico_membros {
   # This dimension will be called "Email" in Explore.
 
   dimension: email {
+    label: "Email"
     type: string
     sql: ${TABLE}."EMAIL" ;;
   }
 
   dimension: flg_incluido_fatura {
+    label: "Membro incluído na fatura?"
     type: yesno
     sql: ${TABLE}."FLG_INCLUIDO_FATURA" ;;
   }
 
   dimension: id_usuario {
+    label: "ID do usuário"
     type: string
     sql: ${TABLE}."ID_USUARIO" ;;
   }
 
   dimension: nome {
+    label: "Nome"
     type: string
     sql: ${TABLE}."NOME" ;;
   }
 
   dimension: nome_exibido {
+    label: "Nome exibido"
     type: string
     sql: ${TABLE}."NOME_EXIBIDO" ;;
   }
 
   dimension: nome_usuario {
+    label: "Nome de usuário"
     type: string
     sql: ${TABLE}."NOME_USUARIO" ;;
   }
 
   dimension: o_que_faco {
+    label: "O que faz?"
     type: string
     sql: ${TABLE}."O_QUE_FACO" ;;
   }
 
   dimension: qt_dias_ativo {
+    label: "Quantidade de dias ativo"
     type: number
     sql: ${TABLE}."QT_DIAS_ATIVO" ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  measure: total_qt_dias_ativo {
-    type: sum
-    sql: ${qt_dias_ativo} ;;
-  }
-
-  measure: average_qt_dias_ativo {
-    type: average
-    sql: ${qt_dias_ativo} ;;
-  }
-
   dimension: qt_dias_ativo_android {
+    label: "Quantidade de dias ativo em dispositivo Android"
     type: number
-    value_format_name: id
     sql: ${TABLE}."QT_DIAS_ATIVO_ANDROID" ;;
   }
 
   dimension: qt_dias_ativo_computador {
+    label: "Quantidade de dias ativo em PC"
     type: number
     sql: ${TABLE}."QT_DIAS_ATIVO_COMPUTADOR" ;;
   }
 
   dimension: qt_dias_ativo_ios {
+    label: "Quantidade de dias ativo em dispositivo IOS"
     type: number
     sql: ${TABLE}."QT_DIAS_ATIVO_IOS" ;;
   }
 
   dimension: qt_mensagens_postadas {
+    label: "Quantidade de mensagens postadas"
     type: number
     sql: ${TABLE}."QT_MENSAGENS_POSTADAS" ;;
   }
 
   dimension: qt_mensagens_postadas_em_canais {
+    label: "Quantidade de mensagens postadas em canais"
     type: number
     sql: ${TABLE}."QT_MENSAGENS_POSTADAS_EM_CANAIS" ;;
   }
 
   dimension: qt_reacoes_adicionadas {
+    label: "Quantidade de reações adicionadas"
     type: number
     sql: ${TABLE}."QT_REACOES_ADICIONADAS" ;;
   }
 
   dimension: tipo_conta {
+    label: "Tipo de conta"
     type: string
     sql: ${TABLE}."TIPO_CONTA" ;;
   }
