@@ -468,7 +468,7 @@ view: contatos_pravaler {
 
   dimension: ticket_zendesk {
     type: number
-    primary_key: yes
+    #primary_key: yes
     group_label: "Dados do Ticket"
     group_item_label: "ID Ticket - Zendesk"
     description: "ID do ticket na Zendesk."

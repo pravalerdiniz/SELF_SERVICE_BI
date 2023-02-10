@@ -102,18 +102,18 @@ explore: enps {
 # Comunicação Interna
 explore: slack_resumo_analitico {
   label: "Slack - Resumo corporativo"
-  view_label: "Resumo corporativo"
+  view_label: "Resumo"
   description: "Informações analíticas sobre o uso corporativo do Slack"
 }
 
 explore: slack_analitico_canais {
   label: "Slack - Analítico canais"
-  view_label: "Analítico canais"
+  view_label: "Canal"
   description: "Informações analíticas sobre os canais do Slack"
 }
 
 explore: slack_analitico_membros {
   label: "Slack - Analítico membros"
-  view_label: "Analítico membros"
+  view_label: "Membros"
   description: "Informações analíticas sobre os membros do Slack"
 }
