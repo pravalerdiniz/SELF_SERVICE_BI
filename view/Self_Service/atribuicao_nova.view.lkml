@@ -139,7 +139,15 @@ view: atribuicao_nova
 
   dimension: canal_descoberta_100d {
     type: string
-    sql: ${TABLE}."CANAL_DCO_L100" ;;
+    sql:
+
+    CASE
+      WHEN ${TABLE}."CANAL_DCO_L100" = 'ITI' THEN 'OUTROS'
+      WHEN ${TABLE}."CANAL_DCO_L100" = 'ITAU' THEN 'OUTROS'
+      WHEN ${TABLE}."CANAL_DCO_L100" = 'APP' THEN 'ORGANICO'
+      WHEN ${TABLE}."CANAL_DCO_L100" = 'SOCIAL' THEN 'ORGANICO'
+    ELSE ${TABLE}."CANAL_DCO_L100"
+    END ;;
     label: "Canal de Descoberta (First Click) - 100 dias"
     group_label: "Dados de Descoberta - 100 Dias"
   }
