@@ -11,6 +11,7 @@ view: slack_analitico_canais {
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data_criacao {
+    label: "Data da criação"
     type: time
     timeframes: [
       raw,
@@ -26,6 +27,7 @@ view: slack_analitico_canais {
   }
 
   dimension_group: data_ultima_vez_ativo {
+    label: "Data da última vez ativo"
     type: time
     timeframes: [
       raw,
@@ -45,80 +47,79 @@ view: slack_analitico_canais {
   # This dimension will be called "Descricao" in Explore.
 
   dimension: descricao {
+    label: "Descrição"
     type: string
     sql: ${TABLE}."DESCRICAO" ;;
   }
 
   dimension: nome {
+    label: "Nome"
     type: string
     sql: ${TABLE}."NOME" ;;
   }
 
   dimension: organizacoes_externas {
+    label: "Organizações externas"
     type: string
     sql: ${TABLE}."ORGANIZACOES_EXTERNAS" ;;
   }
 
   dimension: qt_alteracao_nos_membros_que_postaram {
+    label: "Quantidade de alterações nos membros que postaram"
     type: number
     sql: ${TABLE}."QT_ALTERACAO_NOS_MEMBROS_QUE_POSTARAM" ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  measure: total_qt_alteracao_nos_membros_que_postaram {
-    type: sum
-    sql: ${qt_alteracao_nos_membros_que_postaram} ;;
-  }
-
-  measure: average_qt_alteracao_nos_membros_que_postaram {
-    type: average
-    sql: ${qt_alteracao_nos_membros_que_postaram} ;;
-  }
-
   dimension: qt_convidados {
+    label: "Quantidade de convidados"
     type: number
     sql: ${TABLE}."QT_CONVIDADOS" ;;
   }
 
   dimension: qt_membros {
+    label: "Quantidade de membros"
     type: number
     sql: ${TABLE}."QT_MEMBROS" ;;
   }
 
   dimension: qt_membros_ativos {
+    label: "Quantidade de membros ativos"
     type: number
     sql: ${TABLE}."QT_MEMBROS_ATIVOS" ;;
   }
 
   dimension: qt_membros_que_postaram {
+    label: "Quantidade de membros que postaram"
     type: number
     sql: ${TABLE}."QT_MEMBROS_QUE_POSTARAM" ;;
   }
 
   dimension: qt_membros_que_reagiram {
+    label: "Quantidade de membros que reagiram"
     type: number
     sql: ${TABLE}."QT_MEMBROS_QUE_REAGIRAM" ;;
   }
 
   dimension: qt_membros_que_viram {
+    label: "Quantidade de membros que viram"
     type: number
     sql: ${TABLE}."QT_MEMBROS_QUE_VIRAM" ;;
   }
 
   dimension: qt_mensagens_postadas {
+    label: "Quantidade de mensagens postadas"
     type: number
     sql: ${TABLE}."QT_MENSAGENS_POSTADAS" ;;
   }
 
   dimension: qt_mensagens_postadas_por_membros {
+    label: "Quantidade de mensagens postadas por membros"
     type: number
     sql: ${TABLE}."QT_MENSAGENS_POSTADAS_POR_MEMBROS" ;;
   }
 
   dimension: qt_reacoes_adicionadas {
+    label: "Quantidade de reações adicionadas"
     type: number
     sql: ${TABLE}."QT_REACOES_ADICIONADAS" ;;
   }

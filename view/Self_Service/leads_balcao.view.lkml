@@ -160,14 +160,14 @@ view: leads_balcao {
   }
 
   dimension: id_campus {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CAMPUS" ;;
     group_label: "Dados da Instituição"
     group_item_label: "ID do Campus"
   }
 
   dimension: id_curso {
-    type: number
+    type: string
     sql: ${TABLE}."ID_CURSO" ;;
     group_label: "Dados da Instituição"
     group_item_label: "ID do Curso"
@@ -180,7 +180,7 @@ view: leads_balcao {
   }
 
   dimension: id_instituicao {
-    type: number
+    type: string
     sql: ${TABLE}."ID_INSTITUICAO" ;;
     group_label: "Dados da Instituição"
     group_item_label: "ID da Instituição"
