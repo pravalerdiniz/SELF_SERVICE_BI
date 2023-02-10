@@ -18,6 +18,7 @@ view: liberacao_credito_contratos {
   #INSTALLMENT_VALUE
   dimension: valor_parcela {
     type: number
+    value_format: "$0.00"
     label: "Valor Parcela"
     group_label: ""
     description: "Valor de cada parcela"
