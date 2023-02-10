@@ -25,6 +25,7 @@ view: liberacao_credito_clientes {
   dimension: cpf {
     type: number
     label: "CPF"
+    value_format: "0"
     group_label: ""
     description: "numero do cadastro de pessoa física do aluno"
     sql: ${TABLE}."CPF" ;;

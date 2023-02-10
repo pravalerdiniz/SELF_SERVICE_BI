@@ -135,6 +135,6 @@ view: liberacao_credito_contratos {
   measure: count {
     type: count
     label: "Qtd Contratos"
-    drill_fields: [id]
+    drill_fields: [valor]
   }
 }
