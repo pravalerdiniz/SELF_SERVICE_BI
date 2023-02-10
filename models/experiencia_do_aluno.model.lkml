@@ -390,7 +390,7 @@ explore: taxa_de_contato_alunos_ativos_nova{
 
     join: ligacoes_55pbx {
       view_label: "2. Ligação (55pbx)"
-      type: full_outer
+      type: left_outer
       sql_on: ${contatos_pravaler.ticket_zendesk} = ${ligacoes_55pbx.zendesk_id};;
       relationship: one_to_many
     }
@@ -459,7 +459,8 @@ explore: taxa_de_contato_alunos_ativos_nova{
 
 
 explore: ligacoes_55pbx{
-  label: "1. Ligação (55pbx)"
+  label: "Ligações 55pbx"
+  view_label: "1. Ligações 55pbx"
   description: "Dados de Ligação da 55pbx."
 
 
