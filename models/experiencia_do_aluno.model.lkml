@@ -389,49 +389,49 @@ explore: taxa_de_contato_alunos_ativos_nova{
     ]
 
     join: ligacoes_55pbx {
-      view_label: "2. Ligação (55pbx)"
+      view_label: "8. Ligação (55pbx)"
       type: full_outer
       sql_on: ${contatos_pravaler.ticket_zendesk} = ${ligacoes_55pbx.zendesk_id};;
       relationship: one_to_many
     }
 
     join: interacoes_metricas_tickets {
-      view_label: "3. Métricas dos Tickets da Zendesk"
+      view_label: "2. Métricas dos Tickets da Zendesk"
       type: left_outer
       sql_on: ${contatos_pravaler.ticket_zendesk} = ${interacoes_metricas_tickets.ticket_id};;
       relationship: one_to_one
     }
 
     join: alunos {
-      view_label: "4. Alunos"
+      view_label: "3. Alunos"
       sql_on: ${contatos_pravaler.cpf_aluno_num} = ${alunos.cpf_aluno};;
       type: left_outer
       relationship: many_to_many
     }
 
     join: proposta {
-      view_label: "5. Proposta"
+      view_label: "4. Proposta"
       sql_on: ${contatos_pravaler.cpf_aluno_num} = ${proposta.cpf_aluno};;
       type: left_outer
       relationship: many_to_many
     }
 
     join: dados_jornada_interacoes {
-      view_label: "6. Jornada"
+      view_label: "5. Jornada"
       sql_on: ${contatos_pravaler.cpf_aluno}= ${dados_jornada_interacoes.cpf_requester} and ${proposta.id_proposta} = ${dados_jornada_interacoes.ID_PROPOSTA};;
       relationship: many_to_many
       type: left_outer
     }
 
     join: status {
-      view_label: "7. Status"
+      view_label: "6. Status"
       sql_on: ${contatos_pravaler.cpf_aluno_num} = ${proposta.cpf_aluno} and ${proposta.id_proposta} = ${status.id_proposta} ;;
       relationship: many_to_many
       type: left_outer
     }
 
     join: nps_relacional_ultima_nota {
-      view_label: "8. NPS mais Recente do Aluno"
+      view_label: "7. NPS mais Recente do Aluno"
       sql_on: ${contatos_pravaler.cpf_aluno_num} = ${nps_relacional_ultima_nota.cpf_aluno};;
       type: left_outer
       relationship: many_to_many
