@@ -156,7 +156,7 @@ view: contatos_pravaler {
   measure: nota_pergunta1_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 1. Atendimento"
+    group_item_label: "Mundiale - Nota 1"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
     sql: ${TABLE}."NOTA_PERGUNTA1_MUNDIALE" ;;
   }
@@ -164,7 +164,7 @@ view: contatos_pravaler {
   measure: nota_pergunta2_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 2. Pravaler"
+    group_item_label: "Mundiale - Nota 2"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
   }
@@ -172,15 +172,15 @@ view: contatos_pravaler {
   measure: nota_pergunta3_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 3.NPS/Resolução"
+    group_item_label: "Mundiale - Nota 3"
     description: "Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?"
-    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
+    sql: ${TABLE}."NOTA_PERGUNTA3_MUNDIALE" ;;
   }
 
   measure: nota_atendimento_zendesk {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "Zendesk 1. Satisfação"
+    group_item_label: "Zendesk - Nota 1"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
     sql: ${TABLE}."NOTA_ATENDIMENTO_ZENDESK" ;;
   }
@@ -188,7 +188,7 @@ view: contatos_pravaler {
   measure: nota_pergunta1_55pbx {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 1. Atendimento"
+    group_item_label: "55pbx - Nota 1"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
     sql: ${TABLE}."NOTA_PERGUNTA1_55PBX" ;;
   }
@@ -196,7 +196,7 @@ view: contatos_pravaler {
   measure: nota_pergunta2_55pbx {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 2. Pravaler"
+    group_item_label: "55pbx - Nota 2"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PERGUNTA2_55PBX" ;;
   }
@@ -204,7 +204,7 @@ view: contatos_pravaler {
   measure: nota_pergunta3_55pbx {
     type: sum
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 3. Resolução"
+    group_item_label: "55pbx - Nota 3"
     description: "Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
     sql: ${TABLE}."NOTA_PERGUNTA3_55PBX" ;;
   }
@@ -216,7 +216,7 @@ view: contatos_pravaler {
   dimension: nota_pergunta1_mundiale_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 1. Atendimento"
+    group_item_label: "Mundiale - Nota 1"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
     sql: ${TABLE}."NOTA_PERGUNTA1_MUNDIALE" ;;
   }
@@ -224,7 +224,7 @@ view: contatos_pravaler {
   dimension: nota_pergunta2_mundiale_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 2. Pravaler"
+    group_item_label: "Mundiale - Nota 2"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
   }
@@ -232,15 +232,15 @@ view: contatos_pravaler {
   dimension: nota_pergunta3_mundiale_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "Mundiale 3.NPS/Resolução"
+    group_item_label: "Mundiale - Nota 3"
     description: "Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?"
-    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
+    sql: ${TABLE}."NOTA_PERGUNTA3_MUNDIALE" ;;
   }
 
   dimension: nota_atendimento_zendesk_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "Zendesk 1. Satisfação"
+    group_item_label: "Zendesk - Nota 1"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
     sql: ${TABLE}."NOTA_ATENDIMENTO_ZENDESK" ;;
   }
@@ -248,7 +248,7 @@ view: contatos_pravaler {
   dimension: nota_pergunta1_55pbx_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 1. Atendimento"
+    group_item_label: "55pbx - Nota 1"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
     sql: ${TABLE}."NOTA_PERGUNTA1_55PBX" ;;
   }
@@ -256,7 +256,7 @@ view: contatos_pravaler {
   dimension: nota_pergunta2_55pbx_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 2. Pravaler"
+    group_item_label: "55pbx - Nota 2"
     description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
     sql: ${TABLE}."NOTA_PERGUNTA2_55PBX" ;;
   }
@@ -264,7 +264,7 @@ view: contatos_pravaler {
   dimension: nota_pergunta3_55pbx_str {
     type: number
     group_label: "Dados de Satisfação"
-    group_item_label: "55pbx 3. Resolução"
+    group_item_label: "55pbx - Nota 3"
     description: "Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
     sql: ${TABLE}."NOTA_PERGUNTA3_55PBX" ;;
   }
