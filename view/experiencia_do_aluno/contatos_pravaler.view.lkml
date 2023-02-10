@@ -149,6 +149,10 @@ view: contatos_pravaler {
     sql: ${TABLE}."NOME_ATENDENTE" ;;
   }
 
+
+
+
+  # SOMA DAS NOTAS DE SATISFAÇÃO
   measure: nota_pergunta1_mundiale {
     type: sum
     group_label: "Dados de Satisfação"
@@ -173,8 +177,8 @@ view: contatos_pravaler {
     sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
   }
 
-  dimension: nota_atendimento_zendesk {
-    type: string
+  measure: nota_atendimento_zendesk {
+    type: sum
     group_label: "Dados de Satisfação"
     group_item_label: "Zendesk 1. Satisfação"
     description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
@@ -204,6 +208,69 @@ view: contatos_pravaler {
     description: "Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
     sql: ${TABLE}."NOTA_PERGUNTA3_55PBX" ;;
   }
+
+
+
+
+  # DIMENSÃO DAS NOTAS DE SATISFAÇÃO
+  dimension: nota_pergunta1_mundiale_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "Mundiale 1. Atendimento"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
+    sql: ${TABLE}."NOTA_PERGUNTA1_MUNDIALE" ;;
+  }
+
+  dimension: nota_pergunta2_mundiale_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "Mundiale 2. Pravaler"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
+  }
+
+  dimension: nota_pergunta3_mundiale_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "Mundiale 3.NPS/Resolução"
+    description: "Nota de 1 a 10 (Nota 0 significa que o aluno não respondeu). Pergunta: Numa escala de 1 a 10, qual a probabilidade de você nos indicar para amigos, parentes e/ou terceiros?"
+    sql: ${TABLE}."NOTA_PERGUNTA2_MUNDIALE" ;;
+  }
+
+  dimension: nota_atendimento_zendesk_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "Zendesk 1. Satisfação"
+    description: "Após o ticket ser finalizado na Zendesk, o aluno recebe uma pesquisa pedindo para ele avaliar o atendimento. OFFERED significa que a pesquisa foi disparada mas o aluno não avaliou, GOOD o aluno achou bom e BAD achou ruim (Apenas em tickets da Zendesk)."
+    sql: ${TABLE}."NOTA_ATENDIMENTO_ZENDESK" ;;
+  }
+
+  dimension: nota_pergunta1_55pbx_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 1. Atendimento"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: O que achou do meu atendimento? "
+    sql: ${TABLE}."NOTA_PERGUNTA1_55PBX" ;;
+  }
+
+  dimension: nota_pergunta2_55pbx_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 2. Pravaler"
+    description: "Nota de 1 a 3 (Nota 0 significa que o aluno não respondeu). Pergunta: De modo geral, como classifica a sua experiência com o Pravaler?"
+    sql: ${TABLE}."NOTA_PERGUNTA2_55PBX" ;;
+  }
+
+  dimension: nota_pergunta3_55pbx_str {
+    type: number
+    group_label: "Dados de Satisfação"
+    group_item_label: "55pbx 3. Resolução"
+    description: "Pergunta: Conseguimos atender sua necessidade? Digite 1 para SIM e 2 para NÃO."
+    sql: ${TABLE}."NOTA_PERGUNTA3_55PBX" ;;
+  }
+
+
+
 
   dimension: observacao_atendente {
     type: string
