@@ -388,12 +388,12 @@ explore: taxa_de_contato_alunos_ativos_nova{
       - proposta.flag_produtos_semfiador_testeab
     ]
 
-    join: ligacoes_55pbx {
-      view_label: "8. Ligação (55pbx)"
-      type: full_outer
-      sql_on: ${contatos_pravaler.ticket_zendesk} = ${ligacoes_55pbx.zendesk_id};;
-      relationship: one_to_one
-    }
+    #join: ligacoes_55pbx {
+      #view_label: "8. Ligação (55pbx)"
+      #type: full_outer
+      #sql_on: ${contatos_pravaler.ticket_zendesk} = ${ligacoes_55pbx.zendesk_id};;
+      #relationship: one_to_one
+    #}
 
     join: interacoes_metricas_tickets {
       view_label: "2. Métricas dos Tickets da Zendesk"
