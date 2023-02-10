@@ -804,6 +804,7 @@ view: ligacoes_55pbx {
 
   dimension: zendesk_id {
     type: string
+    primary_key: yes
     group_label: "Dados da Ligação"
     group_item_label: "ID Ticket - Zendesk"
     description: "Indica o ticket atrelado no zendesk."
