@@ -57,19 +57,19 @@ view: slack_resumo_analitico {
   }
 
   dimension: perc_visualizacoes_canais_privados {
-    label: "% de visualizções em canais privados"
+    label: "% de visualizações em canais privados"
     type: number
     sql: ${TABLE}."PERC_VISUALIZACOES_CANAIS_PRIVADOS" ;;
   }
 
   dimension: perc_visualizacoes_canais_publicos {
-    label: "% de visualizções em canais públicos"
+    label: "% de visualizações em canais públicos"
     type: number
     sql: ${TABLE}."PERC_VISUALIZACOES_CANAIS_PUBLICOS" ;;
   }
 
   dimension: perc_visualizacoes_mds {
-    label: "% de visualizções em MDS"
+    label: "% de visualizações em MDS"
     type: number
     sql: ${TABLE}."PERC_VISUALIZACOES_MDS" ;;
   }
