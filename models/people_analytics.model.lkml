@@ -117,3 +117,10 @@ explore: slack_analitico_membros {
   view_label: "Membros"
   description: "Informações analíticas sobre os membros do Slack"
 }
+
+# Employer branding
+explore: instagram_insights {
+  label: "Instagram - Insights e acompanhamentos"
+  view_label: "Insights"
+  description: "Informações analíticas sobre a página do Pravaler no Instagram"
+}
