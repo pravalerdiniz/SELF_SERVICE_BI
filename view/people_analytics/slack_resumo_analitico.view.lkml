@@ -19,7 +19,9 @@ view: slack_resumo_analitico {
       week,
       month,
       quarter,
-      year
+      year,
+      day_of_week,
+      time
     ]
     convert_tz: no
     datatype: date
