@@ -128,7 +128,7 @@ view: ot_consolidado {
       type: number
       value_format: "$ #,###.00"
       sql: ${TABLE}."SOMA_VP_CARTEIRA" ;;
-      hidden: no
+      hidden: yes
     }
 
     dimension: var_carteira {
@@ -191,7 +191,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Pagos"
       group_item_label: "Total Pago"
-      description: "Soma do valor total recebido."
+      description: "Soma do valor de face dos títulos liquidados."
       type: sum
       sql: ${pagamentos} ;;
     }
@@ -211,7 +211,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Pagos"
       group_item_label: "WO Recuperado."
-      description: "Soma do valor de WO recuperado."
+      description: "Soma do valor de face dos títulos em WO recuperados."
     }
 
     measure: total_var_estoque_pdd {
@@ -241,7 +241,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Carteira Profit Sharing"
-      description: "Soma do valor presente da carteira, aplicando para FIDC III e 100% para FIDC I e II."
+      description: "Soma do valor presente da carteira, aplicando 40% para FIDC III e 100% para FIDC I e II."
     }
 
     measure: total_vp_wo {
@@ -259,7 +259,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Valor presente"
       group_item_label: "VP Pagamentos"
-      description: "Soma do valor presente de pagamentos recebidos."
+      description: "Soma do valor presente dos títulos liquidados, com VP calculado no dia da liquidação."
     }
 
     measure: total_vp_originado {
@@ -277,7 +277,7 @@ view: ot_consolidado {
       value_format: "$ #,###.00"
       group_label: "Receita de Juros"
       group_item_label: "Receita de Juros"
-      description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS)"
+      description: "Receita de juros calculada. (ΔVP_CARTEIRA + VP_PAGOS - VP_ORIGINADOS + VP_WO - REC_WO)"
     }
 
     measure: qtd_alunos {
