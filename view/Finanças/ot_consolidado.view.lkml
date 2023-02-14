@@ -235,8 +235,8 @@ view: ot_consolidado {
     measure: total_vp_carteira_profit_sharing {
       type: sum
       sql: CASE
-              WHEN ${fundo} = 2  THEN  ${vp_carteira} * 0.5
-              WHEN ${fundo} = 41 THEN  ${vp_carteira} * 0.4
+              WHEN ${id_fundo} = 2  THEN  ${vp_carteira} * 0.5
+              WHEN ${id_fundo} = 41 THEN  ${vp_carteira} * 0.4
          ELSE ${vp_carteira} END;;
       value_format: "$ #,###.00"
       group_label: "Valor presente"
