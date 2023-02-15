@@ -207,6 +207,10 @@ explore: instituicao_metas_gc {
 
 }
 
+explore: metas_renov {
+  view_label: "Metas Renovação (Mensal)"
+}
+
 explore: status {
   persist_for: "1 hours"
   access_filter: {
