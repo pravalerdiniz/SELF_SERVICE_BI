@@ -1873,4 +1873,15 @@ measure: porc_evasao {
     description: "Indica a data que o aluno passou pela última vez pelos status 18 ou 28 ou 38 ou 48 ou 58"
   }
 
+  dimension: flg_criterio_ba_form_canc {
+    type: yesno
+    label: "Critério BA Final Funil - Formalização e Cancelamento"
+    description: "Indica os alunos que não tiveram a última proposta formalizada ou cancelada em meses anteriores - critério da Base de Atendimento Final Funil"
+    sql:   (
+            ${TABLE}."DT_ULT_FORMALIZACAO" IS NULL AND ${TABLE}."DT_ULT_CANCELAMENTO" IS NULL
+            )
+            OR  ${TABLE}."DT_ULT_FORMALIZACAO" >= DATE_TRUNC('MONTH',CURRENT_DATE())
+            OR  ${TABLE}."DT_ULT_CANCELAMENTO" >= DATE_TRUNC('MONTH',CURRENT_DATE()) ;;
+  }
+
 }
