@@ -10,6 +10,32 @@ view: slack_analitico_canais {
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
+  dimension: ano_referencia {
+    label: "Ano de referência"
+    description: "Ano de referência da coleta dos dados"
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}."ANO_REFERENCIA" ;;
+  }
+
+  dimension: mes_referencia {
+    label: "Mês de referência"
+    description: "Mês de referência da coleta dos dados"
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}."MES_REFERENCIA" ;;
+  }
+
+  dimension: ano_mes_referencia {
+    label: "Ano/Mês de referência"
+    description: "Ano/Mês de referência da coleta dos dados"
+    primary_key: yes
+    type: string
+    sql: concat(${ano_referencia}, '-', lpad(${mes_referencia}, 2, 0)) ;;
+  }
+
   dimension_group: data_criacao {
     label: "Data da criação"
     type: time
@@ -54,6 +80,7 @@ view: slack_analitico_canais {
 
   dimension: nome {
     label: "Nome"
+    primary_key: yes
     type: string
     sql: ${TABLE}."NOME" ;;
   }
@@ -122,6 +149,13 @@ view: slack_analitico_canais {
     label: "Quantidade de reações adicionadas"
     type: number
     sql: ${TABLE}."QT_REACOES_ADICIONADAS" ;;
+  }
+
+  dimension: headcount_pravaler {
+    label: "Total de funcionários na data"
+    description: "Quadro de funcionários na data de referência"
+    type: number
+    sql: ${TABLE}."HEADCOUNT_PRAVALER" ;;
   }
 
   measure: count {
