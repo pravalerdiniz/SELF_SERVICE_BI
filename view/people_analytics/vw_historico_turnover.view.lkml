@@ -9,8 +9,9 @@ view: vw_historico_turnover {
   # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
-    primary_key: yes
+    #primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}."ID" ;;
   }
 
@@ -19,27 +20,37 @@ view: vw_historico_turnover {
   # This dimension will be called "Ano Mes" in Explore.
 
   dimension: ano_mes {
-    primary_key: yes
+    #primary_key: yes
+    view_label: "Dados Gerais"
+    label: "Ano/Mês de referência"
     type: string
     sql: ${TABLE}."ANO_MES" ;;
   }
 
   dimension: cargo {
+    label: "Cargo na data"
+    view_label: "Dados Gerais"
     type: string
     sql: ${TABLE}."CARGO" ;;
   }
 
   dimension: causa_demissao {
+    label: "Causa da demissão"
+    view_label: "Dados Gerais"
     type: string
     sql: ${TABLE}."CAUSA_DEMISSAO" ;;
   }
 
   dimension: centro_custo {
+    view_label: "Dados Gerais"
+    label: "Centro de custo"
     type: string
     sql: ${TABLE}."CENTRO_CUSTO" ;;
   }
 
   dimension: classificacao {
+    view_label: "Dados Gerais"
+    label: "Classificação do colabordaor"
     type: string
     sql: ${TABLE}."CLASSIFICACAO" ;;
   }
@@ -48,6 +59,8 @@ view: vw_historico_turnover {
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: data_admissao {
+    view_label: "Datas e Períodos"
+    label: "Data de admissão"
     type: time
     timeframes: [
       raw,
@@ -63,6 +76,8 @@ view: vw_historico_turnover {
   }
 
   dimension_group: data_demissao {
+    view_label: "Datas e Períodos"
+    label: "Data de demissão"
     type: time
     timeframes: [
       raw,
@@ -78,6 +93,8 @@ view: vw_historico_turnover {
   }
 
   dimension_group: data_nascimento {
+    view_label: "Datas e Períodos"
+    label: "Data de nascimento"
     type: time
     timeframes: [
       raw,
@@ -93,6 +110,8 @@ view: vw_historico_turnover {
   }
 
   dimension_group: data_ultima_movimentacao {
+    view_label: "Datas e Períodos"
+    label: "Data da última movimentação"
     type: time
     timeframes: [
       raw,
@@ -108,96 +127,147 @@ view: vw_historico_turnover {
   }
 
   dimension: diretoria {
+    view_label: "Dados Gerais"
+    label: "Diretoria"
     type: string
     sql: ${TABLE}."DIRETORIA" ;;
   }
 
   dimension: empresa {
+    view_label: "Dados Gerais"
+    label: "Empresa"
     type: string
     sql: ${TABLE}."EMPRESA" ;;
   }
 
   dimension: flg_ativo {
+    view_label: "Dados Gerais"
+    label: "Funcionário ativo?"
+    description: "Indica se o funcionário estava ativo no período"
     type: yesno
     sql: ${TABLE}."FLG_ATIVO" ;;
   }
 
   dimension: flg_clube_socios {
+    view_label: "Dados Gerais"
+    label: "Faz parte do Clube dos Sócios?"
+    description: "Indica se o funcionário participa do Clube dos Sócios"
     type: yesno
     sql: ${TABLE}."FLG_CLUBE_SOCIOS" ;;
   }
 
   dimension: flg_deficiente {
+    view_label: "Dados Gerais"
+    label: "Possui alguma deficiência?"
     type: yesno
     sql: ${TABLE}."FLG_DEFICIENTE" ;;
   }
 
   dimension: flg_lider {
+    view_label: "Dados Gerais"
+    label: "É líder?"
+    description: "Indica se o funcionário é lider ou foi líder na data de referência"
     type: yesno
     sql: ${TABLE}."FLG_LIDER" ;;
   }
 
   dimension: grau_instrucao {
+    view_label: "Dados Gerais"
+    label: "Grau de instrução"
     type: string
     sql: ${TABLE}."GRAU_INSTRUCAO" ;;
   }
 
   dimension: id_cargo {
+    view_label: "Dados Gerais"
+    label: "Código do cargo"
     type: number
     sql: ${TABLE}."ID_CARGO" ;;
   }
 
   dimension: id_centro_custo {
+    view_label: "Dados Gerais"
+    label: "Código do Centro de Custo"
     type: string
     sql: ${TABLE}."ID_CENTRO_CUSTO" ;;
   }
 
   dimension: matricula {
+    view_label: "Dados Gerais"
+    label: "Matrícula"
+    description: "Código da matrícula"
     type: number
     sql: ${TABLE}."MATRICULA" ;;
   }
 
   dimension: motivo_ultima_movimentacao {
+    view_label: "Dados Gerais"
+    label: "Motivo da última movimentação"
     type: string
     sql: ${TABLE}."MOTIVO_ULTIMA_MOVIMENTACAO" ;;
   }
 
   dimension: nivel_cargo {
+    view_label: "Dados Gerais"
+    label: "Nível do cargo"
+    description: "Indica o nível do cargo na data de referência"
     type: string
     sql: ${TABLE}."NIVEL_CARGO" ;;
   }
 
   dimension: nome {
+    view_label: "Dados Gerais"
+    label: "Nome"
     type: string
     sql: ${TABLE}."NOME" ;;
   }
 
   dimension: raca {
+    view_label: "Dados Gerais"
+    label: "Etnia"
     type: string
     sql: ${TABLE}."RACA" ;;
   }
 
   dimension: sexo {
+    view_label: "Dados Gerais"
+    label: "Sexo"
     type: string
     sql: ${TABLE}."SEXO" ;;
   }
 
   dimension: situacao {
+    view_label: "Dados Gerais"
+    label: "Situação"
     type: string
     sql: ${TABLE}."SITUACAO" ;;
   }
 
   dimension: tipo_desligamento {
+    view_label: "Dados Gerais"
+    label: "Tipo de desligamento"
     type: string
     sql: ${TABLE}."TIPO_DESLIGAMENTO" ;;
   }
 
   dimension: idade {
+    view_label: "Dados Gerais"
+    label: "Idade"
     type: number
     sql: ${TABLE}."IDADE" ;;
   }
 
+  dimension: flg_ano_mes_admissao {
+    view_label: "Dados Gerais"
+    label: "Mês de admissão?"
+    description: "Indica se essa data foi o mês de admissão"
+    type: yesno
+    sql: ${TABLE}."FLG_ANO_MES_ADMISSAO" ;;
+  }
+
   dimension: faixa_etaria {
+    view_label: "Dados Gerais"
+    label: "Faixa etária"
     type: string
     case: {
       when: {
@@ -229,6 +299,8 @@ view: vw_historico_turnover {
   }
 
   dimension: faixa_etaria_ordem {
+    view_label: "Dados Gerais"
+    label: "Faixa etária - Ordem"
     type: number
     case: {
       when: {
@@ -260,13 +332,15 @@ view: vw_historico_turnover {
   }
 
   dimension: tempo_casa_dias {
+    view_label: "Datas e Períodos"
+    label: "Tempo de casa (dias)"
     type: number
     sql: ${TABLE}."TEMPO_CASA_DIAS" ;;
   }
 
   dimension: tempo_casa_extenso {
     view_label: "Datas e Períodos"
-    label: "Tempo de Casa por extenso"
+    label: "Tempo de casa (classificação)"
     type: string
     case: {
       when: {
@@ -295,14 +369,34 @@ view: vw_historico_turnover {
   }
 
   measure: count {
+    view_label: "Dados Gerais"
+    label: "Total geral"
     type: count
     drill_fields: []
   }
 
   measure: total_ativos {
+    view_label: "Dados Gerais"
+    label: "Total de ativos"
     type: count_distinct
     filters: [flg_ativo: "Yes"]
-    sql: ${id} ;;
+    sql: ${TABLE}."ID" ;;
+  }
+
+  measure: total_desligados {
+    view_label: "Dados Gerais"
+    label: "Total de desligados"
+    type: count_distinct
+    filters: [flg_ativo: "No"]
+    sql: ${TABLE}."ID" ;;
+  }
+
+  measure: total_contratados {
+    view_label: "Dados Gerais"
+    label: "Total de contratados"
+    type: count_distinct
+    filters: [flg_ano_mes_admissao: "Yes"]
+    sql: ${TABLE}."ID" ;;
   }
 
 }
