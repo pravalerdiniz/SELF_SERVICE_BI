@@ -37,6 +37,12 @@ explore: historico_turnover {
   description: "Informações históricas sobre Turnover dos colaboradores do Pravaler"
 }
 
+explore: vw_historico_turnover {
+  label: "Histórico de Turnover"
+  view_label: "Dados dos Pravalentes"
+  description: "Informações históricas sobre Turnover dos colaboradores do Pravaler"
+}
+
 explore: nps_processo_seletivo {
   label: "NPS processo seletivo"
   view_label: "NPS processo seletivo"
