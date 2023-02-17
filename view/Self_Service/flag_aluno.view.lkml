@@ -2,8 +2,8 @@
 view: flag_unico_aluno {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: (SELECT * FROM "KYC"."FLAG_ALUNO" WHERE ROLE = 'ALUNO')
-    ;;
+  sql_table_name: (SELECT * FROM "GRADUADO"."KYC"."FLAG_ALUNO" WHERE ROLE = 'ALUNO'
+  QUALIFY ROW_NUMBER() OVER(PARTITION BY ID_PROPOSTA ORDER BY INSERTED_AT DESC) = 1) ;;
   drill_fields: [id]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
@@ -59,7 +59,8 @@ view: flag_unico_aluno {
       year
     ]
     sql: ${TABLE}."INSERTED_AT" ;;
-    hidden:  yes
+    hidden:  no
+    group_label: "Data de Inserção"
   }
 
   dimension: provider {
