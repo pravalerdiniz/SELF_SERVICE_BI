@@ -31,7 +31,7 @@ view: vw_historico_turnover {
     #primary_key: yes
     view_label: "Datas e Períodos"
     label: "Ano de referência"
-    type: number
+    type: string
     sql: substring(${TABLE}."ANO_MES", 1, 4) ;;
   }
 
@@ -432,6 +432,22 @@ view: vw_historico_turnover {
     label: "Total de desligados"
     type: count_distinct
     filters: [flg_ativo: "No"]
+    sql: ${TABLE}."ID" ;;
+  }
+
+  measure: total_desligados_voluntario {
+    view_label: "Dados Gerais"
+    label: "Total de desligados voluntários"
+    type: count_distinct
+    filters: [flg_ativo: "No", tipo_desligamento: "VOLUNTARIO"]
+    sql: ${TABLE}."ID" ;;
+  }
+
+  measure: total_desligados_involuntario {
+    view_label: "Dados Gerais"
+    label: "Total de desligados involuntários"
+    type: count_distinct
+    filters: [flg_ativo: "No", tipo_desligamento: "INVOLUNTARIO"]
     sql: ${TABLE}."ID" ;;
   }
 
