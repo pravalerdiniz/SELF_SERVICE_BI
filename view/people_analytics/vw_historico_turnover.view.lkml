@@ -21,10 +21,26 @@ view: vw_historico_turnover {
 
   dimension: ano_mes {
     #primary_key: yes
-    view_label: "Dados Gerais"
+    view_label: "Datas e Períodos"
     label: "Ano/Mês de referência"
     type: string
     sql: ${TABLE}."ANO_MES" ;;
+  }
+
+  dimension: ano_ref {
+    #primary_key: yes
+    view_label: "Datas e Períodos"
+    label: "Ano de referência"
+    type: number
+    sql: substring(${TABLE}."ANO_MES", 1, 4) ;;
+  }
+
+  dimension: mes_ref {
+    #primary_key: yes
+    view_label: "Datas e Períodos"
+    label: "Mês de referência"
+    type: number
+    sql: substring(${TABLE}."ANO_MES", -2, 2) ;;
   }
 
   dimension: cargo {
