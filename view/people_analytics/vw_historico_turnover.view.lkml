@@ -4,7 +4,7 @@ view: vw_historico_turnover {
   # to be used for all fields in this view.
   sql_table_name: "GENTE_GESTAO"."VW_HISTORICO_TURNOVER"
     ;;
-  drill_fields: [id]
+  drill_fields: [id, matricula, empresa, nome]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
@@ -43,6 +43,26 @@ view: vw_historico_turnover {
     sql: substring(${TABLE}."ANO_MES", -2, 2) ;;
   }
 
+  dimension: mes_ref_extenso {
+    view_label: "Datas e Períodos"
+    label: "Mês de referência (por extenso)"
+    type: string
+    sql: case ${mes_ref}
+      when 1 then 'Janeiro'
+      when 2 then 'Fevereiro'
+      when 3 then 'Março'
+      when 4 then 'Abril'
+      when 5 then 'Maio'
+      when 6 then 'Junho'
+      when 7 then 'Julho'
+      when 8 then 'Agosto'
+      when 9 then 'Setembro'
+      when 10 then 'Outubro'
+      when 11 then 'Novembro'
+      when 12 then 'Dezembro'
+    end;;
+  }
+
   dimension: cargo {
     label: "Cargo na data"
     view_label: "Dados Gerais"
@@ -66,7 +86,7 @@ view: vw_historico_turnover {
 
   dimension: classificacao {
     view_label: "Dados Gerais"
-    label: "Classificação do colabordaor"
+    label: "Classificação"
     type: string
     sql: ${TABLE}."CLASSIFICACAO" ;;
   }
@@ -252,12 +272,12 @@ view: vw_historico_turnover {
     sql: ${TABLE}."SEXO" ;;
   }
 
-  dimension: situacao {
-    view_label: "Dados Gerais"
-    label: "Situação"
-    type: string
-    sql: ${TABLE}."SITUACAO" ;;
-  }
+  #dimension: situacao {
+  #  view_label: "Dados Gerais"
+  #  label: "Situação"
+  #  type: string
+  #  sql: ${TABLE}."SITUACAO" ;;
+  #}
 
   dimension: tipo_desligamento {
     view_label: "Dados Gerais"
@@ -279,6 +299,14 @@ view: vw_historico_turnover {
     description: "Indica se essa data foi o mês de admissão"
     type: yesno
     sql: ${TABLE}."FLG_ANO_MES_ADMISSAO" ;;
+  }
+
+  dimension: flg_elegivel_turnover {
+    view_label: "Dados Gerais"
+    label: "Elegível Turnover?"
+    description: "Indica se esse colaborador possui um nível de cargo com elegibilidade ao turnover"
+    type: yesno
+    sql: ${TABLE}."FLG_ELEGIVEL_TURNOVER" ;;
   }
 
   dimension: faixa_etaria {
@@ -386,7 +414,7 @@ view: vw_historico_turnover {
 
   measure: count {
     view_label: "Dados Gerais"
-    label: "Total geral"
+    label: "Count"
     type: count
     drill_fields: []
   }
