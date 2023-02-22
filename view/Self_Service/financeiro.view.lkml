@@ -1801,7 +1801,6 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Repasse"
     group_item_label: "Comissão Pravaler"
     value_format: "$ #,###.00"
-
   }
 
   measure: estimativa_repasse {
@@ -1810,7 +1809,13 @@ foi gerado por um pagamento menor do boleto anterior."
     group_label: "Repasse"
     group_item_label: "Estimativa Repasse"
     value_format: "$ #,###.00"
+  }
 
+  dimension: flg_reg_online {
+    type: yesno
+    label: "Flag Reg Online"
+    group_label: "Dados do Boleto"
+    sql: ${TABLE}."FLG_REG_ONLINE" ;;
   }
 
 }
