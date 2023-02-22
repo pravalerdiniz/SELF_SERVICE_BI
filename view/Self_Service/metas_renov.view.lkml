@@ -19,6 +19,7 @@ view: metas_renov {
     type: time
     timeframes: [
       month,
+      month_name,
       quarter,
       year
     ]
