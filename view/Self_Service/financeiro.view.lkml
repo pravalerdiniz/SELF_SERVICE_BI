@@ -1795,19 +1795,41 @@ foi gerado por um pagamento menor do boleto anterior."
     sql: ${TABLE}."DATA_TIT_IPCA" ;;
   }
 
-  measure: comissao {
+  measure: valor_total_divida {
     type: number
-    sql: (${financeiro.sum_boleto} * ${taxa_instituicao_simplificada.avg_taxa_comissao})/100 ;;
-    group_label: "Repasse"
-    group_item_label: "Comissão Pravaler"
+    sql: ${sum_boleto} * ${proposta.sum_qtd_prestacoes} ;;
+    group_label: "Repasse Gestão"
+    group_item_label: "Valor Total da Dívida"
+    description: "Valor total da dívida é o produto do valor do boleto vezes a quantidade de prestações. Considera incremento de juros, taxa de adm e/ou IPCA"
+    value_format: "$ #,###.00"
+  }
+
+  measure: mensal_composicao_juros_tx_adm_ipca {
+    type: number
+    sql: (${valor_total_divida} - ${proposta.sum_vl_financiamento}) / ${proposta.sum_qtd_prestacoes} ;;
+    group_label: "Repasse Gestão"
+    group_item_label: "Mensal Composição Juros + Tx Adm + IPCA"
+    description: "Parcela do boleto referente a um incremento composto por Juros do Produto, Tx Adm e/ou IPCA"
+    value_format: "$ #,###.00"
+  }
+
+  measure: estimativa_comissao {
+    type: number
+    sql: ((${proposta.sum_vl_financiamento} / ${proposta.sum_qtd_prestacoes}) * ${taxa_instituicao_simplificada.taxa_comissao}/100) +
+    (${mensal_composicao_juros_tx_adm_ipca} * ${taxa_instituicao_simplificada.taxa_comissao}/100) ;;
+    group_label: "Repasse Gestão"
+    group_item_label: "Estimativa Comissão"
+    description: "Estimativa Comissão considerando incremento de juros, taxa de adm e/ou IPCA"
     value_format: "$ #,###.00"
   }
 
   measure: estimativa_repasse {
     type: number
-    sql: ${financeiro.sum_boleto} - ${comissao} ;;
-    group_label: "Repasse"
+    sql: ((${proposta.sum_vl_financiamento} / ${proposta.sum_qtd_prestacoes}) * (1 - ${taxa_instituicao_simplificada.taxa_comissao}/100)) +
+    ${mensal_composicao_juros_tx_adm_ipca} * (1 - ${taxa_instituicao_simplificada.taxa_comissao}/100) ;;
+    group_label: "Repasse Gestão"
     group_item_label: "Estimativa Repasse"
+    description: "Estimativa Repasse considerando incremento de juros, taxa de adm e/ou IPCA"
     value_format: "$ #,###.00"
   }
 
