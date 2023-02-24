@@ -55,3 +55,11 @@ explore: ot_historico {
   description: "Mostra as informações históricas da OT, com granularidade de título e valor presente mês a mês do mês/ano da compra até mês/ano de liquidação."
 
 }
+
+explore: facilities_controle_requisicoes {
+  persist_for: "6 hour"
+  from: vw_controle_requisicoes
+  label: "Facilities - Controle Requisições"
+  view_label: "Facilities - Controle Requisições"
+  description: "Informações da planilha de controle de requisições da área de Facilities."
+}
