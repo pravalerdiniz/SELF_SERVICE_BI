@@ -233,7 +233,6 @@ view: vw_controle_requisicoes {
   measure: total_valor {
     type: sum
     sql: ${valor} ;;
-    hidden: yes
   }
 
   measure: average_valor {
