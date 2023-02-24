@@ -15,16 +15,11 @@ view: konecta_conv_hist {
     sql: ${TABLE}."GRUPO" ;;
   }
 
-  dimension: ds_curso {
-    type: string
-    label: "Curso"
-    sql: ${TABLE}."DS_CURSO" ;;
-  }
-
   dimension: conv_hist {
     type: number
     label: "Conversão Histórica"
     description: "Indica a conversão histórica por abertura de GRUPO e CURSO de acordo com o racional do dashboard 1418"
+    value_format: "0.00%"
     sql: ${TABLE}."CONV_HIST" ;;
   }
 

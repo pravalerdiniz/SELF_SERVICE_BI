@@ -847,8 +847,7 @@ explore: jornada {
 
   join: konecta_conv_hist {
     view_label: "16. Konecta - Conversão Histórica"
-    sql_on: ${proposta.grupo_instituicao} = ${konecta_conv_hist.grupo}
-    and ${proposta.ds_curso} = ${konecta_conv_hist.ds_curso};;
+    sql_on: ${instituicao.grupo} = ${konecta_conv_hist.grupo};;
     relationship: many_to_one
     type: left_outer
   }
